@@ -30,15 +30,19 @@ El intérprete XI ejecuta cada paso como una transacción con rollback.
    selector. `probe-feed-noise.xi` es un control adverso.
 7. `recall.xi`: predice con las **dos** hipótesis antes de observar
    cada consecuencia; tras consumir el lote, intercambia las dos
-   representaciones sólo si la archivada obtiene **205/240** aciertos
-   y supera a la actual por **al menos 30/240**. La nueva configuración
+   representaciones si la archivada obtiene **205/240** aciertos y supera
+   a la actual por **al menos 30/240**. Además hay una vía
+   estricta para retroalimentación ruidosa: archivada **156/240**
+   o más y ventaja de **80/240** sobre la actual. La nueva configuración
    y la eliminación del lote se confirman en un único programa XI.
 8. `audit-vault.xi`: verifica que ambos contextos estén conservados
    y diferenciados, que no sobrevivan etiquetas ni muestras temporales,
    y que ninguna consulta modifique el archivo persistente.
 
-El orden de prueba fue B activo → A recuperado → B recuperado →
-ruido (mantener B) → A recuperado → A repetido (mantener A).
+El orden de prueba fue B activo → A recuperado con etiquetas ruidosas →
+B recuperado con etiquetas ruidosas → A recuperado sin ruido →
+B recuperado sin ruido → ruido puro (mantener B) →
+A recuperado de nuevo → A repetido (mantener A).
 La primera vuelta A→B requirió entrenar las dos regularidades; las
 recuperaciones posteriores *no* vuelven a entrenar.
 
@@ -68,7 +72,7 @@ usan +10000..+12239 y se borran hasta el último byte después del juicio.
 
 ## Evidencia nativa
 
-[GitHub Actions, run 40284681769](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40284681769):
+[GitHub Actions, run 40285381399](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40285381399):
 tres semillas (19, 42, 91); dos contextos entrenados por semilla,
 cada uno con 12 generaciones × 200 experiencias. **14.400 experiencias
 de entrenamiento** para 6 hipótesis en total, además de evaluaciones.
@@ -77,22 +81,45 @@ En **cada semilla** sucedió lo siguiente:
 
 | Consulta tras aprender A y B | Aciertos activo | Aciertos archivo | Intercambio |
 |---|---:|---:|---|
-| Regresa A (XOR) | 0/240 | 240/240 | Sí, A activa |
-| Regresa B (XNOR) | 0/240 | 240/240 | Sí, B activa |
-| Datos aleatorios | Cerca del 50 % en ambos | Cerca del 50 % | No |
+| A con ~25 % de feedback alterado | Cerca de 25 % | Cerca de 75 % | Sí, A activa |
+| B con ~25 % de feedback alterado | Cerca de 25 % | Cerca de 75 % | Sí, B activa |
+| Regresa A (XOR limpio) | 0/240 | 240/240 | Sí, A activa |
+| Regresa B (XNOR limpio) | 0/240 | 240/240 | Sí, B activa |
+| Datos aleatorios | Cerca del 50 % | Cerca del 50 % | No |
 | Regresa A otra vez | 0/240 | 240/240 | Sí, A activa |
 | A sigue siendo válido | 240/240 | 0/240 | No |
 
-**Semilla 42, control aleatorio:** modelo actual 119/240, archivo
-121/240: no cambió. La auditoría final informó **tres cambios** en
-cinco consultas, **43 excepciones lógicas**, **cero enlaces cuánticos**
+**Semilla 42, feedback corrupto:** 62 de las 240 consecuencias fueron
+invertidas (25,83 %); el modelo correcto obtuvo 178/240, el incorrecto
+62/240, y el selector recuperó la hipótesis adecuada, tanto para A como
+para B, sin reentrenarlas.
+
+**Semilla 42, ruido puro:** modelo actual 119/240, archivo 121/240;
+no cambió. La auditoría final informó **cinco cambios** en
+siete consultas, **43 excepciones lógicas**, **cero enlaces cuánticos**
 y **cero qubits activos**. Estado RVPC2 final: **6.162 bytes**.
+Las tres semillas invirtieron respectivamente **54, 62 y 69 de
+240 etiquetas** por consulta ruidosa.
 Se rechazó una segunda consulta al mismo lote ya consumido.
 
 Los artefactos contienen los dos estados aprendidos por semilla
-(antes de la primera recuperación y después de las cinco consultas),
+(antes de la primera recuperación y después de las siete consultas),
 resultados JSONL de cada comparación y cada auditoría:
-[descargar artefactos nativos E007](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40284681769/artifacts/12632299620).
+[descargar artefactos nativos E007](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40285381399/artifacts/12633877069).
+
+## Tolerancia a consecuencias erróneas
+
+La primera implementación exigía siempre al menos 205/240 aciertos
+del archivo: con un 25 % de etiquetas adulteradas esa regla habría
+bloqueado recuperaciones correctas. Se añadió al selector una segunda
+puerta de evidencia comparativa (**≥80 aciertos de ventaja y ≥156
+aciertos absolutos**) sin disminuir el umbral ordinario.
+En 3 semillas, ambos retornos bajo corrupción funcionaron y el
+control sin relación mantuvo el banco actual.
+
+Se trata de ruido sintético Bernoulli aproximado, generado en XI con
+un flujo PRNG diferente al de las observaciones; NO es una cota
+estadística universal de inmunidad a corrupción o a ataques maliciosos.
 
 ## Restricciones y criterios de falsación
 
