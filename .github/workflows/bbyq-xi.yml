@@ -47,11 +47,26 @@ jobs:
           cmp epoch2.rvp epoch2-checked.rvp
           test -s epoch1-holdout.jsonl
           test -s epoch2-holdout.jsonl
-          echo "XI-only 2-epoch validation passed"
+          # Mutation followed by error: no output file may be published.
+          if "$R" run ai/xi/rollback.xi epoch2.rvp rollback-must-not-exist.rvp > rollback.jsonl; then
+            echo "ERROR: a failed learning transaction committed" >&2
+            exit 1
+          fi
+          test ! -f rollback-must-not-exist.rvp
+          cp epoch2.rvp rolling.rvp
+          for generation in 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+            "$R" run ai/xi/learn.xi rolling.rvp rolling-next.rvp > epoch-latest-train.jsonl
+            "$R" run ai/xi/holdout.xi rolling-next.rvp rolling-inspected.rvp > epoch-latest-holdout.jsonl
+            cmp rolling-next.rvp rolling-inspected.rvp
+            mv rolling-next.rvp rolling.rvp
+          done
+          echo "XI-only 20-epoch validation passed"
           echo "epoch1 holdout:"
           cat epoch1-holdout.jsonl
           echo "epoch2 holdout:"
           cat epoch2-holdout.jsonl
+          echo "epoch20 holdout:"
+          cat epoch-latest-holdout.jsonl
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -63,3 +78,5 @@ jobs:
             epoch1-holdout.jsonl
             epoch2-train.jsonl
             epoch2-holdout.jsonl
+            epoch-latest-train.jsonl
+            epoch-latest-holdout.jsonl
