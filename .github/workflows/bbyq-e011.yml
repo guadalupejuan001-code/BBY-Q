@@ -1,8 +1,5 @@
 name: BBY Q E011 - resume authentic learner and compositional XI text
 on:
-  push:
-    branches: [feature/bbyq-e011-compositional-language-20261026]
-    paths: ["ai/xi/dialogue/**", ".github/workflows/bbyq-e011.yml", "docs/AI_E011_COMPOSITION.md"]
   workflow_dispatch:
 permissions:
   contents: read
