@@ -17,10 +17,12 @@ import tempfile
 from typing import Callable
 
 from .model import validate_entity
+from .compact import encode as compact_encode, decode as compact_decode
 
 BASE_ADDRESS = 1000000000000000
 MAX_PAYLOAD = 24_000  # Under InverseMemory's 65,536-byte projection/override limits.
 HEADER_LEN = 4
+COMPACT_FLAG = 1 << 31
 
 
 class NativeStore:
@@ -69,7 +71,8 @@ class NativeStore:
 
     def _load_unlocked(self):
         header = self._materialize(HEADER_LEN)
-        size = int.from_bytes(header, "little")
+        length_and_flags = int.from_bytes(header, "little")
+        size = length_and_flags & ~COMPACT_FLAG
         if size == 0:
             return None, header
         if size > MAX_PAYLOAD:
@@ -77,7 +80,10 @@ class NativeStore:
         raw = self._materialize(HEADER_LEN + size)
         if raw[:HEADER_LEN] != header:
             raise ValueError("Concurrent or damaged BBY Q snapshot")
-        entity = json.loads(raw[HEADER_LEN:].decode("utf-8"))
+        data = raw[HEADER_LEN:]
+        if length_and_flags & COMPACT_FLAG:
+            data = compact_decode(data, MAX_PAYLOAD)
+        entity = json.loads(data.decode("utf-8"))
         validate_entity(entity)
         return entity, raw
 
@@ -88,6 +94,9 @@ class NativeStore:
                              allow_nan=False, ensure_ascii=True).encode("utf-8")
         if len(payload) > MAX_PAYLOAD:
             raise ValueError("BBY Q state exceeds 24,000-byte experimental limit")
+        compact = compact_encode(payload)
+        if len(compact) < len(payload):
+            return (len(compact) | COMPACT_FLAG).to_bytes(HEADER_LEN, 'little') + compact
         return len(payload).to_bytes(HEADER_LEN, "little") + payload
 
     def _write_unlocked(self, entity: dict, old: bytes) -> None:

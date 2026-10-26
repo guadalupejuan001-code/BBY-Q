@@ -64,3 +64,18 @@ PYTHONPATH=ai python -m bbyq --state /tmp/legacy.rvp step --single-model --signa
 ```
 
 La campaña local E002 (5 semillas) midió 95,00 % en el contexto original tras regresar y 67,33 % con modelo único; hubo recuperación real del contexto archivado en las cinco ejecuciones. La prueba ampliada (25 semillas) obtuvo 95,05 % frente a 60,75 %. No implica conciencia, semántica general ni superioridad cuántica. Véase [protocolo, límites y controles negativos](docs/AI_E002_CONTEXT.md). La verificación de persistencia nativa para E002 se ejecuta separadamente en CI.
+
+
+## BQL2 — compacidad del estado lógico
+
+El codec propio `ai/bbyq/compact.py` detecta fragmentos ASCII repetidos y
+los representa como referencias acotadas a posiciones ya observadas. Convierte
+JSON canónico de BBY Q en una proyección reversible y guarda sus bytes en
+las mismas direcciones de **Inverse Ether Memory**, bajo XI/RVPC2. No
+introduce otro motor, modelos preentrenados ni qubits automáticos.
+
+El encabezado de longitud distingue BQL2 de snapshots JSON anteriores,
+que siguen siendo legibles. Las pruebas cubren recuperación exacta,
+datos corruptos, límites de descompresión y migración nativa de V1 a BQL2.
+El codec solo busca ahorro de espacio: tiempo de CPU e I/O deben medirse;
+una mejora en bytes no implica aceleración.

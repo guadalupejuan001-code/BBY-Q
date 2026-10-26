@@ -109,3 +109,14 @@ incertidumbre, olvido bajo presupuestos finitos y representaciones
 no lineales. Antes de atribuir novedad tecnológica o utilidad comercial,
 comparar con mecanismos clásicos conocidos de detección de cambios y
 memoria contextual, en igualdad de datos y presupuestos.
+
+
+## Optimización posterior BQL2
+
+La representación de hipótesis contextual de E002 se mantiene, pero los
+bytes físicos codificados pueden comprimirse por referencias lógicas
+repetidas (codec BQL2 desarrollado en BBY Q). En una ejecución local,
+una entidad E002 de 16.744 bytes canónicos se representó como 4.920 bytes
+BQL2 (29,4 % del tamaño; ahorro 70,6 %), recuperándose exactamente.
+Esta cifra **no** es el tamaño físico RVPC2 ni una latencia nativa:
+ambos se medirán en el workflow real y se reportarán por separado.

@@ -64,6 +64,30 @@ class NativeIntegrationTests(unittest.TestCase):
             self.store.initialize(new_entity("wrong-id"))
         self.assertEqual(original, self.filename.read_bytes())
 
+    def test_legacy_snapshot_roundtrip_and_compact_migration(self):
+        from bbyq.store import BASE_ADDRESS, COMPACT_FLAG
+        legacy = new_entity('old-json-state')
+        for name in ('active_context', 'next_context', 'active_updates',
+                     'archived', 'switches', 'surprise_streak'):
+            legacy['model'].pop(name)
+        new_payload = json.dumps(legacy, separators=(',', ':'), sort_keys=True,
+                                 ensure_ascii=True, allow_nan=False).encode()
+        new_wire = len(new_payload).to_bytes(4, 'little') + new_payload
+        with self.store._lock():
+            _, old_wire = self.store._load_unlocked()
+            commands = [f'mem_store {BASE_ADDRESS+i} {new_wire[i] if i < len(new_wire) else 0}'
+                        for i in range(max(len(old_wire), len(new_wire)))
+                        if (new_wire[i] if i < len(new_wire) else 0) !=
+                           (old_wire[i] if i < len(old_wire) else 0)]
+            self.store._run('\n'.join(commands) + '\n', readonly=False)
+            self.assertFalse(int.from_bytes(self.store._materialize(4), 'little') & COMPACT_FLAG)
+        self.assertEqual(self.store.read(), legacy)
+        self.store.transact(lambda entity: experience(
+            entity, {'signal': .2, 'pressure': .1}, 1, 1))
+        self.assertEqual(self.store.read()['steps'], 1)
+        with self.store._lock():
+            self.assertTrue(int.from_bytes(self.store._materialize(4), 'little') & COMPACT_FLAG)
+
     def test_failed_birth_never_publishes_broken_state(self):
         bad = new_entity('invalid-size')
         bad['extra_padding'] = 'X' * 30000

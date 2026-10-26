@@ -61,6 +61,13 @@ def contextual_experience(entity: dict, observation: dict, action: int,
     before = predict(entity, observation, action)
     if type(outcome) is not int or outcome not in (0, 1):
         raise ValueError('Outcome must be binary')
+    if not learn:
+        record = experience(entity, observation, action, outcome, learn=False)
+        record['context_prior'] = entity['model'].get('active_context', 0)
+        record['context_active'] = record['context_prior']
+        record['context_transition'] = None
+        record['update_suspended'] = False
+        return record
     model = entity['model']
     _init(model)
     prior_id = model['active_context']

@@ -77,3 +77,17 @@ persistencia y rollback. E002 no prueba generalización a funciones
 desconocidas, ni mejora universal de tiempo o recursos. Contrastar E001,
 E002 y condiciones adversarias documentadas en
 [AI_E002_CONTEXT.md](AI_E002_CONTEXT.md).
+
+
+## Proyección reversible BQL2, no una segunda autoridad
+
+`NativeStore` serializa la misma entidad mediante JSON canónico, pero
+puede transformar fragmentos ASCII repetidos a referencias hacia atrás
+de hasta 4096 bytes y longitud de hasta 255 bytes. El bit alto del
+encabezado de cuatro bytes indica BQL2; ausente implica JSON legado.
+La expansión está acotada al presupuesto de 24.000 bytes y rechaza
+referencias inválidas. Todo el payload restaurado vuelve a pasar por
+`validate_entity`. La autoridad es el mismo archivo RVPC2 que
+conserva Inverse Ether Memory; no se almacena una copia descomprimida
+persistente. Los snapshots anteriores son legibles y migran en la siguiente
+escritura, sin modificar REVERSE-PC ni Mundo X.

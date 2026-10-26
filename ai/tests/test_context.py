@@ -79,6 +79,17 @@ class ContextTests(unittest.TestCase):
         self.assertEqual(entity['model']['switches'], 0)
         self.assertEqual(entity['model']['active_context'], 0)
 
+    def test_no_learning_freezes_context_choice_but_records_feedback(self):
+        entity = new_entity('frozen-context')
+        for _ in range(10):
+            record = contextual_experience(entity,
+                {'signal': 0, 'pressure': 0}, 1, 0, learn=False)
+            self.assertIsNone(record['context_transition'])
+        self.assertEqual(entity['model']['updates'], 0)
+        self.assertEqual(entity['model']['surprise_streak'], 0)
+        self.assertEqual(entity['model']['switches'], 0)
+        self.assertEqual(entity['steps'], 10)
+
     def test_validation_rejects_malformed_archive_and_nan(self):
         entity = new_entity('safety')
         original = copy.deepcopy(entity)
