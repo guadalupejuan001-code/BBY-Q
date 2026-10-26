@@ -72,6 +72,10 @@ jobs:
                   "$R" run ai/xi/e005/feed-xor.xi state.rvp feed.rvp > /dev/null
                 fi
                 "$R" run ai/xi/e005/learn.xi feed.rvp next.rvp > "evidence/$prefix-train-last.jsonl"
+                "$R" run ai/xi/e005/audit-clean.xi next.rvp cleanup-checked.rvp > "evidence/$prefix-audit-last.jsonl"
+                cmp next.rvp cleanup-checked.rvp
+                overrides="$(grep -m1 '"type":"memory_stats"' "evidence/$prefix-audit-last.jsonl" | sed -n 's/.*"overrides":\([0-9][0-9]*\).*/\1/p')"
+                test "$overrides" -le 48
                 mv next.rvp state.rvp
                 epoch=$((epoch+1))
               done
