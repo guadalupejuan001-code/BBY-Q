@@ -101,7 +101,6 @@ jobs:
               "$R" run ai/xi/e008/audit-organism.xi state.rvp checked.rvp > "evidence/$seed-$task-audit.jsonl"
               cmp state.rvp checked.rvp
               abstain="$(reg "evidence/$seed-$task-select.jsonl" r14)"
-              bank="$(reg "evidence/$seed-$task-select.jsonl" r14)"
               action="$(reg "evidence/$seed-$task-plan.jsonl" r14)"
               expected=0
               case "$task" in
@@ -120,8 +119,8 @@ jobs:
                 test "$abstain" -eq 0
                 test "$action" -eq 0
                 # The selected bank must match the environment, not be merely accurate.
-                chosen="$(grep -m1 '"register":"r14"' "evidence/$seed-$task-select.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
-                test "$(grep '"register":"r14"' "evidence/$seed-$task-select.jsonl" | sed -n '5s/.*"value":\([0-9][0-9]*\).*/\1/p')" -eq "$expected"
+                chosen="$(grep '"register":"r14"' "evidence/$seed-$task-select.jsonl" | sed -n '2s/.*"value":\([0-9][0-9]*\).*/\1/p')"
+                test "$chosen" -eq "$expected"
               fi
               if "$R" run ai/xi/e008/recall4.xi state.rvp reused-exam.rvp > /dev/null; then
                 echo "ERROR: old exam reused" >&2; exit 1
