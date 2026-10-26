@@ -159,13 +159,22 @@ store8 7000000000000000508 r15
 load8 r12 7000000000000000506
 add r12 1
 store8 7000000000000000506 r12
-# Only switch when archived exceeds active by >=30 and scores >=205/240.
+# Evidence gate: use a high-precision ordinary path OR a strict
+# comparative advantage path when feedback is noisy (no regime labels).
+# Ordinary: archive >=205/240 and improvement >=30/240.
+# Noise-tolerant: archive >=156/240 AND improvement >=80/240.
+# Independent random feedback cannot ordinarily reach that margin.
 mov r12 r15
 sub r12 r11
 cmp r12 30
 jlt retain_current
 cmp r15 205
+jge context_evidence_accepted
+cmp r12 80
 jlt retain_current
+cmp r15 156
+jlt retain_current
+label context_evidence_accepted
 # Atomically swap current and archived knowledge; leave their identities.
 set r0 0
 label swap_three_base_weights
