@@ -4,3 +4,6 @@ local.properties
 app/libs/*.aar
 *.keystore
 *.jks
+__pycache__/
+*.pyc
+.bbyq-xi-cache/
