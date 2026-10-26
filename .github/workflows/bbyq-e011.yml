@@ -1,28 +1,52 @@
-name: BBY Q E011 - resume authentic learner and compositional XI text
+name: BBY Q E011 - resumed compositional XI text
 on:
+  push:
+    branches: [feature/bbyq-e011-compositional-language-20261026, main]
+    paths: ["ai/xi/dialogue/**", "ai/checkpoints/**", ".github/workflows/bbyq-e011.yml", "docs/AI_E011_COMPOSITION.md"]
+  pull_request:
+    paths: ["ai/xi/dialogue/**", "ai/checkpoints/**", ".github/workflows/bbyq-e011.yml", "docs/AI_E011_COMPOSITION.md"]
   workflow_dispatch:
 permissions:
   contents: read
-  actions: read
 jobs:
   compositional-text:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Restore E010 checkpoint without repeating earlier training
-        uses: actions/download-artifact@v4
-        with:
-          name: bbyq-e010-bilingual-development-evidence
-          run-id: 40303541105
-          repository: guadalupejuan001-code/BBY-Q
-          github-token: ${{ github.token }}
-          path: e010-history
-      - name: Verify and expose reproducible public synthetic checkpoint
+      - name: Restore authentic checkpoints without replaying old training
         shell: bash
         run: |
           set -euo pipefail
-          echo 'de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f  e010-history/BBYQ_E010_ES_EN_Development.rvp' | sha256sum -c -
-          printf 'E010_CHECKPOINT_BASE64='
-          base64 -w0 e010-history/BBYQ_E010_ES_EN_Development.rvp
-          printf '\n'
+          base64 -d ai/checkpoints/E010-original.rvp.b64 > original.rvp
+          base64 -d ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64 > released.rvp
+          echo 'de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f  original.rvp' | sha256sum -c -
+          echo 'efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453  released.rvp' | sha256sum -c -
+      - name: Pin unchanged owner XI runtime and Mundo X
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Native training, unseen bilingual exam, negative controls and exact retention
+        run: |
+          set -eu
+          python3 ai/xi/dialogue/tests/native-composition.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" original.rvp --out evidence/e011 --seeds 170119 270127 370129 --cases-per-seed 300
+          cmp released.rvp evidence/e011/BBYQ_E011_Compositional_ES_EN.rvp
+      - name: Standalone text transport and persisted follow-up
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          test "$(bash ai/xi/dialogue/text.sh "$R" released.rvp 'dos mas tres' es)" = cinco
+          test "$(bash ai/xi/dialogue/text.sh "$R" released.rvp 'minus one' en)" = four
+          bash -n ai/xi/dialogue/link.sh ai/xi/dialogue/text.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e011-resumed-composition-evidence
+          path: evidence/e011/
+          if-no-files-found: warn
