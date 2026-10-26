@@ -1,7 +1,16 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E010 — desarrollo adaptativo por competencias en XI,
-con vocabulario español/inglés y operaciones aprendidas.**
+**Ruta activa: E011 — texto composicional bilingüe en XI, retomando el
+estado E010 auténtico sin repetir el entrenamiento anterior.**
+
+E011 aprende diez palabras de operación desde consecuencias, compone
+microexpresiones nuevas y conserva un resultado entre turnos. Examen local:
+**1.284/1.284 casos del protocolo**, con 979 cálculos y 305 abstenciones
+correctas; núcleo y memoria lógica previa íntegros. El estado entrenado
+se conserva en `ai/checkpoints/`. Esto no demuestra conversación abierta
+ni un porcentaje del nivel de modelos grandes. **REVERSE OS queda pospuesto.**
+
+[Capacidades, límites, evidencia y uso de E011](docs/AI_E011_COMPOSITION.md).
 E009 continúa enseñando relaciones y microoraciones;
 E008 conserva los cuatro bancos previos y E007 su evolución anterior.
 Todas las capacidades viven en el mismo estado RVPC2.
