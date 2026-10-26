@@ -1,0 +1,18 @@
+{
+  "format": "RVPC2 encoded as base64 for portable repository storage",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "files": [
+    {
+      "file": "E010-original.rvp.b64",
+      "decoded_bytes": 18722,
+      "decoded_sha256": "de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f"
+    },
+    {
+      "file": "BBYQ_E011_Compositional_ES_EN.rvp.b64",
+      "decoded_bytes": 21252,
+      "decoded_sha256": "efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453"
+    }
+  ],
+  "e010_source_run": 40303541105
+}
