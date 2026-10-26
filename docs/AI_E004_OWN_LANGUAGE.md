@@ -108,3 +108,31 @@ reales, detección de cambio de contexto y recuperación sin etiquetas,
 construcción/retirada automática de relaciones, múltiples semillas,
 competidores clásicos en condiciones idénticas, MX fuente auténtica y
 bootstrap autónomo. Se reportarán resultados adversos si aparecen.
+
+## Resultados nativos comprobados (26 octubre 2026 UTC)
+
+[GitHub Actions E004, ejecución 40276714494](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40276714494):
+compilación correcta del runtime XI, nacimiento, 20 épocas acumulativas y
+20 holdouts de sólo lectura comprobados con comparación binaria RVPC2.
+También se probó que una operación XI que altera un peso y falla después
+**no publica archivo de salida** (rollback).
+
+| Aprendizaje acumulado | Correctos en 240 | Precisión | Baseline constante | XOR/paridad |
+|---|---:|---:|---:|---:|
+| 400 ejemplos (época 1) | 223 | 92,92 % | 108/240 | 122/240 |
+| 800 ejemplos (época 2) | 224 | 93,33 % | 108/240 | 125/240 |
+| 8.000 ejemplos (época 20) | 227 | 94,58 % | 108/240 | 126/240 |
+
+El entrenamiento no cambió el perfil cuántico: el estado final tiene **0
+qubits activos**, **0 enlaces cuánticos** y **8 excepciones lógicas**
+en Inverse Ether Memory. Esta mejora es válida sólo para el problema
+sintético lineal y este conjunto de evaluación; no hay prueba estadística
+contra nuevos entornos ni de escalabilidad general. Un programa igual y
+una semilla igual producen la misma campaña.
+
+La ejecución conserva la evidencia original en
+[artefacto bbyq-e004-xi-evidence](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40276714494/artifacts/12630357589).
+La ruta de entrenamiento ejecutó exclusivamente `birth.xi`,
+`learn.xi`, `holdout.xi` y `rollback.xi`. La configuración CI y
+la compilación del intérprete preexistente son infraestructura, no
+otro algoritmo de aprendizaje.
