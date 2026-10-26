@@ -87,14 +87,22 @@ jobs:
             } > lesson.xi
             "$R" run lesson.xi state.rvp question.rvp > /dev/null
             "$R" run ai/xi/language/ask.xi question.rvp answered.rvp > "evidence/$label-proof.jsonl"
-            "$R" run ai/xi/language/speak.xi answered.rvp displayed.rvp > "evidence/$label-speech.jsonl"
-            cmp answered.rvp displayed.rvp
+            "$R" run ai/xi/language/reflect.xi answered.rvp reflected.rvp > "evidence/$label-next-study.jsonl"
+            "$R" run ai/xi/language/speak.xi reflected.rvp displayed.rvp > "evidence/$label-speech.jsonl"
+            cmp reflected.rvp displayed.rvp
             actual="$(decode_speech "evidence/$label-speech.jsonl")"
             actual_status="$(grep -m1 '"register":"r10"' "evidence/$label-proof.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
-            echo "$label: [$actual_status] $actual" | tee -a evidence/transcript.txt
+            next_study="$(grep -m1 '"register":"r14"' "evidence/$label-next-study.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
+            if [ "$expected_status" -eq 0 ]; then
+              if [ "$s" = nube ]; then test "$next_study" -eq 2
+              else test "$next_study" -eq 1; fi
+            else
+              test "$next_study" -eq 0
+            fi
+            echo "$label: [$actual_status] $actual | study=$next_study" | tee -a evidence/transcript.txt
             test "$actual" = "$expected"
             test "$actual_status" = "$expected_status"
-            mv answered.rvp state.rvp
+            mv reflected.rvp state.rvp
           }
           # E009 must be born INSIDE a full original E008 four-bank organism.
           "$R" init blank.rvp
