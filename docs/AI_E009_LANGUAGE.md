@@ -98,6 +98,34 @@ XI devuelve números por `print`; Bash en CI los representa como
 caracteres para mostrar la transcripción, **sin sustituir el
 algoritmo de la IA**.
 
+### Entrada en una línea de texto — E009.1
+
+`readline.xi` añade una primera entrada de texto sin utilizar un
+tokenizador ajeno. Recibe los bytes ASCII de una línea en la misma
+memoria `+400` (longitud) y `+401..+432` (bytes). El propio
+programa XI separa exactamente tres palabras por espacios, elimina
+un signo de interrogación final opcional, verifica caracteres y
+longitudes, y escribe el evento estructurado para `ask.xi`.
+
+**Ejemplo ejecutado por el sistema:** entrada `cuarto contiene llave?`,
+respuesta `cuarto contiene llave (via caja).`. Otro entorno
+sintético acepta `edificio incluye libro?` sin cambios al parser
+y produce `edificio incluye libro (via sala).`.
+
+Se rechazaron cuatro entradas inválidas mediante rollback nativo
+sin publicar un estado nuevo: espacios duplicados, mayúscula no
+soportada, cuatro palabras y dobles interrogaciones. Al completar
+una pregunta válida se borran los 32 bytes de texto temporal; el
+programa `audit.xi` verifica esa limpieza además de mantener la
+memoria previa.
+
+**Alcance preciso:** no entiende la gramática abierta del español.
+Solo admite `<sujeto> <predicado> <objeto>?` en minúsculas ASCII
+con un único espacio, palabras de máximo ocho caracteres y línea
+de máximo 32 bytes. La generación de la entrada XI mediante Bash
+en CI es transporte de bytes, **no segmentación ni inferencia
+de la IA**.
+
 `reflect.xi` interpreta el estado epistémico para planificar el
 siguiente estudio: `0` usar lo ya justificado, `1` pedir
 evidencia sobre relación desconocida, `2` fundamentar una
@@ -165,8 +193,9 @@ demostró preservación de los cuatro bancos E008.
   **48 hechos** alojables (la calibración actual admite menos de 25).
 - Únicamente palabras minúsculas ASCII de **1..8 bytes**:
   sin acentos, inflexión, pronombres, polisemia o preguntas abiertas.
-- No hay un analizador de español natural. Las lecciones y preguntas
-  usan eventos estructurados de exactamente **tres palabras**.
+- Hay un **tokenizador XI de microoraciones**, pero no un
+  analizador de español natural completo. Las lecciones y preguntas
+  admiten exclusivamente tres palabras con una relación binaria.
 - `speak.xi` emite texto por códigos ASCII; no voz, fonética,
   audio ni interfaz conversacional humana.
 - El modelo no está conectado a imágenes, micrófono ni sensores
@@ -181,7 +210,7 @@ demostró preservación de los cuatro bancos E008.
 - No se usaron qubits activos ni aceleración cuántica en el
   subsistema semántico.
 
-**Próximo paso:** enseñar nombres y relaciones mediante
+**Próximo paso:** ampliar la comprensión de preguntas a artículos, pronombres, flexiones y estructuras con más de tres palabras; después enseñar nombres y relaciones mediante
 señales variables/no sintéticas, producir lenguaje de
 múltiples tipos de oración, ampliar el protocolo textual
 sin sustituir la IA por un modelo de terceros y probar
