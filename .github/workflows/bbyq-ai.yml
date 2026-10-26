@@ -93,6 +93,13 @@ jobs:
         run: |
           export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
           python ai/bench/native_benchmark.py > native-benchmark-output.json
+      - name: Paired seven-cycle native codec A/B with equal logical state
+        env:
+          PYTHONPATH: ai
+          BBYQ_CODEC_BENCH_OUTPUT: codec-comparison.json
+        run: |
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python ai/bench/codec_comparison.py > codec-comparison-output.json
       - uses: actions/upload-artifact@v4
         with:
           name: bbyq-native-evidence
@@ -105,3 +112,5 @@ jobs:
             experiment002-native.json
             context-native-output.json
             context-native-inspect.json
+            codec-comparison.json
+            codec-comparison-output.json
