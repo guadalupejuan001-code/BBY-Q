@@ -17,6 +17,7 @@ set r2 0
 set r10 0
 set r11 0
 store8 7400000000000000040 0
+store8 7400000000000000047 0
 label char_loop
 cmp r0 r9
 jge end_text
@@ -82,6 +83,7 @@ load8 r3 $r7
 cmp r3 191
 jne bad_text
 set r11 1
+store8 7400000000000000047 1
 jmp next_char
 label latin_character
 # Canonical Latin-1 UTF-8: Spanish accents and enye, including uppercase.
@@ -113,6 +115,7 @@ je bad_text
 add r3 32
 jmp write_char
 label question_mark
+store8 7400000000000000047 1
 cmp r2 0
 jne mark_terminal
 cmp r1 0

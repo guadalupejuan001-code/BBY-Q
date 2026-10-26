@@ -1,0 +1,43 @@
+#!reverse-pc-machine-v1
+# Reuse E011's exact arithmetic interpreter, using explicit resolved operands.
+# No story arithmetic result is computed by this adapter.
+load8 r0 7300000000000000800
+cmp r0 1
+jne unknown
+load8 r0 7300000000000000040
+cmp r0 0
+jne unknown
+load8 r2 7300000000000000801
+load8 r3 7300000000000000802
+load8 r4 7500000000000000036
+cmp r4 1
+je ready
+store8 7300000000000000808 1
+store8 7300000000000000809 r2
+store8 7300000000000000810 r3
+store8 7300000000000000804 2
+cmp r4 2
+je addition
+store8 7300000000000000805 1
+jmp previous
+label addition
+store8 7300000000000000805 2
+label previous
+load8 r0 7500000000000000035
+set r7 7500000000000002002
+mul r0 8
+add r7 r0
+load8 r2 $r7
+add r7 1
+load8 r3 $r7
+store8 7300000000000000800 1
+store8 7300000000000000801 r2
+store8 7300000000000000802 r3
+store8 7300000000000000032 3
+label ready
+halt
+label unknown
+store8 7500000000000000008 0
+store8 7500000000000000009 1
+store8 7500000000000000017 0
+halt

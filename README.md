@@ -1,6 +1,17 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E013 — rendimiento XI y sesión residente, conservando E012.**
+**Ruta activa: E014 — cantidades y referentes en pequeñas historias, sobre E013.**
+
+BBY Q aprende efectos de verbos a partir de consecuencias y conserva cuentas
+por persona y objeto: «ana tiene dos manzanas y recibe tres manzanas» →
+«cinco»; después puede consultar la misma cuenta. Son microhistorias con
+gramática acotada, 16 cuentas por episodio y operaciones de asignar/sumar/restar.
+Se añaden 45 entradas léxicas y 14 lecciones de consecuencias, conservando el
+checkpoint anterior y la aritmética XI original. REVERSE OS sigue pospuesto.
+
+[Entrenamiento, pruebas y uso de E014](docs/AI_E014_QUANTITY_STORIES.md).
+
+**Base de rendimiento E013.**
 
 La deducción de referencia pasó de 65,78 ms en la entrada CLI anterior a
 7,29 ms entre turnos de la sesión E013, con guardado por respuesta.
@@ -9,8 +20,7 @@ RAM residente medida de 3,79–4,34 MiB en Linux x86-64; Android no medido.
 
 [Mediciones, método y límites de E013](docs/AI_E013_PERFORMANCE.md).
 
-El currículo más reciente sigue siendo **E012: conocimiento bilingüe,
-relaciones y evidencia en XI**.
+**E012 conserva el conocimiento bilingüe, relaciones y evidencia en XI.**
 
 Continúa desde el checkpoint E011 real, conservando la entidad anterior.
 Añade 176 identidades simbólicas, 374 entradas de vocabulario ES/EN y

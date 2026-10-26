@@ -30,6 +30,11 @@ case "$mode" in
     link_module "$root/parse-question.xi" dispatch
     echo 'label dispatch'
     if [ "$mode" = combined ]; then
+      link_module "$root/../stories/detect.xi" choose_story
+      echo 'label choose_story'
+      echo 'load8 r0 7500000000000000016'
+      echo 'cmp r0 1'
+      echo 'je story'
       link_module "$root/legacy-check.xi" choose_route
       echo 'label choose_route'
       echo 'load8 r0 7400000000000000013'
@@ -58,6 +63,27 @@ case "$mode" in
       link_module "$root/../language/ask.xi" "m$((serial+1))_entry"
       link_module "$root/../language/speak.xi" "m$((serial+1))_entry"
       link_module "$root/legacy-restore.xi" cleanup
+      echo 'label story'
+      link_module "$root/../stories/begin.xi" story_parse
+      echo 'label story_parse'
+      link_module "$root/../stories/parse.xi" story_parsed
+      echo 'label story_parsed'
+      echo 'load8 r0 7500000000000000017'
+      echo 'cmp r0 1'
+      echo 'jne story_finish'
+      link_module "$root/../stories/number-intake.xi" "m$((serial+1))_entry"
+      link_module "$root/../dialogue/resolve.xi" "m$((serial+1))_entry"
+      link_module "$root/../stories/arithmetic-intake.xi" story_number_ready
+      echo 'label story_number_ready'
+      echo 'load8 r0 7500000000000000017'
+      echo 'cmp r0 1'
+      echo 'jne story_finish'
+      link_module "$root/../dialogue/interpret.xi" "m$((serial+1))_entry"
+      link_module "$root/../stories/apply.xi" story_parse
+      echo 'label story_finish'
+      link_module "$root/../stories/finish.xi" "m$((serial+1))_entry"
+      link_module "$root/../dialogue/respond.xi" "m$((serial+1))_entry"
+      link_module "$root/../stories/clean.xi" cleanup
     fi
     echo 'label knowledge'
     link_module "$root/rule-check.xi" "m$((serial+1))_entry"

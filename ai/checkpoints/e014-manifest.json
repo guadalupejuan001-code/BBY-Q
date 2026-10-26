@@ -1,0 +1,30 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E014_Quantity_Stories_ES_EN.rvp.gz.b64",
+  "decoded_bytes": 169297,
+  "decoded_sha256": "c3b732c4d704c21d1d0f99b0f774840de1ab66281813c5664a920d580fdf27b5",
+  "parent": "BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64",
+  "parent_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+  "source_base_commit": "6c3a417f9550aa4551f57aa6492642309c85bfde",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "distinct_consequence_lessons": 14,
+  "lesson_presentations_including_repetition_control": 18,
+  "new_lexical_entries": 45,
+  "total_e012_lexical_entries": 419,
+  "registered_knowledge_facts": 185,
+  "episode_accounts_in_release": 0,
+  "intelligence": "XI only; reuse original E011 arithmetic interpreter and speaker",
+  "source_data_sha256": {
+    "effects-v1.psv": "d9ef7663daa54b985f30c9a444aab4e916c3714d13402294e050e5e6017f55e0",
+    "words-v1.psv": "ccb767b6b70477deb3e64e098bc7b8345d8fb9fdd78236bbc5668ffa941a1912"
+  },
+  "limits": {
+    "episode_pairs": 16,
+    "tokens": 15,
+    "input_bytes": 255,
+    "quantity_min": 0,
+    "quantity_max": 65535
+  }
+}
