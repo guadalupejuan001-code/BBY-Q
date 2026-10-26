@@ -237,7 +237,24 @@ add r12 128
 store8 7000000000000000066 r12
 add r15 1
 store8 7000000000000000016 r15
-# Clear the feed marker: re-running learn without generating is an error.
+# Keep knowledge; erase raw observations AND known consequences within this
+# SAME atomic XI transaction. Nothing external stores a second copy.
+# Removing overrides restores the global Ether background-zero rule.
+set r0 0
+label erase_consumed_batch
+set r12 7000000000000010000
+add r12 r0
+store8 $r12 0
+set r12 7000000000000011000
+add r12 r0
+store8 $r12 0
+set r12 7000000000000012000
+add r12 r0
+store8 $r12 0
+add r0 1
+cmp r0 200
+jlt erase_consumed_batch
+# Clear feed generation marker, forbidding duplicate training.
 store8 7000000000000000040 0
 load8 r12 7000000000000000030
 # 200 outcomes, online successes, generation, physically created relations
