@@ -17,22 +17,26 @@ continuar el entrenamiento sin iniciar de cero.
   Cada ejecución añade 400 experiencias y una nueva época al mismo estado.
 - `ai/xi/holdout.xi`: comprueba 240 casos disjuntos, baseline congelado
   y control negativo XOR, sin modificar la memoria.
+- `ai/xi/rollback.xi`: inyecta un fallo después de alterar un peso y
+  verifica que la transacción no produzca estado nuevo.
 - [Diseño, protocolo y límites E004](docs/AI_E004_OWN_LANGUAGE.md)
 - [Evidencia reproducible en GitHub Actions](https://github.com/guadalupejuan001-code/BBY-Q/actions/workflows/bbyq-xi.yml)
 
 ## Estado verificado
 
-La primera prueba nativa E004
-([run 40276393053](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40276393053))
-compiló el **runtime XI ya existente**, ejecutó dos épocas reales sobre
-`Inverse Ether Memory` y guardó/restauró RVPC2.
+La campaña nativa E004
+([run 40276714494](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40276714494))
+compiló el **runtime XI ya existente**, ejecutó **20 épocas (8.000
+experiencias acumuladas)** sobre `Inverse Ether Memory`, probó rollback
+y guardó/restauró RVPC2.
 
 | Casos nuevos | Modelo XI | Baseline constante | Control XOR |
 |---|---:|---:|---:|
 | 240 después de 400 experiencias | 223/240 (92,92 %) | 108/240 (45,00 %) | 122/240 (50,83 %) |
 | 240 después de 800 experiencias | 224/240 (93,33 %) | 108/240 (45,00 %) | 125/240 (52,08 %) |
+| 240 después de 8.000 experiencias | **227/240 (94,58 %)** | 108/240 (45,00 %) | 126/240 (52,50 %) |
 
-Resultados limitados a un microentorno sintético. Ambas épocas:
+Resultados limitados a un microentorno sintético. Las veinte épocas:
 **cero qubits activos, cero enlaces cuánticos**, y snapshots
 inalterados por la evaluación.
 
