@@ -1,6 +1,19 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E014 — cantidades y referentes en pequeñas historias, sobre E013.**
+**Ruta activa: E015 — estructuras de pregunta bilingües, sobre E014.**
+
+BBY Q continúa su estado aprendido con nueve estructuras inducidas desde
+18 demostraciones con roles supervisados. Puede responder a «how many apples
+does ana have?» y «cuántas manzanas le quedan a ana?» sobre la misma cuenta,
+sin exigir `how_many`. Dos ejemplos deben variar persona y objeto antes de
+habilitar una estructura. Se añaden nueve entradas léxicas: 428 en total.
+Prueba: 720 preguntas con referentes distintos a los de enseñanza y 1.522
+consultas del currículo anterior. La gramática sigue limitada al dominio
+de cuentas y la respuesta es una cantidad; REVERSE OS continúa pospuesto.
+
+[Enseñanza de estructuras, controles y límites de E015](docs/AI_E015_GRAMMAR.md).
+
+**E014 — cantidades y referentes en pequeñas historias, sobre E013.**
 
 BBY Q aprende efectos de verbos a partir de consecuencias y conserva cuentas
 por persona y objeto: «ana tiene dos manzanas y recibe tres manzanas» →

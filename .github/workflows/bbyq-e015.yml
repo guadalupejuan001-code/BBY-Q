@@ -1,0 +1,60 @@
+name: BBY Q E015 - induced bilingual question structures
+on:
+  push:
+    branches: [feature/bbyq-e015-bilingual-grammar-20261026, main]
+    paths: ["ai/xi/grammar/**", "ai/xi/knowledge/**", "ai/xi/stories/**", "ai/native/**", "ai/checkpoints/BBYQ_E015*", "ai/checkpoints/e015-manifest.json", ".github/workflows/bbyq-e015.yml"]
+  pull_request:
+    paths: ["ai/xi/grammar/**", "ai/xi/knowledge/**", "ai/xi/stories/**", "ai/native/**", "ai/checkpoints/BBYQ_E015*", "ai/checkpoints/e015-manifest.json", ".github/workflows/bbyq-e015.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bilingual-grammar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore authentic E014 parent and released E015 learner
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E014_Quantity_Stories_ES_EN.rvp.gz.b64 | gzip -dc > parent.rvp
+          base64 -d ai/checkpoints/BBYQ_E015_Grammar_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          m=json.loads(Path('ai/checkpoints/e015-manifest.json').read_text())
+          assert hashlib.sha256(Path('parent.rvp').read_bytes()).hexdigest()==m['parent_sha256']
+          assert hashlib.sha256(Path('released.rvp').read_bytes()).hexdigest()==m['decoded_sha256']
+          for name,digest in m['source_data_sha256'].items():
+              assert hashlib.sha256((Path('ai/xi/grammar/data')/name).read_bytes()).hexdigest()==digest
+          PY
+      - name: Build unchanged owner runtime and transport
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Continue teaching and examine withheld questions and retained curriculum
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ai/xi/grammar/tests/native-grammar.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$RUNNER_TEMP/session-build/bbyq_session" parent.rvp --out evidence/e015 --cases 720
+          python3 - <<'PY'
+          import runpy
+          snapshot=runpy.run_path('ai/xi/knowledge/tests/native-knowledge.py')['snapshot']
+          assert snapshot('released.rvp')==snapshot('evidence/e015/BBYQ_E015_Grammar_ES_EN.rvp')
+          PY
+          bash -n ai/xi/knowledge/link.sh ai/xi/knowledge/text.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e015-grammar-evidence
+          path: |
+            evidence/e015/results.json
+            evidence/e015/raw.jsonl
+            evidence/e015/BBYQ_E015_Grammar_ES_EN.rvp
+          if-no-files-found: warn
