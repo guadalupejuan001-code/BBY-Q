@@ -176,7 +176,63 @@ jobs:
           cmp state.rvp e008-verified.rvp
           ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'after-restart'
           cp state.rvp evidence/after-restart-language-organism.rvp
-          echo 'E009 PASS: learned words, grounded synonyms, transitivity and native ASCII utterances' | tee -a evidence/transcript.txt
+          # Refute a former supporting example: the learned composition must stop.
+          fact cuarto contiene moneda 0
+          fact cuarto contiene moneda 0
+          "$R" run ai/xi/language/calibrate.xi state.rvp relearned.rvp > evidence/rejected-transitivity.jsonl
+          mv relearned.rvp state.rvp
+          ask cuarto contiene llave '?' 0 'counterexample-retracts-generalization'
+          # Fresh evidence can restore the property, retaining the full history.
+          fact cuarto contiene moneda 1
+          fact cuarto contiene moneda 1
+          fact cuarto contiene moneda 1
+          "$R" run ai/xi/language/calibrate.xi state.rvp relearned.rvp > evidence/recovered-transitivity.jsonl
+          mv relearned.rvp state.rvp
+          ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'knowledge-recovered'
+          "$R" run ai/xi/language/audit.xi state.rvp audited.rvp > evidence/first-world-audit.jsonl
+          cmp state.rvp audited.rvp
+          cp state.rvp evidence/first-world-complete.rvp
+          # Entirely different words and senses: reuse XI programs without any
+          # hardcoded language or altered interpreter. Original E008 remains.
+          cp evidence/before-language.rvp state.rvp
+          "$R" run ai/xi/language/birth.xi state.rvp language-born.rvp > /dev/null
+          mv language-born.rvp state.rvp
+          ground sala 1 0 0
+          ground armario 1 1 0
+          ground libro 1 2 0
+          ground edificio 2 0 0
+          ground nota 1 3 0
+          ground incluye 3 0 0
+          ground mira 3 1 0
+          ground ojo 2 2 0
+          ground recinto 1 0 0
+          ground alberga 3 0 0
+          for pair in \
+            'sala incluye armario 1' \
+            'armario incluye libro 1' \
+            'sala incluye libro 1' \
+            'edificio incluye sala 1' \
+            'sala incluye nota 1' \
+            'edificio incluye nota 1' \
+            'ojo mira sala 1' \
+            'sala mira armario 1' \
+            'ojo mira armario 0'; do
+            read -r s p o t <<< "$pair"
+            fact "$s" "$p" "$o" "$t"
+            fact "$s" "$p" "$o" "$t"
+          done
+          ask edificio incluye libro '?' 0 'second-world-before-calibration'
+          "$R" run ai/xi/language/calibrate.xi state.rvp calibrated.rvp > evidence/second-world-calibration.jsonl
+          mv calibrated.rvp state.rvp
+          ask edificio incluye libro 'edificio incluye libro (via sala).' 1 'second-world-new-inference'
+          ask edificio alberga libro 'edificio incluye libro (via sala).' 1 'second-world-new-predicate-synonym'
+          ask recinto incluye armario 'sala incluye armario.' 1 'second-world-new-subject-synonym'
+          ask ojo mira armario 'no: ojo mira armario.' 2 'second-world-counterevidence'
+          ask ojo mira libro '?' 0 'second-world-no-false-analogy'
+          "$R" run ai/xi/language/audit.xi state.rvp audit.rvp > evidence/second-world-audit.jsonl
+          cmp state.rvp audit.rvp
+          cp state.rvp evidence/second-world-complete.rvp
+          echo 'E009 PASS: two unrelated vocabularies, proof and language, contradiction/recovery and no ungrounded claims' | tee -a evidence/transcript.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
