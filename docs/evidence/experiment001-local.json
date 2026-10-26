@@ -1,0 +1,182 @@
+{
+  "algorithm": "online relation-weight logistic gradient, no pretraining",
+  "environment_seed_start": 42,
+  "experiment": "BBYQ-E001",
+  "holdout_per_run": 240,
+  "interpretation": "Small learnability experiment, not proof of general intelligence",
+  "native_backend_used_for_campaign": false,
+  "per_run": [
+    {
+      "accuracy_after_learning": 0.9458333333333333,
+      "accuracy_before_learning": 0.5375,
+      "accuracy_frozen_no_learning": 0.5375,
+      "accuracy_train_majority_baseline": 0.5375,
+      "holdout_cases": 240,
+      "hypothesis_weights_after_first_task": {
+        "action": -3.81553,
+        "bias": 0.33163,
+        "pressure": 1.44136,
+        "signal": -0.66665,
+        "signal_x_action": -1.63056
+      },
+      "identical_train_test_inputs": 0,
+      "learning_microseconds_per_experience": 36.512255,
+      "negative_parity_accuracy": 0.4875,
+      "new_regime_after_adaptation": 0.9916666666666667,
+      "new_regime_before_adaptation": 0.05416666666666667,
+      "old_regime_after_adaptation_retention": 0.008333333333333333,
+      "predict_microseconds_per_case": 8.51252,
+      "prequential_train_accuracy_by_quarter": [
+        0.96,
+        0.95,
+        0.98,
+        0.96
+      ],
+      "python_tracemalloc_peak_bytes": 66604,
+      "seed": 42,
+      "serialized_state_bytes_before_switch": 11656,
+      "training_experiences": 400
+    },
+    {
+      "accuracy_after_learning": 0.9333333333333333,
+      "accuracy_before_learning": 0.44166666666666665,
+      "accuracy_frozen_no_learning": 0.44166666666666665,
+      "accuracy_train_majority_baseline": 0.5583333333333333,
+      "holdout_cases": 240,
+      "hypothesis_weights_after_first_task": {
+        "action": 3.00259,
+        "bias": -0.13081,
+        "pressure": -2.91322,
+        "signal": -1.57495,
+        "signal_x_action": -2.17451
+      },
+      "identical_train_test_inputs": 0,
+      "learning_microseconds_per_experience": 37.728175,
+      "negative_parity_accuracy": 0.5916666666666667,
+      "new_regime_after_adaptation": 0.9541666666666667,
+      "new_regime_before_adaptation": 0.06666666666666667,
+      "old_regime_after_adaptation_retention": 0.04583333333333333,
+      "predict_microseconds_per_case": 8.351805,
+      "prequential_train_accuracy_by_quarter": [
+        0.82,
+        0.95,
+        0.92,
+        0.93
+      ],
+      "python_tracemalloc_peak_bytes": 66604,
+      "seed": 43,
+      "serialized_state_bytes_before_switch": 11638,
+      "training_experiences": 400
+    },
+    {
+      "accuracy_after_learning": 0.9875,
+      "accuracy_before_learning": 0.36666666666666664,
+      "accuracy_frozen_no_learning": 0.36666666666666664,
+      "accuracy_train_majority_baseline": 0.6333333333333333,
+      "holdout_cases": 240,
+      "hypothesis_weights_after_first_task": {
+        "action": -3.14172,
+        "bias": -1.46617,
+        "pressure": -1.30496,
+        "signal": 2.425,
+        "signal_x_action": -2.57395
+      },
+      "identical_train_test_inputs": 0,
+      "learning_microseconds_per_experience": 38.508395,
+      "negative_parity_accuracy": 0.49166666666666664,
+      "new_regime_after_adaptation": 0.9833333333333333,
+      "new_regime_before_adaptation": 0.0125,
+      "old_regime_after_adaptation_retention": 0.016666666666666666,
+      "predict_microseconds_per_case": 8.54668,
+      "prequential_train_accuracy_by_quarter": [
+        0.94,
+        0.97,
+        0.99,
+        0.95
+      ],
+      "python_tracemalloc_peak_bytes": 66604,
+      "seed": 44,
+      "serialized_state_bytes_before_switch": 11671,
+      "training_experiences": 400
+    },
+    {
+      "accuracy_after_learning": 0.9208333333333333,
+      "accuracy_before_learning": 0.3416666666666667,
+      "accuracy_frozen_no_learning": 0.3416666666666667,
+      "accuracy_train_majority_baseline": 0.6583333333333333,
+      "holdout_cases": 240,
+      "hypothesis_weights_after_first_task": {
+        "action": 2.89417,
+        "bias": -0.74072,
+        "pressure": 1.90965,
+        "signal": 3.25875,
+        "signal_x_action": 1.66171
+      },
+      "identical_train_test_inputs": 0,
+      "learning_microseconds_per_experience": 38.582465,
+      "negative_parity_accuracy": 0.375,
+      "new_regime_after_adaptation": 0.9625,
+      "new_regime_before_adaptation": 0.07916666666666666,
+      "old_regime_after_adaptation_retention": 0.0375,
+      "predict_microseconds_per_case": 8.345335,
+      "prequential_train_accuracy_by_quarter": [
+        0.9,
+        0.97,
+        0.96,
+        0.96
+      ],
+      "python_tracemalloc_peak_bytes": 66604,
+      "seed": 45,
+      "serialized_state_bytes_before_switch": 11618,
+      "training_experiences": 400
+    },
+    {
+      "accuracy_after_learning": 0.9708333333333333,
+      "accuracy_before_learning": 0.575,
+      "accuracy_frozen_no_learning": 0.575,
+      "accuracy_train_majority_baseline": 0.575,
+      "holdout_cases": 240,
+      "hypothesis_weights_after_first_task": {
+        "action": -3.33991,
+        "bias": 0.90977,
+        "pressure": -2.25294,
+        "signal": -2.21206,
+        "signal_x_action": -1.20017
+      },
+      "identical_train_test_inputs": 0,
+      "learning_microseconds_per_experience": 39.44609,
+      "negative_parity_accuracy": 0.5,
+      "new_regime_after_adaptation": 0.9375,
+      "new_regime_before_adaptation": 0.029166666666666667,
+      "old_regime_after_adaptation_retention": 0.0625,
+      "predict_microseconds_per_case": 8.1083675,
+      "prequential_train_accuracy_by_quarter": [
+        0.92,
+        0.96,
+        0.93,
+        0.97
+      ],
+      "python_tracemalloc_peak_bytes": 66604,
+      "seed": 46,
+      "serialized_state_bytes_before_switch": 11651,
+      "training_experiences": 400
+    }
+  ],
+  "runs": 5,
+  "summary_mean": {
+    "accuracy_after_learning": 0.9516666666666667,
+    "accuracy_before_learning": 0.45249999999999996,
+    "accuracy_frozen_no_learning": 0.45249999999999996,
+    "accuracy_train_majority_baseline": 0.5925,
+    "learning_microseconds_per_experience": 38.155476,
+    "negative_parity_accuracy": 0.48916666666666664,
+    "new_regime_after_adaptation": 0.9658333333333333,
+    "new_regime_before_adaptation": 0.04833333333333333,
+    "old_regime_after_adaptation_retention": 0.034166666666666665,
+    "predict_microseconds_per_case": 8.3729415,
+    "python_tracemalloc_peak_bytes": 66604
+  },
+  "training_per_run": 400,
+  "wall_seconds": 0.2325,
+  "world": "seeded hidden relational threshold; separate parity negative control"
+}

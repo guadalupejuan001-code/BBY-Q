@@ -1,0 +1,84 @@
+name: BBY Q - birth and learning research
+on:
+  push:
+    branches: [main, feature/quantum-ai-lab-20261025]
+    paths: ["ai/**", "docs/AI_*.md", "docs/evidence/**", "README.md", ".github/workflows/bbyq-ai.yml"]
+  pull_request:
+    paths: ["ai/**", "docs/AI_*.md", "docs/evidence/**", "README.md", ".github/workflows/bbyq-ai.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  python-model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Core, isolation, negative control and experiment tests
+        env:
+          PYTHONPATH: ai
+        run: python -m unittest discover -s ai/tests -v
+      - name: Reproduce research campaign
+        env:
+          PYTHONPATH: ai
+        run: python -m bbyq experiment --seed 42 --runs 5 --train 400 --test 240 --output experiment001-ci.json > experiment-output.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-python-evidence
+          path: |
+            experiment001-ci.json
+            experiment-output.json
+  native-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout exact REVERSE-PC commit; do not change upstream sources
+        run: |
+          mkdir -p "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" init
+          git -C "$RUNNER_TEMP/reverse-pc" remote add origin https://github.com/guadalupejuan001-code/REVERSE-PC.git
+          git -C "$RUNNER_TEMP/reverse-pc" fetch --no-tags --depth 1 origin 063d871c27de2d4f10904ec5c3e1363c2fe16d86
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 063d871c27de2d4f10904ec5c3e1363c2fe16d86
+      - name: Reuse REVERSE-PC's pinned and checked Mundo X dependency
+        run: bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build real integrated XI CLI, not a fake storage adapter
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Birth, transactional persistence, restart, rollback and corrupt-state tests
+        env:
+          PYTHONPATH: ai
+          BBYQ_REQUIRE_NATIVE: '1'
+        run: |
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python -m unittest discover -s ai/tests -v
+      - name: Preserve learned entity using InverseMemory
+        env:
+          PYTHONPATH: ai
+        run: |
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python -m bbyq --state "$RUNNER_TEMP/learned.rvp" experiment --seed 42 --runs 5 --train 400 --test 240 --persist --output experiment001-native.json > experiment-native-output.json
+          python -m bbyq --state "$RUNNER_TEMP/learned.rvp" inspect > native-inspect.json
+      - name: Resource and write-latency benchmark
+        env:
+          PYTHONPATH: ai
+          BBYQ_NATIVE_BENCH_OUTPUT: native-benchmark.json
+        run: |
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python ai/bench/native_benchmark.py > native-benchmark-output.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-native-evidence
+          path: |
+            experiment001-native.json
+            experiment-native-output.json
+            native-inspect.json
+            native-benchmark.json
+            native-benchmark-output.json
