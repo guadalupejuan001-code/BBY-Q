@@ -180,7 +180,8 @@ std::string observe(Runtime& r,double s,double p,int a,int y) {
   return o.str();
 }
 std::string inspect(const Runtime& r,const fs::path& path) {
-  const auto m=r.memory().stats(),q=r.core().stats();
+  const auto m=r.memory().stats();
+  const auto q=r.core().stats();
   std::ostringstream o;
   o<<"{\"schema\":\"BBYQ-SPACE-3\",\"steps\":"<<step_count(r)
    <<",\"rvpc2_bytes\":"<<fs::file_size(path)
