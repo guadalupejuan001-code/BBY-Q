@@ -35,6 +35,22 @@ jobs:
           growth() {
             grep -m1 '"register":"r14"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
           }
+          agreement() {
+            grep -m1 '"register":"r10"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          # Data provenance: compare XI source-only fingerprints before either world is learned.
+          "$R" init matching-blank.rvp
+          "$R" run ai/xi/e005/birth.xi matching-blank.rvp matching-born.rvp > /dev/null
+          "$R" run ai/xi/e005/seed-42.xi matching-born.rvp matching-seeded.rvp > /dev/null
+          "$R" run ai/xi/e005/feed-xor.xi matching-seeded.rvp matching-xor.rvp > /dev/null
+          "$R" run ai/xi/e005/feed-noise.xi matching-seeded.rvp matching-noise.rvp > evidence/diagnostic-noise-feed.jsonl
+          "$R" run ai/xi/e005/input-fingerprint.xi matching-xor.rvp matching-xor-view.rvp > evidence/fingerprint-xor.jsonl
+          "$R" run ai/xi/e005/input-fingerprint.xi matching-noise.rvp matching-noise-view.rvp > evidence/fingerprint-noise.jsonl
+          cmp matching-xor.rvp matching-xor-view.rvp
+          cmp matching-noise.rvp matching-noise-view.rvp
+          cmp evidence/fingerprint-xor.jsonl evidence/fingerprint-noise.jsonl
+          test "$(agreement evidence/diagnostic-noise-feed.jsonl)" -ge 60
+          test "$(agreement evidence/diagnostic-noise-feed.jsonl)" -le 140
           for seed in 19 42 91; do
             for arm in grown linear noise; do
               prefix="$seed-$arm"
@@ -48,7 +64,10 @@ jobs:
               epoch=1
               while [ "$epoch" -le 12 ]; do
                 if [ "$arm" = "noise" ]; then
-                  "$R" run ai/xi/e005/feed-noise.xi state.rvp feed.rvp > /dev/null
+                  "$R" run ai/xi/e005/feed-noise.xi state.rvp feed.rvp > "evidence/$prefix-feed-last.jsonl"
+                  matched="$(agreement "evidence/$prefix-feed-last.jsonl")"
+                  test "$matched" -ge 60
+                  test "$matched" -le 140
                 else
                   "$R" run ai/xi/e005/feed-xor.xi state.rvp feed.rvp > /dev/null
                 fi
@@ -84,6 +103,8 @@ jobs:
             grown="$(accuracy "evidence/$seed-grown-xor.jsonl")"
             linear="$(accuracy "evidence/$seed-linear-xor.jsonl")"
             random_train="$(accuracy "evidence/$seed-noise-noise.jsonl")"
+            random_xor="$(accuracy "evidence/$seed-noise-xor.jsonl")"
+            grown_noise="$(accuracy "evidence/$seed-grown-noise.jsonl")"
             random_growth="$(growth "evidence/$seed-noise-xor.jsonl")"
             active="$(growth "evidence/$seed-grown-xor.jsonl")"
             control_active="$(growth "evidence/$seed-linear-xor.jsonl")"
@@ -95,6 +116,10 @@ jobs:
             test "$random_growth" -gt 0
             test "$random_train" -ge 72
             test "$random_train" -le 168
+            test "$random_xor" -ge 72
+            test "$random_xor" -le 168
+            test "$grown_noise" -ge 72
+            test "$grown_noise" -le 168
           done
           echo "E005 PASS: all seeds generalize with learned relations, controls and rollback hold"
       - uses: actions/upload-artifact@v4
