@@ -20,7 +20,7 @@ tmp="$(mktemp -d "$(dirname "$state")/.bbyq-text.XXXXXX")"
 # covers every module in the native route; source edits invalidate it.
 cache="$(dirname "$state")/.bbyq-xi-cache"
 mkdir -p -m 700 "$cache"
-key="$(sha256sum "$root"/*.xi "$root/link.sh" "$root/../dialogue"/*.xi "$root/../stories"/*.xi "$root/../language/ask.xi" "$root/../language/speak.xi" | sha256sum)"
+key="$(sha256sum "$root"/*.xi "$root/link.sh" "$root/../dialogue"/*.xi "$root/../stories"/*.xi "$root/../grammar"/*.xi "$root/../language/ask.xi" "$root/../language/speak.xi" | sha256sum)"
 key="${key%% *}"
 compiled="$cache/$key.xi"
 if [[ ! -s "$compiled" ]]; then

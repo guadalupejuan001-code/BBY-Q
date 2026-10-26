@@ -19,6 +19,11 @@ link_module() {
   serial=$((serial+1))
 }
 case "$mode" in
+  pattern)
+    link_module "$root/read.xi" m1_entry
+    link_module "$root/resolve.xi" m2_entry
+    link_module "$root/../grammar/learn-pattern.xi" finish
+    ;;
   word)
     link_module "$root/read.xi" m1_entry
     link_module "$root/resolve.xi" m2_entry
@@ -27,6 +32,9 @@ case "$mode" in
   query|combined)
     link_module "$root/read.xi" m1_entry
     link_module "$root/resolve.xi" m2_entry
+    if [ "$mode" = combined ]; then
+      link_module "$root/../grammar/match.xi" "m$((serial+1))_entry"
+    fi
     link_module "$root/parse-question.xi" dispatch
     echo 'label dispatch'
     if [ "$mode" = combined ]; then

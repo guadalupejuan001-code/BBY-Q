@@ -1,0 +1,107 @@
+{
+  "stage": "E015",
+  "parent_sha256": "c3b732c4d704c21d1d0f99b0f774840de1ab66281813c5664a920d580fdf27b5",
+  "learned_sha256": "b32e95d54b866230adfa020d4c706e36d25a4b1ceb66ede7e63b795fd03dd0b1",
+  "checkpoint_bytes": 174811,
+  "new_lexical_entries": 9,
+  "total_lexical_entries": 428,
+  "distinct_demonstrations": 18,
+  "enabled_patterns": 9,
+  "baseline_new_formulations_correct": 0,
+  "baseline_new_formulations_total": 9,
+  "baseline": [
+    {
+      "input": "how many apples does ana have?",
+      "output": "?"
+    },
+    {
+      "input": "how many apples has ana?",
+      "output": "?"
+    },
+    {
+      "input": "how many apples does ana have now?",
+      "output": "?"
+    },
+    {
+      "input": "how many apples has ana now?",
+      "output": "?"
+    },
+    {
+      "input": "ana has how many apples?",
+      "output": "?"
+    },
+    {
+      "input": "ana tiene cuántas manzanas?",
+      "output": "?"
+    },
+    {
+      "input": "cuántas manzanas le quedan a ana?",
+      "output": "?"
+    },
+    {
+      "input": "cuántas manzanas tiene ahora ana?",
+      "output": "?"
+    },
+    {
+      "input": "cuántas manzanas tiene ana ahora?",
+      "output": "?"
+    }
+  ],
+  "novel_questions": 720,
+  "distinct_question_texts": 120,
+  "fresh_quantity_contexts": 720,
+  "question_seed": 150627,
+  "training_referents": {
+    "actors": [
+      "ana",
+      "luis"
+    ],
+    "items": [
+      "manzanas/apples",
+      "peras/pears"
+    ]
+  },
+  "exam_referents": {
+    "actors": [
+      "eva",
+      "tom"
+    ],
+    "items": [
+      "libros/books",
+      "pelotas/balls"
+    ]
+  },
+  "question_ms": {
+    "median": 10.445665,
+    "p95": 14.497592
+  },
+  "session_metrics": {
+    "method": "getrusage_self",
+    "peak_rss_kib": 18552,
+    "resident_rss_kib": 4248,
+    "cpu_ms": 15633.5,
+    "active_qubits": 0
+  },
+  "prior_curriculum_questions_on_new_checkpoint": 1522,
+  "failure_controls": 20,
+  "old_knowledge_unchanged": true,
+  "repeated_examples_do_not_promote": true,
+  "lexicon_without_grammar_abstains": true,
+  "both_referents_must_vary": true,
+  "conflicting_structures_abstain": true,
+  "invalid_teaching_rejected": true,
+  "grammar_source_cache_invalidated": true,
+  "save_and_post_update_xi_failure_rollback": true,
+  "checks": 3080,
+  "empty_episode_ledger_in_release": true,
+  "old_training_replayed": false,
+  "intelligence": "XI only, same E014 ledger and E011 arithmetic/speaker",
+  "limits": {
+    "patterns": 16,
+    "tokens": 15,
+    "input_bytes": 255,
+    "open_grammar": false
+  },
+  "platform": "linux",
+  "no_reverse_os_integration": true
+}
