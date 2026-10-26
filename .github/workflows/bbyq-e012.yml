@@ -1,0 +1,54 @@
+name: BBY Q E012 - bilingual knowledge and native multi-hop evidence
+on:
+  push:
+    branches: [feature/bbyq-e012-grounded-knowledge-20261026, main]
+    paths: ["ai/xi/knowledge/**", "ai/checkpoints/BBYQ_E012*", "ai/checkpoints/e012-manifest.json", ".github/workflows/bbyq-e012.yml", "docs/AI_E012_KNOWLEDGE.md"]
+  pull_request:
+    paths: ["ai/xi/knowledge/**", "ai/checkpoints/BBYQ_E012*", "ai/checkpoints/e012-manifest.json", ".github/workflows/bbyq-e012.yml", "docs/AI_E012_KNOWLEDGE.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  knowledge-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore the authentic E011 learner and published E012 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64 > original.rvp
+          base64 -d ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
+          echo 'efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453  original.rvp' | sha256sum -c -
+          echo '04c2dcddf7c54b257a289417b108ce4443a87a19d2bf15ca4327eeb7bed90a0d  released.rvp' | sha256sum -c -
+      - name: Pin unchanged owner XI runtime and Mundo X
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Knowledge acquisition, independent questions, evidence and exact retention
+        run: |
+          set -eu
+          python3 ai/xi/knowledge/tests/native-knowledge.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" original.rvp --out evidence/e012 --random-cases 200 --seeds 170627 270629 370631
+          cmp released.rvp evidence/e012/BBYQ_E012_Knowledge_ES_EN.rvp
+      - name: Single native text entry point and retained E011 arithmetic
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp '¿QUÉ ES NEURONA?' es)" = 'neurona es célula.'
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'dos mas tres' es)" = cinco
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'minus one' en)" = four
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'bbyq tiene conciencia?' es)" = '?'
+          bash -n ai/xi/knowledge/link.sh ai/xi/knowledge/text.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e012-knowledge-native-evidence
+          path: evidence/e012/
+          if-no-files-found: warn
