@@ -1,7 +1,7 @@
 name: BBY Q E009 - XI grounded symbolic language
 on:
   push:
-    branches: [feature/bbyq-e009-native-language-20261026, main]
+    branches: [feature/bbyq-e009-native-language-20261026, feature/bbyq-e009-native-text-input-20261026, main]
     paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
   pull_request:
     paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
@@ -104,6 +104,49 @@ jobs:
             test "$actual_status" = "$expected_status"
             mv reflected.rvp state.rvp
           }
+          text_ask() {
+            local sentence="$1" expected="$2" expected_status="$3" label="$4"
+            local i=0 n actual actual_status
+            {
+              printf '#!reverse-pc-machine-v1\n'
+              printf 'store8 %s 4\n' "$((L+175))"
+              printf 'store8 %s %d\n' "$((L+400))" "$(printf %s "$sentence" | wc -c)"
+              for n in $(printf '%s' "$sentence" | od -An -tu1); do
+                printf 'store8 %s %d\n' "$((L+401+i))" "$n"
+                i=$((i+1))
+              done
+            } > lesson.xi
+            "$R" run lesson.xi state.rvp line-present.rvp > /dev/null
+            "$R" run ai/xi/language/readline.xi line-present.rvp parsed.rvp > "evidence/$label-parse.jsonl"
+            "$R" run ai/xi/language/ask.xi parsed.rvp answered.rvp > "evidence/$label-proof.jsonl"
+            "$R" run ai/xi/language/reflect.xi answered.rvp reflected.rvp > "evidence/$label-next-study.jsonl"
+            "$R" run ai/xi/language/speak.xi reflected.rvp displayed.rvp > "evidence/$label-speech.jsonl"
+            cmp reflected.rvp displayed.rvp
+            actual="$(decode_speech "evidence/$label-speech.jsonl")"
+            actual_status="$(grep -m1 '"register":"r10"' "evidence/$label-proof.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
+            echo "$label: [$actual_status] $actual" | tee -a evidence/transcript.txt
+            test "$actual" = "$expected"
+            test "$actual_status" = "$expected_status"
+            mv reflected.rvp state.rvp
+          }
+          reject_text() {
+            local sentence="$1" label="$2" n i=0
+            {
+              printf '#!reverse-pc-machine-v1\n'
+              printf 'store8 %s 4\n' "$((L+175))"
+              printf 'store8 %s %d\n' "$((L+400))" "$(printf %s "$sentence" | wc -c)"
+              for n in $(printf '%s' "$sentence" | od -An -tu1); do
+                printf 'store8 %s %d\n' "$((L+401+i))" "$n"
+                i=$((i+1))
+              done
+            } > lesson.xi
+            "$R" run lesson.xi state.rvp malformed.rvp > /dev/null
+            if "$R" run ai/xi/language/readline.xi malformed.rvp illegal-parse.rvp > /dev/null; then
+              echo "ERROR: malformed native text accepted: $label" >&2; exit 1
+            fi
+            test ! -e illegal-parse.rvp
+            echo "$label: rejected atomically" | tee -a evidence/transcript.txt
+          }
           # E009 must be born INSIDE a full original E008 four-bank organism.
           "$R" init blank.rvp
           "$R" run ai/xi/e006/birth.xi blank.rvp new.rvp > /dev/null
@@ -199,6 +242,18 @@ jobs:
           ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'knowledge-recovered'
           "$R" run ai/xi/language/audit.xi state.rvp audited.rvp > evidence/first-world-audit.jsonl
           cmp state.rvp audited.rvp
+          # Entirely native XI text parsing (not Bash word segmentation).
+          text_ask 'cuarto contiene llave?' 'cuarto contiene llave (via caja).' 1 'text-question-with-punctuation'
+          text_ask 'cuarto contiene llave' 'cuarto contiene llave (via caja).' 1 'text-question-no-punctuation'
+          text_ask 'cofre guarda bolsa?' 'caja contiene bolsa.' 1 'text-question-synonyms'
+          text_ask 'luz toca bolsa?' 'no: luz toca bolsa.' 2 'text-question-refutation'
+          text_ask 'nube contiene llave?' '?' 0 'text-question-unknown-word'
+          reject_text 'cuarto  contiene llave?' 'reject-double-space'
+          reject_text 'Cuarto contiene llave?' 'reject-unsupported-uppercase'
+          reject_text 'cuarto contiene llave ahora?' 'reject-four-words'
+          reject_text 'cuarto contiene llave??' 'reject-two-question-marks'
+          "$R" run ai/xi/language/audit.xi state.rvp text-audit.rvp > /dev/null
+          cmp state.rvp text-audit.rvp
           cp state.rvp evidence/first-world-complete.rvp
           # Entirely different words and senses: reuse XI programs without any
           # hardcoded language or altered interpreter. Original E008 remains.
@@ -239,6 +294,10 @@ jobs:
           ask ojo mira libro '?' 0 'second-world-no-false-analogy'
           "$R" run ai/xi/language/audit.xi state.rvp audit.rvp > evidence/second-world-audit.jsonl
           cmp state.rvp audit.rvp
+          text_ask 'edificio incluye libro?' 'edificio incluye libro (via sala).' 1 'second-world-text-inference'
+          text_ask 'ojo mira libro?' '?' 0 'second-world-text-uncertainty'
+          "$R" run ai/xi/language/audit.xi state.rvp text-audit.rvp > /dev/null
+          cmp state.rvp text-audit.rvp
           cp state.rvp evidence/second-world-complete.rvp
           echo 'E009 PASS: two unrelated vocabularies, proof and language, contradiction/recovery and no ungrounded claims' | tee -a evidence/transcript.txt
       - uses: actions/upload-artifact@v4

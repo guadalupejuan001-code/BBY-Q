@@ -26,6 +26,9 @@ Transformer ni motor de aprendizaje en Python/C++/JS.
 - `calibrate.xi` identifica una propiedad composicional en un
   predicado mediante **ejemplos y contraejemplos**, no mediante
   su nombre.
+- `readline.xi` recibe una **línea de texto real** como
+  `cuarto contiene llave?`, divide sus palabras dentro de XI y
+  la prepara para el razonamiento. No usa un tokenizador ajeno.
 - `ask.xi` recupera hechos directos o los deduce mediante
   dos relaciones aprendidas. Rechaza inferencias sin suficiente
   evidencia en lugar de inventar información.
@@ -68,10 +71,12 @@ sala incluye armario.
 
 **Precisión terminológica:** este es un sistema experimental de
 **lenguaje simbólico estructurado**, no conversación libre en español.
-Las entradas son triples presegmentados, los conceptos proceden
-de observaciones sintéticas categóricas, la salida usa ASCII
-sin audio, y aún no existen comprensión de textos largos, lenguaje
-abierto, voz ni aprendizaje de la vida real.
+Las entradas pueden ser microoraciones de **tres palabras**
+segmentadas por el propio XI, o triples estructurados. Los
+conceptos proceden de observaciones sintéticas categóricas; la
+salida usa ASCII sin audio y todavía no existen comprensión de
+textos largos, gramática española abierta, voz ni aprendizaje
+de la vida real.
 
 [Arquitectura E009, protocolo, lecciones y límites científicos](docs/AI_E009_LANGUAGE.md).
 
