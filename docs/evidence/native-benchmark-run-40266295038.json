@@ -1,0 +1,79 @@
+{
+  "benchmark": {
+    "experiment": "BBYQ-NATIVE-B001",
+    "iterations": 24,
+    "median_milliseconds": 16.9867375,
+    "milliseconds_per_persisted_step": [
+      5.666122,
+      6.807874,
+      7.994733,
+      8.000221,
+      11.757983,
+      11.106546,
+      11.93576,
+      13.087866,
+      13.986233,
+      15.184309,
+      16.383397,
+      18.048532,
+      18.709783,
+      16.602895,
+      17.37058,
+      21.975749,
+      18.554159,
+      24.11213,
+      25.146796,
+      28.121525,
+      27.638185,
+      28.571685,
+      30.100916,
+      24.46546
+    ],
+    "native_stats": [
+      {
+        "background_byte": 0,
+        "limits": {
+          "max_address_digits": 4096,
+          "max_materialize_bytes": 65536,
+          "max_overrides": 65536,
+          "max_quantum_bindings": 4096
+        },
+        "model": "inverse-ether-memory",
+        "overrides": 7322,
+        "quantum_bindings": 0,
+        "revision": 68998,
+        "type": "memory_stats"
+      },
+      {
+        "active_qubits": 0,
+        "address_bytes": 0,
+        "background": "zero",
+        "components": 0,
+        "domain": "nonnegative_decimal_addresses",
+        "ether_rules": 0,
+        "largest_component": 0,
+        "limits": {
+          "max_active_qubits": 4096,
+          "max_address_digits": 4096,
+          "max_component_qubits": 1024,
+          "max_ether_query_sites": 4096,
+          "max_ether_rules": 4096,
+          "max_query_terms": 4096,
+          "max_state_bytes": 67108864
+        },
+        "revision": 0,
+        "tableau_bytes": 0,
+        "type": "stats"
+      }
+    ],
+    "notes": "Real subprocess XI read/modify/write latency. No quantum speedup implied. Max RSS covers child processes, not isolated allocator bytes.",
+    "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "p95_milliseconds_nearest_rank": 28.571685,
+    "python_version": "3.11.17",
+    "ru_maxrss_kib_linux": 15884,
+    "runtime_path": "/home/runner/work/_temp/reverse-pc-build/reverse_pc",
+    "state_bytes_RVPC2": 169131
+  },
+  "source_artifact": "bbyq-native-evidence",
+  "source_github_actions_run": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40266295038"
+}

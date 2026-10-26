@@ -40,7 +40,7 @@ El JSON bruto de 5 ejecuciones se conserva en `docs/evidence/experiment001-local
 | Regla invertida tras adaptar | 96,58 % |
 | **Regla antigua después de adaptar** | **3,42 %** |
 
-Estas cifras son reproducibles a nivel de salidas para misma semilla, versión y algoritmo. Los microsegundos y el pico de `tracemalloc` del JSON dependen del entorno; no son RSS nativo. El benchmark nativo de latencia por XI y tamaño RVPC2 **se ejecuta solo cuando se compila la dependencia**, y su evidencia se publica como artefacto CI. No hay resultados de ese benchmark en este archivo hasta ejecutarlo.
+Estas cifras son reproducibles a nivel de salidas para misma semilla, versión y algoritmo. Los microsegundos y el pico de `tracemalloc` del JSON dependen del entorno; no son RSS nativo. El benchmark nativo de latencia por XI y tamaño RVPC2 se ejecuta en CI después de compilar el REVERSE-PC fijado. Su evidencia sin filtrar se publica como artefacto CI y se conserva en `docs/evidence/native-benchmark-run-40266295038.json`.
 
 ## Interpretación que puede fallar
 
@@ -48,3 +48,15 @@ El 95 % no implica razonamiento, conversación, causalidad general ni transferen
 
 **Criterio Etapa 1:** suite native-integrated completa y continuidad `RVPC2` tras proceso nuevo, con rollback y corrupción detectada.
 **Criterio inicial Etapa 2:** mejora de precisión del agente frente al congelado y mayoría en holdout, con negativos publicados. **No** reclamar Etapa 3 o adaptación sin olvido.
+
+## Validación con el REVERSE-PC real (GitHub Actions)
+
+Fuente: [run 40266295038](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40266295038), artefacto `bbyq-native-evidence`. La suite nativa pasó 13/13 pruebas, incluidos reinicio en nuevo proceso, rollback, detección de corrupción y persistencia del agente aprendido. Datos del benchmark `BBYQ-NATIVE-B001`:
+
+- 24 pasos con `reverse_pc run` real; latencia mediana **16,99 ms**, p95 nearest-rank **28,57 ms** por transacción y restauración asociada. Se conservan las 24 duraciones crudas en el JSON.
+- Archivo RVPC2 final: **169.131 bytes**; **7.322 overrides lógicos**, revisión de memoria 68.998. No es tamaño del JSON sin compresión ni memoria RSS.
+- Pico máximo RSS de los procesos hijos observado por Python (Linux): **15.884 KiB**. No aísla asignaciones del almacén, incluye el ejecutable y el costo del proceso.
+- Estadísticas nativas: **0 qubits activos, 0 enlaces cuánticos, 0 reglas Ether globales**. Es uso clásico de InverseMemory, no aceleración cuántica.
+- La campaña aprendida conservada bajo RVPC2 utilizó **10.736 overrides** y un archivo de **245.195 bytes**; fue restaurada y comparada con el estado previo.
+
+Son medidas de **una ejecución** en un runner compartido, no una distribución de plataformas. Esta versión aún no demuestra ahorro frente a SQLite ni frente a un archivo JSON clásico. Hay un sobrecoste claro de almacenamiento y procesos; el siguiente ensayo debe comparar alternativas bajo igual semántica de persistencia, aislamiento y rollback.

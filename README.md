@@ -46,6 +46,6 @@ PYTHONPATH=ai python -m bbyq --state /tmp/aprendida.rvp experiment --persist --o
 - `ai/bbyq/experiment.py`: holdout, controles sin entrenamiento y mayoría, paridad no lineal y cambio de régimen con prueba de retención.
 - `ai/tests/`, `.github/workflows/bbyq-ai.yml`: pruebas locales y pruebas nativas obligatorias en CI.
 - `docs/AI_AUDIT.md`, `docs/AI_ARCHITECTURE.md`, `docs/AI_EXPERIMENTS.md`: auditoría, contrato técnico, protocolo y límites.
-- `docs/evidence/experiment001-local.json`: resultados de una ejecución local del algoritmo, **no** resultados de REVERSE-PC nativo. CI mide ambos por separado y conserva artefactos.
+- `docs/evidence/experiment001-local.json`: resultados locales del algoritmo; `docs/evidence/native-benchmark-run-40266295038.json`: ejecución CI del REVERSE-PC real con latencia, memoria y sobrecostes medidos.
 
 La comparación inicial solo se refiere a un problema controlado, no a superioridad sobre modelos generales ni a aceleración cuántica. Los resultados negativos —especialmente el olvido tras adaptarse— se conservan.
