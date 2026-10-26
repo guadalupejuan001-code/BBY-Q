@@ -93,10 +93,10 @@ label fresh_probe_ready
 # Scores and per-sign-cell error counts are temporary within one transaction.
 set r0 0
 label initialize_scores
-set r12 7000000000000000800
+set r12 7000000000000002000
 add r12 r0
 store8 $r12 0
-set r12 7000000000000000850
+set r12 7000000000000002050
 add r12 r0
 store8 $r12 0
 add r0 1
@@ -104,7 +104,7 @@ cmp r0 4
 jlt initialize_scores
 set r0 0
 label initialize_errors
-set r12 7000000000000000900
+set r12 7000000000000002100
 add r12 r0
 store8 $r12 0
 add r0 1
@@ -112,7 +112,7 @@ cmp r0 32
 jlt initialize_errors
 set r0 0
 label initialize_visits
-set r12 7000000000000000960
+set r12 7000000000000002200
 add r12 r0
 store8 $r12 0
 add r0 1
@@ -156,7 +156,7 @@ label p_index_done
 # that hide a catastrophic failure in one area of the input space.
 mov r5 r4
 sub r5 1
-set r12 7000000000000000960
+set r12 7000000000000002200
 add r12 r5
 load8 r13 $r12
 add r13 1
@@ -207,7 +207,7 @@ cmp r7 0
 jlt predictive_score_negative
 set r13 1
 label predictive_score_negative
-set r12 7000000000000000850
+set r12 7000000000000002050
 add r12 r1
 store8 $r12 r13
 add r1 1
@@ -225,12 +225,12 @@ div r10 0
 label consequence_valid
 set r1 0
 label compare_predictions
-set r12 7000000000000000850
+set r12 7000000000000002050
 add r12 r1
 load8 r11 $r12
 cmp r11 r10
 jne prediction_incorrect
-set r12 7000000000000000800
+set r12 7000000000000002000
 add r12 r1
 load8 r13 $r12
 add r13 1
@@ -238,7 +238,7 @@ store8 $r12 r13
 jmp bank_evaluated
 label prediction_incorrect
 # Error indexed by both hypothesis and the observed sign-pair cell.
-set r12 7000000000000000900
+set r12 7000000000000002100
 mov r13 r1
 mul r13 8
 add r12 r13
@@ -261,7 +261,7 @@ set r9 -1
 set r7 0
 set r0 0
 label rank_bank_scores
-set r12 7000000000000000800
+set r12 7000000000000002000
 add r12 r0
 load8 r11 $r12
 cmp r11 r8
@@ -285,7 +285,7 @@ set r5 0
 set r6 1
 set r15 0
 label inspect_worst_cell
-set r12 7000000000000000900
+set r12 7000000000000002100
 mov r13 r7
 mul r13 8
 add r12 r13
@@ -299,7 +299,7 @@ add r6 1
 label no_worst_update
 mov r12 r11
 mul r12 5
-set r13 7000000000000000960
+set r13 7000000000000002200
 add r13 r0
 load8 r14 $r13
 mul r14 2
@@ -367,10 +367,10 @@ cmp r0 240
 jlt erase_observations
 set r0 0
 label erase_scores
-set r12 7000000000000000800
+set r12 7000000000000002000
 add r12 r0
 store8 $r12 0
-set r12 7000000000000000850
+set r12 7000000000000002050
 add r12 r0
 store8 $r12 0
 add r0 1
@@ -378,7 +378,7 @@ cmp r0 4
 jlt erase_scores
 set r0 0
 label erase_errors
-set r12 7000000000000000900
+set r12 7000000000000002100
 add r12 r0
 store8 $r12 0
 add r0 1
@@ -386,7 +386,7 @@ cmp r0 32
 jlt erase_errors
 set r0 0
 label erase_visit_counts
-set r12 7000000000000000960
+set r12 7000000000000002200
 add r12 r0
 store8 $r12 0
 add r0 1
