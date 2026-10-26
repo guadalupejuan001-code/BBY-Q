@@ -179,6 +179,22 @@ en este proyecto, no un resultado científico confirmado.
    frente a preguntas seleccionadas al azar.
 
 
+## Ablación: ¿necesita realmente nuevas estructuras?
+
+No todos los modelos precisos requieren crecimiento de relaciones.
+Para la semilla 42, el mismo modelo sin composiciones extra alcanzó
+**133/240** en XOR y **126/240** en XNOR, frente a 240/240 tras
+la composición. En contraste, el modelo lineal de signos ya obtuvo
+**240/240 en AND y OR**; ahí no se materializaron descriptores
+compuestos. Esto separa **aprender pesos** de **crear relaciones
+nuevas** y es evidencia contra exagerar una innovación donde el
+modelo base ya resulta suficiente.
+
+Este control de ablación no sustituye a modelos de referencia más
+fuertes con búsqueda de términos, árboles de decisión o tablas de
+verdad, que siguen siendo obligatorios antes de comparar eficiencia
+o novedad arquitectónica.
+
 ## Prueba FINAL independiente (sin reajustar el selector)
 
 Ejecución sellada
@@ -264,3 +280,19 @@ confundir una clase de hipótesis prefijada con descubrimiento abierto.
 No usar resultados del examen final para recalibrar E008; cualquier
 optimización posterior debe crear versión y cohorte de pruebas
 nuevas, preservando esta evidencia.
+
+## Referencias para interpretar «vida artificial» con rigor
+
+- [Artificial Life Society — Open-Ended Evolution](https://alife.org/encyclopedia/introduction/open-ended-evolution/):
+  cuantificar persistencia, novedad, diversidad y complejidad, separándolas
+  de la actividad aleatoria. BBY Q tiene memoria y selección limitada,
+  pero aún no demuestra evolución abierta.
+- [NASA Astrobiology — Cómo reconocer la vida](https://astrobiology.nasa.gov/education/alp/alive-or-not/):
+  la definición de trabajo para vida biológica exige un sistema
+  químico autosostenido capaz de evolución darwiniana. Nuestro
+  agente de software no satisface esa definición, aunque puede
+  servir para investigación de vida **artificial virtual**.
+- [Review: Towards origins of virtual artificial life](https://pmc.ncbi.nlm.nih.gov/articles/PMC12489504/):
+  destaca agencia, autopoiésis y coadaptación abierta como
+  direcciones de investigación; E008 todavía no demuestra esas
+  propiedades a nivel general.
