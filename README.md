@@ -1,14 +1,42 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E006 — Jurado XI para promover únicamente relaciones
-que mejoran la predicción en casos no usados durante el entrenamiento.**
-E005 conserva su historial de nacimiento de relaciones, ahora extendido
-con validación, rechazo y protección de conocimiento aprobado.
+**Ruta activa: E007 — Ether Vault, memoria reversible de hipótesis
+aprendidas con los programas XI del usuario.** E006 sigue actuando como
+jurado de relaciones; E005 conserva el nacimiento de estructuras.
+La novedad E007 es recuperar contextos anteriores sin reentrenamiento
+ni etiquetas de contexto entregadas al selector.
 
 BBY Q **no utiliza SOVENGI, modelos de IA de terceros, Transformers ni
 código Python/C++ para implementar su inteligencia**. Su estado y las
 transacciones pertenecen a REVERSE-PC, XI, Inverse Ether Memory y Mundo X,
 con **una sola autoridad persistente RVPC2 por agente**.
+
+## E007 — Ether Vault: una memoria que recuerda sin reaprender
+
+La entidad aprende **A: XOR** y **B: XNOR** con un mismo jurado de E006.
+Las hipótesis quedan en dos bancos compactos dentro de un solo RVPC2.
+El selector `ai/xi/e007/recall.xi` compara ambas sobre experiencias
+nuevas, intercambia la activa cuando la archivada supera por al menos
+30/240 casos y alcanza 205/240, y destruye los datos temporales.
+
+[CI E007: recuperación reversible con feedback parcialmente corrupto](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40285381399).
+En cada semilla, la secuencia A→B→A-ruidoso→B-ruidoso→A→B→ruido→A→A
+cambió de modelo cuando había evidencia y se mantuvo bajo ruido puro
+o cuando el activo seguía siendo correcto. Se realizaron **cinco
+recuperaciones sin volver a entrenar** las dos hipótesis.
+
+- Estado final por semilla: dos hipótesis completas, una autoridad
+  Inverse Ether Memory/RVPC2, **cero qubits activos**.
+- Semilla 42: **6.162 bytes RVPC2**, 43 excepciones lógicas y
+  cinco recuperaciones. Los dos modelos siguen disponibles.
+- Los programas E007, incluido el selector y la transacción
+  reversible, están exclusivamente en el lenguaje propio XI.
+- El selector toleró entre 54 y 69 etiquetas corruptas de
+  240 en tres semillas, usando un criterio comparativo estricto.
+- Límite actual: dos contextos, dos señales categóricas y
+  feedback binario; no se ha probado recuperación general.
+
+[Contrato, evidencia y limitaciones de E007](docs/AI_E007_CONTEXT_VAULT.md).
 
 ## E006 — las ideas deben sobrevivir una prueba independiente
 
