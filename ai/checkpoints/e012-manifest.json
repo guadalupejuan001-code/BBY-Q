@@ -1,0 +1,19 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64",
+  "decoded_bytes": 157115,
+  "decoded_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+  "parent": "BBYQ_E011_Compositional_ES_EN.rvp.b64",
+  "parent_sha256": "efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "knowledge_source": "ai/xi/knowledge/data/",
+  "question_grammar": "subject predicate object OR question predicate subject",
+  "source_data_sha256": {
+    "calibration-v1.psv": "224251c5c0cd97c406442b210c83810219a229cdbc4f895ee3e9b3757732f304",
+    "facts-v1.psv": "17f05d01c40efcc27d7037230ec609fb5cc0f55660a1a10c7a20f1c94602dd8b",
+    "sources.json": "048411277ef28cff36cf333a3dae0604bed8160ad7e32e533705dc00aa478078",
+    "words-v1.psv": "7a02926b9b3adfe5f70ddc74d6826cf092f76c58245fd18fe92857b624a5713e"
+  }
+}

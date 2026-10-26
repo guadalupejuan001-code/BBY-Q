@@ -1,0 +1,42 @@
+{
+  "parent_checkpoint_sha256": "efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453",
+  "old_training_replayed": false,
+  "new_lexical_entries": 374,
+  "new_symbolic_concepts": 176,
+  "inherited_grounded_concepts": 22,
+  "taught_propositions": 185,
+  "direct_retrieval_questions": 370,
+  "unseen_inferred_questions": 234,
+  "object_questions": 318,
+  "mixed_language_unseen_questions": 600,
+  "mixed_test_seeds": [
+    170627,
+    270629,
+    370631
+  ],
+  "eight_hop_unfamiliar_graph_control": true,
+  "cycle_termination": true,
+  "invalid_schema_rejected_transactionally": true,
+  "legacy_e009_queries_preserved": 4,
+  "rule_retraction_and_restoration": true,
+  "conflict_abstention": true,
+  "original_core_and_all_previous_knowledge_unchanged": true,
+  "all_previous_logical_bytes_equal_at_completion": true,
+  "five_audits_read_only": true,
+  "checks": 5338,
+  "final_state_bytes": 157115,
+  "final_state_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+  "elapsed_seconds": 51.5207576751709,
+  "limits": [
+    "symbolic teacher-provided concepts, not real perception",
+    "3-token question grammar",
+    "Latin-1 Spanish UTF-8 and ASCII only",
+    "512 new lexical entries",
+    "512 registered facts",
+    "8 answers per object query",
+    "8 calibration witnesses per predicate",
+    "64 BFS expansions and 31 proof steps",
+    "no general conversation",
+    "no subjective-experience claim"
+  ]
+}

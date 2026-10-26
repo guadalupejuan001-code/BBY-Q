@@ -1,16 +1,21 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E011 — texto composicional bilingüe en XI, retomando el
-estado E010 auténtico sin repetir el entrenamiento anterior.**
+**Ruta activa: E012 — conocimiento bilingüe, relaciones y evidencia en XI.**
 
-E011 aprende diez palabras de operación desde consecuencias, compone
-microexpresiones nuevas y conserva un resultado entre turnos. Examen local:
-**1.284/1.284 casos del protocolo**, con 979 cálculos y 305 abstenciones
-correctas; núcleo y memoria lógica previa íntegros. El estado entrenado
-se conserva en `ai/checkpoints/`. Esto no demuestra conversación abierta
-ni un porcentaje del nivel de modelos grandes. **REVERSE OS queda pospuesto.**
+Continúa desde el checkpoint E011 real, conservando la entidad anterior.
+Añade 176 identidades simbólicas, 374 entradas de vocabulario ES/EN y
+185 afirmaciones con procedencia. Reutiliza directamente los 22 conceptos
+E010 y la aritmética E011. Pruebas locales: 370 consultas de recuperación,
+234 consultas de deducción nueva, 318 preguntas por relaciones y 600
+variantes mixtas; además, un control de ocho pasos y ciclos.
 
-[Capacidades, límites, evidencia y uso de E011](docs/AI_E011_COMPOSITION.md).
+La nueva base está en `ai/xi/knowledge/` y el estado aprendido se conserva
+en `ai/checkpoints/`. Los conceptos nuevos son enseñados simbólicamente;
+esto no equivale a experiencia humana, conversación abierta ni doce años
+de aprendizaje. **REVERSE OS permanece pospuesto.**
+
+[Currículo, evidencia, uso y límites de E012](docs/AI_E012_KNOWLEDGE.md).
+[E011: texto composicional y aritmética conservada](docs/AI_E011_COMPOSITION.md).
 E009 continúa enseñando relaciones y microoraciones;
 E008 conserva los cuatro bancos previos y E007 su evolución anterior.
 Todas las capacidades viven en el mismo estado RVPC2.
