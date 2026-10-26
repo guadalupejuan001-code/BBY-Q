@@ -1,0 +1,31 @@
+name: BBY Q E011 - resume authentic learner and compositional XI text
+on:
+  push:
+    branches: [feature/bbyq-e011-compositional-language-20261026]
+    paths: ["ai/xi/dialogue/**", ".github/workflows/bbyq-e011.yml", "docs/AI_E011_COMPOSITION.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compositional-text:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore E010 checkpoint without repeating earlier training
+        uses: actions/download-artifact@v4
+        with:
+          name: bbyq-e010-bilingual-development-evidence
+          run-id: 40303541105
+          repository: guadalupejuan001-code/BBY-Q
+          github-token: ${{ github.token }}
+          path: e010-history
+      - name: Verify and expose reproducible public synthetic checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f  e010-history/BBYQ_E010_ES_EN_Development.rvp' | sha256sum -c -
+          printf 'E010_CHECKPOINT_BASE64='
+          base64 -w0 e010-history/BBYQ_E010_ES_EN_Development.rvp
+          printf '\n'
