@@ -1,7 +1,7 @@
 name: BBY Q E009 - XI grounded symbolic language
 on:
   push:
-    branches: [feature/bbyq-e009-native-language-20261026, main]
+    branches: [feature/bbyq-e009-native-language-20261026, feature/bbyq-e009-native-text-input-20261026, main]
     paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
   pull_request:
     paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
