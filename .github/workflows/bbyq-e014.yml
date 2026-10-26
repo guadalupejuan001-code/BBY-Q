@@ -1,0 +1,51 @@
+name: BBY Q E014 - learned quantities, referents and atomic story turns
+on:
+  push:
+    branches: [feature/bbyq-e014-quantity-stories-20261026, main]
+    paths: ["ai/xi/stories/**", "ai/xi/knowledge/**", "ai/native/**", "ai/checkpoints/BBYQ_E014*", "ai/checkpoints/e014-manifest.json", ".github/workflows/bbyq-e014.yml"]
+  pull_request:
+    paths: ["ai/xi/stories/**", "ai/xi/knowledge/**", "ai/native/**", "ai/checkpoints/BBYQ_E014*", "ai/checkpoints/e014-manifest.json", ".github/workflows/bbyq-e014.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quantity-stories:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore authentic parent and released learner
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64 | gzip -dc > parent.rvp
+          base64 -d ai/checkpoints/BBYQ_E014_Quantity_Stories_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
+          echo '8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f  parent.rvp' | sha256sum -c -
+          python3 -c 'import hashlib,json; m=json.load(open("ai/checkpoints/e014-manifest.json")); assert hashlib.sha256(open("released.rvp","rb").read()).hexdigest()==m["decoded_sha256"]'
+      - name: Build unchanged owner runtime and native transport
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Teach consequences and examine independent stories and old curriculum
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ai/xi/stories/tests/native-stories.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$RUNNER_TEMP/session-build/bbyq_session" parent.rvp --out evidence/e014 --stories 600 --turns 1000
+          # Compare full core, every logical byte and bindings; I/O revisions
+          # need not be identical across transports/platforms.
+          python3 -c 'import runpy; s=runpy.run_path("ai/xi/knowledge/tests/native-knowledge.py")["snapshot"]; assert s("released.rvp")==s("evidence/e014/BBYQ_E014_Quantity_Stories_ES_EN.rvp")'
+          bash -n ai/xi/knowledge/link.sh ai/xi/knowledge/text.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e014-quantity-story-evidence
+          path: |
+            evidence/e014/results.json
+            evidence/e014/raw.jsonl
+            evidence/e014/BBYQ_E014_Quantity_Stories_ES_EN.rvp
+          if-no-files-found: warn
