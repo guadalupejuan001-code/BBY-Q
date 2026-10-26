@@ -208,6 +208,24 @@ label derived_id_cleared
 add r0 1
 cmp r0 3
 jlt check_derived_ids
+# Raw text input was consumed by the XI tokenizer, never persisted.
+load8 r13 7100000000000000400
+cmp r13 0
+je source_line_length_cleared
+div r13 0
+label source_line_length_cleared
+set r0 0
+label check_unsegmented_text_erasure
+set r11 7100000000000000401
+add r11 r0
+load8 r13 $r11
+cmp r13 0
+je raw_text_byte_erased
+div r13 0
+label raw_text_byte_erased
+add r0 1
+cmp r0 32
+jlt check_unsegmented_text_erasure
 # The last inferred response is allowed to remain as a compact utterance plan.
 print r5
 print r6
