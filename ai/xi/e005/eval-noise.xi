@@ -16,9 +16,13 @@ load8 r12 7000000000000000020
 mul r12 7919
 set r1 907601
 add r1 r12
+# Independent high-bit feedback PRNG, disjoint from observation stream.
+load8 r12 7000000000000000020
+mul r12 2729
+set r15 123457
+add r15 r12
 set r0 0
 set r11 0
-set r15 0
 label next_sample
 mul r1 48271
 mod r1 2147483647
@@ -86,27 +90,24 @@ cmp r8 0
 jlt prediction_ready
 set r9 1
 label prediction_ready
-# Negative: random feedback independent of all observations.
+# Discard the equivalent observation-stream draw to match eval-xor inputs.
 mul r1 48271
 mod r1 2147483647
-mov r10 r1
-mod r10 2
+# Independently seeded feedback generator; HIGH bits, never LCG low-bit parity.
+mul r15 16807
+mod r15 2147483647
+mov r10 r15
+div r10 1073741824
 cmp r9 r10
 jne wrong_prediction
 add r11 1
 label wrong_prediction
-# Frozen always-one classifier measures task balance on IDENTICAL observations.
-cmp r10 1
-jne baseline_zero
-add r15 1
-label baseline_zero
 add r0 1
 cmp r0 240
 jlt next_sample
 load8 r14 7000000000000000030
 # Exact integer counts, not a preformatted or fabricated percentage.
 print r11
-print r15
 print r0
 print r14
 mem_stats
