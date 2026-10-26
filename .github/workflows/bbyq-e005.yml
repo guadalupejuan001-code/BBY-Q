@@ -1,0 +1,134 @@
+name: BBY Q E005 - relation birth in XI
+on:
+  push:
+    branches: [feature/bbyq-e005-relation-growth-xi-20261026, main]
+    paths: ["ai/xi/e005/**", ".github/workflows/bbyq-e005.yml", "docs/AI_E005_RELATIONS.md"]
+  pull_request:
+    paths: ["ai/xi/e005/**", ".github/workflows/bbyq-e005.yml", "docs/AI_E005_RELATIONS.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-xi-relations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin integrated REVERSE-PC and its own verified Mundo X Ether
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build existing XI interpreter bootstrap (learning exists only in XI)
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Three independent seeds with matched linear and random-feedback controls
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          mkdir -p evidence
+          accuracy() {
+            grep -m1 '"register":"r11"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          growth() {
+            grep -m1 '"register":"r14"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          agreement() {
+            grep -m1 '"register":"r10"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          # Data provenance: compare XI source-only fingerprints before either world is learned.
+          "$R" init matching-blank.rvp
+          "$R" run ai/xi/e005/birth.xi matching-blank.rvp matching-born.rvp > /dev/null
+          "$R" run ai/xi/e005/seed-42.xi matching-born.rvp matching-seeded.rvp > /dev/null
+          "$R" run ai/xi/e005/feed-xor.xi matching-seeded.rvp matching-xor.rvp > /dev/null
+          "$R" run ai/xi/e005/feed-noise.xi matching-seeded.rvp matching-noise.rvp > evidence/diagnostic-noise-feed.jsonl
+          "$R" run ai/xi/e005/input-fingerprint.xi matching-xor.rvp matching-xor-view.rvp > evidence/fingerprint-xor.jsonl
+          "$R" run ai/xi/e005/input-fingerprint.xi matching-noise.rvp matching-noise-view.rvp > evidence/fingerprint-noise.jsonl
+          cmp matching-xor.rvp matching-xor-view.rvp
+          cmp matching-noise.rvp matching-noise-view.rvp
+          cmp evidence/fingerprint-xor.jsonl evidence/fingerprint-noise.jsonl
+          test "$(agreement evidence/diagnostic-noise-feed.jsonl)" -ge 60
+          test "$(agreement evidence/diagnostic-noise-feed.jsonl)" -le 140
+          for seed in 19 42 91; do
+            for arm in grown linear noise; do
+              prefix="$seed-$arm"
+              "$R" init blank.rvp
+              "$R" run ai/xi/e005/birth.xi blank.rvp initial.rvp > /dev/null
+              if [ "$arm" = "linear" ]; then
+                "$R" run ai/xi/e005/linear-control.xi initial.rvp linear-initial.rvp > /dev/null
+                mv linear-initial.rvp initial.rvp
+              fi
+              "$R" run "ai/xi/e005/seed-$seed.xi" initial.rvp state.rvp > /dev/null
+              epoch=1
+              while [ "$epoch" -le 12 ]; do
+                if [ "$arm" = "noise" ]; then
+                  "$R" run ai/xi/e005/feed-noise.xi state.rvp feed.rvp > "evidence/$prefix-feed-last.jsonl"
+                  matched="$(agreement "evidence/$prefix-feed-last.jsonl")"
+                  test "$matched" -ge 60
+                  test "$matched" -le 140
+                else
+                  "$R" run ai/xi/e005/feed-xor.xi state.rvp feed.rvp > /dev/null
+                fi
+                "$R" run ai/xi/e005/learn.xi feed.rvp next.rvp > "evidence/$prefix-train-last.jsonl"
+                "$R" run ai/xi/e005/audit-clean.xi next.rvp cleanup-checked.rvp > "evidence/$prefix-audit-last.jsonl"
+                cmp next.rvp cleanup-checked.rvp
+                overrides="$(grep -m1 '"type":"memory_stats"' "evidence/$prefix-audit-last.jsonl" | sed -n 's/.*"overrides":\([0-9][0-9]*\).*/\1/p')"
+                test "$overrides" -le 48
+                mv next.rvp state.rvp
+                epoch=$((epoch+1))
+              done
+              "$R" run ai/xi/e005/eval-xor.xi state.rvp checked-xor.rvp > "evidence/$prefix-xor.jsonl"
+              cmp state.rvp checked-xor.rvp
+              "$R" run ai/xi/e005/eval-noise.xi state.rvp checked-noise.rvp > "evidence/$prefix-noise.jsonl"
+              cmp state.rvp checked-noise.rvp
+              # Both an absent destination and an already present destination must survive failure.
+              if "$R" run ai/xi/e005/rollback.xi state.rvp must-not-exist.rvp > /dev/null; then
+                echo "ERROR: mutation followed by failure was committed" >&2
+                exit 1
+              fi
+              test ! -e must-not-exist.rvp
+              cp state.rvp existing-output.rvp
+              if "$R" run ai/xi/e005/rollback.xi state.rvp existing-output.rvp > /dev/null; then
+                echo "ERROR: failed mutation overwrote existing state" >&2
+                exit 1
+              fi
+              cmp state.rvp existing-output.rvp
+              # Guard against repeating the same 200 feedback records after an epoch.
+              if "$R" run ai/xi/e005/learn.xi state.rvp stale.rvp > /dev/null; then
+                echo "ERROR: re-learning stale batch was allowed" >&2
+                exit 1
+              fi
+              test ! -e stale.rvp
+              cp state.rvp "evidence/$prefix-trained.rvp"
+              echo "seed=$seed arm=$arm learned_xor=$(accuracy "evidence/$prefix-xor.jsonl")/240 random_holdout=$(accuracy "evidence/$prefix-noise.jsonl")/240 relations=$(growth "evidence/$prefix-xor.jsonl")"
+            done
+            grown="$(accuracy "evidence/$seed-grown-xor.jsonl")"
+            linear="$(accuracy "evidence/$seed-linear-xor.jsonl")"
+            random_train="$(accuracy "evidence/$seed-noise-noise.jsonl")"
+            random_xor="$(accuracy "evidence/$seed-noise-xor.jsonl")"
+            grown_noise="$(accuracy "evidence/$seed-grown-noise.jsonl")"
+            random_growth="$(growth "evidence/$seed-noise-xor.jsonl")"
+            active="$(growth "evidence/$seed-grown-xor.jsonl")"
+            control_active="$(growth "evidence/$seed-linear-xor.jsonl")"
+            test "$grown" -ge 215
+            test "$grown" -gt "$linear"
+            test "$linear" -le 180
+            test "$active" -gt 0
+            test "$control_active" -eq 0
+            test "$random_growth" -gt 0
+            test "$random_train" -ge 72
+            test "$random_train" -le 168
+            test "$random_xor" -ge 72
+            test "$random_xor" -le 168
+            test "$grown_noise" -ge 72
+            test "$grown_noise" -le 168
+          done
+          echo "E005 PASS: all seeds generalize with learned relations, controls and rollback hold"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e005-three-seeds
+          path: evidence/
+          if-no-files-found: warn
