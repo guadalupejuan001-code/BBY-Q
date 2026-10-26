@@ -41,7 +41,20 @@ cmp r0 4
 jlt review_domains
 cmp r14 0
 jne still_learning
+# Counted-object competence unlocks learned operations; a separate blind
+# arithmetic exam determines whether this competence merits a higher stage.
 store8 7200000000000000003 1
+load8 r11 7200000000000000072
+cmp r11 4
+jlt arithmetic_pending
+load8 r12 7200000000000000073
+mul r12 10
+mov r13 r11
+mul r13 9
+cmp r12 r13
+jlt arithmetic_pending
+store8 7200000000000000003 2
+label arithmetic_pending
 store8 7200000000000000070 0
 store8 7200000000000000071 1
 jmp plan_ready
