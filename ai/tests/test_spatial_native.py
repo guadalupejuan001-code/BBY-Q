@@ -51,7 +51,7 @@ class SpatialNativeTests(unittest.TestCase):
         self.assertEqual(before, self.path.read_bytes())
 
     def test_relation_updates_and_process_restart(self):
-        self.birth()
+        born = self.birth()
         prior = json.loads(self.run_space('predict', self.path, .3, -.2, 1).stdout)
         self.assertEqual(prior['prediction'], 1)
         trace = json.loads(self.run_space('learn', self.path, .3, -.2, 1, 0).stdout)
@@ -60,7 +60,9 @@ class SpatialNativeTests(unittest.TestCase):
         state = json.loads(self.run_space('inspect', self.path).stdout)
         self.assertEqual(state['steps'], 1)
         self.assertLessEqual(state['logical_overrides'], 12)
-        self.assertLess(state['rvpc2_bytes'], 4096)
+        # Physical RVPC2 includes the engine snapshot; test incremental cost.
+        self.assertGreaterEqual(state['rvpc2_bytes'], born['rvpc2_bytes'])
+        self.assertLess(state['rvpc2_bytes'] - born['rvpc2_bytes'], 2048)
         self.assertNotEqual(state['relations']['bias'], 0)
         self.run_space('learn', self.path, -.8, .8, -1, 1)
         self.assertEqual(json.loads(self.run_space('inspect', self.path).stdout)['steps'], 2)
