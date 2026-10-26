@@ -56,3 +56,24 @@ Los observables nativos `mem_stats` y `stats` deben confirmar que hay bytes dife
 ## Siguiente hipótesis a contrastar
 
 Añadir memoria de contextos/regímenes y selección por evidencia, sin modificar el estado aprendido del contexto anterior. Comparar contra el presente modelo de pesos únicos y contra múltiples expertos clásicos, con igual presupuesto de datos y hardware. Esta es una **propuesta**, no una mejora demostrada.
+
+
+## Extensión E002: hipótesis de contexto recuperables
+
+BBY Q incorpora una segunda representación experimental: contexto activo con
+relaciones aprendidas y un conjunto acotado de hipótesis archivadas. El agente
+no recibe etiquetas de régimen; detecta contradicciones consecutivas,
+compara verosimilitud de los resultados observados y decide conservar,
+recuperar o crear un contexto. Los contextos inactivos no se duplican
+en el activo, sino que se intercambian. `predict` sigue siendo lectura,
+`contextual_experience` convierte feedback en transición, y `inspect`
+expone identidades, pesos, contadores y presupuesto. Todo cabe en la misma
+autoridad Inverse Ether Memory/RVPC2 de REVERSE-PC.
+
+Las reglas de reconocimiento y el modelo de pesos están implementados en
+BBY Q; **Ether no implementa aprendizaje semántico en origen**. El
+cálculo aritmético sigue siendo Python, mientras XI/REVERSE-PC aporta
+persistencia y rollback. E002 no prueba generalización a funciones
+desconocidas, ni mejora universal de tiempo o recursos. Contrastar E001,
+E002 y condiciones adversarias documentadas en
+[AI_E002_CONTEXT.md](AI_E002_CONTEXT.md).

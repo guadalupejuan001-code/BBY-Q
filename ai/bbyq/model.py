@@ -21,7 +21,9 @@ def new_entity(identity: str | None = None) -> dict:
         "id": identity or str(uuid.uuid4()),
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "steps": 0,
-        "model": {"weights": {key: 0.0 for key in FEATURES}, "updates": 0},
+        "model": {"weights": {key: 0.0 for key in FEATURES}, "updates": 0,
+                  "active_context": 0, "next_context": 1, "active_updates": 0,
+                  "archived": [], "switches": 0, "surprise_streak": 0},
         "recent": [],
     }
 
@@ -42,6 +44,32 @@ def validate_entity(entity: dict) -> None:
     if any(not isinstance(value, (int, float)) or not math.isfinite(value)
            for value in weights.values()):
         raise ValueError("Non-finite hypothesis")
+    if 'archived' in model:
+        archived = model['archived']
+        if type(archived) is not list or len(archived) > 3:
+            raise ValueError('Invalid archived context budget')
+        for name in ('active_context', 'next_context', 'active_updates',
+                     'switches', 'surprise_streak'):
+            if type(model.get(name)) is not int or model[name] < 0:
+                raise ValueError(f'Invalid context metadata: {name}')
+        if model['next_context'] <= model['active_context']:
+            raise ValueError('Invalid context id sequence')
+        if model['active_updates'] > model['updates']:
+            raise ValueError('Context updates exceed entity updates')
+        ids = {model['active_context']}
+        for entry in archived:
+            if (type(entry) is not dict or type(entry.get('id')) is not int or
+                    entry['id'] < 0 or entry['id'] >= model['next_context'] or
+                    entry['id'] in ids or type(entry.get('updates')) is not int or
+                    not 0 <= entry['updates'] <= model['updates']):
+                raise ValueError('Invalid archived context')
+            archived_weights = entry.get('weights')
+            if (type(archived_weights) is not dict or
+                    set(archived_weights) != set(FEATURES) or
+                    any(type(value) not in (float, int) or not math.isfinite(value)
+                        for value in archived_weights.values())):
+                raise ValueError('Invalid archived context weights')
+            ids.add(entry['id'])
     if not isinstance(entity.get("recent"), list) or len(entity["recent"]) > MAX_RECENT:
         raise ValueError("Invalid experience history")
 
@@ -94,6 +122,8 @@ def experience(entity: dict, observation: dict, action: int,
             changes[key] = LEARNING_RATE * error * feat[key]
             entity["model"]["weights"][key] += changes[key]
         entity["model"]["updates"] += 1
+        if 'active_updates' in entity['model']:
+            entity['model']['active_updates'] += 1
     entity["steps"] += 1
     record = {"step": entity["steps"], "input": dict(observation), "action": action,
               "prediction_before_feedback": before["prediction"],

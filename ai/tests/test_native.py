@@ -64,6 +64,34 @@ class NativeIntegrationTests(unittest.TestCase):
             self.store.initialize(new_entity("wrong-id"))
         self.assertEqual(original, self.filename.read_bytes())
 
+    def test_failed_birth_never_publishes_broken_state(self):
+        bad = new_entity('invalid-size')
+        bad['extra_padding'] = 'X' * 30000
+        failed_path = Path(self.temp.name) / 'birth-failed.rvp'
+        store = NativeStore(failed_path, RUNTIME)
+        with self.assertRaises(ValueError):
+            store.initialize(bad)
+        self.assertFalse(failed_path.exists())
+        store.initialize(new_entity('recovered'))
+        self.assertEqual(store.read()['id'], 'recovered')
+
+    def test_persist_context_and_recall_after_restart(self):
+        from bbyq.context import contextual_experience
+        model = self.store.read()['model']
+        def mature(entity):
+            entity['model']['weights']['bias'] = 10.0
+            entity['model']['updates'] = 100
+            entity['model']['active_updates'] = 100
+        self.store.transact(mature)
+        for _ in range(3):
+            self.store.transact(lambda state: contextual_experience(
+                state, {'signal': 0.0, 'pressure': 0.0}, 1, 0))
+        cold = NativeStore(self.filename, RUNTIME).read()
+        self.assertEqual(cold['model']['active_context'], 1)
+        self.assertEqual(len(cold['model']['archived']), 1)
+        self.assertEqual(cold['model']['archived'][0]['id'], 0)
+        self.assertEqual(cold['model']['archived'][0]['weights']['bias'], 10.0)
+
     def test_new_process_can_observe_continuity(self):
         self.store.transact(lambda entity: experience(entity,
                             {"signal": 0.2, "pressure": 0.1}, 1, 0))

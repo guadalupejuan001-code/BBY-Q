@@ -101,14 +101,24 @@ class NativeStore:
             self._run("\n".join(commands) + "\n", readonly=False)
 
     def initialize(self, entity: dict) -> None:
+        """Atomically publish the first snapshot, never an incomplete birth.
+
+        Failed validation, XI transactions, or native process errors leave no
+        user-visible .rvp at all. Hard-link publication rejects overwrites,
+        including writers that do not participate in the advisory lock.
+        """
         with self._lock():
             if self.state_path.exists():
                 raise FileExistsError("Refusing to replace an existing BBY Q entity")
-            self._native("init", str(self.state_path))
-            self._write_unlocked(entity, b"\x00" * HEADER_LEN)
-            loaded, _ = self._load_unlocked()
-            if loaded != entity:
-                raise RuntimeError("Initial state did not survive REVERSE-PC restoration")
+            with tempfile.TemporaryDirectory(prefix='.bbyq-birth-',
+                                             dir=self.state_path.parent) as directory:
+                staged = NativeStore(Path(directory) / 'birth.rvp', self.runtime)
+                staged._native('init', str(staged.state_path))
+                staged._write_unlocked(entity, b"\x00" * HEADER_LEN)
+                loaded, _ = staged._load_unlocked()
+                if loaded != entity:
+                    raise RuntimeError('Initial state did not survive REVERSE-PC restoration')
+                os.link(staged.state_path, self.state_path)
 
     def read(self) -> dict:
         with self._lock():

@@ -1,0 +1,118 @@
+{
+  "experiment": "BBYQ-E002",
+  "seed": 42,
+  "runs": 5,
+  "training": 400,
+  "testing": 240,
+  "recovery": 36,
+  "source": "Local Python experiment before native persistence; full records generated in CI as artifact",
+  "native_backend_used_for_campaign": false,
+  "summary_mean": {
+    "baseline_original_before_revisit": 0.05416666666666667,
+    "context_count": 2,
+    "context_switches": 2,
+    "first_regime_accuracy": 0.9508333333333333,
+    "inverted_regime_accuracy": 0.9391666666666667,
+    "original_before_revisit": 0.060833333333333336,
+    "recovered_original_accuracy": 0.95,
+    "serialized_state_bytes": 16760.4,
+    "single_model_recovered_original_accuracy": 0.6733333333333333
+  },
+  "per_run": [
+    {
+      "seed": 42,
+      "first": 0.9208333333333333,
+      "inverted": 0.9208333333333333,
+      "returned": 0.9208333333333333,
+      "baseline_return": 0.7958333333333333,
+      "switches": [
+        {
+          "at": 403,
+          "type": "created",
+          "active": 1
+        },
+        {
+          "at": 804,
+          "type": "recalled",
+          "active": 0
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "first": 0.9291666666666667,
+      "inverted": 0.9041666666666667,
+      "returned": 0.9208333333333333,
+      "baseline_return": 0.75,
+      "switches": [
+        {
+          "at": 405,
+          "type": "created",
+          "active": 1
+        },
+        {
+          "at": 803,
+          "type": "recalled",
+          "active": 0
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "first": 0.9916666666666667,
+      "inverted": 0.975,
+      "returned": 0.975,
+      "baseline_return": 0.625,
+      "switches": [
+        {
+          "at": 403,
+          "type": "created",
+          "active": 1
+        },
+        {
+          "at": 803,
+          "type": "recalled",
+          "active": 0
+        }
+      ]
+    },
+    {
+      "seed": 45,
+      "first": 0.9416666666666667,
+      "inverted": 0.9375,
+      "returned": 0.9416666666666667,
+      "baseline_return": 0.5625,
+      "switches": [
+        {
+          "at": 403,
+          "type": "created",
+          "active": 1
+        },
+        {
+          "at": 803,
+          "type": "recalled",
+          "active": 0
+        }
+      ]
+    },
+    {
+      "seed": 46,
+      "first": 0.9708333333333333,
+      "inverted": 0.9583333333333334,
+      "returned": 0.9916666666666667,
+      "baseline_return": 0.6333333333333333,
+      "switches": [
+        {
+          "at": 403,
+          "type": "created",
+          "active": 1
+        },
+        {
+          "at": 805,
+          "type": "recalled",
+          "active": 0
+        }
+      ]
+    }
+  ]
+}

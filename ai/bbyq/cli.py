@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 
 from .experiment import campaign
+from .context import context_inspect, contextual_experience
+from .context_experiment import context_campaign
 from .model import choose_action, experience, new_entity, predict
 from .store import NativeStore
 
@@ -29,6 +31,7 @@ def main(argv=None) -> None:
         command.add_argument("--action", type=int, choices=(-1, 1), required=True)
     step.add_argument("--outcome", type=int, choices=(0, 1), required=True)
     step.add_argument("--no-learning", action="store_true")
+    step.add_argument("--single-model", action="store_true", help="Disable context detection for the E001 baseline")
     sub.add_parser("native-stats", help="Show InverseMemory and InfiniteCore resources")
     exp = sub.add_parser("experiment", help="Independent Stage 2 learning campaign")
     exp.add_argument("--seed", type=int, default=42)
@@ -37,11 +40,18 @@ def main(argv=None) -> None:
     exp.add_argument("--test", type=int, default=240)
     exp.add_argument("--output", type=Path, help="Save evaluation JSON (not state)")
     exp.add_argument("--persist", action="store_true", help="Commit the final learned entity to a NEW RVPC2 state")
+    exp.add_argument("--contextual", action="store_true", help="Run E002 without externally supplied context labels")
+    exp.add_argument("--recovery", type=int, default=36, help="E002 experiences allowed to recognize a returning regime")
     arguments = parser.parse_args(argv)
 
     if arguments.command == "experiment":
-        report, evolved = campaign(arguments.seed, arguments.runs,
-                                   arguments.train, arguments.test)
+        if arguments.contextual:
+            report, evolved = context_campaign(arguments.seed, arguments.runs,
+                                               arguments.train, arguments.test,
+                                               arguments.recovery)
+        else:
+            report, evolved = campaign(arguments.seed, arguments.runs,
+                                       arguments.train, arguments.test)
         if arguments.persist:
             native_store = NativeStore(arguments.state, arguments.reverse_pc)
             native_store.initialize(evolved)
@@ -64,7 +74,8 @@ def main(argv=None) -> None:
                "identity_continuity": True})
     elif arguments.command == "inspect":
         entity = store.read()
-        _dump({"entity": entity, "physical_storage": store.stats()})
+        _dump({"entity": entity, "contexts": context_inspect(entity),
+               "physical_storage": store.stats()})
     elif arguments.command == "native-stats":
         _dump(store.stats())
     elif arguments.command == "predict":
@@ -75,11 +86,17 @@ def main(argv=None) -> None:
                "suggested_action": choose_action(entity, obs)})
     elif arguments.command == "step":
         obs = {"signal": arguments.signal, "pressure": arguments.pressure}
-        entity, result = store.transact(
-            lambda obj: experience(obj, obs, arguments.action,
-                                   arguments.outcome, learn=not arguments.no_learning))
+        learning = not arguments.no_learning
+        if arguments.single_model:
+            operation = lambda obj: experience(obj, obs, arguments.action,
+                                               arguments.outcome, learn=learning)
+        else:
+            operation = lambda obj: contextual_experience(obj, obs, arguments.action,
+                                                          arguments.outcome, learn=learning)
+        entity, result = store.transact(operation)
         _dump({"id": entity["id"], "experience": result,
-               "hypotheses": entity["model"]["weights"]})
+               "hypotheses": entity["model"]["weights"],
+               "contexts": context_inspect(entity)})
 
 
 if __name__ == "__main__":

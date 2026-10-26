@@ -49,3 +49,18 @@ PYTHONPATH=ai python -m bbyq --state /tmp/aprendida.rvp experiment --persist --o
 - `docs/evidence/experiment001-local.json`: resultados locales del algoritmo; `docs/evidence/native-benchmark-run-40266295038.json`: ejecución CI del REVERSE-PC real con latencia, memoria y sobrecostes medidos.
 
 La comparación inicial solo se refiere a un problema controlado, no a superioridad sobre modelos generales ni a aceleración cuántica. Los resultados negativos —especialmente el olvido tras adaptarse— se conservan.
+
+
+## E002 — aprendizaje con recuperación contextual
+
+Nueva hipótesis en `ai/bbyq/context.py`: BBY Q reconoce cambios por evidencia de error, conserva representaciones anteriores y puede recuperar una hipótesis archivada **sin que el entorno le indique su identidad**. El cambio de estado y las experiencias se persisten en el **mismo** Inverse Ether Memory/RVPC2; no hay bases de datos paralelas ni un modelo externo de IA. La aritmética de aprendizaje es código propio de BBY Q y todavía se ejecuta en Python, no en la ALU XI.
+
+```bash
+PYTHONPATH=ai python -m bbyq experiment --contextual --seed 42 --runs 5 --train 400 --test 240 --recovery 36 --output experiment002.json
+# Interacción persistentemente contextual por defecto:
+PYTHONPATH=ai python -m bbyq --state /tmp/bbyq.rvp step --signal 0.5 --pressure -0.2 --action 1 --outcome 0
+# Comparar con el aprendiz anterior:
+PYTHONPATH=ai python -m bbyq --state /tmp/legacy.rvp step --single-model --signal 0.5 --pressure -0.2 --action 1 --outcome 0
+```
+
+La campaña local E002 (5 semillas) midió 95,00 % en el contexto original tras regresar y 67,33 % con modelo único; hubo recuperación real del contexto archivado en las cinco ejecuciones. La prueba ampliada (25 semillas) obtuvo 95,05 % frente a 60,75 %. No implica conciencia, semántica general ni superioridad cuántica. Véase [protocolo, límites y controles negativos](docs/AI_E002_CONTEXT.md). La verificación de persistencia nativa para E002 se ejecuta separadamente en CI.

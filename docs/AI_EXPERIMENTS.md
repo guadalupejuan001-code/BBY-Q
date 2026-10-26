@@ -60,3 +60,24 @@ Fuente: [run 40266295038](https://github.com/guadalupejuan001-code/BBY-Q/actions
 - La campaña aprendida conservada bajo RVPC2 utilizó **10.736 overrides** y un archivo de **245.195 bytes**; fue restaurada y comparada con el estado previo.
 
 Son medidas de **una ejecución** en un runner compartido, no una distribución de plataformas. Esta versión aún no demuestra ahorro frente a SQLite ni frente a un archivo JSON clásico. Hay un sobrecoste claro de almacenamiento y procesos; el siguiente ensayo debe comparar alternativas bajo igual semántica de persistencia, aislamiento y rollback.
+
+
+## E002: el agente reconoce un régimen previamente aprendido
+
+La evaluación independiente de E002 enfrenta el sistema contextual a un
+modelo único con idéntica experiencia y holdout. No se informa al agente
+qué régimen está activo. La recuperación ocurre por contradicciones de
+alta confianza; se verifica el evento `recalled`, no solo la precisión.
+Para las cinco semillas 42–46, tras A (400), B invertido (400) y retorno
+a A (36), el sistema contextual promedió 95,00 % contra 67,33 % del
+control de modelo único sobre 240 observaciones nuevas por semilla.
+El régimen B alcanzó 93,92 % de precisión antes del regreso; los cinco
+ensayos terminaron con exactamente dos contextos y dos transiciones.
+
+En 25 semillas adicionales (1–25; holdout de 160), la recuperación de A
+promedió 95,05 % frente a 60,75 %, con 25/25 eventos `recalled`.
+E002 no mostró solución general de paridad/XOR; el control local en
+25 semillas promedió alrededor de 55,76 %. No sustituir estas pruebas
+locales por afirmaciones de persistencia: el workflow compila y ejecuta
+REVERSE-PC real y publica el estado E002 en RVPC2 y su inspección.
+Ver [diseño y límites E002](AI_E002_CONTEXT.md).

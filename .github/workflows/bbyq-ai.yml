@@ -24,12 +24,25 @@ jobs:
         env:
           PYTHONPATH: ai
         run: python -m bbyq experiment --seed 42 --runs 5 --train 400 --test 240 --output experiment001-ci.json > experiment-output.json
+      - name: Reproduce context-recall campaign E002
+        env:
+          PYTHONPATH: ai
+        run: |
+          python -m bbyq experiment --contextual --seed 42 --runs 5 --train 400 --test 240 --recovery 36 --output experiment002-ci.json > context-output.json
+          python - <<'PY'
+          import json
+          x = json.load(open('experiment002-ci.json'))
+          assert all(any(e['type'] == 'recalled' for e in row['switch_events']) for row in x['per_run'])
+          assert x['summary_mean']['recovered_original_accuracy'] > x['summary_mean']['single_model_recovered_original_accuracy']
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: bbyq-python-evidence
           path: |
             experiment001-ci.json
             experiment-output.json
+            experiment002-ci.json
+            context-output.json
   native-integration:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -66,6 +79,13 @@ jobs:
           export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
           python -m bbyq --state "$RUNNER_TEMP/learned.rvp" experiment --seed 42 --runs 5 --train 400 --test 240 --persist --output experiment001-native.json > experiment-native-output.json
           python -m bbyq --state "$RUNNER_TEMP/learned.rvp" inspect > native-inspect.json
+      - name: Persist complete E002 context memory via real XI
+        env:
+          PYTHONPATH: ai
+        run: |
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python -m bbyq --state "$RUNNER_TEMP/context.rvp" experiment --contextual --seed 42 --runs 5 --train 400 --test 240 --recovery 36 --persist --output experiment002-native.json > context-native-output.json
+          python -m bbyq --state "$RUNNER_TEMP/context.rvp" inspect > context-native-inspect.json
       - name: Resource and write-latency benchmark
         env:
           PYTHONPATH: ai
@@ -82,3 +102,6 @@ jobs:
             native-inspect.json
             native-benchmark.json
             native-benchmark-output.json
+            experiment002-native.json
+            context-native-output.json
+            context-native-inspect.json
