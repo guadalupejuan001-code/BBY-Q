@@ -1,0 +1,47 @@
+name: BBY Q E010 - adaptive bilingual XI development
+on:
+  push:
+    branches: [feature/bbyq-e010-preschool-bilingual-xi-20261026, main]
+    paths: ["ai/xi/school/**", ".github/workflows/bbyq-e010.yml", "docs/AI_E010_DEVELOPMENT.md", "README.md"]
+  pull_request:
+    paths: ["ai/xi/school/**", ".github/workflows/bbyq-e010.yml", "docs/AI_E010_DEVELOPMENT.md", "README.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  bilingual-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore authentic previously trained E009 organism
+        uses: actions/download-artifact@v4
+        with:
+          name: bbyq-e009-grounded-language
+          run-id: 40295133790
+          repository: guadalupejuan001-code/BBY-Q
+          github-token: ${{ github.token }}
+          path: e009-history
+      - name: Pin user's original XI REVERSE-PC runtime
+        run: |
+          set -eu
+          test -s e009-history/first-world-complete.rvp
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build the preexisting native XI bootstrap
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Native XI learning, hidden evaluation, bilingual words and learned operations
+        shell: bash
+        run: |
+          bash ai/xi/school/tests/native-development.sh "$RUNNER_TEMP/reverse-pc-build/reverse_pc" e009-history/first-world-complete.rvp
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e010-bilingual-development-evidence
+          path: evidence/
+          if-no-files-found: warn
