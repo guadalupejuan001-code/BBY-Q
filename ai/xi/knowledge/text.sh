@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Byte transport only. All tokenization, grounding and decisions execute in XI.
-# Usage: text.sh RUNTIME STATE 'dos mas tres' [es|en]
+# Usage: text.sh RUNTIME STATE 'dos mas tres' [es|en] [--compact]
 set -euo pipefail
 R="$(realpath "$1")"
 state="$(realpath "$2")"
 text="$3"
 lang="${4:-es}"
+mode=conversation
+if [[ "${5:-}" = --compact ]]; then mode=combined; elif [[ -n "${5:-}" ]]; then exit 2; fi
 case "$lang" in es) lang_id=1;; en) lang_id=2;; *) exit 2;; esac
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir "$state.lock" 2>/dev/null || { echo 'State has an active writer' >&2; exit 1; }
@@ -20,11 +22,11 @@ tmp="$(mktemp -d "$(dirname "$state")/.bbyq-text.XXXXXX")"
 # covers every module in the native route; source edits invalidate it.
 cache="$(dirname "$state")/.bbyq-xi-cache"
 mkdir -p -m 700 "$cache"
-key="$(sha256sum "$root"/*.xi "$root/link.sh" "$root/../dialogue"/*.xi "$root/../stories"/*.xi "$root/../grammar"/*.xi "$root/../language/ask.xi" "$root/../language/speak.xi" | sha256sum)"
+key="$(sha256sum "$root"/*.xi "$root/link.sh" "$root/../dialogue"/*.xi "$root/../stories"/*.xi "$root/../grammar"/*.xi "$root/../conversation"/*.xi "$root/../language/ask.xi" "$root/../language/speak.xi" | sha256sum)"
 key="${key%% *}"
-compiled="$cache/$key.xi"
+compiled="$cache/$mode-$key.xi"
 if [[ ! -s "$compiled" ]]; then
-  bash "$root/link.sh" combined > "$tmp/compiled.xi"
+  bash "$root/link.sh" "$mode" > "$tmp/compiled.xi"
   mv "$tmp/compiled.xi" "$compiled"
 fi
 length="$(printf %s "$text" | wc -c)"

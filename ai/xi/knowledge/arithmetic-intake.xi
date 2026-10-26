@@ -10,10 +10,30 @@ set r1 0
 label token
 cmp r0 r15
 jge complete
+# Conversational aliases of a grounded numeral reuse its original E010 name.
+load8 r4 7700000000000000016
+cmp r4 1
+jne raw_token
+set r7 7400000000000001600
+mov r2 r0
+mul r2 2
+add r7 r2
+load8 r4 $r7
+cmp r4 13
+jlt raw_token
+cmp r4 22
+jgt raw_token
+sub r4 1
+mul r4 32
+set r7 7200000000000001005
+add r7 r4
+jmp token_ready
+label raw_token
 set r7 7400000000000000512
 mov r2 r0
 mul r2 34
 add r7 r2
+label token_ready
 load8 r3 $r7
 set r2 0
 label character

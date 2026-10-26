@@ -1,0 +1,17 @@
+# act|language|teacher-supplied fixed text; spacing between slots is structural
+1|1|Hola. Soy BBY Q.
+1|2|Hello. I am BBY Q.
+2|1|Soy BBY Q. Puedo responder sobre lo aprendido y seguir cuentas sencillas.
+2|2|I am BBY Q. I can answer from learned knowledge and track simple quantities.
+3|1|No tengo información suficiente para responder.
+3|2|I do not have enough information to answer.
+4|1|Necesito que indiques de quién o de qué hablas.
+4|2|Please specify the person or thing you mean.
+5|1|El resultado es
+5|2|The result is
+6|1|La cantidad es
+6|2|The quantity is
+7|1|No:
+7|2|No:
+8|1|Estoy funcionando. ¿Qué quieres consultar?
+8|2|I am running. What would you like to ask?

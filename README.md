@@ -1,6 +1,22 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E015 — estructuras de pregunta bilingües, sobre E014.**
+**Ruta activa: E016 — frases completas y diálogos cortos, sobre E015.**
+
+BBY Q compone «Ana tiene cinco manzanas», entiende «ella recibe tres más»
+y continúa preguntas como «¿y las peras?» o «¿y un perro?». Conserva el
+referente al reiniciar y responde en español o inglés sobre la misma memoria.
+Las frases de cantidades usan un orden inducido desde ejemplos y formas
+nominales supervisadas. Los saludos y la presentación son textos enseñados.
+La gramática y los temas siguen siendo acotados; no es conversación abierta.
+
+Prueba local: 120 diálogos nuevos (960 turnos), 384 casos de concordancia y
+límites, 1.522 consultas factuales con frases y las mismas 1.522 con el
+protocolo anterior. Total: 4.668 verificaciones. Estado: 209.659 bytes;
+RAM residente medida: 5,00 MiB en Linux x86-64; Android no medido.
+
+[Enseñanza, conversaciones, mediciones y uso de E016](docs/AI_E016_CONVERSATION.md).
+
+**E015 — estructuras de pregunta bilingües, sobre E014.**
 
 BBY Q continúa su estado aprendido con nueve estructuras inducidas desde
 18 demostraciones con roles supervisados. Puede responder a «how many apples
