@@ -1,15 +1,55 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E007 — Ether Vault, memoria reversible de hipótesis
-aprendidas con los programas XI del usuario.** E006 sigue actuando como
-jurado de relaciones; E005 conserva el nacimiento de estructuras.
-La novedad E007 es recuperar contextos anteriores sin reentrenamiento
-ni etiquetas de contexto entregadas al selector.
+**Ruta activa: E008 — Ether Constellation, cuatro conocimientos
+reversibles y decisiones de aprendizaje en el lenguaje propio XI.**
+E007 conserva la memoria dual; E006 sigue siendo el jurado de
+relaciones y E005 preserva el nacimiento de estructuras.
 
 BBY Q **no utiliza SOVENGI, modelos de IA de terceros, Transformers ni
 código Python/C++ para implementar su inteligencia**. Su estado y las
 transacciones pertenecen a REVERSE-PC, XI, Inverse Ether Memory y Mundo X,
 con **una sola autoridad persistente RVPC2 por agente**.
+
+## E008 — Cuatro conocimientos y una política de exploración
+
+**Cinco agentes, cada uno con cuatro hipótesis propias dentro de un único
+RVPC2**. Aprenden XOR, XNOR, AND y OR sin incorporar la regla del
+generador del mundo en el programa de aprendizaje. Tras su aprobación,
+`recall4.xi` compara predicciones antes de consultar las consecuencias,
+selecciona un banco reconocido o **se abstiene** si las contradicciones
+son demasiado grandes. No vuelve a entrenar los cuatro bancos al
+cambiar de entorno.
+
+`plan-next.xi` analiza los desacuerdos y residuos para decidir una
+acción epistémica: usar lo aprendido, consultar un experimento
+discriminante, investigar la región más sorprendente o ampliar
+la representación. La política no ejecuta todavía investigaciones
+físicas ni modifica su propia gramática sin pruebas.
+
+**Validación final sellada**
+([GitHub Actions 40289515756](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40289515756)):
+
+- **20/20** situaciones conocidas identificadas; **15/15**
+  desconocidas rechazadas sin alucinar una clase.
+- **20/20** reconocidas bajo 15 % de corrupción independiente;
+  **18/20** bajo 25 % (dos abstenciones seguras).
+- **1.600 decisiones** adicionales con entradas cambiantes:
+  1.070 selecciones correctas y 530 abstenciones, sin modificar
+  las hipótesis ni romper la persistencia.
+- Estado RVPC2 de semilla 42: **6.632 bytes** después de 320
+  decisiones de longevidad. Las cuatro hipótesis ocupan
+  un único espacio Ether con checksum por banco.
+- **Cero qubits activos y cero entrelazamientos** en
+  estos experimentos de aprendizaje simbólico en CPU clásica.
+
+[Contrato, datos crudos, límites y evaluación de «organismo»](docs/AI_E008_CONSTELLATION.md).
+[Archivos persistentes y resultados E008](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40289515756/artifacts/12635511438).
+
+**Diagnóstico:** el proyecto avanza como agente computacional
+persistente con aprendizaje y metacontrol limitado. Aún **no es
+un organismo biológicamente vivo ni una IA general**, no controla
+sus propios recursos/actuadores y la evolución de relaciones
+permanece restringida a una gramática de dos signos.
 
 ## E007 — Ether Vault: una memoria que recuerda sin reaprender
 

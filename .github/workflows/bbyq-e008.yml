@@ -1,0 +1,152 @@
+name: BBY Q E008 - Ether Constellation XI
+on:
+  push:
+    branches: [feature/e008-ether-constellation-xi-20261026, main]
+    paths: ["ai/xi/e008/**", ".github/workflows/bbyq-e008.yml", "docs/AI_E008_CONSTELLATION.md"]
+  pull_request:
+    paths: ["ai/xi/e008/**", ".github/workflows/bbyq-e008.yml", "docs/AI_E008_CONSTELLATION.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  constellation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use exact owner XI runtime and pinned original Mundo X
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Compile unchanged native XI interpreter bootstrap
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Train four original-language hypotheses and stress unfamiliar rules
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          mkdir -p evidence
+          reg() {
+            grep -m1 "\"register\":\"$2\"" "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          for seed in 19 42 91 117 203; do
+            "$R" init blank.rvp
+            "$R" run ai/xi/e006/birth.xi blank.rvp born.rvp > /dev/null
+            if [ "$seed" = 117 ] || [ "$seed" = 203 ]; then
+              seed_file="ai/xi/e008/seed-$seed.xi"
+            else
+              seed_file="ai/xi/e006/seed-$seed.xi"
+            fi
+            "$R" run "$seed_file" born.rvp state.rvp > /dev/null
+            for task in xor xnor and or; do
+              if [ "$task" != "xor" ]; then
+                "$R" run ai/xi/e008/open-shadow.xi state.rvp opened.rvp > /dev/null
+                mv opened.rvp state.rvp
+              fi
+              epoch=1
+              while [ "$epoch" -le 12 ]; do
+                if [ "$task" = "xor" ]; then
+                  feed=ai/xi/e006/feed-xor.xi
+                else
+                  feed="ai/xi/e008/train-$task.xi"
+                fi
+                "$R" run "$feed" state.rvp feed.rvp > /dev/null
+                "$R" run ai/xi/e006/learn.xi feed.rvp next.rvp > "evidence/$seed-$task-train-last.jsonl"
+                "$R" run ai/xi/e006/audit-clean.xi next.rvp audit.rvp > /dev/null
+                cmp next.rvp audit.rvp
+                mv next.rvp state.rvp
+                epoch=$((epoch+1))
+              done
+              if [ "$task" = "xor" ]; then
+                feed=ai/xi/e006/validate-feed-xor.xi
+              else
+                feed="ai/xi/e008/admit-feed-$task.xi"
+              fi
+              "$R" run "$feed" state.rvp exam.rvp > /dev/null
+              "$R" run ai/xi/e008/admit.xi exam.rvp admitted.rvp > "evidence/$seed-$task-jury.jsonl"
+              test "$(reg "evidence/$seed-$task-jury.jsonl" r14)" -eq 1
+              "$R" run ai/xi/e008/bank-store.xi admitted.rvp stored.rvp > "evidence/$seed-$task-archive.jsonl"
+              mv stored.rvp state.rvp
+              echo "seed=$seed learned=$task holdout=$(reg "evidence/$seed-$task-jury.jsonl" r11)/240"
+            done
+            "$R" run ai/xi/e008/audit-banks.xi state.rvp checked.rvp > /dev/null
+            cmp state.rvp checked.rvp
+            cp state.rvp "evidence/$seed-four-knowledge-banks.rvp"
+            # The archive is saturated. A fifth context must not overwrite knowledge.
+            if "$R" run ai/xi/e008/open-shadow.xi state.rvp forbidden-fifth.rvp > /dev/null; then
+              echo "ERROR: bank capacity invariant violated" >&2; exit 1
+            fi
+            test ! -e forbidden-fifth.rvp
+            # Test atomicity of corrupting one persistent weight and of invalid feedback.
+            "$R" run ai/xi/e008/corrupt-bank.xi state.rvp corrupted-bank.rvp > /dev/null
+            if "$R" run ai/xi/e008/audit-banks.xi corrupted-bank.rvp bad-audit.rvp > /dev/null; then
+              echo "ERROR: bank checksum did not notice a damaged relation" >&2; exit 1
+            fi
+            test ! -e bad-audit.rvp
+            "$R" run ai/xi/e008/probe-xor.xi state.rvp healthy-probe.rvp > /dev/null
+            "$R" run ai/xi/e008/corrupt-feedback.xi healthy-probe.rvp poisoned-probe.rvp > /dev/null
+            if "$R" run ai/xi/e008/recall4.xi poisoned-probe.rvp poisoned-output.rvp > /dev/null; then
+              echo "ERROR: invalid consequence accepted" >&2; exit 1
+            fi
+            test ! -e poisoned-output.rvp
+            # Six changes including an unknown Boolean rule and no-signal noise.
+            for task in xor and xnor or xor nand noise; do
+              "$R" run "ai/xi/e008/probe-$task.xi" state.rvp observed.rvp > /dev/null
+              "$R" run ai/xi/e008/recall4.xi observed.rvp decided.rvp > "evidence/$seed-$task-select.jsonl"
+              "$R" run ai/xi/e008/plan-next.xi decided.rvp planned.rvp > "evidence/$seed-$task-plan.jsonl"
+              mv planned.rvp state.rvp
+              "$R" run ai/xi/e008/audit-organism.xi state.rvp checked.rvp > "evidence/$seed-$task-audit.jsonl"
+              cmp state.rvp checked.rvp
+              abstain="$(reg "evidence/$seed-$task-select.jsonl" r14)"
+              action="$(reg "evidence/$seed-$task-plan.jsonl" r14)"
+              expected=0
+              case "$task" in
+                xor) expected=0 ;;
+                xnor) expected=1 ;;
+                and) expected=2 ;;
+                or) expected=3 ;;
+              esac
+              if [ "$task" = nand ]; then
+                test "$abstain" -eq 1
+                test "$action" -eq 2
+              elif [ "$task" = noise ]; then
+                test "$abstain" -eq 1
+                test "$action" -ne 0
+              else
+                test "$abstain" -eq 0
+                test "$action" -eq 0
+                # The selected bank must match the environment, not be merely accurate.
+                chosen="$(grep '"register":"r14"' "evidence/$seed-$task-select.jsonl" | sed -n '2s/.*"value":\([0-9][0-9]*\).*/\1/p')"
+                test "$chosen" -eq "$expected"
+              fi
+              if "$R" run ai/xi/e008/recall4.xi state.rvp reused-exam.rvp > /dev/null; then
+                echo "ERROR: old exam reused" >&2; exit 1
+              fi
+              test ! -e reused-exam.rvp
+              echo "seed=$seed task=$task abstain=$abstain learning_action=$action"
+            done
+            # Record noisy generalization: errors, confidence and false switches.
+            for task in xor xnor and or; do
+              for pct in 15 25; do
+                label="$task-noise$pct"
+                "$R" run "ai/xi/e008/probe-$label.xi" state.rvp observed.rvp > /dev/null
+                "$R" run ai/xi/e008/recall4.xi observed.rvp decided.rvp > "evidence/$seed-$label-select.jsonl"
+                mv decided.rvp state.rvp
+                "$R" run ai/xi/e008/audit-organism.xi state.rvp checked.rvp > /dev/null
+                cmp state.rvp checked.rvp
+                abstain="$(reg "evidence/$seed-$label-select.jsonl" r14)"
+                echo "seed=$seed task=$task corruption=$pct abstain=$abstain"
+              done
+            done
+            cp state.rvp "evidence/$seed-after-world-changes.rvp"
+            echo "seed=$seed bytes=$(wc -c < state.rvp) completed"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e008-evidence
+          path: evidence/
+          if-no-files-found: warn
