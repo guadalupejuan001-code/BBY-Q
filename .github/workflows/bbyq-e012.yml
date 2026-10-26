@@ -35,7 +35,9 @@ jobs:
         run: |
           set -eu
           python3 ai/xi/knowledge/tests/native-knowledge.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" original.rvp --out evidence/e012 --random-cases 200 --seeds 170627 270629 370631
-          cmp released.rvp evidence/e012/BBYQ_E012_Knowledge_ES_EN.rvp
+          # E013 changes transient bookkeeping, so the write-revision envelope
+          # differs. Compare every logical byte and the complete core/bindings.
+          python3 -c 'import runpy; s=runpy.run_path("ai/xi/knowledge/tests/native-knowledge.py")["snapshot"]; assert s("released.rvp")==s("evidence/e012/BBYQ_E012_Knowledge_ES_EN.rvp")'
       - name: Single native text entry point and retained E011 arithmetic
         shell: bash
         run: |

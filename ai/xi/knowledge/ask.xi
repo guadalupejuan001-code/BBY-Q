@@ -44,6 +44,7 @@ set r7 7400000000000003400
 add r7 r2
 store8 $r7 1
 store8 7400000000000003000 r2
+store8 7400000000000000050 1
 set r0 0
 set r1 1
 label breadth_first
@@ -85,27 +86,30 @@ add r7 r6
 load8 r8 $r7
 cmp r8 0
 jne next_candidate
-store8 $r7 1
-set r7 7400000000000003800
-add r7 r6
-store8 $r7 r5
 set r7 7400000000000004200
 add r7 r5
 load8 r8 $r7
 add r8 1
 cmp r8 31
 jgt next_candidate
+cmp r1 255
+jge budget
+set r7 7400000000000003400
+add r7 r6
+store8 $r7 1
+set r7 7400000000000003800
+add r7 r6
+store8 $r7 r5
 set r7 7400000000000004200
 add r7 r6
 store8 $r7 r8
-cmp r6 r4
-je path_found
-cmp r1 255
-jge budget
 set r7 7400000000000003000
 add r7 r1
 store8 $r7 r6
 add r1 1
+store8 7400000000000000050 r1
+cmp r6 r4
+je path_found
 label next_candidate
 add r6 1
 jmp candidate

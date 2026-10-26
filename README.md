@@ -1,6 +1,16 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E012 — conocimiento bilingüe, relaciones y evidencia en XI.**
+**Ruta activa: E013 — rendimiento XI y sesión residente, conservando E012.**
+
+La deducción de referencia pasó de 65,78 ms en la entrada CLI anterior a
+7,29 ms entre turnos de la sesión E013, con guardado por respuesta.
+Se probaron 1.000 turnos, hasta 512 hechos/512 entradas y fallos de escritura.
+RAM residente medida de 3,79–4,34 MiB en Linux x86-64; Android no medido.
+
+[Mediciones, método y límites de E013](docs/AI_E013_PERFORMANCE.md).
+
+El currículo más reciente sigue siendo **E012: conocimiento bilingüe,
+relaciones y evidencia en XI**.
 
 Continúa desde el checkpoint E011 real, conservando la entidad anterior.
 Añade 176 identidades simbólicas, 374 entradas de vocabulario ES/EN y

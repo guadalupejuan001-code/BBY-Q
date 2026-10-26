@@ -9,8 +9,24 @@ lang="${4:-es}"
 case "$lang" in es) lang_id=1;; en) lang_id=2;; *) exit 2;; esac
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir "$state.lock" 2>/dev/null || { echo 'State has an active writer' >&2; exit 1; }
+tmp=''
+cleanup() {
+  if [[ -n "$tmp" ]]; then rm -rf -- "$tmp"; fi
+  rmdir -- "$state.lock"
+}
+trap cleanup EXIT
 tmp="$(mktemp -d "$(dirname "$state")/.bbyq-text.XXXXXX")"
-trap 'rm -rf "$tmp"; rmdir "$state.lock"' EXIT
+# Cache only linked SOURCE, never questions, facts or inferred answers. The key
+# covers every module in the native route; source edits invalidate it.
+cache="$(dirname "$state")/.bbyq-xi-cache"
+mkdir -p -m 700 "$cache"
+key="$(sha256sum "$root"/*.xi "$root/link.sh" "$root/../dialogue"/*.xi "$root/../language/ask.xi" "$root/../language/speak.xi" | sha256sum)"
+key="${key%% *}"
+compiled="$cache/$key.xi"
+if [[ ! -s "$compiled" ]]; then
+  bash "$root/link.sh" combined > "$tmp/compiled.xi"
+  mv "$tmp/compiled.xi" "$compiled"
+fi
 length="$(printf %s "$text" | wc -c)"
 if ((length>255)); then echo 'Input exceeds 255 bytes' >&2; exit 2; fi
 B=7400000000000000000
@@ -22,7 +38,7 @@ B=7400000000000000000
     printf 'store8 %s %s\n' "$((B+128+i))" "$byte"
     i=$((i+1))
   done
-  bash "$root/link.sh" combined | sed '1d'
+  sed '1d' "$compiled"
 } > "$tmp/turn.xi"
 "$R" run "$tmp/turn.xi" "$state" "$tmp/result.rvp" > "$tmp/output.jsonl" 2> "$tmp/runtime.log" || { cat "$tmp/runtime.log" >&2; exit 1; }
 mv "$tmp/result.rvp" "$state"

@@ -1,0 +1,61 @@
+name: BBY Q E013 - measured XI performance and persistent transactions
+on:
+  push:
+    branches: [feature/bbyq-e013-performance-20261026, main]
+    paths: ["ai/native/**", "ai/xi/knowledge/**", ".github/workflows/bbyq-e013.yml", "docs/AI_E013_PERFORMANCE.md"]
+  pull_request:
+    paths: ["ai/native/**", "ai/xi/knowledge/**", ".github/workflows/bbyq-e013.yml", "docs/AI_E013_PERFORMANCE.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore authentic model and immutable E012 source baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64 > parent.rvp
+          base64 -d ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64 | gzip -dc > original.rvp
+          echo '8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f  original.rvp' | sha256sum -c -
+          git worktree add --detach "$RUNNER_TEMP/e012-baseline" 7b39a752e23e87946f98481a1b62becf1d657b33
+      - name: Build unchanged owner runtime and transport-only persistent adapter
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Thousand turns, scale to real capacity, cache and failure transactions
+        run: |
+          set -eu
+          python3 ai/xi/knowledge/tests/native-stress.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$RUNNER_TEMP/session-build/bbyq_session" parent.rvp original.rvp --out evidence/e013/stress --turns 1000
+      - name: Interleaved baseline/candidate timings, with equal per-turn checkpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          S="$RUNNER_TEMP/session-build/bbyq_session"
+          B="$RUNNER_TEMP/e012-baseline"
+          python3 ai/xi/knowledge/tests/native-performance.py "$R" "$B" original.rvp --candidate-root . --candidate-state original.rvp --out evidence/e013/base --native-repeats 30 --ui-repeats 8 --session-binary "$S"
+          for count in 256 512; do
+            state="evidence/e013/stress/facts-$count.rvp"
+            python3 ai/xi/knowledge/tests/native-performance.py "$R" "$B" "$state" --candidate-root . --candidate-state "$state" --out "evidence/e013/facts-$count" --native-repeats 20 --ui-repeats 5 --session-binary "$S"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e013-native-performance-evidence
+          path: |
+            evidence/e013/**/results.json
+            evidence/e013/**/raw.jsonl
+            evidence/e013/stress/facts-256.rvp
+            evidence/e013/stress/facts-512.rvp
+          if-no-files-found: warn
