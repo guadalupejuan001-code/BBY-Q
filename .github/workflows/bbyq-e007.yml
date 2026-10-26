@@ -42,10 +42,19 @@ jobs:
             case "$2" in
               xor) feed="ai/xi/e007/probe-feed-xor.xi" ;;
               anti) feed="ai/xi/e007/probe-feed-anti-xor.xi" ;;
+              noisy-xor) feed="ai/xi/e007/probe-feed-noisy-xor.xi" ;;
+              noisy-anti) feed="ai/xi/e007/probe-feed-noisy-anti.xi" ;;
               noise) feed="ai/xi/e007/probe-feed-noise.xi" ;;
               *) exit 99 ;;
             esac
-            "$R" run "$feed" agent.rvp observed.rvp > /dev/null
+            "$R" run "$feed" agent.rvp observed.rvp > "evidence/$1-feed.jsonl"
+            case "$2" in
+              noisy-xor|noisy-anti)
+                flips="$(readreg "evidence/$1-feed.jsonl" r10)"
+                test "$flips" -ge 35
+                test "$flips" -le 85
+                echo "seed=$seed noisy-probe=$2 corrupted=$flips/240" ;;
+            esac
             "$R" run ai/xi/e007/recall.xi observed.rvp decided.rvp > "evidence/$1-recall.jsonl"
             mv decided.rvp agent.rvp
             "$R" run ai/xi/e007/audit-vault.xi agent.rvp audited.rvp > "evidence/$1-audit.jsonl"
@@ -93,7 +102,12 @@ jobs:
             cmp agent.rvp checked.rvp
             expectgrid "$seed-B-before" "1,0,0,1"
             cp agent.rvp "evidence/$seed-two-contexts-before-recall.rvp"
-            # Only observed outcomes (never a regime ID) decide the switch.
+            # Test both returns with 25% independently corrupted outcomes.
+            probe "$seed-noisy-return-A" noisy-xor 1 1
+            expectgrid "$seed-noisy-A-recalled" "0,1,1,0"
+            probe "$seed-noisy-return-B" noisy-anti 1 2
+            expectgrid "$seed-noisy-B-recalled" "1,0,0,1"
+            # The original clean A-B-A-B and pure-noise regression remains.
             probe "$seed-return-A" xor 1 1
             expectgrid "$seed-A-recalled" "0,1,1,0"
             probe "$seed-return-B" anti 1 2
@@ -103,10 +117,10 @@ jobs:
             probe "$seed-A-stable" xor 0 1
             "$R" run ai/xi/e007/audit-vault.xi agent.rvp final-readonly.rvp > "evidence/$seed-final-vault.jsonl"
             cmp agent.rvp final-readonly.rvp
-            test "$(readreg "evidence/$seed-final-vault.jsonl" r4)" -eq 3
+            test "$(readreg "evidence/$seed-final-vault.jsonl" r4)" -eq 5
             cp agent.rvp "evidence/$seed-final-context-vault.rvp"
           done
-          echo "E007 PASS: all seeds recall both contexts without retraining, ignore noise"
+          echo "E007 PASS: all seeds recall both contexts under clean and 25% corrupted feedback; ignore pure noise"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
