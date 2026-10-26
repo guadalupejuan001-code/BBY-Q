@@ -1,0 +1,44 @@
+#!reverse-pc-machine-v1
+# Publish all episode changes together, or none. Use E011's original speaker.
+load8 r0 7500000000000000008
+store8 7400000000000000008 r0
+load8 r1 7500000000000000009
+store8 7400000000000000009 r1
+cmp r0 1
+jne failure_result
+load8 r0 7500000000000000014
+cmp r0 0
+je response
+set r0 0
+label commit
+set r7 7500000000000002000
+add r7 r0
+load8 r1 $r7
+set r7 7500000000000001000
+add r7 r0
+store8 $r7 r1
+add r0 1
+cmp r0 128
+jlt commit
+load8 r0 7500000000000000032
+store8 7500000000000000006 r0
+jmp response
+label failure_result
+set r0 10
+label clear_result
+set r7 7500000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+cmp r0 16
+jlt clear_result
+label response
+load8 r0 7400000000000000003
+store8 7300000000000000003 r0
+load8 r0 7500000000000000008
+store8 7300000000000000008 r0
+load8 r0 7500000000000000012
+store8 7300000000000000010 r0
+load8 r0 7500000000000000013
+store8 7300000000000000011 r0
+halt
