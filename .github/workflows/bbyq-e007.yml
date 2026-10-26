@@ -1,0 +1,115 @@
+name: BBY Q E007 - native XI reversible context vault
+on:
+  push:
+    branches: [feature/bbyq-e007-ether-context-vault-20261026, main]
+    paths: ["ai/xi/e007/**", ".github/workflows/bbyq-e007.yml", "docs/AI_E007_CONTEXT_VAULT.md"]
+  pull_request:
+    paths: ["ai/xi/e007/**", ".github/workflows/bbyq-e007.yml", "docs/AI_E007_CONTEXT_VAULT.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reversible-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use original owner XI runtime and verified Mundo X dependency
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build existing XI interpreter bootstrap
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Demonstrate A-B-A-B reversibility using only XI programs and one RVPC2
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          mkdir -p evidence
+          readreg() {
+            grep -m1 "\"register\":\"$2\"" "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          expectgrid() {
+            "$R" run ai/xi/e006/infer-grid.xi agent.rvp inspect-grid.rvp > "evidence/$1-infer.jsonl"
+            cmp agent.rvp inspect-grid.rvp
+            grid="$(grep '"register":"r10"' "evidence/$1-infer.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p' | paste -sd, -)"
+            test "$grid" = "$2"
+          }
+          probe() {
+            case "$2" in
+              xor) feed="ai/xi/e007/probe-feed-xor.xi" ;;
+              anti) feed="ai/xi/e007/probe-feed-anti-xor.xi" ;;
+              noise) feed="ai/xi/e007/probe-feed-noise.xi" ;;
+              *) exit 99 ;;
+            esac
+            "$R" run "$feed" agent.rvp observed.rvp > /dev/null
+            "$R" run ai/xi/e007/recall.xi observed.rvp decided.rvp > "evidence/$1-recall.jsonl"
+            mv decided.rvp agent.rvp
+            "$R" run ai/xi/e007/audit-vault.xi agent.rvp audited.rvp > "evidence/$1-audit.jsonl"
+            cmp agent.rvp audited.rvp
+            verdict="$(readreg "evidence/$1-recall.jsonl" r14)"
+            test "$verdict" -eq "$3"
+            current="$(readreg "evidence/$1-audit.jsonl" r2)"
+            test "$current" -eq "$4"
+            if "$R" run ai/xi/e007/recall.xi agent.rvp duplicate.rvp > /dev/null; then
+              echo "ERROR: used probe could be reapplied" >&2; exit 1
+            fi
+            test ! -e duplicate.rvp
+            echo "seed=$seed probe=$2 swapped=$verdict current=$current"
+          }
+          for seed in 19 42 91; do
+            "$R" init blank.rvp
+            "$R" run ai/xi/e006/birth.xi blank.rvp birth.rvp > /dev/null
+            "$R" run "ai/xi/e006/seed-$seed.xi" birth.rvp agent.rvp > /dev/null
+            # Context A: train unknown XOR, submit independent holdout to XI Jury.
+            for epoch in 1 2 3 4 5 6 7 8 9 10 11 12; do
+              "$R" run ai/xi/e006/feed-xor.xi agent.rvp feed.rvp > /dev/null
+              "$R" run ai/xi/e006/learn.xi feed.rvp trained.rvp > /dev/null
+              mv trained.rvp agent.rvp
+            done
+            "$R" run ai/xi/e006/validate-feed-xor.xi agent.rvp jury-input.rvp > /dev/null
+            "$R" run ai/xi/e006/jury.xi jury-input.rvp judged.rvp > "evidence/$seed-context-A-jury.jsonl"
+            mv judged.rvp agent.rvp
+            test "$(readreg "evidence/$seed-context-A-jury.jsonl" r14)" -eq 1
+            expectgrid "$seed-A-before" "0,1,1,0"
+            # Immune-system step: put A in the same Ether vault, NOT a second file.
+            "$R" run ai/xi/e007/checkpoint.xi agent.rvp checkpoint.rvp > /dev/null
+            "$R" run ai/xi/e007/unlock-next.xi checkpoint.rvp shadow-B.rvp > /dev/null
+            mv shadow-B.rvp agent.rvp
+            # Context B: inverse world, learned independently while A remains archived.
+            for epoch in 1 2 3 4 5 6 7 8 9 10 11 12; do
+              "$R" run ai/xi/e007/feed-anti-xor.xi agent.rvp feed.rvp > /dev/null
+              "$R" run ai/xi/e006/learn.xi feed.rvp trained.rvp > /dev/null
+              mv trained.rvp agent.rvp
+            done
+            "$R" run ai/xi/e007/validate-feed-anti-xor.xi agent.rvp jury-input.rvp > /dev/null
+            "$R" run ai/xi/e006/jury.xi jury-input.rvp judged.rvp > "evidence/$seed-context-B-jury.jsonl"
+            mv judged.rvp agent.rvp
+            test "$(readreg "evidence/$seed-context-B-jury.jsonl" r14)" -eq 1
+            "$R" run ai/xi/e007/audit-vault.xi agent.rvp checked.rvp > /dev/null
+            cmp agent.rvp checked.rvp
+            expectgrid "$seed-B-before" "1,0,0,1"
+            cp agent.rvp "evidence/$seed-two-contexts-before-recall.rvp"
+            # Only observed outcomes (never a regime ID) decide the switch.
+            probe "$seed-return-A" xor 1 1
+            expectgrid "$seed-A-recalled" "0,1,1,0"
+            probe "$seed-return-B" anti 1 2
+            expectgrid "$seed-B-recalled" "1,0,0,1"
+            probe "$seed-random-no-switch" noise 0 2
+            probe "$seed-return-A-again" xor 1 1
+            probe "$seed-A-stable" xor 0 1
+            "$R" run ai/xi/e007/audit-vault.xi agent.rvp final-readonly.rvp > "evidence/$seed-final-vault.jsonl"
+            cmp agent.rvp final-readonly.rvp
+            test "$(readreg "evidence/$seed-final-vault.jsonl" r4)" -eq 3
+            cp agent.rvp "evidence/$seed-final-context-vault.rvp"
+          done
+          echo "E007 PASS: all seeds recall both contexts without retraining, ignore noise"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e007-context-vault-evidence
+          path: evidence/
+          if-no-files-found: warn
