@@ -120,3 +120,16 @@ una entidad E002 de 16.744 bytes canónicos se representó como 4.920 bytes
 BQL2 (29,4 % del tamaño; ahorro 70,6 %), recuperándose exactamente.
 Esta cifra **no** es el tamaño físico RVPC2 ni una latencia nativa:
 ambos se medirán en el workflow real y se reportarán por separado.
+
+
+## Verificación comparativa en CPU nativa
+
+El codec BQL2 y el formato JSON bruto se ejecutaron sobre el mismo XI
+en siete pares intercalados de 24 transacciones, con el mismo estado
+lógico final. Mediana de medianas: 9,755009 ms con BQL2 frente a
+12,9517515 ms sin compresión; estado físico RVPC2 57.093 frente a
+171.748 bytes. El experimento contiene un p95 BQL2 adverso de
+122,351 ms en un ciclo, no descartado. Para E002 completo, el
+estado persistente bajó de 380.972 a 109.836 bytes, manteniendo
+95,00 % de precisión y cero qubits. Véase el
+[reporte compacto](evidence/codec-paired-ab01.json).

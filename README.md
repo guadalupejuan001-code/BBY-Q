@@ -79,3 +79,15 @@ que siguen siendo legibles. Las pruebas cubren recuperación exacta,
 datos corruptos, límites de descompresión y migración nativa de V1 a BQL2.
 El codec solo busca ahorro de espacio: tiempo de CPU e I/O deben medirse;
 una mejora en bytes no implica aceleración.
+
+
+### Medición comparativa BQL2 / JSON bruto (REVERSE-PC real)
+
+Un benchmark adicional ejecuta 7 pares AB/BA de 24 transacciones con datos y
+motor idénticos (CI [40269377678](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40269377678)):
+mediana de las medianas de ejecución **12,952 ms (JSON bruto) frente a
+9,755 ms (BQL2)**; RVPC2 **171.748 frente a 57.093 bytes** en ese
+experimento. El estado aprendido E002 completo ocupó 380.972 bytes sin
+codificar frente a 109.836 con BQL2. Se conserva un caso atípico adverso:
+p95 BQL2 de 122,351 ms en un ciclo. No se infiere velocidad universal;
+ver [datos y protocolo](docs/evidence/codec-paired-ab01.json).

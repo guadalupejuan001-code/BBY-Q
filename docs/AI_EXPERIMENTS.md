@@ -81,3 +81,27 @@ E002 no mostró solución general de paridad/XOR; el control local en
 locales por afirmaciones de persistencia: el workflow compila y ejecuta
 REVERSE-PC real y publica el estado E002 en RVPC2 y su inspección.
 Ver [diseño y límites E002](AI_E002_CONTEXT.md).
+
+
+## Benchmark de transporte BQL2 (nativo, misma máquina)
+
+Se midieron siete pares intercalados A/B y B/A de 24 transacciones reales
+en la misma revisión compilada de REVERSE-PC; los archivos persistentes
+de cada prueba contienen estados lógicos **idénticos**. La mediana de
+las siete medianas por condición fue de 12,9517515 ms (JSON) y
+9,755009 ms (BQL2), un 24,68 % menos en esta carga. Los tamaños
+RVPC2 fueron 171.748 bytes y 57.093 bytes respectivamente (66,76 %
+menos); los overrides lógicos 7.438 y 2.349. La condición BQL2 tuvo
+un valor atípico p95 de **122,351 ms** en uno de los siete ciclos,
+registrado sin eliminarlo. Son medidas integradas de codec + Python
++ proceso XI + escrituras y no tiempos aislados del codec.
+
+Para la entidad contextual E002 completa: sin codec, RVPC2 de
+380.972 bytes y 16.746 excepciones; con BQL2, 109.836 bytes y 4.731
+excepciones, sin alterar 95,00 % de precisión al recuperar el contexto.
+Cero qubits en ambas condiciones. Artefactos:
+[runner comparativo](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40269377678),
+[runner E002 original](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40268336713)
+y [runner BQL2](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40269083155).
+Resumen con todas las parejas y outlier en
+[evidence/codec-paired-ab01.json](evidence/codec-paired-ab01.json).

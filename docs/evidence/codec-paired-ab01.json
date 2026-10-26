@@ -1,0 +1,109 @@
+{
+  "experiment": "BBYQ-CODEC-AB01",
+  "source_workflow": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40269377678",
+  "commit": "85d0e93b046b8035ebabc83718da01963b6017ab",
+  "runtime": "REVERSE-PC pinned 063d871c27de2d4f10904ec5c3e1363c2fe16d86",
+  "paired_cycles": 7,
+  "experiences_per_trial": 24,
+  "interleaved_order": "AB/BA",
+  "native_qubits": 0,
+  "aggregation": "median of trial medians; storage bytes identical across cycles",
+  "summary": {
+    "raw_json_median_ms": 12.9517515,
+    "bql2_median_ms": 9.755009,
+    "raw_json_rvpc2_bytes": 171748,
+    "bql2_rvpc2_bytes": 57093,
+    "raw_json_logical_overrides": 7438,
+    "bql2_logical_overrides": 2349
+  },
+  "trials": [
+    {
+      "cycle": 0,
+      "raw_json": {
+        "median_ms": 12.695,
+        "p95_ms": 22.433
+      },
+      "bql2": {
+        "median_ms": 9.914,
+        "p95_ms": 16.134
+      }
+    },
+    {
+      "cycle": 1,
+      "raw_json": {
+        "median_ms": 12.881,
+        "p95_ms": 21.56
+      },
+      "bql2": {
+        "median_ms": 9.376,
+        "p95_ms": 13.39
+      }
+    },
+    {
+      "cycle": 2,
+      "raw_json": {
+        "median_ms": 13.152,
+        "p95_ms": 21.462
+      },
+      "bql2": {
+        "median_ms": 9.334,
+        "p95_ms": 13.086
+      }
+    },
+    {
+      "cycle": 3,
+      "raw_json": {
+        "median_ms": 12.854,
+        "p95_ms": 22.579
+      },
+      "bql2": {
+        "median_ms": 9.671,
+        "p95_ms": 13.127
+      }
+    },
+    {
+      "cycle": 4,
+      "raw_json": {
+        "median_ms": 12.952,
+        "p95_ms": 24.952
+      },
+      "bql2": {
+        "median_ms": 11.351,
+        "p95_ms": 14.727
+      }
+    },
+    {
+      "cycle": 5,
+      "raw_json": {
+        "median_ms": 13.895,
+        "p95_ms": 22.548
+      },
+      "bql2": {
+        "median_ms": 10.98,
+        "p95_ms": 122.351
+      }
+    },
+    {
+      "cycle": 6,
+      "raw_json": {
+        "median_ms": 13.024,
+        "p95_ms": 22.65
+      },
+      "bql2": {
+        "median_ms": 9.755,
+        "p95_ms": 13.129
+      }
+    }
+  ],
+  "full_precision_note": "Per-cycle values above are rounded for the committed summary; the workflow artifact has unrounded samples.",
+  "caveats": "One GitHub runner, limited workload, no performance universality. BQL2 had a p95 outlier of 122.351ms in cycle 5; include regressions. Both conditions are the same REVERSE-PC engine and logical task.",
+  "full_context_size_comparison": {
+    "uncompressed_workflow": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40268336713",
+    "bql2_workflow": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40269083155",
+    "uncompressed_e002_rvpc2_bytes": 380972,
+    "bql2_e002_rvpc2_bytes": 109836,
+    "uncompressed_e002_overrides": 16746,
+    "bql2_e002_overrides": 4731,
+    "contextual_return_accuracy": 0.95
+  }
+}
