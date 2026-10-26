@@ -1,14 +1,57 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E009 — conceptos, relaciones y lenguaje simbólico
-original en XI.** El organismo conserva dentro de su mismo RVPC2 los
-cuatro conocimientos E008, los recuerdos E007 y un nuevo módulo que
-aprende palabras y compone sus primeras frases comprobables.
+**Ruta activa: E010 — desarrollo adaptativo por competencias en XI,
+con vocabulario español/inglés y operaciones aprendidas.**
+E009 continúa enseñando relaciones y microoraciones;
+E008 conserva los cuatro bancos previos y E007 su evolución anterior.
+Todas las capacidades viven en el mismo estado RVPC2.
 
 BBY Q **no utiliza SOVENGI, modelos de IA de terceros, Transformers ni
 código Python/C++ para implementar su inteligencia**. Su estado y las
 transacciones pertenecen a REVERSE-PC, XI, Inverse Ether Memory y Mundo X,
 con **una sola autoridad persistente RVPC2 por agente**.
+
+## E010 — Aprender como un niño es una inspiración, no un curso rígido
+
+La entidad `ai/xi/school/` añade el **desarrollo adaptativo
+bilingüe**, no un horario escolar: avanza únicamente cuando resuelve
+suficientes casos independientes y retrocede si nuevas pruebas
+contradicen una habilidad anterior.
+
+**Ya aprendido en XI:**
+
+- **Colores:** rojo/red, azul/blue, verde/green, amarillo/yellow.
+  Distingue nuevas tonalidades mediante distancia entre triples RGB,
+  con margen y abstención ante colores desconocidos.
+- **Animales y símbolos:** gato/cat, perro/dog, ave/bird, pez/fish,
+  y circulo/circle, cuadro/square, estrella/star, corazon/heart.
+  Aún usa rasgos estructurados, no imágenes ni cámaras.
+- **Cantidades:** los números 0–9 y sus nombres en ambos idiomas.
+- **Operaciones:** observa consecuencias al juntar/quitar cantidades,
+  infiere qué operador aumenta o disminuye y generaliza a ejemplos
+  nuevos. No inventa un algoritmo universal de matemáticas.
+- **Dos idiomas:** `set-language.xi` cambia cómo se expresa el
+  **mismo concepto**, sin crear otro cerebro o conjunto de pesos.
+
+**Prueba native E010**
+([GitHub Actions](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40303541105)):
+22 conceptos aprendidos, 44 observaciones repetidas, **60/60**
+evaluaciones de reconocimiento en ES y EN, **10/10**
+evaluaciones aritméticas no enseñadas, incluidos casos donde
+la respuesta correcta es **«?»** por falta de capacidad numérica.
+
+El modelo original E009 se **recuperó desde un estado real previamente
+entrenado**, nunca empezó esta etapa borrando su léxico.
+Su nuevo archivo RVPC2 ocupa **18.722 bytes**, conserva los
+bancos E008 y utiliza cero enlaces cuánticos en este experimento.
+
+El siguiente avance debe hacer que los ejemplos provengan de
+**percepción real** en vez de listas con rasgos, y profundizar en
+letras, construcción de palabras, aritmética y conocimiento objetivo
+de atención, emociones y conciencia humana. Aprender esos temas
+no implica que el software tenga conciencia.
+
+[Arquitectura y resultados verificables de E010](docs/AI_E010_DEVELOPMENT.md).
 
 ## E009 — Aprender sus primeras palabras, conceptos y frases
 
