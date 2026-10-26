@@ -104,7 +104,7 @@ label next_known_quantity
 add r0 1
 cmp r0 3
 jge arithmetic_supported
-jmp count_ready
+jmp verify_three_counts
 label next_quantity
 add r1 1
 jmp find_grounded_quantity
