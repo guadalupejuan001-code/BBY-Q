@@ -1,0 +1,160 @@
+name: BBY Q E008 - independent blind and extreme endurance
+on:
+  push:
+    branches: [feature/e008-ether-constellation-xi-20261026, main]
+    paths: ["ai/xi/e008/**", ".github/workflows/bbyq-e008-final.yml", "docs/AI_E008_CONSTELLATION.md"]
+  pull_request:
+    paths: ["ai/xi/e008/**", ".github/workflows/bbyq-e008-final.yml", "docs/AI_E008_CONSTELLATION.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  external-validity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exact owner XI runtime with pinned Mundo X source
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build existing interpreter bootstrap, no new host AI language
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Five-seed sealed blind campaign and 1600 long-lived decisions
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          mkdir -p evidence
+          : > evidence/final-summary.txt
+          reg() {
+            grep -m1 "\"register\":\"$2\"" "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          second_r14() {
+            grep '"register":"r14"' "$1" | sed -n '2s/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          for seed in 19 42 91 117 203; do
+            "$R" init blank.rvp
+            "$R" run ai/xi/e006/birth.xi blank.rvp newborn.rvp > /dev/null
+            if [ "$seed" = 117 ] || [ "$seed" = 203 ]; then
+              seedfile="ai/xi/e008/seed-$seed.xi"
+            else
+              seedfile="ai/xi/e006/seed-$seed.xi"
+            fi
+            "$R" run "$seedfile" newborn.rvp organism.rvp > /dev/null
+            # All learning precedes ALL final blind observations. No retuning
+            # or learning during the independent evaluation period.
+            for task in xor xnor and or; do
+              if [ "$task" != xor ]; then
+                "$R" run ai/xi/e008/open-shadow.xi organism.rvp opened.rvp > /dev/null
+                mv opened.rvp organism.rvp
+              fi
+              for epoch in 1 2 3 4 5 6 7 8 9 10 11 12; do
+                if [ "$task" = xor ]; then feed=ai/xi/e006/feed-xor.xi
+                else feed="ai/xi/e008/train-$task.xi"; fi
+                "$R" run "$feed" organism.rvp feed.rvp > /dev/null
+                "$R" run ai/xi/e006/learn.xi feed.rvp learned.rvp > /dev/null
+                mv learned.rvp organism.rvp
+              done
+              if [ "$task" = xor ]; then feed=ai/xi/e006/validate-feed-xor.xi
+              else feed="ai/xi/e008/admit-feed-$task.xi"; fi
+              "$R" run "$feed" organism.rvp admission-input.rvp > /dev/null
+              "$R" run ai/xi/e008/admit.xi admission-input.rvp admission.rvp > "evidence/$seed-$task-admit.jsonl"
+              test "$(reg "evidence/$seed-$task-admit.jsonl" r14)" -eq 1
+              "$R" run ai/xi/e008/bank-store.xi admission.rvp committed.rvp > /dev/null
+              mv committed.rvp organism.rvp
+            done
+            "$R" run ai/xi/e008/audit-organism.xi organism.rvp verified.rvp > /dev/null
+            cmp organism.rvp verified.rvp
+            cp organism.rvp "evidence/$seed-four-bank-genome.rvp"
+            known_ok=0
+            unknown_ok=0
+            for task in xor and xnor or nand noise latent-third-cause; do
+              "$R" run "ai/xi/e008/blind-$task.xi" organism.rvp blind-input.rvp > /dev/null
+              "$R" run ai/xi/e008/recall4.xi blind-input.rvp decision.rvp > "evidence/$seed-blind-$task.jsonl"
+              abstain="$(reg "evidence/$seed-blind-$task.jsonl" r14)"
+              if [ "$task" = nand ] || [ "$task" = noise ] || [ "$task" = latent-third-cause ]; then
+                test "$abstain" -eq 1
+                unknown_ok=$((unknown_ok+1))
+              else
+                case "$task" in xor) expected=0 ;; xnor) expected=1 ;; and) expected=2 ;; or) expected=3 ;; esac
+                test "$abstain" -eq 0
+                test "$(second_r14 "evidence/$seed-blind-$task.jsonl")" -eq "$expected"
+                known_ok=$((known_ok+1))
+              fi
+              mv decision.rvp organism.rvp
+              "$R" run ai/xi/e008/audit-organism.xi organism.rvp verified.rvp > /dev/null
+              cmp organism.rvp verified.rvp
+            done
+            n15=0
+            n25=0
+            for task in xor xnor and or; do
+              case "$task" in xor) expected=0 ;; xnor) expected=1 ;; and) expected=2 ;; or) expected=3 ;; esac
+              for noise in 15 25; do
+                "$R" run "ai/xi/e008/blind-$task-noise$noise.xi" organism.rvp blind-input.rvp > /dev/null
+                "$R" run ai/xi/e008/recall4.xi blind-input.rvp decision.rvp > "evidence/$seed-blind-$task-noise$noise.jsonl"
+                abstain="$(reg "evidence/$seed-blind-$task-noise$noise.jsonl" r14)"
+                if [ "$abstain" -eq 0 ]; then
+                  test "$(second_r14 "evidence/$seed-blind-$task-noise$noise.jsonl")" -eq "$expected"
+                  if [ "$noise" -eq 15 ]; then n15=$((n15+1)); else n25=$((n25+1)); fi
+                fi
+                mv decision.rvp organism.rvp
+              done
+            done
+            "$R" run ai/xi/e008/audit-organism.xi organism.rvp verified.rvp > /dev/null
+            cmp organism.rvp verified.rvp
+            before_bytes="$(wc -c < organism.rvp)"
+            begin_ns="$(date +%s%N)"
+            accepted=0
+            abstained=0
+            for round in $(seq 1 320); do
+              "$R" run ai/xi/e008/rotate-world-seed.xi organism.rvp rotated.rvp > /dev/null
+              mv rotated.rvp organism.rvp
+              case "$((round % 6))" in
+                0) task=xor; expected=0 ;;
+                1) task=and; expected=2 ;;
+                2) task=xnor; expected=1 ;;
+                3) task=or; expected=3 ;;
+                4) task=nand; expected=-1 ;;
+                5) task=noise; expected=-1 ;;
+              esac
+              "$R" run "ai/xi/e008/blind-$task.xi" organism.rvp blind-input.rvp > /dev/null
+              "$R" run ai/xi/e008/recall4.xi blind-input.rvp decision.rvp > "evidence/$seed-endurance-last.jsonl"
+              absent="$(reg "evidence/$seed-endurance-last.jsonl" r14)"
+              if [ "$expected" -eq -1 ]; then
+                test "$absent" -eq 1
+                abstained=$((abstained+1))
+              else
+                test "$absent" -eq 0
+                test "$(second_r14 "evidence/$seed-endurance-last.jsonl")" -eq "$expected"
+                accepted=$((accepted+1))
+              fi
+              mv decision.rvp organism.rvp
+              if [ "$((round % 64))" -eq 0 ]; then
+                "$R" run ai/xi/e008/audit-organism.xi organism.rvp verified.rvp > /dev/null
+                cmp organism.rvp verified.rvp
+              fi
+            done
+            end_ns="$(date +%s%N)"
+            after_bytes="$(wc -c < organism.rvp)"
+            elapsed_ms="$(((end_ns-begin_ns)/1000000))"
+            test "$after_bytes" -le "$((before_bytes+512))"
+            "$R" run ai/xi/e008/inspect-lifetime.xi organism.rvp inspected.rvp > "evidence/$seed-lifetime.jsonl"
+            cmp organism.rvp inspected.rvp
+            high="$(reg "evidence/$seed-lifetime.jsonl" r1)"
+            test "$high" -ge 1
+            "$R" run ai/xi/e008/audit-organism.xi organism.rvp verified.rvp > /dev/null
+            cmp organism.rvp verified.rvp
+            cp organism.rvp "evidence/$seed-final-organism.rvp"
+            echo "seed=$seed blind_known=$known_ok/4 blind_unknown=$unknown_ok/3 noise15_accepted=$n15/4 noise25_accepted=$n25/4 endurance_known=$accepted endurance_abstain=$abstained selection_counter_high=$high bytes=$before_bytes/$after_bytes elapsed_ms=$elapsed_ms" | tee -a evidence/final-summary.txt
+          done
+          echo "E008 FINAL PASS: independent blind streams and 1600 bounded XI decisions"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e008-sealed-independent-evidence
+          path: evidence/
+          if-no-files-found: warn
