@@ -22,7 +22,7 @@ def main():
                            "pressure": ((i * 11 % 21) - 10) / 10}
             t0 = time.perf_counter_ns()
             store.transact(lambda state: experience(state, observation,
-                                                   -1 if i % 2 == 0 else 1, i % 3 == 0))
+                                                   -1 if i % 2 == 0 else 1, int(i % 3 == 0)))
             durations.append((time.perf_counter_ns() - t0) / 1e6)
         current = store.read()
         info = store.stats()
