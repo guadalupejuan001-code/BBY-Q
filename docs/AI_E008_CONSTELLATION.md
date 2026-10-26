@@ -136,8 +136,7 @@ cinco semillas 19,42,91,117,203:
 Usa distinta inicialización de los generadores para mundos conocidos,
 NAND, ruido puro y una tercera causa no observable. Incluye una
 campaña de longevidad con más de 255 consultas, cambiando las entradas
-y verificando que el estado no se infle ni pierda archivos. Sus
-resultados se documentan por separado cuando la ejecución concluye.
+y verificando que el estado no se infle ni pierda archivos. Su ejecución cerrada se ha incorporado más abajo, separada de la calibración.
 
 ## ¿Se está creando un organismo?
 
@@ -178,3 +177,90 @@ en este proyecto, no un resultado científico confirmado.
    de aprendizaje nueva. El siguiente desarrollo debe conectar
    planes con experimentos auditables y medir ganancia informativa
    frente a preguntas seleccionadas al azar.
+
+
+## Prueba FINAL independiente (sin reajustar el selector)
+
+Ejecución sellada
+[GitHub Actions 40289515756](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40289515756).
+Después de fijar los dos umbrales de evidencia y la comprobación local
+se generaron fuentes de evaluación alternativas: semilla de observación,
+mezcla de semilla y flujo de corrupción distintos. Ningún programa de
+aprendizaje se ejecutó durante el examen final o el ensayo de longevidad.
+
+Cinco agentes entrenaron cuatro hipótesis cada uno y se sometieron
+a **cinco condiciones de evaluación**:
+
+| Condición (evaluación independiente) | Resultado |
+|---|---:|
+| Regímenes conocidos, sin corrupción | **20/20** reconocidos con banco correcto |
+| Regímenes desconocidos: NAND, ruido puro, causa oculta | **15/15** abstenciones |
+| Con ruido independiente de 15 % | **20/20** reconocidos |
+| Con ruido independiente de 25 % | **18/20** reconocidos, **2** abstenciones |
+| Clasificaciones erróneas no abstentivas | **0** observadas en estos casos |
+
+En la condición «causa oculta», una tercera variable altera la
+consecuencia pero no está en el vector de señales accesible al
+agente. Abstenerse es el resultado correcto: ninguna relación
+de los cuatro bancos puede predecir ese factor no observado.
+
+### Ensayo prolongado
+
+Después del examen ciego, cada entidad procesó **320 situaciones
+adicionales**, variando la semilla de observación. Total: **1.600
+decisiones**, con **1.070 selecciones correctas de contextos
+conocidos** y **530 abstenciones ante contextos nuevos/ruido**.
+No hubo elección errónea ni corrupción detectada en esos casos.
+
+El contador duradero superó su frontera original de 255 consultas;
+ahora mantiene un acarreo de 16 bits y no pierde las decisiones.
+No se modificaron ni regeneraron los cuatro bancos mientras
+el entorno cambiaba.
+
+| Semilla | RVPC2 antes | RVPC2 tras 320 decisiones | Tiempo de las 320 decisiones |
+|---|---:|---:|---:|
+| 19 | 6.603 B | 6.632 B | 6.329 ms |
+| 42 | 6.603 B | 6.632 B | 9.648 ms |
+| 91 | 6.603 B | 6.630 B | 5.920 ms |
+| 117 | 6.604 B | 6.631 B | 5.918 ms |
+| 203 | 6.604 B | 6.632 B | 5.899 ms |
+
+Estos tiempos incluyen arranques de CLI, serialización y
+procesamiento sobre GitHub Actions. **No** son latencias de un
+servicio persistente ni benchmarks contra otra IA.
+La única mayor memoria persistente fueron entre **27 y 29 B** por
+contadores y metadatos, no una duplicación de experiencias.
+
+[Datos crudos y cinco estados entrenados, incluidos RVPC2](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40289515756/artifacts/12635511438).
+
+### ¿Qué aporta a la hipótesis «organismo»?
+
+Lo que sí se observa: continuidad, aprendizaje relacional, selección
+de hipótesis por evidencias, inhibición de respuestas sin base,
+resistencia a cierta corrupción y selección del próximo experimento
+en un dominio restringido. La decisión `0` conserva,
+`1` solicita un caso discriminante y `2` señala una contradicción
+local. Estas decisiones nacen de métricas computadas en XI y residen
+en el mismo RVPC2 que las cuatro hipótesis.
+
+Lo que no se observa: metabolismo, autoorganización abierta,
+dependencia de un entorno físico, regulación autónoma de recursos,
+reproducción, generación arbitraria de nuevos objetivos, ni
+un compilador MX autoalojado. **El artefacto verificado es hoy un
+agente de aprendizaje simbólico con memoria y metacontrol
+limitados, no un organismo vivo demostrado.**
+
+### Prioridad E009
+
+La siguiente barrera ya está identificada: cuatro bancos completos
+no pueden crear una quinta hipótesis validada. La acción
+epistémica `2` exige un protocolo de crecimiento o reemplazo
+con conservación de la historia útil, presupuesto y prueba A/B.
+Además se debe experimentar con una tercera señal observable y
+un nuevo repertorio de operaciones, comparando contra árboles,
+tablas lógicas y modelos estadísticos sencillos, para evitar
+confundir una clase de hipótesis prefijada con descubrimiento abierto.
+
+No usar resultados del examen final para recalibrar E008; cualquier
+optimización posterior debe crear versión y cohorte de pruebas
+nuevas, preservando esta evidencia.
