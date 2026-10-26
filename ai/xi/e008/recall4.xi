@@ -22,9 +22,9 @@ div r1 0
 label feed_erased
 load8 r1 7000000000000000041
 cmp r1 0
-je exam_erased
+jne exam_supplied
 div r1 0
-label exam_erased
+label exam_supplied
 set r0 0
 label inspect_bank
 set r6 7000000000000000700
