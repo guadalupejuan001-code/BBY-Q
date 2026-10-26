@@ -314,9 +314,22 @@ jlt inspect_worst_cell
 store8 7000000000000000615 r6
 store8 7000000000000000617 r8
 store8 7000000000000000618 r9
+# 16-bit durable observation counter: bounded carry without losing a session.
 load8 r12 7000000000000000612
+cmp r12 255
+jlt count_low
+load8 r13 7000000000000000625
+cmp r13 255
+jge count_saturated
+add r13 1
+store8 7000000000000000625 r13
+set r12 0
+jmp count_low_done
+label count_low
 add r12 1
+label count_low_done
 store8 7000000000000000612 r12
+label count_saturated
 # First path: clean validated model. Second: noisy but dominant model.
 mov r12 r8
 sub r12 r9
@@ -343,9 +356,23 @@ label uncertain_evidence
 store8 7000000000000000616 1
 label abstain
 store8 7000000000000000613 1
+# 16-bit bounded abstention counter; a long-lived organism must not crash
+# simply because it has already encountered 255 unfamiliar situations.
 load8 r12 7000000000000000614
+cmp r12 255
+jlt abstain_low
+load8 r13 7000000000000000626
+cmp r13 255
+jge abstain_saturated
+add r13 1
+store8 7000000000000000626 r13
+set r12 0
+jmp abstain_low_done
+label abstain_low
 add r12 1
+label abstain_low_done
 store8 7000000000000000614 r12
+label abstain_saturated
 jmp verdict_done
 label accept_best
 store8 7000000000000000611 r7
