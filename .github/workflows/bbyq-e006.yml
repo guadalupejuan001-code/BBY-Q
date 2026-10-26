@@ -1,0 +1,104 @@
+name: BBY Q E006 - XI shadow jury
+on:
+  push:
+    branches: [feature/bbyq-e006-shadow-jury-xi-20261026, main]
+    paths: ["ai/xi/e006/**", ".github/workflows/bbyq-e006.yml", "docs/AI_E006_SHADOW_JURY.md"]
+  pull_request:
+    paths: ["ai/xi/e006/**", ".github/workflows/bbyq-e006.yml", "docs/AI_E006_SHADOW_JURY.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  e006:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve exact own programmable XI/REVERSE-PC runtime
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build existing owner runtime bootstrap, with no host learning engine
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Four adversarial arms over three seeds, training and verdict solely in XI
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          mkdir -p evidence
+          register() {
+            grep -m1 "\"register\":\"$2\"" "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p'
+          }
+          for seed in 19 42 91; do
+            for arm in xor noise linear adversarial; do
+              prefix="$seed-$arm"
+              "$R" init blank.rvp
+              "$R" run ai/xi/e006/birth.xi blank.rvp fresh.rvp > /dev/null
+              if [ "$arm" = "linear" ]; then
+                "$R" run ai/xi/e006/linear-control.xi fresh.rvp linear.rvp > /dev/null
+                mv linear.rvp fresh.rvp
+              fi
+              "$R" run "ai/xi/e006/seed-$seed.xi" fresh.rvp agent.rvp > /dev/null
+              epoch=1
+              while [ "$epoch" -le 12 ]; do
+                if [ "$arm" = "noise" ]; then
+                  "$R" run ai/xi/e006/feed-noise.xi agent.rvp feed.rvp > /dev/null
+                else
+                  "$R" run ai/xi/e006/feed-xor.xi agent.rvp feed.rvp > /dev/null
+                fi
+                "$R" run ai/xi/e006/learn.xi feed.rvp next.rvp > "evidence/$prefix-train-final.jsonl"
+                "$R" run ai/xi/e006/audit-clean.xi next.rvp audited-train.rvp > /dev/null
+                cmp next.rvp audited-train.rvp
+                mv next.rvp agent.rvp
+                epoch=$((epoch+1))
+              done
+              # Disjoint held-out data; adversarial world supplies unrelated labels.
+              if [ "$arm" = "noise" ] || [ "$arm" = "adversarial" ]; then
+                "$R" run ai/xi/e006/validate-feed-noise.xi agent.rvp jury-input.rvp > /dev/null
+              else
+                "$R" run ai/xi/e006/validate-feed-xor.xi agent.rvp jury-input.rvp > /dev/null
+              fi
+              "$R" run ai/xi/e006/jury.xi jury-input.rvp verdict.rvp > "evidence/$prefix-jury.jsonl"
+              "$R" run ai/xi/e006/audit-verdict.xi verdict.rvp checked.rvp > "evidence/$prefix-audit.jsonl"
+              cmp verdict.rvp checked.rvp
+              "$R" run ai/xi/e006/infer-grid.xi verdict.rvp predicted.rvp > "evidence/$prefix-infer.jsonl"
+              cmp verdict.rvp predicted.rvp
+              cp verdict.rvp "evidence/$prefix-model.rvp"
+              flag="$(register "evidence/$prefix-jury.jsonl" r14)"
+              correct="$(register "evidence/$prefix-jury.jsonl" r11)"
+              base="$(register "evidence/$prefix-jury.jsonl" r15)"
+              echo "seed=$seed arm=$arm candidate=$correct/240 ablated=$base/240 promoted=$flag"
+              if [ "$arm" = "xor" ]; then
+                test "$flag" -eq 1
+                test "$correct" -ge 220
+                test "$correct" -gt "$base"
+                grid="$(grep '"register":"r10"' "evidence/$prefix-infer.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p' | paste -sd, -)"
+                test "$grid" = "0,1,1,0"
+                # No learning without new shadow/candidate slot: promoted model is sealed.
+                if "$R" run ai/xi/e006/learn.xi verdict.rvp illegal-change.rvp > /dev/null; then
+                  echo "ERROR promoted state allowed mutation" >&2; exit 1
+                fi
+                test ! -f illegal-change.rvp
+              else
+                test "$flag" -eq 0
+                test "$correct" -le 170 || test "$arm" = "adversarial"
+                # A rejected candidate leaves zero descriptors in durable memory.
+                test "$(register "evidence/$prefix-jury.jsonl" r14)" -eq 0
+              fi
+              # A second jury pass must fail because feedback was erased.
+              if "$R" run ai/xi/e006/jury.xi verdict.rvp duplicate.rvp > /dev/null; then
+                echo "ERROR duplicate holdout accepted" >&2; exit 1
+              fi
+              test ! -f duplicate.rvp
+            done
+          done
+          echo "E006 PASS: no noise promotions, unseen XOR accepted, 12 verdicts verified"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e006-shadow-jury-evidence
+          path: evidence/
+          if-no-files-found: warn
