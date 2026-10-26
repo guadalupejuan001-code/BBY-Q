@@ -23,10 +23,10 @@ label new_preschool
 store8 7200000000000000000 83
 store8 7200000000000000001 67
 store8 7200000000000000002 1
-store8 7200000000000000003 1
+store8 7200000000000000003 0
 store8 7200000000000000004 1
-# 1=preescolar, 2=primaria, 3=secundaria; language 1=es 2=en.
-# The learner is born with ZERO color, animal, shape and numeral concepts.
+# Adaptive competence counts, NOT rigid school grades; language 1=es 2=en.
+# Born with ZERO color, animal, shape and numeral concepts; domains unlocked by evidence.
 print r0
 mem_stats
 stats
