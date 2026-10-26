@@ -1,0 +1,137 @@
+{
+  "parent_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+  "stages": [
+    {
+      "name": "base",
+      "lexical_entries": 374,
+      "facts": 185,
+      "path": "/workspace/scratch/49046bc86d43/E013-parent.rvp",
+      "bytes": 157115
+    },
+    {
+      "name": "facts-256",
+      "lexical_entries": 512,
+      "facts": 256,
+      "path": "/workspace/scratch/49046bc86d43/E014-transaction-stress/facts-256.rvp",
+      "bytes": 211356
+    },
+    {
+      "name": "facts-512",
+      "lexical_entries": 512,
+      "facts": 512,
+      "path": "/workspace/scratch/49046bc86d43/E014-transaction-stress/facts-512.rvp",
+      "bytes": 243285
+    }
+  ],
+  "overflow_word_513_rejected": true,
+  "overflow_fact_513_rejected": true,
+  "wide_graph_budget": 64,
+  "wide_graph_stops_without_dirty_scratch": true,
+  "proof_depth_31_passes_32_abstains": true,
+  "source_cache_invalidates_after_code_edit": true,
+  "persistent_turns": 1000,
+  "all_turn_outputs_verified": true,
+  "canonical_model_unchanged": true,
+  "checkpoint_readable_after_every_reply": true,
+  "writer_lock_and_restart": true,
+  "symlink_uses_same_writer_lock": true,
+  "failed_save_keeps_memory_and_file": true,
+  "xi_failure_keeps_memory_and_file": true,
+  "corruption_rejected_before_execution": true,
+  "session_median_ms": 6.782709,
+  "session_p95_ms": 9.936756,
+  "resident_samples": [
+    {
+      "turn": 0,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4060,
+      "cpu_ms": 12.619,
+      "active_qubits": 0
+    },
+    {
+      "turn": 100,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 607.636,
+      "active_qubits": 0
+    },
+    {
+      "turn": 200,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 1234.68,
+      "active_qubits": 0
+    },
+    {
+      "turn": 300,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 1867.21,
+      "active_qubits": 0
+    },
+    {
+      "turn": 400,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4132,
+      "cpu_ms": 2588.84,
+      "active_qubits": 0
+    },
+    {
+      "turn": 500,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 3259.06,
+      "active_qubits": 0
+    },
+    {
+      "turn": 600,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 3993.95,
+      "active_qubits": 0
+    },
+    {
+      "turn": 700,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 4742.61,
+      "active_qubits": 0
+    },
+    {
+      "turn": 800,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 5399.41,
+      "active_qubits": 0
+    },
+    {
+      "turn": 900,
+      "method": "getrusage_self",
+      "peak_rss_kib": 18280,
+      "resident_rss_kib": 4128,
+      "cpu_ms": 6114.96,
+      "active_qubits": 0
+    }
+  ],
+  "sampled_checkpoint_bytes": [
+    157234,
+    157234,
+    157234,
+    157234,
+    157234,
+    157234,
+    157234,
+    157234,
+    157234,
+    157234
+  ]
+}
