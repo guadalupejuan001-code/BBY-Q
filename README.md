@@ -1,14 +1,79 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E008 — Ether Constellation, cuatro conocimientos
-reversibles y decisiones de aprendizaje en el lenguaje propio XI.**
-E007 conserva la memoria dual; E006 sigue siendo el jurado de
-relaciones y E005 preserva el nacimiento de estructuras.
+**Ruta activa: E009 — conceptos, relaciones y lenguaje simbólico
+original en XI.** El organismo conserva dentro de su mismo RVPC2 los
+cuatro conocimientos E008, los recuerdos E007 y un nuevo módulo que
+aprende palabras y compone sus primeras frases comprobables.
 
 BBY Q **no utiliza SOVENGI, modelos de IA de terceros, Transformers ni
 código Python/C++ para implementar su inteligencia**. Su estado y las
 transacciones pertenecen a REVERSE-PC, XI, Inverse Ether Memory y Mundo X,
 con **una sola autoridad persistente RVPC2 por agente**.
+
+## E009 — Aprender sus primeras palabras, conceptos y frases
+
+La nueva unidad `ai/xi/language/` se **añade a una entidad E008 con
+cuatro bancos de conocimiento reales**, usando una región diferente
+dentro de la misma Inverse Ether Memory/RVPC2. No hay otro modelo,
+Transformer ni motor de aprendizaje en Python/C++/JS.
+
+- `birth.xi` nace con **cero palabras y cero hechos**.
+- `ground.xi` vincula formas ASCII a tres señales categóricas
+  **no lingüísticas** y descubre cuándo dos palabras son sinónimos
+  del mismo referente.
+- `relate.xi` aprende triples `sujeto, relación, objeto`,
+  con evidencias afirmativas y negativas que pueden contradecirse.
+- `calibrate.xi` identifica una propiedad composicional en un
+  predicado mediante **ejemplos y contraejemplos**, no mediante
+  su nombre.
+- `ask.xi` recupera hechos directos o los deduce mediante
+  dos relaciones aprendidas. Rechaza inferencias sin suficiente
+  evidencia en lugar de inventar información.
+- `speak.xi` construye oraciones a partir de las palabras
+  persistidas y emite bytes ASCII directamente desde XI.
+- `reflect.xi` decide si corresponde **aprender una palabra nueva**,
+  **investigar una relación** o usar conocimiento ya demostrado.
+
+**Prueba nativa:** [campaña E009](https://github.com/guadalupejuan001-code/BBY-Q/actions/workflows/bbyq-language.yml)
+enseña **dos vocabularios independientes**, cambia y recupera
+generalizaciones, verifica sinónimos, preguntas nuevas, hechos
+falsos, reinicios y auditorías de persistencia.
+
+Ejemplos de **texto construido por XI**, no respuestas de un chatbot
+externo:
+
+```text
+? cuarto contiene llave
+cuarto contiene llave (via caja).
+
+? cuarto guarda llave
+cuarto contiene llave (via caja).
+
+? luz toca bolsa
+no: luz toca bolsa.
+
+? nube contiene llave
+?
+```
+
+En una segunda campaña, con nombres diferentes:
+
+```text
+? edificio incluye libro
+edificio incluye libro (via sala).
+
+? recinto incluye armario
+sala incluye armario.
+```
+
+**Precisión terminológica:** este es un sistema experimental de
+**lenguaje simbólico estructurado**, no conversación libre en español.
+Las entradas son triples presegmentados, los conceptos proceden
+de observaciones sintéticas categóricas, la salida usa ASCII
+sin audio, y aún no existen comprensión de textos largos, lenguaje
+abierto, voz ni aprendizaje de la vida real.
+
+[Arquitectura E009, protocolo, lecciones y límites científicos](docs/AI_E009_LANGUAGE.md).
 
 ## E008 — Cuatro conocimientos y una política de exploración
 
