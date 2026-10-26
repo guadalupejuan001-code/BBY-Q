@@ -82,14 +82,14 @@ mod r1 2147483647
 mul r9 16807
 mod r9 2147483647
 cmp r9 536870912
-jge no_flip
+jge blind_noise_no_flip
 cmp r4 0
-je flip_zero
+je blind_noise_flip_zero
 set r4 0
-jmp no_flip
-label flip_zero
+jmp blind_noise_no_flip
+label blind_noise_flip_zero
 set r4 1
-label no_flip
+label blind_noise_no_flip
 add r2 100
 add r3 100
 set r6 7000000000000010000
