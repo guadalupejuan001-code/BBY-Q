@@ -1,0 +1,82 @@
+name: BBY Q E004 - XI-only training
+on:
+  push:
+    branches: [feature/bbyq-xi-own-language-training-20261026]
+    paths: ["ai/xi/**", "docs/AI_E004_OWN_LANGUAGE.md", ".github/workflows/bbyq-xi.yml", "README.md"]
+  pull_request:
+    paths: ["ai/xi/**", "docs/AI_E004_OWN_LANGUAGE.md", ".github/workflows/bbyq-xi.yml", "README.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bbyq-xi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire exact original-language XI profile (REVERSE-PC PR 16)
+        run: |
+          mkdir -p "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" init
+          git -C "$RUNNER_TEMP/reverse-pc" remote add origin https://github.com/guadalupejuan001-code/REVERSE-PC.git
+          git -C "$RUNNER_TEMP/reverse-pc" fetch --no-tags --depth 1 origin 8e451dd6f2f9a24dc91d1a017252c204cac7fcff
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 8e451dd6f2f9a24dc91d1a017252c204cac7fcff
+      - name: Load verified own Ether dependency (no upstream modification)
+        run: bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build existing XI interpreter bootstrap; no new model in C++ or Python
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Verify native XI-only birth, learning, restart and blind evaluation
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          "$R" init blank.rvp
+          "$R" run ai/xi/birth.xi blank.rvp born.rvp > birth.jsonl
+          if "$R" run ai/xi/holdout.xi born.rvp invalid-evaluation.rvp > invalid-evaluation.jsonl; then
+            echo "ERROR: untrained model passed blind evaluation" >&2
+            exit 1
+          fi
+          test ! -f invalid-evaluation.rvp
+          "$R" run ai/xi/learn.xi born.rvp epoch1.rvp > epoch1-train.jsonl
+          "$R" run ai/xi/holdout.xi epoch1.rvp epoch1-checked.rvp > epoch1-holdout.jsonl
+          cmp epoch1.rvp epoch1-checked.rvp
+          "$R" run ai/xi/learn.xi epoch1.rvp epoch2.rvp > epoch2-train.jsonl
+          "$R" run ai/xi/holdout.xi epoch2.rvp epoch2-checked.rvp > epoch2-holdout.jsonl
+          cmp epoch2.rvp epoch2-checked.rvp
+          test -s epoch1-holdout.jsonl
+          test -s epoch2-holdout.jsonl
+          # Mutation followed by error: no output file may be published.
+          if "$R" run ai/xi/rollback.xi epoch2.rvp rollback-must-not-exist.rvp > rollback.jsonl; then
+            echo "ERROR: a failed learning transaction committed" >&2
+            exit 1
+          fi
+          test ! -f rollback-must-not-exist.rvp
+          cp epoch2.rvp rolling.rvp
+          for generation in 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+            "$R" run ai/xi/learn.xi rolling.rvp rolling-next.rvp > epoch-latest-train.jsonl
+            "$R" run ai/xi/holdout.xi rolling-next.rvp rolling-inspected.rvp > epoch-latest-holdout.jsonl
+            cmp rolling-next.rvp rolling-inspected.rvp
+            mv rolling-next.rvp rolling.rvp
+          done
+          echo "XI-only 20-epoch validation passed"
+          echo "epoch1 holdout:"
+          cat epoch1-holdout.jsonl
+          echo "epoch2 holdout:"
+          cat epoch2-holdout.jsonl
+          echo "epoch20 holdout:"
+          cat epoch-latest-holdout.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e004-xi-evidence
+          if-no-files-found: warn
+          path: |
+            birth.jsonl
+            epoch1-train.jsonl
+            epoch1-holdout.jsonl
+            epoch2-train.jsonl
+            epoch2-holdout.jsonl
+            epoch-latest-train.jsonl
+            epoch-latest-holdout.jsonl

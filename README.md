@@ -1,33 +1,73 @@
-# BBY Q — laboratorio de señales físicas y ópticas
+# BBY Q — inteligencia artificial progresiva con tecnología propia
 
-**Proyecto independiente** dedicado a estudiar cómo un Galaxy Watch4 Classic recibe luz y cómo convertir señales reales en experimentos reproducibles.
+**Ruta activa: E004, aprendizaje únicamente en XI, dialecto ejecutable de la familia MX.**
 
-## Estado: prototipo Wear OS 0.1.0
+La identidad computacional, memoria y entrenamiento de esta etapa usan
+**REVERSE-PC + Inverse Ether Memory + XI + Mundo X**, sin pesos externos, sin
+SOVENGI, sin Transformers ni algoritmos de IA implementados en Python/C++.
 
-- Registro de acelerómetro, giroscopio y luz ambiental, si el reloj los expone.
-- Lectura del pulso óptico procesado (BPM) con permiso `BODY_SENSORS`.
-- Integración **opcional** de muestras PPG digitalizadas (verde/rojo/infrarrojo) mediante el SDK oficial de Samsung. Para habilitarla se requiere el AAR licenciado, permisos y soporte real del reloj.
-- Sesiones voluntarias de hasta 60 segundos, CSV local privado, sin acceso a Internet ni grabación oculta.
+El agente guarda su estado en **una autoridad RVPC2**: relaciones interpretables,
+errores, correcciones y número de generación. Se puede cerrar, reabrir y
+continuar el entrenamiento sin iniciar de cero.
 
-El código fuente de la aplicación Android está en `app/`. La compilación inicial no exige SDK de Samsung.
+## Archivos del proyecto
 
-### Compilación
+- `ai/xi/birth.xi`: crea el estado BBY Q desde memoria vacía.
+- `ai/xi/learn.xi`: predice, recibe retroalimentación y modifica relaciones.
+  Cada ejecución añade 400 experiencias y una nueva época al mismo estado.
+- `ai/xi/holdout.xi`: comprueba 240 casos disjuntos, baseline congelado
+  y control negativo XOR, sin modificar la memoria.
+- `ai/xi/rollback.xi`: inyecta un fallo después de alterar un peso y
+  verifica que la transacción no produzca estado nuevo.
+- [Diseño, protocolo y límites E004](docs/AI_E004_OWN_LANGUAGE.md)
+- [Evidencia reproducible en GitHub Actions](https://github.com/guadalupejuan001-code/BBY-Q/actions/workflows/bbyq-xi.yml)
 
-Requisitos: JDK 17, Android SDK 35, Gradle 8.9.
+## Estado verificado
+
+La campaña nativa E004
+([run 40276714494](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40276714494))
+compiló el **runtime XI ya existente**, ejecutó **20 épocas (8.000
+experiencias acumuladas)** sobre `Inverse Ether Memory`, probó rollback
+y guardó/restauró RVPC2.
+
+| Casos nuevos | Modelo XI | Baseline constante | Control XOR |
+|---|---:|---:|---:|
+| 240 después de 400 experiencias | 223/240 (92,92 %) | 108/240 (45,00 %) | 122/240 (50,83 %) |
+| 240 después de 800 experiencias | 224/240 (93,33 %) | 108/240 (45,00 %) | 125/240 (52,08 %) |
+| 240 después de 8.000 experiencias | **227/240 (94,58 %)** | 108/240 (45,00 %) | 126/240 (52,50 %) |
+
+Resultados limitados a un microentorno sintético. Las veinte épocas:
+**cero qubits activos, cero enlaces cuánticos**, y snapshots
+inalterados por la evaluación.
+
+**Dependencia temporal declarada:** el intérprete de XI existente en
+REVERSE-PC todavía se compila mediante bootstrap C++; el código del
+*aprendizaje* no usa C++/Python. El lenguaje fuente canónico a largo
+plazo es MX (`.mx`); XI (`.xi`) es su dialecto de ejecución temporal.
+No se afirma que MX ya sea autoalojado.
+
+## Ejecutar y continuar
+
+Construye el runtime de REVERSE-PC fijado en
+`8e451dd6f2f9a24dc91d1a017252c204cac7fcff` con el Mundo X
+fijado por su integración. Luego:
 
 ```sh
-gradle --no-daemon :app:assembleDebug
+reverse_pc init blank.rvp
+reverse_pc run ai/xi/birth.xi blank.rvp born.rvp
+reverse_pc run ai/xi/learn.xi born.rvp generation1.rvp
+reverse_pc run ai/xi/holdout.xi generation1.rvp observation1.rvp
+reverse_pc run ai/xi/learn.xi generation1.rvp generation2.rvp
+reverse_pc run ai/xi/holdout.xi generation2.rvp observation2.rvp
 ```
 
-APK de desarrollo: `app/build/outputs/apk/debug/app-debug.apk`.
+## Laboratorio óptico histórico
 
-Para el SDK opcional, coloca el archivo oficial `samsung-health-sensor-api.aar` en `app/libs/`. Su licencia y distribución pertenecen a Samsung; **el SDK no se incluye en este repositorio**.
+El receptor de luz y sensores para **Galaxy Watch4 Classic** sigue
+preservado en `app/`, `ROADMAP.md` y `docs/RECEPTOR_OPTICO.md`,
+sin participar en el aprendizaje E004. Su archivo anterior pertenece
+al mismo proyecto pero no se mezcla con la autoridad del agente.
 
-### Documentación
-
-- [Receptor óptico y procedimiento de captura](docs/RECEPTOR_OPTICO.md)
-- [Plan experimental de BBY Q](ROADMAP.md)
-
-**Límite físico importante:** un fotodiodo mide luz real, pero su salida digital PPG es clásica. Eso permite instrumentación y control mediante señales reales, no prueba de coherencia ni entrelazamiento cuántico con un estado de software.
-
-Proyecto independiente: sin dependencias del repositorio Mundo X.
+No se reclama conciencia, ventaja cuántica ni generalización universal.
+Las próximas etapas son memoria contextual en XI/MX, aprendizaje de
+relaciones nuevas, tareas externas y self-hosting de MX.
