@@ -1,0 +1,352 @@
+{
+  "platform": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "logical_cpus": 9
+  },
+  "method": "interleaved deterministic random order; one request per process; wait4 child RSS and CPU; oracle outside timing",
+  "states": {
+    "baseline": {
+      "bytes": 157115,
+      "sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f"
+    }
+  },
+  "results": {
+    "baseline": {
+      "native": {
+        "direct": {
+          "n": 20,
+          "median_ms": 15.456522,
+          "p95_ms": 19.454719,
+          "p99_ms": 19.454719,
+          "cpu_ms_median": 15.3045,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 63.089974262098
+        },
+        "inferred": {
+          "n": 20,
+          "median_ms": 15.858014,
+          "p95_ms": 17.683592,
+          "p99_ms": 17.683592,
+          "cpu_ms_median": 15.693000000000001,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 62.16560402803523
+        },
+        "objects": {
+          "n": 20,
+          "median_ms": 18.345925,
+          "p95_ms": 21.467514,
+          "p99_ms": 21.467514,
+          "cpu_ms_median": 18.139499999999998,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 51.52767392661363
+        },
+        "unknown": {
+          "n": 20,
+          "median_ms": 14.656891,
+          "p95_ms": 17.261014,
+          "p99_ms": 17.261014,
+          "cpu_ms_median": 14.470500000000001,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 67.12066705512305
+        },
+        "late_word": {
+          "n": 20,
+          "median_ms": 16.3047525,
+          "p95_ms": 21.507157,
+          "p99_ms": 21.507157,
+          "cpu_ms_median": 16.128,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 57.369310366015654
+        },
+        "arithmetic": {
+          "n": 20,
+          "median_ms": 15.9880845,
+          "p95_ms": 19.308908,
+          "p99_ms": 19.308908,
+          "cpu_ms_median": 15.800999999999998,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 60.466522561640765
+        },
+        "legacy": {
+          "n": 20,
+          "median_ms": 15.803165499999999,
+          "p95_ms": 17.870484,
+          "p99_ms": 17.870484,
+          "cpu_ms_median": 15.553999999999998,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 62.57097464761138
+        },
+        "malformed": {
+          "n": 20,
+          "median_ms": 11.7811655,
+          "p95_ms": 14.940757,
+          "p99_ms": 14.940757,
+          "cpu_ms_median": 11.6235,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 80.81451168407119
+        }
+      },
+      "ui_warm": {
+        "direct": {
+          "n": 5,
+          "median_ms": 63.980986,
+          "p95_ms": 64.633188,
+          "p99_ms": 64.633188,
+          "cpu_ms_median": 64.26499999999999,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 16.194589523674694
+        },
+        "inferred": {
+          "n": 5,
+          "median_ms": 58.216512,
+          "p95_ms": 58.624599,
+          "p99_ms": 58.624599,
+          "cpu_ms_median": 60.952999999999996,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 17.497952205904365
+        },
+        "objects": {
+          "n": 5,
+          "median_ms": 62.696935,
+          "p95_ms": 66.88142,
+          "p99_ms": 66.88142,
+          "cpu_ms_median": 66.18499999999999,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 15.301003826028246
+        },
+        "unknown": {
+          "n": 5,
+          "median_ms": 60.882548,
+          "p95_ms": 64.705029,
+          "p99_ms": 64.705029,
+          "cpu_ms_median": 63.87899999999999,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 16.630807651823957
+        },
+        "late_word": {
+          "n": 5,
+          "median_ms": 62.515969,
+          "p95_ms": 65.147064,
+          "p99_ms": 65.147064,
+          "cpu_ms_median": 64.68,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 16.307556018672752
+        },
+        "arithmetic": {
+          "n": 5,
+          "median_ms": 55.316653,
+          "p95_ms": 59.824692,
+          "p99_ms": 59.824692,
+          "cpu_ms_median": 56.852999999999994,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 16.930253787890333
+        },
+        "legacy": {
+          "n": 5,
+          "median_ms": 63.196457,
+          "p95_ms": 63.788257,
+          "p99_ms": 63.788257,
+          "cpu_ms_median": 66.73,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 16.204761447000543
+        },
+        "malformed": {
+          "n": 5,
+          "median_ms": 65.748472,
+          "p95_ms": 82.96529,
+          "p99_ms": 82.96529,
+          "cpu_ms_median": 73.454,
+          "peak_child_rss_kib": 13952,
+          "serial_queries_per_second": 13.736729162309777
+        }
+      }
+    }
+  },
+  "first_ui_requests": {
+    "baseline": {
+      "direct": {
+        "ms": 63.329023,
+        "cpu_ms": 66.136,
+        "rss_kib": 13696
+      },
+      "inferred": {
+        "ms": 61.730598,
+        "cpu_ms": 63.865,
+        "rss_kib": 13824
+      },
+      "objects": {
+        "ms": 72.442614,
+        "cpu_ms": 69.157,
+        "rss_kib": 13824
+      },
+      "unknown": {
+        "ms": 52.135253,
+        "cpu_ms": 54.845,
+        "rss_kib": 13824
+      },
+      "late_word": {
+        "ms": 54.467918,
+        "cpu_ms": 57.782,
+        "rss_kib": 13824
+      },
+      "arithmetic": {
+        "ms": 52.973299,
+        "cpu_ms": 56.425,
+        "rss_kib": 13824
+      },
+      "legacy": {
+        "ms": 58.085905,
+        "cpu_ms": 60.25,
+        "rss_kib": 13824
+      },
+      "malformed": {
+        "ms": 53.159651,
+        "cpu_ms": 54.836999999999996,
+        "rss_kib": 13824
+      }
+    }
+  },
+  "baseline_phases": {
+    "read": {
+      "phase": {
+        "n": 12,
+        "median_ms": 7.3621335000000006,
+        "p95_ms": 8.721049,
+        "p99_ms": 8.721049,
+        "cpu_ms_median": 7.251999999999999,
+        "peak_child_rss_kib": 13952,
+        "serial_queries_per_second": 129.37174761447932
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.737952999999999,
+        "p95_ms": 9.124959,
+        "p99_ms": 9.124959,
+        "cpu_ms_median": 7.633999999999999,
+        "peak_child_rss_kib": 13952,
+        "serial_queries_per_second": 126.2088666503724
+      }
+    },
+    "resolve": {
+      "phase": {
+        "n": 12,
+        "median_ms": 8.4158,
+        "p95_ms": 9.36408,
+        "p99_ms": 9.36408,
+        "cpu_ms_median": 8.303999999999998,
+        "peak_child_rss_kib": 13952,
+        "serial_queries_per_second": 119.44132514576322
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.533268,
+        "p95_ms": 8.527025,
+        "p99_ms": 8.527025,
+        "cpu_ms_median": 7.401999999999999,
+        "peak_child_rss_kib": 13952,
+        "serial_queries_per_second": 133.29295445433064
+      }
+    },
+    "parse-question": {
+      "phase": {
+        "n": 12,
+        "median_ms": 8.0264635,
+        "p95_ms": 9.439494,
+        "p99_ms": 9.439494,
+        "cpu_ms_median": 7.776999999999999,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 122.63683670052868
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.6258615,
+        "p95_ms": 9.420746,
+        "p99_ms": 9.420746,
+        "cpu_ms_median": 7.4925,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 124.93602104447326
+      }
+    },
+    "rule-check": {
+      "phase": {
+        "n": 12,
+        "median_ms": 7.3883545,
+        "p95_ms": 8.975814,
+        "p99_ms": 8.975814,
+        "cpu_ms_median": 7.236999999999999,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 130.82632874632966
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.6790585,
+        "p95_ms": 9.346999,
+        "p99_ms": 9.346999,
+        "cpu_ms_median": 7.5835,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 126.0656645791033
+      }
+    },
+    "ask": {
+      "phase": {
+        "n": 12,
+        "median_ms": 9.3208475,
+        "p95_ms": 12.157036,
+        "p99_ms": 12.157036,
+        "cpu_ms_median": 9.21,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 99.36658521836092
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.8241865,
+        "p95_ms": 8.965378,
+        "p99_ms": 8.965378,
+        "cpu_ms_median": 7.680499999999999,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 125.88893983311219
+      }
+    },
+    "respond": {
+      "phase": {
+        "n": 12,
+        "median_ms": 7.913519000000001,
+        "p95_ms": 8.83471,
+        "p99_ms": 8.83471,
+        "cpu_ms_median": 7.785,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 123.69832765221275
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.4166905,
+        "p95_ms": 8.408461,
+        "p99_ms": 8.408461,
+        "cpu_ms_median": 7.3115,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 132.09983207029015
+      }
+    },
+    "clean": {
+      "phase": {
+        "n": 12,
+        "median_ms": 10.5370285,
+        "p95_ms": 11.733381,
+        "p99_ms": 11.733381,
+        "cpu_ms_median": 10.428,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 93.86912505316025
+      },
+      "matched_noop": {
+        "n": 12,
+        "median_ms": 7.070995,
+        "p95_ms": 7.938226,
+        "p99_ms": 7.938226,
+        "cpu_ms_median": 6.973,
+        "peak_child_rss_kib": 14080,
+        "serial_queries_per_second": 136.75111598882083
+      }
+    }
+  }
+}
