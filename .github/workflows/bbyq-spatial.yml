@@ -1,0 +1,60 @@
+name: BBY Q E003 - native Ether spatial learning
+on:
+  push:
+    branches: [feature/ether-native-relations-20261026]
+    paths: ["ai/native/**", "ai/bench/spatial_campaign.py", "ai/tests/test_spatial_native.py", "docs/AI_E003_NATIVE_ETHER.md", ".github/workflows/bbyq-spatial.yml"]
+  pull_request:
+    paths: ["ai/native/**", "ai/bench/spatial_campaign.py", "ai/tests/test_spatial_native.py", "docs/AI_E003_NATIVE_ETHER.md", ".github/workflows/bbyq-spatial.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-spatial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkout exact REVERSE-PC without changing originals
+        run: |
+          mkdir -p "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" init
+          git -C "$RUNNER_TEMP/reverse-pc" remote add origin https://github.com/guadalupejuan001-code/REVERSE-PC.git
+          git -C "$RUNNER_TEMP/reverse-pc" fetch --no-tags --depth 1 origin 063d871c27de2d4f10904ec5c3e1363c2fe16d86
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 063d871c27de2d4f10904ec5c3e1363c2fe16d86
+      - name: Reuse REVERSE-PC's pinned Mundo X dependency
+        run: bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Compile original REVERSE-PC and new BBY Q spatial operator
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -pthread \
+            -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -I "$RUNNER_TEMP/reverse-pc-build/ether-compat" \
+            -I "$RUNNER_TEMP/reverse-pc/src" \
+            -I "$RUNNER_TEMP/reverse-pc/deps/mundo-x/native/include" \
+            ai/native/ether_relations.cpp -o "$RUNNER_TEMP/bbyq-space"
+      - name: Real native birth, persistent state, rollback and original CLI interop
+        env:
+          PYTHONPATH: ai
+          BBYQ_SPATIAL_REQUIRED: '1'
+        run: |
+          export BBYQ_SPATIAL_BINARY="$RUNNER_TEMP/bbyq-space"
+          export BBYQ_REVERSE_PC="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          python -m unittest discover -s ai/tests -p test_spatial_native.py -v
+      - name: Blind learning campaign and XOR negative control
+        env:
+          PYTHONPATH: ai
+          BBYQ_SPATIAL_EVIDENCE: spatial-campaign.json
+        run: |
+          export BBYQ_SPATIAL_BINARY="$RUNNER_TEMP/bbyq-space"
+          python ai/bench/spatial_campaign.py > spatial-summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-E003-native-evidence
+          path: |
+            spatial-campaign.json
+            spatial-summary.json
