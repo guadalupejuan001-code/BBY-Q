@@ -70,10 +70,11 @@ class Session:
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('binary');parser.add_argument('state');parser.add_argument('--language',choices=['es','en'],default='es')
+    parser.add_argument('--compact',action='store_true',help='Keep the original compact answer protocol')
     args=parser.parse_args();root=Path(__file__).resolve().parents[1]/'xi/knowledge'
     with tempfile.TemporaryDirectory(prefix='bbyq-session-') as temp:
         program=Path(temp)/'combined.xi'
-        program.write_bytes(subprocess.check_output(['bash',str(root/'link.sh'),'combined']))
+        program.write_bytes(subprocess.check_output(['bash',str(root/'link.sh'),'combined' if args.compact else 'conversation']))
         with Session(Path(args.binary).resolve(),Path(args.state).resolve(),program) as session:
             for line in sys.stdin:
                 raw,_=session.request(line.rstrip('\n'),1 if args.language=='es' else 2)

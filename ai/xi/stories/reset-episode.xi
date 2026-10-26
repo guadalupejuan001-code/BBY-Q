@@ -24,6 +24,18 @@ store8 $r7 0
 add r0 1
 cmp r0 128
 jlt ledger
+load8 r0 7700000000000000002
+cmp r0 1
+jne done
+set r0 4
+label conversation_context
+set r7 7700000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+cmp r0 16
+jlt conversation_context
+label done
 halt
 label invalid
 div r0 0

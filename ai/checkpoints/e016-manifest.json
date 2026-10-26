@@ -1,0 +1,41 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E016_Conversation_ES_EN.rvp.gz.b64",
+  "decoded_bytes": 209659,
+  "decoded_sha256": "55992a06df9ec9cad6889f3dabbdbc179d2626cfd32667efec1f74b78660e732",
+  "parent": "BBYQ_E015_Grammar_ES_EN.rvp.gz.b64",
+  "parent_sha256": "b32e95d54b866230adfa020d4c706e36d25a4b1ceb66ede7e63b795fd03dd0b1",
+  "source_base_commit": "c0e6b9f3df68f1d614ac00f68a615265d656c08b",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "new_lexical_entries": 43,
+  "total_e012_lexical_entries": 471,
+  "learned_response_orders": 2,
+  "response_order_demonstrations": 4,
+  "nominal_demonstrations": 58,
+  "fixed_dialogue_act_lessons": 16,
+  "programmed_function_labels": 26,
+  "supervised_entity_role_labels": 21,
+  "episode_accounts_in_release": 0,
+  "conversation_contexts_in_release": 0,
+  "intelligence": "XI only; same pinned runtime and E014 authority",
+  "source_data_sha256": {
+    "functions-v1.psv": "2fc03eec69285408b613b5c75cc6f3231a20ea23929affa48a4faecfc489ff2b",
+    "nominals-v1.psv": "fa0f26ab831ba48a83c8348112f3fea6fe95247d71111e09179df5c6ac2d8e3a",
+    "orders-v1.psv": "75864bf01f59267bb38d3bb31b4ab25fea1224099abd80f7f6f42745ac5eb71c",
+    "roles-v1.psv": "4a0ed1003c8f54909c723a21443c1b82855293a9a1ff9ba558d483db4336a55d",
+    "utterances-v1.psv": "2c88a4b5730ac1b251d008c11574297c5265a6afb6c70d9d94a8d55e3984436a",
+    "words-v1.psv": "e6a30f867cf283781d8c45bbd1a2635a3a052ce6dbb6398b14b8203200ad184d"
+  },
+  "limits": {
+    "tokens": 15,
+    "input_bytes": 255,
+    "episode_pairs": 16,
+    "quantity": [
+      0,
+      65535
+    ],
+    "open_conversation": false
+  }
+}

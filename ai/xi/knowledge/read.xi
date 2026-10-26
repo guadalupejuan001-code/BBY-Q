@@ -30,6 +30,8 @@ cmp r3 9
 je separator
 cmp r10 1
 je bad_text
+cmp r3 46
+je period_mark
 cmp r3 63
 je question_mark
 cmp r3 194
@@ -114,6 +116,21 @@ cmp r3 151
 je bad_text
 add r3 32
 jmp write_char
+label period_mark
+# A final statement period is enabled only by the conversational XI surface.
+load8 r7 7700000000000000016
+cmp r7 1
+jne bad_text
+load8 r7 7700000000000000002
+cmp r7 1
+jne bad_text
+cmp r11 0
+jne bad_text
+cmp r2 0
+jne mark_terminal
+cmp r1 0
+je bad_text
+jmp mark_terminal
 label question_mark
 store8 7400000000000000047 1
 cmp r2 0

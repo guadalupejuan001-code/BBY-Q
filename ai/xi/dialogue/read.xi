@@ -30,6 +30,8 @@ cmp r10 1
 je bad_text
 cmp r3 63
 je question_mark
+cmp r3 195
+je conversational_accent
 cmp r3 65
 jlt check_digit
 cmp r3 90
@@ -59,6 +61,54 @@ add r7 r2
 store8 $r7 r3
 add r2 1
 jmp next_char
+label conversational_accent
+# Accent folding is optional on the conversational surface. Old E011 models
+# retain their ASCII protocol. Operator meanings still come from learned D.
+load8 r7 7700000000000000016
+cmp r7 1
+jne bad_text
+add r0 1
+cmp r0 r9
+jge bad_text
+set r7 7300000000000000128
+add r7 r0
+load8 r3 $r7
+cmp r3 129
+je accent_a
+cmp r3 137
+je accent_e
+cmp r3 141
+je accent_i
+cmp r3 147
+je accent_o
+cmp r3 154
+je accent_u
+cmp r3 161
+je accent_a
+cmp r3 169
+je accent_e
+cmp r3 173
+je accent_i
+cmp r3 179
+je accent_o
+cmp r3 186
+je accent_u
+jmp bad_text
+label accent_a
+set r3 97
+jmp write_char
+label accent_e
+set r3 101
+jmp write_char
+label accent_i
+set r3 105
+jmp write_char
+label accent_o
+set r3 111
+jmp write_char
+label accent_u
+set r3 117
+jmp write_char
 label question_mark
 cmp r2 0
 jne mark_terminal
