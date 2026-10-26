@@ -30,17 +30,34 @@ case "$mode" in
     link_module "$root/parse-question.xi" dispatch
     echo 'label dispatch'
     if [ "$mode" = combined ]; then
+      link_module "$root/legacy-check.xi" choose_route
+      echo 'label choose_route'
+      echo 'load8 r0 7400000000000000013'
+      echo 'cmp r0 0'
+      echo 'je check_legacy'
+      echo 'load8 r0 7400000000000000009'
+      echo 'cmp r0 0'
+      echo 'je knowledge'
+      echo 'label check_legacy'
+      echo 'load8 r0 7400000000000000046'
+      echo 'cmp r0 1'
+      echo 'je legacy'
       echo 'load8 r0 7400000000000000013'
       echo 'cmp r0 0'
       echo 'jne knowledge'
       echo 'load8 r0 7400000000000000040'
       echo 'cmp r0 0'
       echo 'jne knowledge'
-      link_module "$root/arithmetic-intake.xi" m4_entry
-      link_module "$root/../dialogue/read.xi" m5_entry
-      link_module "$root/../dialogue/resolve.xi" m6_entry
-      link_module "$root/../dialogue/interpret.xi" m7_entry
+      link_module "$root/arithmetic-intake.xi" "m$((serial+1))_entry"
+      link_module "$root/../dialogue/read.xi" "m$((serial+1))_entry"
+      link_module "$root/../dialogue/resolve.xi" "m$((serial+1))_entry"
+      link_module "$root/../dialogue/interpret.xi" "m$((serial+1))_entry"
       link_module "$root/../dialogue/respond.xi" cleanup
+      echo 'label legacy'
+      link_module "$root/legacy-intake.xi" "m$((serial+1))_entry"
+      link_module "$root/../language/ask.xi" "m$((serial+1))_entry"
+      link_module "$root/../language/speak.xi" "m$((serial+1))_entry"
+      link_module "$root/legacy-restore.xi" cleanup
     fi
     echo 'label knowledge'
     link_module "$root/rule-check.xi" "m$((serial+1))_entry"
