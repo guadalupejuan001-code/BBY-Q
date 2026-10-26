@@ -1,0 +1,49 @@
+{
+  "base_commit": "1d621ba9875435fd46bdbc13b7459c8c62faef9b",
+  "e010_source_sha256": "de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f",
+  "replayed_old_training": false,
+  "learning_language": "XI",
+  "new_operator_spellings": 10,
+  "campaign": [
+    {
+      "seed": 170119,
+      "cases": 300,
+      "supported_correct": 226,
+      "appropriate_abstentions": 74
+    },
+    {
+      "seed": 270127,
+      "cases": 300,
+      "supported_correct": 231,
+      "appropriate_abstentions": 69
+    },
+    {
+      "seed": 370129,
+      "cases": 300,
+      "supported_correct": 228,
+      "appropriate_abstentions": 72
+    }
+  ],
+  "systematic_unseen_bilingual_questions": 384,
+  "checks": 4109,
+  "original_core_and_all_previous_logical_bytes_unchanged": true,
+  "duplicate_witness_not_promoted": true,
+  "contradictory_lessons_rolled_back": 4,
+  "reversed_spelling_control": "passed",
+  "operator_capacity_and_corruption_guards": "passed",
+  "final_state_bytes": 21252,
+  "final_state_sha256": "efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453",
+  "native_transaction_ms_median": 5.421394998847973,
+  "native_transaction_ms_p95": 7.775913996738382,
+  "wall_seconds": 9.023368835449219,
+  "limits": [
+    "ASCII",
+    "255 input bytes",
+    "15 tokens of at most 16 bytes",
+    "32 operator spellings",
+    "designed left-to-right grammar",
+    "0..65535 at each step",
+    "no open-domain conversation",
+    "no comparison against large language models"
+  ]
+}
