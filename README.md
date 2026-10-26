@@ -19,18 +19,20 @@ El selector `ai/xi/e007/recall.xi` compara ambas sobre experiencias
 nuevas, intercambia la activa cuando la archivada supera por al menos
 30/240 casos y alcanza 205/240, y destruye los datos temporales.
 
-[CI E007: tres semillas y recuperación reversible](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40284681769).
-En cada semilla, la secuencia A→B→A→B→ruido→A→A cambió de modelo
-cuando había evidencia y se mantuvo en ruido o cuando el activo
-seguía siendo correcto. Las tres recuperaciones posteriores al
-aprendizaje de ambas reglas se realizaron **sin más entrenamiento**.
+[CI E007: recuperación reversible con feedback parcialmente corrupto](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40285381399).
+En cada semilla, la secuencia A→B→A-ruidoso→B-ruidoso→A→B→ruido→A→A
+cambió de modelo cuando había evidencia y se mantuvo bajo ruido puro
+o cuando el activo seguía siendo correcto. Se realizaron **cinco
+recuperaciones sin volver a entrenar** las dos hipótesis.
 
 - Estado final por semilla: dos hipótesis completas, una autoridad
   Inverse Ether Memory/RVPC2, **cero qubits activos**.
 - Semilla 42: **6.162 bytes RVPC2**, 43 excepciones lógicas y
-  tres recuperaciones. Los dos modelos siguen disponibles.
+  cinco recuperaciones. Los dos modelos siguen disponibles.
 - Los programas E007, incluido el selector y la transacción
   reversible, están exclusivamente en el lenguaje propio XI.
+- El selector toleró entre 54 y 69 etiquetas corruptas de
+  240 en tres semillas, usando un criterio comparativo estricto.
 - Límite actual: dos contextos, dos señales categóricas y
   feedback binario; no se ha probado recuperación general.
 
