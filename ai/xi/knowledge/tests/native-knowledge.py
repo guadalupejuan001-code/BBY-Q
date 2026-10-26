@@ -117,7 +117,7 @@ class Examiner:
         before=snapshot(self.state)[1]
         output=self.run(self.frame(text,lang=lang)+self.linked['combined' if arithmetic else 'query'],arithmetic=arithmetic)
         regs=[json.loads(row) for row in output.splitlines() if row.startswith('{')]
-        spoken=bytes(row['value'] for row in regs if row.get('register')=='r14').decode('utf-8')
+        spoken=bytes(row['value'] for row in regs if row.get('register') in ('r14','r9')).decode('utf-8')
         mem=self.preserve(arithmetic)
         assert {a:v for a,v in mem.items() if K+6000<=a<K+70_000_000}=={
                a:v for a,v in before.items() if K+6000<=a<K+70_000_000},'Query trained on its answer'
@@ -243,6 +243,12 @@ def main():
     e.query('¿dos mas tres?',arithmetic=True,expected='cinco')
     e.query('minus one',arithmetic=True,lang=2,expected='four')
     e.preserve()  # The final arithmetic referent equals the original E011 state.
+    for text,expected in [('cuarto contiene llave?','cuarto contiene llave (via caja).'),
+                          ('cofre guarda bolsa?','caja contiene bolsa.'),
+                          ('luz toca bolsa?','no: luz toca bolsa.'),
+                          ('luz toca llave?','?')]:
+        e.query(text,arithmetic=True,expected=expected)
+        e.preserve()
     e.query('¿QUÉ ES NEURONA?',[(78,23,77)])
     e.query('qué estudia filosofía?',[(195,39,103),(195,39,180)])
     e.audit()
@@ -254,6 +260,7 @@ def main():
             'direct_retrieval_questions':direct,'unseen_inferred_questions':2*len(inferred),
             'object_questions':2*len(groups),'mixed_language_unseen_questions':args.random_cases*len(args.seeds),'mixed_test_seeds':args.seeds,
             'eight_hop_unfamiliar_graph_control':True,'cycle_termination':True,'invalid_schema_rejected_transactionally':True,
+            'legacy_e009_queries_preserved':4,
             'rule_retraction_and_restoration':True,'conflict_abstention':True,
             'original_core_and_all_previous_knowledge_unchanged':True,
             'all_previous_logical_bytes_equal_at_completion':True,'five_audits_read_only':True,
