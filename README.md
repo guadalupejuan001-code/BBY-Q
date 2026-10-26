@@ -1,14 +1,41 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E005 — nacimiento de relaciones mediante aprendizaje nativo
-en XI (dialecto ejecutable de MX).** El objetivo es que el agente pase de
-corregir pesos existentes a formar relaciones compuestas a partir de
-experiencias y errores.
+**Ruta activa: E006 — Jurado XI para promover únicamente relaciones
+que mejoran la predicción en casos no usados durante el entrenamiento.**
+E005 conserva su historial de nacimiento de relaciones, ahora extendido
+con validación, rechazo y protección de conocimiento aprobado.
 
 BBY Q **no utiliza SOVENGI, modelos de IA de terceros, Transformers ni
 código Python/C++ para implementar su inteligencia**. Su estado y las
 transacciones pertenecen a REVERSE-PC, XI, Inverse Ether Memory y Mundo X,
 con **una sola autoridad persistente RVPC2 por agente**.
+
+## E006 — las ideas deben sobrevivir una prueba independiente
+
+En `ai/xi/e006/` hay una entidad nueva (esquema 6) que entrena
+relaciones candidatas en modo sombra. El `jury.xi` las compara con
+las mismas relaciones desactivadas, sobre 240 experiencias no vistas,
+**sin adaptar ninguno de los dos durante el examen**.
+
+- Si el candidato mejora al menos 30/240 y acierta al menos 205/240,
+  se promociona como conocimiento activo y se sella.
+- De lo contrario, los descriptores espurios y las etiquetas de
+  validación se eliminan transaccionalmente del RVPC2.
+- La inferencia `infer-grid.xi` no utiliza relaciones no aprobadas.
+  Un modelo sellado rechaza entrenamientos improvisados.
+
+**GitHub Actions E006:** [ejecución 40283557920](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40283557920).
+12 agentes/controles, tres semillas, 28.800 experiencias; los tres
+modelos XOR aprobaron con **240/240** sobre un holdout nuevo y **9/9**
+controles negativos/adversos fueron rechazados. Se verificó rollback,
+ausencia de etiquetas persistentes, inferencia sellada y rechazo de
+juicios repetidos.
+
+[Contrato técnico y controles E006](docs/AI_E006_SHADOW_JURY.md).
+
+**Próxima limitación:** preservar múltiples hipótesis para cambiar de
+contexto sin perder las anteriores. E006 protege un único modelo activo;
+aún no recupera automáticamente conocimientos previos.
 
 ## E005 — relaciones que no existían al nacer
 
