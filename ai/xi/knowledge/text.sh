@@ -29,5 +29,5 @@ mv "$tmp/result.rvp" "$state"
 while read -r byte; do
   printf -v oct '%03o' "$byte"
   printf '%b' "\\$oct"
-done < <(sed -n 's/.*"register":"r14".*"value":\([0-9][0-9]*\).*/\1/p' "$tmp/output.jsonl")
+done < <(sed -n 's/.*"register":"r\(14\|9\)".*"value":\([0-9][0-9]*\).*/\2/p' "$tmp/output.jsonl")
 printf '\n'
