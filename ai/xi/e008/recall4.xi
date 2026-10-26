@@ -298,11 +298,11 @@ mov r6 r0
 add r6 1
 label no_worst_update
 mov r12 r11
-mul r12 5
+mul r12 20
 set r13 7000000000000002200
 add r13 r0
 load8 r14 $r13
-mul r14 2
+mul r14 9
 cmp r12 r14
 jle local_rate_allowed
 set r15 1
@@ -322,10 +322,12 @@ mov r12 r8
 sub r12 r9
 cmp r15 0
 jne abstain_and_learn
-cmp r12 30
-jlt uncertain_evidence
+# Distinct acceptance regimes: strong clean evidence OR noisy differential.
 cmp r8 208
+jlt check_noisy_evidence
+cmp r12 30
 jge accept_best
+label check_noisy_evidence
 cmp r8 156
 jlt uncertain_evidence
 cmp r12 18
