@@ -1,0 +1,249 @@
+name: BBY Q E009 - XI grounded symbolic language
+on:
+  push:
+    branches: [feature/bbyq-e009-native-language-20261026, main]
+    paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
+  pull_request:
+    paths: ["ai/xi/language/**", ".github/workflows/bbyq-language.yml", "docs/AI_E009_LANGUAGE.md", "README.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grounded-language:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin owner XI runtime and original Mundo X integration
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build unchanged XI bootstrap; no external learner
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Language birth, lexical grounding, semantic composition and evidence speech
+        run: |
+          set -eu
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          L=7100000000000000000
+          mkdir -p evidence
+          word_at() {
+            local at="$1" word="$2" i=0 n
+            printf 'store8 %s %d\n' "$((L+at))" "$(printf %s "$word" | wc -c)"
+            for n in $(printf '%s' "$word" | od -An -tu1); do
+              printf 'store8 %s %d\n' "$((L+at+1+i))" "$n"
+              i=$((i+1))
+            done
+          }
+          run_event() {
+            "$R" run lesson.xi state.rvp staged.rvp > /dev/null
+            "$R" run "ai/xi/language/$1.xi" staged.rvp learned.rvp > "evidence/last-$1.jsonl"
+            mv learned.rvp state.rvp
+          }
+          ground() {
+            local token="$1" f0="$2" f1="$3" f2="$4"
+            {
+              printf '#!reverse-pc-machine-v1\n'
+              printf 'store8 %s 1\n' "$((L+125))"
+              word_at 100 "$token"
+              printf 'store8 %s %s\n' "$((L+120))" "$f0"
+              printf 'store8 %s %s\n' "$((L+121))" "$f1"
+              printf 'store8 %s %s\n' "$((L+122))" "$f2"
+            } > lesson.xi
+            run_event ground
+          }
+          fact() {
+            local s="$1" p="$2" o="$3" truth="$4"
+            {
+              printf '#!reverse-pc-machine-v1\n'
+              printf 'store8 %s 2\n' "$((L+175))"
+              word_at 140 "$s"
+              word_at 150 "$p"
+              word_at 160 "$o"
+              printf 'store8 %s %s\n' "$((L+170))" "$truth"
+            } > lesson.xi
+            run_event relate
+          }
+          decode_speech() {
+            local val oct char line=""
+            while read -r val; do
+              printf -v oct '%03o' "$val"
+              printf -v char '%b' "\\$oct"
+              line+="$char"
+            done < <(grep '"type":"register"' "$1" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')
+            printf '%s' "$line"
+          }
+          ask() {
+            local s="$1" p="$2" o="$3" expected="$4" expected_status="$5" label="$6"
+            {
+              printf '#!reverse-pc-machine-v1\n'
+              printf 'store8 %s 3\n' "$((L+175))"
+              word_at 140 "$s"
+              word_at 150 "$p"
+              word_at 160 "$o"
+            } > lesson.xi
+            "$R" run lesson.xi state.rvp question.rvp > /dev/null
+            "$R" run ai/xi/language/ask.xi question.rvp answered.rvp > "evidence/$label-proof.jsonl"
+            "$R" run ai/xi/language/reflect.xi answered.rvp reflected.rvp > "evidence/$label-next-study.jsonl"
+            "$R" run ai/xi/language/speak.xi reflected.rvp displayed.rvp > "evidence/$label-speech.jsonl"
+            cmp reflected.rvp displayed.rvp
+            actual="$(decode_speech "evidence/$label-speech.jsonl")"
+            actual_status="$(grep -m1 '"register":"r10"' "evidence/$label-proof.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
+            next_study="$(grep -m1 '"register":"r14"' "evidence/$label-next-study.jsonl" | sed -n 's/.*"value":\([0-9][0-9]*\).*/\1/p')"
+            if [ "$expected_status" -eq 0 ]; then
+              if [ "$s" = nube ]; then test "$next_study" -eq 2
+              else test "$next_study" -eq 1; fi
+            else
+              test "$next_study" -eq 0
+            fi
+            echo "$label: [$actual_status] $actual | study=$next_study" | tee -a evidence/transcript.txt
+            test "$actual" = "$expected"
+            test "$actual_status" = "$expected_status"
+            mv reflected.rvp state.rvp
+          }
+          # E009 must be born INSIDE a full original E008 four-bank organism.
+          "$R" init blank.rvp
+          "$R" run ai/xi/e006/birth.xi blank.rvp new.rvp > /dev/null
+          "$R" run ai/xi/e006/seed-42.xi new.rvp state.rvp > /dev/null
+          for task in xor xnor and or; do
+            if [ "$task" != xor ]; then
+              "$R" run ai/xi/e008/open-shadow.xi state.rvp opened.rvp > /dev/null
+              mv opened.rvp state.rvp
+            fi
+            for epoch in 1 2 3 4 5 6 7 8 9 10 11 12; do
+              if [ "$task" = xor ]; then feed=ai/xi/e006/feed-xor.xi
+              else feed="ai/xi/e008/train-$task.xi"; fi
+              "$R" run "$feed" state.rvp incoming.rvp > /dev/null
+              "$R" run ai/xi/e006/learn.xi incoming.rvp learned.rvp > /dev/null
+              mv learned.rvp state.rvp
+            done
+            if [ "$task" = xor ]; then exam=ai/xi/e006/validate-feed-xor.xi
+            else exam="ai/xi/e008/admit-feed-$task.xi"; fi
+            "$R" run "$exam" state.rvp exam.rvp > /dev/null
+            "$R" run ai/xi/e008/admit.xi exam.rvp admitted.rvp > /dev/null
+            "$R" run ai/xi/e008/bank-store.xi admitted.rvp banked.rvp > /dev/null
+            mv banked.rvp state.rvp
+          done
+          cp state.rvp evidence/before-language.rvp
+          "$R" run ai/xi/language/birth.xi state.rvp language-born.rvp > evidence/birth.jsonl
+          mv language-born.rvp state.rvp
+          ground caja 1 0 0
+          ground bolsa 1 1 0
+          ground llave 1 2 0
+          ground cuarto 2 0 0
+          ground moneda 1 3 0
+          ground contiene 3 0 0
+          ground toca 3 1 0
+          ground luz 2 2 0
+          ground cofre 1 0 0
+          ground guarda 3 0 0
+          cp state.rvp evidence/learned-lexicon.rvp
+          # A contradictory grounding must never publish new knowledge.
+          {
+            echo '#!reverse-pc-machine-v1'
+            printf 'store8 %s 1\n' "$((L+125))"
+            word_at 100 caja
+            printf 'store8 %s 2\n' "$((L+120))"
+            printf 'store8 %s 2\n' "$((L+121))"
+            printf 'store8 %s 2\n' "$((L+122))"
+          } > lesson.xi
+          "$R" run lesson.xi state.rvp conflicting.rvp > /dev/null
+          if "$R" run ai/xi/language/ground.xi conflicting.rvp wrong-new.rvp > /dev/null; then
+            echo 'ERROR: contradictory symbol mapping accepted' >&2; exit 1
+          fi
+          test ! -e wrong-new.rvp
+          for pair in \
+            'caja contiene bolsa 1' \
+            'bolsa contiene llave 1' \
+            'caja contiene llave 1' \
+            'cuarto contiene caja 1' \
+            'caja contiene moneda 1' \
+            'cuarto contiene moneda 1' \
+            'luz toca caja 1' \
+            'caja toca bolsa 1' \
+            'luz toca bolsa 0'; do
+            read -r s p o t <<< "$pair"
+            fact "$s" "$p" "$o" "$t"
+            fact "$s" "$p" "$o" "$t"
+          done
+          ask cuarto contiene llave '?' 0 'before-structural-learning'
+          "$R" run ai/xi/language/calibrate.xi state.rvp calibrated.rvp > evidence/composition-calibration.jsonl
+          mv calibrated.rvp state.rvp
+          cp state.rvp evidence/learned-semantic-knowledge.rvp
+          ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'unseen-composition'
+          ask cuarto guarda llave 'cuarto contiene llave (via caja).' 1 'relational-synonym'
+          ask cofre contiene bolsa 'caja contiene bolsa.' 1 'grounded-synonym'
+          ask luz toca bolsa 'no: luz toca bolsa.' 2 'explicit-counterexample'
+          ask luz toca llave '?' 0 'prevent-false-transitivity'
+          ask nube contiene llave '?' 0 'unknown-word-abstention'
+          cp state.rvp evidence/persisted-language-organism.rvp
+          "$R" run ai/xi/e008/audit-organism.xi state.rvp e008-verified.rvp > /dev/null
+          cmp state.rvp e008-verified.rvp
+          ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'after-restart'
+          cp state.rvp evidence/after-restart-language-organism.rvp
+          # Refute a former supporting example: the learned composition must stop.
+          fact cuarto contiene moneda 0
+          fact cuarto contiene moneda 0
+          "$R" run ai/xi/language/calibrate.xi state.rvp relearned.rvp > evidence/rejected-transitivity.jsonl
+          mv relearned.rvp state.rvp
+          ask cuarto contiene llave '?' 0 'counterexample-retracts-generalization'
+          # Fresh evidence can restore the property, retaining the full history.
+          fact cuarto contiene moneda 1
+          fact cuarto contiene moneda 1
+          fact cuarto contiene moneda 1
+          "$R" run ai/xi/language/calibrate.xi state.rvp relearned.rvp > evidence/recovered-transitivity.jsonl
+          mv relearned.rvp state.rvp
+          ask cuarto contiene llave 'cuarto contiene llave (via caja).' 1 'knowledge-recovered'
+          "$R" run ai/xi/language/audit.xi state.rvp audited.rvp > evidence/first-world-audit.jsonl
+          cmp state.rvp audited.rvp
+          cp state.rvp evidence/first-world-complete.rvp
+          # Entirely different words and senses: reuse XI programs without any
+          # hardcoded language or altered interpreter. Original E008 remains.
+          cp evidence/before-language.rvp state.rvp
+          "$R" run ai/xi/language/birth.xi state.rvp language-born.rvp > /dev/null
+          mv language-born.rvp state.rvp
+          ground sala 1 0 0
+          ground armario 1 1 0
+          ground libro 1 2 0
+          ground edificio 2 0 0
+          ground nota 1 3 0
+          ground incluye 3 0 0
+          ground mira 3 1 0
+          ground ojo 2 2 0
+          ground recinto 1 0 0
+          ground alberga 3 0 0
+          for pair in \
+            'sala incluye armario 1' \
+            'armario incluye libro 1' \
+            'sala incluye libro 1' \
+            'edificio incluye sala 1' \
+            'sala incluye nota 1' \
+            'edificio incluye nota 1' \
+            'ojo mira sala 1' \
+            'sala mira armario 1' \
+            'ojo mira armario 0'; do
+            read -r s p o t <<< "$pair"
+            fact "$s" "$p" "$o" "$t"
+            fact "$s" "$p" "$o" "$t"
+          done
+          ask edificio incluye libro '?' 0 'second-world-before-calibration'
+          "$R" run ai/xi/language/calibrate.xi state.rvp calibrated.rvp > evidence/second-world-calibration.jsonl
+          mv calibrated.rvp state.rvp
+          ask edificio incluye libro 'edificio incluye libro (via sala).' 1 'second-world-new-inference'
+          ask edificio alberga libro 'edificio incluye libro (via sala).' 1 'second-world-new-predicate-synonym'
+          ask recinto incluye armario 'sala incluye armario.' 1 'second-world-new-subject-synonym'
+          ask ojo mira armario 'no: ojo mira armario.' 2 'second-world-counterevidence'
+          ask ojo mira libro '?' 0 'second-world-no-false-analogy'
+          "$R" run ai/xi/language/audit.xi state.rvp audit.rvp > evidence/second-world-audit.jsonl
+          cmp state.rvp audit.rvp
+          cp state.rvp evidence/second-world-complete.rvp
+          echo 'E009 PASS: two unrelated vocabularies, proof and language, contradiction/recovery and no ungrounded claims' | tee -a evidence/transcript.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e009-grounded-language
+          path: evidence/
+          if-no-files-found: warn
