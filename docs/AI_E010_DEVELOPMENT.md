@@ -116,7 +116,7 @@ finitos, no planificación autónoma general.
 | De ellas: cálculos fuera del dominio 0..9 | 2/2 abstenciones |
 | Desconocimiento de etiquetas contradictorias | Rechazado con rollback |
 | Operador con consecuencia contradictoria | Rechazado con rollback |
-| Conservar E008 y E009 después del aprendizaje | Verificado byte a byte por ejecución de auditorías |
+| Conservar E008 y E009 después del aprendizaje | Las auditorías XI se ejecutaron sin modificar el RVPC2 |
 
 Ejemplos de salida realmente emitida desde la misma memoria
 en ambos idiomas:
@@ -135,7 +135,9 @@ La memoria final exportada es un archivo RVPC2 de **18.722 bytes**
 (SHA-256 `de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f`).
 La auditoría registró 544 excepciones lógicas Ether y cero enlaces
 cuánticos. El estado incluye la entidad E009 preexistente, los
-cuatro bancos E008 y el nuevo vocabulario.
+cuatro bancos E008 y el nuevo vocabulario. Las auditorías prueban
+estructura y ausencia de datos temporales; no se ha comparado
+cada byte de las regiones antiguas con una copia original.
 
 [Descargar estado y evidencias originales desde GitHub](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40303541105/artifacts/12640883468).
 
