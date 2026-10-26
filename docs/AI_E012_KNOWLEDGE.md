@@ -69,6 +69,12 @@ La entrada nativa decide si corresponde usar el conocimiento E012 o
 el **mismo programa aritmético E011**. El anfitrión no analiza el mensaje
 para elegir un motor. La matemática previa no se vuelve a implementar.
 
+También se conserva el acceso a E009: la misma entrada identifica sus
+palabras originales y llama a los programas `language/ask.xi` y `speak.xi`
+existentes. Una fachada de lectura restaura sus descriptores temporales
+tras emitir la respuesta. No duplica su léxico ni sus hechos. Sus formas
+originales siguen en español; no se inventan traducciones para ellas.
+
 Los términos con sentidos incompatibles se explicitan: una figura
 «estrella» y una «estrella_astronómica» no se funden silenciosamente;
 tampoco la figura «corazon» y «corazón_órgano». La polisemia abierta
@@ -117,6 +123,8 @@ Además pasan:
 - Contradicción, retirada y restauración de una regla, y rechazo de
   etiquetas que intentan cambiar el sentido de una palabra ya conocida.
 - Rechazo transaccional de roles, procedencia o versión inválidos.
+- Cuatro consultas E009 desde la nueva entrada: prueba de dos pasos,
+  sinónimos, refutación y desconocimiento; todos sus bytes previos intactos.
 - Cinco auditorías nativas sin modificar el archivo auditado.
 - Integridad del núcleo completo y de todo el conocimiento anterior.
 
@@ -126,7 +134,7 @@ coinciden con el checkpoint padre. Las consultas de conocimiento no
 modifican palabras, hechos, reglas ni recuerdos anteriores.
 
 El estado final ocupa **157.115 bytes**, SHA-256
-`04c2dcddf7c54b257a289417b108ce4443a87a19d2bf15ca4327eeb7bed90a0d`.
+`8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f`.
 Se conserva en `ai/checkpoints/` con manifiesto y compresión de transporte.
 Los datos brutos y el informe están en los artefactos de CI; el resumen
 local está en `docs/evidence/e012-results.json`.
