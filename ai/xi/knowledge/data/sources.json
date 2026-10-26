@@ -1,0 +1,53 @@
+{
+  "1": {
+    "name": "University of Hawaii: What is a Mammal?",
+    "url": "https://manoa.hawaii.edu/exploringourfluidearth/biological/mammals/what-mammal",
+    "scope": "mammals and vertebrate category; additional elementary taxa are marked teacher glossary 10"
+  },
+  "2": {
+    "name": "NIH NICHD: Parts of the nervous system",
+    "url": "https://www.nichd.nih.gov/health/topics/neuro/conditioninfo/parts",
+    "scope": "neurons, axons, dendrites, brain, spinal cord and signals"
+  },
+  "3": {
+    "name": "NIH NIMH: Learning and Memory Program",
+    "url": "https://www.nimh.nih.gov/about/organization/dnbbs/behavioral-science-and-integrative-neuroscience-research-branch/learning-and-memory-program",
+    "scope": "neural mechanisms of learning and memory; sleep relation also follows NINDS Understanding Sleep",
+    "additional_url": "https://www.ninds.nih.gov/health-information/public-education/brain-basics/brain-basics-understanding-sleep"
+  },
+  "4": {
+    "name": "NASA solar-system and Sun facts",
+    "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+    "additional_url": "https://science.nasa.gov/sun/facts/",
+    "scope": "elementary celestial classification, not current moon counts or speculative astronomy"
+  },
+  "5": {
+    "name": "USGS Water Science School and NASA water cycle",
+    "url": "https://www.usgs.gov/water-science-school/water-cycle",
+    "additional_url": "https://science.nasa.gov/kids/earth/what-is-the-water-cycle/",
+    "scope": "water phases, phase changes and water in organisms"
+  },
+  "6": {
+    "name": "NIST SI units",
+    "url": "https://www.nist.gov/pml/owm/metric-si/si-units",
+    "scope": "units of length, mass, time and temperature"
+  },
+  "7": {
+    "name": "IUPAC periodic table",
+    "url": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+    "scope": "chemical element identities; ordinary metal classification"
+  },
+  "8": {
+    "name": "Owner repository and explicit software glossary",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q",
+    "scope": "software, XI, Ether and the actual source architecture"
+  },
+  "9": {
+    "name": "Explicit synthetic successor definition",
+    "scope": "a controlled formal relation, not a physical observation"
+  },
+  "10": {
+    "name": "Teacher-authored elementary glossary",
+    "scope": "categorical teaching abstractions; not an independently validated scientific dataset"
+  }
+}
