@@ -21,7 +21,7 @@ jobs:
           base64 -d ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64 > original.rvp
           base64 -d ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
           echo 'efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453  original.rvp' | sha256sum -c -
-          echo '04c2dcddf7c54b257a289417b108ce4443a87a19d2bf15ca4327eeb7bed90a0d  released.rvp' | sha256sum -c -
+          echo '8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f  released.rvp' | sha256sum -c -
       - name: Pin unchanged owner XI runtime and Mundo X
         run: |
           set -eu
@@ -45,6 +45,8 @@ jobs:
           test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'dos mas tres' es)" = cinco
           test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'minus one' en)" = four
           test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'bbyq tiene conciencia?' es)" = '?'
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'cuarto contiene llave?' es)" = 'cuarto contiene llave (via caja).'
+          test "$(bash ai/xi/knowledge/text.sh "$R" released.rvp 'luz toca bolsa?' es)" = 'no: luz toca bolsa.'
           bash -n ai/xi/knowledge/link.sh ai/xi/knowledge/text.sh
       - uses: actions/upload-artifact@v4
         if: always()
