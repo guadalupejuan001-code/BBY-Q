@@ -1,0 +1,131 @@
+{
+  "stage": "E014",
+  "parent_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+  "learned_sha256": "c3b732c4d704c21d1d0f99b0f774840de1ab66281813c5664a920d580fdf27b5",
+  "checkpoint_bytes": 169297,
+  "new_lexical_entries": 45,
+  "total_lexical_entries": 419,
+  "trained_verb_concepts": 7,
+  "distinct_consequence_lessons": 14,
+  "novel_stories": 600,
+  "followup_questions": 600,
+  "failure_controls": 24,
+  "persisted_action_turns": 1000,
+  "session_ms": {
+    "median": 10.265338499999999,
+    "p95": 14.274481
+  },
+  "retained_questions_session_ms": {
+    "median": 7.630000000000001
+  },
+  "resident_samples": [
+    {
+      "turn": 0,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4188,
+      "cpu_ms": 24.42,
+      "active_qubits": 0
+    },
+    {
+      "turn": 100,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 1156.35,
+      "active_qubits": 0
+    },
+    {
+      "turn": 200,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 2242.19,
+      "active_qubits": 0
+    },
+    {
+      "turn": 300,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 3331.32,
+      "active_qubits": 0
+    },
+    {
+      "turn": 400,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 4377.63,
+      "active_qubits": 0
+    },
+    {
+      "turn": 500,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 5403.53,
+      "active_qubits": 0
+    },
+    {
+      "turn": 600,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 6408.8,
+      "active_qubits": 0
+    },
+    {
+      "turn": 700,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4260,
+      "cpu_ms": 7428.18,
+      "active_qubits": 0
+    },
+    {
+      "turn": 800,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4424,
+      "cpu_ms": 8583.17,
+      "active_qubits": 0
+    },
+    {
+      "turn": 900,
+      "method": "getrusage_self",
+      "peak_rss_kib": 24216,
+      "resident_rss_kib": 4424,
+      "cpu_ms": 9724.25,
+      "active_qubits": 0
+    }
+  ],
+  "session_final_metrics": {
+    "method": "getrusage_self",
+    "peak_rss_kib": 24216,
+    "resident_rss_kib": 4260,
+    "cpu_ms": 10734.9,
+    "active_qubits": 0
+  },
+  "old_knowledge_unchanged": true,
+  "empty_episode_ledger_in_release": true,
+  "reverse_teaching_control": true,
+  "same_arithmetic_interpreter_and_speaker": true,
+  "arithmetic_context_isolated": true,
+  "checks": 5289,
+  "prior_curriculum_questions_on_new_checkpoint": 1522,
+  "multi_actor_item_isolation": true,
+  "reset_episode_preserves_lessons": true,
+  "source_cache_includes_story_modules": true,
+  "limits": {
+    "entities_per_episode": 16,
+    "tokens": 15,
+    "input_bytes": 255,
+    "quantity": [
+      0,
+      65535
+    ]
+  },
+  "platform": "linux",
+  "no_reverse_os_integration": true
+}
