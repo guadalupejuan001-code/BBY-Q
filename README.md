@@ -1,6 +1,28 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E019 — preguntas reformuladas y seguimiento del tema.**
+**Ruta activa: E020 — millones de ejemplos estructurados en XI.**
+
+Continúa E019 con **2.097.152 ejemplos sintéticos distintos**, consumidos en
+2.048 lotes nativos. Identifica ocho conceptos numéricos entre primitivas
+diseñadas, con veinte nombres de operador ES/EN. Añade producto, división
+exacta, resto, mínimo, máximo y distancia; reutiliza el cálculo por texto y
+su continuidad sin sustituir la inteligencia por otro modelo.
+
+La fase masiva tarda **120,09 s** en el runtime ya compilado. Su estado crece
+**1.263 bytes** durante esa fase; el checkpoint completo con nombres y
+promoción ocupa **325.721 bytes**. Conserva todos los bytes lógicos anteriores.
+Son experiencias aritméticas estructuradas, no millones de conversaciones ni
+hechos nuevos. La interfaz conserva enteros 0..65.535 y siete operaciones.
+
+Validación: 2.048 ejemplos estructurados independientes y **4.744 verificaciones
+de consultas y controles**, incluidas 1.024 consultas numéricas fuera del
+entrenamiento y las 1.522 consultas anteriores en ambas superficies.
+El diagnóstico de veinte nombres pasa de 0/20 a 20/20. Se comprobaron además
+50 reinicios y liberación del bloqueo tras matar un proceso propietario.
+
+[Currículo, compactación, pruebas, límites y reproducción de E020](docs/AI_E020_MILLION_STREAM.md).
+
+**E019 — preguntas reformuladas y seguimiento del tema.**
 
 Continúa E018 con 32 construcciones adicionales: 96 en total y 539 entradas
 léxicas. Reconoce «sabes qué…», «do you know if…» y preguntas que reutilizan

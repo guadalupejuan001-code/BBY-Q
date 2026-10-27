@@ -5,6 +5,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 case "${1:-}" in
   query) modules=(read resolve interpret respond) ;;
   teach) modules=(read resolve learn) ;;
+  scale-word) modules=(read resolve ../scale/learn-word) ;;
   *) echo 'usage: link.sh query|teach' >&2; exit 2 ;;
 esac
 echo '#!reverse-pc-machine-v1'

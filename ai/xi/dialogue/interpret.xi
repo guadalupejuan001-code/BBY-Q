@@ -13,6 +13,7 @@ cmp r0 0
 jne invalid
 set r14 0
 set r13 0
+set r11 0
 load8 r0 7300000000000000040
 cmp r0 0
 jne syntax_error
@@ -65,14 +66,70 @@ add r7 1
 load8 r0 $r7
 mul r0 256
 add r3 r0
+# Until a precedence grammar is implemented, do not silently evaluate a
+# lower-priority sum/difference before a following product/division/remainder.
+cmp r4 3
+jlt precedence_ready
+cmp r4 5
+jgt precedence_ready
+cmp r11 1
+je syntax_error
+label precedence_ready
 cmp r4 1
 je subtract
 cmp r4 2
+je add
+cmp r4 3
+je multiply
+cmp r4 4
+je exact_divide
+cmp r4 5
+je remainder
+cmp r4 6
+je minimum
+cmp r4 7
+je maximum
+cmp r4 8
 jne unknown_word
+sub r2 r3
+cmp r2 0
+jge check_bounds
+mul r2 -1
+jmp check_bounds
+label add
+set r11 1
 add r2 r3
 jmp check_bounds
 label subtract
+set r11 1
 sub r2 r3
+jmp check_bounds
+label multiply
+mul r2 r3
+jmp check_bounds
+label exact_divide
+cmp r3 0
+je range_error
+mov r0 r2
+mod r0 r3
+cmp r0 0
+jne range_error
+div r2 r3
+jmp check_bounds
+label remainder
+cmp r3 0
+je range_error
+mod r2 r3
+jmp check_bounds
+label minimum
+cmp r2 r3
+jle check_bounds
+mov r2 r3
+jmp check_bounds
+label maximum
+cmp r2 r3
+jge check_bounds
+mov r2 r3
 label check_bounds
 cmp r2 0
 jlt range_error

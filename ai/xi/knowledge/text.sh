@@ -10,11 +10,13 @@ mode=conversation
 if [[ "${5:-}" = --compact ]]; then mode=combined; elif [[ -n "${5:-}" ]]; then exit 2; fi
 case "$lang" in es) lang_id=1;; en) lang_id=2;; *) exit 2;; esac
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-mkdir "$state.lock" 2>/dev/null || { echo 'State has an active writer' >&2; exit 1; }
+if [[ -e "$state.lock" ]]; then echo 'State has an active writer' >&2; exit 1; fi
+# Same stable kernel lock as the resident adapter. Never unlink its inode.
+exec 9>>"$state.writer"
+flock -n 9 || { echo 'State has an active writer' >&2; exit 1; }
 tmp=''
 cleanup() {
   if [[ -n "$tmp" ]]; then rm -rf -- "$tmp"; fi
-  rmdir -- "$state.lock"
 }
 trap cleanup EXIT
 tmp="$(mktemp -d "$(dirname "$state")/.bbyq-text.XXXXXX")"

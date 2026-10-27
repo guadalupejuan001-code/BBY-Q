@@ -1,0 +1,68 @@
+name: BBY Q E020 - millions of structured examples in native XI
+on:
+  push:
+    branches: [feature/bbyq-e020-million-stream-20261027, main]
+    paths: ["ai/xi/scale/**", "ai/xi/dialogue/**", "ai/xi/open/**", "ai/xi/knowledge/**", "ai/xi/conversation/**", "ai/xi/stories/**", "ai/xi/grammar/**", "ai/native/**", "ai/checkpoints/BBYQ_E020*", "ai/checkpoints/e020-manifest.json", ".github/workflows/bbyq-e020.yml"]
+  pull_request:
+    paths: ["ai/xi/scale/**", "ai/xi/dialogue/**", "ai/xi/open/**", "ai/xi/knowledge/**", "ai/xi/conversation/**", "ai/xi/stories/**", "ai/xi/grammar/**", "ai/native/**", "ai/checkpoints/BBYQ_E020*", "ai/checkpoints/e020-manifest.json", ".github/workflows/bbyq-e020.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  million-example-continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify authentic E019 parent, E020 release and curriculum
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E019_Context_Questions_ES_EN.rvp.gz.b64 | gzip -dc > parent.rvp
+          base64 -d ai/checkpoints/BBYQ_E020_Million_Arithmetic_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          m=json.loads(Path('ai/checkpoints/e020-manifest.json').read_text())
+          assert hashlib.sha256(Path('parent.rvp').read_bytes()).hexdigest()==m['parent_sha256']
+          assert hashlib.sha256(Path('released.rvp').read_bytes()).hexdigest()==m['decoded_sha256']
+          for name,digest in m['source_data_sha256'].items():
+              assert hashlib.sha256((Path('ai/xi/scale')/name).read_bytes()).hexdigest()==digest
+          PY
+      - name: Build exact owner runtime and unchanged byte transport
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Consume all 2097152 distinct structured examples in XI
+        run: |
+          python3 ai/xi/scale/tests/native-scale.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" --out evidence/e020-training --batch 1024
+      - name: Validate, promote, examine unseen text and retain previous dialogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ai/xi/scale/tests/native-e020.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$RUNNER_TEMP/session-build/bbyq_session" evidence/e020-training/state.rvp evidence/e020-training/training.json --out evidence/e020
+          python3 - <<'PY'
+          import json,runpy
+          snapshot=runpy.run_path('ai/xi/knowledge/tests/native-knowledge.py')['snapshot']
+          assert snapshot('released.rvp')==snapshot('evidence/e020/BBYQ_E020_Million_Arithmetic_ES_EN.rvp')
+          m=json.load(open('ai/checkpoints/e020-manifest.json'))
+          r=json.load(open('evidence/e020/results.json'))
+          assert r['training']['corpus_sha256']==m['corpus_sha256']
+          assert r['training']['training_examples']==2097152
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e020-million-example-evidence
+          path: |
+            evidence/e020-training/training.json
+            evidence/e020/results.json
+            evidence/e020/raw.jsonl
+            evidence/e020/diagnostic.json
+            evidence/e020/BBYQ_E020_Million_Arithmetic_ES_EN.rvp
+          if-no-files-found: warn

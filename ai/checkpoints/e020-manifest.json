@@ -1,0 +1,53 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E020_Million_Arithmetic_ES_EN.rvp.gz.b64",
+  "decoded_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+  "decoded_bytes": 325721,
+  "parent": "BBYQ_E019_Context_Questions_ES_EN.rvp.gz.b64",
+  "parent_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+  "source_base_commit": "2af42edb51f37cd6c2e04014332a4a0a4b6f6efd",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "training_examples": 2097152,
+  "distinct_training_input_tuples": 2097152,
+  "validation_examples": 2048,
+  "training_grid_per_concept": [
+    512,
+    512
+  ],
+  "opaque_concepts": 8,
+  "new_operator_spellings": 20,
+  "new_primitive_families": 6,
+  "candidate_primitives_are_designed": true,
+  "corpus_format": "little-endian u8 concept,u32 X,u16 Y,i32 consequence, concept/a/b ordered",
+  "corpus_bytes": 23068672,
+  "corpus_sha256": "85b5b9f36b9c1961c7c97610c789a352b4abc9ae264ced3b59c7f9d7eec536a3",
+  "data_kind": "original synthetic structured integer arithmetic, not natural-language conversations",
+  "previous_all_logical_bytes_unchanged": true,
+  "new_world_assertions": 0,
+  "complete_corpus_rows_retained": 0,
+  "first_input_pairs_retained_for_diversity": 8,
+  "language_registry_entries": 539,
+  "open_dialogue_constructions": 96,
+  "open_conversation_achieved": false,
+  "new_region": "M=7900000000000000000, learned data only in M..M+20239",
+  "intelligence": "XI only; same RVPC2 and pinned REVERSE-PC/Mundo X",
+  "limits": {
+    "batch_rows": 1024,
+    "batch_input_bytes": 10240,
+    "text_integer_min": 0,
+    "text_integer_max": 65535,
+    "effects_per_expression": 7
+  },
+  "source_data_sha256": {
+    "data/operators.psv": "ccd20b7f5f4ef6b12135c545c1d07c738a1a307367b815c58486c3e0ac7f181d",
+    "tests/native-scale.py": "f7afce2134738f189248b479f7df56e62c9a756780e3da924b0b5d5df5aa61cc",
+    "learn-batch.xi": "3bbfc2c332bad59dd5c296c38ac480d726cd9e185cf74295914ddb3733744fd6",
+    "birth.xi": "345d40ca7971202612a5c9f8c16cbec9fd9127fb4556de7ddff7f9ac00b0ca8b",
+    "learn-word.xi": "746c7df81b5c0bbedd547577c2138b589944e3a8f3c2ba9cba4dbbb9e968947d",
+    "seal.xi": "813beeed8c7f19a088ef2df137199594db0c94e6fcdb47bad6aa9fd0456b35fa",
+    "audit.xi": "7e3db11b0ccfc7c51da99e9c76dc032af54bec3a317d44f950e5a496fcf0f93b",
+    "tests/native-e020.py": "a58e2b7a91f5ffd6cbcf87e9e6432525329b45818d468b5c93c7244ace00db35"
+  }
+}
