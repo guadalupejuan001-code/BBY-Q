@@ -19,6 +19,29 @@ link_module() {
   serial=$((serial+1))
 }
 case "$mode" in
+  rephrase-teach)
+    link_module "$root/read.xi" "m$((serial+1))_entry"
+    link_module "$root/resolve.xi" "m$((serial+1))_entry"
+    link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
+    link_module "$root/../rephrase/induce.xi" "m$((serial+1))_entry"
+    link_module "$root/../rephrase/target.xi" "m$((serial+1))_entry"
+    link_module "$root/read.xi" "m$((serial+1))_entry"
+    link_module "$root/resolve.xi" "m$((serial+1))_entry"
+    link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
+    link_module "$root/../rephrase/induce.xi" "m$((serial+1))_entry"
+    link_module "$root/../rephrase/finish-teach.xi" "m$((serial+1))_entry"
+    link_module "$root/clean.xi" "m$((serial+1))_entry"
+    link_module "$root/../open/clean.xi" "m$((serial+1))_entry"
+    link_module "$root/../rephrase/clean.xi" finish
+    ;;
+  rephrase-seal|rephrase-audit)
+    link_module "$root/../rephrase/guard.xi" "m$((serial+1))_entry"
+    if [ "$mode" = rephrase-seal ]; then
+      link_module "$root/../rephrase/seal.xi" finish
+    else
+      link_module "$root/../rephrase/audit.xi" finish
+    fi
+    ;;
   open-word|open-pattern|lingua-pattern|lingua-cue|open-utterance|open-calibrate|open-base|open-style)
     if [ "$mode" = open-word ] || [ "$mode" = open-pattern ] || [ "$mode" = lingua-pattern ] || [ "$mode" = lingua-cue ] || [ "$mode" = open-base ]; then
       link_module "$root/read.xi" "m$((serial+1))_entry"
@@ -86,8 +109,32 @@ case "$mode" in
     link_module "$root/resolve.xi" "m$((serial+1))_entry"
     if [ "$mode" != query ]; then
       link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
+      rephrase_serial="$serial"
+      link_module "$root/../rephrase/normalize.xi" rephrase_apply_check
+      echo 'label rephrase_apply_check'
+      echo 'load8 r0 8100000000000000003'
+      echo 'cmp r0 1'
+      echo 'jne rephrase_match'
+      echo 'load8 r0 8100000000000000080'
+      echo 'cmp r0 0'
+      echo 'je rephrase_match'
+      link_module "$root/../rephrase/apply.xi" rephrase_loop
+      echo 'label rephrase_loop'
+      echo 'load8 r0 8100000000000000026'
+      echo 'cmp r0 1'
+      echo 'je rephrase_match'
+      echo "jmp m${rephrase_serial}_choose"
+      echo 'label rephrase_match'
       link_module "$root/../open/match.xi" "m$((serial+1))_entry"
       link_module "$root/../lingua/clause.xi" "m$((serial+1))_entry"
+      link_module "$root/../rephrase/accept.xi" rephrase_accepted
+      echo 'label rephrase_accepted'
+      echo 'load8 r0 8100000000000000025'
+      echo 'cmp r0 1'
+      echo 'jne rephrase_prepared'
+      echo 'store8 8100000000000000025 0'
+      echo 'jmp rephrase_match'
+      echo 'label rephrase_prepared'
       link_module "$root/../open/prepare.xi" open_dispatch
       echo 'label open_dispatch'
       echo 'load8 r0 7800000000000000067'
@@ -534,7 +581,8 @@ case "$mode" in
       echo 'jne finish'
       link_module "$root/../conversation/clean.xi" "m$((serial+1))_entry"
       link_module "$root/../open/clean.xi" "m$((serial+1))_entry"
-      link_module "$root/../lingua/remember.xi" finish
+      link_module "$root/../lingua/remember.xi" "m$((serial+1))_entry"
+      link_module "$root/../rephrase/clean.xi" finish
     else
       echo 'jmp finish'
     fi

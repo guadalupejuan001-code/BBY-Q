@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "mode": 1,
+    "scope": 1,
+    "source": "puedes hablarme",
+    "target": "háblame"
+  },
+  {
+    "id": 2,
+    "mode": 1,
+    "scope": 1,
+    "source": "podrías hablarme",
+    "target": "háblame"
+  },
+  {
+    "id": 3,
+    "mode": 1,
+    "scope": 1,
+    "source": "puedes explicarme",
+    "target": "háblame"
+  },
+  {
+    "id": 4,
+    "mode": 1,
+    "scope": 1,
+    "source": "podrías explicarme",
+    "target": "háblame"
+  },
+  {
+    "id": 5,
+    "mode": 1,
+    "scope": 1,
+    "source": "háblame",
+    "target": "háblame"
+  },
+  {
+    "id": 6,
+    "mode": 1,
+    "scope": 1,
+    "source": "give me some information",
+    "target": "háblame"
+  },
+  {
+    "id": 7,
+    "mode": 1,
+    "scope": 1,
+    "source": "can you tell me",
+    "target": "háblame"
+  },
+  {
+    "id": 8,
+    "mode": 1,
+    "scope": 1,
+    "source": "could you tell me",
+    "target": "háblame"
+  },
+  {
+    "id": 9,
+    "mode": 1,
+    "scope": 1,
+    "source": "can you explain",
+    "target": "háblame"
+  },
+  {
+    "id": 10,
+    "mode": 1,
+    "scope": 1,
+    "source": "could you explain",
+    "target": "háblame"
+  },
+  {
+    "id": 11,
+    "mode": 1,
+    "scope": 1,
+    "source": "tell me",
+    "target": "háblame"
+  },
+  {
+    "id": 12,
+    "mode": 1,
+    "scope": 1,
+    "source": "please tell me",
+    "target": "háblame"
+  },
+  {
+    "id": 13,
+    "mode": 1,
+    "scope": 1,
+    "source": "please explain",
+    "target": "háblame"
+  },
+  {
+    "id": 14,
+    "mode": 1,
+    "scope": 2,
+    "source": "me interesa conocer lo que",
+    "target": "qué"
+  },
+  {
+    "id": 15,
+    "mode": 1,
+    "scope": 2,
+    "source": "qué es lo que",
+    "target": "qué"
+  },
+  {
+    "id": 16,
+    "mode": 1,
+    "scope": 2,
+    "source": "what is it that",
+    "target": "what"
+  },
+  {
+    "id": 17,
+    "mode": 4,
+    "scope": 2,
+    "source": "y hablando de {S} qué {P}",
+    "target": "qué {P} {S}"
+  },
+  {
+    "id": 18,
+    "mode": 4,
+    "scope": 2,
+    "source": "hablando de {S} qué {P}",
+    "target": "qué {P} {S}"
+  },
+  {
+    "id": 19,
+    "mode": 4,
+    "scope": 2,
+    "source": "and speaking of {S} what does it {P}",
+    "target": "what does {S} {P}"
+  },
+  {
+    "id": 20,
+    "mode": 4,
+    "scope": 2,
+    "source": "as for {S} what does it {P}",
+    "target": "what does {S} {P}"
+  },
+  {
+    "id": 21,
+    "mode": 4,
+    "scope": 2,
+    "source": "which resources does {S} require",
+    "target": "what does {S} require"
+  },
+  {
+    "id": 22,
+    "mode": 4,
+    "scope": 2,
+    "source": "which resources does {S} need",
+    "target": "what does {S} need"
+  },
+  {
+    "id": 23,
+    "mode": 3,
+    "scope": 1,
+    "source": "un poco",
+    "target": ""
+  },
+  {
+    "id": 24,
+    "mode": 3,
+    "scope": 1,
+    "source": "brevemente",
+    "target": ""
+  },
+  {
+    "id": 25,
+    "mode": 3,
+    "scope": 1,
+    "source": "a little",
+    "target": ""
+  },
+  {
+    "id": 26,
+    "mode": 3,
+    "scope": 1,
+    "source": "briefly",
+    "target": ""
+  },
+  {
+    "id": 27,
+    "mode": 3,
+    "scope": 1,
+    "source": "sobre",
+    "target": "de"
+  },
+  {
+    "id": 28,
+    "mode": 3,
+    "scope": 1,
+    "source": "acerca de",
+    "target": "de"
+  },
+  {
+    "id": 29,
+    "mode": 2,
+    "scope": 0,
+    "source": "in other words",
+    "target": ""
+  },
+  {
+    "id": 30,
+    "mode": 2,
+    "scope": 0,
+    "source": "de otra manera",
+    "target": ""
+  },
+  {
+    "id": 31,
+    "mode": 2,
+    "scope": 0,
+    "source": "por favor",
+    "target": ""
+  },
+  {
+    "id": 32,
+    "mode": 2,
+    "scope": 0,
+    "source": "please",
+    "target": ""
+  },
+  {
+    "id": 33,
+    "mode": 1,
+    "scope": 2,
+    "source": "which resources does",
+    "target": "which resources does"
+  }
+]

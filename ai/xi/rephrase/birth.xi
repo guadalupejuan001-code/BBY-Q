@@ -1,0 +1,13 @@
+#!reverse-pc-machine-v1
+load8 r0 8100000000000000002
+cmp r0 0
+jne invalid
+load8 r0 8000000000000000003
+cmp r0 1
+jne invalid
+store8 8100000000000000000 82
+store8 8100000000000000001 80
+store8 8100000000000000002 1
+halt
+label invalid
+div r0 0

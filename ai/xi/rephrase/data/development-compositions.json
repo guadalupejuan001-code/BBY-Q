@@ -1,0 +1,322 @@
+[
+  {
+    "text": "puedes hablarme un poco sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme un poco sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme un poco acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme un poco acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme brevemente sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme brevemente sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme brevemente acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "puedes hablarme brevemente acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme un poco sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme un poco sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme un poco acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme un poco acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme brevemente sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme brevemente sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme brevemente acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "podrías explicarme brevemente acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame un poco sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame un poco sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame un poco acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame un poco acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame brevemente sobre {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame brevemente sobre {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame brevemente acerca de {S} de otra manera",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "háblame brevemente acerca de {S} por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "can you tell me a little about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "can you tell me a little about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "can you tell me briefly about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "can you tell me briefly about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "could you tell me a little about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "could you tell me a little about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "could you tell me briefly about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "could you tell me briefly about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "please tell me a little about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "please tell me a little about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "please tell me briefly about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "please tell me briefly about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "give me some information about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "give me some information about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "give me some information briefly about {S} please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "give me some information briefly about {S} in other words",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "qué es lo que requiere {S} por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "qué es lo que requiere {S} de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "qué es lo que {S} requiere por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "qué es lo que {S} requiere de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "me interesa conocer lo que requiere {S} por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "me interesa conocer lo que requiere {S} de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "me interesa conocer lo que {S} requiere por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "me interesa conocer lo que {S} requiere de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "what is it that {S} requires please",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "what is it that {S} requires in other words",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "y hablando de {S} qué requiere por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "y hablando de {S} qué requiere de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "hablando de {S} qué requiere por favor",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "hablando de {S} qué requiere de otra manera",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "and speaking of {S} what does it require please",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "and speaking of {S} what does it require in other words",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "as for {S} what does it require please",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "as for {S} what does it require in other words",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "which resources does {S} require please",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "which resources does {S} require in other words",
+    "language": 2,
+    "kind": "require"
+  },
+  {
+    "text": "puedes hablarme, un poco sobre {S}, por favor",
+    "language": 1,
+    "kind": "definition"
+  },
+  {
+    "text": "could you tell me, a little about {S}, please",
+    "language": 2,
+    "kind": "definition"
+  },
+  {
+    "text": "qué es lo que, requiere {S}",
+    "language": 1,
+    "kind": "require"
+  },
+  {
+    "text": "what is it that, {S} requires",
+    "language": 2,
+    "kind": "require"
+  }
+]
