@@ -35,6 +35,8 @@ cmp r0 10
 je ambiguous_act
 cmp r0 11
 je collision_act
+cmp r0 12
+je context_act
 set r0 7
 jmp act_ready
 label learn
@@ -60,6 +62,9 @@ set r0 11
 jmp act_ready
 label collision_act
 set r0 12
+jmp act_ready
+label context_act
+set r0 16
 label act_ready
 store8 7800000000000000304 r0
 store8 7800000000000000302 2

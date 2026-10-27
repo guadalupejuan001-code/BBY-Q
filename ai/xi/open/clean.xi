@@ -4,6 +4,21 @@ cmp r0 0
 je done
 cmp r0 1
 jne invalid
+# A delegated query is only a context if the actual legacy search succeeded.
+# Do not preserve the speculative slots of an unanswered question.
+load8 r0 7800000000000000067
+cmp r0 0
+jne context_ready
+load8 r0 7800000000000000012
+cmp r0 1
+jne context_ready
+load8 r0 7400000000000000008
+cmp r0 1
+je context_ready
+cmp r0 2
+je context_ready
+store8 7800000000000000012 0
+label context_ready
 # Clear keyed visitation only for nodes actually queued, then their records.
 load8 r10 7800000000000000120
 set r0 0

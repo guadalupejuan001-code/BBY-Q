@@ -1,0 +1,655 @@
+{
+  "scope": "32 fixed probes; unseen entities and require predicate; not a general-language score",
+  "score": {
+    "before": {
+      "correct": 0,
+      "total": 32
+    },
+    "after": {
+      "correct": 32,
+      "total": 32
+    }
+  },
+  "transcript": [
+    {
+      "stage": "before",
+      "construction": 65,
+      "input": "sabes qué requiere sondera",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 21.599352
+    },
+    {
+      "stage": "before",
+      "construction": 66,
+      "input": "sabes qué requiere el sondera",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 21.994236
+    },
+    {
+      "stage": "before",
+      "construction": 67,
+      "input": "sabes si sondera requiere agua",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 21.252719
+    },
+    {
+      "stage": "before",
+      "construction": 68,
+      "input": "do you know what sondera requires",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 22.012182
+    },
+    {
+      "stage": "before",
+      "construction": 69,
+      "input": "do you know if sondera requires water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 23.420996
+    },
+    {
+      "stage": "before",
+      "construction": 70,
+      "input": "es sondera clasea",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": false,
+      "ms": 18.114729
+    },
+    {
+      "stage": "before",
+      "construction": 71,
+      "input": "is the sondera a clasea",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": false,
+      "ms": 20.617591
+    },
+    {
+      "stage": "before",
+      "construction": 72,
+      "input": "does sondera require water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 19.293051
+    },
+    {
+      "stage": "before",
+      "construction": 73,
+      "input": "y qué requiere",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 13.535647
+    },
+    {
+      "stage": "before",
+      "construction": 74,
+      "input": "qué requiere eso",
+      "language": 1,
+      "output": "No tengo evidencia suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 11.916864
+    },
+    {
+      "stage": "before",
+      "construction": 75,
+      "input": "what does it require",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 14.443921
+    },
+    {
+      "stage": "before",
+      "construction": 76,
+      "input": "and what does it require",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 16.328818
+    },
+    {
+      "stage": "before",
+      "construction": 77,
+      "input": "y requiere agua",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 15.357702
+    },
+    {
+      "stage": "before",
+      "construction": 78,
+      "input": "eso requiere agua",
+      "language": 1,
+      "output": "No tengo evidencia suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 12.406047
+    },
+    {
+      "stage": "before",
+      "construction": 79,
+      "input": "does it require water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 15.837942
+    },
+    {
+      "stage": "before",
+      "construction": 80,
+      "input": "and does it require water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 16.294107
+    },
+    {
+      "stage": "before",
+      "construction": 81,
+      "input": "y alterna",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Alterna requiere energía.",
+      "pass": false,
+      "ms": 15.027012
+    },
+    {
+      "stage": "before",
+      "construction": 82,
+      "input": "y el alterna",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Alterna requiere energía.",
+      "pass": false,
+      "ms": 16.447803
+    },
+    {
+      "stage": "before",
+      "construction": 83,
+      "input": "what about alterna",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Alterna requires energy.",
+      "pass": false,
+      "ms": 18.340063
+    },
+    {
+      "stage": "before",
+      "construction": 84,
+      "input": "and alterna",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Alterna requires energy.",
+      "pass": false,
+      "ms": 12.190859
+    },
+    {
+      "stage": "before",
+      "construction": 85,
+      "input": "y qué es",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": false,
+      "ms": 14.426214
+    },
+    {
+      "stage": "before",
+      "construction": 86,
+      "input": "qué es eso",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": false,
+      "ms": 12.272499
+    },
+    {
+      "stage": "before",
+      "construction": 87,
+      "input": "what is it",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": false,
+      "ms": 13.110448
+    },
+    {
+      "stage": "before",
+      "construction": 88,
+      "input": "and what is it",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": false,
+      "ms": 17.053659
+    },
+    {
+      "stage": "before",
+      "construction": 89,
+      "input": "me explicas qué requiere sondera",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 17.68284
+    },
+    {
+      "stage": "before",
+      "construction": 90,
+      "input": "please explain what sondera requires",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 17.372312
+    },
+    {
+      "stage": "before",
+      "construction": 91,
+      "input": "me dices si sondera requiere agua",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 18.070012
+    },
+    {
+      "stage": "before",
+      "construction": 92,
+      "input": "please tell me whether sondera requires water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 19.940239
+    },
+    {
+      "stage": "before",
+      "construction": 93,
+      "input": "entonces qué requiere",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 14.640621
+    },
+    {
+      "stage": "before",
+      "construction": 94,
+      "input": "then what does it require",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 17.886471
+    },
+    {
+      "stage": "before",
+      "construction": 95,
+      "input": "entonces requiere agua",
+      "language": 1,
+      "output": "No tengo evidencia suficiente para responder.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": false,
+      "ms": 13.855845
+    },
+    {
+      "stage": "before",
+      "construction": 96,
+      "input": "then does it require water",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": false,
+      "ms": 18.112675
+    },
+    {
+      "stage": "after",
+      "construction": 65,
+      "input": "sabes qué requiere sondera",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 40.167621
+    },
+    {
+      "stage": "after",
+      "construction": 66,
+      "input": "sabes qué requiere el sondera",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 28.511084
+    },
+    {
+      "stage": "after",
+      "construction": 67,
+      "input": "sabes si sondera requiere agua",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 17.759058
+    },
+    {
+      "stage": "after",
+      "construction": 68,
+      "input": "do you know what sondera requires",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 26.410572
+    },
+    {
+      "stage": "after",
+      "construction": 69,
+      "input": "do you know if sondera requires water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 22.328851
+    },
+    {
+      "stage": "after",
+      "construction": 70,
+      "input": "es sondera clasea",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera es clasea.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": true,
+      "ms": 14.160971
+    },
+    {
+      "stage": "after",
+      "construction": 71,
+      "input": "is the sondera a clasea",
+      "language": 2,
+      "output": "From the taught statements: Sondera is clasea.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": true,
+      "ms": 15.767508
+    },
+    {
+      "stage": "after",
+      "construction": 72,
+      "input": "does sondera require water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 17.415806
+    },
+    {
+      "stage": "after",
+      "construction": 73,
+      "input": "y qué requiere",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 22.864192
+    },
+    {
+      "stage": "after",
+      "construction": 74,
+      "input": "qué requiere eso",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 22.66016
+    },
+    {
+      "stage": "after",
+      "construction": 75,
+      "input": "what does it require",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 21.728693
+    },
+    {
+      "stage": "after",
+      "construction": 76,
+      "input": "and what does it require",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 24.219036
+    },
+    {
+      "stage": "after",
+      "construction": 77,
+      "input": "y requiere agua",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 15.440284
+    },
+    {
+      "stage": "after",
+      "construction": 78,
+      "input": "eso requiere agua",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 17.542933
+    },
+    {
+      "stage": "after",
+      "construction": 79,
+      "input": "does it require water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 17.028132
+    },
+    {
+      "stage": "after",
+      "construction": 80,
+      "input": "and does it require water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 19.032576
+    },
+    {
+      "stage": "after",
+      "construction": 81,
+      "input": "y alterna",
+      "language": 1,
+      "output": "Según lo aprendido: Alterna requiere energía.",
+      "expected": "Según lo aprendido: Alterna requiere energía.",
+      "pass": true,
+      "ms": 24.80991
+    },
+    {
+      "stage": "after",
+      "construction": 82,
+      "input": "y el alterna",
+      "language": 1,
+      "output": "Según lo aprendido: Alterna requiere energía.",
+      "expected": "Según lo aprendido: Alterna requiere energía.",
+      "pass": true,
+      "ms": 24.079209
+    },
+    {
+      "stage": "after",
+      "construction": 83,
+      "input": "what about alterna",
+      "language": 2,
+      "output": "From the taught statements: Alterna requires energy.",
+      "expected": "From the taught statements: Alterna requires energy.",
+      "pass": true,
+      "ms": 22.978412
+    },
+    {
+      "stage": "after",
+      "construction": 84,
+      "input": "and alterna",
+      "language": 2,
+      "output": "From the taught statements: Alterna requires energy.",
+      "expected": "From the taught statements: Alterna requires energy.",
+      "pass": true,
+      "ms": 23.702082
+    },
+    {
+      "stage": "after",
+      "construction": 85,
+      "input": "y qué es",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera es clasea.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": true,
+      "ms": 22.772116
+    },
+    {
+      "stage": "after",
+      "construction": 86,
+      "input": "qué es eso",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera es clasea.",
+      "expected": "Según lo aprendido: Sondera es clasea.",
+      "pass": true,
+      "ms": 23.222732
+    },
+    {
+      "stage": "after",
+      "construction": 87,
+      "input": "what is it",
+      "language": 2,
+      "output": "From the taught statements: Sondera is clasea.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": true,
+      "ms": 24.164445
+    },
+    {
+      "stage": "after",
+      "construction": 88,
+      "input": "and what is it",
+      "language": 2,
+      "output": "From the taught statements: Sondera is clasea.",
+      "expected": "From the taught statements: Sondera is clasea.",
+      "pass": true,
+      "ms": 22.371894
+    },
+    {
+      "stage": "after",
+      "construction": 89,
+      "input": "me explicas qué requiere sondera",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 28.865016
+    },
+    {
+      "stage": "after",
+      "construction": 90,
+      "input": "please explain what sondera requires",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 27.534479
+    },
+    {
+      "stage": "after",
+      "construction": 91,
+      "input": "me dices si sondera requiere agua",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 20.324467
+    },
+    {
+      "stage": "after",
+      "construction": 92,
+      "input": "please tell me whether sondera requires water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 25.327284
+    },
+    {
+      "stage": "after",
+      "construction": 93,
+      "input": "entonces qué requiere",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 26.00704
+    },
+    {
+      "stage": "after",
+      "construction": 94,
+      "input": "then what does it require",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 24.502335
+    },
+    {
+      "stage": "after",
+      "construction": 95,
+      "input": "entonces requiere agua",
+      "language": 1,
+      "output": "Según lo aprendido: Sondera requiere agua.",
+      "expected": "Según lo aprendido: Sondera requiere agua.",
+      "pass": true,
+      "ms": 17.980621
+    },
+    {
+      "stage": "after",
+      "construction": 96,
+      "input": "then does it require water",
+      "language": 2,
+      "output": "From the taught statements: Sondera requires water.",
+      "expected": "From the taught statements: Sondera requires water.",
+      "pass": true,
+      "ms": 18.662599
+    }
+  ]
+}

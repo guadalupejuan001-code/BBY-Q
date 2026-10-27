@@ -1,6 +1,27 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E018 — continuar aprendiendo y responder con brevedad.**
+**Ruta activa: E019 — preguntas reformuladas y seguimiento del tema.**
+
+Continúa E018 con 32 construcciones adicionales: 96 en total y 539 entradas
+léxicas. Reconoce «sabes qué…», «do you know if…» y preguntas que reutilizan
+un referente, como «¿y qué requiere?» o «what is it?». Cambiar de sujeto
+consulta su propia evidencia. Si falta el tema, pide una pregunta completa.
+La intención y las posiciones se enseñan con ejemplos; la gestión acotada
+de referencias está implementada en XI. No implica comprensión general.
+
+Conserva la respuesta breve, el protocolo compacto anterior, la misma memoria
+RVPC2 y las dependencias fijadas. El código sigue en XI textual; la
+compactación binaria del programa es trabajo pendiente. Continúa con un tema
+factual activo y entradas de hasta 15 palabras, sin conversación abierta.
+
+Prueba local: **5.617 verificaciones**, 1.024 problemas nuevos de pregunta
+y las 1.522 consultas anteriores en ambos formatos. Las 32 sondas nuevas
+pasan de 0/32 a 32/32; esa puntuación se limita a esas formas. El checkpoint
+ocupa 319.274 bytes y conserva todos los registros aprendidos anteriores.
+
+[Entrenamiento, intención de pregunta, contexto y límites de E019](docs/AI_E019_CONTEXT_QUESTIONS.md).
+
+**E018 — continuar aprendiendo y responder con brevedad.**
 
 Continúa el checkpoint E017 sin repetir sus lecciones. Aprende 25 formas
 adicionales de preguntar, enseñar y retirar afirmaciones: 64 construcciones
