@@ -1,0 +1,52 @@
+# construction|intent|S|P|O|alias token+1|language|raw labeled syntax example
+# These examples teach syntax only, never their asserted content.
+40|8|5|0|0|0|1|qué significa gato
+40|8|6|0|0|0|1|qué significa perro
+41|8|5|0|0|0|1|qué significa un gato
+41|8|6|0|0|0|1|qué significa un perro
+42|8|5|0|0|0|2|what is the meaning of cat
+42|8|6|0|0|0|2|what is the meaning of dog
+43|8|5|0|0|0|2|tell me about cat
+43|8|6|0|0|0|2|tell me about dog
+44|8|5|0|0|0|1|háblame de gato
+44|8|6|0|0|0|1|háblame de perro
+45|8|5|0|0|0|1|háblame de un gato
+45|8|6|0|0|0|1|háblame de un perro
+46|1|5|23|0|0|1|me puedes decir qué es gato
+46|1|195|39|0|0|1|me puedes decir qué estudia filosofía
+47|1|5|23|0|0|1|puedes decirme qué es un gato
+47|1|71|25|0|0|1|puedes decirme qué necesita una planta
+48|1|5|25|0|0|2|can you explain what cat needs
+48|1|71|28|0|0|2|can you explain what plant uses
+49|1|5|25|0|0|2|could you tell me what cat needs
+49|1|71|28|0|0|2|could you tell me what plant uses
+50|2|5|23|40|0|1|dime si gato es mamífero
+50|2|110|25|114|0|1|dime si agua necesita energía
+51|2|5|23|40|0|2|tell me if cat is mammal
+51|2|110|25|114|0|2|tell me if water needs energy
+52|2|5|23|40|0|1|puedes decirme si el gato es mamífero
+52|2|110|25|114|0|1|puedes decirme si el agua necesita energía
+53|2|5|25|110|0|2|can you tell me if cat needs water
+53|2|71|28|114|0|2|can you tell me if plant uses energy
+54|5|5|23|40|0|2|why is cat mammal
+54|5|6|23|42|0|2|why is dog animal
+55|5|5|23|40|0|1|por qué el gato es un mamífero
+55|5|6|23|42|0|1|por qué el perro es un animal
+56|5|5|23|40|0|2|why is the cat a mammal
+56|5|6|23|41|0|2|why is the dog a vertebrate
+57|1|5|23|0|0|1|qué es gato por favor
+57|1|195|39|0|0|1|qué estudia filosofía por favor
+58|1|5|25|0|0|2|what does cat need please
+58|1|71|28|0|0|2|what does plant use please
+59|3|5|23|40|0|1|aprende que el gato es un mamífero
+59|3|6|23|42|0|1|recuerda que el perro es un animal
+60|3|5|23|40|0|2|learn that the cat is a mammal
+60|3|6|23|41|0|2|remember that the dog is a vertebrate
+61|4|5|23|7|0|1|aprende que el gato no es un ave
+61|4|6|23|71|0|1|recuerda que el perro no es una planta
+62|4|5|23|7|0|2|learn that the cat is not a bird
+62|4|6|23|71|0|2|remember that the dog is not a plant
+63|7|5|23|40|0|1|olvida que el gato es un mamífero
+63|7|6|23|42|0|1|olvida que el perro es un animal
+64|7|5|23|40|0|2|forget that the cat is a mammal
+64|7|6|23|41|0|2|forget that the dog is a vertebrate

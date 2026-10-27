@@ -1,0 +1,348 @@
+[
+  {
+    "stage": "before",
+    "construction": 40,
+    "input": "qué significa sondera",
+    "language": 1,
+    "output": "Ese nombre ya corresponde a otro concepto. Necesito que lo aclares.",
+    "ms": 12.11698
+  },
+  {
+    "stage": "before",
+    "construction": 41,
+    "input": "qué significa un sondera",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 14.81082
+  },
+  {
+    "stage": "before",
+    "construction": 42,
+    "input": "what is the meaning of sondera",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 24.574634
+  },
+  {
+    "stage": "before",
+    "construction": 43,
+    "input": "tell me about sondera",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 16.579282
+  },
+  {
+    "stage": "before",
+    "construction": 44,
+    "input": "háblame de sondera",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 13.584247
+  },
+  {
+    "stage": "before",
+    "construction": 45,
+    "input": "háblame de un sondera",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 14.732191
+  },
+  {
+    "stage": "before",
+    "construction": 46,
+    "input": "me puedes decir qué es sondera",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 22.718529
+  },
+  {
+    "stage": "before",
+    "construction": 47,
+    "input": "puedes decirme qué es un sondera",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 17.324989
+  },
+  {
+    "stage": "before",
+    "construction": 48,
+    "input": "can you explain what sondera requires",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 16.945916
+  },
+  {
+    "stage": "before",
+    "construction": 49,
+    "input": "could you tell me what sondera requires",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 18.00361
+  },
+  {
+    "stage": "before",
+    "construction": 50,
+    "input": "dime si sondera es organismo",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 17.770552
+  },
+  {
+    "stage": "before",
+    "construction": 51,
+    "input": "tell me if sondera is organism",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 15.767907
+  },
+  {
+    "stage": "before",
+    "construction": 52,
+    "input": "puedes decirme si el sondera es organismo",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 18.333097
+  },
+  {
+    "stage": "before",
+    "construction": 53,
+    "input": "can you tell me if sondera requires water",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 22.742426
+  },
+  {
+    "stage": "before",
+    "construction": 54,
+    "input": "why is sondera organism",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 15.243079
+  },
+  {
+    "stage": "before",
+    "construction": 55,
+    "input": "por qué el sondera es un organismo",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 17.62317
+  },
+  {
+    "stage": "before",
+    "construction": 56,
+    "input": "why is the sondera a vertebrate",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 17.014676
+  },
+  {
+    "stage": "before",
+    "construction": 57,
+    "input": "qué es sondera por favor",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 16.39232
+  },
+  {
+    "stage": "before",
+    "construction": 58,
+    "input": "what does sondera require please",
+    "language": 2,
+    "output": "I do not have enough information to answer.",
+    "ms": 18.287949
+  },
+  {
+    "stage": "before",
+    "input": "gato es organismo?",
+    "language": 1,
+    "output": "Un gato es un organismo. [gato -> mamífero -> vertebrado -> organismo]",
+    "ms": 11.970854
+  },
+  {
+    "stage": "before",
+    "input": "por qué?",
+    "language": 1,
+    "output": "La evidencia guardada es: Un gato es un organismo. [gato --es--> mamífero --es--> vertebrado --es--> organismo]",
+    "ms": 17.762155
+  },
+  {
+    "stage": "before",
+    "input": "qué es desconocidofalso?",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 12.335204
+  },
+  {
+    "stage": "after",
+    "construction": 40,
+    "input": "qué significa sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 31.865315
+  },
+  {
+    "stage": "after",
+    "construction": 41,
+    "input": "qué significa un sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 34.726164
+  },
+  {
+    "stage": "after",
+    "construction": 42,
+    "input": "what is the meaning of sondera",
+    "language": 2,
+    "output": "From the taught statements: Sondera is a mammal, a vertebrate, an animal and an organism.",
+    "ms": 34.612768
+  },
+  {
+    "stage": "after",
+    "construction": 43,
+    "input": "tell me about sondera",
+    "language": 2,
+    "output": "From the taught statements: Sondera is a mammal, a vertebrate, an animal and an organism.",
+    "ms": 34.956788
+  },
+  {
+    "stage": "after",
+    "construction": 44,
+    "input": "háblame de sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 30.85542
+  },
+  {
+    "stage": "after",
+    "construction": 45,
+    "input": "háblame de un sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 28.064829
+  },
+  {
+    "stage": "after",
+    "construction": 46,
+    "input": "me puedes decir qué es sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 29.28988
+  },
+  {
+    "stage": "after",
+    "construction": 47,
+    "input": "puedes decirme qué es un sondera",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 29.239814
+  },
+  {
+    "stage": "after",
+    "construction": 48,
+    "input": "can you explain what sondera requires",
+    "language": 2,
+    "output": "I do not have enough evidence to answer.",
+    "ms": 29.199733
+  },
+  {
+    "stage": "after",
+    "construction": 49,
+    "input": "could you tell me what sondera requires",
+    "language": 2,
+    "output": "I do not have enough evidence to answer.",
+    "ms": 30.270852
+  },
+  {
+    "stage": "after",
+    "construction": 50,
+    "input": "dime si sondera es organismo",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un organismo.",
+    "ms": 18.779156
+  },
+  {
+    "stage": "after",
+    "construction": 51,
+    "input": "tell me if sondera is organism",
+    "language": 2,
+    "output": "From the taught statements: Sondera is an organism.",
+    "ms": 18.785797
+  },
+  {
+    "stage": "after",
+    "construction": 52,
+    "input": "puedes decirme si el sondera es organismo",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un organismo.",
+    "ms": 20.004879
+  },
+  {
+    "stage": "after",
+    "construction": 53,
+    "input": "can you tell me if sondera requires water",
+    "language": 2,
+    "output": "I do not have enough evidence to answer.",
+    "ms": 27.169446
+  },
+  {
+    "stage": "after",
+    "construction": 54,
+    "input": "why is sondera organism",
+    "language": 2,
+    "output": "The stored evidence is: Sondera is an organism. [sondera --is--> mammal --is--> vertebrate --is--> organism]",
+    "ms": 20.591395
+  },
+  {
+    "stage": "after",
+    "construction": 55,
+    "input": "por qué el sondera es un organismo",
+    "language": 1,
+    "output": "La evidencia guardada es: Sondera es un organismo. [sondera --es--> mamífero --es--> vertebrado --es--> organismo]",
+    "ms": 24.709478
+  },
+  {
+    "stage": "after",
+    "construction": 56,
+    "input": "why is the sondera a vertebrate",
+    "language": 2,
+    "output": "The stored evidence is: Sondera is a vertebrate. [sondera --is--> mammal --is--> vertebrate]",
+    "ms": 18.458562
+  },
+  {
+    "stage": "after",
+    "construction": 57,
+    "input": "qué es sondera por favor",
+    "language": 1,
+    "output": "Según lo aprendido: Sondera es un mamífero, un vertebrado, un animal y un organismo.",
+    "ms": 28.879138
+  },
+  {
+    "stage": "after",
+    "construction": 58,
+    "input": "what does sondera require please",
+    "language": 2,
+    "output": "I do not have enough evidence to answer.",
+    "ms": 27.104427
+  },
+  {
+    "stage": "after",
+    "input": "gato es organismo?",
+    "language": 1,
+    "output": "Un gato es un organismo.",
+    "ms": 12.13092
+  },
+  {
+    "stage": "after",
+    "input": "por qué?",
+    "language": 1,
+    "output": "La evidencia guardada es: Un gato es un organismo. [gato --es--> mamífero --es--> vertebrado --es--> organismo]",
+    "ms": 17.731684
+  },
+  {
+    "stage": "after",
+    "input": "qué es desconocidofalso?",
+    "language": 1,
+    "output": "No tengo información suficiente para responder.",
+    "ms": 12.228148
+  }
+]

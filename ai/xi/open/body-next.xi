@@ -174,6 +174,28 @@ jge response_done
 store8 7800000000000000301 r0
 store8 7800000000000000300 0
 store8 7700000000000000038 0
+load8 r2 7800000000000000003
+cmp r2 1
+jne full_clause
+load8 r2 7800000000000000063
+cmp r2 1
+jne full_clause
+# Same subject and predicate: enumerate all objects without repeating them.
+store8 7800000000000000300 5
+sub r1 1
+cmp r0 r1
+je conjunction
+store8 7700000000000000039 0
+set r14 44
+print r14
+set r14 32
+print r14
+jmp object_article
+label conjunction
+store8 7800000000000000304 15
+store8 7800000000000000302 3
+halt
+label full_clause
 store8 7700000000000000039 0
 set r14 59
 print r14
@@ -183,6 +205,18 @@ jmp subject_article
 label response_done
 set r14 46
 print r14
+# E018 explicitly configured brevity affects presentation, not search.
+# Historical checkpoints (preference 0) and the compact API keep their proofs.
+load8 r0 7800000000000000003
+cmp r0 1
+jne show_proof
+load8 r0 7800000000000000063
+cmp r0 1
+jne show_proof
+load8 r0 7800000000000000085
+cmp r0 1
+jne done
+label show_proof
 load8 r0 7800000000000000121
 cmp r0 2
 jlt done

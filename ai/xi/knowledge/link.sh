@@ -19,7 +19,7 @@ link_module() {
   serial=$((serial+1))
 }
 case "$mode" in
-  open-word|open-pattern|open-utterance|open-calibrate|open-base)
+  open-word|open-pattern|open-utterance|open-calibrate|open-base|open-style)
     if [ "$mode" = open-word ] || [ "$mode" = open-pattern ] || [ "$mode" = open-base ]; then
       link_module "$root/read.xi" "m$((serial+1))_entry"
       link_module "$root/resolve.xi" "m$((serial+1))_entry"
@@ -29,6 +29,7 @@ case "$mode" in
       open-word) link_module "$root/../open/intern.xi" open_learn_cleanup;;
       open-pattern) link_module "$root/../open/learn-pattern.xi" open_learn_cleanup;;
       open-base) link_module "$root/../open/learn-base.xi" open_learn_cleanup;;
+      open-style) link_module "$root/../open/learn-style.xi" open_learn_cleanup;;
       open-utterance) link_module "$root/../open/learn-utterance.xi" open_learn_cleanup;;
       open-calibrate)
         link_module "$root/../open/calibrate-start.xi" learn_witness

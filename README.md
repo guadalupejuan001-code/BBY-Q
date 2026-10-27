@@ -1,6 +1,22 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E017 — aprender durante el diálogo, sobre E016.**
+**Ruta activa: E018 — continuar aprendiendo y responder con brevedad.**
+
+Continúa el checkpoint E017 sin repetir sus lecciones. Aprende 25 formas
+adicionales de preguntar, enseñar y retirar afirmaciones: 64 construcciones
+en total y 533 entradas léxicas. Usa respuestas breves por defecto, conserva
+todos los resultados y muestra la cadena de evidencia al pedir «¿por qué?».
+Mantiene «No tengo información suficiente para responder» y las aclaraciones
+de contradicción o ambigüedad.
+
+Prueba local: 3.905 verificaciones, 60 diálogos nuevos de 12 turnos y las
+1.522 consultas anteriores en respuesta breve y en la API compacta exacta.
+Checkpoint: 298.808 bytes. La reducción de texto no supone una aceleración
+general; sigue siendo conversación acotada, con 15 palabras por entrada.
+
+[Entrenamiento, respuestas, incertidumbre y mediciones de E018](docs/AI_E018_CONCISE_DIALOGUE.md).
+
+**E017 — aprender durante el diálogo, sobre E016.**
 
 BBY Q aprende afirmaciones, palabras y alias mediante enseñanzas explícitas,
 admite 39 construcciones supervisadas ES/EN, corrige contradicciones y deduce
