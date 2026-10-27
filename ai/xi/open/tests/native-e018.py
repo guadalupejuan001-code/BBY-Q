@@ -28,8 +28,8 @@ SURFACE=e017.SURFACE
 
 
 class Examiner(e017.Examiner):
-    def __init__(self,runtime,parent,out):
-        super().__init__(runtime,parent,out,expected_parent=PARENT_SHA)
+    def __init__(self,runtime,parent,out,*,expected_parent=PARENT_SHA):
+        super().__init__(runtime,parent,out,expected_parent=expected_parent)
         self.programs['open-style']=subprocess.check_output(['bash',str(ROOT.parent/'knowledge/link.sh'),'open-style'],text=True).split('\n',1)[1]
 
     def style(self,preference,reject=False):

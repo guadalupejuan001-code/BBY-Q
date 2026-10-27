@@ -9,9 +9,12 @@ je ambiguous
 load8 r0 7800000000000000064
 cmp r0 5
 je explain
+cmp r0 9
+jge contextual_roles
 store8 7800000000000000012 0
 cmp r0 0
 je done
+label contextual_roles
 # Resolve semantic labels from selected token positions, not host text parsing.
 set r1 0
 label role
@@ -50,6 +53,8 @@ add r1 1
 jmp role
 label dispatch
 load8 r0 7800000000000000064
+cmp r0 9
+jge contextual
 cmp r0 8
 je definition
 cmp r0 1
@@ -88,6 +93,59 @@ store8 7800000000000000090 2
 label query_ready
 store8 7800000000000000067 2
 halt
+label contextual
+# Only a supported preceding factual query supplies this unique referent.
+# 9: same S/new P, 10: same S/new P/O, 11: new S/same P,
+# 12: definition of same S. No contextual construction can teach a fact.
+cmp r0 11
+jne factual_context
+load8 r1 7700000000000000010
+cmp r1 1
+jne factual_context
+# The preexisting account domain owns "and Luis/pears" in an account topic.
+store8 7800000000000000012 0
+halt
+label factual_context
+load8 r1 7800000000000000012
+cmp r1 1
+je context_resolved
+# Legacy factual answers also have a unique supported S/P descriptor.
+load8 r1 7700000000000000010
+cmp r1 2
+jne context_missing
+load8 r1 7700000000000000007
+cmp r1 1
+jne context_missing
+load8 r1 7700000000000000008
+store8 7800000000000000014 r1
+store8 7800000000000000015 0
+load8 r1 7700000000000000009
+store8 7800000000000000016 r1
+store8 7800000000000000017 0
+label context_resolved
+store8 7800000000000000012 0
+cmp r0 11
+je context_subject
+load8 r1 7800000000000000014
+store8 7800000000000000072 r1
+load8 r1 7800000000000000015
+store8 7800000000000000073 r1
+cmp r0 12
+je definition
+cmp r0 9
+je property
+cmp r0 10
+je query
+jmp unsupported
+label context_subject
+load8 r1 7800000000000000016
+store8 7800000000000000074 r1
+load8 r1 7800000000000000017
+store8 7800000000000000075 r1
+jmp property
+label context_missing
+store8 7800000000000000080 12
+jmp act
 label teach
 # Conservative preflight prevents partially learned names at a full graph.
 load8 r0 7800000000000000008

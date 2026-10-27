@@ -2,7 +2,7 @@
 # Supervised construction ID/intent plus semantic labels; no slot ordering is
 # supplied. Infer masks from two differently labeled examples, retaining a
 # literal possibility until varying examples distinguish it from a variable.
-# +176 construction(1..64),+177 intent(1..8),+178 alias token+1,
+# +176 construction(1..96),+177 intent(1..12),+178 alias token+1,
 # +180/182/184 S/P/O u16. This teaches syntax, never answers or facts.
 load8 r0 7800000000000000002
 cmp r0 1
@@ -16,7 +16,7 @@ jlt invalid
 load8 r0 7800000000000000176
 cmp r0 1
 jlt invalid
-cmp r0 64
+cmp r0 96
 jgt invalid
 load8 r1 7800000000000000010
 cmp r0 r1
@@ -30,9 +30,25 @@ add r12 r0
 load8 r11 7800000000000000177
 cmp r11 1
 jlt invalid
-cmp r11 8
+cmp r11 12
 jgt invalid
 set r0 7
+cmp r11 9
+jne not_context_property
+set r0 2
+label not_context_property
+cmp r11 10
+jne not_context_verify
+set r0 6
+label not_context_verify
+cmp r11 11
+jne not_context_subject
+set r0 1
+label not_context_subject
+cmp r11 12
+jne not_context_definition
+set r0 0
+label not_context_definition
 cmp r11 8
 jne generic_required
 set r0 1
@@ -292,7 +308,11 @@ jge witness_ready
 # A supervised predicate role may remain the same across examples. A single
 # occurrence can still be distinguished from literal positions below.
 cmp r1 1
-je next_role
+jne varied_role
+# A predicate-only contextual frame must also vary its one explicit role.
+cmp r0 2
+jne next_role
+label varied_role
 mov r2 r0
 div r2 r3
 mod r2 2

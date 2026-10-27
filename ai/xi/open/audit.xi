@@ -183,7 +183,7 @@ add r0 1
 jmp model
 label patterns
 load8 r10 7800000000000000010
-cmp r10 64
+cmp r10 96
 jgt invalid
 set r0 0
 label pattern
@@ -202,7 +202,7 @@ add r7 1
 load8 r1 $r7
 cmp r1 1
 jlt invalid
-cmp r1 8
+cmp r1 12
 jgt invalid
 add r7 1
 load8 r8 $r7

@@ -1,0 +1,56 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E019_Context_Questions_ES_EN.rvp.gz.b64",
+  "decoded_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+  "decoded_bytes": 319274,
+  "parent": "BBYQ_E018_Concise_Dialogue_ES_EN.rvp.gz.b64",
+  "parent_sha256": "df074a27d284025ccd033373c92f116c5c3237455e9f51891fcfa0392828aaec",
+  "source_base_commit": "9f43f462420e67b2dfef01faf86e89aff6e269d6",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "new_constructions": 32,
+  "syntax_presentations": 60,
+  "total_constructions": 96,
+  "new_lexical_entries": 6,
+  "total_lexical_entries": 539,
+  "new_concepts": 2,
+  "new_surface_lessons": 2,
+  "new_world_assertions": 0,
+  "inherited_didactic_assertions": 12,
+  "heldout_examples_in_release": 0,
+  "previous_learned_records_unchanged": true,
+  "declared_header_updates": [
+    "U+4..5 next ID",
+    "U+6..7 lexical count",
+    "U+10 construction count"
+  ],
+  "context": "one supported factual subject/predicate, with existing account domain preserved",
+  "new_context_intents": {
+    "9": "same subject/new predicate",
+    "10": "same subject/new predicate/object",
+    "11": "new subject/same predicate",
+    "12": "same subject/is classification"
+  },
+  "program_format": "textual XI; no binary ISA added",
+  "presentation_preference": {
+    "default": "brief",
+    "explicit_why": "full stored evidence",
+    "compact_api": "unchanged"
+  },
+  "open_conversation_achieved": false,
+  "limits": {
+    "tokens": 15,
+    "input_bytes": 255,
+    "constructions": 96,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8
+  },
+  "intelligence": "XI only; same RVPC2 and unchanged pinned owner runtime",
+  "source_data_sha256": {
+    "e019-constructions.psv": "8949a3d4b67161ff302df57c243f2e58056a24745c309c884a1323947c837e87",
+    "e019-surface.psv": "4d634fe6854931f13083ead5942bd20356a55673f9b45e7619bb234909e042db",
+    "e019-words.psv": "130d5ed7277d6ce8266e84c29d6bbf672c284080985a201ae057c144862a2929"
+  }
+}

@@ -1,0 +1,62 @@
+# construction|intent|S|P|O|alias token+1|language|raw labeled syntax example
+# Supervision identifies query roles; examples do not assert their contents.
+65|1|5|23|0|0|1|sabes qué es gato
+65|1|71|25|0|0|1|sabes qué necesita planta
+66|1|5|23|0|0|1|sabes qué es el gato
+66|1|71|25|0|0|1|sabes qué necesita la planta
+67|2|5|23|40|0|1|sabes si gato es mamífero
+67|2|110|25|114|0|1|sabes si agua necesita energía
+68|1|5|25|0|0|2|do you know what cat needs
+68|1|71|28|0|0|2|do you know what plant uses
+69|2|5|23|40|0|2|do you know if cat is mammal
+69|2|110|25|114|0|2|do you know if water needs energy
+70|2|5|23|40|0|1|es gato mamífero
+70|2|6|23|42|0|1|es perro animal
+71|2|5|23|40|0|2|is the cat a mammal
+71|2|6|23|41|0|2|is the dog a vertebrate
+72|2|5|25|110|0|2|does cat need water
+72|2|71|28|114|0|2|does plant use energy
+73|9|0|25|0|0|1|y qué necesita
+73|9|0|28|0|0|1|y qué utiliza
+74|9|0|25|0|0|1|qué necesita eso
+74|9|0|28|0|0|1|qué utiliza eso
+75|9|0|25|0|0|2|what does it need
+75|9|0|28|0|0|2|what does it use
+76|9|0|25|0|0|2|and what does it need
+76|9|0|28|0|0|2|and what does it use
+77|10|0|23|40|0|1|y es mamífero
+77|10|0|25|114|0|1|y necesita energía
+78|10|0|23|40|0|1|eso es mamífero
+78|10|0|25|114|0|1|eso necesita energía
+79|10|0|25|110|0|2|does it need water
+79|10|0|28|114|0|2|does it use energy
+80|10|0|25|110|0|2|and does it need water
+80|10|0|28|114|0|2|and does it use energy
+81|11|5|0|0|0|1|y gato
+81|11|6|0|0|0|1|y perro
+82|11|5|0|0|0|1|y el gato
+82|11|6|0|0|0|1|y el perro
+83|11|5|0|0|0|2|what about cat
+83|11|6|0|0|0|2|what about dog
+84|11|5|0|0|0|2|and cat
+84|11|6|0|0|0|2|and dog
+85|12|0|0|0|0|1|y qué es
+86|12|0|0|0|0|1|qué es eso
+87|12|0|0|0|0|2|what is it
+88|12|0|0|0|0|2|and what is it
+89|1|5|23|0|0|1|me explicas qué es gato
+89|1|71|25|0|0|1|me explicas qué necesita planta
+90|1|5|25|0|0|2|please explain what cat needs
+90|1|71|28|0|0|2|please explain what plant uses
+91|2|5|23|40|0|1|me dices si gato es mamífero
+91|2|110|25|114|0|1|me dices si agua necesita energía
+92|2|5|23|40|0|2|please tell me whether cat is mammal
+92|2|110|25|114|0|2|please tell me whether water needs energy
+93|9|0|25|0|0|1|entonces qué necesita
+93|9|0|28|0|0|1|entonces qué utiliza
+94|9|0|25|0|0|2|then what does it need
+94|9|0|28|0|0|2|then what does it use
+95|10|0|23|40|0|1|entonces es mamífero
+95|10|0|25|114|0|1|entonces necesita energía
+96|10|0|25|110|0|2|then does it need water
+96|10|0|28|114|0|2|then does it use energy
