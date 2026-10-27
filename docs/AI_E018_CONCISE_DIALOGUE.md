@@ -127,7 +127,7 @@ No incluye diseñar los módulos, compilar ni ejecutar los exámenes.
 La regresión E017 se registra por separado en
 `docs/evidence/e018-e017-regression.json`.
 Aprueba sus **4.376 verificaciones** y recupera exactamente el mismo núcleo,
-memoria lógica y enlaces del checkpoint E017. Su contador de asignaciones
+memoria lógica y enlaces del checkpoint E017. Su contador de revisiones
 MXIM2 cambia por las escrituras temporales del selector; por eso difiere la
 huella del archivo serializado, aunque el estado lógico es idéntico.
 

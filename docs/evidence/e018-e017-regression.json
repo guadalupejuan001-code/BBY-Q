@@ -65,5 +65,5 @@
   "released_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
   "matches_released_logical_snapshot": true,
   "serialization_metadata_changed": true,
-  "serialization_note": "MXIM2 allocation counter changes from 586767 to 586827 after additional transient matcher writes; core, logical memory and bindings are identical."
+  "serialization_note": "MXIM2 revision counter changes from 586767 to 586827 after additional transient matcher writes; core, logical memory and bindings are identical."
 }
