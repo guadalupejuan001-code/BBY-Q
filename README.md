@@ -1,6 +1,35 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E020 — millones de ejemplos estructurados en XI.**
+**Ruta activa: E021 — lenguaje, composición de preguntas y diálogo acotado.**
+
+Continúa E020 con **2.119.224 secuencias sintéticas distintas** de lenguaje,
+consumidas en XI. Añade **128 construcciones** (224 en total), 109 entradas
+léxicas (648 en los registros K+U), ocho actos de diálogo ES/EN y memoria de
+los ocho últimos temas factuales. Retomar un tema consulta otra vez su evidencia.
+Una vía compositiva permite un preámbulo nuevo seguido de una cláusula conocida
+con un sujeto y un predicado; las grafías interrogativas y vetos se enseñan.
+
+La comparación con E017–E020 pasa de 0/128 a **128/128 sondas de los marcos
+nuevos**, y de 0/12 a **12/12 preguntas independientes con preámbulos nuevos**.
+También pasa 12/12 controles de abstención. Las 16 reformulaciones de desarrollo
+quedan en **7/16**, por lo que persiste una cobertura limitada. Estos exámenes
+acotados no equivalen a una puntuación de comprensión general.
+
+Aprueba **5.880 comprobaciones**, conserva las 1.522 consultas anteriores en
+ambas superficies y las 1.024 consultas numéricas reservadas de E020. La
+validación estructurada separa 4.816 combinaciones nuevas de 24 revisiones
+literales. La fase masiva tarda 337,92 s; el estado publicado ocupa **465.830
+bytes**. Continúa usando XI, RVPC2 y los mismos runtimes fijados.
+
+El flujo masivo contiene tokens de conceptos supervisados; las presentaciones
+iniciales y los exámenes de inferencia usan texto normal. No añade hechos del
+mundo ni una conversación abierta general. Mantiene 255 bytes y 15 palabras
+por turno. Python sigue como currículo/examinador y C++ como runtime/transporte;
+las decisiones del agente se ejecutan en XI.
+
+[Resultados, comparación, arquitectura, límites y reproducción de E021](docs/AI_E021_LANGUAGE_DIALOGUE.md).
+
+**E020 — millones de ejemplos aritméticos estructurados en XI.**
 
 Continúa E019 con **2.097.152 ejemplos sintéticos distintos**, consumidos en
 2.048 lotes nativos. Identifica ocho conceptos numéricos entre primitivas

@@ -48,7 +48,7 @@ def lexicon(memory):
 
 def immutable(path):
     core,memory,bindings=conversation.immutable(path)
-    return core,{a:b for a,b in memory.items() if not U+12<=a<U+20},bindings
+    return core,{a:b for a,b in memory.items() if not (U+12<=a<U+20 or 8000000000000000128<=a<8000000000000000256)},bindings
 
 
 def base_immutable(path):

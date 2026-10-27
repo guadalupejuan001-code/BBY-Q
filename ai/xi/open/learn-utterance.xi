@@ -6,7 +6,7 @@ jne invalid
 load8 r0 7800000000000000304
 cmp r0 1
 jlt invalid
-cmp r0 16
+cmp r0 24
 jgt invalid
 sub r0 1
 mul r0 512

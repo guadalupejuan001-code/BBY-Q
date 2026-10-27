@@ -17,8 +17,13 @@ set r0 0
 label pattern
 load8 r1 7800000000000000187
 cmp r0 r1
-jge done
+jge bank_complete
 set r1 7800000000000010000
+load8 r2 7800000000000000190
+cmp r2 0
+je record_bank_ready
+set r1 8000000000000010000
+label record_bank_ready
 mov r2 r0
 mul r2 96
 add r1 r2
@@ -172,8 +177,18 @@ jne ambiguous
 load8 r3 7800000000000000071
 cmp r3 r12
 jne ambiguous
+mov r3 r1
+add r3 76
+load8 r3 $r3
+load8 r4 7800000000000000079
+cmp r3 r4
+jne ambiguous
 jmp next_pattern
 label first
+mov r3 r1
+add r3 76
+load8 r3 $r3
+store8 7800000000000000079 r3
 load8 r3 7800000000000000189
 store8 7800000000000000188 r3
 store8 7800000000000000065 0
@@ -187,6 +202,18 @@ label ambiguous
 store8 7800000000000000065 1
 label next_pattern
 add r0 1
+jmp pattern
+label bank_complete
+load8 r2 7800000000000000190
+cmp r2 1
+je done
+load8 r2 8000000000000000003
+cmp r2 1
+jne done
+store8 7800000000000000190 1
+load8 r2 8000000000000000004
+store8 7800000000000000187 r2
+set r0 0
 jmp pattern
 label done
 halt

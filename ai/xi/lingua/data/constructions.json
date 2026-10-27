@@ -1,0 +1,898 @@
+[
+  {
+    "id": 1,
+    "intent": 2,
+    "language": 1,
+    "text": "me gustaría saber si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 2,
+    "intent": 2,
+    "language": 1,
+    "text": "quisiera confirmar si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 3,
+    "intent": 2,
+    "language": 1,
+    "text": "podrías comprobar si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 4,
+    "intent": 2,
+    "language": 1,
+    "text": "confirma si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 5,
+    "intent": 2,
+    "language": 1,
+    "text": "verifica si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 6,
+    "intent": 2,
+    "language": 1,
+    "text": "puedes comprobar si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 7,
+    "intent": 2,
+    "language": 1,
+    "text": "necesito saber si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 8,
+    "intent": 2,
+    "language": 1,
+    "text": "quiero confirmar si {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 9,
+    "intent": 2,
+    "language": 2,
+    "text": "i would like to know whether {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 10,
+    "intent": 2,
+    "language": 2,
+    "text": "i want to check whether {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 11,
+    "intent": 2,
+    "language": 2,
+    "text": "could you check if {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 12,
+    "intent": 2,
+    "language": 2,
+    "text": "please check whether {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 13,
+    "intent": 2,
+    "language": 2,
+    "text": "can you confirm whether {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 14,
+    "intent": 2,
+    "language": 2,
+    "text": "i need to know if {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 15,
+    "intent": 2,
+    "language": 2,
+    "text": "tell me whether it is true that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 16,
+    "intent": 2,
+    "language": 2,
+    "text": "is it correct that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 17,
+    "intent": 3,
+    "language": 1,
+    "text": "te enseño que {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 18,
+    "intent": 3,
+    "language": 1,
+    "text": "guarda el dato de que {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 19,
+    "intent": 3,
+    "language": 1,
+    "text": "recuerda esta afirmación {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 20,
+    "intent": 3,
+    "language": 1,
+    "text": "aprende esta información {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 21,
+    "intent": 3,
+    "language": 2,
+    "text": "here is a statement to learn {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 22,
+    "intent": 3,
+    "language": 2,
+    "text": "save the statement that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 23,
+    "intent": 3,
+    "language": 2,
+    "text": "remember this statement {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 24,
+    "intent": 3,
+    "language": 2,
+    "text": "please learn the fact that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 25,
+    "intent": 5,
+    "language": 1,
+    "text": "puedes explicar por qué {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 26,
+    "intent": 5,
+    "language": 1,
+    "text": "dime la razón por la que {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 27,
+    "intent": 5,
+    "language": 1,
+    "text": "muestra por qué {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 28,
+    "intent": 5,
+    "language": 1,
+    "text": "justifica por qué {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 29,
+    "intent": 5,
+    "language": 2,
+    "text": "show why {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 30,
+    "intent": 5,
+    "language": 2,
+    "text": "can you explain why {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 31,
+    "intent": 5,
+    "language": 2,
+    "text": "what is the evidence that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 32,
+    "intent": 5,
+    "language": 2,
+    "text": "explain the evidence that {S} {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 33,
+    "intent": 1,
+    "language": 1,
+    "text": "me gustaría saber qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 34,
+    "intent": 1,
+    "language": 1,
+    "text": "quisiera conocer qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 35,
+    "intent": 1,
+    "language": 1,
+    "text": "cuéntame qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 36,
+    "intent": 1,
+    "language": 1,
+    "text": "necesito saber qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 37,
+    "intent": 1,
+    "language": 1,
+    "text": "quiero saber qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 38,
+    "intent": 1,
+    "language": 1,
+    "text": "podrías contarme qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 39,
+    "intent": 1,
+    "language": 1,
+    "text": "dime entonces qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 40,
+    "intent": 1,
+    "language": 1,
+    "text": "puedes aclarar qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 41,
+    "intent": 1,
+    "language": 1,
+    "text": "me aclaras qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 42,
+    "intent": 1,
+    "language": 1,
+    "text": "podemos revisar qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 43,
+    "intent": 1,
+    "language": 1,
+    "text": "quisiera preguntar qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 44,
+    "intent": 1,
+    "language": 1,
+    "text": "tengo una pregunta qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 45,
+    "intent": 1,
+    "language": 1,
+    "text": "qué {P} {S} exactamente",
+    "act": 0
+  },
+  {
+    "id": 46,
+    "intent": 1,
+    "language": 1,
+    "text": "qué {P} {S} según lo aprendido",
+    "act": 0
+  },
+  {
+    "id": 47,
+    "intent": 1,
+    "language": 1,
+    "text": "por favor aclara qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 48,
+    "intent": 1,
+    "language": 1,
+    "text": "necesito que expliques qué {P} {S}",
+    "act": 0
+  },
+  {
+    "id": 49,
+    "intent": 1,
+    "language": 2,
+    "text": "i would like to know what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 50,
+    "intent": 1,
+    "language": 2,
+    "text": "i want to know what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 51,
+    "intent": 1,
+    "language": 2,
+    "text": "please clarify what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 52,
+    "intent": 1,
+    "language": 2,
+    "text": "could you clarify what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 53,
+    "intent": 1,
+    "language": 2,
+    "text": "i need to know what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 54,
+    "intent": 1,
+    "language": 2,
+    "text": "tell me exactly what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 55,
+    "intent": 1,
+    "language": 2,
+    "text": "let us review what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 56,
+    "intent": 1,
+    "language": 2,
+    "text": "can we review what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 57,
+    "intent": 1,
+    "language": 2,
+    "text": "i have a question what does {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 58,
+    "intent": 1,
+    "language": 2,
+    "text": "help me understand what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 59,
+    "intent": 1,
+    "language": 2,
+    "text": "explain to me what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 60,
+    "intent": 1,
+    "language": 2,
+    "text": "what does {S} {P} exactly",
+    "act": 0
+  },
+  {
+    "id": 61,
+    "intent": 1,
+    "language": 2,
+    "text": "what does {S} {P} according to what you learned",
+    "act": 0
+  },
+  {
+    "id": 62,
+    "intent": 1,
+    "language": 2,
+    "text": "please describe what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 63,
+    "intent": 1,
+    "language": 2,
+    "text": "could you describe what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 64,
+    "intent": 1,
+    "language": 2,
+    "text": "i wonder what {S} {P}",
+    "act": 0
+  },
+  {
+    "id": 65,
+    "intent": 8,
+    "language": 1,
+    "text": "cuéntame sobre {S}",
+    "act": 0
+  },
+  {
+    "id": 66,
+    "intent": 8,
+    "language": 1,
+    "text": "podemos hablar de {S}",
+    "act": 0
+  },
+  {
+    "id": 67,
+    "intent": 8,
+    "language": 1,
+    "text": "me gustaría conocer {S}",
+    "act": 0
+  },
+  {
+    "id": 68,
+    "intent": 8,
+    "language": 1,
+    "text": "necesito una definición de {S}",
+    "act": 0
+  },
+  {
+    "id": 69,
+    "intent": 8,
+    "language": 1,
+    "text": "dame una definición de {S}",
+    "act": 0
+  },
+  {
+    "id": 70,
+    "intent": 8,
+    "language": 1,
+    "text": "explica el concepto de {S}",
+    "act": 0
+  },
+  {
+    "id": 71,
+    "intent": 8,
+    "language": 1,
+    "text": "cómo defines {S}",
+    "act": 0
+  },
+  {
+    "id": 72,
+    "intent": 8,
+    "language": 1,
+    "text": "puedes definir {S}",
+    "act": 0
+  },
+  {
+    "id": 73,
+    "intent": 8,
+    "language": 1,
+    "text": "qué sabes acerca de {S}",
+    "act": 0
+  },
+  {
+    "id": 74,
+    "intent": 8,
+    "language": 1,
+    "text": "quisiera entender qué es {S}",
+    "act": 0
+  },
+  {
+    "id": 75,
+    "intent": 8,
+    "language": 1,
+    "text": "explícame qué significa {S}",
+    "act": 0
+  },
+  {
+    "id": 76,
+    "intent": 8,
+    "language": 1,
+    "text": "quiero aprender sobre {S}",
+    "act": 0
+  },
+  {
+    "id": 77,
+    "intent": 8,
+    "language": 2,
+    "text": "please define {S}",
+    "act": 0
+  },
+  {
+    "id": 78,
+    "intent": 8,
+    "language": 2,
+    "text": "could you define {S}",
+    "act": 0
+  },
+  {
+    "id": 79,
+    "intent": 8,
+    "language": 2,
+    "text": "can we talk about {S}",
+    "act": 0
+  },
+  {
+    "id": 80,
+    "intent": 8,
+    "language": 2,
+    "text": "i would like to learn about {S}",
+    "act": 0
+  },
+  {
+    "id": 81,
+    "intent": 8,
+    "language": 2,
+    "text": "give me a definition of {S}",
+    "act": 0
+  },
+  {
+    "id": 82,
+    "intent": 8,
+    "language": 2,
+    "text": "explain the concept of {S}",
+    "act": 0
+  },
+  {
+    "id": 83,
+    "intent": 8,
+    "language": 2,
+    "text": "how do you define {S}",
+    "act": 0
+  },
+  {
+    "id": 84,
+    "intent": 8,
+    "language": 2,
+    "text": "what do you know about {S}",
+    "act": 0
+  },
+  {
+    "id": 85,
+    "intent": 8,
+    "language": 2,
+    "text": "i need a definition of {S}",
+    "act": 0
+  },
+  {
+    "id": 86,
+    "intent": 8,
+    "language": 2,
+    "text": "help me understand the meaning of {S}",
+    "act": 0
+  },
+  {
+    "id": 87,
+    "intent": 8,
+    "language": 2,
+    "text": "describe the meaning of {S}",
+    "act": 0
+  },
+  {
+    "id": 88,
+    "intent": 8,
+    "language": 2,
+    "text": "i want to learn about {S}",
+    "act": 0
+  },
+  {
+    "id": 89,
+    "intent": 9,
+    "language": 1,
+    "text": "y entonces qué {P}",
+    "act": 0
+  },
+  {
+    "id": 90,
+    "intent": 9,
+    "language": 1,
+    "text": "qué {P} ese concepto",
+    "act": 0
+  },
+  {
+    "id": 91,
+    "intent": 9,
+    "language": 1,
+    "text": "me dices qué {P} eso",
+    "act": 0
+  },
+  {
+    "id": 92,
+    "intent": 9,
+    "language": 1,
+    "text": "y eso qué {P}",
+    "act": 0
+  },
+  {
+    "id": 93,
+    "intent": 9,
+    "language": 2,
+    "text": "so what does it {P}",
+    "act": 0
+  },
+  {
+    "id": 94,
+    "intent": 9,
+    "language": 2,
+    "text": "what does that {P}",
+    "act": 0
+  },
+  {
+    "id": 95,
+    "intent": 9,
+    "language": 2,
+    "text": "please tell me what it {P}",
+    "act": 0
+  },
+  {
+    "id": 96,
+    "intent": 9,
+    "language": 2,
+    "text": "and it {P} what",
+    "act": 0
+  },
+  {
+    "id": 97,
+    "intent": 10,
+    "language": 1,
+    "text": "y entonces {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 98,
+    "intent": 10,
+    "language": 1,
+    "text": "me dices si eso {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 99,
+    "intent": 10,
+    "language": 2,
+    "text": "so does it {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 100,
+    "intent": 10,
+    "language": 2,
+    "text": "can you tell me if it {P} {O}",
+    "act": 0
+  },
+  {
+    "id": 101,
+    "intent": 12,
+    "language": 1,
+    "text": "y eso qué es",
+    "act": 0
+  },
+  {
+    "id": 102,
+    "intent": 12,
+    "language": 1,
+    "text": "cómo se define eso",
+    "act": 0
+  },
+  {
+    "id": 103,
+    "intent": 12,
+    "language": 2,
+    "text": "what does that mean",
+    "act": 0
+  },
+  {
+    "id": 104,
+    "intent": 12,
+    "language": 2,
+    "text": "please define it",
+    "act": 0
+  },
+  {
+    "id": 105,
+    "intent": 14,
+    "language": 1,
+    "text": "volvamos a {S}",
+    "act": 0
+  },
+  {
+    "id": 106,
+    "intent": 14,
+    "language": 1,
+    "text": "retoma el tema de {S}",
+    "act": 0
+  },
+  {
+    "id": 107,
+    "intent": 14,
+    "language": 2,
+    "text": "back to {S}",
+    "act": 0
+  },
+  {
+    "id": 108,
+    "intent": 14,
+    "language": 2,
+    "text": "return to the topic of {S}",
+    "act": 0
+  },
+  {
+    "id": 109,
+    "intent": 15,
+    "language": 1,
+    "text": "volvamos al tema anterior",
+    "act": 0
+  },
+  {
+    "id": 110,
+    "intent": 15,
+    "language": 1,
+    "text": "retoma el tema anterior",
+    "act": 0
+  },
+  {
+    "id": 111,
+    "intent": 15,
+    "language": 2,
+    "text": "back to the previous topic",
+    "act": 0
+  },
+  {
+    "id": 112,
+    "intent": 15,
+    "language": 2,
+    "text": "return to the previous topic",
+    "act": 0
+  },
+  {
+    "id": 113,
+    "intent": 13,
+    "language": 1,
+    "text": "muchas gracias",
+    "act": 17
+  },
+  {
+    "id": 114,
+    "intent": 13,
+    "language": 2,
+    "text": "thank you very much",
+    "act": 17
+  },
+  {
+    "id": 115,
+    "intent": 13,
+    "language": 1,
+    "text": "hasta luego",
+    "act": 18
+  },
+  {
+    "id": 116,
+    "intent": 13,
+    "language": 2,
+    "text": "see you later",
+    "act": 18
+  },
+  {
+    "id": 117,
+    "intent": 13,
+    "language": 1,
+    "text": "cómo estás",
+    "act": 19
+  },
+  {
+    "id": 118,
+    "intent": 13,
+    "language": 2,
+    "text": "how are you",
+    "act": 19
+  },
+  {
+    "id": 119,
+    "intent": 13,
+    "language": 1,
+    "text": "qué puedes hacer",
+    "act": 20
+  },
+  {
+    "id": 120,
+    "intent": 13,
+    "language": 2,
+    "text": "what can you do",
+    "act": 20
+  },
+  {
+    "id": 121,
+    "intent": 13,
+    "language": 1,
+    "text": "puedes conversar libremente",
+    "act": 21
+  },
+  {
+    "id": 122,
+    "intent": 13,
+    "language": 2,
+    "text": "can you discuss anything",
+    "act": 21
+  },
+  {
+    "id": 123,
+    "intent": 13,
+    "language": 1,
+    "text": "no entendí",
+    "act": 22
+  },
+  {
+    "id": 124,
+    "intent": 13,
+    "language": 2,
+    "text": "i did not understand",
+    "act": 22
+  },
+  {
+    "id": 125,
+    "intent": 13,
+    "language": 1,
+    "text": "está bien",
+    "act": 23
+  },
+  {
+    "id": 126,
+    "intent": 13,
+    "language": 2,
+    "text": "that is clear",
+    "act": 23
+  },
+  {
+    "id": 127,
+    "intent": 13,
+    "language": 1,
+    "text": "qué necesitas para responder",
+    "act": 24
+  },
+  {
+    "id": 128,
+    "intent": 13,
+    "language": 2,
+    "text": "what do you need to answer",
+    "act": 24
+  }
+]

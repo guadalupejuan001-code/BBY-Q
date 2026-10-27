@@ -8,6 +8,8 @@ jne status
 set r0 3
 store8 7800000000000000080 3
 label status
+cmp r0 13
+je social_act
 cmp r0 2
 jle supported
 store8 7800000000000000012 0
@@ -65,6 +67,13 @@ set r0 12
 jmp act_ready
 label context_act
 set r0 16
+jmp act_ready
+label social_act
+load8 r0 7800000000000000079
+cmp r0 17
+jlt invalid
+cmp r0 24
+jgt invalid
 label act_ready
 store8 7800000000000000304 r0
 store8 7800000000000000302 2
@@ -150,3 +159,5 @@ halt
 label compact
 store8 7800000000000000302 1
 halt
+label invalid
+div r0 0

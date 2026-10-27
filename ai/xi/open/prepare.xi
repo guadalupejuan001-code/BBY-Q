@@ -53,6 +53,13 @@ add r1 1
 jmp role
 label dispatch
 load8 r0 7800000000000000064
+cmp r0 13
+je social
+cmp r0 14
+je resume_named
+cmp r0 15
+je resume_previous
+load8 r0 7800000000000000064
 cmp r0 9
 jge contextual
 cmp r0 8
@@ -73,6 +80,18 @@ je alias
 cmp r0 7
 je retract
 jmp unsupported
+label social
+store8 7800000000000000080 13
+store8 7800000000000000067 5
+halt
+label resume_named
+store8 8000000000000000025 1
+jmp resume_ready
+label resume_previous
+store8 8000000000000000025 2
+label resume_ready
+store8 7800000000000000067 6
+halt
 label definition
 load8 r0 7800000000000000032
 load8 r14 7800000000000000033
