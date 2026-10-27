@@ -1,6 +1,35 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E021 — lenguaje, composición de preguntas y diálogo acotado.**
+**Ruta activa: E022 — composición aprendida de peticiones ES/EN en XI.**
+
+Continúa E021 con **39 pares de frases** que inducen **33 reglas** reutilizables
+y 19 entradas léxicas. Combina peticiones, modificadores y coletillas; también
+admite relativas interrogativas y sujetos situados antes de la pregunta.
+Conserva las 224 construcciones y el aprendizaje de las campañas anteriores.
+No vuelve a contar sus millones de ejemplos como entrenamiento nuevo.
+
+En una comparación con los mismos datos y runtime, las 110 composiciones
+completas nuevas pasan de **1/110 en E020 y E021 a 110/110 en E022**. Las
+16 reformulaciones de desarrollo pasan de **7/16 a 16/16** frente a E021.
+Las piezas están supervisadas; estos resultados no miden conversación general.
+
+Aprueba **6.365 comprobaciones** locales, incluidas 880 consultas de
+transferencia, las formas E018/E019/E021, las 1.522 consultas anteriores en ambas
+superficies y las 1.024 cuentas reservadas E020. La enseñanza nueva tarda
+**3.12 s** con el runtime ya compilado. El estado ocupa **500.410 bytes**,
+34.580 más que E021. Los tiempos dependen del equipo y no demuestran una
+aceleración general.
+
+Se conserva la respuesta breve y la abstención cuando falta evidencia. Las
+reformulaciones solo pueden producir consultas; una interpretación ambigua o
+fallida recupera la entrada original. XI ejecuta el aprendizaje y la inferencia,
+con el mismo runtime C++ y Python como currículo, transporte y examinador.
+Persisten 255 bytes y 15 palabras por turno; todavía no hay conversación abierta
+general ni prosa libre.
+
+[Resultados, comparación, arquitectura, límites y reproducción de E022](docs/AI_E022_COMPOSITIONAL_REQUESTS.md).
+
+**E021 — lenguaje, composición de preguntas y diálogo acotado.**
 
 Continúa E020 con **2.119.224 secuencias sintéticas distintas** de lenguaje,
 consumidas en XI. Añade **128 construcciones** (224 en total), 109 entradas

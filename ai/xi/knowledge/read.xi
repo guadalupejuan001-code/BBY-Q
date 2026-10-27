@@ -24,6 +24,12 @@ jge end_text
 set r7 7400000000000000128
 add r7 r0
 load8 r3 $r7
+cmp r3 44
+jne ordinary_separator
+load8 r7 8100000000000000003
+cmp r7 1
+je separator
+label ordinary_separator
 cmp r3 32
 je separator
 cmp r3 9
