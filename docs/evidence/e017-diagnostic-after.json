@@ -1,0 +1,128 @@
+[
+  {
+    "group": "paraphrase",
+    "input": "explícame qué es un gato",
+    "output": "Un gato es un mamífero.",
+    "ms": 21.344212,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "paraphrase",
+    "input": "dime qué estudia filosofía",
+    "output": "Filosofía estudia conciencia; filosofía estudia conocimiento.",
+    "ms": 15.216522,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "paraphrase",
+    "input": "quisiera saber qué es neurona",
+    "output": "Una neurona es una célula.",
+    "ms": 14.444897,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "teaching",
+    "input": "aprende que neral es mamífero",
+    "output": "Aprendí esa afirmación del diálogo.",
+    "ms": 13.135798,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "new_concept",
+    "input": "qué es neral?",
+    "output": "Según lo aprendido: Neral es un mamífero; neral es un vertebrado; neral es un animal; neral es un organismo.",
+    "ms": 26.585096,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "new_reasoning",
+    "input": "neral es organismo?",
+    "output": "Según lo aprendido: Neral es un organismo. [neral --es--> mamífero --es--> vertebrado --es--> organismo]",
+    "ms": 17.936743,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "explanation",
+    "input": "por qué?",
+    "output": "La evidencia guardada es: Neral es un organismo. [neral --es--> mamífero --es--> vertebrado --es--> organismo]",
+    "ms": 17.664201,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "alias",
+    "input": "michi significa gato",
+    "output": "Aprendí ese nombre para el mismo concepto.",
+    "ms": 10.880361,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "new_alias",
+    "input": "qué es michi?",
+    "output": "Un gato es un mamífero.",
+    "ms": 12.265283,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "new_predicate",
+    "input": "recuerda que neri requiere agua",
+    "output": "Aprendí esa afirmación del diálogo.",
+    "ms": 13.583986,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "new_relation",
+    "input": "neri requiere agua?",
+    "output": "Según lo aprendido: Neri requiere agua.",
+    "ms": 11.504414,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "correction",
+    "input": "olvida que neral es mamífero",
+    "output": "Retiré esa afirmación enseñada en el diálogo.",
+    "ms": 13.259245,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "paraphrase",
+    "input": "¿es cierto que gato es mamífero?",
+    "output": "Un gato es un mamífero.",
+    "ms": 14.390279,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "negation",
+    "input": "gato no es ave?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 14.55935,
+    "before": "No tengo información suficiente para responder."
+  },
+  {
+    "group": "control",
+    "input": "qué es gato?",
+    "output": "Un gato es un mamífero.",
+    "ms": 11.414868,
+    "before": "Un gato es un mamífero."
+  },
+  {
+    "group": "control",
+    "input": "gato es organismo?",
+    "output": "Un gato es un organismo. [gato -> mamífero -> vertebrado -> organismo]",
+    "ms": 11.781883,
+    "before": "Un gato es un organismo. [gato -> mamífero -> vertebrado -> organismo]"
+  },
+  {
+    "group": "control",
+    "input": "hola",
+    "output": "Hola. Soy BBY Q.",
+    "ms": 9.578839,
+    "before": "Hola. Soy BBY Q."
+  },
+  {
+    "group": "control",
+    "input": "ana tiene dos manzanas",
+    "output": "Ana tiene dos manzanas.",
+    "ms": 13.73913,
+    "before": "Ana tiene dos manzanas."
+  }
+]

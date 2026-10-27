@@ -36,6 +36,18 @@ add r0 1
 cmp r0 16
 jlt conversation_context
 label done
+load8 r0 7800000000000000002
+cmp r0 1
+jne finish
+set r0 12
+label open_context
+set r7 7800000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+cmp r0 20
+jlt open_context
+label finish
 halt
 label invalid
 div r0 0

@@ -1,0 +1,32 @@
+#!reverse-pc-machine-v1
+# +87=1 supported/blocked direct answer;0 means rule search is needed.
+load8 r0 7800000000000000208
+cmp r0 0
+je need_rule
+store8 7800000000000000087 1
+cmp r0 3
+je conflict
+store8 7800000000000000080 r0
+load8 r0 7800000000000000209
+cmp r0 2
+jlt answer
+store8 7800000000000000089 1
+label answer
+load8 r0 7800000000000000076
+load8 r14 7800000000000000077
+mul r14 256
+add r0 r14
+mov r14 r0
+mod r14 256
+store8 7800000000008300000 r14
+mov r14 r0
+div r14 256
+store8 7800000000008300001 r14
+store8 7800000000000000082 1
+halt
+label conflict
+store8 7800000000000000080 4
+halt
+label need_rule
+store8 7800000000000000087 0
+halt

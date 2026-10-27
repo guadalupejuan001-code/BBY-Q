@@ -1,0 +1,67 @@
+#!reverse-pc-machine-v1
+load8 r0 7800000000000000072
+load8 r14 7800000000000000073
+mul r14 256
+add r0 r14
+mov r14 r0
+mod r14 256
+store8 7800000000000000160 r14
+mov r14 r0
+div r14 256
+store8 7800000000000000161 r14
+load8 r1 7800000000000000071
+sub r1 1
+mul r1 4
+set r7 7800000000000001024
+add r7 r1
+mov r15 r7
+load8 r1 $r15
+add r15 1
+load8 r14 $r15
+mul r14 256
+add r1 r14
+cmp r1 0
+je capacity
+cmp r1 r0
+jne collision
+jmp kind_dispatch
+label capacity
+load8 r1 7800000000000000006
+load8 r14 7800000000000000007
+mul r14 256
+add r1 r14
+cmp r1 2048
+jge limit
+label kind_dispatch
+cmp r0 22
+jle old_kind
+cmp r0 255
+jle legacy_kind
+set r7 7800000000000020000
+add r7 r0
+load8 r1 $r7
+jmp kind
+label legacy_kind
+set r7 7400000000000006000
+add r7 r0
+load8 r1 $r7
+jmp kind
+label old_kind
+set r1 1
+label kind
+store8 7800000000000000162 r1
+load8 r0 7400000000000000003
+store8 7800000000000000163 r0
+load8 r0 7800000000000000071
+sub r0 1
+store8 7800000000000000164 r0
+store8 7800000000000000087 1
+halt
+label collision
+store8 7800000000000000080 11
+store8 7800000000000000087 0
+halt
+label limit
+store8 7800000000000000080 9
+store8 7800000000000000087 0
+halt

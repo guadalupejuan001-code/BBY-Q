@@ -19,6 +19,35 @@ link_module() {
   serial=$((serial+1))
 }
 case "$mode" in
+  open-word|open-pattern|open-utterance|open-calibrate|open-base)
+    if [ "$mode" = open-word ] || [ "$mode" = open-pattern ] || [ "$mode" = open-base ]; then
+      link_module "$root/read.xi" "m$((serial+1))_entry"
+      link_module "$root/resolve.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
+    fi
+    case "$mode" in
+      open-word) link_module "$root/../open/intern.xi" open_learn_cleanup;;
+      open-pattern) link_module "$root/../open/learn-pattern.xi" open_learn_cleanup;;
+      open-base) link_module "$root/../open/learn-base.xi" open_learn_cleanup;;
+      open-utterance) link_module "$root/../open/learn-utterance.xi" open_learn_cleanup;;
+      open-calibrate)
+        link_module "$root/../open/calibrate-start.xi" learn_witness
+        echo 'label learn_witness'
+        link_module "$root/../open/witness-next.xi" learn_witness_ready
+        echo 'label learn_witness_ready'
+        echo 'load8 r0 7800000000000000247'
+        echo 'cmp r0 1'
+        echo 'jne learn_rule'
+        link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+        link_module "$root/../open/witness-accept.xi" learn_witness
+        echo 'label learn_rule'
+        link_module "$root/../open/learn-rule.xi" open_learn_cleanup
+        ;;
+    esac
+    echo 'label open_learn_cleanup'
+    link_module "$root/clean.xi" "m$((serial+1))_entry"
+    link_module "$root/../open/clean.xi" finish
+    ;;
   utterance|order|nominal|config|role)
     case "$mode" in
       utterance) learner=learn-utterance;; order) learner=learn-order;;
@@ -43,11 +72,33 @@ case "$mode" in
     link_module "$root/learn-word.xi" finish
     ;;
   query|combined|conversation)
+    if [ "$mode" != query ]; then
+      if [ "$mode" = conversation ]; then echo 'set r13 1'; else echo 'set r13 2'; fi
+      link_module "$root/../open/start.xi" "m$((serial+1))_entry"
+    fi
     if [ "$mode" = conversation ]; then
       link_module "$root/../conversation/start.xi" "m$((serial+1))_entry"
     fi
     link_module "$root/read.xi" "m$((serial+1))_entry"
     link_module "$root/resolve.xi" "m$((serial+1))_entry"
+    if [ "$mode" != query ]; then
+      link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/match.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/prepare.xi" open_dispatch
+      echo 'label open_dispatch'
+      echo 'load8 r0 7800000000000000067'
+      echo 'cmp r0 1'
+      echo 'je open_teach_check'
+      echo 'cmp r0 2'
+      echo 'je open_query'
+      echo 'cmp r0 3'
+      echo 'je open_alias'
+      echo 'cmp r0 4'
+      echo 'je open_mutate'
+      echo 'cmp r0 5'
+      echo 'je open_reply'
+      echo 'label open_fallback'
+    fi
     if [ "$mode" = conversation ]; then
       link_module "$root/../conversation/intake.xi" conversation_intake
       echo 'label conversation_intake'
@@ -225,12 +276,253 @@ case "$mode" in
       echo 'je story_clean'
       echo 'jmp cleanup'
     fi
+    if [ "$mode" != query ]; then
+      echo 'label open_teach_check'
+      link_module "$root/../open/teach-check.xi" open_teach_checked
+      echo 'label open_teach_checked'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_reply'
+      echo 'label open_intern'
+      link_module "$root/../open/intern-next.xi" open_intern_ready
+      echo 'label open_intern_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_mutate'
+      link_module "$root/../open/intern.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/intern-accept.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/resolve.xi" open_intern
+      echo 'label open_mutate'
+      link_module "$root/../open/mutate.xi" open_reply
+      echo 'label open_alias'
+      link_module "$root/../open/alias-prepare.xi" open_alias_ready
+      echo 'label open_alias_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_reply'
+      link_module "$root/../open/intern.xi" open_alias_done
+      echo 'label open_alias_done'
+      echo 'store8 7800000000000000080 6'
+      echo 'jmp open_reply'
+      echo 'label open_query'
+      link_module "$root/../open/query-start.xi" open_query_ready
+      echo 'label open_query_ready'
+      echo 'load8 r0 7800000000000000067'
+      echo 'cmp r0 0'
+      echo 'je open_fallback'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_reply'
+      echo 'cmp r0 1'
+      echo 'je open_property'
+      link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/direct-accept.xi" open_direct_ready
+      echo 'label open_direct_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 1'
+      echo 'je open_reply'
+      link_module "$root/../open/rule-start.xi" open_rule_ready
+      echo 'label open_rule_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_model_start'
+      link_module "$root/rule-check.xi" open_model_start
+      echo 'label open_model_start'
+      link_module "$root/../open/model-start.xi" open_model_route
+      echo 'label open_model_route'
+      echo 'load8 r0 7800000000000000255'
+      echo 'cmp r0 0'
+      echo 'je open_bfs_start'
+      echo 'label open_model_next'
+      link_module "$root/../open/model-next.xi" open_model_next_ready
+      echo 'label open_model_next_ready'
+      echo 'load8 r0 7800000000000000255'
+      echo 'cmp r0 0'
+      echo 'je open_bfs_start'
+      echo 'label open_witness'
+      link_module "$root/../open/witness-next.xi" open_witness_ready
+      echo 'label open_witness_ready'
+      echo 'load8 r0 7800000000000000247'
+      echo 'cmp r0 0'
+      echo 'je open_model_accept'
+      link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/witness-accept.xi" open_witness
+      echo 'label open_model_accept'
+      link_module "$root/../open/model-accept.xi" open_model_next
+      echo 'label open_bfs_start'
+      link_module "$root/../open/bfs-start.xi" open_bfs_ready
+      echo 'label open_bfs_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_reply'
+      echo 'label open_bfs_node'
+      link_module "$root/../open/bfs-node.xi" open_bfs_node_ready
+      echo 'label open_bfs_node_ready'
+      echo 'load8 r0 7800000000000000233'
+      echo 'cmp r0 1'
+      echo 'je open_bfs_complete'
+      echo 'load8 r0 7800000000000000232'
+      echo 'cmp r0 0'
+      echo 'je open_bfs_scan'
+      link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/bfs-inherit.xi" open_bfs_check
+      echo 'label open_bfs_check'
+      echo 'load8 r0 7800000000000000234'
+      echo 'cmp r0 4'
+      echo 'je open_property_path'
+      echo 'cmp r0 1'
+      echo 'je open_proof'
+      echo 'cmp r0 2'
+      echo 'je open_bfs_advance'
+      echo 'cmp r0 3'
+      echo 'je open_reply'
+      echo 'label open_bfs_scan'
+      link_module "$root/../open/candidate.xi" open_bfs_candidate
+      echo 'label open_bfs_candidate'
+      echo 'load8 r0 7800000000000000231'
+      echo 'cmp r0 0'
+      echo 'je open_bfs_advance'
+      link_module "$root/../open/bfs-select.xi" open_bfs_selected
+      echo 'label open_bfs_selected'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_bfs_scan'
+      link_module "$root/../open/edge.xi" open_bfs_edge_ready
+      echo 'label open_bfs_edge_ready'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 2'
+      echo 'jne open_bfs_traverse'
+      echo 'load8 r0 7800000000000000208'
+      echo 'cmp r0 1'
+      echo 'je open_property_path'
+      echo 'cmp r0 3'
+      echo 'jne open_bfs_scan'
+      echo 'store8 7800000000000000080 4'
+      echo 'jmp open_reply'
+      echo 'label open_bfs_traverse'
+      link_module "$root/../open/bfs-accept.xi" open_bfs_check
+      echo 'label open_property_path'
+      link_module "$root/../open/property-path-next.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/property-path-accept.xi" open_property_path_ready
+      echo 'label open_property_path_ready'
+      echo 'load8 r0 7800000000000000137'
+      echo 'cmp r0 0'
+      echo 'je open_property_path'
+      echo 'cmp r0 2'
+      echo 'je open_bfs_scan'
+      echo 'cmp r0 3'
+      echo 'je open_reply'
+      link_module "$root/../open/property-derived.xi" open_property_derived_ready
+      echo 'label open_property_derived_ready'
+      echo 'load8 r0 7800000000000000080'
+      echo 'cmp r0 9'
+      echo 'je open_reply'
+      echo 'jmp open_bfs_scan'
+      echo 'label open_bfs_advance'
+      echo 'load8 r0 7800000000000000122'
+      echo 'add r0 1'
+      echo 'store8 7800000000000000122 r0'
+      echo 'jmp open_bfs_node'
+      echo 'label open_bfs_complete'
+      echo 'load8 r0 7800000000000000090'
+      echo 'cmp r0 1'
+      echo 'jne open_reply'
+      echo 'load8 r0 7800000000000000082'
+      echo 'cmp r0 1'
+      echo 'jne open_reply'
+      echo 'load8 r0 7800000000000000136'
+      echo 'cmp r0 1'
+      echo 'jne open_reply'
+      echo 'load8 r0 7800000000000000130'
+      echo 'store8 7800000000000000124 r0'
+      echo 'load8 r0 7800000000000000131'
+      echo 'store8 7800000000000000235 r0'
+      echo 'label open_proof'
+      link_module "$root/../open/proof.xi" open_reply
+      echo 'label open_property'
+      link_module "$root/../open/candidate.xi" open_property_candidate
+      echo 'label open_property_candidate'
+      echo 'load8 r0 7800000000000000231'
+      echo 'cmp r0 0'
+      echo 'je open_property_reasoning'
+      link_module "$root/../open/property-select.xi" open_property_selected
+      echo 'label open_property_selected'
+      echo 'load8 r0 7800000000000000087'
+      echo 'cmp r0 0'
+      echo 'je open_property'
+      link_module "$root/../open/edge.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/property-accept.xi" open_property_accepted
+      echo 'label open_property_accepted'
+      echo 'load8 r0 7800000000000000080'
+      echo 'cmp r0 4'
+      echo 'je open_reply'
+      echo 'cmp r0 9'
+      echo 'je open_reply'
+      echo 'jmp open_property'
+      echo 'label open_property_reasoning'
+      link_module "$root/../open/rule-start.xi" open_rule_ready
+      echo 'label open_reply'
+      link_module "$root/../open/reply-start.xi" open_reply_route
+      echo 'label open_reply_route'
+      echo 'load8 r0 7800000000000000302'
+      echo 'cmp r0 0'
+      echo 'je cleanup'
+      echo 'cmp r0 1'
+      echo 'je open_body'
+      echo 'load8 r0 7800000000000000304'
+      link_module "$root/../open/utterance.xi" "m$((serial+1))_entry"
+      link_module "$root/../conversation/emit.xi" open_prefix_done
+      echo 'label open_prefix_done'
+      echo 'load8 r0 7800000000000000080'
+      echo 'cmp r0 2'
+      echo 'jgt cleanup'
+      echo 'load8 r0 7800000000000000138'
+      echo 'cmp r0 2'
+      echo 'jne open_prefix_body'
+      echo 'set r0 14'
+      link_module "$root/../open/utterance.xi" "m$((serial+1))_entry"
+      link_module "$root/../conversation/emit.xi" open_prefix_body
+      echo 'label open_prefix_body'
+      echo 'store8 7700000000000000038 1'
+      echo 'label open_body'
+      link_module "$root/../open/body-next.xi" open_body_dispatch
+      echo 'label open_body_dispatch'
+      echo 'load8 r0 7800000000000000302'
+      echo 'cmp r0 0'
+      echo 'je cleanup'
+      echo 'cmp r0 1'
+      echo 'je open_body_name'
+      echo 'cmp r0 2'
+      echo 'je open_body_emit'
+      echo 'load8 r0 7800000000000000304'
+      link_module "$root/../open/utterance.xi" open_body_emit
+      echo 'label open_body_name'
+      link_module "$root/../open/name.xi" open_name_route
+      echo 'label open_name_route'
+      echo 'load8 r0 7800000000000000302'
+      echo 'cmp r0 2'
+      echo 'je open_body_emit'
+      link_module "$root/../conversation/name.xi" open_body_emit
+      echo 'label open_body_emit'
+      link_module "$root/../conversation/emit.xi" open_body
+    fi
     echo 'label cleanup'
     if [ "$mode" = conversation ]; then
       link_module "$root/clean.xi" "m$((serial+1))_entry"
-      link_module "$root/../conversation/clean.xi" finish
+      link_module "$root/../conversation/clean.xi" open_final_cleanup
     else
-      link_module "$root/clean.xi" finish
+      link_module "$root/clean.xi" open_final_cleanup
+    fi
+    echo 'label open_final_cleanup'
+    if [ "$mode" != query ]; then
+      echo 'load8 r0 7800000000000000002'
+      echo 'cmp r0 1'
+      echo 'jne finish'
+      link_module "$root/../conversation/clean.xi" "m$((serial+1))_entry"
+      link_module "$root/../open/clean.xi" finish
+    else
+      echo 'jmp finish'
     fi
     ;;
   *) echo 'unknown link mode' >&2; exit 2;;

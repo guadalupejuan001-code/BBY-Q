@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Interleaved native session timing with one authentic E016 state for all.
+"""Interleaved native session timing with the same authentic checkpoint for all.
 
 Compact variants have identical outputs. Conversation does extra realization;
 its timings describe the new task and are not advertised as a speedup.
@@ -35,10 +35,13 @@ def summary(values):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('binary');ap.add_argument('baseline_root');ap.add_argument('checkpoint')
     ap.add_argument('--out',default='evidence/e016-performance');ap.add_argument('--repeats',type=int,default=40)
+    ap.add_argument('--baseline-name',default='e015_compact')
+    ap.add_argument('--candidate-name',default='e016_compact')
+    ap.add_argument('--conversation-name',default='e016_conversation')
     args=ap.parse_args();out=Path(args.out).resolve();out.mkdir(parents=True,exist_ok=True)
     checkpoint=Path(args.checkpoint).read_bytes();binary=Path(args.binary).resolve()
-    variants={'e015_compact':(Path(args.baseline_root).resolve(),'combined',2),
-              'e016_compact':(REPO,'combined',2),'e016_conversation':(REPO,'conversation',3)}
+    variants={args.baseline_name:(Path(args.baseline_root).resolve(),'combined',2),
+              args.candidate_name:(REPO,'combined',2),args.conversation_name:(REPO,'conversation',3)}
     active={};times={};raw=[];program_hashes={}
     try:
         for label,(root,mode,index) in variants.items():
@@ -55,7 +58,7 @@ def main():
             for label,case in order:
                 value,ms=active[label].request(case[1]);assert decode_result(value)==case[variants[label][2]]
                 times[label][case[0]].append(ms);raw.append({'variant':label,'case':case[0],'iteration':iteration,'ms':ms})
-        result={'method':'native resident sessions; same E016 checkpoint; randomized interleaving seed 160629; commit before ACK; oracle outside timing',
+        result={'method':'native resident sessions; same checkpoint; randomized interleaving seed 160629; commit before ACK; oracle outside timing',
                 'checkpoint_sha256':hashlib.sha256(checkpoint).hexdigest(),'checkpoint_bytes':len(checkpoint),
                 'program_sha256':program_hashes,
                 'results':{label:{name:summary(values) for name,values in cases.items()} for label,cases in times.items()},

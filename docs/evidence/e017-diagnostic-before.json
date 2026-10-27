@@ -1,0 +1,110 @@
+[
+  {
+    "group": "paraphrase",
+    "input": "explícame qué es un gato",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 17.275964
+  },
+  {
+    "group": "paraphrase",
+    "input": "dime qué estudia filosofía",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 9.881982
+  },
+  {
+    "group": "paraphrase",
+    "input": "quisiera saber qué es neurona",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 10.795101
+  },
+  {
+    "group": "teaching",
+    "input": "aprende que neral es mamífero",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 11.185552
+  },
+  {
+    "group": "new_concept",
+    "input": "qué es neral?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 8.038395
+  },
+  {
+    "group": "new_reasoning",
+    "input": "neral es organismo?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 7.986668
+  },
+  {
+    "group": "explanation",
+    "input": "por qué?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 8.740417
+  },
+  {
+    "group": "alias",
+    "input": "michi significa gato",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 9.515412
+  },
+  {
+    "group": "new_alias",
+    "input": "qué es michi?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 7.820207
+  },
+  {
+    "group": "new_predicate",
+    "input": "recuerda que neri requiere agua",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 11.404457
+  },
+  {
+    "group": "new_relation",
+    "input": "neri requiere agua?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 9.190938
+  },
+  {
+    "group": "correction",
+    "input": "olvida que neral es mamífero",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 10.416049
+  },
+  {
+    "group": "paraphrase",
+    "input": "¿es cierto que gato es mamífero?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 10.313789
+  },
+  {
+    "group": "negation",
+    "input": "gato no es ave?",
+    "output": "No tengo información suficiente para responder.",
+    "ms": 7.763651
+  },
+  {
+    "group": "control",
+    "input": "qué es gato?",
+    "output": "Un gato es un mamífero.",
+    "ms": 8.286482
+  },
+  {
+    "group": "control",
+    "input": "gato es organismo?",
+    "output": "Un gato es un organismo. [gato -> mamífero -> vertebrado -> organismo]",
+    "ms": 8.939388
+  },
+  {
+    "group": "control",
+    "input": "hola",
+    "output": "Hola. Soy BBY Q.",
+    "ms": 6.556768
+  },
+  {
+    "group": "control",
+    "input": "ana tiene dos manzanas",
+    "output": "Ana tiene dos manzanas.",
+    "ms": 11.315007
+  }
+]
