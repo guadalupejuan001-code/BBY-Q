@@ -1,0 +1,39 @@
+#!reverse-pc-machine-v1
+# Validate every subgoal on the actual path before inheriting a wh-answer.
+load8 r0 7800000000000000127
+set r7 7800000000008000000
+mul r0 8
+add r7 r0
+mov r15 r7
+load8 r2 $r15
+add r15 1
+load8 r14 $r15
+mul r14 256
+add r2 r14
+load8 r3 7800000000000000074
+load8 r14 7800000000000000075
+mul r14 256
+add r3 r14
+load8 r4 7800000000000000096
+load8 r14 7800000000000000097
+mul r14 256
+add r4 r14
+mov r14 r2
+mod r14 256
+store8 7800000000000000200 r14
+mov r14 r2
+div r14 256
+store8 7800000000000000201 r14
+mov r14 r3
+mod r14 256
+store8 7800000000000000202 r14
+mov r14 r3
+div r14 256
+store8 7800000000000000203 r14
+mov r14 r4
+mod r14 256
+store8 7800000000000000204 r14
+mov r14 r4
+div r14 256
+store8 7800000000000000205 r14
+halt

@@ -1,0 +1,47 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E017_Open_Learning_ES_EN.rvp.gz.b64",
+  "decoded_bytes": 279677,
+  "decoded_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+  "parent": "BBYQ_E016_Conversation_ES_EN.rvp.gz.b64",
+  "parent_sha256": "55992a06df9ec9cad6889f3dabbdbc179d2626cfd32667efec1f74b78660e732",
+  "source_base_commit": "af1f9bff0e95cf78f0e03b5c289f7bd4dcdb9aa3",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "parent_memory_preserved_exactly": true,
+  "legacy_lexical_entries": 471,
+  "extension_lexical_entries": 53,
+  "total_lexical_entries": 524,
+  "legacy_facts_unchanged": 185,
+  "synthetic_didactic_assertions": 12,
+  "heldout_assertions_in_release": 0,
+  "learned_constructions": 39,
+  "construction_presentations": 74,
+  "fixed_surface_lessons": 28,
+  "base_form_lessons": 6,
+  "reasoning_families": [
+    "witnessed transitivity",
+    "witnessed class-property inheritance"
+  ],
+  "limits": {
+    "extended_words": 2048,
+    "extended_assertions": 1024,
+    "constructions": 64,
+    "tokens": 15,
+    "input_bytes": 255,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8,
+    "open_conversation_achieved": false
+  },
+  "intelligence": "XI only; unchanged pinned REVERSE-PC and Mundo X; one RVPC2",
+  "source_data_sha256": {
+    "bases-v1.psv": "3a909ff364da7ed230d40d0f02e9ac9d97f5b80668e6deafe3679ec539b54ccd",
+    "constructions-v1.psv": "9a51fe32ca62583b4582585bfd1d9eea3261280c66dd8fbcdf599712946818c9",
+    "diagnostic-before-v1.json": "46c8200401ac057fb87aaf567f85992f2b504b3fc48128ee93dc9db638807f18",
+    "lexicon-v1.psv": "bc23723b9ee160d3d9de7076971163d533e726b5d070f5dc35bb74734c91a387",
+    "reasoning-v1.psv": "3c311e392dfdd7713f49639ceacef25cc0134ad4a4abe6f1eb67e93034809fd1",
+    "surface-v1.psv": "d313a7219a206e575f869c110209d20b6895fef5829d8a8953782d00127b34af"
+  }
+}

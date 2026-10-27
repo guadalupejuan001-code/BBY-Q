@@ -26,12 +26,20 @@ class Session:
                                       stdout=subprocess.PIPE,stderr=self.stderr)
         self.usage=None
 
+    def _send(self,data):
+        try:
+            self.process.stdin.write(data)
+            self.process.stdin.flush()
+        except BrokenPipeError as error:
+            self.stderr.seek(0)
+            detail=self.stderr.read().decode(errors='replace').strip()
+            raise RuntimeError(detail or 'native session exited before accepting the request') from error
+
     def request(self,text,language=1):
         data=text.encode('utf-8') if isinstance(text,str) else text
         if len(data)>255 or language not in (1,2):raise ValueError('invalid transport frame')
         started=time.perf_counter_ns()
-        self.process.stdin.write(f'{language} {len(data)}\n'.encode()+data)
-        self.process.stdin.flush()
+        self._send(f'{language} {len(data)}\n'.encode()+data)
         header=self.process.stdout.readline().decode().strip().split()
         if len(header)!=2:
             self.stderr.seek(0);raise RuntimeError(self.stderr.read().decode())
@@ -49,7 +57,7 @@ class Session:
         except (OSError,StopIteration):return None
 
     def metrics(self):
-        self.process.stdin.write(b'METRICS\n');self.process.stdin.flush()
+        self._send(b'METRICS\n')
         header=self.process.stdout.readline().decode().strip().split()
         if len(header)!=2 or header[0]!='OK':raise RuntimeError('invalid metrics response')
         length=int(header[1]);assert 0<=length<=4096
@@ -57,7 +65,8 @@ class Session:
 
     def close(self):
         if self.usage is not None:return self.process.returncode
-        self.process.stdin.close()
+        try:self.process.stdin.close()
+        except BrokenPipeError:pass
         _,status,self.usage=os.wait4(self.process.pid,0)
         self.process.returncode=os.waitstatus_to_exitcode(status)
         self.process.stdout.close();self.stderr.close()

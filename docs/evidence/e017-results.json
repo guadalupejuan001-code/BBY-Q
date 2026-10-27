@@ -1,0 +1,65 @@
+{
+  "novel_dialogues": 80,
+  "novel_dialogue_turns": 640,
+  "new_reasoning_ms": {
+    "median": 21.30408,
+    "p95": 28.959494
+  },
+  "session_metrics": {
+    "method": "getrusage_self",
+    "peak_rss_kib": 23152,
+    "resident_rss_kib": 6844,
+    "cpu_ms": 12987.7,
+    "active_qubits": 0
+  },
+  "growth_terms": 280,
+  "grown_extension_lexical_entries": 333,
+  "grown_total_lexical_entries": 804,
+  "growth_metrics": {
+    "method": "getrusage_self",
+    "peak_rss_kib": 25236,
+    "resident_rss_kib": 7472,
+    "cpu_ms": 7816.73,
+    "active_qubits": 0
+  },
+  "stage": "E017",
+  "parent_sha256": "55992a06df9ec9cad6889f3dabbdbc179d2626cfd32667efec1f74b78660e732",
+  "learned_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+  "checkpoint_bytes": 279677,
+  "training_seconds": 2.9151229950002744,
+  "learned_constructions": 39,
+  "construction_presentations": 74,
+  "extension_lexical_entries": 53,
+  "legacy_lexical_entries_unchanged": 471,
+  "total_lexical_entries": 524,
+  "new_concepts_next_id": 285,
+  "registered_dialogue_assertions_in_release": 12,
+  "legacy_facts_unchanged": 185,
+  "reasoning_families": [
+    "witnessed transitivity",
+    "witnessed class-property inheritance"
+  ],
+  "fixed_surface_lessons": 28,
+  "base_form_lessons": 6,
+  "parent_memory_preserved_exactly": true,
+  "unknown_queries_never_allocate": true,
+  "atomic_learning_and_explanation_cache_rollback": true,
+  "old_subject_conflicts_seen_in_both_surfaces": true,
+  "prior_cases_per_surface": 1522,
+  "checks": 4376,
+  "old_training_replayed": false,
+  "limits": {
+    "extended_words": 2048,
+    "extended_assertions": 1024,
+    "constructions": 64,
+    "tokens": 15,
+    "input_bytes": 255,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8,
+    "open_conversation_achieved": false
+  },
+  "platform": "linux",
+  "intelligence": "XI only; unchanged pinned REVERSE-PC and Mundo X; one RVPC2",
+  "no_reverse_os_integration": true
+}

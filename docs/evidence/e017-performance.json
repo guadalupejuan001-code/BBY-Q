@@ -1,0 +1,117 @@
+{
+  "method": "native resident sessions; same checkpoint; randomized interleaving seed 160629; commit before ACK; oracle outside timing",
+  "checkpoint_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+  "checkpoint_bytes": 279677,
+  "program_sha256": {
+    "e016_compact": "1df80bb508cec4d1adc61a3777dbcc1be2e95613b240ae62420264def197e72d",
+    "e017_compact": "b6f953f8bcd809b36a2ac705a3c2d51092695c7a72163d4d1d6ebd218149f9e8",
+    "e017_conversation": "2d265344fe994d6935b7cbb4cecd4bab0577d60eec179596be63ca06a6debf3b"
+  },
+  "results": {
+    "e016_compact": {
+      "direct": {
+        "n": 40,
+        "median_ms": 9.155940999999999,
+        "p95_ms": 12.092593
+      },
+      "inferred": {
+        "n": 40,
+        "median_ms": 9.240377500000001,
+        "p95_ms": 14.546134
+      },
+      "quantity": {
+        "n": 40,
+        "median_ms": 10.1748285,
+        "p95_ms": 12.077992
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 8.404348500000001,
+        "p95_ms": 9.903345
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 7.6828445,
+        "p95_ms": 10.419501
+      }
+    },
+    "e017_compact": {
+      "direct": {
+        "n": 40,
+        "median_ms": 12.026352,
+        "p95_ms": 15.239627
+      },
+      "inferred": {
+        "n": 40,
+        "median_ms": 12.174197,
+        "p95_ms": 14.692172
+      },
+      "quantity": {
+        "n": 40,
+        "median_ms": 12.877395,
+        "p95_ms": 15.558852
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 11.158998,
+        "p95_ms": 15.38513
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 10.878484,
+        "p95_ms": 13.759559
+      }
+    },
+    "e017_conversation": {
+      "direct": {
+        "n": 40,
+        "median_ms": 13.4357915,
+        "p95_ms": 16.423798
+      },
+      "inferred": {
+        "n": 40,
+        "median_ms": 13.2706015,
+        "p95_ms": 16.087731
+      },
+      "quantity": {
+        "n": 40,
+        "median_ms": 14.995227499999999,
+        "p95_ms": 18.086892
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 12.685319,
+        "p95_ms": 15.743771
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 12.027463000000001,
+        "p95_ms": 14.594835
+      }
+    }
+  },
+  "metrics": {
+    "e016_compact": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 5416,
+      "cpu_ms": 1914.09,
+      "active_qubits": 0
+    },
+    "e017_compact": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 5968,
+      "cpu_ms": 2521.57,
+      "active_qubits": 0
+    },
+    "e017_conversation": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 7044,
+      "cpu_ms": 2795.06,
+      "active_qubits": 0
+    }
+  },
+  "platform": "linux"
+}

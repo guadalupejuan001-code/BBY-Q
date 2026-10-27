@@ -1,6 +1,23 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Ruta activa: E016 — frases completas y diálogos cortos, sobre E015.**
+**Ruta activa: E017 — aprender durante el diálogo, sobre E016.**
+
+BBY Q aprende afirmaciones, palabras y alias mediante enseñanzas explícitas,
+admite 39 construcciones supervisadas ES/EN, corrige contradicciones y deduce
+sobre conceptos nuevos mostrando la evidencia. Añade calibración de dos
+familias de reglas: transitividad y herencia de propiedades. Todo se ejecuta
+en XI, en el mismo RVPC2 y sin repetir el entrenamiento anterior.
+
+Prueba local: 4.376 verificaciones, 80 diálogos nuevos (640 turnos), los
+1.522 casos anteriores en ambas superficies y crecimiento a 804 entradas
+léxicas. El checkpoint conserva 524 entradas y ocupa 279.677 bytes.
+RAM residente medida de la conversación: 6,88 MiB en Linux; Android no medido.
+Las tareas anteriores cuestan más tiempo en esta ruta. Es una ampliación
+hacia conversación abierta; todavía conserva gramática y razonamiento acotados.
+
+[Aprendizaje, diagnóstico, límites y uso de E017](docs/AI_E017_OPEN_LEARNING.md).
+
+**E016 — frases completas y diálogos cortos, sobre E015.**
 
 BBY Q compone «Ana tiene cinco manzanas», entiende «ella recibe tres más»
 y continúa preguntas como «¿y las peras?» o «¿y un perro?». Conserva el

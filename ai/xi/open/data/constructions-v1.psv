@@ -1,0 +1,76 @@
+# construction|intent|S|P|O|alias token+1|language|raw supervised example
+# The same semantic construction can transfer across languages via shared IDs.
+1|1|5|23|0|0|1|qué es gato
+1|1|195|39|0|0|1|qué estudia filosofía
+2|1|5|23|0|0|1|qué es un gato
+2|1|71|25|0|0|1|qué necesita una planta
+3|1|5|23|0|0|1|qué es el gato
+3|1|71|25|0|0|1|qué necesita la planta
+4|1|5|25|0|0|2|what does cat need
+4|1|195|39|0|0|2|what does philosophy study
+5|1|5|25|0|0|2|what does the cat need
+5|1|71|28|0|0|2|what does the plant use
+6|8|5|0|0|0|2|what is a cat
+6|8|6|0|0|0|2|what is a dog
+7|1|5|23|0|0|1|explícame qué es gato
+7|1|195|39|0|0|1|explícame qué estudia filosofía
+8|1|5|23|0|0|1|explícame qué es un gato
+8|1|71|25|0|0|1|explícame qué necesita una planta
+9|1|5|25|0|0|2|tell me what the cat needs
+9|1|71|28|0|0|2|tell me what the plant uses
+10|1|5|23|0|0|1|dime qué es gato
+10|1|195|39|0|0|1|dime qué estudia filosofía
+11|1|5|23|0|0|1|quisiera saber qué es gato
+11|1|195|39|0|0|1|quisiera saber qué estudia filosofía
+12|3|5|23|40|0|1|aprende que gato es mamífero
+12|3|110|25|114|0|2|learn that water needs energy
+13|3|5|23|40|0|1|recuerda gato es mamífero
+13|3|110|25|114|0|2|remember water needs energy
+14|4|5|23|40|0|1|aprende que gato no es mamífero
+14|4|110|25|114|0|1|recuerda que agua no necesita energía
+15|4|5|25|110|0|2|learn that cat does not need water
+15|4|71|28|114|0|2|remember that plant does not use energy
+16|7|5|23|40|0|1|olvida que gato es mamífero
+16|7|110|25|114|0|2|forget that water needs energy
+17|6|5|0|0|1|1|michi significa gato
+17|6|6|0|0|1|2|doggo means dog
+18|6|5|0|0|2|1|alias michi gato
+18|6|6|0|0|2|2|alias doggo dog
+19|6|5|0|0|2|1|llama michi a gato
+19|6|6|0|0|2|1|llama canito a perro
+20|5|0|0|0|0|1|por qué
+21|5|0|0|0|0|2|why
+22|5|0|0|0|0|2|explain why
+23|5|0|0|0|0|1|explícame por qué
+24|2|5|23|40|0|1|gato es mamífero
+24|2|110|25|114|0|2|water needs energy
+25|2|5|23|40|0|1|es cierto que gato es mamífero
+25|2|110|25|114|0|1|es cierto que agua necesita energía
+26|2|5|23|40|0|2|is it true that cat is mammal
+26|2|110|25|114|0|2|is it true that water needs energy
+27|2|5|23|40|0|1|gato no es mamífero
+27|2|110|25|114|0|1|agua no necesita energía
+28|2|5|23|7|0|2|cat is not bird
+28|2|6|23|71|0|2|dog is not plant
+29|5|5|23|40|0|1|por qué gato es mamífero
+29|5|110|25|114|0|1|por qué agua necesita energía
+30|5|5|25|110|0|2|why does cat need water
+30|5|71|28|114|0|2|why does plant use energy
+31|5|5|25|110|0|2|why does the cat need water
+31|5|71|28|114|0|2|why does the plant use energy
+32|1|5|25|0|0|2|please tell me what the cat needs
+32|1|71|28|0|0|2|please tell me what the plant uses
+33|1|5|25|0|0|2|explain what the cat needs
+33|1|71|28|0|0|2|explain what the plant uses
+34|1|5|25|0|0|2|can you tell me what the cat needs
+34|1|71|28|0|0|2|can you tell me what the plant uses
+35|1|5|23|0|0|1|podrías decirme qué es el gato
+35|1|71|25|0|0|1|podrías decirme qué necesita la planta
+36|8|5|0|0|0|2|explain what a cat is
+36|8|6|0|0|0|2|explain what a dog is
+37|2|5|25|110|0|2|cat does not need water
+37|2|71|28|114|0|2|plant does not use energy
+38|4|5|23|7|0|2|learn that cat is not bird
+38|4|6|23|71|0|2|remember that dog is not plant
+39|5|5|25|110|0|2|explain why cat needs water
+39|5|71|28|114|0|2|explain why plant uses energy
