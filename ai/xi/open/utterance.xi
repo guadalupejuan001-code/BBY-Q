@@ -1,8 +1,8 @@
 #!reverse-pc-machine-v1
-# Teacher-supplied surface fragments at +500000. r0 is act number 1..14.
+# Teacher-supplied surface fragments at +500000. r0 is act number 1..15.
 cmp r0 1
 jlt invalid
-cmp r0 14
+cmp r0 15
 jgt invalid
 sub r0 1
 mul r0 512

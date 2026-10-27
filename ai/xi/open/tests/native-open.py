@@ -72,9 +72,9 @@ def audit(e):
 
 
 class Examiner(stories.Examiner):
-    def __init__(self,runtime,parent,out):
+    def __init__(self,runtime,parent,out,*,expected_parent=PARENT_SHA):
         self.runtime=str(Path(runtime).resolve());self.parent=Path(parent).resolve()
-        assert hashlib.sha256(self.parent.read_bytes()).hexdigest()==PARENT_SHA
+        assert hashlib.sha256(self.parent.read_bytes()).hexdigest()==expected_parent
         self.original=snapshot(self.parent);self.out=Path(out).resolve();self.out.mkdir(parents=True,exist_ok=True)
         self.state,self.next=self.out/'state.rvp',self.out/'next.rvp';self.event=self.out/'event.xi'
         self.state.write_bytes(self.parent.read_bytes());self.checks=0;self.times=[];self.transcript=[]

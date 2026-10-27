@@ -10,6 +10,18 @@ jne invalid
 load8 r0 7800000000000000002
 cmp r0 1
 jne invalid
+load8 r0 7800000000000000003
+cmp r0 1
+jgt invalid
+cmp r0 0
+je style_ready
+load8 r0 7800000000000507168
+cmp r0 0
+je invalid
+load8 r0 7800000000000507424
+cmp r0 0
+je invalid
+label style_ready
 load8 r13 7800000000000000004
 load8 r14 7800000000000000005
 mul r14 256

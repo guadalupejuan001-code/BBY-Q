@@ -84,6 +84,33 @@ cmp r0 r1
 jge response_done
 store8 7700000000000000032 r0
 store8 7700000000000000033 0
+load8 r2 7800000000000000003
+cmp r2 1
+jne full_clause
+store8 7700000000000000033 3
+store8 7700000000000000038 0
+sub r1 1
+cmp r0 r1
+je conjunction
+store8 7700000000000000039 0
+set r14 44
+print r14
+set r14 32
+print r14
+jmp object_article
+label conjunction
+# Select the independently taught E018 conjunction, keeping every result.
+set r7 7800000000000507168
+load8 r0 7400000000000000003
+sub r0 1
+mul r0 256
+add r7 r0
+load8 r6 $r7
+add r7 1
+set r13 0
+store8 7700000000000000035 2
+halt
+label full_clause
 set r14 59
 print r14
 set r14 32
@@ -94,6 +121,14 @@ jmp subject_article
 label response_done
 set r14 46
 print r14
+# Only a checkpoint with the explicit E018 preference hides routine proofs.
+load8 r0 7800000000000000003
+cmp r0 1
+jne show_proof
+load8 r0 7800000000000000085
+cmp r0 1
+jne done
+label show_proof
 load8 r0 7400000000000000015
 cmp r0 2
 jlt done

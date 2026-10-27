@@ -1,6 +1,7 @@
 #!reverse-pc-machine-v1
-# Compare every enabled learned construction. Competing semantic assignments
-# abstain. Unknown variables are interpreted only after an explicit intent is
+# Compare every enabled learned construction. More literal constraints beat
+# a generic frame; equally specific competing semantic assignments abstain.
+# Unknown variables are interpreted only after an explicit intent is
 # recognized; matching itself never allocates a concept or teaches an answer.
 load8 r0 7800000000000000063
 cmp r0 0
@@ -11,6 +12,7 @@ jne done
 load8 r13 7400000000000000032
 load8 r0 7800000000000000010
 store8 7800000000000000187 r0
+store8 7800000000000000188 0
 set r0 0
 label pattern
 load8 r1 7800000000000000187
@@ -35,6 +37,7 @@ set r9 0
 set r10 0
 set r11 0
 set r12 0
+store8 7800000000000000189 0
 set r2 0
 label token
 cmp r2 r13
@@ -115,10 +118,18 @@ add r3 2
 load8 r5 $r3
 cmp r5 r7
 jne next_pattern
+load8 r5 7800000000000000189
+add r5 1
+store8 7800000000000000189 r5
 label next_token
 add r2 1
 jmp token
 label matched
+load8 r3 7800000000000000189
+load8 r4 7800000000000000188
+cmp r3 r4
+jgt first
+jlt next_pattern
 load8 r3 7800000000000000064
 cmp r3 0
 je first
@@ -138,6 +149,9 @@ cmp r3 r12
 jne ambiguous
 jmp next_pattern
 label first
+load8 r3 7800000000000000189
+store8 7800000000000000188 r3
+store8 7800000000000000065 0
 store8 7800000000000000064 r8
 store8 7800000000000000068 r9
 store8 7800000000000000069 r10

@@ -1,0 +1,196 @@
+{
+  "method": "native resident sessions; same E018 checkpoint; E018 full differs only in explicit display preference; randomized interleaving seed 180627; save before ACK; expected answers outside native inference",
+  "checkpoint_sha256": "df074a27d284025ccd033373c92f116c5c3237455e9f51891fcfa0392828aaec",
+  "checkpoint_bytes": 298808,
+  "program_sha256": {
+    "e017_full": "2d265344fe994d6935b7cbb4cecd4bab0577d60eec179596be63ca06a6debf3b",
+    "e018_full": "83d0e6566f87d3c7f496c4f76ebd95d12719aeaa45ffd191327fbe0439a2557a",
+    "e018_brief": "83d0e6566f87d3c7f496c4f76ebd95d12719aeaa45ffd191327fbe0439a2557a"
+  },
+  "platform": "linux",
+  "results": {
+    "e017_full": {
+      "direct": {
+        "n": 40,
+        "median_ms": 13.507071499999999,
+        "p95_ms": 16.787007
+      },
+      "old_inference": {
+        "n": 40,
+        "median_ms": 13.561403,
+        "p95_ms": 17.701861
+      },
+      "multiple": {
+        "n": 40,
+        "median_ms": 16.2179085,
+        "p95_ms": 18.773519
+      },
+      "new_definition": {
+        "n": 40,
+        "median_ms": 30.1811525,
+        "p95_ms": 37.374318
+      },
+      "new_inference": {
+        "n": 40,
+        "median_ms": 19.8464795,
+        "p95_ms": 22.794416
+      },
+      "explicit_why": {
+        "n": 40,
+        "median_ms": 21.6045985,
+        "p95_ms": 24.605288
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 13.12153,
+        "p95_ms": 16.396477
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 12.647056,
+        "p95_ms": 14.640523
+      }
+    },
+    "e018_full": {
+      "direct": {
+        "n": 40,
+        "median_ms": 13.28689,
+        "p95_ms": 15.908814
+      },
+      "old_inference": {
+        "n": 40,
+        "median_ms": 13.611316500000001,
+        "p95_ms": 15.412725
+      },
+      "multiple": {
+        "n": 40,
+        "median_ms": 16.362941499999998,
+        "p95_ms": 20.325741
+      },
+      "new_definition": {
+        "n": 40,
+        "median_ms": 29.601695,
+        "p95_ms": 35.323217
+      },
+      "new_inference": {
+        "n": 40,
+        "median_ms": 19.84932,
+        "p95_ms": 23.907203
+      },
+      "explicit_why": {
+        "n": 40,
+        "median_ms": 21.6496585,
+        "p95_ms": 25.026028
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 12.974271,
+        "p95_ms": 17.466004
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 12.700965,
+        "p95_ms": 16.581837
+      }
+    },
+    "e018_brief": {
+      "direct": {
+        "n": 40,
+        "median_ms": 13.71277,
+        "p95_ms": 16.806147
+      },
+      "old_inference": {
+        "n": 40,
+        "median_ms": 13.824166,
+        "p95_ms": 18.088149
+      },
+      "multiple": {
+        "n": 40,
+        "median_ms": 15.0312515,
+        "p95_ms": 19.175927
+      },
+      "new_definition": {
+        "n": 40,
+        "median_ms": 27.555474,
+        "p95_ms": 33.176054
+      },
+      "new_inference": {
+        "n": 40,
+        "median_ms": 17.771615500000003,
+        "p95_ms": 22.054446
+      },
+      "explicit_why": {
+        "n": 40,
+        "median_ms": 22.0097755,
+        "p95_ms": 28.674651
+      },
+      "unknown": {
+        "n": 40,
+        "median_ms": 12.9667365,
+        "p95_ms": 16.807398
+      },
+      "arithmetic": {
+        "n": 40,
+        "median_ms": 12.973084,
+        "p95_ms": 15.558592
+      }
+    }
+  },
+  "response_utf8_bytes": {
+    "direct": {
+      "full": 27,
+      "brief": 27
+    },
+    "old_inference": {
+      "full": 71,
+      "brief": 24
+    },
+    "multiple": {
+      "full": 63,
+      "brief": 45
+    },
+    "new_definition": {
+      "full": 110,
+      "brief": 84
+    },
+    "new_inference": {
+      "full": 106,
+      "brief": 43
+    },
+    "explicit_why": {
+      "full": 111,
+      "brief": 111
+    },
+    "unknown": {
+      "full": 48,
+      "brief": 48
+    },
+    "arithmetic": {
+      "full": 22,
+      "brief": 22
+    }
+  },
+  "metrics": {
+    "e017_full": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 7428,
+      "cpu_ms": 5958.12,
+      "active_qubits": 0
+    },
+    "e018_full": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 7448,
+      "cpu_ms": 6024.37,
+      "active_qubits": 0
+    },
+    "e018_brief": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 13568,
+      "resident_rss_kib": 6784,
+      "cpu_ms": 5834.09,
+      "active_qubits": 0
+    }
+  }
+}

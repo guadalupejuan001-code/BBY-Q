@@ -1,0 +1,50 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E018_Concise_Dialogue_ES_EN.rvp.gz.b64",
+  "decoded_sha256": "df074a27d284025ccd033373c92f116c5c3237455e9f51891fcfa0392828aaec",
+  "decoded_bytes": 298808,
+  "parent": "BBYQ_E017_Open_Learning_ES_EN.rvp.gz.b64",
+  "parent_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+  "source_base_commit": "d082096bfce81be9d90266d3f813a7a71733ac7d",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "old_training_replayed": false,
+  "new_constructions": 25,
+  "syntax_presentations": 50,
+  "total_constructions": 64,
+  "new_lexical_entries": 9,
+  "total_lexical_entries": 533,
+  "new_concepts": 2,
+  "new_surface_lessons": 2,
+  "new_world_assertions": 0,
+  "inherited_didactic_assertions": 12,
+  "heldout_examples_in_release": 0,
+  "previous_learned_records_unchanged": true,
+  "declared_header_updates": [
+    "U+3 display preference",
+    "U+4..5 next ID",
+    "U+6..7 lexical count",
+    "U+10 construction count"
+  ],
+  "presentation_preference": {
+    "default": "brief",
+    "explicit_why": "full stored evidence",
+    "compact_api": "unchanged"
+  },
+  "open_conversation_achieved": false,
+  "limits": {
+    "tokens": 15,
+    "input_bytes": 255,
+    "constructions": 64,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8
+  },
+  "intelligence": "XI only; same RVPC2 and unchanged pinned owner runtime",
+  "source_data_sha256": {
+    "e018-constructions.psv": "181cad639f75bba200678bc1afa1f6bfff620b1d024fc3e338cebf701bf76776",
+    "e018-style.psv": "92e9a21b9980a389513e2c651197e07f0f50767057f7386164ea7eda2910fa92",
+    "e018-surface.psv": "77d896151999a2aefb6c8892cd5e185847d9e85840eb06c1377e6898c4e5cee8",
+    "e018-words.psv": "ee806d693a44479d93244f601a50587834aa4526b8fc3af95f9f4d09ef8a58cc"
+  }
+}
