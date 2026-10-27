@@ -1,0 +1,234 @@
+{
+  "scope": "110 fresh whole compositions, outside paired lessons and the separate development64; functional pieces supervised. Development16 and development64 guided engineering; no general-conversation score.",
+  "method": "same native runtime, source, question fixtures and oracle, varying learned checkpoint",
+  "versions": [
+    {
+      "version": "E020",
+      "checkpoint_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+      "checkpoint_bytes": 325721,
+      "heldout_compositions": {
+        "correct": 1,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 0,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 30.6746035,
+        "p95": 43.304642
+      },
+      "shared_query_ms": {
+        "median": 21.2267765,
+        "p95": 30.425992
+      }
+    },
+    {
+      "version": "E021",
+      "checkpoint_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+      "checkpoint_bytes": 465830,
+      "heldout_compositions": {
+        "correct": 1,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 7,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 37.37644,
+        "p95": 51.315833
+      },
+      "shared_query_ms": {
+        "median": 27.9280145,
+        "p95": 41.248114
+      }
+    },
+    {
+      "version": "E022",
+      "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+      "checkpoint_bytes": 500410,
+      "heldout_compositions": {
+        "correct": 110,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 16,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 63.620622,
+        "p95": 78.821878
+      },
+      "shared_query_ms": {
+        "median": 29.6563085,
+        "p95": 37.857255
+      }
+    }
+  ],
+  "representative_actual_transcript": [
+    {
+      "version": "E020",
+      "suite": "development_16",
+      "input": "puedes hablarme un poco de compone",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone es clasea.",
+      "pass": false,
+      "ms": 26.747619
+    },
+    {
+      "version": "E020",
+      "suite": "unseen_compositions",
+      "input": "y hablando de compone qué alcanza",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone alcanza destino022.",
+      "pass": false,
+      "ms": 27.872896
+    },
+    {
+      "version": "E020",
+      "suite": "development_16",
+      "input": "qué es lo que requiere compone",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone requiere agua.",
+      "pass": false,
+      "ms": 24.552508
+    },
+    {
+      "version": "E020",
+      "suite": "development_16",
+      "input": "which resources does compone require",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Compone requires water.",
+      "pass": false,
+      "ms": 26.498464
+    },
+    {
+      "version": "E020",
+      "suite": "unseen_compositions",
+      "input": "can you tell me about compone in other words",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Compone is clasea.",
+      "pass": false,
+      "ms": 42.148912
+    },
+    {
+      "version": "E021",
+      "suite": "development_16",
+      "input": "puedes hablarme un poco de compone",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone es clasea.",
+      "pass": false,
+      "ms": 61.373477
+    },
+    {
+      "version": "E021",
+      "suite": "unseen_compositions",
+      "input": "y hablando de compone qué alcanza",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone alcanza destino022.",
+      "pass": false,
+      "ms": 30.526289
+    },
+    {
+      "version": "E021",
+      "suite": "development_16",
+      "input": "qué es lo que requiere compone",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Compone requiere agua.",
+      "pass": false,
+      "ms": 47.559003
+    },
+    {
+      "version": "E021",
+      "suite": "development_16",
+      "input": "which resources does compone require",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Compone requires water.",
+      "pass": false,
+      "ms": 32.2971
+    },
+    {
+      "version": "E021",
+      "suite": "unseen_compositions",
+      "input": "can you tell me about compone in other words",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Compone is clasea.",
+      "pass": false,
+      "ms": 37.380167
+    },
+    {
+      "version": "E022",
+      "suite": "development_16",
+      "input": "puedes hablarme un poco de compone",
+      "language": 1,
+      "output": "Según lo aprendido: Compone es clasea.",
+      "expected": "Según lo aprendido: Compone es clasea.",
+      "pass": true,
+      "ms": 52.973344
+    },
+    {
+      "version": "E022",
+      "suite": "unseen_compositions",
+      "input": "y hablando de compone qué alcanza",
+      "language": 1,
+      "output": "Según lo aprendido: Compone alcanza destino022.",
+      "expected": "Según lo aprendido: Compone alcanza destino022.",
+      "pass": true,
+      "ms": 56.876566
+    },
+    {
+      "version": "E022",
+      "suite": "development_16",
+      "input": "qué es lo que requiere compone",
+      "language": 1,
+      "output": "Según lo aprendido: Compone requiere agua.",
+      "expected": "Según lo aprendido: Compone requiere agua.",
+      "pass": true,
+      "ms": 57.380304
+    },
+    {
+      "version": "E022",
+      "suite": "development_16",
+      "input": "which resources does compone require",
+      "language": 2,
+      "output": "From the taught statements: Compone requires water.",
+      "expected": "From the taught statements: Compone requires water.",
+      "pass": true,
+      "ms": 51.154227
+    },
+    {
+      "version": "E022",
+      "suite": "unseen_compositions",
+      "input": "can you tell me about compone in other words",
+      "language": 2,
+      "output": "From the taught statements: Compone is clasea.",
+      "expected": "From the taught statements: Compone is clasea.",
+      "pass": true,
+      "ms": 56.536868
+    }
+  ],
+  "full_transcript": "CI artifact bbyq-e022-composition-evidence/comparisons.json; reproduce with native-e022.py"
+}

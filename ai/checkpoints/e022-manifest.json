@@ -1,0 +1,70 @@
+{
+  "format": "base64(gzip(RVPC2)); compression is transport only",
+  "file": "BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
+  "decoded_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+  "decoded_bytes": 500410,
+  "parent": "BBYQ_E021_Language_Dialogue_ES_EN.rvp.gz.b64",
+  "parent_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+  "source_base_commit": "2c447c32f66910d17fa582c9c65a8f77979fa2cc",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "paired_training_examples": 39,
+  "learned_rewrite_rules": 33,
+  "variable_rules": 6,
+  "new_lexical_registry_entries": 19,
+  "lexical_registry_entries_K_and_U": 667,
+  "previous_constructions": 224,
+  "previous_224_constructions_unchanged": true,
+  "previous_learned_records_preserved": true,
+  "old_training_replayed": false,
+  "parent_language_training_examples": 2119224,
+  "new_world_facts_in_release": 0,
+  "checks": 6365,
+  "heldout_compositions": {
+    "correct": 110,
+    "total": 110
+  },
+  "heldout_transfer_dialogues": 8,
+  "heldout_transfer_queries": 880,
+  "development_paraphrases": {
+    "correct": 16,
+    "total": 16
+  },
+  "development_extra_formulations": 64,
+  "development_used_for_engineering": true,
+  "open_conversation_achieved": false,
+  "limits": {
+    "input_bytes": 255,
+    "tokens": 15,
+    "rewrite_steps": 8,
+    "rules": 64,
+    "topics": 8,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8
+  },
+  "new_region": "N=8100000000000000000; learned paired query rewrites, canonical spellings and counters; all transient scratch cleared",
+  "intelligence": "XI; supervised paired fragment/clause learning and designed query composition; no external pretrained component; unchanged owner runtime and adapter",
+  "source_data_sha256": {
+    "accept.xi": "372876491c2fe62db1cf285b970de7069553ec201cd065815699f41b532be7e7",
+    "apply.xi": "cf92ad16dc589dc4ed80139f39939d7347a7bf9638e6333517b8d52da7ff7742",
+    "audit.xi": "3d332cd83cdb7a06f30dcf3d2892587a135536ff9a7c42ea108e47621fc744c6",
+    "birth.xi": "9ce5574e55c354c1beb05944f1e76d8dfa321cdc47eba77d4b193119716f3e08",
+    "clean.xi": "ac3c262a7b8409c5948bc755b7fe24326e55b05b4f2d1bab201a2bd1d7dbde6c",
+    "data/development-compositions.json": "678526cca3b25a797d16feb6a5e78bc50a502f4adc0cdf535272722156b7e3b2",
+    "data/heldout-compositions.json": "f9b822631d115d435e85f4ffd02295fde75d97983d7e8eafcfca7efd83b0f42b",
+    "data/rules.json": "b35cda2f2b2b66a5a2a48cc63fdb4d879c8c35c3136017bd338b29ca16823fa7",
+    "finish-teach.xi": "46af21bd91458ce5c9a54c8902f63373b051f6ad759ae049dad9c69425bcfe68",
+    "guard.xi": "2c7b1131bb8b51df81601c71fde468527db63499fa9757e1d80b1741dc631162",
+    "induce.xi": "a14e8a11c87a59dc43a97a75445db754db85fd7a863a5263bb118c0c99d20662",
+    "normalize.xi": "a964860453e0a31166a87bb27557ab8dc47fe61131c5a6a16cbee88598186f9f",
+    "seal.xi": "b00050ac8f44151f5f1171b008cb6c54079ac543afdb9f7decf19554d0fc2693",
+    "target.xi": "beb1b7dd028633ee8b77f3e63fd965ed95952a4747e49209948e1f8e5b2ea432",
+    "tests/native-e022.py": "daa686f1487dfa4bdc34b106d8b7b8a917c107b8234e9b6836cb2eecb4af2be5"
+  },
+  "integration_sha256": {
+    "ai/xi/knowledge/link.sh": "18f48947946380c1c9390bf3e4418fe9dac778805c09160ebe25107aba3856db",
+    "ai/xi/knowledge/read.xi": "c0f00c7bbf6459d54da900b2a7886dbbce7dbed83667c134e0f36caf3ed9e908",
+    "ai/xi/knowledge/text.sh": "42d4f9774163ffcbe40b09ef045e3c57e3d7fa562da2a8a24c79505528a0a4f4"
+  }
+}
