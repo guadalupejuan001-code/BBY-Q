@@ -64,6 +64,31 @@ cmp r4 16
 je literal
 cmp r4 8
 je alias
+# An unresolved decimal is a quantity, not an unknown entity or predicate.
+# Leave it to the original arithmetic/story interpreters instead of allowing
+# the generic S/P/O and P/S/O constructions to compete over three unknowns.
+cmp r6 0
+jne typed_variable
+set r3 7400000000000000512
+mov r14 r2
+mul r14 34
+add r3 r14
+load8 r5 $r3
+set r14 0
+label decimal_character
+cmp r14 r5
+jge next_pattern
+mov r15 r3
+add r15 1
+add r15 r14
+load8 r15 $r15
+cmp r15 48
+jlt typed_variable
+cmp r15 57
+jgt typed_variable
+add r14 1
+jmp decimal_character
+label typed_variable
 cmp r4 2
 je predicate
 cmp r6 0

@@ -1,0 +1,199 @@
+{
+  "text_checks": 1062,
+  "unseen_numeric_queries": 1024,
+  "query_ms": {
+    "median": 20.658182500000002,
+    "p95": 26.95658
+  },
+  "session_metrics": {
+    "method": "getrusage_self",
+    "peak_rss_kib": 24340,
+    "resident_rss_kib": 7448,
+    "cpu_ms": 22286,
+    "active_qubits": 0
+  },
+  "e019_context_regression": {
+    "novel_dialogues": 4,
+    "new_query_problems": 128,
+    "novel_dialogue_checks": 277,
+    "new_constructions_examined": [
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "native_query_ms": {
+      "median": 27.668781,
+      "p95": 37.637745
+    },
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 24804,
+      "resident_rss_kib": 6996,
+      "cpu_ms": 7235.9,
+      "active_qubits": 0
+    },
+    "resident_rss_kib": null
+  },
+  "e018_regression": {
+    "novel_dialogues": 20,
+    "novel_dialogue_turns": 240,
+    "heldout_background_lessons": 1,
+    "new_constructions_examined": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 24904,
+      "resident_rss_kib": 7820,
+      "cpu_ms": 5902.27,
+      "active_qubits": 0
+    },
+    "novel_checks": 250
+  },
+  "stage": "E020",
+  "parent_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+  "learned_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+  "checkpoint_bytes": 325721,
+  "training": {
+    "parent_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+    "training_examples": 2097152,
+    "examples_per_concept": 262144,
+    "batch_size": 1024,
+    "batches": 2048,
+    "training_seconds": 120.0914706579988,
+    "examples_per_second": 17462.95543313273,
+    "corpus_sha256": "85b5b9f36b9c1961c7c97610c789a352b4abc9ae264ced3b59c7f9d7eec536a3",
+    "checkpoint_bytes_before": 319274,
+    "checkpoint_bytes_after_training": 320537,
+    "all_examples_consumed_inside_xi": true,
+    "original_state_unchanged": true,
+    "data": "synthetic structured integer arithmetic; not unrestricted natural language or new world facts"
+  },
+  "validation_examples": 2048,
+  "training_grid": [
+    512,
+    512
+  ],
+  "independent_validation": true,
+  "opaque_numerical_concepts": 8,
+  "new_operator_spellings": 20,
+  "new_primitive_families": 6,
+  "candidate_primitives_are_designed": true,
+  "spelling_to_primitive_is_learned": true,
+  "previous_all_logical_bytes_unchanged": true,
+  "complete_corpus_rows_retained": 0,
+  "first_input_pairs_retained_for_diversity": 8,
+  "memory_stats": [
+    {
+      "type": "memory_stats",
+      "model": "inverse-ether-memory",
+      "background_byte": 0,
+      "overrides": 12770,
+      "quantum_bindings": 0,
+      "revision": 20860607,
+      "limits": {
+        "max_address_digits": 4096,
+        "max_overrides": 65536,
+        "max_quantum_bindings": 4096,
+        "max_materialize_bytes": 65536
+      }
+    },
+    {
+      "type": "stats",
+      "background": "zero",
+      "domain": "nonnegative_decimal_addresses",
+      "active_qubits": 0,
+      "components": 0,
+      "largest_component": 0,
+      "tableau_bytes": 0,
+      "address_bytes": 0,
+      "ether_rules": 0,
+      "revision": 0,
+      "limits": {
+        "max_active_qubits": 4096,
+        "max_component_qubits": 1024,
+        "max_state_bytes": 67108864,
+        "max_address_digits": 4096,
+        "max_query_terms": 4096,
+        "max_ether_rules": 4096,
+        "max_ether_query_sites": 4096
+      }
+    }
+  ],
+  "query_checks": 4744,
+  "limits": {
+    "integer_min": 0,
+    "integer_max": 65535,
+    "effects_per_expression": 7,
+    "batch_rows": 1024,
+    "batch_input_bytes": 10240,
+    "operand_1_training": "u32",
+    "consequence_training": "i32"
+  },
+  "open_conversation_achieved": false,
+  "intelligence": "XI only; same RVPC2 and pinned REVERSE-PC/Mundo X",
+  "data": "synthetic labeled numerical experiences; not millions of conversations or world facts",
+  "diagnostic_score": {
+    "before": {
+      "correct": 0,
+      "total": 20
+    },
+    "after": {
+      "correct": 20,
+      "total": 20
+    }
+  }
+}

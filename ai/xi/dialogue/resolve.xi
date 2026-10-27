@@ -184,6 +184,63 @@ label resolved_number
 set r12 1
 jmp save_resolution
 label unresolved
+# Optional E020 spellings refer to sealed, independently validated concepts.
+# No mapping from a Spanish/English spelling to an arithmetic family here.
+load8 r7 7900000000000000003
+cmp r7 1
+jne no_scale_word
+load8 r7 7900000000000000004
+cmp r7 32
+jgt invalid
+set r8 0
+label scale_operator
+cmp r8 r7
+jge no_scale_word
+set r9 7900000000000001000
+mov r10 r8
+mul r10 32
+add r9 r10
+load8 r10 $r9
+cmp r10 r2
+jne next_scale_operator
+set r3 0
+label scale_chars
+cmp r3 r2
+jge scale_match
+mov r5 r1
+add r5 1
+add r5 r3
+load8 r6 $r5
+mov r5 r9
+add r5 1
+add r5 r3
+load8 r10 $r5
+cmp r6 r10
+jne next_scale_operator
+add r3 1
+jmp scale_chars
+label scale_match
+add r9 17
+load8 r4 $r9
+cmp r4 1
+jlt invalid
+cmp r4 8
+jgt invalid
+sub r4 1
+mul r4 64
+set r9 7900000000000000130
+add r9 r4
+load8 r4 $r9
+cmp r4 1
+jlt invalid
+cmp r4 8
+jgt invalid
+set r12 2
+jmp save_resolution
+label next_scale_operator
+add r8 1
+jmp scale_operator
+label no_scale_word
 set r12 0
 set r4 0
 label save_resolution

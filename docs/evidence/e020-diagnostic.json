@@ -1,0 +1,375 @@
+{
+  "score": {
+    "before": {
+      "correct": 0,
+      "total": 20
+    },
+    "after": {
+      "correct": 20,
+      "total": 20
+    }
+  },
+  "scope": "20 operator spellings; not a general intelligence score",
+  "transcript": [
+    {
+      "stage": "before",
+      "input": "7 minimo 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es dos.",
+      "pass": false,
+      "ms": 31.5967
+    },
+    {
+      "stage": "before",
+      "input": "7 minimum 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is two.",
+      "pass": false,
+      "ms": 17.851192
+    },
+    {
+      "stage": "before",
+      "input": "7 por 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es 14.",
+      "pass": false,
+      "ms": 16.416945
+    },
+    {
+      "stage": "before",
+      "input": "7 multiplica 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es 14.",
+      "pass": false,
+      "ms": 19.120504
+    },
+    {
+      "stage": "before",
+      "input": "7 times 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is 14.",
+      "pass": false,
+      "ms": 18.595054
+    },
+    {
+      "stage": "before",
+      "input": "7 multiply 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is 14.",
+      "pass": false,
+      "ms": 18.964643
+    },
+    {
+      "stage": "before",
+      "input": "7 distancia 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es cinco.",
+      "pass": false,
+      "ms": 19.638022
+    },
+    {
+      "stage": "before",
+      "input": "7 distance 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is five.",
+      "pass": false,
+      "ms": 18.659069
+    },
+    {
+      "stage": "before",
+      "input": "7 suma 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es nueve.",
+      "pass": false,
+      "ms": 20.281185
+    },
+    {
+      "stage": "before",
+      "input": "7 add 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is nine.",
+      "pass": false,
+      "ms": 20.60162
+    },
+    {
+      "stage": "before",
+      "input": "7 resto 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es uno.",
+      "pass": false,
+      "ms": 20.599547
+    },
+    {
+      "stage": "before",
+      "input": "7 modulo 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es uno.",
+      "pass": false,
+      "ms": 24.296865
+    },
+    {
+      "stage": "before",
+      "input": "7 remainder 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is one.",
+      "pass": false,
+      "ms": 24.623639
+    },
+    {
+      "stage": "before",
+      "input": "7 mod 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is one.",
+      "pass": false,
+      "ms": 21.632349
+    },
+    {
+      "stage": "before",
+      "input": "7 resta 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es cinco.",
+      "pass": false,
+      "ms": 17.089453
+    },
+    {
+      "stage": "before",
+      "input": "7 subtract 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is five.",
+      "pass": false,
+      "ms": 19.922678
+    },
+    {
+      "stage": "before",
+      "input": "7 maximo 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es siete.",
+      "pass": false,
+      "ms": 19.72083
+    },
+    {
+      "stage": "before",
+      "input": "7 maximum 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is seven.",
+      "pass": false,
+      "ms": 16.384736
+    },
+    {
+      "stage": "before",
+      "input": "8 dividido 2",
+      "language": 1,
+      "output": "No tengo información suficiente para responder.",
+      "expected": "El resultado es cuatro.",
+      "pass": false,
+      "ms": 20.378113
+    },
+    {
+      "stage": "before",
+      "input": "8 divided 2",
+      "language": 2,
+      "output": "I do not have enough information to answer.",
+      "expected": "The result is four.",
+      "pass": false,
+      "ms": 20.175229
+    },
+    {
+      "stage": "after",
+      "input": "7 minimo 2",
+      "language": 1,
+      "output": "El resultado es dos.",
+      "expected": "El resultado es dos.",
+      "pass": true,
+      "ms": 121.723148
+    },
+    {
+      "stage": "after",
+      "input": "7 minimum 2",
+      "language": 2,
+      "output": "The result is two.",
+      "expected": "The result is two.",
+      "pass": true,
+      "ms": 17.166717
+    },
+    {
+      "stage": "after",
+      "input": "7 por 2",
+      "language": 1,
+      "output": "El resultado es 14.",
+      "expected": "El resultado es 14.",
+      "pass": true,
+      "ms": 15.78695
+    },
+    {
+      "stage": "after",
+      "input": "7 multiplica 2",
+      "language": 1,
+      "output": "El resultado es 14.",
+      "expected": "El resultado es 14.",
+      "pass": true,
+      "ms": 19.629239
+    },
+    {
+      "stage": "after",
+      "input": "7 times 2",
+      "language": 2,
+      "output": "The result is 14.",
+      "expected": "The result is 14.",
+      "pass": true,
+      "ms": 18.999214
+    },
+    {
+      "stage": "after",
+      "input": "7 multiply 2",
+      "language": 2,
+      "output": "The result is 14.",
+      "expected": "The result is 14.",
+      "pass": true,
+      "ms": 18.030748
+    },
+    {
+      "stage": "after",
+      "input": "7 distancia 2",
+      "language": 1,
+      "output": "El resultado es cinco.",
+      "expected": "El resultado es cinco.",
+      "pass": true,
+      "ms": 15.135094
+    },
+    {
+      "stage": "after",
+      "input": "7 distance 2",
+      "language": 2,
+      "output": "The result is five.",
+      "expected": "The result is five.",
+      "pass": true,
+      "ms": 14.835233
+    },
+    {
+      "stage": "after",
+      "input": "7 suma 2",
+      "language": 1,
+      "output": "El resultado es nueve.",
+      "expected": "El resultado es nueve.",
+      "pass": true,
+      "ms": 16.01219
+    },
+    {
+      "stage": "after",
+      "input": "7 add 2",
+      "language": 2,
+      "output": "The result is nine.",
+      "expected": "The result is nine.",
+      "pass": true,
+      "ms": 16.907182
+    },
+    {
+      "stage": "after",
+      "input": "7 resto 2",
+      "language": 1,
+      "output": "El resultado es uno.",
+      "expected": "El resultado es uno.",
+      "pass": true,
+      "ms": 16.606346
+    },
+    {
+      "stage": "after",
+      "input": "7 modulo 2",
+      "language": 1,
+      "output": "El resultado es uno.",
+      "expected": "El resultado es uno.",
+      "pass": true,
+      "ms": 14.594923
+    },
+    {
+      "stage": "after",
+      "input": "7 remainder 2",
+      "language": 2,
+      "output": "The result is one.",
+      "expected": "The result is one.",
+      "pass": true,
+      "ms": 16.256096
+    },
+    {
+      "stage": "after",
+      "input": "7 mod 2",
+      "language": 2,
+      "output": "The result is one.",
+      "expected": "The result is one.",
+      "pass": true,
+      "ms": 14.916124
+    },
+    {
+      "stage": "after",
+      "input": "7 resta 2",
+      "language": 1,
+      "output": "El resultado es cinco.",
+      "expected": "El resultado es cinco.",
+      "pass": true,
+      "ms": 20.388504
+    },
+    {
+      "stage": "after",
+      "input": "7 subtract 2",
+      "language": 2,
+      "output": "The result is five.",
+      "expected": "The result is five.",
+      "pass": true,
+      "ms": 19.183818
+    },
+    {
+      "stage": "after",
+      "input": "7 maximo 2",
+      "language": 1,
+      "output": "El resultado es siete.",
+      "expected": "El resultado es siete.",
+      "pass": true,
+      "ms": 19.777868
+    },
+    {
+      "stage": "after",
+      "input": "7 maximum 2",
+      "language": 2,
+      "output": "The result is seven.",
+      "expected": "The result is seven.",
+      "pass": true,
+      "ms": 17.072176
+    },
+    {
+      "stage": "after",
+      "input": "8 dividido 2",
+      "language": 1,
+      "output": "El resultado es cuatro.",
+      "expected": "El resultado es cuatro.",
+      "pass": true,
+      "ms": 14.616184
+    },
+    {
+      "stage": "after",
+      "input": "8 divided 2",
+      "language": 2,
+      "output": "The result is four.",
+      "expected": "The result is four.",
+      "pass": true,
+      "ms": 19.091336
+    }
+  ]
+}

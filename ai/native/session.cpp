@@ -4,14 +4,28 @@
 #include "reverse_pc.cpp"
 #undef main
 #include <sys/resource.h>
+#include <sys/file.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 namespace {
 struct WriterLock {
-  fs::path path;
-  explicit WriterLock(const fs::path& state) : path(state.string()+".lock") {
-    if (!fs::create_directory(path)) throw std::runtime_error("state has an active writer");
+  int descriptor=-1;
+  explicit WriterLock(const fs::path& state) {
+    // Preserve an older client's lock. Never guess that a directory is stale.
+    if (fs::exists(state.string()+".lock")) throw std::runtime_error("state has an active writer");
+    descriptor=::open((state.string()+".writer").c_str(),O_CREAT|O_RDWR|O_CLOEXEC,0600);
+    if (descriptor<0) throw std::runtime_error("cannot open state writer lock");
+    if (::flock(descriptor,LOCK_EX|LOCK_NB)!=0) {
+      ::close(descriptor);descriptor=-1;
+      throw std::runtime_error("state has an active writer");
+    }
   }
-  ~WriterLock() { std::error_code ignored; fs::remove(path,ignored); }
+  WriterLock(const WriterLock&)=delete;
+  WriterLock& operator=(const WriterLock&)=delete;
+  // Closing (including process death) releases the kernel lock. The inode
+  // stays in place so another writer cannot lock a different replacement.
+  ~WriterLock() { if(descriptor>=0) ::close(descriptor); }
 };
 void response(bool ok,const std::string& output) {
   std::cout<<(ok?"OK ":"ERROR ")<<output.size()<<'\n';
