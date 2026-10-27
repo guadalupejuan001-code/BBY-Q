@@ -134,7 +134,7 @@ son de estas tareas concretas, no porcentajes de inteligencia o lenguaje general
 E021 conserva 32/32 consultas compartidas, 6/6 operaciones E020 y 12/12
 controles de abstención de la prueba compositiva. Las 16 reformulaciones de
 desarrollo pasan de 0/16 a 7/16; las nueve restantes siguen fuera de alcance.
-La campaña local aprueba **5.880 comprobaciones de consulta y controles**.
+La campaña local aprueba **5.879 comprobaciones de consulta y controles**.
 Las 1.024 consultas de marcos nuevos tienen mediana de 34,42 ms y p95 de
 49,03 ms. Las doce consultas compositivas independientes tienen mediana de
 56,15 ms. Son medidas de una ejecución local, incluido guardar antes de

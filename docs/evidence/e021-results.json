@@ -166,7 +166,7 @@
     "open_conversation_achieved": false,
     "limit_per_construction": null
   },
-  "checks": 5880,
+  "checks": 5879,
   "comparison": {
     "E017": {
       "correct": 0,
@@ -245,8 +245,9 @@
   },
   "intelligence": "XI; original synthetic supervision, no external pretrained model; C++ runtime and Python examiner are infrastructure",
   "e019_additional_controls": {
-    "checks": 40,
+    "checks": 39,
     "context_and_bad_lessons": true,
     "restart_reset": true
-  }
+  },
+  "local_post_campaign_audits": 1
 }

@@ -15,7 +15,7 @@ También pasa 12/12 controles de abstención. Las 16 reformulaciones de desarrol
 quedan en **7/16**, por lo que persiste una cobertura limitada. Estos exámenes
 acotados no equivalen a una puntuación de comprensión general.
 
-Aprueba **5.880 comprobaciones**, conserva las 1.522 consultas anteriores en
+Aprueba **5.879 comprobaciones**, conserva las 1.522 consultas anteriores en
 ambas superficies y las 1.024 consultas numéricas reservadas de E020. La
 validación estructurada separa 4.816 combinaciones nuevas de 24 revisiones
 literales. La fase masiva tarda 337,92 s; el estado publicado ocupa **465.830
