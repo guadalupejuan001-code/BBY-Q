@@ -1,0 +1,369 @@
+{
+  "scope": "128 taught-frame probes with novel entities/predicate; 16 development paraphrases; independent 12 unseen question preambles and 12 abstention controls; not general intelligence",
+  "method": "same native owner runtime, source, input, setup and examiner oracle; only learned checkpoint varies; optional unsolicited proof ignored for non-explanation answers",
+  "versions": [
+    {
+      "version": "E017",
+      "checkpoint_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+      "checkpoint_bytes": 279677,
+      "constructions": 39,
+      "lexical_registry_entries": 524,
+      "new_form_score": {
+        "correct": 0,
+        "total": 128
+      },
+      "untrained_paraphrase_score": {
+        "correct": 0,
+        "total": 16
+      },
+      "compositional_clause_exam": {
+        "unseen_questions": {
+          "correct": 0,
+          "total": 12
+        },
+        "abstention_controls": {
+          "correct": 12,
+          "total": 12
+        },
+        "query_ms": {
+          "median": 22.2586145,
+          "p95": 26.941561
+        }
+      },
+      "E020_operation_score": {
+        "correct": 0,
+        "total": 6
+      },
+      "new_form_ms": {
+        "median": 19.568445500000003,
+        "p95": 27.975904
+      },
+      "shared_32_score": {
+        "correct": 32,
+        "total": 32
+      },
+      "shared_32_query_ms": {
+        "median": 14.0275195,
+        "p95": 17.201001
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27036,
+        "resident_rss_kib": 7564,
+        "cpu_ms": 10765.4,
+        "active_qubits": 0
+      }
+    },
+    {
+      "version": "E018",
+      "checkpoint_sha256": "df074a27d284025ccd033373c92f116c5c3237455e9f51891fcfa0392828aaec",
+      "checkpoint_bytes": 298808,
+      "constructions": 64,
+      "lexical_registry_entries": 533,
+      "new_form_score": {
+        "correct": 0,
+        "total": 128
+      },
+      "untrained_paraphrase_score": {
+        "correct": 0,
+        "total": 16
+      },
+      "compositional_clause_exam": {
+        "unseen_questions": {
+          "correct": 0,
+          "total": 12
+        },
+        "abstention_controls": {
+          "correct": 12,
+          "total": 12
+        },
+        "query_ms": {
+          "median": 24.9220865,
+          "p95": 28.560507
+        }
+      },
+      "E020_operation_score": {
+        "correct": 0,
+        "total": 6
+      },
+      "new_form_ms": {
+        "median": 19.5353285,
+        "p95": 25.702623
+      },
+      "shared_32_score": {
+        "correct": 32,
+        "total": 32
+      },
+      "shared_32_query_ms": {
+        "median": 14.7815565,
+        "p95": 18.919221
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27036,
+        "resident_rss_kib": 7712,
+        "cpu_ms": 10847.2,
+        "active_qubits": 0
+      }
+    },
+    {
+      "version": "E019",
+      "checkpoint_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+      "checkpoint_bytes": 319274,
+      "constructions": 96,
+      "lexical_registry_entries": 539,
+      "new_form_score": {
+        "correct": 0,
+        "total": 128
+      },
+      "untrained_paraphrase_score": {
+        "correct": 0,
+        "total": 16
+      },
+      "compositional_clause_exam": {
+        "unseen_questions": {
+          "correct": 0,
+          "total": 12
+        },
+        "abstention_controls": {
+          "correct": 12,
+          "total": 12
+        },
+        "query_ms": {
+          "median": 24.6454605,
+          "p95": 30.794839
+        }
+      },
+      "E020_operation_score": {
+        "correct": 0,
+        "total": 6
+      },
+      "new_form_ms": {
+        "median": 21.725154,
+        "p95": 26.684745
+      },
+      "shared_32_score": {
+        "correct": 32,
+        "total": 32
+      },
+      "shared_32_query_ms": {
+        "median": 17.8074445,
+        "p95": 23.992008
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27036,
+        "resident_rss_kib": 7916,
+        "cpu_ms": 11911.1,
+        "active_qubits": 0
+      }
+    },
+    {
+      "version": "E020",
+      "checkpoint_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+      "checkpoint_bytes": 325721,
+      "constructions": 96,
+      "lexical_registry_entries": 539,
+      "new_form_score": {
+        "correct": 0,
+        "total": 128
+      },
+      "untrained_paraphrase_score": {
+        "correct": 0,
+        "total": 16
+      },
+      "compositional_clause_exam": {
+        "unseen_questions": {
+          "correct": 0,
+          "total": 12
+        },
+        "abstention_controls": {
+          "correct": 12,
+          "total": 12
+        },
+        "query_ms": {
+          "median": 25.382029,
+          "p95": 29.066793
+        }
+      },
+      "E020_operation_score": {
+        "correct": 6,
+        "total": 6
+      },
+      "new_form_ms": {
+        "median": 23.3695455,
+        "p95": 30.323435
+      },
+      "shared_32_score": {
+        "correct": 32,
+        "total": 32
+      },
+      "shared_32_query_ms": {
+        "median": 19.6861755,
+        "p95": 26.523841
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27036,
+        "resident_rss_kib": 7904,
+        "cpu_ms": 12587.5,
+        "active_qubits": 0
+      }
+    },
+    {
+      "version": "E021",
+      "checkpoint_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+      "checkpoint_bytes": 465830,
+      "constructions": 224,
+      "lexical_registry_entries": 648,
+      "new_form_score": {
+        "correct": 128,
+        "total": 128
+      },
+      "untrained_paraphrase_score": {
+        "correct": 7,
+        "total": 16
+      },
+      "compositional_clause_exam": {
+        "unseen_questions": {
+          "correct": 12,
+          "total": 12
+        },
+        "abstention_controls": {
+          "correct": 12,
+          "total": 12
+        },
+        "query_ms": {
+          "median": 56.1481465,
+          "p95": 71.665767
+        }
+      },
+      "E020_operation_score": {
+        "correct": 6,
+        "total": 6
+      },
+      "new_form_ms": {
+        "median": 36.282385000000005,
+        "p95": 54.950533
+      },
+      "shared_32_score": {
+        "correct": 32,
+        "total": 32
+      },
+      "shared_32_query_ms": {
+        "median": 20.224724000000002,
+        "p95": 26.069366
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27036,
+        "resident_rss_kib": 9272,
+        "cpu_ms": 15867.2,
+        "active_qubits": 0
+      }
+    }
+  ],
+  "examples": [
+    {
+      "version": "E017",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "por curiosidad qué requiere clausanueva",
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Clausanueva requiere agua.",
+      "pass": false,
+      "ms": 18.548876
+    },
+    {
+      "version": "E017",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "i was wondering what clausanueva requires",
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Clausanueva requires water.",
+      "pass": false,
+      "ms": 20.412313
+    },
+    {
+      "version": "E018",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "por curiosidad qué requiere clausanueva",
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Clausanueva requiere agua.",
+      "pass": false,
+      "ms": 21.671069
+    },
+    {
+      "version": "E018",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "i was wondering what clausanueva requires",
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Clausanueva requires water.",
+      "pass": false,
+      "ms": 24.820977
+    },
+    {
+      "version": "E019",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "por curiosidad qué requiere clausanueva",
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Clausanueva requiere agua.",
+      "pass": false,
+      "ms": 22.061763
+    },
+    {
+      "version": "E019",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "i was wondering what clausanueva requires",
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Clausanueva requires water.",
+      "pass": false,
+      "ms": 24.213696
+    },
+    {
+      "version": "E020",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "por curiosidad qué requiere clausanueva",
+      "output": "No tengo información suficiente para responder.",
+      "expected": "Según lo aprendido: Clausanueva requiere agua.",
+      "pass": false,
+      "ms": 23.651752
+    },
+    {
+      "version": "E020",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "i was wondering what clausanueva requires",
+      "output": "I do not have enough information to answer.",
+      "expected": "From the taught statements: Clausanueva requires water.",
+      "pass": false,
+      "ms": 25.89914
+    },
+    {
+      "version": "E021",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "por curiosidad qué requiere clausanueva",
+      "output": "Según lo aprendido: Clausanueva requiere agua.",
+      "expected": "Según lo aprendido: Clausanueva requiere agua.",
+      "pass": true,
+      "ms": 60.168039
+    },
+    {
+      "version": "E021",
+      "suite": "unseen_compositional_clauses",
+      "kind": "require",
+      "input": "i was wondering what clausanueva requires",
+      "output": "From the taught statements: Clausanueva requires water.",
+      "expected": "From the taught statements: Clausanueva requires water.",
+      "pass": true,
+      "ms": 52.161753
+    }
+  ],
+  "full_transcript": "Reproduced by ai/xi/lingua/tests/native-e021.py; uploaded as CI artifact comparisons.json"
+}

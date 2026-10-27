@@ -1,0 +1,71 @@
+name: BBY Q E021 - million-example language and bounded dialogue
+on:
+  push:
+    branches: [feature/bbyq-e021-language-campaign-20261027, main]
+    paths: ["ai/xi/lingua/**", "ai/xi/open/**", "ai/xi/knowledge/**", "ai/xi/stories/**", "ai/xi/conversation/**", "ai/xi/dialogue/**", "ai/native/**", "ai/checkpoints/BBYQ_E021*", "ai/checkpoints/e021-manifest.json", ".github/workflows/bbyq-e021.yml"]
+  pull_request:
+    paths: ["ai/xi/lingua/**", "ai/xi/open/**", "ai/xi/knowledge/**", "ai/xi/stories/**", "ai/xi/conversation/**", "ai/xi/dialogue/**", "ai/native/**", "ai/checkpoints/BBYQ_E021*", "ai/checkpoints/e021-manifest.json", ".github/workflows/bbyq-e021.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  language-and-dialogue-continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify authentic parent, release and curriculum hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d ai/checkpoints/BBYQ_E020_Million_Arithmetic_ES_EN.rvp.gz.b64 | gzip -dc > parent.rvp
+          base64 -d ai/checkpoints/BBYQ_E021_Language_Dialogue_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          m=json.loads(Path('ai/checkpoints/e021-manifest.json').read_text())
+          assert hashlib.sha256(Path('parent.rvp').read_bytes()).hexdigest()==m['parent_sha256']
+          assert hashlib.sha256(Path('released.rvp').read_bytes()).hexdigest()==m['decoded_sha256']
+          for name,digest in m['source_data_sha256'].items():
+              assert hashlib.sha256((Path('ai/xi/lingua')/name).read_bytes()).hexdigest()==digest
+          PY
+      - name: Build exact owner runtime and native byte transport
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Consume 2119224 distinct concept-token language examples in XI
+        run: |
+          python3 ai/xi/lingua/tests/native-language.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" --out evidence/e021-training --batch 512
+      - name: Promote, examine dialogue, compare earlier states and retain prior learning
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ai/xi/lingua/tests/native-e021.py "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$RUNNER_TEMP/session-build/bbyq_session" evidence/e021-training/unsealed.rvp evidence/e021-training/training.json --out evidence/e021 --dialogs 8
+          python3 - <<'PY'
+          import json,runpy
+          snapshot=runpy.run_path('ai/xi/knowledge/tests/native-knowledge.py')['snapshot']
+          assert snapshot('released.rvp')==snapshot('evidence/e021/BBYQ_E021_Language_Dialogue_ES_EN.rvp')
+          m=json.load(open('ai/checkpoints/e021-manifest.json'));r=json.load(open('evidence/e021/results.json'))
+          assert r['training']['training_examples']==2119224
+          assert r['training']['concept_token_corpus_sha256']==m['concept_token_corpus_sha256']
+          assert r['training']['surface_corpus_sha256']==m['surface_corpus_sha256']
+          assert r['training']['held_out_binding_validation_examples']==4816
+          assert r['training']['literal_form_rechecks']==24
+          assert r['checks']==m['checks']
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e021-language-dialogue-evidence
+          path: |
+            evidence/e021-training/training.json
+            evidence/e021/results.json
+            evidence/e021/comparisons.json
+            evidence/e021/raw.jsonl
+            evidence/e021/BBYQ_E021_Language_Dialogue_ES_EN.rvp
+          if-no-files-found: warn

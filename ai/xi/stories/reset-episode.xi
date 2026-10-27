@@ -48,6 +48,14 @@ add r0 1
 cmp r0 20
 jlt open_context
 label finish
+set r0 128
+label topic_context
+set r7 8000000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+cmp r0 256
+jlt topic_context
 halt
 label invalid
 div r0 0

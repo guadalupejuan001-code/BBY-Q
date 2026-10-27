@@ -1,0 +1,253 @@
+{
+  "language_transfer": {
+    "dialogues": 8,
+    "all_new_constructions_examined": 128,
+    "new_form_queries": 1024,
+    "checks": 1104,
+    "query_ms": {
+      "median": 34.423162500000004,
+      "p95": 49.031331
+    },
+    "metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 22336,
+      "resident_rss_kib": 8152,
+      "cpu_ms": 45445.7,
+      "active_qubits": 0
+    },
+    "held_out": "novel entities and requires predicate; surface construction frames are taught"
+  },
+  "topic_integrity": {
+    "checks": 43,
+    "topics": 8,
+    "eviction": true,
+    "fresh_evidence_on_resume": true,
+    "restart_reset_save_rollback": true
+  },
+  "e019_regression": {
+    "novel_dialogues": 4,
+    "new_query_problems": 128,
+    "novel_dialogue_checks": 277,
+    "new_constructions_examined": [
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "native_query_ms": {
+      "median": 31.3851935,
+      "p95": 46.727185
+    },
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 27036,
+      "resident_rss_kib": 7992,
+      "cpu_ms": 8269.56,
+      "active_qubits": 0
+    },
+    "resident_rss_kib": null
+  },
+  "e018_regression": {
+    "novel_dialogues": 20,
+    "novel_dialogue_turns": 240,
+    "heldout_background_lessons": 1,
+    "new_constructions_examined": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 27036,
+      "resident_rss_kib": 8048,
+      "cpu_ms": 6431.98,
+      "active_qubits": 0
+    },
+    "novel_checks": 250
+  },
+  "e020_arithmetic_regression": {
+    "text_checks": 1062,
+    "unseen_numeric_queries": 1024,
+    "query_ms": {
+      "median": 23.0842795,
+      "p95": 32.761537
+    },
+    "session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 27556,
+      "resident_rss_kib": 7548,
+      "cpu_ms": 25648.5,
+      "active_qubits": 0
+    }
+  },
+  "stage": "E021",
+  "parent_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+  "checkpoint_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+  "checkpoint_bytes": 465830,
+  "training": {
+    "stage": "E021",
+    "parent_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+    "training_examples": 2119224,
+    "distinct_concept_token_training_examples": 2119224,
+    "validation_examples": 4840,
+    "held_out_binding_validation_examples": 4816,
+    "literal_form_rechecks": 24,
+    "batches": 4320,
+    "training_seconds": 337.92259121200004,
+    "priming_seconds": 12.339596706999146,
+    "examples_per_second": 6271.329751583486,
+    "concept_token_corpus_sha256": "49c1c1a826b0a709d395f469225118f03ac06ea3a43ad6401be7bf8de490949b",
+    "surface_corpus_sha256": "34234ca581b441e0ae14bdcb371f3cd982524e2b9e4073dc466eedef2b437b82",
+    "raw_construction_priming_presentations": 256,
+    "cue_presentations": 10,
+    "new_constructions": 128,
+    "total_constructions": 224,
+    "new_lexical_entries": 109,
+    "total_lexical_entries": 648,
+    "unique_surface_forms_including_E010": 674,
+    "new_dialogue_acts": 8,
+    "topic_slots": 8,
+    "previous_learned_bytes_preserved": true,
+    "checkpoint_bytes_before": 325721,
+    "checkpoint_bytes_unsealed": 465806,
+    "input_representation": "full concept-token sequences and S/P/O labels; raw text priming and independent inference exams",
+    "data": "original synthetic supervised syntax; no downloaded conversation corpus or external pretrained component",
+    "new_world_facts": 0,
+    "open_conversation_achieved": false,
+    "limit_per_construction": null
+  },
+  "checks": 5879,
+  "comparison": {
+    "E017": {
+      "correct": 0,
+      "total": 128
+    },
+    "E018": {
+      "correct": 0,
+      "total": 128
+    },
+    "E019": {
+      "correct": 0,
+      "total": 128
+    },
+    "E020": {
+      "correct": 0,
+      "total": 128
+    },
+    "E021": {
+      "correct": 128,
+      "total": 128
+    }
+  },
+  "new_world_facts_in_release": 0,
+  "new_constructions": 128,
+  "total_constructions": 224,
+  "topic_slots": 8,
+  "new_dialogue_acts": 8,
+  "previous_learned_records_preserved": true,
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "memory_stats": [
+    {
+      "type": "memory_stats",
+      "model": "inverse-ether-memory",
+      "background_byte": 0,
+      "overrides": 18416,
+      "quantum_bindings": 0,
+      "revision": 72999472,
+      "limits": {
+        "max_address_digits": 4096,
+        "max_overrides": 65536,
+        "max_quantum_bindings": 4096,
+        "max_materialize_bytes": 65536
+      }
+    },
+    {
+      "type": "stats",
+      "background": "zero",
+      "domain": "nonnegative_decimal_addresses",
+      "active_qubits": 0,
+      "components": 0,
+      "largest_component": 0,
+      "tableau_bytes": 0,
+      "address_bytes": 0,
+      "ether_rules": 0,
+      "revision": 0,
+      "limits": {
+        "max_active_qubits": 4096,
+        "max_component_qubits": 1024,
+        "max_state_bytes": 67108864,
+        "max_address_digits": 4096,
+        "max_query_terms": 4096,
+        "max_ether_rules": 4096,
+        "max_ether_query_sites": 4096
+      }
+    }
+  ],
+  "open_conversation_achieved": false,
+  "limits": {
+    "input_bytes": 255,
+    "tokens": 15,
+    "topic_slots": 8,
+    "search_nodes": 64,
+    "proof_nodes": 32,
+    "answers": 8
+  },
+  "intelligence": "XI; original synthetic supervision, no external pretrained model; C++ runtime and Python examiner are infrastructure",
+  "e019_additional_controls": {
+    "checks": 39,
+    "context_and_bad_lessons": true,
+    "restart_reset": true
+  },
+  "local_post_campaign_audits": 1
+}

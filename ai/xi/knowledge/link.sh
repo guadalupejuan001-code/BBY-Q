@@ -19,14 +19,16 @@ link_module() {
   serial=$((serial+1))
 }
 case "$mode" in
-  open-word|open-pattern|open-utterance|open-calibrate|open-base|open-style)
-    if [ "$mode" = open-word ] || [ "$mode" = open-pattern ] || [ "$mode" = open-base ]; then
+  open-word|open-pattern|lingua-pattern|lingua-cue|open-utterance|open-calibrate|open-base|open-style)
+    if [ "$mode" = open-word ] || [ "$mode" = open-pattern ] || [ "$mode" = lingua-pattern ] || [ "$mode" = lingua-cue ] || [ "$mode" = open-base ]; then
       link_module "$root/read.xi" "m$((serial+1))_entry"
       link_module "$root/resolve.xi" "m$((serial+1))_entry"
       link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
     fi
     case "$mode" in
       open-word) link_module "$root/../open/intern.xi" open_learn_cleanup;;
+      lingua-cue) link_module "$root/../lingua/learn-cue.xi" open_learn_cleanup;;
+      lingua-pattern) link_module "$root/../lingua/learn-pattern.xi" open_learn_cleanup;;
       open-pattern) link_module "$root/../open/learn-pattern.xi" open_learn_cleanup;;
       open-base) link_module "$root/../open/learn-base.xi" open_learn_cleanup;;
       open-style) link_module "$root/../open/learn-style.xi" open_learn_cleanup;;
@@ -85,6 +87,7 @@ case "$mode" in
     if [ "$mode" != query ]; then
       link_module "$root/../open/resolve.xi" "m$((serial+1))_entry"
       link_module "$root/../open/match.xi" "m$((serial+1))_entry"
+      link_module "$root/../lingua/clause.xi" "m$((serial+1))_entry"
       link_module "$root/../open/prepare.xi" open_dispatch
       echo 'label open_dispatch'
       echo 'load8 r0 7800000000000000067'
@@ -96,6 +99,8 @@ case "$mode" in
       echo 'je open_alias'
       echo 'cmp r0 4'
       echo 'je open_mutate'
+      echo 'cmp r0 6'
+      echo 'je lingua_resume'
       echo 'cmp r0 5'
       echo 'je open_reply'
       echo 'label open_fallback'
@@ -304,6 +309,13 @@ case "$mode" in
       link_module "$root/../open/intern.xi" open_alias_done
       echo 'label open_alias_done'
       echo 'store8 7800000000000000080 6'
+      echo 'jmp open_reply'
+      echo 'label lingua_resume'
+      link_module "$root/../lingua/resume.xi" lingua_resumed
+      echo 'label lingua_resumed'
+      echo 'load8 r0 7800000000000000067'
+      echo 'cmp r0 2'
+      echo 'je open_query'
       echo 'jmp open_reply'
       echo 'label open_query'
       link_module "$root/../open/query-start.xi" open_query_ready
@@ -521,7 +533,8 @@ case "$mode" in
       echo 'cmp r0 1'
       echo 'jne finish'
       link_module "$root/../conversation/clean.xi" "m$((serial+1))_entry"
-      link_module "$root/../open/clean.xi" finish
+      link_module "$root/../open/clean.xi" "m$((serial+1))_entry"
+      link_module "$root/../lingua/remember.xi" finish
     else
       echo 'jmp finish'
     fi
