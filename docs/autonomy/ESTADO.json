@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T20:43:02.856Z",
-  "estado": "candidato_composicion_xi_en_pruebas",
+  "actualizado_utc": "2026-10-28T20:46:36.529Z",
+  "estado": "candidato_e026_validado_en_cuatro_formas",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-two-facts-e025-20261028",
-  "commit_codigo_observado": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
+  "rama_codigo_observada": "autonomy/bbyq-e026-native-composition-20261028",
+  "commit_codigo_observado": "4f15e00992c75f73b3a5824b503d2776e37b2311",
   "rama_continuidad": "autonomy/bbyq-e026-native-composition-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
@@ -13,7 +13,7 @@
     "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
     "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
     "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
-    "verificacion_en_este_ciclo": "Nueva CI: cápsula y semilla intactas por SHA-256; 31 comprobaciones E025, 21 W4u, 96 controles atómicos. Ningún checkpoint candidato publicado."
+    "verificacion_en_este_ciclo": "Semilla E025 intacta: ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631. La reconstrucción original y las 31 comprobaciones E025 pasaron de nuevo."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
@@ -24,63 +24,63 @@
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40754152612,
-      "job_id": 123048435728,
+      "id": 40765695900,
+      "job_id": 123089119191,
+      "head_sha": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900",
+      "artifact_id": 12850112323,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
       "conclusion": "success",
-      "head_sha": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
-      "checkout_merge_sha": "051e00f53c5ac5c9f3abcbe744d46ce979d866e6",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612",
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612/artifacts/12844468388",
-      "artifact_sha256": "6717a433c236493747e0dfb10abec564ebf625a6d5a77bebc4cff2300fee1fa3"
+      "checkout_merge_sha": "34ed18029cedd2b4282320184a4d0e6a8905f822",
+      "artifact_sha256": "340ac743965e2621081a2f06a6edf5939bd1ca44b90e3989fc2f67643b5bc14c"
     },
-    "acceso_actual": "Verificado por CI nueva del PR #29; misma infraestructura configurada."
+    "acceso_actual": "Nueva ejecución del workflow E025 del PR #30 completada; mismo runner y dependencias fijadas."
   },
-  "ciclo_activo": {
-    "id": "e026-composicion-20261028",
-    "inicio_utc": "2026-10-28T20:38:00.947Z",
-    "run_id": 40765695900,
-    "rama": "autonomy/bbyq-e026-native-composition-20261028",
-    "commit": "4f15e00992c75f73b3a5824b503d2776e37b2311",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900",
-    "intento_previo": {
-      "run_id": 40765031926,
-      "conclusion": "failure",
-      "desarrollo": 48,
-      "transferencia": 0,
-      "total_por_grupo": 48,
-      "cambio_para_reintentar": "Normalización canónica necesita/need en XI, sujetos nuevos y controles adversos adicionales."
-    }
-  },
+  "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-dos-hechos-e025-20261028T1925",
-    "tipo": "evaluacion_independiente_e025",
-    "registro": "docs/autonomy/ejecuciones/ciclo-dos-hechos-e025-20261028T1925.json",
-    "evidencia": "docs/autonomy/evidencias/ciclo-dos-hechos-e025-20261028T1925-results.json",
-    "entrenamiento_nuevo_publicado": false,
-    "evaluacion_nativa_ejecutada": true
+    "id": "ciclo-e026-composicion-20261028T2038",
+    "tipo": "ingenieria_composicion_en_xi",
+    "registro": "docs/autonomy/ejecuciones/ciclo-e026-composicion-20261028T2038.json",
+    "evidencia": "docs/autonomy/evidencias/ciclo-e026-composicion-20261028T2038-results.json",
+    "evaluacion_nativa_ejecutada": true,
+    "entrenamiento_nuevo_publicado": false
   },
   "cambios": [
-    "Se localiza E025 y W4u publicados; se corrige el estado obsoleto que los consideraba ausentes.",
-    "Diagnóstico reproducible con 24 sujetos, 96 controles atómicos y 48 consultas conjuntas: cobertura conjunta 0/48.",
-    "Misma cápsula y semilla E025, sin nuevo aprendizaje publicado; tests y configuración de CI propuestos en PR #29."
+    "Adaptador de composición en XI, con candidato de identidad propia que usa la semilla E025 intacta.",
+    "Desarrollo 0/48 -> 48/48; transferencia de sujetos nuevos 0/48 -> 48/48 dentro de formas diseñadas.",
+    "31 regresiones sobre E025, 31 sobre el candidato y 21 pruebas W4u aprobadas; 150 controles de abstención, negación/contradicción, referente mixto y limpieza."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "E025 recupera hechos individuales pero no cubre ambos hechos con las dos formulaciones examinadas. Diagnosticar si el fallo está en el análisis de dos intenciones, su representación o la composición de salida XI.",
-    "W4u 0.1 pasó 21 controles nativos; la coordinación autónoma del desarrollo del repositorio no queda demostrada por esos fixtures."
+    "El reconocimiento de formas es diseñado y acotado; todavía no se ha demostrado aprendizaje de nuevos patrones de composición.",
+    "El candidato no está desplegado en Android; su hash de cápsula cambia y requiere preservar/migrar explícitamente memorias privadas si se integra.",
+    "Las regresiones comprobadas cubren las 31 pruebas E025 y 21 W4u, no una nueva ejecución de todas las campañas E022 históricas."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
-  "revision_notas_previa": "99b094b693f5b4ca3c1eb8a13192a8917440fc47",
+  "commit_main_observado": "973837fb00322b6a15546d0f7ad9dac11afcb00e",
+  "revision_notas_previa": "73a5ac8c98f8d1cfe9d67385583d05369551b636",
   "resultados_dos_hechos": {
-    "controles_atomicos": {
-      "correct": 96,
-      "total": 96
-    },
-    "cobertura_conjunta": {
-      "correct": 0,
+    "development": {
+      "baseline": 0,
+      "candidate": 48,
       "total": 48
     },
-    "alcance": "Factual token coverage in 48 fixed bilingual requests, not general language understanding or a complete hallucination metric. Facts taught only to disposable RVPC2 copies; each app-turn is a separate native process."
+    "transfer": {
+      "baseline": 0,
+      "candidate": 48,
+      "total": 48
+    }
+  },
+  "candidato": {
+    "version": "E026-TwoFacts-dev",
+    "app_sha256": "3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "rama": "autonomy/bbyq-e026-native-composition-20261028",
+    "commit": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+    "artifact_app": "evidence/e026/candidate.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
+    "produccion_desplegada": false,
+    "aprendizaje_de_patrones_nuevo": false,
+    "descripcion": "Extensión de ingeniería en XI; cuatro formas de pregunta doble y respuestas del motor original, sin respuestas generadas fuera de XI."
   }
 }
