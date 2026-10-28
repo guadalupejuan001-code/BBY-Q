@@ -88,7 +88,7 @@ const auditOutput = execFileSync(runtime,['run', audit, state, state],{encoding:
 const auditNumbers = auditOutput.split('\n').filter(s => s.startsWith('{')).map(s=>JSON.parse(s).value);
 equals(JSON.stringify(auditNumbers), JSON.stringify([0]), 'clear physically overwrites stored data');
 const report = {
-  version:'E027-Context-1-dev', checks, app_turns:turns, archived_records:200,
+  version:'E027-CtxCompose-2-dev', checks, app_turns:turns, archived_records:200,
   tested_context_bytes:bytes, capacity_bytes:114688,
   append_elapsed_ms:Math.round(appendMilliseconds),
   serialized_state_bytes_before_context:stateBytesBeforeContext,
