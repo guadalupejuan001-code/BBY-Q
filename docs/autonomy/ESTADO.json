@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T22:36:10.859Z",
-  "estado": "contexto_y_composicion_validados_en_mismo_candidato",
+  "actualizado_utc": "2026-10-28T22:45:16.340Z",
+  "estado": "aprendizaje_nativo_de_formas_validado",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-context-composition-20261028",
-  "commit_codigo_observado": "9485ec2e366718de8d84ff82e5310d80287c84a9",
-  "rama_continuidad": "autonomy/bbyq-context-composition-20261028",
+  "rama_codigo_observada": "autonomy/bbyq-learned-forms-20261028",
+  "commit_codigo_observado": "0061bcda177fc31f609939860ed9d0a75e222d50",
+  "rama_continuidad": "autonomy/bbyq-learned-forms-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -13,93 +13,79 @@
     "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
     "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
     "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
-    "verificacion_en_este_ciclo": "Semilla E025 intacta y cápsula auténtica recompilada/reempaquetada exactamente; pruebas sobre copias nativas, sin sustitución de memoria publicada."
+    "verificacion_en_este_ciclo": "Semilla E025 preservada; hash comprobado en CI actual. Checkpoints experimentales separados en el artefacto, sin reemplazar memoria publicada."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
-    "workflow": ".github/workflows/bbyq-e027.yml",
-    "job": "e027",
+    "workflow": ".github/workflows/bbyq-e029.yml",
+    "job": "native-e029",
     "runner": "ubuntu-latest",
     "timeout_minutos": 25,
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40773600595,
-      "job_id": 123116981927,
+      "id": 40781527990,
+      "job_id": 123144134310,
       "conclusion": "success",
-      "head_sha": "9485ec2e366718de8d84ff82e5310d80287c84a9",
-      "checkout_merge_sha": "f27b89877f686c243f9ee9353e275aec907cfc1c",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
-      "artifact_id": 12854310856,
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
-      "artifact_sha256": "27bfed18ed9defca0592281cd3001d925d822a5ba862a09bb9d2a614b1ac0efa"
+      "head_sha": "0061bcda177fc31f609939860ed9d0a75e222d50",
+      "checkout_merge_sha": "0635f2c48e77a82c3a4ef12a65ccc30f630d4aa9",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990",
+      "artifact_id": 12857507917,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+      "artifact_sha256": "60e7b164d6344b61511b3dd97483fab42bd1f633bf213590145a1f7cc25510ec",
+      "artifact_expires_at": "2027-01-26T22:38:33Z"
     },
-    "acceso_actual": "Comprobado por nueva CI del PR #33; mismo ubuntu-latest y dependencias fijadas."
+    "acceso_actual": "Nueva ejecución completada en este ciclo; compiló y ejecutó XI, enseñanza, examen y regresiones."
   },
-  "ciclo_activo": {
-    "id": "ciclo-patrones-xi-20261028T2238",
-    "rama": "autonomy/bbyq-learned-forms-20261028",
-    "fase": "preparacion_sin_job_aun",
-    "inicio_utc": "2026-10-28T22:36:10.859Z",
-    "exclusion": "ESTADO.json con lease de main; concurrency del workflow E029"
-  },
+  "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-contexto-composicion-20261028T2138",
-    "tipo": "ingenieria_de_coexistencia",
-    "registro": "docs/autonomy/ejecuciones/ciclo-contexto-composicion-20261028T2138.json",
-    "evidencia": "docs/autonomy/evidencias/ciclo-contexto-composicion-20261028T2138-results.json",
+    "id": "ciclo-patrones-xi-20261028T2238",
+    "tipo": "aprendizaje_supervisado_de_marcos_en_XI",
+    "registro": "docs/autonomy/ejecuciones/ciclo-patrones-xi-20261028T2238.json",
+    "evidencia": "docs/autonomy/evidencias/ciclo-patrones-xi-20261028T2238-results.json",
     "evaluacion_nativa_ejecutada": true,
+    "aprendizaje_nativo_nuevo": true,
     "entrenamiento_nuevo_publicado": false
   },
   "cambios": [
-    "Se contrastó la propuesta de aprender nuevas formas con main actualizado: E027 compilaba directamente E025 y no incluía E026 del PR #30.",
-    "Se enlazaron los dos módulos XI existentes en un candidato combinado de memoria única, preservando fuentes y semilla E025.",
-    "Pasaron 429 comprobaciones de contexto (200 registros/42200 bytes), 96/96 consultas compuestas, 150 controles adicionales y 11 pruebas nuevas de coexistencia.",
-    "31 pruebas E025, 31 sobre el candidato y 21 W4u aprobadas; no se añadió un motor de inteligencia externo."
+    "Se detectó main con E028/E029 posterior al registro y se usó esa base vigente.",
+    "Aprendiz XI deriva prefijo y sufijo desde consulta cruda y sujeto supervisado; exige dos sujetos distintos.",
+    "0/48 a 48/48 con código idéntico antes/después de enseñar, 181 controles; ablación E029 0/48.",
+    "Regresiones E025/E029/E028/E027 y W4u pasaron. Se preservaron los candidatos/checkpoints anteriores."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "El archivo es recuperable por comandos explícitos e índice/búsqueda léxica; no se demuestra síntesis semántica automática del historial.",
-    "Las cuatro formas de composición siguen diseñadas. La propuesta de aprender nuevas formas con código fijo continúa pendiente sobre esta base combinada.",
-    "Candidato no desplegado en Android; una integración posterior debe preservar/migrar memorias privadas y probar la interfaz."
+    "El aprendizaje demostrado es un marco de un sujeto e intención doble supervisada; no comprensión lingüística general.",
+    "Reconciliar evidencia y conflictos de E025/E026 con E027/E028/E029 antes de integrar candidatos.",
+    "Exportar patrones desde el checkpoint experimental a un destino durable antes de caducar el artefacto; excluir hechos sintéticos.",
+    "Sin despliegue Android ni demostración de W4u como coordinador autónomo del repositorio."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "496afe3ae9c4bf31472cbada5145d64e5b94ed2a",
-  "revision_notas_previa": "0a44ffa7a8f7c92a0386beb92f38fd00c7a03aa2",
-  "resultados_dos_hechos": {
-    "development": {
-      "baseline": 0,
-      "candidate": 48,
-      "total": 48
-    },
-    "transfer": {
-      "baseline": 0,
-      "candidate": 48,
-      "total": 48
-    }
-  },
+  "commit_main_observado": "beea73210fb3e6375a6bd90f3b88b476a4c175d2",
+  "revision_notas_previa": "01ffc8414472b2b3cb52e645473fe8bda2ce7f02",
   "candidato": {
-    "version": "E027-CtxCompose-2-dev",
-    "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+    "version": "E030-Learned-Frames-1-dev",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
     "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
-    "rama": "autonomy/bbyq-context-composition-20261028",
-    "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
-    "artifact_app": "evidence/e027/candidate.rxe",
-    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+    "rama": "autonomy/bbyq-learned-forms-20261028",
+    "commit": "0061bcda177fc31f609939860ed9d0a75e222d50",
+    "artifact_app": "e029/learned.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
     "produccion_desplegada": false,
-    "aprendizaje_de_patrones_nuevo": false,
-    "descripcion": "Archivo contextual E027 y composición E026 enlazados en una única cápsula XI/RVPC2."
+    "aprendizaje_de_patrones_nuevo": true,
+    "patrones": 2,
+    "descripcion": "Marco de sujeto único inducido por XI, delante de E029/E028/E027/E025."
   },
   "resultados_contexto": {
-    "version": "E027-CtxCompose-2-dev",
+    "version": "E027-Context-1-dev",
     "checks": 429,
     "app_turns": 229,
     "archived_records": 200,
     "tested_context_bytes": 42200,
     "capacity_bytes": 114688,
-    "append_elapsed_ms": 30623,
-    "serialized_state_bytes_before_context": 795997,
-    "serialized_state_bytes_after_200_records": 1901829,
+    "append_elapsed_ms": 42667,
+    "serialized_state_bytes_before_context": 796246,
+    "serialized_state_bytes_after_200_records": 1902078,
     "evaluated": [
       "original greeting",
       "persistent original facts",
@@ -114,5 +100,69 @@
     ],
     "limitation": "No semantic synthesis of whole history; lexical retrieval is an explicit operation.",
     "source": "Native pinned XI runtime, fresh disposable state for every CI test."
+  },
+  "candidatos_preservados": [
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "rama": "autonomy/bbyq-context-composition-20261028",
+      "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+      "artifact_app": "evidence/e027/candidate.rxe",
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+      "produccion_desplegada": false,
+      "aprendizaje_de_patrones_nuevo": false,
+      "descripcion": "Archivo contextual E027 y composición E026 enlazados en una única cápsula XI/RVPC2."
+    }
+  ],
+  "checkpoint_experimental": {
+    "archivo_artifact": "e030-learning/learned-checkpoint.rvp",
+    "sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "anterior_archivo": "e030-learning/before-learning.rvp",
+    "anterior_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "caduca_utc": "2027-01-26T22:38:33Z",
+    "contiene_datos_sinteticos_de_examen": true,
+    "publicado_como_memoria_produccion": false
+  },
+  "resultados_aprendizaje": {
+    "version": "E030-Learned-Frames-1-dev",
+    "checks": 181,
+    "reserved_subjects": 24,
+    "grammar_training_subjects": [
+      "tutora",
+      "tutorb"
+    ],
+    "scores": {
+      "before_learning": 0,
+      "after_learning": 48,
+      "e029_code_on_learned_memory": 0,
+      "total": 48
+    },
+    "app_sha256_before": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "app_sha256_after": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "learned_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "before_checkpoint_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
+    "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "learned_memory_region": [
+      9200000000000000000,
+      9200000000000003000
+    ],
+    "outside_region_unchanged_during_teaching": true,
+    "process_restart_per_turn": true,
+    "evaluation_adapts_patterns": false,
+    "scope": "Supervised one-subject byte frames with fixed dual-relation intent. Literal sides induced from two examples; not open grammar or new reasoning.",
+    "production_deployed": false
+  },
+  "w4u_verificacion_actual": {
+    "fixture_checks": 21,
+    "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
+    "accion_tipificada": [
+      4,
+      2
+    ],
+    "observacion": "maximiza calculadora en la cápsula candidata mediante REVERSE-PC, dentro de las 31 regresiones",
+    "coordinacion_autonoma_repositorio_verificada": false,
+    "android_verificado": false
   }
 }
