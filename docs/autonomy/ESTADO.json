@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T19:27:41.555Z",
-  "estado": "diagnostico_e025_completado_dos_hechos_pendiente",
+  "actualizado_utc": "2026-10-28T20:38:27.800Z",
+  "estado": "candidato_composicion_xi_en_pruebas",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "autonomy/bbyq-two-facts-e025-20261028",
   "commit_codigo_observado": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
-  "rama_continuidad": "autonomy/bbyq-two-facts-e025-20261028",
+  "rama_continuidad": "autonomy/bbyq-e026-native-composition-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -35,7 +35,14 @@
     },
     "acceso_actual": "Verificado por CI nueva del PR #29; misma infraestructura configurada."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "e026-composicion-20261028",
+    "inicio_utc": "2026-10-28T20:38:00.947Z",
+    "run_id": 40765031926,
+    "rama": "autonomy/bbyq-e026-native-composition-20261028",
+    "commit": "dd862fac334683a8a4169f8a36d8df9527d8cd81",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765031926"
+  },
   "ultima_actividad": {
     "id": "ciclo-dos-hechos-e025-20261028T1925",
     "tipo": "evaluacion_independiente_e025",
