@@ -1,0 +1,449 @@
+{
+  "training": {
+    "training_seconds": 1.3235026290000036,
+    "paired_examples": 39,
+    "learned_rewrite_rules": 33,
+    "new_lexical_entries": 19,
+    "new_words": [
+      "hablarme",
+      "explicarme",
+      "some",
+      "interesa",
+      "hablando",
+      "speaking",
+      "as",
+      "for",
+      "which",
+      "resources",
+      "poco",
+      "brevemente",
+      "little",
+      "briefly",
+      "in",
+      "other",
+      "words",
+      "otra",
+      "manera"
+    ],
+    "old_training_replayed": false
+  },
+  "composition_transfer": {
+    "dialogues": 8,
+    "held_out_complete_formulations": 110,
+    "queries": 880,
+    "checks": 897,
+    "held_out_scope": "whole compositions and subjects; request pieces supervised separately, variable predicates transfer to requires/reaches",
+    "query_ms": {
+      "median": 23.125556,
+      "p95": 26.989964
+    },
+    "session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 33052,
+      "resident_rss_kib": 10672,
+      "cpu_ms": 20801.9,
+      "active_qubits": 0
+    }
+  },
+  "query_guards": {
+    "checks": 39,
+    "rejected_queries": [
+      {
+        "input": "puedes hablarme un poco de desconocido",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 16.320347
+      },
+      {
+        "input": "puedes hablarme un poco de principal y alterno",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 20.478835
+      },
+      {
+        "input": "no puedes hablarme un poco de principal",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 15.446694
+      },
+      {
+        "input": "háblame un poco sobre principal sininventarverbo",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 19.907289
+      },
+      {
+        "input": "qué es lo que requiere utiliza principal",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 17.752026
+      },
+      {
+        "input": "qué es lo que requiere principal agua",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 17.175673
+      },
+      {
+        "input": "y hablando de desconocido qué requiere",
+        "output": "No tengo evidencia suficiente para responder.",
+        "language": 1,
+        "ms": 14.905144
+      },
+      {
+        "input": "me interesa conocer lo que inventaverbo principal",
+        "output": "No tengo evidencia suficiente para responder.",
+        "language": 1,
+        "ms": 16.397364
+      },
+      {
+        "input": "puedes hablarme un poco de aprende que falso es clasea",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 17.261202
+      },
+      {
+        "input": "could you tell me a little about unknownbeing",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 17.38554
+      },
+      {
+        "input": "give me some information about principal and alterno",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 19.050702
+      },
+      {
+        "input": "can you not tell me a little about principal",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 16.521082
+      },
+      {
+        "input": "what is it that principal requires uses",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 17.380933
+      },
+      {
+        "input": "which resources does principal study",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 17.204045
+      },
+      {
+        "input": "which resources does unknownbeing require",
+        "output": "I do not have enough evidence to answer.",
+        "language": 2,
+        "ms": 15.624393
+      },
+      {
+        "input": "which resources does principal require water",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 17.68947
+      },
+      {
+        "input": "say what principal requires of unknownobject in other words",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 20.162737
+      },
+      {
+        "input": "can you tell me a little about learn that falseword is clasea",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 18.341478
+      },
+      {
+        "input": "puedes hablarme un poco de 7",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 18.133814
+      },
+      {
+        "input": "could you tell me a little about one",
+        "output": "I do not have enough information to answer.",
+        "language": 2,
+        "ms": 18.85759
+      },
+      {
+        "input": "1,000 por dos",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 16.171342
+      },
+      {
+        "input": "1,5 mas dos",
+        "output": "No tengo información suficiente para responder.",
+        "language": 1,
+        "ms": 13.442759
+      }
+    ],
+    "no_question_writes": true,
+    "new_query_public_client": true,
+    "restart_rollback": true
+  },
+  "e021_transfer": {
+    "dialogues": 4,
+    "all_new_constructions_examined": 128,
+    "new_form_queries": 512,
+    "checks": 552,
+    "query_ms": {
+      "median": 18.239808500000002,
+      "p95": 21.052128
+    },
+    "metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 35464,
+      "resident_rss_kib": 10724,
+      "cpu_ms": 11396.7,
+      "active_qubits": 0
+    },
+    "held_out": "novel entities and requires predicate; surface construction frames are taught"
+  },
+  "e021_topics": {
+    "checks": 43,
+    "topics": 8,
+    "eviction": true,
+    "fresh_evidence_on_resume": true,
+    "restart_reset_save_rollback": true
+  },
+  "e019_transfer": {
+    "novel_dialogues": 4,
+    "new_query_problems": 128,
+    "novel_dialogue_checks": 277,
+    "new_constructions_examined": [
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "native_query_ms": {
+      "median": 17.182284,
+      "p95": 19.927061
+    },
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 35920,
+      "resident_rss_kib": 10252,
+      "cpu_ms": 4293.88,
+      "active_qubits": 0
+    },
+    "resident_rss_kib": 10444
+  },
+  "e018_transfer": {
+    "novel_dialogues": 20,
+    "novel_dialogue_turns": 240,
+    "heldout_background_lessons": 1,
+    "new_constructions_examined": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "novel_session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 35920,
+      "resident_rss_kib": 10604,
+      "cpu_ms": 3712.22,
+      "active_qubits": 0
+    },
+    "novel_checks": 250
+  },
+  "arithmetic_retention": {
+    "text_checks": 1062,
+    "unseen_numeric_queries": 1024,
+    "query_ms": {
+      "median": 14.352104,
+      "p95": 16.492915
+    },
+    "session_metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 35920,
+      "resident_rss_kib": 10284,
+      "cpu_ms": 15498.6,
+      "active_qubits": 0
+    }
+  },
+  "stage": "E022",
+  "parent_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+  "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+  "checkpoint_bytes": 500410,
+  "checks": 6365,
+  "old_learned_records_preserved": true,
+  "new_world_facts_in_release": 0,
+  "open_conversation_achieved": false,
+  "memory_stats": [
+    {
+      "type": "memory_stats",
+      "model": "inverse-ether-memory",
+      "background_byte": 0,
+      "overrides": 19813,
+      "quantum_bindings": 0,
+      "revision": 73011008,
+      "limits": {
+        "max_address_digits": 4096,
+        "max_overrides": 65536,
+        "max_quantum_bindings": 4096,
+        "max_materialize_bytes": 65536
+      }
+    },
+    {
+      "type": "stats",
+      "background": "zero",
+      "domain": "nonnegative_decimal_addresses",
+      "active_qubits": 0,
+      "components": 0,
+      "largest_component": 0,
+      "tableau_bytes": 0,
+      "address_bytes": 0,
+      "ether_rules": 0,
+      "revision": 0,
+      "limits": {
+        "max_active_qubits": 4096,
+        "max_component_qubits": 1024,
+        "max_state_bytes": 67108864,
+        "max_address_digits": 4096,
+        "max_query_terms": 4096,
+        "max_ether_rules": 4096,
+        "max_ether_query_sites": 4096
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "version": "E020",
+      "checkpoint_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+      "checkpoint_bytes": 325721,
+      "heldout_compositions": {
+        "correct": 1,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 0,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 12.6803095,
+        "p95": 14.373048
+      },
+      "shared_query_ms": {
+        "median": 8.089856999999999,
+        "p95": 8.344117
+      }
+    },
+    {
+      "version": "E021",
+      "checkpoint_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+      "checkpoint_bytes": 465830,
+      "heldout_compositions": {
+        "correct": 1,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 7,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 14.741161,
+        "p95": 17.059233
+      },
+      "shared_query_ms": {
+        "median": 9.9248815,
+        "p95": 11.403037
+      }
+    },
+    {
+      "version": "E022",
+      "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+      "checkpoint_bytes": 500410,
+      "heldout_compositions": {
+        "correct": 110,
+        "total": 110
+      },
+      "development_16": {
+        "correct": 16,
+        "total": 16
+      },
+      "shared_32": {
+        "correct": 32,
+        "total": 32
+      },
+      "new_query_ms": {
+        "median": 22.70119,
+        "p95": 26.258449
+      },
+      "shared_query_ms": {
+        "median": 11.603306,
+        "p95": 12.266086
+      }
+    }
+  ],
+  "limits": {
+    "input_bytes": 255,
+    "tokens": 15,
+    "rewrite_steps": 8,
+    "rules": 64,
+    "topics": 8
+  },
+  "intelligence": "XI; paired supervision for query rewrites; unchanged owner runtime and original state authority"
+}

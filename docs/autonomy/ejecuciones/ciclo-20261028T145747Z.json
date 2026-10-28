@@ -1,0 +1,92 @@
+{
+  "id": "ciclo-20261028T145747Z",
+  "inicio_utc": "2026-10-28T14:57:57Z",
+  "finalizacion_utc": "2026-10-28T15:05:52.115Z",
+  "objetivo": "Serializar E022 y comprobar acceso actual al ejecutor con integridad y regresiones",
+  "resultado": "criterio_de_verificacion_cumplido",
+  "rama": "autonomy/bbyq-w4u-daily-20261028",
+  "commit_codigo": "6a48224e63d1a23d6bfc4866902749875650d6e8",
+  "revision_notas_previa": "f12537cbe0a4e84729e6b76f726c098443546b32",
+  "commit_main_observado": "e8498b765a6a95aa556d0e816aab926257769391",
+  "checkpoint": {
+    "archivo": "ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
+    "manifiesto": "ai/checkpoints/e022-manifest.json",
+    "commit_fuente": "e8498b765a6a95aa556d0e816aab926257769391",
+    "sha256_decodificado_declarado": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+    "bytes_decodificados_declarados": 500410,
+    "verificacion_en_esta_sesion": "CI nueva: SHA-256 y 500410 bytes comprobados; snapshot lógico reproducido idéntico; memoria previa conservada."
+  },
+  "ejecucion": {
+    "id": 40711150887,
+    "job_id": 122896463149,
+    "estado": "completed",
+    "conclusion": "success",
+    "head_sha": "6a48224e63d1a23d6bfc4866902749875650d6e8",
+    "checkout_merge_sha": "a5b81dc0ab24bc94461b90c78a6d04bf37e3b40c",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887",
+    "artefacto": {
+      "id": 12826737489,
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887/artifacts/12826737489",
+      "sha256_zip": "c195b3f0bcd9b4e17e91462e82cf5e6ae59f1fbd00b822116b41483c1b964ab3"
+    },
+    "informe_persistido": "docs/autonomy/evidencias/ciclo-20261028T145747Z-e022-results.json"
+  },
+  "cambios": [
+    "Se añade concurrency al workflow E022, grupo bbyq-e022-native con cancel-in-progress:false. Serializa E022 en este repositorio; no bloquea por sí solo otros workflows ni prueba coordinación W4u.",
+    "CI nueva con 6365 comprobaciones y checkpoint idéntico; no se añadió aprendizaje a la memoria publicada."
+  ],
+  "antes": {
+    "concurrency_e022": false,
+    "ejecucion_nueva_verificada": false
+  },
+  "despues": {
+    "concurrency_e022": {
+      "group": "bbyq-e022-native",
+      "cancel_in_progress": false
+    },
+    "ejecucion_nueva_verificada": true
+  },
+  "comprobaciones_previa": {
+    "ciclo_activo_en_estado_inicial": null,
+    "ci_in_progress": 0,
+    "ci_queued": 0,
+    "instrucciones_AGENTS": "No se encontró AGENTS.md en el árbol completo inspeccionado de BBY-Q.",
+    "ramas_BBY_Q": "Se enumeraron las ramas publicadas; no apareció una campaña posterior a E022."
+  },
+  "comandos_ejecutados_en_runner": [
+    "base64 -d ai/checkpoints/BBYQ_E021_Language_Dialogue_ES_EN.rvp.gz.b64 | gzip -dc > parent.rvp",
+    "base64 -d ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64 | gzip -dc > released.rvp",
+    "git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git \"$RUNNER_TEMP/reverse-pc\"",
+    "git -C \"$RUNNER_TEMP/reverse-pc\" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+    "bash \"$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh\"",
+    "cmake -S \"$RUNNER_TEMP/reverse-pc\" -B \"$RUNNER_TEMP/reverse-pc-build\" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF",
+    "cmake --build \"$RUNNER_TEMP/reverse-pc-build\" --target reverse_pc --parallel 2",
+    "bash ai/native/build-session.sh \"$RUNNER_TEMP/reverse-pc\" \"$RUNNER_TEMP/session-build\"",
+    "python3 ai/xi/rephrase/tests/native-e022.py \"$RUNNER_TEMP/reverse-pc-build/reverse_pc\" \"$RUNNER_TEMP/session-build/bbyq_session\" --out evidence/e022",
+    "Bloques Python del workflow: verificaciones SHA256 de padres/fuentes, igualdad del snapshot lógico, checks==6365 y composiciones 110/110."
+  ],
+  "definicion_comandos": "https://github.com/guadalupejuan001-code/BBY-Q/blob/6a48224e63d1a23d6bfc4866902749875650d6e8/.github/workflows/bbyq-e022.yml",
+  "resultados": {
+    "checks": 6365,
+    "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+    "checkpoint_bytes": 500410,
+    "registros_previos_preservados": true,
+    "composiciones_e022": {
+      "correct": 110,
+      "total": 110
+    }
+  },
+  "aprendizaje_nuevo": false,
+  "nota_metricas": "La campaña E022 se reprodujo para validar el ejecutor. Sus 39 pares y 33 reglas no se cuentan como aprendizaje nuevo en este ciclo.",
+  "fallos": [],
+  "limitaciones": [
+    "La serialización se verificó como configuración aceptada por CI; no se lanzaron dos carreras artificiales para probarla.",
+    "La revisión merge de checkout y el head de la rama se registran por separado.",
+    "No se identificó una versión de W4u en los árboles y documentación inspeccionados de REVERSE-PC. La aplicación publicada documenta E016, distinta de E022 de BBY-Q."
+  ],
+  "fuentes_integracion": [
+    "https://github.com/guadalupejuan001-code/REVERSE-PC/blob/cf7854fc0499801c3206fea38043806060b9ed5d/docs/BBYQ_RXE_APP.md",
+    "https://github.com/guadalupejuan001-code/REVERSE-PC/blob/cf7854fc0499801c3206fea38043806060b9ed5d/reverse-os-android/WORKBENCH.md"
+  ],
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}

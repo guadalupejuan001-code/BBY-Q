@@ -6,6 +6,9 @@ on:
   pull_request:
     paths: ["ai/xi/rephrase/**", "ai/xi/knowledge/**", "ai/xi/open/**", "ai/xi/lingua/**", "ai/xi/stories/**", "ai/native/**", "ai/checkpoints/BBYQ_E022*", "ai/checkpoints/e022-manifest.json", ".github/workflows/bbyq-e022.yml"]
   workflow_dispatch:
+concurrency:
+  group: bbyq-e022-native
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
