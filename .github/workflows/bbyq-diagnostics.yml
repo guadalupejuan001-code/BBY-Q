@@ -39,5 +39,6 @@ jobs:
           name: bbyq-e022-parser-diagnostics
           path: |
             evidence/diagnostics/results.json
+            evidence/diagnostics/retention/progress.json
             evidence/diagnostics/retention/raw.jsonl
           if-no-files-found: warn

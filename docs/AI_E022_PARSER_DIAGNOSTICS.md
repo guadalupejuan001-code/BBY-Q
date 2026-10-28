@@ -64,6 +64,22 @@ en ambos formatos y las 1.024 cuentas reservadas. Las mutaciones de las pruebas
 de aprendizaje se hacen en copias descartables. El checkpoint publicado no
 se vuelve a entrenar ni se modifica.
 
+**Resultado local completo: 6.303 verificaciones de conservación aprobadas**,
+además de las 184 consultas del diagnóstico. Se conservan las 110/110
+composiciones E022 y las 16/16 reformulaciones de desarrollo. El examen
+aritmético aprueba 1.024 consultas numéricas nuevas y sus controles, 1.062
+comprobaciones de texto en total. Estos contadores corresponden a esta corrida;
+los 6.365 históricos de E022 incluyen también la enseñanza, que aquí se omite.
+
+La primera corrida de conservación se interrumpió con `cannot write state`:
+había una carpeta vacía `state.rvp.pending` de la inyección de fallos. Esa
+corrida no se cuenta como aprobada. Cinco ciclos aislados de fallo y recuperación
+pasaron; la campaña completa se repitió en un directorio nuevo, comprobando
+después de cada fase que no quedara ese fixture. La repetición completa pasó.
+
+[Resultados locales completos y transcripciones del diagnóstico](evidence/e022-parser-diagnostics.json).
+La nueva CI queda preparada; todavía no se ha ejecutado para esta corrección.
+
 Los manifiestos E021/E022 conservan los digests originales de los archivos
 corregidos en `source_compatibility_fixes`; sus verificaciones de fuentes usan
 los digests actuales para reproducir los estados y las regresiones. Los

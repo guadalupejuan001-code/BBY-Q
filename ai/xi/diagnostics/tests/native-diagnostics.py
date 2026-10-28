@@ -98,26 +98,45 @@ def retention(runtime, binary, out, learned):
     parent.write_bytes(learned)
     e = ReleaseExaminer(runtime, parent, out)
     report = {}
-    e022.smoke(e, binary, learned)
-    report["e022_transfer"] = e022.transfer(e, binary, learned, 8)
-    report["query_guards"] = e022.guards(e, binary, learned)
-    e022.learning_controls(e, binary, learned)
-    comparison = e022.comparisons(e, binary, learned)
+
+    def phase(name, action):
+        try:
+            value = action()
+            assert not Path(str(e.state) + ".pending").exists(), (
+                "fault-injection fixture was not removed", name)
+        except Exception:
+            report["failed_phase"] = name
+            (out / "progress.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+            raise
+        report[name] = value
+        report["checks"] = e.checks
+        (out / "progress.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+        print("RETENTION_PHASE_PASS", name, e.checks, flush=True)
+        return value
+
+    phase("smoke", lambda: e022.smoke(e, binary, learned))
+    phase("e022_transfer", lambda: e022.transfer(e, binary, learned, 8))
+    phase("query_guards", lambda: e022.guards(e, binary, learned))
+    phase("learning_controls", lambda: e022.learning_controls(e, binary, learned))
+    comparison = phase("checkpoint_comparison", lambda: e022.comparisons(e, binary, learned))
+    # Full comparison transcripts are included in the saved progress evidence;
+    # keep the final summary compact, with the same scores and checkpoint IDs.
+    report.pop("checkpoint_comparison")
     report["comparison"] = comparison["versions"]
-    report["e021_transfer"] = e022.e021.text_transfer(e, binary, learned, 4)
-    report["e021_topics"] = e022.e021.topic_and_integrity(e, binary, learned)
-    report["e019_transfer"] = e022.e019.novel_dialogues(e, binary, learned, 4)
-    report["e018_transfer"] = e022.e018.novel_dialogues(e, binary, learned, 20)
-    e022.e018.controls(e, binary, learned)
-    e022.e018.interfaces_and_rollback(e, binary, learned)
-    e022.e018.retention(e, binary, learned)
-    e022.e019.controls(e, binary, learned)
-    e022.e019.restart_and_reset(e, binary, learned)
+    phase("e021_transfer", lambda: e022.e021.text_transfer(e, binary, learned, 4))
+    phase("e021_topics", lambda: e022.e021.topic_and_integrity(e, binary, learned))
+    phase("e019_transfer", lambda: e022.e019.novel_dialogues(e, binary, learned, 4))
+    phase("e018_transfer", lambda: e022.e018.novel_dialogues(e, binary, learned, 20))
+    phase("e018_controls", lambda: e022.e018.controls(e, binary, learned))
+    phase("interfaces_and_rollback", lambda: e022.e018.interfaces_and_rollback(e, binary, learned))
+    phase("historical_retention", lambda: e022.e018.retention(e, binary, learned))
+    phase("e019_controls", lambda: e022.e019.controls(e, binary, learned))
+    phase("restart_and_reset", lambda: e022.e019.restart_and_reset(e, binary, learned))
     scale_spec = importlib.util.spec_from_file_location(
         "e020", ROOT.parent / "scale/tests/native-e020.py")
     e020 = importlib.util.module_from_spec(scale_spec)
     scale_spec.loader.exec_module(e020)
-    report["arithmetic_retention"] = e020.independent_text_exam(e, binary, learned)
+    phase("arithmetic_retention", lambda: e020.independent_text_exam(e, binary, learned))
     e.state.write_bytes(learned)
     e022.e017.audit(e)
     e.model_audit()
