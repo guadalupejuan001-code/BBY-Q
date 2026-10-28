@@ -1,0 +1,60 @@
+name: BBY Q E028 grounded context integration
+on:
+  pull_request:
+    paths: ['ai/releases/e028/**', 'docs/AI_E028_GROUNDED_CONTEXT.md', '.github/workflows/bbyq-e028.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bbyq-e028-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  e028:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Compile original XI/Ether native runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Original E025 and W4u regressions
+        run: |
+          set -euo pipefail
+          python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
+          node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
+      - name: Reproduce E027 and build E028 with original E025 seed
+        run: |
+          set -euo pipefail
+          node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original
+          node ai/releases/e028/build.mjs deps/reverse/build/reverse_pc evidence/e028
+      - name: Native ES/EN entity retrieval and composition tests
+        run: |
+          set -euo pipefail
+          node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e028 evidence/e027-original evidence/e028-results
+      - name: Full E027 regression against E028 candidate
+        run: |
+          set -euo pipefail
+          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e028 evidence/e027-regression
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBY-Q-E028-evidence
+          path: |
+            evidence/e025/verification.json
+            evidence/e025/tests.json
+            evidence/w4u/results.json
+            evidence/e028/candidate.json
+            evidence/e028-results/results.json
+            evidence/e027-regression/tests.json
