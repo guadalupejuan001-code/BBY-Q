@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T21:38:48.330Z",
-  "estado": "coexistencia_contexto_y_composicion_en_pruebas",
+  "actualizado_utc": "2026-10-28T21:43:30.418Z",
+  "estado": "contexto_y_composicion_validados_en_mismo_candidato",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-e026-native-composition-20261028",
-  "commit_codigo_observado": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+  "rama_codigo_observada": "autonomy/bbyq-context-composition-20261028",
+  "commit_codigo_observado": "9485ec2e366718de8d84ff82e5310d80287c84a9",
   "rama_continuidad": "autonomy/bbyq-context-composition-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
@@ -13,60 +13,53 @@
     "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
     "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
     "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
-    "verificacion_en_este_ciclo": "Semilla E025 intacta: ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631. La reconstrucción original y las 31 comprobaciones E025 pasaron de nuevo."
+    "verificacion_en_este_ciclo": "Semilla E025 intacta y cápsula auténtica recompilada/reempaquetada exactamente; pruebas sobre copias nativas, sin sustitución de memoria publicada."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
-    "workflow": ".github/workflows/bbyq-e025.yml",
-    "job": "e025",
+    "workflow": ".github/workflows/bbyq-e027.yml",
+    "job": "e027",
     "runner": "ubuntu-latest",
-    "timeout_minutos": 15,
+    "timeout_minutos": 25,
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40765695900,
-      "job_id": 123089119191,
-      "head_sha": "4f15e00992c75f73b3a5824b503d2776e37b2311",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900",
-      "artifact_id": 12850112323,
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
+      "id": 40773600595,
+      "job_id": 123116981927,
       "conclusion": "success",
-      "checkout_merge_sha": "34ed18029cedd2b4282320184a4d0e6a8905f822",
-      "artifact_sha256": "340ac743965e2621081a2f06a6edf5939bd1ca44b90e3989fc2f67643b5bc14c"
+      "head_sha": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+      "checkout_merge_sha": "f27b89877f686c243f9ee9353e275aec907cfc1c",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
+      "artifact_id": 12854310856,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+      "artifact_sha256": "27bfed18ed9defca0592281cd3001d925d822a5ba862a09bb9d2a614b1ac0efa"
     },
-    "acceso_actual": "Nueva ejecución del workflow E025 del PR #30 completada; mismo runner y dependencias fijadas."
+    "acceso_actual": "Comprobado por nueva CI del PR #33; mismo ubuntu-latest y dependencias fijadas."
   },
-  "ciclo_activo": {
-    "id": "contexto-composicion-20261028T2138",
-    "inicio_utc": "2026-10-28T21:38:12.250Z",
-    "rama": "autonomy/bbyq-context-composition-20261028",
-    "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
-    "run_id": 40773600595,
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
-    "objetivo": "Reunir E027 de main y E026 del PR #30 sin perder memoria, composición ni archivo contextual."
-  },
+  "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-e026-composicion-20261028T2038",
-    "tipo": "ingenieria_composicion_en_xi",
-    "registro": "docs/autonomy/ejecuciones/ciclo-e026-composicion-20261028T2038.json",
-    "evidencia": "docs/autonomy/evidencias/ciclo-e026-composicion-20261028T2038-results.json",
+    "id": "ciclo-contexto-composicion-20261028T2138",
+    "tipo": "ingenieria_de_coexistencia",
+    "registro": "docs/autonomy/ejecuciones/ciclo-contexto-composicion-20261028T2138.json",
+    "evidencia": "docs/autonomy/evidencias/ciclo-contexto-composicion-20261028T2138-results.json",
     "evaluacion_nativa_ejecutada": true,
     "entrenamiento_nuevo_publicado": false
   },
   "cambios": [
-    "Adaptador de composición en XI, con candidato de identidad propia que usa la semilla E025 intacta.",
-    "Desarrollo 0/48 -> 48/48; transferencia de sujetos nuevos 0/48 -> 48/48 dentro de formas diseñadas.",
-    "31 regresiones sobre E025, 31 sobre el candidato y 21 pruebas W4u aprobadas; 150 controles de abstención, negación/contradicción, referente mixto y limpieza."
+    "Se contrastó la propuesta de aprender nuevas formas con main actualizado: E027 compilaba directamente E025 y no incluía E026 del PR #30.",
+    "Se enlazaron los dos módulos XI existentes en un candidato combinado de memoria única, preservando fuentes y semilla E025.",
+    "Pasaron 429 comprobaciones de contexto (200 registros/42200 bytes), 96/96 consultas compuestas, 150 controles adicionales y 11 pruebas nuevas de coexistencia.",
+    "31 pruebas E025, 31 sobre el candidato y 21 W4u aprobadas; no se añadió un motor de inteligencia externo."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "El reconocimiento de formas es diseñado y acotado; todavía no se ha demostrado aprendizaje de nuevos patrones de composición.",
-    "El candidato no está desplegado en Android; su hash de cápsula cambia y requiere preservar/migrar explícitamente memorias privadas si se integra.",
-    "Las regresiones comprobadas cubren las 31 pruebas E025 y 21 W4u, no una nueva ejecución de todas las campañas E022 históricas."
+    "El archivo es recuperable por comandos explícitos e índice/búsqueda léxica; no se demuestra síntesis semántica automática del historial.",
+    "Las cuatro formas de composición siguen diseñadas. La propuesta de aprender nuevas formas con código fijo continúa pendiente sobre esta base combinada.",
+    "Candidato no desplegado en Android; una integración posterior debe preservar/migrar memorias privadas y probar la interfaz."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "973837fb00322b6a15546d0f7ad9dac11afcb00e",
-  "revision_notas_previa": "73a5ac8c98f8d1cfe9d67385583d05369551b636",
+  "commit_main_observado": "496afe3ae9c4bf31472cbada5145d64e5b94ed2a",
+  "revision_notas_previa": "0a44ffa7a8f7c92a0386beb92f38fd00c7a03aa2",
   "resultados_dos_hechos": {
     "development": {
       "baseline": 0,
@@ -80,15 +73,40 @@
     }
   },
   "candidato": {
-    "version": "E026-TwoFacts-dev",
-    "app_sha256": "3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6",
+    "version": "E027-CtxCompose-2-dev",
+    "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
     "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
-    "rama": "autonomy/bbyq-e026-native-composition-20261028",
-    "commit": "4f15e00992c75f73b3a5824b503d2776e37b2311",
-    "artifact_app": "evidence/e026/candidate.rxe",
-    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
+    "rama": "autonomy/bbyq-context-composition-20261028",
+    "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+    "artifact_app": "evidence/e027/candidate.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
     "produccion_desplegada": false,
     "aprendizaje_de_patrones_nuevo": false,
-    "descripcion": "Extensión de ingeniería en XI; cuatro formas de pregunta doble y respuestas del motor original, sin respuestas generadas fuera de XI."
+    "descripcion": "Archivo contextual E027 y composición E026 enlazados en una única cápsula XI/RVPC2."
+  },
+  "resultados_contexto": {
+    "version": "E027-CtxCompose-2-dev",
+    "checks": 429,
+    "app_turns": 229,
+    "archived_records": 200,
+    "tested_context_bytes": 42200,
+    "capacity_bytes": 114688,
+    "append_elapsed_ms": 30623,
+    "serialized_state_bytes_before_context": 795997,
+    "serialized_state_bytes_after_200_records": 1901829,
+    "evaluated": [
+      "original greeting",
+      "persistent original facts",
+      "200 append cycles",
+      "indexed retrieval across process restarts",
+      "case-insensitive byte search",
+      "search across segment boundary",
+      "UTF-8",
+      "oversize rejection",
+      "physical erase",
+      "knowledge isolation"
+    ],
+    "limitation": "No semantic synthesis of whole history; lexical retrieval is an explicit operation.",
+    "source": "Native pinned XI runtime, fresh disposable state for every CI test."
   }
 }
