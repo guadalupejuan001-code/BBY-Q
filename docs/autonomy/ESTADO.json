@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T21:43:30.418Z",
+  "actualizado_utc": "2026-10-28T22:36:10.859Z",
   "estado": "contexto_y_composicion_validados_en_mismo_candidato",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "autonomy/bbyq-context-composition-20261028",
@@ -36,7 +36,13 @@
     },
     "acceso_actual": "Comprobado por nueva CI del PR #33; mismo ubuntu-latest y dependencias fijadas."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "ciclo-patrones-xi-20261028T2238",
+    "rama": "autonomy/bbyq-learned-forms-20261028",
+    "fase": "preparacion_sin_job_aun",
+    "inicio_utc": "2026-10-28T22:36:10.859Z",
+    "exclusion": "ESTADO.json con lease de main; concurrency del workflow E029"
+  },
   "ultima_actividad": {
     "id": "ciclo-contexto-composicion-20261028T2138",
     "tipo": "ingenieria_de_coexistencia",
