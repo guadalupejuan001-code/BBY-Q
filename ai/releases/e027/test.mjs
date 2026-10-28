@@ -58,12 +58,12 @@ equals(ask('@ctx add ' + 'L'.repeat(225)), 'CTX limite; no guardado.', 'oversize
 equals(ask('@ctx status'), beforeStatus, 'rejection preserves logical context byte count');
 equals(ask('@ctx get 199'), beforeLast, 'rejection preserves the last stored fragment');
 const scrub = path.join(out, 'audit-mailbox.xi');
-fs.writeFileSync(scrub, '#!reverse-pc-machine-v1\\n' +
-  'set r0 0\\nset r1 0\\nlabel scan_mail\\ncmp r0 255\\njge mail_done\\n' +
-  'set r7 7400000000000000128\\nadd r7 r0\\nload8 r2 $r7\\nadd r1 r2\\nadd r0 1\\njmp scan_mail\\n' +
-  'label mail_done\\nprint r1\\nload8 r3 7400000000000000017\\nprint r3\\nhalt\\n');
+fs.writeFileSync(scrub, '#!reverse-pc-machine-v1\n' +
+  'set r0 0\nset r1 0\nlabel scan_mail\ncmp r0 255\njge mail_done\n' +
+  'set r7 7400000000000000128\nadd r7 r0\nload8 r2 $r7\nadd r1 r2\nadd r0 1\njmp scan_mail\n' +
+  'label mail_done\nprint r1\nload8 r3 7400000000000000017\nprint r3\nhalt\n');
 const scrubOutput=execFileSync(runtime,['run',scrub,state,state],{encoding:'utf8'});
-const scrubValues=scrubOutput.split('\\n').filter(t=>t.startsWith('{')).map(t=>JSON.parse(t).value);
+const scrubValues=scrubOutput.split('\n').filter(t=>t.startsWith('{')).map(t=>JSON.parse(t).value);
 equals(JSON.stringify(scrubValues), JSON.stringify([0,0]), 'XI mailbox scrubbed after context commands');
 equals(ask('@ctx get 000'), '#000 ' + records[0], 'leading-zero index works');
 equals(ask('@ctx add puente'), 'CTX guardado #200', 'first half of boundary phrase');
