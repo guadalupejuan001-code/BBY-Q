@@ -4175,3 +4175,1805 @@ jmp e28_e027_entry
 label e28_delegate
 store8 9000000000000000032 0
 jmp e28_e027_entry
+label e28_scan_init
+store8 9000000000000000400 0
+store8 9000000000000000401 2
+store8 9000000000000000402 0
+store8 9000000000000000403 2
+store8 9000000000000000404 0
+store8 9000000000000000405 0
+store8 9000000000000000408 0
+store8 9000000000000000409 0
+store8 9000000000000000422 0
+store8 9000000000000000423 0
+store8 9000000000000000426 0
+store8 9000000000000000427 0
+jmp e28_scan_loop
+label e28_scan_loop
+load8 r4 9000000000000000408
+load8 r8 9000000000000000409
+mul r8 256
+add r4 r8
+load8 r0 8900000000000000002
+load8 r8 8900000000000000003
+mul r8 256
+add r0 r8
+cmp r4 r0
+jge e28_scan_done
+cmp r4 512
+jge e28_scan_done
+mov r7 r4
+mul r7 4
+add r7 8900000000000001024
+load8 r5 $r7
+add r7 1
+load8 r8 $r7
+mul r8 256
+add r5 r8
+add r7 1
+load8 r8 $r7
+mul r8 65536
+add r5 r8
+add r7 1
+load8 r6 $r7
+load8 r11 9000000000000000128
+mov r0 r11
+add r0 4
+cmp r6 r0
+jlt e28_scan_next
+set r0 0
+label e28_compare_entity
+cmp r0 r11
+jge e28_entity_boundary
+set r7 8900000000000100000
+add r7 r5
+add r7 r0
+load8 r3 $r7
+cmp r3 65
+jlt e28_fact_entity_lc
+cmp r3 90
+jgt e28_fact_entity_lc
+add r3 32
+label e28_fact_entity_lc
+set r7 9000000000000000256
+add r7 r0
+load8 r8 $r7
+cmp r3 r8
+jne e28_scan_next
+add r0 1
+jmp e28_compare_entity
+label e28_entity_boundary
+set r7 8900000000000100000
+add r7 r5
+add r7 r11
+load8 r3 $r7
+cmp r3 32
+jne e28_scan_next
+add r11 1
+label e28_pred_0
+mov r0 r11
+add r0 12
+cmp r0 r6
+jge e28_pred_1
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_0
+cmp r3 90
+jgt e28_pred_0_fold_0
+add r3 32
+label e28_pred_0_fold_0
+cmp r3 110
+jne e28_pred_1
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_1
+cmp r3 90
+jgt e28_pred_0_fold_1
+add r3 32
+label e28_pred_0_fold_1
+cmp r3 111
+jne e28_pred_1
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_2
+cmp r3 90
+jgt e28_pred_0_fold_2
+add r3 32
+label e28_pred_0_fold_2
+cmp r3 32
+jne e28_pred_1
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_3
+cmp r3 90
+jgt e28_pred_0_fold_3
+add r3 32
+label e28_pred_0_fold_3
+cmp r3 114
+jne e28_pred_1
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_4
+cmp r3 90
+jgt e28_pred_0_fold_4
+add r3 32
+label e28_pred_0_fold_4
+cmp r3 101
+jne e28_pred_1
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_5
+cmp r3 90
+jgt e28_pred_0_fold_5
+add r3 32
+label e28_pred_0_fold_5
+cmp r3 113
+jne e28_pred_1
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_6
+cmp r3 90
+jgt e28_pred_0_fold_6
+add r3 32
+label e28_pred_0_fold_6
+cmp r3 117
+jne e28_pred_1
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_7
+cmp r3 90
+jgt e28_pred_0_fold_7
+add r3 32
+label e28_pred_0_fold_7
+cmp r3 105
+jne e28_pred_1
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_8
+cmp r3 90
+jgt e28_pred_0_fold_8
+add r3 32
+label e28_pred_0_fold_8
+cmp r3 101
+jne e28_pred_1
+mov r7 r11
+add r7 9
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_9
+cmp r3 90
+jgt e28_pred_0_fold_9
+add r3 32
+label e28_pred_0_fold_9
+cmp r3 114
+jne e28_pred_1
+mov r7 r11
+add r7 10
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_10
+cmp r3 90
+jgt e28_pred_0_fold_10
+add r3 32
+label e28_pred_0_fold_10
+cmp r3 101
+jne e28_pred_1
+mov r7 r11
+add r7 11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_0_fold_11
+cmp r3 90
+jgt e28_pred_0_fold_11
+add r3 32
+label e28_pred_0_fold_11
+cmp r3 32
+jne e28_pred_1
+set r12 2
+set r13 1
+mov r14 r11
+add r14 12
+jmp e28_fact_value
+label e28_pred_1
+mov r0 r11
+add r0 12
+cmp r0 r6
+jge e28_pred_2
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_0
+cmp r3 90
+jgt e28_pred_1_fold_0
+add r3 32
+label e28_pred_1_fold_0
+cmp r3 110
+jne e28_pred_2
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_1
+cmp r3 90
+jgt e28_pred_1_fold_1
+add r3 32
+label e28_pred_1_fold_1
+cmp r3 111
+jne e28_pred_2
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_2
+cmp r3 90
+jgt e28_pred_1_fold_2
+add r3 32
+label e28_pred_1_fold_2
+cmp r3 32
+jne e28_pred_2
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_3
+cmp r3 90
+jgt e28_pred_1_fold_3
+add r3 32
+label e28_pred_1_fold_3
+cmp r3 110
+jne e28_pred_2
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_4
+cmp r3 90
+jgt e28_pred_1_fold_4
+add r3 32
+label e28_pred_1_fold_4
+cmp r3 101
+jne e28_pred_2
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_5
+cmp r3 90
+jgt e28_pred_1_fold_5
+add r3 32
+label e28_pred_1_fold_5
+cmp r3 99
+jne e28_pred_2
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_6
+cmp r3 90
+jgt e28_pred_1_fold_6
+add r3 32
+label e28_pred_1_fold_6
+cmp r3 101
+jne e28_pred_2
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_7
+cmp r3 90
+jgt e28_pred_1_fold_7
+add r3 32
+label e28_pred_1_fold_7
+cmp r3 115
+jne e28_pred_2
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_8
+cmp r3 90
+jgt e28_pred_1_fold_8
+add r3 32
+label e28_pred_1_fold_8
+cmp r3 105
+jne e28_pred_2
+mov r7 r11
+add r7 9
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_9
+cmp r3 90
+jgt e28_pred_1_fold_9
+add r3 32
+label e28_pred_1_fold_9
+cmp r3 116
+jne e28_pred_2
+mov r7 r11
+add r7 10
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_10
+cmp r3 90
+jgt e28_pred_1_fold_10
+add r3 32
+label e28_pred_1_fold_10
+cmp r3 97
+jne e28_pred_2
+mov r7 r11
+add r7 11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_1_fold_11
+cmp r3 90
+jgt e28_pred_1_fold_11
+add r3 32
+label e28_pred_1_fold_11
+cmp r3 32
+jne e28_pred_2
+set r12 2
+set r13 1
+mov r14 r11
+add r14 12
+jmp e28_fact_value
+label e28_pred_2
+mov r0 r11
+add r0 6
+cmp r0 r6
+jge e28_pred_3
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_0
+cmp r3 90
+jgt e28_pred_2_fold_0
+add r3 32
+label e28_pred_2_fold_0
+cmp r3 110
+jne e28_pred_3
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_1
+cmp r3 90
+jgt e28_pred_2_fold_1
+add r3 32
+label e28_pred_2_fold_1
+cmp r3 111
+jne e28_pred_3
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_2
+cmp r3 90
+jgt e28_pred_2_fold_2
+add r3 32
+label e28_pred_2_fold_2
+cmp r3 32
+jne e28_pred_3
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_3
+cmp r3 90
+jgt e28_pred_2_fold_3
+add r3 32
+label e28_pred_2_fold_3
+cmp r3 101
+jne e28_pred_3
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_4
+cmp r3 90
+jgt e28_pred_2_fold_4
+add r3 32
+label e28_pred_2_fold_4
+cmp r3 115
+jne e28_pred_3
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_2_fold_5
+cmp r3 90
+jgt e28_pred_2_fold_5
+add r3 32
+label e28_pred_2_fold_5
+cmp r3 32
+jne e28_pred_3
+set r12 1
+set r13 1
+mov r14 r11
+add r14 6
+jmp e28_fact_value
+label e28_pred_3
+mov r0 r11
+add r0 7
+cmp r0 r6
+jge e28_pred_4
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_0
+cmp r3 90
+jgt e28_pred_3_fold_0
+add r3 32
+label e28_pred_3_fold_0
+cmp r3 105
+jne e28_pred_4
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_1
+cmp r3 90
+jgt e28_pred_3_fold_1
+add r3 32
+label e28_pred_3_fold_1
+cmp r3 115
+jne e28_pred_4
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_2
+cmp r3 90
+jgt e28_pred_3_fold_2
+add r3 32
+label e28_pred_3_fold_2
+cmp r3 32
+jne e28_pred_4
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_3
+cmp r3 90
+jgt e28_pred_3_fold_3
+add r3 32
+label e28_pred_3_fold_3
+cmp r3 110
+jne e28_pred_4
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_4
+cmp r3 90
+jgt e28_pred_3_fold_4
+add r3 32
+label e28_pred_3_fold_4
+cmp r3 111
+jne e28_pred_4
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_5
+cmp r3 90
+jgt e28_pred_3_fold_5
+add r3 32
+label e28_pred_3_fold_5
+cmp r3 116
+jne e28_pred_4
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_3_fold_6
+cmp r3 90
+jgt e28_pred_3_fold_6
+add r3 32
+label e28_pred_3_fold_6
+cmp r3 32
+jne e28_pred_4
+set r12 1
+set r13 1
+mov r14 r11
+add r14 7
+jmp e28_fact_value
+label e28_pred_4
+mov r0 r11
+add r0 14
+cmp r0 r6
+jge e28_pred_5
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_0
+cmp r3 90
+jgt e28_pred_4_fold_0
+add r3 32
+label e28_pred_4_fold_0
+cmp r3 100
+jne e28_pred_5
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_1
+cmp r3 90
+jgt e28_pred_4_fold_1
+add r3 32
+label e28_pred_4_fold_1
+cmp r3 111
+jne e28_pred_5
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_2
+cmp r3 90
+jgt e28_pred_4_fold_2
+add r3 32
+label e28_pred_4_fold_2
+cmp r3 101
+jne e28_pred_5
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_3
+cmp r3 90
+jgt e28_pred_4_fold_3
+add r3 32
+label e28_pred_4_fold_3
+cmp r3 115
+jne e28_pred_5
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_4
+cmp r3 90
+jgt e28_pred_4_fold_4
+add r3 32
+label e28_pred_4_fold_4
+cmp r3 32
+jne e28_pred_5
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_5
+cmp r3 90
+jgt e28_pred_4_fold_5
+add r3 32
+label e28_pred_4_fold_5
+cmp r3 110
+jne e28_pred_5
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_6
+cmp r3 90
+jgt e28_pred_4_fold_6
+add r3 32
+label e28_pred_4_fold_6
+cmp r3 111
+jne e28_pred_5
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_7
+cmp r3 90
+jgt e28_pred_4_fold_7
+add r3 32
+label e28_pred_4_fold_7
+cmp r3 116
+jne e28_pred_5
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_8
+cmp r3 90
+jgt e28_pred_4_fold_8
+add r3 32
+label e28_pred_4_fold_8
+cmp r3 32
+jne e28_pred_5
+mov r7 r11
+add r7 9
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_9
+cmp r3 90
+jgt e28_pred_4_fold_9
+add r3 32
+label e28_pred_4_fold_9
+cmp r3 110
+jne e28_pred_5
+mov r7 r11
+add r7 10
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_10
+cmp r3 90
+jgt e28_pred_4_fold_10
+add r3 32
+label e28_pred_4_fold_10
+cmp r3 101
+jne e28_pred_5
+mov r7 r11
+add r7 11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_11
+cmp r3 90
+jgt e28_pred_4_fold_11
+add r3 32
+label e28_pred_4_fold_11
+cmp r3 101
+jne e28_pred_5
+mov r7 r11
+add r7 12
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_12
+cmp r3 90
+jgt e28_pred_4_fold_12
+add r3 32
+label e28_pred_4_fold_12
+cmp r3 100
+jne e28_pred_5
+mov r7 r11
+add r7 13
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_4_fold_13
+cmp r3 90
+jgt e28_pred_4_fold_13
+add r3 32
+label e28_pred_4_fold_13
+cmp r3 32
+jne e28_pred_5
+set r12 2
+set r13 1
+mov r14 r11
+add r14 14
+jmp e28_fact_value
+label e28_pred_5
+mov r0 r11
+add r0 17
+cmp r0 r6
+jge e28_pred_6
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_0
+cmp r3 90
+jgt e28_pred_5_fold_0
+add r3 32
+label e28_pred_5_fold_0
+cmp r3 100
+jne e28_pred_6
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_1
+cmp r3 90
+jgt e28_pred_5_fold_1
+add r3 32
+label e28_pred_5_fold_1
+cmp r3 111
+jne e28_pred_6
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_2
+cmp r3 90
+jgt e28_pred_5_fold_2
+add r3 32
+label e28_pred_5_fold_2
+cmp r3 101
+jne e28_pred_6
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_3
+cmp r3 90
+jgt e28_pred_5_fold_3
+add r3 32
+label e28_pred_5_fold_3
+cmp r3 115
+jne e28_pred_6
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_4
+cmp r3 90
+jgt e28_pred_5_fold_4
+add r3 32
+label e28_pred_5_fold_4
+cmp r3 32
+jne e28_pred_6
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_5
+cmp r3 90
+jgt e28_pred_5_fold_5
+add r3 32
+label e28_pred_5_fold_5
+cmp r3 110
+jne e28_pred_6
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_6
+cmp r3 90
+jgt e28_pred_5_fold_6
+add r3 32
+label e28_pred_5_fold_6
+cmp r3 111
+jne e28_pred_6
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_7
+cmp r3 90
+jgt e28_pred_5_fold_7
+add r3 32
+label e28_pred_5_fold_7
+cmp r3 116
+jne e28_pred_6
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_8
+cmp r3 90
+jgt e28_pred_5_fold_8
+add r3 32
+label e28_pred_5_fold_8
+cmp r3 32
+jne e28_pred_6
+mov r7 r11
+add r7 9
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_9
+cmp r3 90
+jgt e28_pred_5_fold_9
+add r3 32
+label e28_pred_5_fold_9
+cmp r3 114
+jne e28_pred_6
+mov r7 r11
+add r7 10
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_10
+cmp r3 90
+jgt e28_pred_5_fold_10
+add r3 32
+label e28_pred_5_fold_10
+cmp r3 101
+jne e28_pred_6
+mov r7 r11
+add r7 11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_11
+cmp r3 90
+jgt e28_pred_5_fold_11
+add r3 32
+label e28_pred_5_fold_11
+cmp r3 113
+jne e28_pred_6
+mov r7 r11
+add r7 12
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_12
+cmp r3 90
+jgt e28_pred_5_fold_12
+add r3 32
+label e28_pred_5_fold_12
+cmp r3 117
+jne e28_pred_6
+mov r7 r11
+add r7 13
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_13
+cmp r3 90
+jgt e28_pred_5_fold_13
+add r3 32
+label e28_pred_5_fold_13
+cmp r3 105
+jne e28_pred_6
+mov r7 r11
+add r7 14
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_14
+cmp r3 90
+jgt e28_pred_5_fold_14
+add r3 32
+label e28_pred_5_fold_14
+cmp r3 114
+jne e28_pred_6
+mov r7 r11
+add r7 15
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_15
+cmp r3 90
+jgt e28_pred_5_fold_15
+add r3 32
+label e28_pred_5_fold_15
+cmp r3 101
+jne e28_pred_6
+mov r7 r11
+add r7 16
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_5_fold_16
+cmp r3 90
+jgt e28_pred_5_fold_16
+add r3 32
+label e28_pred_5_fold_16
+cmp r3 32
+jne e28_pred_6
+set r12 2
+set r13 1
+mov r14 r11
+add r14 17
+jmp e28_fact_value
+label e28_pred_6
+mov r0 r11
+add r0 9
+cmp r0 r6
+jge e28_pred_7
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_0
+cmp r3 90
+jgt e28_pred_6_fold_0
+add r3 32
+label e28_pred_6_fold_0
+cmp r3 114
+jne e28_pred_7
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_1
+cmp r3 90
+jgt e28_pred_6_fold_1
+add r3 32
+label e28_pred_6_fold_1
+cmp r3 101
+jne e28_pred_7
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_2
+cmp r3 90
+jgt e28_pred_6_fold_2
+add r3 32
+label e28_pred_6_fold_2
+cmp r3 113
+jne e28_pred_7
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_3
+cmp r3 90
+jgt e28_pred_6_fold_3
+add r3 32
+label e28_pred_6_fold_3
+cmp r3 117
+jne e28_pred_7
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_4
+cmp r3 90
+jgt e28_pred_6_fold_4
+add r3 32
+label e28_pred_6_fold_4
+cmp r3 105
+jne e28_pred_7
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_5
+cmp r3 90
+jgt e28_pred_6_fold_5
+add r3 32
+label e28_pred_6_fold_5
+cmp r3 101
+jne e28_pred_7
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_6
+cmp r3 90
+jgt e28_pred_6_fold_6
+add r3 32
+label e28_pred_6_fold_6
+cmp r3 114
+jne e28_pred_7
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_7
+cmp r3 90
+jgt e28_pred_6_fold_7
+add r3 32
+label e28_pred_6_fold_7
+cmp r3 101
+jne e28_pred_7
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_6_fold_8
+cmp r3 90
+jgt e28_pred_6_fold_8
+add r3 32
+label e28_pred_6_fold_8
+cmp r3 32
+jne e28_pred_7
+set r12 2
+set r13 0
+mov r14 r11
+add r14 9
+jmp e28_fact_value
+label e28_pred_7
+mov r0 r11
+add r0 9
+cmp r0 r6
+jge e28_pred_8
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_0
+cmp r3 90
+jgt e28_pred_7_fold_0
+add r3 32
+label e28_pred_7_fold_0
+cmp r3 110
+jne e28_pred_8
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_1
+cmp r3 90
+jgt e28_pred_7_fold_1
+add r3 32
+label e28_pred_7_fold_1
+cmp r3 101
+jne e28_pred_8
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_2
+cmp r3 90
+jgt e28_pred_7_fold_2
+add r3 32
+label e28_pred_7_fold_2
+cmp r3 99
+jne e28_pred_8
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_3
+cmp r3 90
+jgt e28_pred_7_fold_3
+add r3 32
+label e28_pred_7_fold_3
+cmp r3 101
+jne e28_pred_8
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_4
+cmp r3 90
+jgt e28_pred_7_fold_4
+add r3 32
+label e28_pred_7_fold_4
+cmp r3 115
+jne e28_pred_8
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_5
+cmp r3 90
+jgt e28_pred_7_fold_5
+add r3 32
+label e28_pred_7_fold_5
+cmp r3 105
+jne e28_pred_8
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_6
+cmp r3 90
+jgt e28_pred_7_fold_6
+add r3 32
+label e28_pred_7_fold_6
+cmp r3 116
+jne e28_pred_8
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_7
+cmp r3 90
+jgt e28_pred_7_fold_7
+add r3 32
+label e28_pred_7_fold_7
+cmp r3 97
+jne e28_pred_8
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_7_fold_8
+cmp r3 90
+jgt e28_pred_7_fold_8
+add r3 32
+label e28_pred_7_fold_8
+cmp r3 32
+jne e28_pred_8
+set r12 2
+set r13 0
+mov r14 r11
+add r14 9
+jmp e28_fact_value
+label e28_pred_8
+mov r0 r11
+add r0 3
+cmp r0 r6
+jge e28_pred_9
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_8_fold_0
+cmp r3 90
+jgt e28_pred_8_fold_0
+add r3 32
+label e28_pred_8_fold_0
+cmp r3 101
+jne e28_pred_9
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_8_fold_1
+cmp r3 90
+jgt e28_pred_8_fold_1
+add r3 32
+label e28_pred_8_fold_1
+cmp r3 115
+jne e28_pred_9
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_8_fold_2
+cmp r3 90
+jgt e28_pred_8_fold_2
+add r3 32
+label e28_pred_8_fold_2
+cmp r3 32
+jne e28_pred_9
+set r12 1
+set r13 0
+mov r14 r11
+add r14 3
+jmp e28_fact_value
+label e28_pred_9
+mov r0 r11
+add r0 6
+cmp r0 r6
+jge e28_pred_10
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_0
+cmp r3 90
+jgt e28_pred_9_fold_0
+add r3 32
+label e28_pred_9_fold_0
+cmp r3 110
+jne e28_pred_10
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_1
+cmp r3 90
+jgt e28_pred_9_fold_1
+add r3 32
+label e28_pred_9_fold_1
+cmp r3 101
+jne e28_pred_10
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_2
+cmp r3 90
+jgt e28_pred_9_fold_2
+add r3 32
+label e28_pred_9_fold_2
+cmp r3 101
+jne e28_pred_10
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_3
+cmp r3 90
+jgt e28_pred_9_fold_3
+add r3 32
+label e28_pred_9_fold_3
+cmp r3 100
+jne e28_pred_10
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_4
+cmp r3 90
+jgt e28_pred_9_fold_4
+add r3 32
+label e28_pred_9_fold_4
+cmp r3 115
+jne e28_pred_10
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_9_fold_5
+cmp r3 90
+jgt e28_pred_9_fold_5
+add r3 32
+label e28_pred_9_fold_5
+cmp r3 32
+jne e28_pred_10
+set r12 2
+set r13 0
+mov r14 r11
+add r14 6
+jmp e28_fact_value
+label e28_pred_10
+mov r0 r11
+add r0 9
+cmp r0 r6
+jge e28_pred_11
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_0
+cmp r3 90
+jgt e28_pred_10_fold_0
+add r3 32
+label e28_pred_10_fold_0
+cmp r3 114
+jne e28_pred_11
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_1
+cmp r3 90
+jgt e28_pred_10_fold_1
+add r3 32
+label e28_pred_10_fold_1
+cmp r3 101
+jne e28_pred_11
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_2
+cmp r3 90
+jgt e28_pred_10_fold_2
+add r3 32
+label e28_pred_10_fold_2
+cmp r3 113
+jne e28_pred_11
+mov r7 r11
+add r7 3
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_3
+cmp r3 90
+jgt e28_pred_10_fold_3
+add r3 32
+label e28_pred_10_fold_3
+cmp r3 117
+jne e28_pred_11
+mov r7 r11
+add r7 4
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_4
+cmp r3 90
+jgt e28_pred_10_fold_4
+add r3 32
+label e28_pred_10_fold_4
+cmp r3 105
+jne e28_pred_11
+mov r7 r11
+add r7 5
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_5
+cmp r3 90
+jgt e28_pred_10_fold_5
+add r3 32
+label e28_pred_10_fold_5
+cmp r3 114
+jne e28_pred_11
+mov r7 r11
+add r7 6
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_6
+cmp r3 90
+jgt e28_pred_10_fold_6
+add r3 32
+label e28_pred_10_fold_6
+cmp r3 101
+jne e28_pred_11
+mov r7 r11
+add r7 7
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_7
+cmp r3 90
+jgt e28_pred_10_fold_7
+add r3 32
+label e28_pred_10_fold_7
+cmp r3 115
+jne e28_pred_11
+mov r7 r11
+add r7 8
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_10_fold_8
+cmp r3 90
+jgt e28_pred_10_fold_8
+add r3 32
+label e28_pred_10_fold_8
+cmp r3 32
+jne e28_pred_11
+set r12 2
+set r13 0
+mov r14 r11
+add r14 9
+jmp e28_fact_value
+label e28_pred_11
+mov r0 r11
+add r0 3
+cmp r0 r6
+jge e28_pred_12
+mov r7 r11
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_11_fold_0
+cmp r3 90
+jgt e28_pred_11_fold_0
+add r3 32
+label e28_pred_11_fold_0
+cmp r3 105
+jne e28_pred_12
+mov r7 r11
+add r7 1
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_11_fold_1
+cmp r3 90
+jgt e28_pred_11_fold_1
+add r3 32
+label e28_pred_11_fold_1
+cmp r3 115
+jne e28_pred_12
+mov r7 r11
+add r7 2
+add r7 8900000000000100000
+add r7 r5
+load8 r3 $r7
+cmp r3 65
+jlt e28_pred_11_fold_2
+cmp r3 90
+jgt e28_pred_11_fold_2
+add r3 32
+label e28_pred_11_fold_2
+cmp r3 32
+jne e28_pred_12
+set r12 1
+set r13 0
+mov r14 r11
+add r14 3
+jmp e28_fact_value
+label e28_pred_12
+jmp e28_scan_next
+label e28_fact_value
+mov r10 r6
+sub r10 r14
+cmp r10 1
+jlt e28_scan_next
+cmp r10 81
+jgt e28_scan_next
+mov r0 r6
+sub r0 1
+set r7 8900000000000100000
+add r7 r5
+add r7 r0
+load8 r3 $r7
+cmp r3 46
+jne e28_fact_no_dot
+sub r10 1
+label e28_fact_no_dot
+cmp r10 1
+jlt e28_scan_next
+cmp r10 80
+jgt e28_scan_next
+set r0 0
+set r9 0
+label e28_value_validate
+cmp r0 r10
+jge e28_fact_valid
+set r7 8900000000000100000
+add r7 r5
+add r7 r14
+add r7 r0
+load8 r3 $r7
+cmp r3 10
+je e28_scan_next
+cmp r3 13
+je e28_scan_next
+cmp r3 33
+je e28_scan_next
+cmp r3 34
+je e28_scan_next
+cmp r3 39
+je e28_scan_next
+cmp r3 44
+je e28_scan_next
+cmp r3 46
+je e28_scan_next
+cmp r3 58
+je e28_scan_next
+cmp r3 59
+je e28_scan_next
+cmp r3 63
+je e28_scan_next
+cmp r3 91
+je e28_scan_next
+cmp r3 93
+je e28_scan_next
+cmp r3 32
+jne e28_value_not_space
+cmp r0 0
+je e28_scan_next
+cmp r9 32
+je e28_scan_next
+mov r8 r10
+sub r8 1
+cmp r0 r8
+je e28_scan_next
+label e28_value_not_space
+mov r9 r3
+add r0 1
+jmp e28_value_validate
+label e28_fact_valid
+load8 r3 9000000000000000130
+cmp r3 1
+je e28_fact_requested
+load8 r3 9000000000000000129
+cmp r3 r12
+jne e28_scan_next
+label e28_fact_requested
+cmp r13 1
+je e28_fact_conflict_kind
+cmp r12 1
+je e28_kind1
+jmp e28_kind2
+label e28_kind1
+load8 r8 9000000000000000400
+load8 r0 9000000000000000401
+mul r0 256
+add r8 r0
+cmp r8 512
+jne e28_duplicate_compare
+mov r0 r4
+mod r0 256
+store8 9000000000000000400 r0
+mov r0 r4
+div r0 256
+store8 9000000000000000401 r0
+store8 9000000000000000422 r14
+store8 9000000000000000423 r10
+jmp e28_scan_next
+label e28_kind2
+load8 r8 9000000000000000402
+load8 r0 9000000000000000403
+mul r0 256
+add r8 r0
+cmp r8 512
+jne e28_duplicate_compare
+mov r0 r4
+mod r0 256
+store8 9000000000000000402 r0
+mov r0 r4
+div r0 256
+store8 9000000000000000403 r0
+store8 9000000000000000426 r14
+store8 9000000000000000427 r10
+jmp e28_scan_next
+label e28_duplicate_compare
+cmp r12 1
+je e28_duplicate_kind1
+load8 r9 9000000000000000426
+load8 r6 9000000000000000427
+jmp e28_duplicate_kind_selected
+label e28_duplicate_kind1
+load8 r9 9000000000000000422
+load8 r6 9000000000000000423
+label e28_duplicate_kind_selected
+cmp r6 r10
+jne e28_fact_conflict_kind
+mov r7 r8
+mul r7 4
+add r7 8900000000000001024
+load8 r0 $r7
+add r7 1
+load8 r3 $r7
+mul r3 256
+add r0 r3
+add r7 1
+load8 r3 $r7
+mul r3 65536
+add r0 r3
+add r0 r9
+add r5 r14
+set r11 0
+label e28_duplicate_value_loop
+cmp r11 r10
+jge e28_scan_next
+set r7 8900000000000100000
+add r7 r0
+add r7 r11
+load8 r3 $r7
+cmp r3 65
+jlt e28_duplicate_prev_fold
+cmp r3 90
+jgt e28_duplicate_prev_fold
+add r3 32
+label e28_duplicate_prev_fold
+set r7 8900000000000100000
+add r7 r5
+add r7 r11
+load8 r9 $r7
+cmp r9 65
+jlt e28_duplicate_cur_fold
+cmp r9 90
+jgt e28_duplicate_cur_fold
+add r9 32
+label e28_duplicate_cur_fold
+cmp r3 r9
+jne e28_fact_conflict_kind
+add r11 1
+jmp e28_duplicate_value_loop
+label e28_fact_conflict_kind
+cmp r12 1
+jne e28_fact_conflict2
+store8 9000000000000000404 1
+jmp e28_scan_next
+label e28_fact_conflict2
+store8 9000000000000000405 1
+jmp e28_scan_next
+label e28_scan_next
+load8 r4 9000000000000000408
+load8 r3 9000000000000000409
+mul r3 256
+add r4 r3
+add r4 1
+mov r3 r4
+mod r3 256
+store8 9000000000000000408 r3
+div r4 256
+store8 9000000000000000409 r4
+jmp e28_scan_loop
+label e28_scan_done
+load8 r12 9000000000000000129
+load8 r13 9000000000000000130
+cmp r13 1
+je e28_check_double
+cmp r12 1
+je e28_check_kind1
+jmp e28_check_kind2
+label e28_check_double
+load8 r3 9000000000000000404
+cmp r3 1
+je e28_conflict
+load8 r3 9000000000000000405
+cmp r3 1
+je e28_conflict
+load8 r3 9000000000000000401
+cmp r3 2
+je e28_missing
+load8 r3 9000000000000000403
+cmp r3 2
+je e28_missing
+jmp e28_save_focus
+label e28_check_kind1
+load8 r3 9000000000000000404
+cmp r3 1
+je e28_conflict
+load8 r3 9000000000000000401
+cmp r3 2
+je e28_missing_atomic
+jmp e28_save_focus
+label e28_check_kind2
+load8 r3 9000000000000000405
+cmp r3 1
+je e28_conflict
+load8 r3 9000000000000000403
+cmp r3 2
+je e28_missing_atomic
+jmp e28_save_focus
