@@ -1,34 +1,64 @@
 # Siguiente ciclo
 
-## Base vigente comprobada
+## Base comprobada y estado real
+Candidato **E030-Learned-Frames-1-dev**, PR #35, rama `autonomy/bbyq-learned-forms-20261028`,
+código probado `0061bcda177fc31f609939860ed9d0a75e222d50`.
+Main inicial `beea73210fb3e6375a6bd90f3b88b476a4c175d2` ya contenía E029/E028.
+Las notas iniciales todavía apuntaban a E027 combinado; se contrastaron con
+código, commits y ejecuciones reales. Resolver todo de nuevo al activar.
 
-Candidato **E027-CtxCompose-2-dev** en la rama `autonomy/bbyq-context-composition-20261028`, PR #33, revisión probada `9485ec2e366718de8d84ff82e5310d80287c84a9`. Resolver de nuevo referencias, PR y trabajo activo antes de continuar.
+CI: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990 — completed/success.
+- Aprendizaje nativo XI: **181 comprobaciones**, dos marcos de pregunta ES/EN.
+  **0/48 antes → 48/48 después**, 24 sujetos reservados distintos de tutora/tutorb.
+  E029 con la misma memoria aprendida: **0/48** (ablación del nuevo intérprete).
+- Cápsula fija antes/después: `c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9`.
+  Solo cambió la región aprendida T..T+3071 durante enseñanza; núcleo/bindings
+  y memoria anterior iguales. Reinicio nativo por turno. Examen sin adaptar patrones.
+- Regresiones sobre la cápsula nueva antes de enseñar: E025 **31**, E029 **285**,
+  E028 **464**, E027 **429**; W4u **21** y acción tipada nativa del candidato.
+  Tras enseñar: consultas canónicas, conocimiento E025, archivo, borrado,
+  negación, ausencia, mezclas y persistencia incluidos en las 181 comprobaciones.
+- Semilla E025 intacta `ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631`.
+- Checkpoint experimental `e030-learning/learned-checkpoint.rvp` en el artefacto:
+  `5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6`.
+  Checkpoint previo, posterior al examen, cápsulas y transcripciones conservados.
+  Artefacto https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917; caduca 2027-01-26T22:38:33Z.
+  Los hechos sintéticos del examen no son conocimiento publicado del agente.
 
-La propuesta anterior partía de E026 aislado, pero main añadió E027 con un constructor que volvía a E025. Este ciclo priorizó reunir las capacidades existentes para no perder ninguna al avanzar. No repetir la integración ni volver a construir una rama sobre E026 aislado sin contrastar los cambios posteriores.
+## Objetivo siguiente: reconciliar fuentes antes de unir candidatos
+E030 continúa main/E029 y conserva el PR #33 con E026+E027 como candidato
+independiente. No afirmar que se fusionaron: E029 compone sobre archivo textual,
+E026 sobre hechos E025. Falta una política común de prioridad y conflictos.
 
-CI nueva: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595
-- 31 pruebas E025 y 31 sobre el candidato, más 21 del núcleo W4u.
-- 429 comprobaciones de archivo contextual: 200 registros, 42.200 bytes ejercitados; 114.688 bytes de capacidad nominal, no íntegramente ejercitada aquí.
-- 48/48 consultas compuestas de desarrollo y 48/48 con sujetos nuevos dentro de cuatro formas diseñadas; 150 controles adicionales.
-- 11 pruebas de coexistencia: el archivo sobrevive a consultas dobles y vaciarlo no borra hechos ni composición.
-- Cápsula c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8; semilla E025 conservada ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631.
+1. Revalidar referencias, instrucciones y actividad en el workflow existente;
+   no iniciar otro job si hay ciclo activo real. No borrar su bloqueo.
+2. Preservar el checkpoint experimental y exportar desde el runner la región
+   de patrones aprendidos a un formato durable y verificable del repositorio,
+   separándola de los hechos sintéticos; no copiar hechos de examen al estado
+   publicado ni reentrenar lo ya adquirido. Conservar el checkpoint y hash original.
+3. Revisar E028 `e28_missing`, `e28_conflict` y fallback, y E026 prefix/suffix.
+   Implementar un candidato único con una política explícita: evidencia
+   contextual negativa/conflictiva no puede convertirse en respuesta positiva
+   por fallback a E025; falta de archivo no debe borrar hechos E025 aprendidos.
+4. Reservar sujetos distintos para: solo hechos E025, solo archivo E027,
+   ambas fuentes concordantes, contradicción entre fuentes y negación.
+   Verificar ambas lenguas y formas aprendidas, con procedencia cuando exista.
+5. Reejecutar los casos E026/PR #33 pertinentes, E029/E028/E027/E025 y W4u.
+   Comparar con ambos candidatos actuales y conservarlos si hay regresión.
 
-Informe persistente: `docs/autonomy/evidencias/ciclo-contexto-composicion-20261028T2138-results.json`. Cápsula, XI enlazado y transcripciones: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856. El examinador de composición conserva la etiqueta E026, pero el hash del informe demuestra que examinó la cápsula combinada.
+Aceptación: una sola cápsula que responda correctamente en ambos almacenes,
+se abstenga en todos los conflictos/negaciones de la matriz reservada y
+conserve los 48 casos de las formas aprendidas, archivo y capacidades previas.
+Declarar el aprendizaje existente como conservación, no aprendizaje nuevo.
 
-## Objetivo pendiente: aprender una forma nueva en XI con código fijo
+## Límites y permisos
+Los nuevos marcos tienen un sujeto ASCII alfanumérico de 1..31 bytes y dos
+lados literales de 1..80 bytes; la intención doble está supervisada.
+No son gramática abierta. No se instaló Android. W4u se verificó en runtime
+REVERSE-PC fijado con fixtures/acción tipada; no se demostró coordinación
+autónoma de ingeniería, ni interacción con un dispositivo Android actual.
 
-1. Retomar esta base combinada y leer su documentación antes de introducir otra representación. Examinar los mecanismos existentes de enseñanza/normalización para reutilizarlos.
-2. Elegir una forma nueva de pregunta doble ES y otra EN que aún se rechacen; medir el resultado antes de enseñar.
-3. Enseñar cada forma con dos sujetos distintos y roles supervisados; XI debe validar/inducir y persistir el patrón en RVPC2. El código docente solo transporta los ejemplos.
-4. Reservar otros 24 sujetos para 48 consultas ES/EN y controles de ausencia, negación y cambio de sujeto; las respuestas del examen quedan fuera del proceso de aprendizaje.
-5. Comprobar hash idéntico del programa antes/después de enseñar y un cambio de memoria solo en las regiones aprendidas declaradas. Reabrir el checkpoint para comprobar persistencia.
-
-Criterio de aceptación: mejora medible hasta 48/48 respuestas completas en ese examen acotado por cambio persistente de memoria, con código fijo; conservar contexto, las formas anteriores y regresiones pertinentes. Si falla, conservar el candidato validado y registrar la causa, sin promover resultados parciales.
-
-## Alcance e integración
-
-Archivo contextual no equivale a que todas las preguntas ya usen el historial semánticamente. La recuperación continúa explícita mediante @ctx. Esta integración no añadió patrones aprendidos ni conversación abierta general.
-
-La cápsula tiene identidad propia y no fue desplegada en Android. No sobrescribir memorias privadas existentes. W4u fue probado con fixtures y una acción tipada nativa, no como coordinador autónomo de ingeniería del repositorio.
-
-Usar el workflow E027 configurado con runtime a1b935ae0adf38615996bac92727e95289ad7cc1 y Mundo X e2778d962af22f6f1a0794058dd4685fc2573966, salvo configuración nueva verificada. Actualizar ESTADO.json, este archivo y el registro incluso si el intento falla.
+Usar únicamente el runner del workflow E029 ya configurado
+(ubuntu-latest, runtime a1b935ae0adf38615996bac92727e95289ad7cc1,
+Mundo X e2778d962af22f6f1a0794058dd4685fc2573966).
+Actualizar ESTADO, este archivo y el registro incluso si falla el intento.

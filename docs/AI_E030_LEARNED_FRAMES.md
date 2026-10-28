@@ -53,3 +53,27 @@ El workflow E029 existente ejecuta además todas las regresiones y conserva
 cápsulas, estado anterior, checkpoint aprendido, transcripciones e informes.
 Mismo runner y dependencias fijadas; no se añade ejecutor o programación.
 No se instala en Android ni se atribuye coordinación autónoma de ingeniería a W4u.
+
+## Resultados nativos verificados
+CI [40781527990](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990), código
+`0061bcda177fc31f609939860ed9d0a75e222d50`, completada con éxito.
+181 comprobaciones nuevas: **0/48 → 48/48** después de aprender, frente a 0/48
+de E029 sobre la misma memoria aprendida. Dos sujetos docentes distintos;
+24 sujetos reservados y reinicio nativo por turno. Cápsula antes/después:
+`c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9`.
+Comparación del núcleo, bindings y memoria fuera de la región nueva aprobada.
+
+Pasaron además E025 original 31, E025 sobre el candidato 31, E029 285,
+E028 464, E027 429 y W4u 21. Los examinadores conservan etiquetas de versión
+heredadas; la ruta y hash registrados en CI identifican la cápsula realmente usada.
+Las regresiones amplias se ejecutaron antes de enseñar; las 181 comprobaciones
+incluyen controles de conservación después de enseñar.
+
+[Artefacto con cápsulas, checkpoints y transcripciones](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917).
+Checkpoint aprendido experimental:
+`5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6`.
+Contiene hechos sintéticos del examen: no se publica como conocimiento real
+ni reemplaza la semilla E025. El artefacto caduca el 26 de enero de 2027;
+SIGUIENTE exige exportar la región aprendida de forma durable antes de esa fecha.
+PR #33 conserva el candidato E026+E027. La política común entre sus hechos
+y las fuentes E029 sigue pendiente, sin promoción ni despliegue Android.

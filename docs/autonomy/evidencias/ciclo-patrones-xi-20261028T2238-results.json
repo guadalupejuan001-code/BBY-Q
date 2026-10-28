@@ -1,0 +1,300 @@
+{
+  "cycle": "ciclo-patrones-xi-20261028T2238",
+  "run": {
+    "id": 40781527990,
+    "job_id": 123144134310,
+    "conclusion": "success",
+    "head_sha": "0061bcda177fc31f609939860ed9d0a75e222d50",
+    "checkout_merge_sha": "0635f2c48e77a82c3a4ef12a65ccc30f630d4aa9",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990",
+    "artifact_id": 12857507917,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "artifact_sha256": "60e7b164d6344b61511b3dd97483fab42bd1f633bf213590145a1f7cc25510ec",
+    "artifact_expires_at": "2027-01-26T22:38:33Z"
+  },
+  "reports": [
+    {
+      "checks": 31,
+      "version": "E025-Chain-1",
+      "w4u_version": "0.1",
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E025-Chain-1",
+      "metadata": {
+        "format": "RXE",
+        "version": 2,
+        "abi": "BBYQ-conversation-v1",
+        "ui": "chat",
+        "app_id": "org.reverse.bbyq",
+        "title": "BBY Q",
+        "app_version": "E025-Chain-1",
+        "source_sha": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+        "instructions": 12207,
+        "seed_bytes": 795328,
+        "input_bytes": 255,
+        "bytes": 1014739
+      },
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "w4u_sha256": "b09284b4bbd7586d6bc61752566db040e8383481dbfe12e7dddf9d37d673e37a",
+      "exact_repack": true,
+      "source_recompiled_and_equivalent": true,
+      "curriculum_modules_verified": 9
+    },
+    {
+      "version": "E027-Context-1-dev",
+      "original_e025_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "ae52b7086a8d1967dcfda78951bea3e8d1a0d1203f80ef7762a3c993c748e2e9",
+      "xi_context": {
+        "segments": 512,
+        "max_bytes_per_segment": 224,
+        "total_max_bytes": 114688,
+        "features": [
+          "append",
+          "get",
+          "find",
+          "status",
+          "clear"
+        ],
+        "storage": "persistent RVPC2; byte-accurate, contiguous segments"
+      },
+      "limitation": "Indexed retrieval, not automatic semantic integration into every E025 answer."
+    },
+    {
+      "version": "E025-Chain-1",
+      "metadata": {
+        "format": "RXE",
+        "version": 2,
+        "abi": "BBYQ-conversation-v1",
+        "ui": "chat",
+        "app_id": "org.reverse.bbyq",
+        "title": "BBY Q",
+        "app_version": "E025-Chain-1",
+        "source_sha": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+        "instructions": 12207,
+        "seed_bytes": 795328,
+        "input_bytes": 255,
+        "bytes": 1014739
+      },
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "w4u_sha256": "b09284b4bbd7586d6bc61752566db040e8383481dbfe12e7dddf9d37d673e37a",
+      "exact_repack": true,
+      "source_recompiled_and_equivalent": true,
+      "curriculum_modules_verified": 9
+    },
+    {
+      "version": "E028-Context-Reason-1-dev",
+      "original_e025_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "3a2648f7ce98a4aa3c7f2ef2efb0a4619cfd258656bb453558b7307bf3541964",
+      "implemented_in": "XI instructions",
+      "context": "E027 archive, max 512 fragments and 112 KiB text",
+      "features": [
+        "question intent ES/EN",
+        "anchored entity and predicate recognition",
+        "atomic grounded answers",
+        "two-relation composition",
+        "source #fragment IDs",
+        "pronoun and followup focus",
+        "contradiction/negative abstention",
+        "preserved E025 fallback and E027 commands"
+      ],
+      "limitations": "Deterministic narrow syntax and ASCII casefold; no general paragraph reading, arbitrary pronoun resolution or generative language model.",
+      "android_deployed": false
+    },
+    {
+      "version": "E029-Natural-Facts-1-dev",
+      "source": "XI-only automatic fact admission, preserving E028/E027/E025",
+      "original_e025_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "e028_candidate_sha256": "3a2648f7ce98a4aa3c7f2ef2efb0a4619cfd258656bb453558b7307bf3541964",
+      "e029_candidate_sha256": "67bf391bbfdced215140900ef4970b339a89a3b0ad2449340fa9914408d11c4b",
+      "context_capacity_bytes": 114688,
+      "guarantees": [
+        "no syntax conversion by host",
+        "atomic E027 storage",
+        "original knowledge fallback",
+        "no auto-write for questions or uncertainty indicators",
+        "original archive commands"
+      ],
+      "limitations": "One explicitly asserted simple relation per turn, supported relation vocab only; no semantic parsing of free paragraphs, no Android deployment."
+    },
+    {
+      "version": "E030-Learned-Frames-1-dev",
+      "source_parent": "beea73210fb3e6375a6bd90f3b88b476a4c175d2",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "parent_sha256": "67bf391bbfdced215140900ef4970b339a89a3b0ad2449340fa9914408d11c4b",
+      "candidate_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+      "learning": "XI supervised raw query + labeled subject + language + intent; two distinct subjects required",
+      "records": 8,
+      "subject_bytes": 31,
+      "literal_bytes_per_side": 80,
+      "scope": "One subject slot; fixed definition-and-requirement intent, not unconstrained grammar induction",
+      "android_deployed": false
+    },
+    {
+      "checks": 31,
+      "version": "E025-Chain-1",
+      "w4u_version": "0.1",
+      "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E029-Natural-Facts-1-dev",
+      "checks": 285,
+      "turns": 298,
+      "autoSaved": 58,
+      "rejected_ambiguous_messages": 12,
+      "natural_vs_previous": {
+        "previous_free_intake": 0,
+        "new_free_intake": 58
+      },
+      "results": {
+        "development": {
+          "correct": 24,
+          "total": 24
+        },
+        "transfer": {
+          "correct": 24,
+          "total": 24
+        }
+      },
+      "query_elapsed_ms": 8028,
+      "categories": [
+        "natural ES and EN assertions",
+        "conversational introduction and articles",
+        "recovery with citations",
+        "cross-language composition",
+        "old E025 memory",
+        "negation and contradictory claims",
+        "uncertain language veto",
+        "no implicit learning from questions",
+        "multi-clause rejection",
+        "long history and source integrity",
+        "E027 commands and clear",
+        "no lost E025 facts"
+      ],
+      "scope": "Narrow supervised-by-syntax factual extraction in XI, not free-form language understanding.",
+      "production_deployed": false
+    },
+    {
+      "version": "E028-Context-Reason-1-dev",
+      "checks": 464,
+      "app_turns": 464,
+      "validated_subjects": 48,
+      "unrelated_long_fragments": 140,
+      "scores": {
+        "baseline": 1,
+        "development": {
+          "composed": 48,
+          "total": 48,
+          "atomic": 48,
+          "atomic_total": 48
+        },
+        "transfer": {
+          "composed": 48,
+          "total": 48,
+          "atomic": 48,
+          "atomic_total": 48
+        },
+        "controls": 3
+      },
+      "query_elapsed_ms": 45428,
+      "measured_state_bytes": 796862,
+      "tests": [
+        "E027 state migration without conversion",
+        "entity recognition",
+        "two-sourced-fact composition ES/EN",
+        "single-relation retrieval ES/EN",
+        "multiword entities and values",
+        "context followups",
+        "pronouns",
+        "conflicting and negated evidence abstention",
+        "unknown and mixed subjects",
+        "large-context retrieval",
+        "old E025 knowledge",
+        "archive clear/reuse"
+      ],
+      "scope": "Narrow deterministic assertion and question grammar in XI; no general semantic extraction or generative responses"
+    },
+    {
+      "version": "E027-Context-1-dev",
+      "checks": 429,
+      "app_turns": 229,
+      "archived_records": 200,
+      "tested_context_bytes": 42200,
+      "capacity_bytes": 114688,
+      "append_elapsed_ms": 42667,
+      "serialized_state_bytes_before_context": 796246,
+      "serialized_state_bytes_after_200_records": 1902078,
+      "evaluated": [
+        "original greeting",
+        "persistent original facts",
+        "200 append cycles",
+        "indexed retrieval across process restarts",
+        "case-insensitive byte search",
+        "search across segment boundary",
+        "UTF-8",
+        "oversize rejection",
+        "physical erase",
+        "knowledge isolation"
+      ],
+      "limitation": "No semantic synthesis of whole history; lexical retrieval is an explicit operation.",
+      "source": "Native pinned XI runtime, fresh disposable state for every CI test."
+    },
+    {
+      "version": "E030-Learned-Frames-1-dev",
+      "checks": 181,
+      "reserved_subjects": 24,
+      "grammar_training_subjects": [
+        "tutora",
+        "tutorb"
+      ],
+      "scores": {
+        "before_learning": 0,
+        "after_learning": 48,
+        "e029_code_on_learned_memory": 0,
+        "total": 48
+      },
+      "app_sha256_before": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+      "app_sha256_after": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+      "learned_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+      "before_checkpoint_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "learned_memory_region": [
+        9200000000000000000,
+        9200000000000003000
+      ],
+      "outside_region_unchanged_during_teaching": true,
+      "process_restart_per_turn": true,
+      "evaluation_adapts_patterns": false,
+      "scope": "Supervised one-subject byte frames with fixed dual-relation intent. Literal sides induced from two examples; not open grammar or new reasoning.",
+      "production_deployed": false
+    }
+  ],
+  "w4u_core_checks": 21,
+  "nota_etiquetas": "Los examinadores heredados mantienen la versión E025/E027/E028/E029 en su etiqueta. La CI enlaza la cápsula c9a33a... a sus rutas; tests E025 también registra el hash del candidato.",
+  "captura": "Informes impresos por el job nativo actual, API de run/jobs/artifacts; no se descargó ni inspeccionó el ZIP binario.",
+  "comandos": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original",
+    "python3 ai/releases/e030/regression.py deps/reverse/build/reverse_pc evidence/e029",
+    "mkdir -p evidence/e029-compat",
+    "cp evidence/e029/natural.rxe evidence/e029-compat/candidate.rxe",
+    "cp evidence/e029/controller.rvp evidence/e029-compat/controller.rvp",
+    "node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/e029 evidence/e029-natural-tests",
+    "node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e027-original evidence/e029-e028-regression",
+    "node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e029-e027-regression",
+    "python3 ai/releases/e030/test.py deps/reverse/build/reverse_pc evidence/e029 evidence/e030-learning"
+  ]
+}

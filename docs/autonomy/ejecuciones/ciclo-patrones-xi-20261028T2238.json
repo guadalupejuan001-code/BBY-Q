@@ -1,0 +1,164 @@
+{
+  "id": "ciclo-patrones-xi-20261028T2238",
+  "inicio_utc": "2026-10-28T22:36:10.859Z",
+  "fin_utc": "2026-10-28T22:45:16.340Z",
+  "objetivo": "Aprender una nueva formulación ES y EN desde ejemplos procesados por XI con programa fijo",
+  "criterio": "0/48 a 48/48 con 24 sujetos reservados; mismo hash de programa; memoria fuera de región aprendida inalterada por enseñanza; regresiones aprobadas",
+  "resultado": "criterio_cumplido_candidato_experimental",
+  "rama": "autonomy/bbyq-learned-forms-20261028",
+  "commit_codigo": "0061bcda177fc31f609939860ed9d0a75e222d50",
+  "commit_main_fuente": "beea73210fb3e6375a6bd90f3b88b476a4c175d2",
+  "revision_notas_previa": "01ffc8414472b2b3cb52e645473fe8bda2ce7f02",
+  "run": {
+    "id": 40781527990,
+    "job_id": 123144134310,
+    "conclusion": "success",
+    "head_sha": "0061bcda177fc31f609939860ed9d0a75e222d50",
+    "checkout_merge_sha": "0635f2c48e77a82c3a4ef12a65ccc30f630d4aa9",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990",
+    "artifact_id": 12857507917,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "artifact_sha256": "60e7b164d6344b61511b3dd97483fab42bd1f633bf213590145a1f7cc25510ec",
+    "artifact_expires_at": "2027-01-26T22:38:33Z"
+  },
+  "checkpoint": {
+    "archivo": "ai/releases/e025/controller.rvp.gz.b64",
+    "version": "E025-Chain-1",
+    "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+    "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "verificacion_en_este_ciclo": "Semilla E025 preservada; hash comprobado en CI actual. Checkpoints experimentales separados en el artefacto, sin reemplazar memoria publicada."
+  },
+  "checkpoint_experimental": {
+    "archivo_artifact": "e030-learning/learned-checkpoint.rvp",
+    "sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "anterior_archivo": "e030-learning/before-learning.rvp",
+    "anterior_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "caduca_utc": "2027-01-26T22:38:33Z",
+    "contiene_datos_sinteticos_de_examen": true,
+    "publicado_como_memoria_produccion": false
+  },
+  "candidato": {
+    "version": "E030-Learned-Frames-1-dev",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "rama": "autonomy/bbyq-learned-forms-20261028",
+    "commit": "0061bcda177fc31f609939860ed9d0a75e222d50",
+    "artifact_app": "e029/learned.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "produccion_desplegada": false,
+    "aprendizaje_de_patrones_nuevo": true,
+    "patrones": 2,
+    "descripcion": "Marco de sujeto único inducido por XI, delante de E029/E028/E027/E025."
+  },
+  "preflight": {
+    "ci_in_progress": 0,
+    "ci_queued": 0,
+    "ciclo_activo_inicial": null,
+    "AGENTS": "Árbol recursivo completo inspeccionado, sin AGENTS.md.",
+    "instrucciones_leidas": [
+      "README.md",
+      "docs/autonomy/OBJETIVO.md",
+      "docs/autonomy/ESTADO.json",
+      "docs/autonomy/SIGUIENTE.md",
+      "docs/autonomy/ejecuciones/ciclo-contexto-composicion-20261028T2138.json",
+      "docs/AI_E028_GROUNDED_CONTEXT.md",
+      "docs/AI_E029_NATURAL_INTAKE.md"
+    ],
+    "contraste": "Main ya incorporó E028/E029 mientras ESTADO/SIGUIENTE aún describían PR #33; se eligió aprender formulaciones sobre E029 vigente, preservando PR #33.",
+    "exclusion": "Reserva ciclo_activo mediante lease de main 01ffc8414472b2b3cb52e645473fe8bda2ce7f02; workflow existente group bbyq-e029-${github.head_ref || github.ref}, cancel-in-progress false; cierre solo del bloqueo de este ciclo.",
+    "entorno": "Skill cloud runtime leída, environment_status no expuesto. Se utilizó el runner GitHub Actions configurado; ningún ejecutor nuevo."
+  },
+  "cambios_codigo": [
+    "ai/releases/e030/learn.xi",
+    "ai/releases/e030/normalize.xi",
+    "ai/releases/e030/build.mjs",
+    "ai/releases/e030/test.py",
+    "ai/releases/e030/regression.py",
+    ".github/workflows/bbyq-e029.yml",
+    "docs/AI_E030_LEARNED_FRAMES.md"
+  ],
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original",
+    "python3 ai/releases/e030/regression.py deps/reverse/build/reverse_pc evidence/e029",
+    "mkdir -p evidence/e029-compat",
+    "cp evidence/e029/natural.rxe evidence/e029-compat/candidate.rxe",
+    "cp evidence/e029/controller.rvp evidence/e029-compat/controller.rvp",
+    "node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/e029 evidence/e029-natural-tests",
+    "node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e027-original evidence/e029-e028-regression",
+    "node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e029-e027-regression",
+    "python3 ai/releases/e030/test.py deps/reverse/build/reverse_pc evidence/e029 evidence/e030-learning"
+  ],
+  "llamadas_internas": "Build E030 enlaza E029 y compila/pack-app. El examinador invoca app-turn por cada consulta y run lesson.xi para enseñar: el prólogo solo transporta query/sujeto/idioma/intención; learn.xi induce y normaliza en XI.",
+  "resultados_aprendizaje": {
+    "version": "E030-Learned-Frames-1-dev",
+    "checks": 181,
+    "reserved_subjects": 24,
+    "grammar_training_subjects": [
+      "tutora",
+      "tutorb"
+    ],
+    "scores": {
+      "before_learning": 0,
+      "after_learning": 48,
+      "e029_code_on_learned_memory": 0,
+      "total": 48
+    },
+    "app_sha256_before": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "app_sha256_after": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "learned_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "before_checkpoint_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
+    "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "learned_memory_region": [
+      9200000000000000000,
+      9200000000000003000
+    ],
+    "outside_region_unchanged_during_teaching": true,
+    "process_restart_per_turn": true,
+    "evaluation_adapts_patterns": false,
+    "scope": "Supervised one-subject byte frames with fixed dual-relation intent. Literal sides induced from two examples; not open grammar or new reasoning.",
+    "production_deployed": false
+  },
+  "regresiones": {
+    "e025_original": 31,
+    "e025_sobre_candidato": 31,
+    "e029": 285,
+    "e028": 464,
+    "e027": 429,
+    "w4u": 21
+  },
+  "w4u": {
+    "fixture_checks": 21,
+    "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
+    "accion_tipificada": [
+      4,
+      2
+    ],
+    "observacion": "maximiza calculadora en la cápsula candidata mediante REVERSE-PC, dentro de las 31 regresiones",
+    "coordinacion_autonoma_repositorio_verificada": false,
+    "android_verificado": false
+  },
+  "separacion_datos": "tutora/tutorb son sujetos docentes de formas. Los 24 reserva[a-x] no aparecen en demostraciones gramaticales; sus hechos se ingresan por E029 antes del examen para servir como conocimiento disponible, nunca como respuesta/plantilla docente.",
+  "fallos": [],
+  "rechazos_esperados": [
+    "Un testigo duplicado no habilita.",
+    "Segunda demostración incompatible falla sin destino.",
+    "Reenseñanza de registro activo falla sin destino."
+  ],
+  "hipotesis_pendientes": [
+    "El aprendizaje demostrado es un marco de un sujeto e intención doble supervisada; no comprensión lingüística general.",
+    "Reconciliar evidencia y conflictos de E025/E026 con E027/E028/E029 antes de integrar candidatos.",
+    "Exportar patrones desde el checkpoint experimental a un destino durable antes de caducar el artefacto; excluir hechos sintéticos.",
+    "Sin despliegue Android ni demostración de W4u como coordinador autónomo del repositorio."
+  ],
+  "aprendizaje_nuevo": true,
+  "conocimiento_produccion_sustituido": false,
+  "evidencia": "docs/autonomy/evidencias/ciclo-patrones-xi-20261028T2238-results.json",
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}
