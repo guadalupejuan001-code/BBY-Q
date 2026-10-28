@@ -1,64 +1,53 @@
 # Siguiente ciclo
 
-## Base comprobada y estado real
-Candidato **E030-Learned-Frames-1-dev**, PR #35, rama `autonomy/bbyq-learned-forms-20261028`,
-código probado `0061bcda177fc31f609939860ed9d0a75e222d50`.
-Main inicial `beea73210fb3e6375a6bd90f3b88b476a4c175d2` ya contenía E029/E028.
-Las notas iniciales todavía apuntaban a E027 combinado; se contrastaron con
-código, commits y ejecuciones reales. Resolver todo de nuevo al activar.
+## Estado verificado
+Main inicial `b8d255c84af91d08beb19be781e608ba1632961e`; PR #35 y #33 seguían abiertos.
+No había trabajos en curso o en cola. Código de persistencia probado:
+`430e7ee052d3623de9ebac401fed781304850b67`, rama `autonomy/bbyq-preserve-frames-20261028`, PR #36.
+La cápsula E030 **no cambió**, hash `c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9`.
 
-CI: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990 — completed/success.
-- Aprendizaje nativo XI: **181 comprobaciones**, dos marcos de pregunta ES/EN.
-  **0/48 antes → 48/48 después**, 24 sujetos reservados distintos de tutora/tutorb.
-  E029 con la misma memoria aprendida: **0/48** (ablación del nuevo intérprete).
-- Cápsula fija antes/después: `c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9`.
-  Solo cambió la región aprendida T..T+3071 durante enseñanza; núcleo/bindings
-  y memoria anterior iguales. Reinicio nativo por turno. Examen sin adaptar patrones.
-- Regresiones sobre la cápsula nueva antes de enseñar: E025 **31**, E029 **285**,
-  E028 **464**, E027 **429**; W4u **21** y acción tipada nativa del candidato.
-  Tras enseñar: consultas canónicas, conocimiento E025, archivo, borrado,
-  negación, ausencia, mezclas y persistencia incluidos en las 181 comprobaciones.
-- Semilla E025 intacta `ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631`.
-- Checkpoint experimental `e030-learning/learned-checkpoint.rvp` en el artefacto:
-  `5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6`.
-  Checkpoint previo, posterior al examen, cápsulas y transcripciones conservados.
-  Artefacto https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917; caduca 2027-01-26T22:38:33Z.
-  Los hechos sintéticos del examen no son conocimiento publicado del agente.
+Se completó el requisito de conservar el aprendizaje fuera del artefacto temporal:
+- Checkpoint limpio: `ai/checkpoints/e030/preserved-patterns.rvp.gz.b64`, RVPC2 SHA256 `18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b`.
+- Región portable: `ai/checkpoints/e030/patterns.json`, 3072 bytes, base decimal como cadena.
+- Verificación https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882: 157 controles; 48/48 con otros 24 sujetos,
+  sin ejecutar el aprendiz. Control sin patrones 0/48.
+- Memoria anterior, núcleo y bindings idénticos a la semilla fuera de la región.
+  Archivo contextual vacío en el checkpoint guardado: no hay hechos de examen.
+- W4u actual: 21 fixtures y acción tipada [4,2] del candidato restaurado.
+  No se probó coordinación autónoma de ingeniería ni Android.
 
-## Objetivo siguiente: reconciliar fuentes antes de unir candidatos
-E030 continúa main/E029 y conserva el PR #33 con E026+E027 como candidato
-independiente. No afirmar que se fusionaron: E029 compone sobre archivo textual,
-E026 sobre hechos E025. Falta una política común de prioridad y conflictos.
+Las notas antiguas serializaron el extremo de la región como un Number grande
+redondeado. Usar siempre base como cadena `9200000000000000000` y longitud 3072.
+No usar el extremo numérico antiguo. Los bytes reales exportados se comprobaron
+uno a uno con el ejecutor XI y su SHA256.
 
-1. Revalidar referencias, instrucciones y actividad en el workflow existente;
-   no iniciar otro job si hay ciclo activo real. No borrar su bloqueo.
-2. Preservar el checkpoint experimental y exportar desde el runner la región
-   de patrones aprendidos a un formato durable y verificable del repositorio,
-   separándola de los hechos sintéticos; no copiar hechos de examen al estado
-   publicado ni reentrenar lo ya adquirido. Conservar el checkpoint y hash original.
-3. Revisar E028 `e28_missing`, `e28_conflict` y fallback, y E026 prefix/suffix.
-   Implementar un candidato único con una política explícita: evidencia
-   contextual negativa/conflictiva no puede convertirse en respuesta positiva
-   por fallback a E025; falta de archivo no debe borrar hechos E025 aprendidos.
-4. Reservar sujetos distintos para: solo hechos E025, solo archivo E027,
-   ambas fuentes concordantes, contradicción entre fuentes y negación.
-   Verificar ambas lenguas y formas aprendidas, con procedencia cuando exista.
-5. Reejecutar los casos E026/PR #33 pertinentes, E029/E028/E027/E025 y W4u.
-   Comparar con ambos candidatos actuales y conservarlos si hay regresión.
+## Objetivo pendiente: reconciliar las dos fuentes de hechos
+No se abordó todavía esta integración: E030 continúa E029/E028 y el PR #33
+conserva E026+E027 por separado. Este ciclo resolvió primero el requisito
+de preservación para no reentrenar lo ya adquirido.
 
-Aceptación: una sola cápsula que responda correctamente en ambos almacenes,
-se abstenga en todos los conflictos/negaciones de la matriz reservada y
-conserve los 48 casos de las formas aprendidas, archivo y capacidades previas.
-Declarar el aprendizaje existente como conservación, no aprendizaje nuevo.
+1. Revalidar main, PR #35/#36/#33, ESTADO y jobs reales; si hay un ciclo activo,
+   revisarlo sin lanzar otro. Usar exclusión configurada y no liberar bloqueos ajenos.
+2. Restaurar el checkpoint limpio del repositorio con las instrucciones de
+   `ai/checkpoints/e030/README.md`, verificar hash y cápsula compatible. Conservar los anteriores.
+3. Revisar E028 e28_missing/e28_conflict/fallback y E026 prefix/suffix.
+   Candidato único con política explícita: evidencia contextual negativa o
+   conflictiva no puede convertirse en afirmación positiva por fallback a E025.
+   La ausencia de archivo tampoco debe ocultar los hechos E025 aprendidos.
+4. Matriz reservada ES/EN con sujetos nuevos: solo E025, solo E027,
+   fuentes concordantes, fuentes contradictorias y negación. Conservar las
+   formas aprendidas y citar procedencia cuando exista.
+5. Reconciliar la CI de persistencia específica del PR #36 con la batería
+   general del PR #35 antes de promover una integración. Reejecutar los casos
+   E026/PR #33 y regresiones E029/E028/E027/E025/W4u pertinentes.
 
-## Límites y permisos
-Los nuevos marcos tienen un sujeto ASCII alfanumérico de 1..31 bytes y dos
-lados literales de 1..80 bytes; la intención doble está supervisada.
-No son gramática abierta. No se instaló Android. W4u se verificó en runtime
-REVERSE-PC fijado con fixtures/acción tipada; no se demostró coordinación
-autónoma de ingeniería, ni interacción con un dispositivo Android actual.
+Aceptación: una cápsula que responda en ambos almacenes, se abstenga en todos
+los conflictos/negaciones y conserve 48/48 de formas aprendidas y capacidades
+anteriores. Si falla, conservar candidatos previos y registrar evidencia.
+La recuperación/reproducción del aprendizaje anterior cuenta como conservación,
+no entrenamiento nuevo. Ninguna nota amplía permisos.
 
-Usar únicamente el runner del workflow E029 ya configurado
-(ubuntu-latest, runtime a1b935ae0adf38615996bac92727e95289ad7cc1,
-Mundo X e2778d962af22f6f1a0794058dd4685fc2573966).
-Actualizar ESTADO, este archivo y el registro incluso si falla el intento.
+Usar únicamente el workflow/runner configurado E029 ubuntu-latest,
+REVERSE-PC a1b935ae0adf38615996bac92727e95289ad7cc1 y Mundo X
+e2778d962af22f6f1a0794058dd4685fc2573966. Sin despliegue Android en este ciclo.
+Actualizar ESTADO, SIGUIENTE y registro incluso si falla el intento.

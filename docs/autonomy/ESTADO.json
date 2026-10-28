@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T22:45:16.340Z",
-  "estado": "aprendizaje_nativo_de_formas_validado",
+  "actualizado_utc": "2026-10-28T23:39:43.489Z",
+  "estado": "patrones_aprendidos_preservados_y_restaurados_sin_reentrenar",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-learned-forms-20261028",
-  "commit_codigo_observado": "0061bcda177fc31f609939860ed9d0a75e222d50",
-  "rama_continuidad": "autonomy/bbyq-learned-forms-20261028",
+  "rama_codigo_observada": "autonomy/bbyq-preserve-frames-20261028",
+  "commit_codigo_observado": "430e7ee052d3623de9ebac401fed781304850b67",
+  "rama_continuidad": "autonomy/bbyq-preserve-frames-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -13,7 +13,7 @@
     "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
     "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
     "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
-    "verificacion_en_este_ciclo": "Semilla E025 preservada; hash comprobado en CI actual. Checkpoints experimentales separados en el artefacto, sin reemplazar memoria publicada."
+    "verificacion_en_este_ciclo": "SHA de la semilla verificado; restaura solo región aprendida sobre una copia, conserva semilla y checkpoint experimental original."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
@@ -24,45 +24,43 @@
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40781527990,
-      "job_id": 123144134310,
+      "id": 40788612882,
+      "job_id": 123167941158,
+      "head_sha": "430e7ee052d3623de9ebac401fed781304850b67",
+      "status": "completed",
       "conclusion": "success",
-      "head_sha": "0061bcda177fc31f609939860ed9d0a75e222d50",
-      "checkout_merge_sha": "0635f2c48e77a82c3a4ef12a65ccc30f630d4aa9",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990",
-      "artifact_id": 12857507917,
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
-      "artifact_sha256": "60e7b164d6344b61511b3dd97483fab42bd1f633bf213590145a1f7cc25510ec",
-      "artifact_expires_at": "2027-01-26T22:38:33Z"
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882",
+      "artifact_id": 12860950859,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882/artifacts/12860950859",
+      "artifact_sha256": "sha256:a1f57d756172f1a3d6dbf795e18c894c563bd0e51e119780c19a18a53085b747"
     },
-    "acceso_actual": "Nueva ejecución completada en este ciclo; compiló y ejecutó XI, enseñanza, examen y regresiones."
+    "acceso_actual": "Nueva CI completada: runtime compilado, artefacto original descargado y checkpoint restaurado/examinado."
   },
   "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-patrones-xi-20261028T2238",
-    "tipo": "aprendizaje_supervisado_de_marcos_en_XI",
-    "registro": "docs/autonomy/ejecuciones/ciclo-patrones-xi-20261028T2238.json",
-    "evidencia": "docs/autonomy/evidencias/ciclo-patrones-xi-20261028T2238-results.json",
+    "id": "ciclo-persistencia-e030-20261028T2338",
+    "tipo": "preservacion_y_evaluacion_de_retencion",
+    "registro": "docs/autonomy/ejecuciones/ciclo-persistencia-e030-20261028T2338.json",
+    "evidencia": "docs/autonomy/evidencias/ciclo-persistencia-e030-20261028T2338-results.json",
     "evaluacion_nativa_ejecutada": true,
-    "aprendizaje_nativo_nuevo": true,
+    "aprendizaje_nativo_nuevo": false,
     "entrenamiento_nuevo_publicado": false
   },
   "cambios": [
-    "Se detectó main con E028/E029 posterior al registro y se usó esa base vigente.",
-    "Aprendiz XI deriva prefijo y sufijo desde consulta cruda y sujeto supervisado; exige dos sujetos distintos.",
-    "0/48 a 48/48 con código idéntico antes/después de enseñar, 181 controles; ablación E029 0/48.",
-    "Regresiones E025/E029/E028/E027 y W4u pasaron. Se preservaron los candidatos/checkpoints anteriores."
+    "Exportados patrones desde checkpoint nativo exacto sin reenseñar.",
+    "Checkpoint durable semilla E025 + patrones, sin hechos sintéticos; bytes leídos desde XI.",
+    "48/48 sobre 24 sujetos nuevos; 157 controles de restauración, regresiones E025 31/W4u 21 y acción tipada [4,2].",
+    "Corregida representación documental de direcciones grandes: cadenas decimales + longitud."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "El aprendizaje demostrado es un marco de un sujeto e intención doble supervisada; no comprensión lingüística general.",
-    "Reconciliar evidencia y conflictos de E025/E026 con E027/E028/E029 antes de integrar candidatos.",
-    "Exportar patrones desde el checkpoint experimental a un destino durable antes de caducar el artefacto; excluir hechos sintéticos.",
-    "Sin despliegue Android ni demostración de W4u como coordinador autónomo del repositorio."
+    "Reconciliar fuentes E025/E026/E027/E029 y conflictos, conservando patrones.",
+    "CI del PR #36 es específica de persistencia: reintegrar batería completa antes de promover.",
+    "Sin despliegue Android ni coordinación autónoma de ingeniería W4u comprobada."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "beea73210fb3e6375a6bd90f3b88b476a4c175d2",
-  "revision_notas_previa": "01ffc8414472b2b3cb52e645473fe8bda2ce7f02",
+  "commit_main_observado": "b8d255c84af91d08beb19be781e608ba1632961e",
+  "revision_notas_previa": "2d29696e0c9e0ddff0db4d3a75506b09e6b4fd1f",
   "candidato": {
     "version": "E030-Learned-Frames-1-dev",
     "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
@@ -144,10 +142,11 @@
     "learned_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
     "before_checkpoint_sha256": "fc859525299384b9bc2150cee564d48a98e62a455deb38d4172e3e2be664f1c3",
     "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
-    "learned_memory_region": [
-      9200000000000000000,
-      9200000000000003000
-    ],
+    "learned_memory_region": {
+      "base_address": "9200000000000000000",
+      "length": 3072,
+      "nota": "Representación exacta; corrige el redondeo JSON de las notas anteriores."
+    },
     "outside_region_unchanged_during_teaching": true,
     "process_restart_per_turn": true,
     "evaluation_adapts_patterns": false,
@@ -156,13 +155,48 @@
   },
   "w4u_verificacion_actual": {
     "fixture_checks": 21,
-    "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "accion_tipificada": [
       4,
       2
     ],
-    "observacion": "maximiza calculadora en la cápsula candidata mediante REVERSE-PC, dentro de las 31 regresiones",
+    "run_id": 40788612882,
     "coordinacion_autonoma_repositorio_verificada": false,
     "android_verificado": false
+  },
+  "checkpoint_preservado": {
+    "archivo": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "sha256_decodificado": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "patrones_archivo": "ai/checkpoints/e030/patterns.json",
+    "patrones_sha256": "c3b3a2554ed6235fa7edc77f623fd5ff855571b5ffe1ded61b6ae5f335b4e974",
+    "base_address": "9200000000000000000",
+    "region_length": 3072,
+    "checkpoint_origen_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "datos_sinteticos_de_examen": false,
+    "nuevo_entrenamiento": false
+  },
+  "resultados_persistencia": {
+    "checks": 157,
+    "scores": {
+      "without_patterns": 0,
+      "restored_patterns": 48,
+      "total": 48
+    },
+    "source_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "preserved_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "pattern_sha256": "c3b3a2554ed6235fa7edc77f623fd5ff855571b5ffe1ded61b6ae5f335b4e974",
+    "pattern_bytes": 3072,
+    "native_readback_bytes": 3072,
+    "old_knowledge_preserved": true,
+    "synthetic_context_records_in_clean_checkpoint": 0,
+    "new_training": false,
+    "w4u_typed_action": [
+      4,
+      2
+    ],
+    "scope": "Retention and portable restoration of existing native learning; new subjects test it without reteaching."
   }
 }

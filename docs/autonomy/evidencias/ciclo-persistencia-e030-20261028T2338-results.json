@@ -1,0 +1,49 @@
+{
+  "run": {
+    "id": 40788612882,
+    "job_id": 123167941158,
+    "head_sha": "430e7ee052d3623de9ebac401fed781304850b67",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882",
+    "artifact_id": 12860950859,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882/artifacts/12860950859",
+    "artifact_sha256": "sha256:a1f57d756172f1a3d6dbf795e18c894c563bd0e51e119780c19a18a53085b747"
+  },
+  "report": {
+    "checks": 157,
+    "scores": {
+      "without_patterns": 0,
+      "restored_patterns": 48,
+      "total": 48
+    },
+    "source_checkpoint_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "preserved_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "pattern_sha256": "c3b3a2554ed6235fa7edc77f623fd5ff855571b5ffe1ded61b6ae5f335b4e974",
+    "pattern_bytes": 3072,
+    "native_readback_bytes": 3072,
+    "old_knowledge_preserved": true,
+    "synthetic_context_records_in_clean_checkpoint": 0,
+    "new_training": false,
+    "w4u_typed_action": [
+      4,
+      2
+    ],
+    "scope": "Retention and portable restoration of existing native learning; new subjects test it without reteaching."
+  },
+  "regresiones_actuales": {
+    "e025": 31,
+    "w4u": 21
+  },
+  "comandos": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "actions/download-artifact@v4 run-id=40781527990 name=BBYQ-E030-XI-learned-frames-evidence path=prior",
+    "python3 ai/releases/e030/persistence.py deps/reverse/build/reverse_pc prior evidence/preserved"
+  ]
+}
