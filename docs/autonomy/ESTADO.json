@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T14:50:56.350Z",
+  "actualizado_utc": "2026-10-28T14:57:47.713Z",
   "estado": "continuidad_preparada_ejecucion_nativa_pendiente",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "main",
@@ -33,7 +33,13 @@
     "ejecucion_nueva_en_esta_sesion": false,
     "acceso_a_lanzamiento_actual": "no probado; comprobar al activar el ciclo"
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "ciclo-20261028T145747Z",
+    "inicio_utc": "2026-10-28T14:57:47.713Z",
+    "objetivo": "Serializar E022 y verificar ejecución nativa en el runner configurado",
+    "criterio": "CI nueva completa con integridad del checkpoint y regresiones E022 aprobadas",
+    "rama": "autonomy/bbyq-w4u-daily-20261028"
+  },
   "ultima_actividad": {
     "tipo": "configuracion_de_continuidad",
     "registro": "docs/autonomy/ejecuciones/configuracion-20261028T145056Z.json",
