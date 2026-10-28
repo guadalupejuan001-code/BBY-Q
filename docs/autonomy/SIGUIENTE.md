@@ -1,31 +1,35 @@
 # Siguiente ciclo
 
-## Base real y trabajo completado
+## Estado real y continuación
 
-E025-Chain-1 + W4u 0.1 se publicaron en BBY-Q/main; no regresar a E022 porque el estado antiguo lo mencionaba. La revisión observada antes de este diagnóstico fue 783d7aff4385687d416e2f3a67ed81dca89d9fb9. Resolver nuevamente los HEAD y checkpoints al iniciar.
+E025-Chain-1 sigue conservado y no se sustituyó su semilla. Retomar el candidato E026-TwoFacts-dev desde la rama `autonomy/bbyq-e026-native-composition-20261028`, PR #30, revisión de código `4f15e00992c75f73b3a5824b503d2776e37b2311`, después de resolver de nuevo referencias, PR y actividad actual.
 
-Diagnóstico del PR #29, rama `autonomy/bbyq-two-facts-e025-20261028`, código `2f0f5eb02b851faaa4a5157096ef851cd516184f`:
-- 96/96 controles de hechos individuales.
-- 0/48 respuestas con cobertura de dos hechos, con 24 sujetos y dos peticiones fijas ES/EN.
-- 31 comprobaciones E025 y 21 del núcleo W4u aprobadas.
-- Cápsula y semilla originales intactas. Son métricas nuevas de diagnóstico, no aprendizaje añadido al agente publicado.
+La CI https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900 terminó con success:
+- Desarrollo: E025 0/48; candidato 48/48.
+- Sujetos nuevos dentro de las formas diseñadas: E025 0/48; candidato 48/48.
+- 31 regresiones de E025, 31 del candidato, 21 W4u y 150 controles adicionales.
+- Semilla E025 SHA-256 ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631; candidato SHA-256 3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6.
 
-Evidencia: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612
-Informe persistente: `docs/autonomy/evidencias/ciclo-dos-hechos-e025-20261028T1925-results.json`. Transcripciones completas: artefacto enlazado en el registro. Los casos se enseñan a copias desechables de RVPC2; no se promovieron a checkpoint.
+Informe: `docs/autonomy/evidencias/ciclo-e026-composicion-20261028T2038-results.json`. Las cápsulas, el XI enlazado y las transcripciones completas están en https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323. El primer intento falló en las variantes y queda registrado. No repetir sus pruebas como trabajo nuevo sin una modificación o hipótesis concreta.
 
-## Objetivo siguiente: composición nativa de dos hechos
+El resultado acredita ingeniería nativa de cuatro formas minúsculas ASCII, no gramática aprendida ni conversación general. No se desplegó Android y no se cambió el estado privado de la aplicación del usuario.
 
-1. Leer primero el PR #29 y los cambios posteriores; no repetir el diagnóstico idéntico sin cambiar una hipótesis.
-2. Inspeccionar las transcripciones de las dos formulaciones para localizar en XI si se descarta una intención, falta representar dos consultas o falta componer sus respuestas. El resultado 0/48 por sí solo no identifica el componente defectuoso.
-3. Implementar en XI/Ether una petición compuesta que seleccione y exprese dos hechos respaldados del mismo referente. Python/JS solo examinan o transportan: no generan la respuesta del agente.
-4. Conservar E025 y su reconstrucción exacta. Para un programa cambiado usar versión candidata con identidad y manifiesto propios; no modificar los hashes esperados para fingir identidad con E025. Conservar la memoria anterior y demostrar una migración compatible si procede.
-5. Usar las 48 consultas publicadas como conjunto de desarrollo. Separar enseñanza de patrones y reservar otro examen: 24 sujetos nuevos y reformulaciones no utilizadas para ajustar el código; 48 consultas ES/EN. Registrar los conjuntos y sus diferencias.
-6. Añadir controles con un hecho ausente, negación y cambio de sujeto. Comprobar las proposiciones completas y evidencia, no solo palabras coincidentes.
+## Propuesta siguiente: aprender una nueva forma sin reescribir otra frase en el adaptador
 
-Criterio de aceptación: mejora medible frente a 0/48 del conjunto de desarrollo; 48/48 consultas independientes que expresen ambos hechos respaldados sin mezclar referentes; controles sin invención y persistencia tras reinicio. Conservar las regresiones E025/W4u y las de E022 afectadas por cualquier cambio compartido. No promover un candidato con pérdidas.
+Objetivo concreto: representar un patrón de composición en RVPC2 y enseñar su forma con ejemplos supervisados, manteniendo inducción, selección y generación en XI/Ether.
 
-## Ejecutor y continuidad
+1. Inspeccionar el candidato y los mecanismos existentes de enseñanza/normalización antes de añadir una representación nueva. Mantener una única autoridad de memoria por agente.
+2. Escoger una forma interrogativa adicional ES y otra EN que el candidato aún rechace; medir esa base antes de enseñar. No fijar de antemano una puntuación supuesta.
+3. Enseñar cada forma con al menos dos sujetos distintos y papeles explícitos para permitir variación. El docente transporta ejemplos; XI induce/valida y conserva la representación. No guardar las respuestas finales del examen como ejemplos.
+4. Examinar 24 sujetos distintos de los de enseñanza, 48 peticiones ES/EN, junto con controles de un dato ausente, negación y cambio de sujeto. Mantener separados desarrollo, enseñanza y examen.
+5. Demostrar que el código/ejecutable es idéntico antes y después de esa enseñanza, mientras cambia el checkpoint en las regiones aprendidas declaradas. Reabrir el estado y repetir consultas para demostrar persistencia.
 
-Usar el workflow configurado E025, con runtime fijado a a1b935ae0adf38615996bac92727e95289ad7cc1 y Mundo X e2778d962af22f6f1a0794058dd4685fc2573966, salvo nueva configuración verificada. Comprobar primero trabajo activo. W4u ahora tiene fuentes y pruebas en ai/xi/w4u y docs/W4U_ENGINE.md; el antiguo bloqueo de fuentes ausentes ya no aplica. Las pruebas de fixtures no equivalen a coordinación general del desarrollo ni a una prueba Android nueva.
+Criterio de aceptación: mejora medible hasta 48/48 respuestas completas sobre esos casos nuevos, evidencia de aprendizaje por cambio persistente de memoria con código fijo, conservación de las formas anteriores y regresiones pertinentes. Si no se logra, guardar el candidato anterior y el fallo exacto sin promover resultados parciales.
 
-Actualizar ESTADO.json, este archivo y el registro incluso si falla el intento. Guardar la causa concreta y la operación pendiente; no repetir un intento idéntico sin evidencia nueva.
+## Integración y límites
+
+W4u continúa como motor XI acotado; sus 21 fixtures pasaron y una acción tipada se prueba dentro de las regresiones. Esto no prueba que W4u coordine por sí solo la ingeniería de este repositorio.
+
+No falsear la identidad E025 para desplegar el programa cambiado. Una futura integración en REVERSE-PC debe preservar la memoria privada existente y probar su migración y las acciones de interfaz. No desplegar una cápsula experimental como si ya estuviera integrada.
+
+Utilizar el ejecutor configurado y sus dependencias fijadas. Comprobar trabajo activo antes de lanzar otro; actualizar ESTADO.json y el registro también ante fallo. Los commits solo de notas pueden usar [skip ci] para evitar repetir la misma campaña.

@@ -1,0 +1,185 @@
+{
+  "id": "ciclo-e026-composicion-20261028T2038",
+  "inicio_utc": "2026-10-28T20:38:00.947Z",
+  "fin_utc": "2026-10-28T20:46:36.529Z",
+  "objetivo": "Implementar y verificar composición de dos consultas en XI sobre E025 sin sustituir la semilla",
+  "resultado": "candidato_acotado_validado_sin_despliegue",
+  "rama": "autonomy/bbyq-e026-native-composition-20261028",
+  "commit_codigo": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+  "commit_padre_main": "973837fb00322b6a15546d0f7ad9dac11afcb00e",
+  "revision_notas_previa": "73a5ac8c98f8d1cfe9d67385583d05369551b636",
+  "preflight": {
+    "in_progress": 0,
+    "queued": 0,
+    "ciclo_activo_inicial": null,
+    "instrucciones": "OBJETIVO, ESTADO, SIGUIENTE y último registro leídos; árbol completo sin AGENTS.md.",
+    "ejecutor": "Workflow E025 existente con runtime a1b935ae0adf38615996bac92727e95289ad7cc1 y Mundo X e2778d962af22f6f1a0794058dd4685fc2573966.",
+    "entorno_local": "Se leyó la guía del entorno cloud. environment_status no está expuesto en el registro de herramientas; no se utilizó un ejecutor local alternativo ni Docker."
+  },
+  "cambios": [
+    "Adaptador de composición en XI, con candidato de identidad propia que usa la semilla E025 intacta.",
+    "Desarrollo 0/48 -> 48/48; transferencia de sujetos nuevos 0/48 -> 48/48 dentro de formas diseñadas.",
+    "31 regresiones sobre E025, 31 sobre el candidato y 21 pruebas W4u aprobadas; 150 controles de abstención, negación/contradicción, referente mixto y limpieza."
+  ],
+  "checkpoint_conservado": {
+    "archivo": "ai/releases/e025/controller.rvp.gz.b64",
+    "version": "E025-Chain-1",
+    "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+    "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "verificacion_en_este_ciclo": "Semilla E025 intacta: ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631. La reconstrucción original y las 31 comprobaciones E025 pasaron de nuevo."
+  },
+  "candidato": {
+    "version": "E026-TwoFacts-dev",
+    "app_sha256": "3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "rama": "autonomy/bbyq-e026-native-composition-20261028",
+    "commit": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+    "artifact_app": "evidence/e026/candidate.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
+    "produccion_desplegada": false,
+    "aprendizaje_de_patrones_nuevo": false,
+    "descripcion": "Extensión de ingeniería en XI; cuatro formas de pregunta doble y respuestas del motor original, sin respuestas generadas fuera de XI."
+  },
+  "intentos": [
+    {
+      "run": {
+        "id": 40765031926,
+        "job_id": 123086760250,
+        "head_sha": "dd862fac334683a8a4169f8a36d8df9527d8cd81",
+        "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765031926",
+        "artifact_id": 12848639701,
+        "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765031926/artifacts/12848639701",
+        "conclusion": "failure",
+        "reports": [
+          {
+            "checks": 31,
+            "version": "E025-Chain-1",
+            "w4u_version": "0.1",
+            "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+            "retained_independent_concepts": 12,
+            "new_override_writes": 70000,
+            "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+          },
+          {
+            "checks": 31,
+            "version": "E026-TwoFacts-dev",
+            "w4u_version": "0.1",
+            "app_sha256": "99d572a200da82eec0ebe4e770c850ba14dac4f0c64fd3b596990d3aadd42244",
+            "retained_independent_concepts": 12,
+            "new_override_writes": 70000,
+            "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+          },
+          {
+            "stage": "E026-TwoFacts-dev",
+            "scores": {
+              "development": {
+                "baseline": 0,
+                "candidate": 48,
+                "total": 48
+              },
+              "transfer": {
+                "baseline": 0,
+                "candidate": 0,
+                "total": 48
+              }
+            },
+            "unknown_and_scratch_controls": 144,
+            "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+            "candidate_sha256": "99d572a200da82eec0ebe4e770c850ba14dac4f0c64fd3b596990d3aadd42244",
+            "scope": "Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Subject and synonym transfer, not unrestricted language generation. No learned pattern claim. Separate native process per turn.",
+            "production_deployed": false
+          }
+        ]
+      },
+      "hipotesis": "Las variantes necesita/need no pasan con las segundas consultas no canónicas.",
+      "error": "AssertionError: Incomplete composition coverage",
+      "cambio_para_reintentar": "Normalización XI al predicado canónico requiere/require, sujetos nuevos y controles adversos adicionales."
+    },
+    {
+      "run": {
+        "id": 40765695900,
+        "job_id": 123089119191,
+        "head_sha": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+        "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900",
+        "artifact_id": 12850112323,
+        "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900/artifacts/12850112323",
+        "conclusion": "success",
+        "checkout_merge_sha": "34ed18029cedd2b4282320184a4d0e6a8905f822",
+        "artifact_sha256": "340ac743965e2621081a2f06a6edf5939bd1ca44b90e3989fc2f67643b5bc14c"
+      },
+      "reports": [
+        {
+          "checks": 31,
+          "version": "E025-Chain-1",
+          "w4u_version": "0.1",
+          "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+          "retained_independent_concepts": 12,
+          "new_override_writes": 70000,
+          "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+        },
+        {
+          "checks": 31,
+          "version": "E026-TwoFacts-dev",
+          "w4u_version": "0.1",
+          "app_sha256": "3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6",
+          "retained_independent_concepts": 12,
+          "new_override_writes": 70000,
+          "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+        },
+        {
+          "stage": "E026-TwoFacts-dev",
+          "scores": {
+            "development": {
+              "baseline": 0,
+              "candidate": 48,
+              "total": 48
+            },
+            "transfer": {
+              "baseline": 0,
+              "candidate": 48,
+              "total": 48
+            }
+          },
+          "unknown_and_scratch_controls": 150,
+          "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+          "candidate_sha256": "3ed1a9847e771f9e58db426a9920f60fc41358b514fa363fe379269e75678bc6",
+          "scope": "Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Transfer to new subjects within four engineered forms; synonyms normalized in XI, not a held-out language benchmark. No learned pattern claim. Separate native process per turn.",
+          "production_deployed": false
+        }
+      ],
+      "w4u_core_checks": 21
+    }
+  ],
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "python3 ai/releases/e026/regression.py deps/reverse/build/reverse_pc evidence/e026",
+    "python3 ai/releases/e026/test.py deps/reverse/build/reverse_pc evidence/e026 evidence/composition"
+  ],
+  "comandos_internos_constructor": "compile y pack-app del runtime nativo, definidos en ai/releases/e026/candidate_build.py; no se ejecutó inferencia en Python.",
+  "validacion_inicial_final": {
+    "development": {
+      "baseline": 0,
+      "candidate": 48,
+      "total": 48
+    },
+    "transfer": {
+      "baseline": 0,
+      "candidate": 48,
+      "total": 48
+    }
+  },
+  "controles_adicionales": 150,
+  "limitaciones": [
+    "El reconocimiento de formas es diseñado y acotado; todavía no se ha demostrado aprendizaje de nuevos patrones de composición.",
+    "El candidato no está desplegado en Android; su hash de cápsula cambia y requiere preservar/migrar explícitamente memorias privadas si se integra.",
+    "Las regresiones comprobadas cubren las 31 pruebas E025 y 21 W4u, no una nueva ejecución de todas las campañas E022 históricas."
+  ],
+  "enseñanza_de_patrones_nueva": false,
+  "evidencia": "docs/autonomy/evidencias/ciclo-e026-composicion-20261028T2038-results.json",
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}
