@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "actualizado_utc": "2026-10-28T14:50:56.350Z",
+  "estado": "continuidad_preparada_ejecucion_nativa_pendiente",
+  "repositorio": "guadalupejuan001-code/BBY-Q",
+  "rama_codigo_observada": "main",
+  "commit_codigo_observado": "e8498b765a6a95aa556d0e816aab926257769391",
+  "rama_continuidad": "autonomy/bbyq-w4u-daily-20261028",
+  "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
+  "checkpoint": {
+    "archivo": "ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
+    "manifiesto": "ai/checkpoints/e022-manifest.json",
+    "commit_fuente": "e8498b765a6a95aa556d0e816aab926257769391",
+    "sha256_decodificado_declarado": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+    "bytes_decodificados_declarados": 500410,
+    "verificacion_en_esta_sesion": "Manifiesto y presencia en el árbol verificados; no se ha ejecutado la descompresión ni la inferencia."
+  },
+  "ejecutor": {
+    "tipo": "GitHub Actions",
+    "workflow": ".github/workflows/bbyq-e022.yml",
+    "job": "compositional-requests",
+    "runner": "ubuntu-latest",
+    "timeout_minutos": 35,
+    "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+    "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+    "acceso_definicion": "verificado mediante GitHub",
+    "ultima_ejecucion_observada": {
+      "id": 40582806741,
+      "conclusion": "success",
+      "commit": "e8498b765a6a95aa556d0e816aab926257769391",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40582806741"
+    },
+    "ejecucion_nueva_en_esta_sesion": false,
+    "acceso_a_lanzamiento_actual": "no probado; comprobar al activar el ciclo"
+  },
+  "ciclo_activo": null,
+  "ultima_actividad": {
+    "tipo": "configuracion_de_continuidad",
+    "registro": "docs/autonomy/ejecuciones/configuracion-20261028T145056Z.json",
+    "entrenamiento_ejecutado": false,
+    "evaluacion_nativa_ejecutada": false
+  },
+  "cambios": [
+    "Se documentan objetivo, estado verificable, siguiente paso y registro inicial; no se cambia el código ni los checkpoints."
+  ],
+  "bloqueos": [
+    {
+      "id": "ejecutor_no_probado",
+      "descripcion": "No se ha solicitado una ejecución nueva al preparar la programación. El éxito histórico no confirma disponibilidad actual.",
+      "reintentar_cuando": "La activación tenga acceso al canal autorizado para ejecutar el workflow configurado o a otro ejecutor ya configurado por el usuario."
+    }
+  ],
+  "hipotesis_pendientes": [
+    "Verificar si existen ramas, checkpoints o resultados posteriores al código observado.",
+    "Localizar y comprobar el estado real de W4u y su integración con REVERSE-PC; no está identificado en el árbol main inspeccionado."
+  ],
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}
