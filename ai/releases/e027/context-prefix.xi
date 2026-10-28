@@ -632,28 +632,100 @@ jmp lctx_emit_segment
 label lctx_find
 mov r4 r9
 sub r4 10
+cmp r4 3
+jlt lctx_invalid
 cmp r4 80
 jgt lctx_invalid
-load8 r6 8900000000000000004
+load8 r12 8900000000000000004
 load8 r8 8900000000000000005
 mul r8 256
-add r6 r8
+add r12 r8
 load8 r8 8900000000000000006
 mul r8 65536
-add r6 r8
-cmp r6 r4
+add r12 r8
+cmp r12 r4
 jlt lctx_no_match
-mov r5 r6
-sub r5 r4
+# Boyer-Moore-Horspool skip table for casefolded ASCII; no external language code.
+set r0 0
+label lctx_find_skip_init
+cmp r0 256
+jge lctx_find_skip_build_start
+set r7 8900000000000005000
+add r7 r0
+store8 $r7 r4
+add r0 1
+jmp lctx_find_skip_init
+label lctx_find_skip_build_start
+set r0 0
+label lctx_find_skip_build
+mov r15 r4
+sub r15 1
+cmp r0 r15
+jge lctx_find_search_start
+set r7 7400000000000000138
+add r7 r0
+load8 r3 $r7
+cmp r3 65
+jlt lctx_find_skip_set
+cmp r3 90
+jgt lctx_find_skip_set
+add r3 32
+label lctx_find_skip_set
+mov r8 r4
+sub r8 1
+sub r8 r0
+set r7 8900000000000005000
+add r7 r3
+store8 $r7 r8
+cmp r3 97
+jlt lctx_find_skip_next
+cmp r3 122
+jgt lctx_find_skip_next
+sub r7 32
+store8 $r7 r8
+label lctx_find_skip_next
+add r0 1
+jmp lctx_find_skip_build
+label lctx_find_search_start
+set r6 0
+set r5 -1
+mov r12 r12
+sub r12 r4
 label lctx_find_position
-cmp r5 0
-jlt lctx_no_match
+cmp r6 r12
+jgt lctx_find_finish_search
+mov r15 r6
+add r15 r4
+sub r15 1
+set r7 8900000000000100000
+add r7 r15
+load8 r3 $r7
+cmp r3 65
+jlt lctx_find_last_ready
+cmp r3 90
+jgt lctx_find_last_ready
+add r3 32
+label lctx_find_last_ready
+mov r13 r3
+set r7 7400000000000000138
+mov r15 r4
+sub r15 1
+add r7 r15
+load8 r11 $r7
+cmp r11 65
+jlt lctx_find_last_compare
+cmp r11 90
+jgt lctx_find_last_compare
+add r11 32
+label lctx_find_last_compare
+cmp r13 r11
+jne lctx_find_skip_position
 set r0 0
 label lctx_find_compare
 cmp r0 r4
-jge lctx_find_matched
+jge lctx_find_record_match
 set r7 8900000000000100000
-add r7 r5
+add r7 r6
 add r7 r0
 load8 r3 $r7
 set r7 7400000000000000138
@@ -672,12 +744,35 @@ jgt lctx_find_byte_compare
 add r11 32
 label lctx_find_byte_compare
 cmp r3 r11
-jne lctx_find_next_position
+jne lctx_find_skip_position
 add r0 1
 jmp lctx_find_compare
-label lctx_find_next_position
-sub r5 1
+label lctx_find_record_match
+mov r5 r6
+add r6 1
 jmp lctx_find_position
+label lctx_find_skip_position
+set r7 8900000000000005000
+add r7 r13
+load8 r8 $r7
+cmp r8 1
+jlt lctx_invalid
+add r6 r8
+jmp lctx_find_position
+label lctx_find_finish_search
+set r0 0
+label lctx_find_skip_clear
+cmp r0 256
+jge lctx_find_search_done
+set r7 8900000000000005000
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp lctx_find_skip_clear
+label lctx_find_search_done
+cmp r5 0
+jlt lctx_no_match
+jmp lctx_find_matched
 label lctx_find_matched
 load8 r13 8900000000000000002
 load8 r8 8900000000000000003
