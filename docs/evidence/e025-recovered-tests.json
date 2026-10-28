@@ -1,0 +1,9 @@
+{
+  "checks": 31,
+  "version": "E025-Chain-1",
+  "w4u_version": "0.1",
+  "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+  "retained_independent_concepts": 12,
+  "new_override_writes": 70000,
+  "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+}

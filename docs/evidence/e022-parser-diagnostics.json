@@ -1,0 +1,5217 @@
+{
+  "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+  "checkpoint_bytes": 500410,
+  "training_replayed": false,
+  "new_released_world_facts": 0,
+  "scope": "Regression fixtures from diagnosis, not an independent general-language benchmark",
+  "source_sha256": {
+    "ai/xi/diagnostics/cases.json": "c027e19a3ea2ea97832c58ee4f7354f9c2ddecbe1b50f49dc8c0db6c9d990eae",
+    "ai/xi/diagnostics/tests/native-diagnostics.py": "07b7af1382cab1d3ad702a2be1c15b168f73604bd9abb539e5d12ad5dd2af737",
+    "ai/xi/knowledge/read.xi": "9f9f95cef821a63a164f081784e2a9c45e8f1c40561800c09291fe847fd9f3c4",
+    "ai/xi/lingua/clause.xi": "923827af0d87b34223adf210f6301a0c1f9813a4bd9d89dcc1d846c439128613"
+  },
+  "before": {
+    "correct": 80,
+    "total": 184,
+    "groups": {
+      "opening_question": {
+        "correct": 0,
+        "total": 36
+      },
+      "incomplete_clause": {
+        "correct": 4,
+        "total": 72
+      },
+      "rejection": {
+        "correct": 44,
+        "total": 44
+      },
+      "preserved": {
+        "correct": 32,
+        "total": 32
+      }
+    },
+    "queries_do_not_write_knowledge": true,
+    "restart": true,
+    "metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 15360,
+      "resident_rss_kib": 8688,
+      "cpu_ms": 6371.07,
+      "active_qubits": 0
+    },
+    "median_ms": 35.763642000000004,
+    "transcript": [
+      {
+        "input": "Oye, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 20.409415
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 20.693484
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 21.580587
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 21.86922
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 20.244325
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 22.599328
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": false,
+        "ms": 21.15189
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 es clasea."
+        ],
+        "pass": false,
+        "ms": 20.772436
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 alcanza destino022."
+        ],
+        "pass": false,
+        "ms": 23.355413
+      },
+      {
+        "input": "qué requiere diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 50.510404
+      },
+      {
+        "input": "qué requiere diagnostico000 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 49.38981
+      },
+      {
+        "input": "qué requiere diagnostico000 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 45.97992
+      },
+      {
+        "input": "qué requiere diagnostico000 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 44.989657
+      },
+      {
+        "input": "qué requiere diagnostico000 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 42.023521
+      },
+      {
+        "input": "qué requiere diagnostico000 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 35.781604
+      },
+      {
+        "input": "qué requiere diagnostico000 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 39.971945
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 48.219604
+      },
+      {
+        "input": "what does diagnostico000 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 42.403188
+      },
+      {
+        "input": "what does diagnostico000 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 39.598061
+      },
+      {
+        "input": "what does diagnostico000 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 38.681205
+      },
+      {
+        "input": "what does diagnostico000 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 38.738712
+      },
+      {
+        "input": "what does diagnostico000 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 41.554318
+      },
+      {
+        "input": "what does diagnostico000 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 42.353746
+      },
+      {
+        "input": "what does diagnostico000 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 52.150314
+      },
+      {
+        "input": "one quick question what does diagnostico000 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 78.394166
+      },
+      {
+        "input": "qué alcanza diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico000 alcanza destino022.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 42.568664
+      },
+      {
+        "input": "what does diagnostico000 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico000 reaches destino022.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 38.171337
+      },
+      {
+        "input": "oye¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 23.040037
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 25.865014
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 53.709825
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.073103
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 22.281709
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 43.011102
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 20.00665
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.952649
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000 y alternodiagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 21.795293
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.915637
+      },
+      {
+        "input": "qué requiere\ndiagnostico000",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.899802
+      },
+      {
+        "input": "¿Qué requiere diagnostico000?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.886178
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico000?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 es clasea."
+        ],
+        "pass": true,
+        "ms": 49.81617
+      },
+      {
+        "input": "what does diagnostico000 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 48.036056
+      },
+      {
+        "input": "i was wondering what diagnostico000 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 66.627477
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico000",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 52.053796
+      },
+      {
+        "input": "which resources does diagnostico000 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 50.721657
+      },
+      {
+        "input": "say what diagnostico000 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 56.002299
+      },
+      {
+        "input": "qué alcanza diagnostico000",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 42.738757
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 22.828618
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 20.857097
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 21.699863
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 18.181505
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 23.207534
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 21.888517
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": false,
+        "ms": 19.078555
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 es clasea."
+        ],
+        "pass": false,
+        "ms": 18.522761
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 alcanza destino022."
+        ],
+        "pass": false,
+        "ms": 18.42052
+      },
+      {
+        "input": "qué requiere diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 36.190749
+      },
+      {
+        "input": "qué requiere diagnostico001 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 37.06637
+      },
+      {
+        "input": "qué requiere diagnostico001 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 35.74568
+      },
+      {
+        "input": "qué requiere diagnostico001 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 42.25986
+      },
+      {
+        "input": "qué requiere diagnostico001 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 45.512997
+      },
+      {
+        "input": "qué requiere diagnostico001 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 34.897201
+      },
+      {
+        "input": "qué requiere diagnostico001 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 36.611211
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 41.824039
+      },
+      {
+        "input": "what does diagnostico001 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 40.337762
+      },
+      {
+        "input": "what does diagnostico001 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 39.882994
+      },
+      {
+        "input": "what does diagnostico001 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 40.549392
+      },
+      {
+        "input": "what does diagnostico001 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 37.332134
+      },
+      {
+        "input": "what does diagnostico001 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 38.325695
+      },
+      {
+        "input": "what does diagnostico001 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 39.274601
+      },
+      {
+        "input": "what does diagnostico001 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 42.911423
+      },
+      {
+        "input": "one quick question what does diagnostico001 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 41.489165
+      },
+      {
+        "input": "qué alcanza diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico001 alcanza destino022.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 45.337902
+      },
+      {
+        "input": "what does diagnostico001 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico001 reaches destino022.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 46.736596
+      },
+      {
+        "input": "oye¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.654017
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.343591
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.310598
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.968635
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.250367
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.137783
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 19.304917
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 21.165241
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001 y alternodiagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.57697
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.791612
+      },
+      {
+        "input": "qué requiere\ndiagnostico001",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 22.956941
+      },
+      {
+        "input": "¿Qué requiere diagnostico001?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.958456
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico001?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 es clasea."
+        ],
+        "pass": true,
+        "ms": 42.944411
+      },
+      {
+        "input": "what does diagnostico001 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 42.894407
+      },
+      {
+        "input": "i was wondering what diagnostico001 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 38.690226
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico001",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.443838
+      },
+      {
+        "input": "which resources does diagnostico001 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 44.348632
+      },
+      {
+        "input": "say what diagnostico001 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 42.27769
+      },
+      {
+        "input": "qué alcanza diagnostico001",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 34.064893
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.201446
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.564691
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.42363
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.710492
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.532843
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.387702
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.403843
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 es clasea."
+        ],
+        "pass": false,
+        "ms": 17.30555
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 alcanza destino022."
+        ],
+        "pass": false,
+        "ms": 18.837589
+      },
+      {
+        "input": "qué requiere diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 45.499453
+      },
+      {
+        "input": "qué requiere diagnostico002 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 39.910316
+      },
+      {
+        "input": "qué requiere diagnostico002 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 39.596662
+      },
+      {
+        "input": "qué requiere diagnostico002 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 52.686882
+      },
+      {
+        "input": "qué requiere diagnostico002 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 41.820479
+      },
+      {
+        "input": "qué requiere diagnostico002 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.324502
+      },
+      {
+        "input": "qué requiere diagnostico002 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 37.031291
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 39.699023
+      },
+      {
+        "input": "what does diagnostico002 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 41.316554
+      },
+      {
+        "input": "what does diagnostico002 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 42.769865
+      },
+      {
+        "input": "what does diagnostico002 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 44.114927
+      },
+      {
+        "input": "what does diagnostico002 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 50.572398
+      },
+      {
+        "input": "what does diagnostico002 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 40.109436
+      },
+      {
+        "input": "what does diagnostico002 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 52.40659
+      },
+      {
+        "input": "what does diagnostico002 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 37.23571
+      },
+      {
+        "input": "one quick question what does diagnostico002 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 40.021652
+      },
+      {
+        "input": "qué alcanza diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico002 alcanza destino022.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 37.069623
+      },
+      {
+        "input": "what does diagnostico002 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico002 reaches destino022.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.901479
+      },
+      {
+        "input": "oye¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.970716
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.552819
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.641755
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.793618
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.225831
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 24.058461
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 17.485103
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.243214
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002 y alternodiagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.44004
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 25.017194
+      },
+      {
+        "input": "qué requiere\ndiagnostico002",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.013948
+      },
+      {
+        "input": "¿Qué requiere diagnostico002?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 35.880019
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico002?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 es clasea."
+        ],
+        "pass": true,
+        "ms": 41.576977
+      },
+      {
+        "input": "what does diagnostico002 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 38.472742
+      },
+      {
+        "input": "i was wondering what diagnostico002 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 38.40747
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico002",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.629814
+      },
+      {
+        "input": "which resources does diagnostico002 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 44.893015
+      },
+      {
+        "input": "say what diagnostico002 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 41.922649
+      },
+      {
+        "input": "qué alcanza diagnostico002",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 33.602762
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.170528
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 18.160852
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.586313
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.500051
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.389666
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.634101
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": false,
+        "ms": 17.331969
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 es clasea."
+        ],
+        "pass": false,
+        "ms": 17.869159
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 alcanza destino022."
+        ],
+        "pass": false,
+        "ms": 17.58003
+      },
+      {
+        "input": "qué requiere diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 36.223472
+      },
+      {
+        "input": "qué requiere diagnostico003 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 34.633671
+      },
+      {
+        "input": "qué requiere diagnostico003 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 35.031351
+      },
+      {
+        "input": "qué requiere diagnostico003 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 35.398937
+      },
+      {
+        "input": "qué requiere diagnostico003 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 34.72992
+      },
+      {
+        "input": "qué requiere diagnostico003 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 26.536807
+      },
+      {
+        "input": "qué requiere diagnostico003 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 35.639443
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 38.052596
+      },
+      {
+        "input": "what does diagnostico003 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.446836
+      },
+      {
+        "input": "what does diagnostico003 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.86189
+      },
+      {
+        "input": "what does diagnostico003 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 37.26461
+      },
+      {
+        "input": "what does diagnostico003 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.655745
+      },
+      {
+        "input": "what does diagnostico003 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.817307
+      },
+      {
+        "input": "what does diagnostico003 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.516396
+      },
+      {
+        "input": "what does diagnostico003 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.323576
+      },
+      {
+        "input": "one quick question what does diagnostico003 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 39.366172
+      },
+      {
+        "input": "qué alcanza diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "Según lo aprendido: Diagnostico003 alcanza destino022.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": false,
+        "ms": 35.32575
+      },
+      {
+        "input": "what does diagnostico003 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "From the taught statements: Diagnostico003 reaches destino022.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": false,
+        "ms": 36.984156
+      },
+      {
+        "input": "oye¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.555394
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.166604
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.528594
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.371312
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.116227
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 23.5257
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 17.150059
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.151784
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003 y alternodiagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.055935
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 24.814179
+      },
+      {
+        "input": "qué requiere\ndiagnostico003",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 17.301522
+      },
+      {
+        "input": "¿Qué requiere diagnostico003?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 33.852125
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico003?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 es clasea."
+        ],
+        "pass": true,
+        "ms": 42.295255
+      },
+      {
+        "input": "what does diagnostico003 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 38.638136
+      },
+      {
+        "input": "i was wondering what diagnostico003 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 38.514005
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico003",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.603148
+      },
+      {
+        "input": "which resources does diagnostico003 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 44.318311
+      },
+      {
+        "input": "say what diagnostico003 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 41.97018
+      },
+      {
+        "input": "qué alcanza diagnostico003",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 33.519016
+      }
+    ]
+  },
+  "after": {
+    "correct": 184,
+    "total": 184,
+    "groups": {
+      "opening_question": {
+        "correct": 36,
+        "total": 36
+      },
+      "incomplete_clause": {
+        "correct": 72,
+        "total": 72
+      },
+      "rejection": {
+        "correct": 44,
+        "total": 44
+      },
+      "preserved": {
+        "correct": 32,
+        "total": 32
+      }
+    },
+    "queries_do_not_write_knowledge": true,
+    "restart": true,
+    "metrics": {
+      "method": "getrusage_self",
+      "peak_rss_kib": 22904,
+      "resident_rss_kib": 8764,
+      "cpu_ms": 6778.14,
+      "active_qubits": 0
+    },
+    "median_ms": 33.627486000000005,
+    "transcript": [
+      {
+        "input": "Oye, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 39.343514
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 41.780677
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 47.689173
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.474231
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 42.059366
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.38507
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 52.177468
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 es clasea."
+        ],
+        "pass": true,
+        "ms": 38.545297
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico000?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico000 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 41.404577
+      },
+      {
+        "input": "qué requiere diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.10491
+      },
+      {
+        "input": "qué requiere diagnostico000 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.606221
+      },
+      {
+        "input": "qué requiere diagnostico000 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.99732
+      },
+      {
+        "input": "qué requiere diagnostico000 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.37899
+      },
+      {
+        "input": "qué requiere diagnostico000 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.381337
+      },
+      {
+        "input": "qué requiere diagnostico000 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.68064
+      },
+      {
+        "input": "qué requiere diagnostico000 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.744601
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 33.686265
+      },
+      {
+        "input": "what does diagnostico000 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 32.604742
+      },
+      {
+        "input": "what does diagnostico000 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 32.491051
+      },
+      {
+        "input": "what does diagnostico000 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 34.985031
+      },
+      {
+        "input": "what does diagnostico000 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 35.567506
+      },
+      {
+        "input": "what does diagnostico000 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 31.772294
+      },
+      {
+        "input": "what does diagnostico000 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 31.506628
+      },
+      {
+        "input": "what does diagnostico000 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 33.476516
+      },
+      {
+        "input": "one quick question what does diagnostico000 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 36.961619
+      },
+      {
+        "input": "qué alcanza diagnostico000 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.769137
+      },
+      {
+        "input": "what does diagnostico000 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 33.598692
+      },
+      {
+        "input": "oye¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.121784
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.478209
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.682656
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.419676
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 24.968893
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 23.935971
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough evidence to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 24.919561
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.73497
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico000 y alternodiagnostico000?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.130067
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 26.844373
+      },
+      {
+        "input": "qué requiere\ndiagnostico000",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.139203
+      },
+      {
+        "input": "¿Qué requiere diagnostico000?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 37.041088
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico000?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 es clasea."
+        ],
+        "pass": true,
+        "ms": 46.513944
+      },
+      {
+        "input": "what does diagnostico000 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 42.71135
+      },
+      {
+        "input": "i was wondering what diagnostico000 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 48.127187
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico000",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.281286
+      },
+      {
+        "input": "which resources does diagnostico000 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 46.084716
+      },
+      {
+        "input": "say what diagnostico000 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico000 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico000 requires water."
+        ],
+        "pass": true,
+        "ms": 45.39846
+      },
+      {
+        "input": "qué alcanza diagnostico000",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico000 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico000 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 37.092763
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.611979
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 37.444709
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.159489
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.302433
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.468274
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 41.990798
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.41272
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 es clasea."
+        ],
+        "pass": true,
+        "ms": 36.425972
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico001?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico001 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 36.939949
+      },
+      {
+        "input": "qué requiere diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.724871
+      },
+      {
+        "input": "qué requiere diagnostico001 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.640734
+      },
+      {
+        "input": "qué requiere diagnostico001 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.837501
+      },
+      {
+        "input": "qué requiere diagnostico001 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.07837
+      },
+      {
+        "input": "qué requiere diagnostico001 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.459237
+      },
+      {
+        "input": "qué requiere diagnostico001 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 26.082565
+      },
+      {
+        "input": "qué requiere diagnostico001 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.779734
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.396112
+      },
+      {
+        "input": "what does diagnostico001 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.092537
+      },
+      {
+        "input": "what does diagnostico001 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.477213
+      },
+      {
+        "input": "what does diagnostico001 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.985429
+      },
+      {
+        "input": "what does diagnostico001 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.249138
+      },
+      {
+        "input": "what does diagnostico001 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 30.168599
+      },
+      {
+        "input": "what does diagnostico001 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.812396
+      },
+      {
+        "input": "what does diagnostico001 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.788913
+      },
+      {
+        "input": "one quick question what does diagnostico001 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 35.259183
+      },
+      {
+        "input": "qué alcanza diagnostico001 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.308721
+      },
+      {
+        "input": "what does diagnostico001 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 44.718614
+      },
+      {
+        "input": "oye¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 25.979013
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.312194
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 41.885952
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 36.567211
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.869012
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.658467
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough evidence to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 27.64959
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 37.335402
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico001 y alternodiagnostico001?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 33.65628
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.540229
+      },
+      {
+        "input": "qué requiere\ndiagnostico001",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 18.451949
+      },
+      {
+        "input": "¿Qué requiere diagnostico001?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 35.356407
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico001?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 es clasea."
+        ],
+        "pass": true,
+        "ms": 42.837273
+      },
+      {
+        "input": "what does diagnostico001 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 38.479861
+      },
+      {
+        "input": "i was wondering what diagnostico001 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 40.344332
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico001",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.689558
+      },
+      {
+        "input": "which resources does diagnostico001 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 45.428466
+      },
+      {
+        "input": "say what diagnostico001 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico001 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico001 requires water."
+        ],
+        "pass": true,
+        "ms": 43.837585
+      },
+      {
+        "input": "qué alcanza diagnostico001",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico001 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico001 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 40.615246
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 41.467973
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 42.065987
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 43.062381
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 42.580204
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 36.820442
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.218427
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 39.357575
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 es clasea."
+        ],
+        "pass": true,
+        "ms": 39.072454
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico002?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico002 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 40.802354
+      },
+      {
+        "input": "qué requiere diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.519545
+      },
+      {
+        "input": "qué requiere diagnostico002 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 33.153915
+      },
+      {
+        "input": "qué requiere diagnostico002 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 32.913106
+      },
+      {
+        "input": "qué requiere diagnostico002 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 41.446954
+      },
+      {
+        "input": "qué requiere diagnostico002 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 44.024973
+      },
+      {
+        "input": "qué requiere diagnostico002 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 32.903197
+      },
+      {
+        "input": "qué requiere diagnostico002 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.030285
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 32.779918
+      },
+      {
+        "input": "what does diagnostico002 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 30.556578
+      },
+      {
+        "input": "what does diagnostico002 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 31.95428
+      },
+      {
+        "input": "what does diagnostico002 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 30.420646
+      },
+      {
+        "input": "what does diagnostico002 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 31.018885
+      },
+      {
+        "input": "what does diagnostico002 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 33.858385
+      },
+      {
+        "input": "what does diagnostico002 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 34.959546
+      },
+      {
+        "input": "what does diagnostico002 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 36.328505
+      },
+      {
+        "input": "one quick question what does diagnostico002 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 40.933968
+      },
+      {
+        "input": "qué alcanza diagnostico002 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 39.816718
+      },
+      {
+        "input": "what does diagnostico002 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 33.422504
+      },
+      {
+        "input": "oye¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 21.831685
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.868683
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.325331
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.591416
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.418797
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 25.785025
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough evidence to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 43.648686
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 35.989623
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico002 y alternodiagnostico002?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 47.082835
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 34.085378
+      },
+      {
+        "input": "qué requiere\ndiagnostico002",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 27.074035
+      },
+      {
+        "input": "¿Qué requiere diagnostico002?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 37.580826
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico002?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 es clasea."
+        ],
+        "pass": true,
+        "ms": 48.909207
+      },
+      {
+        "input": "what does diagnostico002 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 42.011825
+      },
+      {
+        "input": "i was wondering what diagnostico002 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 43.050168
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico002",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 requiere agua."
+        ],
+        "pass": true,
+        "ms": 39.289457
+      },
+      {
+        "input": "which resources does diagnostico002 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 48.27217
+      },
+      {
+        "input": "say what diagnostico002 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico002 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico002 requires water."
+        ],
+        "pass": true,
+        "ms": 44.828509
+      },
+      {
+        "input": "qué alcanza diagnostico002",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico002 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico002 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 36.34254
+      },
+      {
+        "input": "Oye, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 45.085287
+      },
+      {
+        "input": "Por favor, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 39.262556
+      },
+      {
+        "input": "Por curiosidad, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 38.460744
+      },
+      {
+        "input": "Dime, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 37.869257
+      },
+      {
+        "input": "Entonces, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.668168
+      },
+      {
+        "input": "Antes de seguir, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 48.498332
+      },
+      {
+        "input": "OYE, ¿QUÉ REQUIERE diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 42.666664
+      },
+      {
+        "input": "Por favor, ¿qué es diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 es clasea."
+        ],
+        "pass": true,
+        "ms": 42.205826
+      },
+      {
+        "input": "Por curiosidad, ¿qué alcanza diagnostico003?",
+        "language": 1,
+        "group": "opening_question",
+        "output": "Según lo aprendido: Diagnostico003 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 39.089815
+      },
+      {
+        "input": "qué requiere diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 32.676255
+      },
+      {
+        "input": "qué requiere diagnostico003 y",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.892556
+      },
+      {
+        "input": "qué requiere diagnostico003 de",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 31.226966
+      },
+      {
+        "input": "qué requiere diagnostico003 para",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 33.197676
+      },
+      {
+        "input": "qué requiere diagnostico003 el",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.792598
+      },
+      {
+        "input": "qué requiere diagnostico003 un",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.316721
+      },
+      {
+        "input": "qué requiere diagnostico003 que",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 32.61456
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 33.939917
+      },
+      {
+        "input": "what does diagnostico003 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 31.927404
+      },
+      {
+        "input": "what does diagnostico003 require and",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 32.588952
+      },
+      {
+        "input": "what does diagnostico003 require of",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.726933
+      },
+      {
+        "input": "what does diagnostico003 require the",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.750023
+      },
+      {
+        "input": "what does diagnostico003 require a",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 29.829986
+      },
+      {
+        "input": "what does diagnostico003 require that",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 32.063273
+      },
+      {
+        "input": "what does diagnostico003 require does",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 32.189157
+      },
+      {
+        "input": "one quick question what does diagnostico003 require if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 35.459887
+      },
+      {
+        "input": "qué alcanza diagnostico003 si",
+        "language": 1,
+        "group": "incomplete_clause",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 29.709505
+      },
+      {
+        "input": "what does diagnostico003 reach if",
+        "language": 2,
+        "group": "incomplete_clause",
+        "output": "I do not have enough information to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 38.166435
+      },
+      {
+        "input": "oye¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 20.541332
+      },
+      {
+        "input": "¿oye, ¿qué requiere diagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 22.11415
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003??",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 19.868039
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003? aprende que fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 22.514205
+      },
+      {
+        "input": "aprende que ¿fallopregunta es clasea",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 24.386992
+      },
+      {
+        "input": "aprende que fallopregunta es clasea?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo evidencia suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 25.548906
+      },
+      {
+        "input": "learn that ¿fallopregunta is clasea",
+        "language": 2,
+        "group": "rejection",
+        "output": "I do not have enough evidence to answer.",
+        "expected": [
+          "I do not have enough evidence to answer.",
+          "I need a less ambiguous sentence to interpret its references.",
+          "I do not have enough information to answer.",
+          "I need a previous reference or a complete question."
+        ],
+        "pass": true,
+        "ms": 24.610318
+      },
+      {
+        "input": "oye, ¿qué requiere desconocidorevision?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 26.486491
+      },
+      {
+        "input": "oye, ¿qué requiere diagnostico003 y alternodiagnostico003?",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 30.525501
+      },
+      {
+        "input": "1,000 por dos",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 28.689071
+      },
+      {
+        "input": "qué requiere\ndiagnostico003",
+        "language": 1,
+        "group": "rejection",
+        "output": "No tengo información suficiente para responder.",
+        "expected": [
+          "No tengo evidencia suficiente para responder.",
+          "Necesito una frase menos ambigua para interpretar sus referencias.",
+          "No tengo información suficiente para responder.",
+          "Necesito una referencia anterior o una pregunta completa."
+        ],
+        "pass": true,
+        "ms": 21.742509
+      },
+      {
+        "input": "¿Qué requiere diagnostico003?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.030085
+      },
+      {
+        "input": "¿Puedes hablarme un poco de diagnostico003?",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 es clasea.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 es clasea."
+        ],
+        "pass": true,
+        "ms": 51.495922
+      },
+      {
+        "input": "what does diagnostico003 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 42.448047
+      },
+      {
+        "input": "i was wondering what diagnostico003 requires",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 44.927003
+      },
+      {
+        "input": "por curiosidad qué requiere diagnostico003",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 requiere agua.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 requiere agua."
+        ],
+        "pass": true,
+        "ms": 40.823859
+      },
+      {
+        "input": "which resources does diagnostico003 require please",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 45.986307
+      },
+      {
+        "input": "say what diagnostico003 requires in other words",
+        "language": 2,
+        "group": "preserved",
+        "output": "From the taught statements: Diagnostico003 requires water.",
+        "expected": [
+          "From the taught statements: Diagnostico003 requires water."
+        ],
+        "pass": true,
+        "ms": 43.179649
+      },
+      {
+        "input": "qué alcanza diagnostico003",
+        "language": 1,
+        "group": "preserved",
+        "output": "Según lo aprendido: Diagnostico003 alcanza destino022.",
+        "expected": [
+          "Según lo aprendido: Diagnostico003 alcanza destino022."
+        ],
+        "pass": true,
+        "ms": 34.232922
+      }
+    ]
+  },
+  "retention": {
+    "smoke": null,
+    "checks": 6303,
+    "e022_transfer": {
+      "dialogues": 8,
+      "held_out_complete_formulations": 110,
+      "queries": 880,
+      "checks": 897,
+      "held_out_scope": "whole compositions and subjects; request pieces supervised separately, variable predicates transfer to requires/reaches",
+      "query_ms": {
+        "median": 51.406572499999996,
+        "p95": 66.149131
+      },
+      "session_metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 24072,
+        "resident_rss_kib": 8848,
+        "cpu_ms": 47529.2,
+        "active_qubits": 0
+      }
+    },
+    "query_guards": {
+      "checks": 39,
+      "rejected_queries": [
+        {
+          "input": "puedes hablarme un poco de desconocido",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 36.348806
+        },
+        {
+          "input": "puedes hablarme un poco de principal y alterno",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 51.474399
+        },
+        {
+          "input": "no puedes hablarme un poco de principal",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 35.430425
+        },
+        {
+          "input": "háblame un poco sobre principal sininventarverbo",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 42.930034
+        },
+        {
+          "input": "qué es lo que requiere utiliza principal",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 42.08465
+        },
+        {
+          "input": "qué es lo que requiere principal agua",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 40.69556
+        },
+        {
+          "input": "y hablando de desconocido qué requiere",
+          "output": "No tengo evidencia suficiente para responder.",
+          "language": 1,
+          "ms": 33.025626
+        },
+        {
+          "input": "me interesa conocer lo que inventaverbo principal",
+          "output": "No tengo evidencia suficiente para responder.",
+          "language": 1,
+          "ms": 40.776042
+        },
+        {
+          "input": "puedes hablarme un poco de aprende que falso es clasea",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 47.099129
+        },
+        {
+          "input": "could you tell me a little about unknownbeing",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 55.513963
+        },
+        {
+          "input": "give me some information about principal and alterno",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 53.668286
+        },
+        {
+          "input": "can you not tell me a little about principal",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 35.43313
+        },
+        {
+          "input": "what is it that principal requires uses",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 43.068088
+        },
+        {
+          "input": "which resources does principal study",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 39.21301
+        },
+        {
+          "input": "which resources does unknownbeing require",
+          "output": "I do not have enough evidence to answer.",
+          "language": 2,
+          "ms": 32.14776
+        },
+        {
+          "input": "which resources does principal require water",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 46.491668
+        },
+        {
+          "input": "say what principal requires of unknownobject in other words",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 46.088828
+        },
+        {
+          "input": "can you tell me a little about learn that falseword is clasea",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 44.840252
+        },
+        {
+          "input": "puedes hablarme un poco de 7",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 45.624062
+        },
+        {
+          "input": "could you tell me a little about one",
+          "output": "I do not have enough information to answer.",
+          "language": 2,
+          "ms": 45.117318
+        },
+        {
+          "input": "1,000 por dos",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 27.97075
+        },
+        {
+          "input": "1,5 mas dos",
+          "output": "No tengo información suficiente para responder.",
+          "language": 1,
+          "ms": 28.950905
+        }
+      ],
+      "no_question_writes": true,
+      "new_query_public_client": true,
+      "restart_rollback": true
+    },
+    "learning_controls": null,
+    "comparison": [
+      {
+        "version": "E020",
+        "checkpoint_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+        "checkpoint_bytes": 325721,
+        "heldout_compositions": {
+          "correct": 1,
+          "total": 110
+        },
+        "development_16": {
+          "correct": 0,
+          "total": 16
+        },
+        "shared_32": {
+          "correct": 32,
+          "total": 32
+        },
+        "new_query_ms": {
+          "median": 26.1391425,
+          "p95": 32.394158
+        },
+        "shared_query_ms": {
+          "median": 16.131678,
+          "p95": 17.71703
+        }
+      },
+      {
+        "version": "E021",
+        "checkpoint_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+        "checkpoint_bytes": 465830,
+        "heldout_compositions": {
+          "correct": 1,
+          "total": 110
+        },
+        "development_16": {
+          "correct": 7,
+          "total": 16
+        },
+        "shared_32": {
+          "correct": 32,
+          "total": 32
+        },
+        "new_query_ms": {
+          "median": 31.967579,
+          "p95": 42.075172
+        },
+        "shared_query_ms": {
+          "median": 19.4005645,
+          "p95": 20.835602
+        }
+      },
+      {
+        "version": "E022",
+        "checkpoint_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+        "checkpoint_bytes": 500410,
+        "heldout_compositions": {
+          "correct": 110,
+          "total": 110
+        },
+        "development_16": {
+          "correct": 16,
+          "total": 16
+        },
+        "shared_32": {
+          "correct": 32,
+          "total": 32
+        },
+        "new_query_ms": {
+          "median": 48.851735,
+          "p95": 57.838343
+        },
+        "shared_query_ms": {
+          "median": 22.6361435,
+          "p95": 24.457125
+        }
+      }
+    ],
+    "e021_transfer": {
+      "dialogues": 4,
+      "all_new_constructions_examined": 128,
+      "new_form_queries": 512,
+      "checks": 552,
+      "query_ms": {
+        "median": 39.4252095,
+        "p95": 49.518749
+      },
+      "metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 26672,
+        "resident_rss_kib": 9448,
+        "cpu_ms": 25470.8,
+        "active_qubits": 0
+      },
+      "held_out": "novel entities and requires predicate; surface construction frames are taught"
+    },
+    "e021_topics": {
+      "checks": 43,
+      "topics": 8,
+      "eviction": true,
+      "fresh_evidence_on_resume": true,
+      "restart_reset_save_rollback": true
+    },
+    "e019_transfer": {
+      "novel_dialogues": 4,
+      "new_query_problems": 128,
+      "novel_dialogue_checks": 277,
+      "new_constructions_examined": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ],
+      "native_query_ms": {
+        "median": 37.867408,
+        "p95": 49.882828
+      },
+      "novel_session_metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27192,
+        "resident_rss_kib": 8500,
+        "cpu_ms": 9871.26,
+        "active_qubits": 0
+      },
+      "resident_rss_kib": null
+    },
+    "e018_transfer": {
+      "novel_dialogues": 20,
+      "novel_dialogue_turns": 240,
+      "heldout_background_lessons": 1,
+      "new_constructions_examined": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "novel_session_metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27192,
+        "resident_rss_kib": 8716,
+        "cpu_ms": 7991.73,
+        "active_qubits": 0
+      },
+      "novel_checks": 250
+    },
+    "e018_controls": null,
+    "interfaces_and_rollback": null,
+    "historical_retention": null,
+    "e019_controls": null,
+    "restart_and_reset": null,
+    "arithmetic_retention": {
+      "text_checks": 1062,
+      "unseen_numeric_queries": 1024,
+      "query_ms": {
+        "median": 31.743044500000003,
+        "p95": 43.990255
+      },
+      "session_metrics": {
+        "method": "getrusage_self",
+        "peak_rss_kib": 27192,
+        "resident_rss_kib": 8040,
+        "cpu_ms": 35744.3,
+        "active_qubits": 0
+      }
+    },
+    "retrained": false,
+    "published_state_unchanged": true
+  },
+  "base_commit": "e8498b765a6a95aa556d0e816aab926257769391",
+  "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+  "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "native_adapter_changed": false,
+  "ci_executed_for_this_fix": false,
+  "validation_notes": [
+    {
+      "event": "interrupted_first_retention_run",
+      "phase": "e019_transfer",
+      "error": "cannot write state",
+      "observation": "An empty state.rvp.pending fault-injection directory was present; the interrupted run is not counted as passed.",
+      "follow_up": "Five isolated failed-save/recovery cycles passed. Added a clean-fixture assertion after each phase, and repeated the complete campaign in a fresh directory; all 6303 checks passed."
+    }
+  ]
+}

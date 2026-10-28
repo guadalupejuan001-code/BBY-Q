@@ -1,0 +1,44 @@
+name: BBY Q E022 - parser diagnosis without retraining
+on:
+  push:
+    branches: [main]
+    paths: ["ai/xi/diagnostics/**", "ai/xi/knowledge/**", "ai/xi/lingua/**", "ai/xi/rephrase/**", "ai/xi/open/**", "ai/native/**", ".github/workflows/bbyq-diagnostics.yml"]
+  pull_request:
+    paths: ["ai/xi/diagnostics/**", "ai/xi/knowledge/**", "ai/xi/lingua/**", "ai/xi/rephrase/**", "ai/xi/open/**", "ai/native/**", ".github/workflows/bbyq-diagnostics.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  released-state-diagnosis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: e8498b765a6a95aa556d0e816aab926257769391
+          path: baseline
+      - name: Build the unchanged pinned XI runtime and byte transport
+        run: |
+          set -eu
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          bash ai/native/build-session.sh "$RUNNER_TEMP/reverse-pc" "$RUNNER_TEMP/session-build"
+      - name: Diagnose both sources on E022 and verify retained behavior
+        run: |
+          python3 ai/xi/diagnostics/tests/native-diagnostics.py \
+            "$RUNNER_TEMP/reverse-pc-build/reverse_pc" \
+            "$RUNNER_TEMP/session-build/bbyq_session" \
+            --baseline-root baseline --out evidence/diagnostics
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-e022-parser-diagnostics
+          path: |
+            evidence/diagnostics/results.json
+            evidence/diagnostics/retention/progress.json
+            evidence/diagnostics/retention/raw.jsonl
+          if-no-files-found: warn

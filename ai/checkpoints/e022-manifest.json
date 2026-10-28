@@ -64,7 +64,16 @@
   },
   "integration_sha256": {
     "ai/xi/knowledge/link.sh": "18f48947946380c1c9390bf3e4418fe9dac778805c09160ebe25107aba3856db",
-    "ai/xi/knowledge/read.xi": "c0f00c7bbf6459d54da900b2a7886dbbce7dbed83667c134e0f36caf3ed9e908",
+    "ai/xi/knowledge/read.xi": "9f9f95cef821a63a164f081784e2a9c45e8f1c40561800c09291fe847fd9f3c4",
     "ai/xi/knowledge/text.sh": "42d4f9774163ffcbe40b09ef045e3c57e3d7fa562da2a8a24c79505528a0a4f4"
-  }
+  },
+  "source_compatibility_fixes": [
+    {
+      "path": "ai/xi/knowledge/read.xi",
+      "original_sha256": "c0f00c7bbf6459d54da900b2a7886dbbce7dbed83667c134e0f36caf3ed9e908",
+      "corrected_sha256": "9f9f95cef821a63a164f081784e2a9c45e8f1c40561800c09291fe847fd9f3c4",
+      "checkpoint_changed": false
+    }
+  ],
+  "source_compatibility_note": "Parser corrections only; published checkpoint bytes and historical training/results are unchanged. Original source digests are retained in source_compatibility_fixes; reproduction verifies the corrected sources."
 }

@@ -1,5 +1,6 @@
 #!reverse-pc-machine-v1
-# Tokenize real text in XI. ASCII case folding, whitespace and final '?' only.
+# Tokenize real text in XI. A trained E022 reader also allows a single Spanish
+# opening question mark at a word boundary after a preamble ("oye, ¿qué...").
 # Intake +16=1, +17=byte length, +128..382=raw bytes. Max 15 words of 32 bytes.
 # Tokens +512, stride 34; parse error +40. No semantic answers in this stage.
 load8 r0 7400000000000000002
@@ -79,7 +80,11 @@ label inverted_question
 cmp r11 0
 jne bad_text
 cmp r1 0
+je opening_question
+load8 r7 8100000000000000003
+cmp r7 1
 jne bad_text
+label opening_question
 cmp r2 0
 jne bad_text
 add r0 1
