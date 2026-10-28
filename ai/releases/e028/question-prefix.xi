@@ -5977,3 +5977,659 @@ load8 r3 9000000000000000403
 cmp r3 2
 je e28_missing_atomic
 jmp e28_save_focus
+label e28_save_focus
+load8 r5 9000000000000000128
+store8 9000000000000000032 r5
+set r0 0
+label e28_focus_copy
+cmp r0 r5
+jge e28_emit_init
+set r7 9000000000000000256
+add r7 r0
+load8 r3 $r7
+set r7 9000000000000000064
+add r7 r0
+store8 $r7 r3
+add r0 1
+jmp e28_focus_copy
+label e28_emit_init
+load8 r11 9000000000000000129
+load8 r12 9000000000000000130
+cmp r12 1
+jne e28_emit_atomic
+set r11 1
+store8 9000000000000000132 1
+jmp e28_emit_fact
+label e28_emit_atomic
+store8 9000000000000000132 3
+label e28_emit_fact
+store8 9000000000000000133 r11
+load8 r5 9000000000000000128
+set r0 0
+label e28_emit_entity
+cmp r0 r5
+jge e28_emit_predicate
+set r7 9000000000000000256
+add r7 r0
+load8 r14 $r7
+print r14
+add r0 1
+jmp e28_emit_entity
+label e28_emit_predicate
+load8 r11 9000000000000000133
+load8 r13 9000000000000000131
+cmp r13 2
+je e28_emit_pred_en
+cmp r11 1
+je e28_emit_es_is
+set r14 32
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 113
+print r14
+set r14 117
+print r14
+set r14 105
+print r14
+set r14 101
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 32
+print r14
+jmp e28_emit_value_init
+label e28_emit_es_is
+set r14 32
+print r14
+set r14 101
+print r14
+set r14 115
+print r14
+set r14 32
+print r14
+jmp e28_emit_value_init
+label e28_emit_pred_en
+cmp r11 1
+je e28_emit_en_is
+set r14 32
+print r14
+set r14 110
+print r14
+set r14 101
+print r14
+set r14 101
+print r14
+set r14 100
+print r14
+set r14 115
+print r14
+set r14 32
+print r14
+jmp e28_emit_value_init
+label e28_emit_en_is
+set r14 32
+print r14
+set r14 105
+print r14
+set r14 115
+print r14
+set r14 32
+print r14
+label e28_emit_value_init
+load8 r11 9000000000000000133
+cmp r11 1
+jne e28_emit_value_kind2
+load8 r4 9000000000000000400
+load8 r0 9000000000000000401
+mul r0 256
+add r4 r0
+load8 r6 9000000000000000422
+load8 r5 9000000000000000423
+jmp e28_emit_value_pointer
+label e28_emit_value_kind2
+load8 r4 9000000000000000402
+load8 r0 9000000000000000403
+mul r0 256
+add r4 r0
+load8 r6 9000000000000000426
+load8 r5 9000000000000000427
+label e28_emit_value_pointer
+mov r7 r4
+mul r7 4
+add r7 8900000000000001024
+load8 r9 $r7
+add r7 1
+load8 r0 $r7
+mul r0 256
+add r9 r0
+add r7 1
+load8 r0 $r7
+mul r0 65536
+add r9 r0
+add r9 r6
+set r0 0
+label e28_emit_value_bytes
+cmp r0 r5
+jge e28_emit_citation
+set r7 8900000000000100000
+add r7 r9
+add r7 r0
+load8 r14 $r7
+print r14
+add r0 1
+jmp e28_emit_value_bytes
+label e28_emit_citation
+set r14 32
+print r14
+set r14 91
+print r14
+set r14 35
+print r14
+mov r0 r4
+mov r8 r0
+div r8 100
+add r8 48
+mov r14 r8
+print r14
+mod r0 100
+mov r8 r0
+div r8 10
+add r8 48
+mov r14 r8
+print r14
+mod r0 10
+mov r8 r0
+add r8 48
+mov r14 r8
+print r14
+set r14 93
+print r14
+set r14 46
+print r14
+load8 r0 9000000000000000132
+cmp r0 1
+jne e28_end
+store8 9000000000000000132 2
+set r14 32
+print r14
+set r11 2
+jmp e28_emit_fact
+label e28_missing
+set r14 70
+print r14
+set r14 97
+print r14
+set r14 108
+print r14
+set r14 116
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 101
+print r14
+set r14 118
+print r14
+set r14 105
+print r14
+set r14 100
+print r14
+set r14 101
+print r14
+set r14 110
+print r14
+set r14 99
+print r14
+set r14 105
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 97
+print r14
+set r14 114
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 99
+print r14
+set r14 111
+print r14
+set r14 109
+print r14
+set r14 98
+print r14
+set r14 105
+print r14
+set r14 110
+print r14
+set r14 97
+print r14
+set r14 114
+print r14
+set r14 32
+print r14
+set r14 97
+print r14
+set r14 109
+print r14
+set r14 98
+print r14
+set r14 97
+print r14
+set r14 115
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 114
+print r14
+set r14 111
+print r14
+set r14 112
+print r14
+set r14 105
+print r14
+set r14 101
+print r14
+set r14 100
+print r14
+set r14 97
+print r14
+set r14 100
+print r14
+set r14 101
+print r14
+set r14 115
+print r14
+set r14 46
+print r14
+store8 9000000000000000032 0
+jmp e28_end
+label e28_conflict
+set r14 69
+print r14
+set r14 118
+print r14
+set r14 105
+print r14
+set r14 100
+print r14
+set r14 101
+print r14
+set r14 110
+print r14
+set r14 99
+print r14
+set r14 105
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 110
+print r14
+set r14 101
+print r14
+set r14 103
+print r14
+set r14 97
+print r14
+set r14 116
+print r14
+set r14 105
+print r14
+set r14 118
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 99
+print r14
+set r14 111
+print r14
+set r14 110
+print r14
+set r14 116
+print r14
+set r14 114
+print r14
+set r14 97
+print r14
+set r14 100
+print r14
+set r14 105
+print r14
+set r14 99
+print r14
+set r14 116
+print r14
+set r14 111
+print r14
+set r14 114
+print r14
+set r14 105
+print r14
+set r14 97
+print r14
+set r14 59
+print r14
+set r14 32
+print r14
+set r14 110
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 117
+print r14
+set r14 101
+print r14
+set r14 100
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 97
+print r14
+set r14 102
+print r14
+set r14 105
+print r14
+set r14 114
+print r14
+set r14 109
+print r14
+set r14 97
+print r14
+set r14 114
+print r14
+set r14 32
+print r14
+set r14 101
+print r14
+set r14 115
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 114
+print r14
+set r14 111
+print r14
+set r14 112
+print r14
+set r14 105
+print r14
+set r14 101
+print r14
+set r14 100
+print r14
+set r14 97
+print r14
+set r14 100
+print r14
+set r14 46
+print r14
+store8 9000000000000000032 0
+jmp e28_end
+label e28_ambiguous
+set r14 78
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 117
+print r14
+set r14 101
+print r14
+set r14 100
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 105
+print r14
+set r14 110
+print r14
+set r14 116
+print r14
+set r14 101
+print r14
+set r14 114
+print r14
+set r14 112
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 116
+print r14
+set r14 97
+print r14
+set r14 114
+print r14
+set r14 32
+print r14
+set r14 101
+print r14
+set r14 115
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 112
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 103
+print r14
+set r14 117
+print r14
+set r14 110
+print r14
+set r14 116
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 99
+print r14
+set r14 111
+print r14
+set r14 110
+print r14
+set r14 32
+print r14
+set r14 115
+print r14
+set r14 101
+print r14
+set r14 103
+print r14
+set r14 117
+print r14
+set r14 114
+print r14
+set r14 105
+print r14
+set r14 100
+print r14
+set r14 97
+print r14
+set r14 100
+print r14
+set r14 46
+print r14
+store8 9000000000000000032 0
+jmp e28_end
+label e28_need_subject
+set r14 78
+print r14
+set r14 101
+print r14
+set r14 99
+print r14
+set r14 101
+print r14
+set r14 115
+print r14
+set r14 105
+print r14
+set r14 116
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 117
+print r14
+set r14 110
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 101
+print r14
+set r14 110
+print r14
+set r14 116
+print r14
+set r14 105
+print r14
+set r14 100
+print r14
+set r14 97
+print r14
+set r14 100
+print r14
+set r14 32
+print r14
+set r14 111
+print r14
+set r14 32
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 102
+print r14
+set r14 101
+print r14
+set r14 114
+print r14
+set r14 101
+print r14
+set r14 110
+print r14
+set r14 99
+print r14
+set r14 105
+print r14
+set r14 97
+print r14
+set r14 32
+print r14
+set r14 97
+print r14
+set r14 110
+print r14
+set r14 116
+print r14
+set r14 101
+print r14
+set r14 114
+print r14
+set r14 105
+print r14
+set r14 111
+print r14
+set r14 114
+print r14
+set r14 46
+print r14
+store8 9000000000000000032 0
+jmp e28_end
+label e28_missing_atomic
+store8 9000000000000000032 0
+jmp e28_delegate
+label e28_end
+load8 r9 7400000000000000017
+set r0 0
+label e28_cleanup_input
+cmp r0 r9
+jge e28_cleanup_query
+set r7 7400000000000000128
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp e28_cleanup_input
+label e28_cleanup_query
+set r0 0
+label e28_cleanup_query_loop
+cmp r0 48
+jge e28_cleanup_controls
+set r7 9000000000000000256
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp e28_cleanup_query_loop
+label e28_cleanup_controls
+set r0 128
+label e28_cleanup_flags
+cmp r0 136
+jge e28_cleanup_results
+set r7 9000000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp e28_cleanup_flags
+label e28_cleanup_results
+set r0 400
+label e28_cleanup_results_loop
+cmp r0 428
+jge e28_cleanup_done
+set r7 9000000000000000000
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp e28_cleanup_results_loop
+label e28_cleanup_done
+store8 7400000000000000017 0
+store8 7400000000000000016 0
+halt
