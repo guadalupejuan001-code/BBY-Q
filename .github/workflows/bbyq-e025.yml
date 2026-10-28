@@ -6,6 +6,9 @@ on:
   pull_request:
     paths: ['ai/releases/e025/**', 'ai/xi/w4u/**', '.github/workflows/bbyq-e025.yml']
   workflow_dispatch:
+concurrency:
+  group: bbyq-e025-native
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -34,6 +37,8 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
+      - name: Diagnose two-fact generation on disposable E025 states
+        run: python3 ai/releases/e025/two_fact_diagnostic.py deps/reverse/build/reverse_pc evidence/e025 evidence/two-fact
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,3 +49,5 @@ jobs:
             evidence/e025/verification.json
             evidence/e025/tests.json
             evidence/w4u/results.json
+            evidence/two-fact/results.json
+            evidence/two-fact/transcripts.jsonl
