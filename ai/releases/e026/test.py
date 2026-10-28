@@ -8,7 +8,7 @@ rows=[];scores={"development":{"baseline":0,"candidate":0,"total":48},"transfer"
 seed=root/"controller.rvp"
 def ask(app,state,text,lang):
     return subprocess.check_output([runtime,"app-turn",str(app),str(state),str(state),lang,text],text=True).strip()
-for split,prefix in [("development","bifaq"),("transfer","cemar")]:
+for split,prefix in [("development","bifaq"),("transfer","tulor")]:
     for i in range(24):
         subject=prefix+chr(97+i)
         for variant,app in [("baseline",root/"authentic-E025.rxe"),("candidate",root/"BBY-Q.rxe")]:
@@ -38,6 +38,19 @@ for split,prefix in [("development","bifaq"),("transfer","cemar")]:
                     answer=ask(app,state,query,lang)
                     assert answer==one+" "+two,("Unknown referent",query,answer,one,two)
                     controls+=1
+                if i == 0:
+                    # Negation/conflict uses the original native evidence policy.
+                    ask(app,state,"aprende que "+subject+" no requiere agua","es")
+                    for lang in ["es","en"]:
+                        one=ask(app,state,("que es " if lang=="es" else "what is ")+subject,lang)
+                        two=ask(app,state,("que requiere "+subject if lang=="es" else "what does "+subject+" require"),lang)
+                        query=("que es "+subject+" y que requiere" if lang=="es" else "what is "+subject+" and what does it require")
+                        assert ask(app,state,query,lang)==one+" "+two,("Negation or conflict lost",lang)
+                        controls+=1
+                    mixed="que es "+subject+" y que requiere otroreferente"
+                    reference=ask(root/"authentic-E025.rxe",state,mixed,"es")
+                    assert ask(app,state,mixed,"es")==reference,"Unsupported mixed subjects must retain the legacy refusal"
+                    controls+=1
                 audit=out/"audit.xi"
                 audit.write_text("#!reverse-pc-machine-v1\nset r0 0\nset r1 0\nlabel scan\nset r7 8800000000000000000\nadd r7 r0\nload8 r2 $r7\nadd r1 r2\nadd r0 1\ncmp r0 512\njlt scan\nprint r1\nhalt\n")
                 result=subprocess.check_output([runtime,"run",str(audit),str(state),str(state)],text=True)
@@ -46,10 +59,10 @@ for split,prefix in [("development","bifaq"),("transfer","cemar")]:
             state.unlink()
 report={"stage":"E026-TwoFacts-dev","scores":scores,"unknown_and_scratch_controls":controls,
 "seed_sha256":hashlib.sha256(seed.read_bytes()).hexdigest(),"candidate_sha256":hashlib.sha256((root/"BBY-Q.rxe").read_bytes()).hexdigest(),
-"scope":"Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Subject and synonym transfer, not unrestricted language generation. No learned pattern claim. Separate native process per turn.",
+"scope":"Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Transfer to new subjects within four engineered forms; synonyms normalized in XI, not a held-out language benchmark. No learned pattern claim. Separate native process per turn.",
 "production_deployed":False}
 (out/"results.json").write_text(json.dumps(report,indent=2)+"\n")
 (out/"transcripts.jsonl").write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in rows))
 print(json.dumps(report,indent=2),flush=True)
-print(json.dumps({"sample":rows[:4]},ensure_ascii=False),flush=True)
+print(json.dumps({"sample":rows[:4],"transfer_examples":[r for r in rows if r["split"]=="transfer"][:4]},ensure_ascii=False),flush=True)
 assert all(scores[s]["candidate"]==48 for s in scores),"Incomplete composition coverage"
