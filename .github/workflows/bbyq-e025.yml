@@ -2,10 +2,13 @@ name: BBY Q E025 recovered release
 on:
   push:
     branches: [main]
-    paths: ['ai/releases/e025/**', 'ai/xi/w4u/**', '.github/workflows/bbyq-e025.yml']
+    paths: ['ai/releases/e025/**', 'ai/releases/e026/**', 'ai/xi/w4u/**', '.github/workflows/bbyq-e025.yml']
   pull_request:
-    paths: ['ai/releases/e025/**', 'ai/xi/w4u/**', '.github/workflows/bbyq-e025.yml']
+    paths: ['ai/releases/e025/**', 'ai/releases/e026/**', 'ai/xi/w4u/**', '.github/workflows/bbyq-e025.yml']
   workflow_dispatch:
+concurrency:
+  group: bbyq-e025-native
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -34,6 +37,10 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
+      - name: Build and regress XI composition candidate
+        run: |
+          python3 ai/releases/e026/regression.py deps/reverse/build/reverse_pc evidence/e026
+          python3 ai/releases/e026/test.py deps/reverse/build/reverse_pc evidence/e026 evidence/composition
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,3 +51,9 @@ jobs:
             evidence/e025/verification.json
             evidence/e025/tests.json
             evidence/w4u/results.json
+            evidence/e026/candidate.rxe
+            evidence/e026/candidate.xi
+            evidence/e026/candidate.json
+            evidence/e026/tests.json
+            evidence/composition/results.json
+            evidence/composition/transcripts.jsonl
