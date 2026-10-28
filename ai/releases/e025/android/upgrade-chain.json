@@ -1,0 +1,5856 @@
+{
+  "format": 1,
+  "profile": "E025",
+  "modules": {
+    "conversation": {
+      "file": "chain/conversation.xi",
+      "sha256": "edd5aa4a9935070a67fdd8fac46d00c4c1b81ba9e87d2e30148f2c63babfd0ef"
+    },
+    "dialogue-scale-word": {
+      "file": "chain/dialogue-scale-word.xi",
+      "sha256": "8653d69681eeeaaebc307b95d47f1555c50a2fd0a5789738060f68f40edc630c"
+    },
+    "social-phrase": {
+      "file": "chain/social-phrase.xi",
+      "sha256": "8d2078e344734beba0f25bceaf0ba99e3accb98ccfe86c289f3a776d84f225fe"
+    },
+    "social-seal": {
+      "file": "chain/social-seal.xi",
+      "sha256": "d5d66584e14a9f22e2c34c7f8e7b9fa54412d957ccda0f76dcdeb78a46d4f738"
+    },
+    "word": {
+      "file": "chain/word.xi",
+      "sha256": "962bd60a0003e5c6ba91ae7ae09d89abae51b77d03f5fc9134e3d35e6dd58373"
+    },
+    "nominal": {
+      "file": "chain/nominal.xi",
+      "sha256": "2c867bdca4b3ec572aa0b2c225deb7879eb7b033b748898979caad3cb8c83a14"
+    },
+    "chain-word": {
+      "file": "chain/chain-word.xi",
+      "sha256": "a923191e2f17dbb22846b3c33d24888446f91c2c73a1aef297ada212ff61626d"
+    },
+    "rephrase-teach": {
+      "file": "chain/rephrase-teach.xi",
+      "sha256": "f2ad112c4cc4cf5b7dead8e8ba36d1fcc4ae4ecff9743e40908dfe378c6fe983"
+    },
+    "rephrase-seal": {
+      "file": "chain/rephrase-seal.xi",
+      "sha256": "6338b4605f2be401c05a65a8e6c3a46fa41a49f8be177b061b69fca369b2a3ea"
+    }
+  },
+  "initializers": [
+    "chain/initialize-controls.xi",
+    "chain/initialize-words.xi"
+  ],
+  "lessons": [
+    {
+      "raw": "load8 r0 7400000000000000003\nstore8 8600000000000060000 r0\nload8 r0 7400000000000000008\nstore8 8600000000000060001 r0\nload8 r0 7400000000000000009\nstore8 8600000000000060002 r0\nload8 r0 7400000000000000010\nstore8 8600000000000060003 r0\nload8 r0 7400000000000000011\nstore8 8600000000000060004 r0\nload8 r0 7400000000000000012\nstore8 8600000000000060005 r0\nload8 r0 7400000000000000013\nstore8 8600000000000060006 r0\nload8 r0 7400000000000000014\nstore8 8600000000000060007 r0\nload8 r0 7400000000000000015\nstore8 8600000000000060008 r0\nload8 r0 7400000000000002100\nstore8 8600000000000060009 r0\nload8 r0 7400000000000002101\nstore8 8600000000000060010 r0\nload8 r0 7400000000000002102\nstore8 8600000000000060011 r0\nload8 r0 7400000000000002103\nstore8 8600000000000060012 r0\nload8 r0 7400000000000002104\nstore8 8600000000000060013 r0\nload8 r0 7400000000000002105\nstore8 8600000000000060014 r0\nload8 r0 7400000000000002106\nstore8 8600000000000060015 r0\nload8 r0 7400000000000002107\nstore8 8600000000000060016 r0\nload8 r0 7400000000000002200\nstore8 8600000000000060017 r0\nload8 r0 7400000000000002201\nstore8 8600000000000060018 r0\nload8 r0 7400000000000002202\nstore8 8600000000000060019 r0\nload8 r0 7400000000000002203\nstore8 8600000000000060020 r0\nload8 r0 7400000000000002204\nstore8 8600000000000060021 r0\nload8 r0 7400000000000002205\nstore8 8600000000000060022 r0\nload8 r0 7400000000000002206\nstore8 8600000000000060023 r0\nload8 r0 7400000000000002207\nstore8 8600000000000060024 r0\nload8 r0 7400000000000002208\nstore8 8600000000000060025 r0\nload8 r0 7400000000000002209\nstore8 8600000000000060026 r0\nload8 r0 7400000000000002210\nstore8 8600000000000060027 r0\nload8 r0 7400000000000002211\nstore8 8600000000000060028 r0\nload8 r0 7400000000000002212\nstore8 8600000000000060029 r0\nload8 r0 7400000000000002213\nstore8 8600000000000060030 r0\nload8 r0 7400000000000002214\nstore8 8600000000000060031 r0\nload8 r0 7400000000000002215\nstore8 8600000000000060032 r0\nload8 r0 7400000000000002216\nstore8 8600000000000060033 r0\nload8 r0 7400000000000002217\nstore8 8600000000000060034 r0\nload8 r0 7400000000000002218\nstore8 8600000000000060035 r0\nload8 r0 7400000000000002219\nstore8 8600000000000060036 r0\nload8 r0 7400000000000002220\nstore8 8600000000000060037 r0\nload8 r0 7400000000000002221\nstore8 8600000000000060038 r0\nload8 r0 7400000000000002222\nstore8 8600000000000060039 r0\nload8 r0 7400000000000002223\nstore8 8600000000000060040 r0\nload8 r0 7400000000000002224\nstore8 8600000000000060041 r0\nload8 r0 7400000000000002225\nstore8 8600000000000060042 r0\nload8 r0 7400000000000002226\nstore8 8600000000000060043 r0\nload8 r0 7400000000000002227\nstore8 8600000000000060044 r0\nload8 r0 7400000000000002228\nstore8 8600000000000060045 r0\nload8 r0 7400000000000002229\nstore8 8600000000000060046 r0\nload8 r0 7400000000000002230\nstore8 8600000000000060047 r0\nload8 r0 7400000000000002231\nstore8 8600000000000060048 r0\nload8 r0 7700000000000000004\nstore8 8600000000000060049 r0\nload8 r0 7700000000000000005\nstore8 8600000000000060050 r0\nload8 r0 7700000000000000006\nstore8 8600000000000060051 r0\nload8 r0 7700000000000000007\nstore8 8600000000000060052 r0\nload8 r0 7700000000000000008\nstore8 8600000000000060053 r0\nload8 r0 7700000000000000009\nstore8 8600000000000060054 r0\nload8 r0 7700000000000000010\nstore8 8600000000000060055 r0\nload8 r0 7700000000000000011\nstore8 8600000000000060056 r0\nload8 r0 7700000000000000012\nstore8 8600000000000060057 r0\nload8 r0 7700000000000000013\nstore8 8600000000000060058 r0\nload8 r0 7700000000000000014\nstore8 8600000000000060059 r0\nload8 r0 7700000000000000015\nstore8 8600000000000060060 r0\nload8 r0 7800000000000000012\nstore8 8600000000000060061 r0\nload8 r0 7800000000000000013\nstore8 8600000000000060062 r0\nload8 r0 7800000000000000014\nstore8 8600000000000060063 r0\nload8 r0 7800000000000000015\nstore8 8600000000000060064 r0\nload8 r0 7800000000000000016\nstore8 8600000000000060065 r0\nload8 r0 7800000000000000017\nstore8 8600000000000060066 r0\nload8 r0 7800000000000000018\nstore8 8600000000000060067 r0\nload8 r0 7800000000000000019\nstore8 8600000000000060068 r0\nload8 r0 7300000000000000003\nstore8 8600000000000060069 r0\nload8 r0 7300000000000000004\nstore8 8600000000000060070 r0\nload8 r0 7300000000000000005\nstore8 8600000000000060071 r0\nload8 r0 7300000000000000006\nstore8 8600000000000060072 r0\nload8 r0 7300000000000000007\nstore8 8600000000000060073 r0\nload8 r0 7300000000000000008\nstore8 8600000000000060074 r0\nload8 r0 7300000000000000009\nstore8 8600000000000060075 r0\nload8 r0 7300000000000000010\nstore8 8600000000000060076 r0\nload8 r0 7300000000000000011\nstore8 8600000000000060077 r0\nload8 r0 7300000000000000012\nstore8 8600000000000060078 r0\nload8 r0 7300000000000000013\nstore8 8600000000000060079 r0\nload8 r0 7300000000000000014\nstore8 8600000000000060080 r0\nload8 r0 7300000000000000015\nstore8 8600000000000060081 r0\nload8 r0 7500000000000000008\nstore8 8600000000000060082 r0\nload8 r0 7500000000000000009\nstore8 8600000000000060083 r0\nload8 r0 7500000000000000010\nstore8 8600000000000060084 r0\nload8 r0 7500000000000000011\nstore8 8600000000000060085 r0\nload8 r0 7500000000000000012\nstore8 8600000000000060086 r0\nload8 r0 7500000000000000013\nstore8 8600000000000060087 r0\nload8 r0 7500000000000000014\nstore8 8600000000000060088 r0\nload8 r0 7500000000000000015\nstore8 8600000000000060089 r0\nhalt\n",
+      "name": "preserve live working context"
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que calculadora es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que notas es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que archivos es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que editor_xi es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que centro_control es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que editor_fondo es herramienta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u es programa",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que programa_rxe es programa",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que planificador parte_de w4u",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que explorador parte_de w4u",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que verificador parte_de w4u",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que planificador produce plan",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que explorador produce propuesta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que verificador comprueba precondición",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq usa w4u",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u usa xi",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que calculadora permite aritmética",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que notas permite edición_texto",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que archivos permite organización_archivos",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que editor_xi permite edición_codigo",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que editor_xi permite ejecución_xi",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que centro_control presenta diagnóstico",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que editor_fondo permite personalización",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite consulta",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite explicación",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite enseñanza",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite alias_conceptual",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite abstención",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq permite cuentas",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite apertura",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite enfoque",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite minimización",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite maximización",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite restauración",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite cierre",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite organización",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que w4u permite ejecución",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que historial conserva mensaje",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que contexto conserva referencia",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq conserva aprendizaje",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que programa_rxe requiere reverse",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que ventana pertenece_a escritorio",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que principal es espacio_trabajo",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que enfoque es espacio_trabajo",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que sesión conserva estado",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que actualización usa migración",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que migración conserva memoria_computacional",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que confirmación requiere observación",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que ejecución requiere capacidad",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que publicación requiere guardado",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que error_guardado impide publicación",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que consulta requiere evidencia",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que explicación usa evidencia",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que plan contiene paso",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que paso requiere precondición",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que alias_conceptual comparte identidad",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que proceso_aprendizaje usa ejemplo",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que evaluación usa ejemplo_reservado",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que hipótesis_candidata requiere validación",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que contradicción requiere corrección",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que desconocimiento permite abstención",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que formato_rvp conserva estado",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que formato_rxe contiene programa",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que operador usa operando",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que interfaz_bbyq es software",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que proceso_aprendizaje es proceso",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "aprende que hipótesis_candidata es hipótesis",
+      "language": 1,
+      "fields": [],
+      "dialogue": false,
+      "expected": "Aprendí esa afirmación del diálogo."
+    },
+    {
+      "mode": "conversation",
+      "text": "calculator means calculadora",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "notes means notas",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "file_manager means archivos",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "code_editor means editor_xi",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "control_center means centro_control",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "wallpaper_editor means editor_fondo",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "planner means planificador",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "explorer means explorador",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "verifier means verificador",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "proposal means propuesta",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "precondition means precondición",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "arithmetic means aritmética",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "history means historial",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "message means mensaje",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "context means contexto",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "reference means referencia",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "window means ventana",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "desktop means escritorio",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "workspace means espacio_trabajo",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "session means sesión",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "state means estado",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "migration means migración",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "capability means capacidad",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "step means paso",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "identity means identidad",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "reserved_example means ejemplo_reservado",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "correction means corrección",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "allows means permite",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "checks means comprueba",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "shows means presenta",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "belongs_to means pertenece_a",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "prevents means impide",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "shares means comparte",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "concept_alias means alias_conceptual",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "mode": "conversation",
+      "text": "bbyq_interface means interfaz_bbyq",
+      "language": 2,
+      "fields": [],
+      "dialogue": false,
+      "expected": "I learned that name for the same concept."
+    },
+    {
+      "raw": "load8 r0 8600000000000060000\nstore8 7400000000000000003 r0\nstore8 8600000000000060000 0\nload8 r0 8600000000000060001\nstore8 7400000000000000008 r0\nstore8 8600000000000060001 0\nload8 r0 8600000000000060002\nstore8 7400000000000000009 r0\nstore8 8600000000000060002 0\nload8 r0 8600000000000060003\nstore8 7400000000000000010 r0\nstore8 8600000000000060003 0\nload8 r0 8600000000000060004\nstore8 7400000000000000011 r0\nstore8 8600000000000060004 0\nload8 r0 8600000000000060005\nstore8 7400000000000000012 r0\nstore8 8600000000000060005 0\nload8 r0 8600000000000060006\nstore8 7400000000000000013 r0\nstore8 8600000000000060006 0\nload8 r0 8600000000000060007\nstore8 7400000000000000014 r0\nstore8 8600000000000060007 0\nload8 r0 8600000000000060008\nstore8 7400000000000000015 r0\nstore8 8600000000000060008 0\nload8 r0 8600000000000060009\nstore8 7400000000000002100 r0\nstore8 8600000000000060009 0\nload8 r0 8600000000000060010\nstore8 7400000000000002101 r0\nstore8 8600000000000060010 0\nload8 r0 8600000000000060011\nstore8 7400000000000002102 r0\nstore8 8600000000000060011 0\nload8 r0 8600000000000060012\nstore8 7400000000000002103 r0\nstore8 8600000000000060012 0\nload8 r0 8600000000000060013\nstore8 7400000000000002104 r0\nstore8 8600000000000060013 0\nload8 r0 8600000000000060014\nstore8 7400000000000002105 r0\nstore8 8600000000000060014 0\nload8 r0 8600000000000060015\nstore8 7400000000000002106 r0\nstore8 8600000000000060015 0\nload8 r0 8600000000000060016\nstore8 7400000000000002107 r0\nstore8 8600000000000060016 0\nload8 r0 8600000000000060017\nstore8 7400000000000002200 r0\nstore8 8600000000000060017 0\nload8 r0 8600000000000060018\nstore8 7400000000000002201 r0\nstore8 8600000000000060018 0\nload8 r0 8600000000000060019\nstore8 7400000000000002202 r0\nstore8 8600000000000060019 0\nload8 r0 8600000000000060020\nstore8 7400000000000002203 r0\nstore8 8600000000000060020 0\nload8 r0 8600000000000060021\nstore8 7400000000000002204 r0\nstore8 8600000000000060021 0\nload8 r0 8600000000000060022\nstore8 7400000000000002205 r0\nstore8 8600000000000060022 0\nload8 r0 8600000000000060023\nstore8 7400000000000002206 r0\nstore8 8600000000000060023 0\nload8 r0 8600000000000060024\nstore8 7400000000000002207 r0\nstore8 8600000000000060024 0\nload8 r0 8600000000000060025\nstore8 7400000000000002208 r0\nstore8 8600000000000060025 0\nload8 r0 8600000000000060026\nstore8 7400000000000002209 r0\nstore8 8600000000000060026 0\nload8 r0 8600000000000060027\nstore8 7400000000000002210 r0\nstore8 8600000000000060027 0\nload8 r0 8600000000000060028\nstore8 7400000000000002211 r0\nstore8 8600000000000060028 0\nload8 r0 8600000000000060029\nstore8 7400000000000002212 r0\nstore8 8600000000000060029 0\nload8 r0 8600000000000060030\nstore8 7400000000000002213 r0\nstore8 8600000000000060030 0\nload8 r0 8600000000000060031\nstore8 7400000000000002214 r0\nstore8 8600000000000060031 0\nload8 r0 8600000000000060032\nstore8 7400000000000002215 r0\nstore8 8600000000000060032 0\nload8 r0 8600000000000060033\nstore8 7400000000000002216 r0\nstore8 8600000000000060033 0\nload8 r0 8600000000000060034\nstore8 7400000000000002217 r0\nstore8 8600000000000060034 0\nload8 r0 8600000000000060035\nstore8 7400000000000002218 r0\nstore8 8600000000000060035 0\nload8 r0 8600000000000060036\nstore8 7400000000000002219 r0\nstore8 8600000000000060036 0\nload8 r0 8600000000000060037\nstore8 7400000000000002220 r0\nstore8 8600000000000060037 0\nload8 r0 8600000000000060038\nstore8 7400000000000002221 r0\nstore8 8600000000000060038 0\nload8 r0 8600000000000060039\nstore8 7400000000000002222 r0\nstore8 8600000000000060039 0\nload8 r0 8600000000000060040\nstore8 7400000000000002223 r0\nstore8 8600000000000060040 0\nload8 r0 8600000000000060041\nstore8 7400000000000002224 r0\nstore8 8600000000000060041 0\nload8 r0 8600000000000060042\nstore8 7400000000000002225 r0\nstore8 8600000000000060042 0\nload8 r0 8600000000000060043\nstore8 7400000000000002226 r0\nstore8 8600000000000060043 0\nload8 r0 8600000000000060044\nstore8 7400000000000002227 r0\nstore8 8600000000000060044 0\nload8 r0 8600000000000060045\nstore8 7400000000000002228 r0\nstore8 8600000000000060045 0\nload8 r0 8600000000000060046\nstore8 7400000000000002229 r0\nstore8 8600000000000060046 0\nload8 r0 8600000000000060047\nstore8 7400000000000002230 r0\nstore8 8600000000000060047 0\nload8 r0 8600000000000060048\nstore8 7400000000000002231 r0\nstore8 8600000000000060048 0\nload8 r0 8600000000000060049\nstore8 7700000000000000004 r0\nstore8 8600000000000060049 0\nload8 r0 8600000000000060050\nstore8 7700000000000000005 r0\nstore8 8600000000000060050 0\nload8 r0 8600000000000060051\nstore8 7700000000000000006 r0\nstore8 8600000000000060051 0\nload8 r0 8600000000000060052\nstore8 7700000000000000007 r0\nstore8 8600000000000060052 0\nload8 r0 8600000000000060053\nstore8 7700000000000000008 r0\nstore8 8600000000000060053 0\nload8 r0 8600000000000060054\nstore8 7700000000000000009 r0\nstore8 8600000000000060054 0\nload8 r0 8600000000000060055\nstore8 7700000000000000010 r0\nstore8 8600000000000060055 0\nload8 r0 8600000000000060056\nstore8 7700000000000000011 r0\nstore8 8600000000000060056 0\nload8 r0 8600000000000060057\nstore8 7700000000000000012 r0\nstore8 8600000000000060057 0\nload8 r0 8600000000000060058\nstore8 7700000000000000013 r0\nstore8 8600000000000060058 0\nload8 r0 8600000000000060059\nstore8 7700000000000000014 r0\nstore8 8600000000000060059 0\nload8 r0 8600000000000060060\nstore8 7700000000000000015 r0\nstore8 8600000000000060060 0\nload8 r0 8600000000000060061\nstore8 7800000000000000012 r0\nstore8 8600000000000060061 0\nload8 r0 8600000000000060062\nstore8 7800000000000000013 r0\nstore8 8600000000000060062 0\nload8 r0 8600000000000060063\nstore8 7800000000000000014 r0\nstore8 8600000000000060063 0\nload8 r0 8600000000000060064\nstore8 7800000000000000015 r0\nstore8 8600000000000060064 0\nload8 r0 8600000000000060065\nstore8 7800000000000000016 r0\nstore8 8600000000000060065 0\nload8 r0 8600000000000060066\nstore8 7800000000000000017 r0\nstore8 8600000000000060066 0\nload8 r0 8600000000000060067\nstore8 7800000000000000018 r0\nstore8 8600000000000060067 0\nload8 r0 8600000000000060068\nstore8 7800000000000000019 r0\nstore8 8600000000000060068 0\nload8 r0 8600000000000060069\nstore8 7300000000000000003 r0\nstore8 8600000000000060069 0\nload8 r0 8600000000000060070\nstore8 7300000000000000004 r0\nstore8 8600000000000060070 0\nload8 r0 8600000000000060071\nstore8 7300000000000000005 r0\nstore8 8600000000000060071 0\nload8 r0 8600000000000060072\nstore8 7300000000000000006 r0\nstore8 8600000000000060072 0\nload8 r0 8600000000000060073\nstore8 7300000000000000007 r0\nstore8 8600000000000060073 0\nload8 r0 8600000000000060074\nstore8 7300000000000000008 r0\nstore8 8600000000000060074 0\nload8 r0 8600000000000060075\nstore8 7300000000000000009 r0\nstore8 8600000000000060075 0\nload8 r0 8600000000000060076\nstore8 7300000000000000010 r0\nstore8 8600000000000060076 0\nload8 r0 8600000000000060077\nstore8 7300000000000000011 r0\nstore8 8600000000000060077 0\nload8 r0 8600000000000060078\nstore8 7300000000000000012 r0\nstore8 8600000000000060078 0\nload8 r0 8600000000000060079\nstore8 7300000000000000013 r0\nstore8 8600000000000060079 0\nload8 r0 8600000000000060080\nstore8 7300000000000000014 r0\nstore8 8600000000000060080 0\nload8 r0 8600000000000060081\nstore8 7300000000000000015 r0\nstore8 8600000000000060081 0\nload8 r0 8600000000000060082\nstore8 7500000000000000008 r0\nstore8 8600000000000060082 0\nload8 r0 8600000000000060083\nstore8 7500000000000000009 r0\nstore8 8600000000000060083 0\nload8 r0 8600000000000060084\nstore8 7500000000000000010 r0\nstore8 8600000000000060084 0\nload8 r0 8600000000000060085\nstore8 7500000000000000011 r0\nstore8 8600000000000060085 0\nload8 r0 8600000000000060086\nstore8 7500000000000000012 r0\nstore8 8600000000000060086 0\nload8 r0 8600000000000060087\nstore8 7500000000000000013 r0\nstore8 8600000000000060087 0\nload8 r0 8600000000000060088\nstore8 7500000000000000014 r0\nstore8 8600000000000060088 0\nload8 r0 8600000000000060089\nstore8 7500000000000000015 r0\nstore8 8600000000000060089 0\nhalt\n",
+      "name": "restore live working context"
+    },
+    {
+      "raw": "load8 r0 7400000000000000003\nstore8 8600000000000060000 r0\nload8 r0 7400000000000000008\nstore8 8600000000000060001 r0\nload8 r0 7400000000000000009\nstore8 8600000000000060002 r0\nload8 r0 7400000000000000010\nstore8 8600000000000060003 r0\nload8 r0 7400000000000000011\nstore8 8600000000000060004 r0\nload8 r0 7400000000000000012\nstore8 8600000000000060005 r0\nload8 r0 7400000000000000013\nstore8 8600000000000060006 r0\nload8 r0 7400000000000000014\nstore8 8600000000000060007 r0\nload8 r0 7400000000000000015\nstore8 8600000000000060008 r0\nload8 r0 7400000000000002100\nstore8 8600000000000060009 r0\nload8 r0 7400000000000002101\nstore8 8600000000000060010 r0\nload8 r0 7400000000000002102\nstore8 8600000000000060011 r0\nload8 r0 7400000000000002103\nstore8 8600000000000060012 r0\nload8 r0 7400000000000002104\nstore8 8600000000000060013 r0\nload8 r0 7400000000000002105\nstore8 8600000000000060014 r0\nload8 r0 7400000000000002106\nstore8 8600000000000060015 r0\nload8 r0 7400000000000002107\nstore8 8600000000000060016 r0\nload8 r0 7400000000000002200\nstore8 8600000000000060017 r0\nload8 r0 7400000000000002201\nstore8 8600000000000060018 r0\nload8 r0 7400000000000002202\nstore8 8600000000000060019 r0\nload8 r0 7400000000000002203\nstore8 8600000000000060020 r0\nload8 r0 7400000000000002204\nstore8 8600000000000060021 r0\nload8 r0 7400000000000002205\nstore8 8600000000000060022 r0\nload8 r0 7400000000000002206\nstore8 8600000000000060023 r0\nload8 r0 7400000000000002207\nstore8 8600000000000060024 r0\nload8 r0 7400000000000002208\nstore8 8600000000000060025 r0\nload8 r0 7400000000000002209\nstore8 8600000000000060026 r0\nload8 r0 7400000000000002210\nstore8 8600000000000060027 r0\nload8 r0 7400000000000002211\nstore8 8600000000000060028 r0\nload8 r0 7400000000000002212\nstore8 8600000000000060029 r0\nload8 r0 7400000000000002213\nstore8 8600000000000060030 r0\nload8 r0 7400000000000002214\nstore8 8600000000000060031 r0\nload8 r0 7400000000000002215\nstore8 8600000000000060032 r0\nload8 r0 7400000000000002216\nstore8 8600000000000060033 r0\nload8 r0 7400000000000002217\nstore8 8600000000000060034 r0\nload8 r0 7400000000000002218\nstore8 8600000000000060035 r0\nload8 r0 7400000000000002219\nstore8 8600000000000060036 r0\nload8 r0 7400000000000002220\nstore8 8600000000000060037 r0\nload8 r0 7400000000000002221\nstore8 8600000000000060038 r0\nload8 r0 7400000000000002222\nstore8 8600000000000060039 r0\nload8 r0 7400000000000002223\nstore8 8600000000000060040 r0\nload8 r0 7400000000000002224\nstore8 8600000000000060041 r0\nload8 r0 7400000000000002225\nstore8 8600000000000060042 r0\nload8 r0 7400000000000002226\nstore8 8600000000000060043 r0\nload8 r0 7400000000000002227\nstore8 8600000000000060044 r0\nload8 r0 7400000000000002228\nstore8 8600000000000060045 r0\nload8 r0 7400000000000002229\nstore8 8600000000000060046 r0\nload8 r0 7400000000000002230\nstore8 8600000000000060047 r0\nload8 r0 7400000000000002231\nstore8 8600000000000060048 r0\nload8 r0 7700000000000000004\nstore8 8600000000000060049 r0\nload8 r0 7700000000000000005\nstore8 8600000000000060050 r0\nload8 r0 7700000000000000006\nstore8 8600000000000060051 r0\nload8 r0 7700000000000000007\nstore8 8600000000000060052 r0\nload8 r0 7700000000000000008\nstore8 8600000000000060053 r0\nload8 r0 7700000000000000009\nstore8 8600000000000060054 r0\nload8 r0 7700000000000000010\nstore8 8600000000000060055 r0\nload8 r0 7700000000000000011\nstore8 8600000000000060056 r0\nload8 r0 7700000000000000012\nstore8 8600000000000060057 r0\nload8 r0 7700000000000000013\nstore8 8600000000000060058 r0\nload8 r0 7700000000000000014\nstore8 8600000000000060059 r0\nload8 r0 7700000000000000015\nstore8 8600000000000060060 r0\nload8 r0 7800000000000000012\nstore8 8600000000000060061 r0\nload8 r0 7800000000000000013\nstore8 8600000000000060062 r0\nload8 r0 7800000000000000014\nstore8 8600000000000060063 r0\nload8 r0 7800000000000000015\nstore8 8600000000000060064 r0\nload8 r0 7800000000000000016\nstore8 8600000000000060065 r0\nload8 r0 7800000000000000017\nstore8 8600000000000060066 r0\nload8 r0 7800000000000000018\nstore8 8600000000000060067 r0\nload8 r0 7800000000000000019\nstore8 8600000000000060068 r0\nload8 r0 7300000000000000003\nstore8 8600000000000060069 r0\nload8 r0 7300000000000000004\nstore8 8600000000000060070 r0\nload8 r0 7300000000000000005\nstore8 8600000000000060071 r0\nload8 r0 7300000000000000006\nstore8 8600000000000060072 r0\nload8 r0 7300000000000000007\nstore8 8600000000000060073 r0\nload8 r0 7300000000000000008\nstore8 8600000000000060074 r0\nload8 r0 7300000000000000009\nstore8 8600000000000060075 r0\nload8 r0 7300000000000000010\nstore8 8600000000000060076 r0\nload8 r0 7300000000000000011\nstore8 8600000000000060077 r0\nload8 r0 7300000000000000012\nstore8 8600000000000060078 r0\nload8 r0 7300000000000000013\nstore8 8600000000000060079 r0\nload8 r0 7300000000000000014\nstore8 8600000000000060080 r0\nload8 r0 7300000000000000015\nstore8 8600000000000060081 r0\nload8 r0 7500000000000000008\nstore8 8600000000000060082 r0\nload8 r0 7500000000000000009\nstore8 8600000000000060083 r0\nload8 r0 7500000000000000010\nstore8 8600000000000060084 r0\nload8 r0 7500000000000000011\nstore8 8600000000000060085 r0\nload8 r0 7500000000000000012\nstore8 8600000000000060086 r0\nload8 r0 7500000000000000013\nstore8 8600000000000060087 r0\nload8 r0 7500000000000000014\nstore8 8600000000000060088 r0\nload8 r0 7500000000000000015\nstore8 8600000000000060089 r0\nhalt\n",
+      "name": "preserve live working context"
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos sumar tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          4
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos adicionar tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          4
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos agregar tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          4
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos addition tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          4
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos restar tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          6
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos sustraer tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          6
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos subtraction tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          6
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos deduct tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          6
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos producto tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          2
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos multiplicar tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          2
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos multiplication tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          2
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos dividir tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          8
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos division tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          8
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos quotient tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          8
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos residuo tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          5
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos modulus tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          5
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos residual tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          5
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos menor tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          1
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos smallest tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          1
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos mayor tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          7
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos largest tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          7
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos separacion tres",
+      "language": 1,
+      "fields": [
+        [
+          "7900000000000000024",
+          3
+        ],
+        [
+          "7900000000000000025",
+          1
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos separation tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          3
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "mode": "scale-word",
+      "text": "dos gap tres",
+      "language": 2,
+      "fields": [
+        [
+          "7900000000000000024",
+          3
+        ],
+        [
+          "7900000000000000025",
+          2
+        ]
+      ],
+      "dialogue": true
+    },
+    {
+      "raw": "load8 r0 8600000000000060000\nstore8 7400000000000000003 r0\nstore8 8600000000000060000 0\nload8 r0 8600000000000060001\nstore8 7400000000000000008 r0\nstore8 8600000000000060001 0\nload8 r0 8600000000000060002\nstore8 7400000000000000009 r0\nstore8 8600000000000060002 0\nload8 r0 8600000000000060003\nstore8 7400000000000000010 r0\nstore8 8600000000000060003 0\nload8 r0 8600000000000060004\nstore8 7400000000000000011 r0\nstore8 8600000000000060004 0\nload8 r0 8600000000000060005\nstore8 7400000000000000012 r0\nstore8 8600000000000060005 0\nload8 r0 8600000000000060006\nstore8 7400000000000000013 r0\nstore8 8600000000000060006 0\nload8 r0 8600000000000060007\nstore8 7400000000000000014 r0\nstore8 8600000000000060007 0\nload8 r0 8600000000000060008\nstore8 7400000000000000015 r0\nstore8 8600000000000060008 0\nload8 r0 8600000000000060009\nstore8 7400000000000002100 r0\nstore8 8600000000000060009 0\nload8 r0 8600000000000060010\nstore8 7400000000000002101 r0\nstore8 8600000000000060010 0\nload8 r0 8600000000000060011\nstore8 7400000000000002102 r0\nstore8 8600000000000060011 0\nload8 r0 8600000000000060012\nstore8 7400000000000002103 r0\nstore8 8600000000000060012 0\nload8 r0 8600000000000060013\nstore8 7400000000000002104 r0\nstore8 8600000000000060013 0\nload8 r0 8600000000000060014\nstore8 7400000000000002105 r0\nstore8 8600000000000060014 0\nload8 r0 8600000000000060015\nstore8 7400000000000002106 r0\nstore8 8600000000000060015 0\nload8 r0 8600000000000060016\nstore8 7400000000000002107 r0\nstore8 8600000000000060016 0\nload8 r0 8600000000000060017\nstore8 7400000000000002200 r0\nstore8 8600000000000060017 0\nload8 r0 8600000000000060018\nstore8 7400000000000002201 r0\nstore8 8600000000000060018 0\nload8 r0 8600000000000060019\nstore8 7400000000000002202 r0\nstore8 8600000000000060019 0\nload8 r0 8600000000000060020\nstore8 7400000000000002203 r0\nstore8 8600000000000060020 0\nload8 r0 8600000000000060021\nstore8 7400000000000002204 r0\nstore8 8600000000000060021 0\nload8 r0 8600000000000060022\nstore8 7400000000000002205 r0\nstore8 8600000000000060022 0\nload8 r0 8600000000000060023\nstore8 7400000000000002206 r0\nstore8 8600000000000060023 0\nload8 r0 8600000000000060024\nstore8 7400000000000002207 r0\nstore8 8600000000000060024 0\nload8 r0 8600000000000060025\nstore8 7400000000000002208 r0\nstore8 8600000000000060025 0\nload8 r0 8600000000000060026\nstore8 7400000000000002209 r0\nstore8 8600000000000060026 0\nload8 r0 8600000000000060027\nstore8 7400000000000002210 r0\nstore8 8600000000000060027 0\nload8 r0 8600000000000060028\nstore8 7400000000000002211 r0\nstore8 8600000000000060028 0\nload8 r0 8600000000000060029\nstore8 7400000000000002212 r0\nstore8 8600000000000060029 0\nload8 r0 8600000000000060030\nstore8 7400000000000002213 r0\nstore8 8600000000000060030 0\nload8 r0 8600000000000060031\nstore8 7400000000000002214 r0\nstore8 8600000000000060031 0\nload8 r0 8600000000000060032\nstore8 7400000000000002215 r0\nstore8 8600000000000060032 0\nload8 r0 8600000000000060033\nstore8 7400000000000002216 r0\nstore8 8600000000000060033 0\nload8 r0 8600000000000060034\nstore8 7400000000000002217 r0\nstore8 8600000000000060034 0\nload8 r0 8600000000000060035\nstore8 7400000000000002218 r0\nstore8 8600000000000060035 0\nload8 r0 8600000000000060036\nstore8 7400000000000002219 r0\nstore8 8600000000000060036 0\nload8 r0 8600000000000060037\nstore8 7400000000000002220 r0\nstore8 8600000000000060037 0\nload8 r0 8600000000000060038\nstore8 7400000000000002221 r0\nstore8 8600000000000060038 0\nload8 r0 8600000000000060039\nstore8 7400000000000002222 r0\nstore8 8600000000000060039 0\nload8 r0 8600000000000060040\nstore8 7400000000000002223 r0\nstore8 8600000000000060040 0\nload8 r0 8600000000000060041\nstore8 7400000000000002224 r0\nstore8 8600000000000060041 0\nload8 r0 8600000000000060042\nstore8 7400000000000002225 r0\nstore8 8600000000000060042 0\nload8 r0 8600000000000060043\nstore8 7400000000000002226 r0\nstore8 8600000000000060043 0\nload8 r0 8600000000000060044\nstore8 7400000000000002227 r0\nstore8 8600000000000060044 0\nload8 r0 8600000000000060045\nstore8 7400000000000002228 r0\nstore8 8600000000000060045 0\nload8 r0 8600000000000060046\nstore8 7400000000000002229 r0\nstore8 8600000000000060046 0\nload8 r0 8600000000000060047\nstore8 7400000000000002230 r0\nstore8 8600000000000060047 0\nload8 r0 8600000000000060048\nstore8 7400000000000002231 r0\nstore8 8600000000000060048 0\nload8 r0 8600000000000060049\nstore8 7700000000000000004 r0\nstore8 8600000000000060049 0\nload8 r0 8600000000000060050\nstore8 7700000000000000005 r0\nstore8 8600000000000060050 0\nload8 r0 8600000000000060051\nstore8 7700000000000000006 r0\nstore8 8600000000000060051 0\nload8 r0 8600000000000060052\nstore8 7700000000000000007 r0\nstore8 8600000000000060052 0\nload8 r0 8600000000000060053\nstore8 7700000000000000008 r0\nstore8 8600000000000060053 0\nload8 r0 8600000000000060054\nstore8 7700000000000000009 r0\nstore8 8600000000000060054 0\nload8 r0 8600000000000060055\nstore8 7700000000000000010 r0\nstore8 8600000000000060055 0\nload8 r0 8600000000000060056\nstore8 7700000000000000011 r0\nstore8 8600000000000060056 0\nload8 r0 8600000000000060057\nstore8 7700000000000000012 r0\nstore8 8600000000000060057 0\nload8 r0 8600000000000060058\nstore8 7700000000000000013 r0\nstore8 8600000000000060058 0\nload8 r0 8600000000000060059\nstore8 7700000000000000014 r0\nstore8 8600000000000060059 0\nload8 r0 8600000000000060060\nstore8 7700000000000000015 r0\nstore8 8600000000000060060 0\nload8 r0 8600000000000060061\nstore8 7800000000000000012 r0\nstore8 8600000000000060061 0\nload8 r0 8600000000000060062\nstore8 7800000000000000013 r0\nstore8 8600000000000060062 0\nload8 r0 8600000000000060063\nstore8 7800000000000000014 r0\nstore8 8600000000000060063 0\nload8 r0 8600000000000060064\nstore8 7800000000000000015 r0\nstore8 8600000000000060064 0\nload8 r0 8600000000000060065\nstore8 7800000000000000016 r0\nstore8 8600000000000060065 0\nload8 r0 8600000000000060066\nstore8 7800000000000000017 r0\nstore8 8600000000000060066 0\nload8 r0 8600000000000060067\nstore8 7800000000000000018 r0\nstore8 8600000000000060067 0\nload8 r0 8600000000000060068\nstore8 7800000000000000019 r0\nstore8 8600000000000060068 0\nload8 r0 8600000000000060069\nstore8 7300000000000000003 r0\nstore8 8600000000000060069 0\nload8 r0 8600000000000060070\nstore8 7300000000000000004 r0\nstore8 8600000000000060070 0\nload8 r0 8600000000000060071\nstore8 7300000000000000005 r0\nstore8 8600000000000060071 0\nload8 r0 8600000000000060072\nstore8 7300000000000000006 r0\nstore8 8600000000000060072 0\nload8 r0 8600000000000060073\nstore8 7300000000000000007 r0\nstore8 8600000000000060073 0\nload8 r0 8600000000000060074\nstore8 7300000000000000008 r0\nstore8 8600000000000060074 0\nload8 r0 8600000000000060075\nstore8 7300000000000000009 r0\nstore8 8600000000000060075 0\nload8 r0 8600000000000060076\nstore8 7300000000000000010 r0\nstore8 8600000000000060076 0\nload8 r0 8600000000000060077\nstore8 7300000000000000011 r0\nstore8 8600000000000060077 0\nload8 r0 8600000000000060078\nstore8 7300000000000000012 r0\nstore8 8600000000000060078 0\nload8 r0 8600000000000060079\nstore8 7300000000000000013 r0\nstore8 8600000000000060079 0\nload8 r0 8600000000000060080\nstore8 7300000000000000014 r0\nstore8 8600000000000060080 0\nload8 r0 8600000000000060081\nstore8 7300000000000000015 r0\nstore8 8600000000000060081 0\nload8 r0 8600000000000060082\nstore8 7500000000000000008 r0\nstore8 8600000000000060082 0\nload8 r0 8600000000000060083\nstore8 7500000000000000009 r0\nstore8 8600000000000060083 0\nload8 r0 8600000000000060084\nstore8 7500000000000000010 r0\nstore8 8600000000000060084 0\nload8 r0 8600000000000060085\nstore8 7500000000000000011 r0\nstore8 8600000000000060085 0\nload8 r0 8600000000000060086\nstore8 7500000000000000012 r0\nstore8 8600000000000060086 0\nload8 r0 8600000000000060087\nstore8 7500000000000000013 r0\nstore8 8600000000000060087 0\nload8 r0 8600000000000060088\nstore8 7500000000000000014 r0\nstore8 8600000000000060088 0\nload8 r0 8600000000000060089\nstore8 7500000000000000015 r0\nstore8 8600000000000060089 0\nhalt\n",
+      "name": "restore live working context"
+    },
+    {
+      "raw": "load8 r0 7400000000000000003\nstore8 8600000000000060000 r0\nload8 r0 7400000000000000008\nstore8 8600000000000060001 r0\nload8 r0 7400000000000000009\nstore8 8600000000000060002 r0\nload8 r0 7400000000000000010\nstore8 8600000000000060003 r0\nload8 r0 7400000000000000011\nstore8 8600000000000060004 r0\nload8 r0 7400000000000000012\nstore8 8600000000000060005 r0\nload8 r0 7400000000000000013\nstore8 8600000000000060006 r0\nload8 r0 7400000000000000014\nstore8 8600000000000060007 r0\nload8 r0 7400000000000000015\nstore8 8600000000000060008 r0\nload8 r0 7400000000000002100\nstore8 8600000000000060009 r0\nload8 r0 7400000000000002101\nstore8 8600000000000060010 r0\nload8 r0 7400000000000002102\nstore8 8600000000000060011 r0\nload8 r0 7400000000000002103\nstore8 8600000000000060012 r0\nload8 r0 7400000000000002104\nstore8 8600000000000060013 r0\nload8 r0 7400000000000002105\nstore8 8600000000000060014 r0\nload8 r0 7400000000000002106\nstore8 8600000000000060015 r0\nload8 r0 7400000000000002107\nstore8 8600000000000060016 r0\nload8 r0 7400000000000002200\nstore8 8600000000000060017 r0\nload8 r0 7400000000000002201\nstore8 8600000000000060018 r0\nload8 r0 7400000000000002202\nstore8 8600000000000060019 r0\nload8 r0 7400000000000002203\nstore8 8600000000000060020 r0\nload8 r0 7400000000000002204\nstore8 8600000000000060021 r0\nload8 r0 7400000000000002205\nstore8 8600000000000060022 r0\nload8 r0 7400000000000002206\nstore8 8600000000000060023 r0\nload8 r0 7400000000000002207\nstore8 8600000000000060024 r0\nload8 r0 7400000000000002208\nstore8 8600000000000060025 r0\nload8 r0 7400000000000002209\nstore8 8600000000000060026 r0\nload8 r0 7400000000000002210\nstore8 8600000000000060027 r0\nload8 r0 7400000000000002211\nstore8 8600000000000060028 r0\nload8 r0 7400000000000002212\nstore8 8600000000000060029 r0\nload8 r0 7400000000000002213\nstore8 8600000000000060030 r0\nload8 r0 7400000000000002214\nstore8 8600000000000060031 r0\nload8 r0 7400000000000002215\nstore8 8600000000000060032 r0\nload8 r0 7400000000000002216\nstore8 8600000000000060033 r0\nload8 r0 7400000000000002217\nstore8 8600000000000060034 r0\nload8 r0 7400000000000002218\nstore8 8600000000000060035 r0\nload8 r0 7400000000000002219\nstore8 8600000000000060036 r0\nload8 r0 7400000000000002220\nstore8 8600000000000060037 r0\nload8 r0 7400000000000002221\nstore8 8600000000000060038 r0\nload8 r0 7400000000000002222\nstore8 8600000000000060039 r0\nload8 r0 7400000000000002223\nstore8 8600000000000060040 r0\nload8 r0 7400000000000002224\nstore8 8600000000000060041 r0\nload8 r0 7400000000000002225\nstore8 8600000000000060042 r0\nload8 r0 7400000000000002226\nstore8 8600000000000060043 r0\nload8 r0 7400000000000002227\nstore8 8600000000000060044 r0\nload8 r0 7400000000000002228\nstore8 8600000000000060045 r0\nload8 r0 7400000000000002229\nstore8 8600000000000060046 r0\nload8 r0 7400000000000002230\nstore8 8600000000000060047 r0\nload8 r0 7400000000000002231\nstore8 8600000000000060048 r0\nload8 r0 7700000000000000004\nstore8 8600000000000060049 r0\nload8 r0 7700000000000000005\nstore8 8600000000000060050 r0\nload8 r0 7700000000000000006\nstore8 8600000000000060051 r0\nload8 r0 7700000000000000007\nstore8 8600000000000060052 r0\nload8 r0 7700000000000000008\nstore8 8600000000000060053 r0\nload8 r0 7700000000000000009\nstore8 8600000000000060054 r0\nload8 r0 7700000000000000010\nstore8 8600000000000060055 r0\nload8 r0 7700000000000000011\nstore8 8600000000000060056 r0\nload8 r0 7700000000000000012\nstore8 8600000000000060057 r0\nload8 r0 7700000000000000013\nstore8 8600000000000060058 r0\nload8 r0 7700000000000000014\nstore8 8600000000000060059 r0\nload8 r0 7700000000000000015\nstore8 8600000000000060060 r0\nload8 r0 7800000000000000012\nstore8 8600000000000060061 r0\nload8 r0 7800000000000000013\nstore8 8600000000000060062 r0\nload8 r0 7800000000000000014\nstore8 8600000000000060063 r0\nload8 r0 7800000000000000015\nstore8 8600000000000060064 r0\nload8 r0 7800000000000000016\nstore8 8600000000000060065 r0\nload8 r0 7800000000000000017\nstore8 8600000000000060066 r0\nload8 r0 7800000000000000018\nstore8 8600000000000060067 r0\nload8 r0 7800000000000000019\nstore8 8600000000000060068 r0\nload8 r0 7300000000000000003\nstore8 8600000000000060069 r0\nload8 r0 7300000000000000004\nstore8 8600000000000060070 r0\nload8 r0 7300000000000000005\nstore8 8600000000000060071 r0\nload8 r0 7300000000000000006\nstore8 8600000000000060072 r0\nload8 r0 7300000000000000007\nstore8 8600000000000060073 r0\nload8 r0 7300000000000000008\nstore8 8600000000000060074 r0\nload8 r0 7300000000000000009\nstore8 8600000000000060075 r0\nload8 r0 7300000000000000010\nstore8 8600000000000060076 r0\nload8 r0 7300000000000000011\nstore8 8600000000000060077 r0\nload8 r0 7300000000000000012\nstore8 8600000000000060078 r0\nload8 r0 7300000000000000013\nstore8 8600000000000060079 r0\nload8 r0 7300000000000000014\nstore8 8600000000000060080 r0\nload8 r0 7300000000000000015\nstore8 8600000000000060081 r0\nload8 r0 7500000000000000008\nstore8 8600000000000060082 r0\nload8 r0 7500000000000000009\nstore8 8600000000000060083 r0\nload8 r0 7500000000000000010\nstore8 8600000000000060084 r0\nload8 r0 7500000000000000011\nstore8 8600000000000060085 r0\nload8 r0 7500000000000000012\nstore8 8600000000000060086 r0\nload8 r0 7500000000000000013\nstore8 8600000000000060087 r0\nload8 r0 7500000000000000014\nstore8 8600000000000060088 r0\nload8 r0 7500000000000000015\nstore8 8600000000000060089 r0\nhalt\n",
+      "name": "preserve live working context"
+    },
+    {
+      "raw": "store8 8500000000000000002 0\nhalt\n",
+      "name": "open supervised social extension"
+    },
+    {
+      "mode": "social-phrase",
+      "text": "saludos",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "buen día",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "buen dia",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hola de nuevo",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hola otra vez",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "buenas de nuevo",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hello again",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hi again",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "greetings",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "good day",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "cómo andas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "como andas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "cómo vas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "como vas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "qué hay",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "que hay",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "todo bien por ahí",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "todo bien por ahi",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "estás ahí",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "estas ahi",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "are you there",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "are you ready",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "how have you been",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "how are things",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "how is everything",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "is everything okay",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          3
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "mil gracias",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "muchísimas gracias",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "muchisimas gracias",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "te agradezco",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "gracias por ayudarme",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "gracias por tu ayuda",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "muy amable",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "thank you so much",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "many thanks",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "much appreciated",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "thanks for your help",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "thank you for helping",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          4
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta pronto",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta mañana",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta manana",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "me despido",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta la próxima",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta la proxima",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "hasta otra",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "see you tomorrow",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "see you soon",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "good night",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "talk to you later",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "until next time",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          5
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "perfecto",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "listo",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "está claro",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "esta claro",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "comprendido",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "bien entendido",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "muy bien entendido",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "all right",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "got it",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "sounds good",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "sure",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "that makes sense",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          6
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "cómo te presentas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "como te presentas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "dime tu nombre",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "cuál es tu nombre",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "cual es tu nombre",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "what should i call you",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "tell me your name",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "introduce yourself",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          7
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "para qué sirves",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "para que sirves",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "en qué ayudas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "en que ayudas",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "dime qué sabes hacer",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "dime que sabes hacer",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "tell me your capabilities",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "what do you help with",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "how can you assist",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          8
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "estoy muy bien",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "muy bien",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "todo tranquilo",
+      "language": 1,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "doing well",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "i am doing well",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-phrase",
+      "text": "all good",
+      "language": 2,
+      "fields": [
+        [
+          "8500000000000000032",
+          1
+        ],
+        [
+          "8500000000000000033",
+          9
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "social-seal",
+      "text": "",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "raw": "load8 r0 8600000000000060000\nstore8 7400000000000000003 r0\nstore8 8600000000000060000 0\nload8 r0 8600000000000060001\nstore8 7400000000000000008 r0\nstore8 8600000000000060001 0\nload8 r0 8600000000000060002\nstore8 7400000000000000009 r0\nstore8 8600000000000060002 0\nload8 r0 8600000000000060003\nstore8 7400000000000000010 r0\nstore8 8600000000000060003 0\nload8 r0 8600000000000060004\nstore8 7400000000000000011 r0\nstore8 8600000000000060004 0\nload8 r0 8600000000000060005\nstore8 7400000000000000012 r0\nstore8 8600000000000060005 0\nload8 r0 8600000000000060006\nstore8 7400000000000000013 r0\nstore8 8600000000000060006 0\nload8 r0 8600000000000060007\nstore8 7400000000000000014 r0\nstore8 8600000000000060007 0\nload8 r0 8600000000000060008\nstore8 7400000000000000015 r0\nstore8 8600000000000060008 0\nload8 r0 8600000000000060009\nstore8 7400000000000002100 r0\nstore8 8600000000000060009 0\nload8 r0 8600000000000060010\nstore8 7400000000000002101 r0\nstore8 8600000000000060010 0\nload8 r0 8600000000000060011\nstore8 7400000000000002102 r0\nstore8 8600000000000060011 0\nload8 r0 8600000000000060012\nstore8 7400000000000002103 r0\nstore8 8600000000000060012 0\nload8 r0 8600000000000060013\nstore8 7400000000000002104 r0\nstore8 8600000000000060013 0\nload8 r0 8600000000000060014\nstore8 7400000000000002105 r0\nstore8 8600000000000060014 0\nload8 r0 8600000000000060015\nstore8 7400000000000002106 r0\nstore8 8600000000000060015 0\nload8 r0 8600000000000060016\nstore8 7400000000000002107 r0\nstore8 8600000000000060016 0\nload8 r0 8600000000000060017\nstore8 7400000000000002200 r0\nstore8 8600000000000060017 0\nload8 r0 8600000000000060018\nstore8 7400000000000002201 r0\nstore8 8600000000000060018 0\nload8 r0 8600000000000060019\nstore8 7400000000000002202 r0\nstore8 8600000000000060019 0\nload8 r0 8600000000000060020\nstore8 7400000000000002203 r0\nstore8 8600000000000060020 0\nload8 r0 8600000000000060021\nstore8 7400000000000002204 r0\nstore8 8600000000000060021 0\nload8 r0 8600000000000060022\nstore8 7400000000000002205 r0\nstore8 8600000000000060022 0\nload8 r0 8600000000000060023\nstore8 7400000000000002206 r0\nstore8 8600000000000060023 0\nload8 r0 8600000000000060024\nstore8 7400000000000002207 r0\nstore8 8600000000000060024 0\nload8 r0 8600000000000060025\nstore8 7400000000000002208 r0\nstore8 8600000000000060025 0\nload8 r0 8600000000000060026\nstore8 7400000000000002209 r0\nstore8 8600000000000060026 0\nload8 r0 8600000000000060027\nstore8 7400000000000002210 r0\nstore8 8600000000000060027 0\nload8 r0 8600000000000060028\nstore8 7400000000000002211 r0\nstore8 8600000000000060028 0\nload8 r0 8600000000000060029\nstore8 7400000000000002212 r0\nstore8 8600000000000060029 0\nload8 r0 8600000000000060030\nstore8 7400000000000002213 r0\nstore8 8600000000000060030 0\nload8 r0 8600000000000060031\nstore8 7400000000000002214 r0\nstore8 8600000000000060031 0\nload8 r0 8600000000000060032\nstore8 7400000000000002215 r0\nstore8 8600000000000060032 0\nload8 r0 8600000000000060033\nstore8 7400000000000002216 r0\nstore8 8600000000000060033 0\nload8 r0 8600000000000060034\nstore8 7400000000000002217 r0\nstore8 8600000000000060034 0\nload8 r0 8600000000000060035\nstore8 7400000000000002218 r0\nstore8 8600000000000060035 0\nload8 r0 8600000000000060036\nstore8 7400000000000002219 r0\nstore8 8600000000000060036 0\nload8 r0 8600000000000060037\nstore8 7400000000000002220 r0\nstore8 8600000000000060037 0\nload8 r0 8600000000000060038\nstore8 7400000000000002221 r0\nstore8 8600000000000060038 0\nload8 r0 8600000000000060039\nstore8 7400000000000002222 r0\nstore8 8600000000000060039 0\nload8 r0 8600000000000060040\nstore8 7400000000000002223 r0\nstore8 8600000000000060040 0\nload8 r0 8600000000000060041\nstore8 7400000000000002224 r0\nstore8 8600000000000060041 0\nload8 r0 8600000000000060042\nstore8 7400000000000002225 r0\nstore8 8600000000000060042 0\nload8 r0 8600000000000060043\nstore8 7400000000000002226 r0\nstore8 8600000000000060043 0\nload8 r0 8600000000000060044\nstore8 7400000000000002227 r0\nstore8 8600000000000060044 0\nload8 r0 8600000000000060045\nstore8 7400000000000002228 r0\nstore8 8600000000000060045 0\nload8 r0 8600000000000060046\nstore8 7400000000000002229 r0\nstore8 8600000000000060046 0\nload8 r0 8600000000000060047\nstore8 7400000000000002230 r0\nstore8 8600000000000060047 0\nload8 r0 8600000000000060048\nstore8 7400000000000002231 r0\nstore8 8600000000000060048 0\nload8 r0 8600000000000060049\nstore8 7700000000000000004 r0\nstore8 8600000000000060049 0\nload8 r0 8600000000000060050\nstore8 7700000000000000005 r0\nstore8 8600000000000060050 0\nload8 r0 8600000000000060051\nstore8 7700000000000000006 r0\nstore8 8600000000000060051 0\nload8 r0 8600000000000060052\nstore8 7700000000000000007 r0\nstore8 8600000000000060052 0\nload8 r0 8600000000000060053\nstore8 7700000000000000008 r0\nstore8 8600000000000060053 0\nload8 r0 8600000000000060054\nstore8 7700000000000000009 r0\nstore8 8600000000000060054 0\nload8 r0 8600000000000060055\nstore8 7700000000000000010 r0\nstore8 8600000000000060055 0\nload8 r0 8600000000000060056\nstore8 7700000000000000011 r0\nstore8 8600000000000060056 0\nload8 r0 8600000000000060057\nstore8 7700000000000000012 r0\nstore8 8600000000000060057 0\nload8 r0 8600000000000060058\nstore8 7700000000000000013 r0\nstore8 8600000000000060058 0\nload8 r0 8600000000000060059\nstore8 7700000000000000014 r0\nstore8 8600000000000060059 0\nload8 r0 8600000000000060060\nstore8 7700000000000000015 r0\nstore8 8600000000000060060 0\nload8 r0 8600000000000060061\nstore8 7800000000000000012 r0\nstore8 8600000000000060061 0\nload8 r0 8600000000000060062\nstore8 7800000000000000013 r0\nstore8 8600000000000060062 0\nload8 r0 8600000000000060063\nstore8 7800000000000000014 r0\nstore8 8600000000000060063 0\nload8 r0 8600000000000060064\nstore8 7800000000000000015 r0\nstore8 8600000000000060064 0\nload8 r0 8600000000000060065\nstore8 7800000000000000016 r0\nstore8 8600000000000060065 0\nload8 r0 8600000000000060066\nstore8 7800000000000000017 r0\nstore8 8600000000000060066 0\nload8 r0 8600000000000060067\nstore8 7800000000000000018 r0\nstore8 8600000000000060067 0\nload8 r0 8600000000000060068\nstore8 7800000000000000019 r0\nstore8 8600000000000060068 0\nload8 r0 8600000000000060069\nstore8 7300000000000000003 r0\nstore8 8600000000000060069 0\nload8 r0 8600000000000060070\nstore8 7300000000000000004 r0\nstore8 8600000000000060070 0\nload8 r0 8600000000000060071\nstore8 7300000000000000005 r0\nstore8 8600000000000060071 0\nload8 r0 8600000000000060072\nstore8 7300000000000000006 r0\nstore8 8600000000000060072 0\nload8 r0 8600000000000060073\nstore8 7300000000000000007 r0\nstore8 8600000000000060073 0\nload8 r0 8600000000000060074\nstore8 7300000000000000008 r0\nstore8 8600000000000060074 0\nload8 r0 8600000000000060075\nstore8 7300000000000000009 r0\nstore8 8600000000000060075 0\nload8 r0 8600000000000060076\nstore8 7300000000000000010 r0\nstore8 8600000000000060076 0\nload8 r0 8600000000000060077\nstore8 7300000000000000011 r0\nstore8 8600000000000060077 0\nload8 r0 8600000000000060078\nstore8 7300000000000000012 r0\nstore8 8600000000000060078 0\nload8 r0 8600000000000060079\nstore8 7300000000000000013 r0\nstore8 8600000000000060079 0\nload8 r0 8600000000000060080\nstore8 7300000000000000014 r0\nstore8 8600000000000060080 0\nload8 r0 8600000000000060081\nstore8 7300000000000000015 r0\nstore8 8600000000000060081 0\nload8 r0 8600000000000060082\nstore8 7500000000000000008 r0\nstore8 8600000000000060082 0\nload8 r0 8600000000000060083\nstore8 7500000000000000009 r0\nstore8 8600000000000060083 0\nload8 r0 8600000000000060084\nstore8 7500000000000000010 r0\nstore8 8600000000000060084 0\nload8 r0 8600000000000060085\nstore8 7500000000000000011 r0\nstore8 8600000000000060085 0\nload8 r0 8600000000000060086\nstore8 7500000000000000012 r0\nstore8 8600000000000060086 0\nload8 r0 8600000000000060087\nstore8 7500000000000000013 r0\nstore8 8600000000000060087 0\nload8 r0 8600000000000060088\nstore8 7500000000000000014 r0\nstore8 8600000000000060088 0\nload8 r0 8600000000000060089\nstore8 7500000000000000015 r0\nstore8 8600000000000060089 0\nhalt\n",
+      "name": "restore live working context"
+    },
+    {
+      "raw": "load8 r0 7400000000000000003\nstore8 8600000000000060000 r0\nload8 r0 7400000000000000008\nstore8 8600000000000060001 r0\nload8 r0 7400000000000000009\nstore8 8600000000000060002 r0\nload8 r0 7400000000000000010\nstore8 8600000000000060003 r0\nload8 r0 7400000000000000011\nstore8 8600000000000060004 r0\nload8 r0 7400000000000000012\nstore8 8600000000000060005 r0\nload8 r0 7400000000000000013\nstore8 8600000000000060006 r0\nload8 r0 7400000000000000014\nstore8 8600000000000060007 r0\nload8 r0 7400000000000000015\nstore8 8600000000000060008 r0\nload8 r0 7400000000000002100\nstore8 8600000000000060009 r0\nload8 r0 7400000000000002101\nstore8 8600000000000060010 r0\nload8 r0 7400000000000002102\nstore8 8600000000000060011 r0\nload8 r0 7400000000000002103\nstore8 8600000000000060012 r0\nload8 r0 7400000000000002104\nstore8 8600000000000060013 r0\nload8 r0 7400000000000002105\nstore8 8600000000000060014 r0\nload8 r0 7400000000000002106\nstore8 8600000000000060015 r0\nload8 r0 7400000000000002107\nstore8 8600000000000060016 r0\nload8 r0 7400000000000002200\nstore8 8600000000000060017 r0\nload8 r0 7400000000000002201\nstore8 8600000000000060018 r0\nload8 r0 7400000000000002202\nstore8 8600000000000060019 r0\nload8 r0 7400000000000002203\nstore8 8600000000000060020 r0\nload8 r0 7400000000000002204\nstore8 8600000000000060021 r0\nload8 r0 7400000000000002205\nstore8 8600000000000060022 r0\nload8 r0 7400000000000002206\nstore8 8600000000000060023 r0\nload8 r0 7400000000000002207\nstore8 8600000000000060024 r0\nload8 r0 7400000000000002208\nstore8 8600000000000060025 r0\nload8 r0 7400000000000002209\nstore8 8600000000000060026 r0\nload8 r0 7400000000000002210\nstore8 8600000000000060027 r0\nload8 r0 7400000000000002211\nstore8 8600000000000060028 r0\nload8 r0 7400000000000002212\nstore8 8600000000000060029 r0\nload8 r0 7400000000000002213\nstore8 8600000000000060030 r0\nload8 r0 7400000000000002214\nstore8 8600000000000060031 r0\nload8 r0 7400000000000002215\nstore8 8600000000000060032 r0\nload8 r0 7400000000000002216\nstore8 8600000000000060033 r0\nload8 r0 7400000000000002217\nstore8 8600000000000060034 r0\nload8 r0 7400000000000002218\nstore8 8600000000000060035 r0\nload8 r0 7400000000000002219\nstore8 8600000000000060036 r0\nload8 r0 7400000000000002220\nstore8 8600000000000060037 r0\nload8 r0 7400000000000002221\nstore8 8600000000000060038 r0\nload8 r0 7400000000000002222\nstore8 8600000000000060039 r0\nload8 r0 7400000000000002223\nstore8 8600000000000060040 r0\nload8 r0 7400000000000002224\nstore8 8600000000000060041 r0\nload8 r0 7400000000000002225\nstore8 8600000000000060042 r0\nload8 r0 7400000000000002226\nstore8 8600000000000060043 r0\nload8 r0 7400000000000002227\nstore8 8600000000000060044 r0\nload8 r0 7400000000000002228\nstore8 8600000000000060045 r0\nload8 r0 7400000000000002229\nstore8 8600000000000060046 r0\nload8 r0 7400000000000002230\nstore8 8600000000000060047 r0\nload8 r0 7400000000000002231\nstore8 8600000000000060048 r0\nload8 r0 7700000000000000004\nstore8 8600000000000060049 r0\nload8 r0 7700000000000000005\nstore8 8600000000000060050 r0\nload8 r0 7700000000000000006\nstore8 8600000000000060051 r0\nload8 r0 7700000000000000007\nstore8 8600000000000060052 r0\nload8 r0 7700000000000000008\nstore8 8600000000000060053 r0\nload8 r0 7700000000000000009\nstore8 8600000000000060054 r0\nload8 r0 7700000000000000010\nstore8 8600000000000060055 r0\nload8 r0 7700000000000000011\nstore8 8600000000000060056 r0\nload8 r0 7700000000000000012\nstore8 8600000000000060057 r0\nload8 r0 7700000000000000013\nstore8 8600000000000060058 r0\nload8 r0 7700000000000000014\nstore8 8600000000000060059 r0\nload8 r0 7700000000000000015\nstore8 8600000000000060060 r0\nload8 r0 7800000000000000012\nstore8 8600000000000060061 r0\nload8 r0 7800000000000000013\nstore8 8600000000000060062 r0\nload8 r0 7800000000000000014\nstore8 8600000000000060063 r0\nload8 r0 7800000000000000015\nstore8 8600000000000060064 r0\nload8 r0 7800000000000000016\nstore8 8600000000000060065 r0\nload8 r0 7800000000000000017\nstore8 8600000000000060066 r0\nload8 r0 7800000000000000018\nstore8 8600000000000060067 r0\nload8 r0 7800000000000000019\nstore8 8600000000000060068 r0\nload8 r0 7300000000000000003\nstore8 8600000000000060069 r0\nload8 r0 7300000000000000004\nstore8 8600000000000060070 r0\nload8 r0 7300000000000000005\nstore8 8600000000000060071 r0\nload8 r0 7300000000000000006\nstore8 8600000000000060072 r0\nload8 r0 7300000000000000007\nstore8 8600000000000060073 r0\nload8 r0 7300000000000000008\nstore8 8600000000000060074 r0\nload8 r0 7300000000000000009\nstore8 8600000000000060075 r0\nload8 r0 7300000000000000010\nstore8 8600000000000060076 r0\nload8 r0 7300000000000000011\nstore8 8600000000000060077 r0\nload8 r0 7300000000000000012\nstore8 8600000000000060078 r0\nload8 r0 7300000000000000013\nstore8 8600000000000060079 r0\nload8 r0 7300000000000000014\nstore8 8600000000000060080 r0\nload8 r0 7300000000000000015\nstore8 8600000000000060081 r0\nload8 r0 7500000000000000008\nstore8 8600000000000060082 r0\nload8 r0 7500000000000000009\nstore8 8600000000000060083 r0\nload8 r0 7500000000000000010\nstore8 8600000000000060084 r0\nload8 r0 7500000000000000011\nstore8 8600000000000060085 r0\nload8 r0 7500000000000000012\nstore8 8600000000000060086 r0\nload8 r0 7500000000000000013\nstore8 8600000000000060087 r0\nload8 r0 7500000000000000014\nstore8 8600000000000060088 r0\nload8 r0 7500000000000000015\nstore8 8600000000000060089 r0\nhalt\n",
+      "name": "preserve live working context"
+    },
+    {
+      "mode": "word",
+      "text": "gatos",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          5
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "cats",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          5
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un gato",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos gatos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres gatos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one cat",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two cats",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three cats",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          5
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "perros",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          6
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "dogs",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          6
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un perro",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos perros",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres perros",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one dog",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two dogs",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three dogs",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          6
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "aves",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          7
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "birds",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          7
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un ave",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos aves",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres aves",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one bird",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two birds",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three birds",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          7
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "peces",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          8
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "fish",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          8
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un pez",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos peces",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres peces",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one fish",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two fish",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three fish",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          8
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "mamíferos",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          40
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "mammals",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          40
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un mamífero",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos mamíferos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres mamíferos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one mammal",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two mammals",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three mammals",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          40
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "vertebrados",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          41
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "vertebrates",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          41
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un vertebrado",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos vertebrados",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres vertebrados",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one vertebrate",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two vertebrates",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three vertebrates",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          41
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "animales",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          42
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "animals",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          42
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un animal",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos animales",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres animales",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one animal",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two animals",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three animals",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          42
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "organismos",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          43
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "organisms",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          43
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un organismo",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos organismos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres organismos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one organism",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two organisms",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three organisms",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          43
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "células",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          77
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "cells",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          77
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "una célula",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos células",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres células",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one cell",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two cells",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three cells",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          77
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "neuronas",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          78
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "neurons",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          78
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "una neurona",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos neuronas",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres neuronas",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one neuron",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two neurons",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three neurons",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          78
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "órganos",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          79
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "organs",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          79
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un órgano",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos órganos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres órganos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one organ",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two organs",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three organs",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          79
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "tejidos",
+      "language": 1,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          86
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "word",
+      "text": "tissues",
+      "language": 2,
+      "fields": [
+        [
+          "7400000000000000024",
+          1
+        ],
+        [
+          "7400000000000000025",
+          86
+        ],
+        [
+          "7400000000000000026",
+          1
+        ],
+        [
+          "7400000000000000027",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "un tejido",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "dos tejidos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "tres tejidos",
+      "language": 1,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "one tissue",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          1
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "two tissues",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "nominal",
+      "text": "three tissues",
+      "language": 2,
+      "fields": [
+        [
+          "7700000000000000016",
+          3
+        ],
+        [
+          "7700000000000000017",
+          86
+        ],
+        [
+          "7700000000000000018",
+          2
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "raw": "load8 r0 8600000000000060000\nstore8 7400000000000000003 r0\nstore8 8600000000000060000 0\nload8 r0 8600000000000060001\nstore8 7400000000000000008 r0\nstore8 8600000000000060001 0\nload8 r0 8600000000000060002\nstore8 7400000000000000009 r0\nstore8 8600000000000060002 0\nload8 r0 8600000000000060003\nstore8 7400000000000000010 r0\nstore8 8600000000000060003 0\nload8 r0 8600000000000060004\nstore8 7400000000000000011 r0\nstore8 8600000000000060004 0\nload8 r0 8600000000000060005\nstore8 7400000000000000012 r0\nstore8 8600000000000060005 0\nload8 r0 8600000000000060006\nstore8 7400000000000000013 r0\nstore8 8600000000000060006 0\nload8 r0 8600000000000060007\nstore8 7400000000000000014 r0\nstore8 8600000000000060007 0\nload8 r0 8600000000000060008\nstore8 7400000000000000015 r0\nstore8 8600000000000060008 0\nload8 r0 8600000000000060009\nstore8 7400000000000002100 r0\nstore8 8600000000000060009 0\nload8 r0 8600000000000060010\nstore8 7400000000000002101 r0\nstore8 8600000000000060010 0\nload8 r0 8600000000000060011\nstore8 7400000000000002102 r0\nstore8 8600000000000060011 0\nload8 r0 8600000000000060012\nstore8 7400000000000002103 r0\nstore8 8600000000000060012 0\nload8 r0 8600000000000060013\nstore8 7400000000000002104 r0\nstore8 8600000000000060013 0\nload8 r0 8600000000000060014\nstore8 7400000000000002105 r0\nstore8 8600000000000060014 0\nload8 r0 8600000000000060015\nstore8 7400000000000002106 r0\nstore8 8600000000000060015 0\nload8 r0 8600000000000060016\nstore8 7400000000000002107 r0\nstore8 8600000000000060016 0\nload8 r0 8600000000000060017\nstore8 7400000000000002200 r0\nstore8 8600000000000060017 0\nload8 r0 8600000000000060018\nstore8 7400000000000002201 r0\nstore8 8600000000000060018 0\nload8 r0 8600000000000060019\nstore8 7400000000000002202 r0\nstore8 8600000000000060019 0\nload8 r0 8600000000000060020\nstore8 7400000000000002203 r0\nstore8 8600000000000060020 0\nload8 r0 8600000000000060021\nstore8 7400000000000002204 r0\nstore8 8600000000000060021 0\nload8 r0 8600000000000060022\nstore8 7400000000000002205 r0\nstore8 8600000000000060022 0\nload8 r0 8600000000000060023\nstore8 7400000000000002206 r0\nstore8 8600000000000060023 0\nload8 r0 8600000000000060024\nstore8 7400000000000002207 r0\nstore8 8600000000000060024 0\nload8 r0 8600000000000060025\nstore8 7400000000000002208 r0\nstore8 8600000000000060025 0\nload8 r0 8600000000000060026\nstore8 7400000000000002209 r0\nstore8 8600000000000060026 0\nload8 r0 8600000000000060027\nstore8 7400000000000002210 r0\nstore8 8600000000000060027 0\nload8 r0 8600000000000060028\nstore8 7400000000000002211 r0\nstore8 8600000000000060028 0\nload8 r0 8600000000000060029\nstore8 7400000000000002212 r0\nstore8 8600000000000060029 0\nload8 r0 8600000000000060030\nstore8 7400000000000002213 r0\nstore8 8600000000000060030 0\nload8 r0 8600000000000060031\nstore8 7400000000000002214 r0\nstore8 8600000000000060031 0\nload8 r0 8600000000000060032\nstore8 7400000000000002215 r0\nstore8 8600000000000060032 0\nload8 r0 8600000000000060033\nstore8 7400000000000002216 r0\nstore8 8600000000000060033 0\nload8 r0 8600000000000060034\nstore8 7400000000000002217 r0\nstore8 8600000000000060034 0\nload8 r0 8600000000000060035\nstore8 7400000000000002218 r0\nstore8 8600000000000060035 0\nload8 r0 8600000000000060036\nstore8 7400000000000002219 r0\nstore8 8600000000000060036 0\nload8 r0 8600000000000060037\nstore8 7400000000000002220 r0\nstore8 8600000000000060037 0\nload8 r0 8600000000000060038\nstore8 7400000000000002221 r0\nstore8 8600000000000060038 0\nload8 r0 8600000000000060039\nstore8 7400000000000002222 r0\nstore8 8600000000000060039 0\nload8 r0 8600000000000060040\nstore8 7400000000000002223 r0\nstore8 8600000000000060040 0\nload8 r0 8600000000000060041\nstore8 7400000000000002224 r0\nstore8 8600000000000060041 0\nload8 r0 8600000000000060042\nstore8 7400000000000002225 r0\nstore8 8600000000000060042 0\nload8 r0 8600000000000060043\nstore8 7400000000000002226 r0\nstore8 8600000000000060043 0\nload8 r0 8600000000000060044\nstore8 7400000000000002227 r0\nstore8 8600000000000060044 0\nload8 r0 8600000000000060045\nstore8 7400000000000002228 r0\nstore8 8600000000000060045 0\nload8 r0 8600000000000060046\nstore8 7400000000000002229 r0\nstore8 8600000000000060046 0\nload8 r0 8600000000000060047\nstore8 7400000000000002230 r0\nstore8 8600000000000060047 0\nload8 r0 8600000000000060048\nstore8 7400000000000002231 r0\nstore8 8600000000000060048 0\nload8 r0 8600000000000060049\nstore8 7700000000000000004 r0\nstore8 8600000000000060049 0\nload8 r0 8600000000000060050\nstore8 7700000000000000005 r0\nstore8 8600000000000060050 0\nload8 r0 8600000000000060051\nstore8 7700000000000000006 r0\nstore8 8600000000000060051 0\nload8 r0 8600000000000060052\nstore8 7700000000000000007 r0\nstore8 8600000000000060052 0\nload8 r0 8600000000000060053\nstore8 7700000000000000008 r0\nstore8 8600000000000060053 0\nload8 r0 8600000000000060054\nstore8 7700000000000000009 r0\nstore8 8600000000000060054 0\nload8 r0 8600000000000060055\nstore8 7700000000000000010 r0\nstore8 8600000000000060055 0\nload8 r0 8600000000000060056\nstore8 7700000000000000011 r0\nstore8 8600000000000060056 0\nload8 r0 8600000000000060057\nstore8 7700000000000000012 r0\nstore8 8600000000000060057 0\nload8 r0 8600000000000060058\nstore8 7700000000000000013 r0\nstore8 8600000000000060058 0\nload8 r0 8600000000000060059\nstore8 7700000000000000014 r0\nstore8 8600000000000060059 0\nload8 r0 8600000000000060060\nstore8 7700000000000000015 r0\nstore8 8600000000000060060 0\nload8 r0 8600000000000060061\nstore8 7800000000000000012 r0\nstore8 8600000000000060061 0\nload8 r0 8600000000000060062\nstore8 7800000000000000013 r0\nstore8 8600000000000060062 0\nload8 r0 8600000000000060063\nstore8 7800000000000000014 r0\nstore8 8600000000000060063 0\nload8 r0 8600000000000060064\nstore8 7800000000000000015 r0\nstore8 8600000000000060064 0\nload8 r0 8600000000000060065\nstore8 7800000000000000016 r0\nstore8 8600000000000060065 0\nload8 r0 8600000000000060066\nstore8 7800000000000000017 r0\nstore8 8600000000000060066 0\nload8 r0 8600000000000060067\nstore8 7800000000000000018 r0\nstore8 8600000000000060067 0\nload8 r0 8600000000000060068\nstore8 7800000000000000019 r0\nstore8 8600000000000060068 0\nload8 r0 8600000000000060069\nstore8 7300000000000000003 r0\nstore8 8600000000000060069 0\nload8 r0 8600000000000060070\nstore8 7300000000000000004 r0\nstore8 8600000000000060070 0\nload8 r0 8600000000000060071\nstore8 7300000000000000005 r0\nstore8 8600000000000060071 0\nload8 r0 8600000000000060072\nstore8 7300000000000000006 r0\nstore8 8600000000000060072 0\nload8 r0 8600000000000060073\nstore8 7300000000000000007 r0\nstore8 8600000000000060073 0\nload8 r0 8600000000000060074\nstore8 7300000000000000008 r0\nstore8 8600000000000060074 0\nload8 r0 8600000000000060075\nstore8 7300000000000000009 r0\nstore8 8600000000000060075 0\nload8 r0 8600000000000060076\nstore8 7300000000000000010 r0\nstore8 8600000000000060076 0\nload8 r0 8600000000000060077\nstore8 7300000000000000011 r0\nstore8 8600000000000060077 0\nload8 r0 8600000000000060078\nstore8 7300000000000000012 r0\nstore8 8600000000000060078 0\nload8 r0 8600000000000060079\nstore8 7300000000000000013 r0\nstore8 8600000000000060079 0\nload8 r0 8600000000000060080\nstore8 7300000000000000014 r0\nstore8 8600000000000060080 0\nload8 r0 8600000000000060081\nstore8 7300000000000000015 r0\nstore8 8600000000000060081 0\nload8 r0 8600000000000060082\nstore8 7500000000000000008 r0\nstore8 8600000000000060082 0\nload8 r0 8600000000000060083\nstore8 7500000000000000009 r0\nstore8 8600000000000060083 0\nload8 r0 8600000000000060084\nstore8 7500000000000000010 r0\nstore8 8600000000000060084 0\nload8 r0 8600000000000060085\nstore8 7500000000000000011 r0\nstore8 8600000000000060085 0\nload8 r0 8600000000000060086\nstore8 7500000000000000012 r0\nstore8 8600000000000060086 0\nload8 r0 8600000000000060087\nstore8 7500000000000000013 r0\nstore8 8600000000000060087 0\nload8 r0 8600000000000060088\nstore8 7500000000000000014 r0\nstore8 8600000000000060088 0\nload8 r0 8600000000000060089\nstore8 7500000000000000015 r0\nstore8 8600000000000060089 0\nhalt\n",
+      "name": "restore live working context"
+    },
+    {
+      "raw": "load8 r0 7400000000000000003\nstore8 8600000000000060000 r0\nload8 r0 7400000000000000008\nstore8 8600000000000060001 r0\nload8 r0 7400000000000000009\nstore8 8600000000000060002 r0\nload8 r0 7400000000000000010\nstore8 8600000000000060003 r0\nload8 r0 7400000000000000011\nstore8 8600000000000060004 r0\nload8 r0 7400000000000000012\nstore8 8600000000000060005 r0\nload8 r0 7400000000000000013\nstore8 8600000000000060006 r0\nload8 r0 7400000000000000014\nstore8 8600000000000060007 r0\nload8 r0 7400000000000000015\nstore8 8600000000000060008 r0\nload8 r0 7400000000000002100\nstore8 8600000000000060009 r0\nload8 r0 7400000000000002101\nstore8 8600000000000060010 r0\nload8 r0 7400000000000002102\nstore8 8600000000000060011 r0\nload8 r0 7400000000000002103\nstore8 8600000000000060012 r0\nload8 r0 7400000000000002104\nstore8 8600000000000060013 r0\nload8 r0 7400000000000002105\nstore8 8600000000000060014 r0\nload8 r0 7400000000000002106\nstore8 8600000000000060015 r0\nload8 r0 7400000000000002107\nstore8 8600000000000060016 r0\nload8 r0 7400000000000002200\nstore8 8600000000000060017 r0\nload8 r0 7400000000000002201\nstore8 8600000000000060018 r0\nload8 r0 7400000000000002202\nstore8 8600000000000060019 r0\nload8 r0 7400000000000002203\nstore8 8600000000000060020 r0\nload8 r0 7400000000000002204\nstore8 8600000000000060021 r0\nload8 r0 7400000000000002205\nstore8 8600000000000060022 r0\nload8 r0 7400000000000002206\nstore8 8600000000000060023 r0\nload8 r0 7400000000000002207\nstore8 8600000000000060024 r0\nload8 r0 7400000000000002208\nstore8 8600000000000060025 r0\nload8 r0 7400000000000002209\nstore8 8600000000000060026 r0\nload8 r0 7400000000000002210\nstore8 8600000000000060027 r0\nload8 r0 7400000000000002211\nstore8 8600000000000060028 r0\nload8 r0 7400000000000002212\nstore8 8600000000000060029 r0\nload8 r0 7400000000000002213\nstore8 8600000000000060030 r0\nload8 r0 7400000000000002214\nstore8 8600000000000060031 r0\nload8 r0 7400000000000002215\nstore8 8600000000000060032 r0\nload8 r0 7400000000000002216\nstore8 8600000000000060033 r0\nload8 r0 7400000000000002217\nstore8 8600000000000060034 r0\nload8 r0 7400000000000002218\nstore8 8600000000000060035 r0\nload8 r0 7400000000000002219\nstore8 8600000000000060036 r0\nload8 r0 7400000000000002220\nstore8 8600000000000060037 r0\nload8 r0 7400000000000002221\nstore8 8600000000000060038 r0\nload8 r0 7400000000000002222\nstore8 8600000000000060039 r0\nload8 r0 7400000000000002223\nstore8 8600000000000060040 r0\nload8 r0 7400000000000002224\nstore8 8600000000000060041 r0\nload8 r0 7400000000000002225\nstore8 8600000000000060042 r0\nload8 r0 7400000000000002226\nstore8 8600000000000060043 r0\nload8 r0 7400000000000002227\nstore8 8600000000000060044 r0\nload8 r0 7400000000000002228\nstore8 8600000000000060045 r0\nload8 r0 7400000000000002229\nstore8 8600000000000060046 r0\nload8 r0 7400000000000002230\nstore8 8600000000000060047 r0\nload8 r0 7400000000000002231\nstore8 8600000000000060048 r0\nload8 r0 7700000000000000004\nstore8 8600000000000060049 r0\nload8 r0 7700000000000000005\nstore8 8600000000000060050 r0\nload8 r0 7700000000000000006\nstore8 8600000000000060051 r0\nload8 r0 7700000000000000007\nstore8 8600000000000060052 r0\nload8 r0 7700000000000000008\nstore8 8600000000000060053 r0\nload8 r0 7700000000000000009\nstore8 8600000000000060054 r0\nload8 r0 7700000000000000010\nstore8 8600000000000060055 r0\nload8 r0 7700000000000000011\nstore8 8600000000000060056 r0\nload8 r0 7700000000000000012\nstore8 8600000000000060057 r0\nload8 r0 7700000000000000013\nstore8 8600000000000060058 r0\nload8 r0 7700000000000000014\nstore8 8600000000000060059 r0\nload8 r0 7700000000000000015\nstore8 8600000000000060060 r0\nload8 r0 7800000000000000012\nstore8 8600000000000060061 r0\nload8 r0 7800000000000000013\nstore8 8600000000000060062 r0\nload8 r0 7800000000000000014\nstore8 8600000000000060063 r0\nload8 r0 7800000000000000015\nstore8 8600000000000060064 r0\nload8 r0 7800000000000000016\nstore8 8600000000000060065 r0\nload8 r0 7800000000000000017\nstore8 8600000000000060066 r0\nload8 r0 7800000000000000018\nstore8 8600000000000060067 r0\nload8 r0 7800000000000000019\nstore8 8600000000000060068 r0\nload8 r0 7300000000000000003\nstore8 8600000000000060069 r0\nload8 r0 7300000000000000004\nstore8 8600000000000060070 r0\nload8 r0 7300000000000000005\nstore8 8600000000000060071 r0\nload8 r0 7300000000000000006\nstore8 8600000000000060072 r0\nload8 r0 7300000000000000007\nstore8 8600000000000060073 r0\nload8 r0 7300000000000000008\nstore8 8600000000000060074 r0\nload8 r0 7300000000000000009\nstore8 8600000000000060075 r0\nload8 r0 7300000000000000010\nstore8 8600000000000060076 r0\nload8 r0 7300000000000000011\nstore8 8600000000000060077 r0\nload8 r0 7300000000000000012\nstore8 8600000000000060078 r0\nload8 r0 7300000000000000013\nstore8 8600000000000060079 r0\nload8 r0 7300000000000000014\nstore8 8600000000000060080 r0\nload8 r0 7300000000000000015\nstore8 8600000000000060081 r0\nload8 r0 7500000000000000008\nstore8 8600000000000060082 r0\nload8 r0 7500000000000000009\nstore8 8600000000000060083 r0\nload8 r0 7500000000000000010\nstore8 8600000000000060084 r0\nload8 r0 7500000000000000011\nstore8 8600000000000060085 r0\nload8 r0 7500000000000000012\nstore8 8600000000000060086 r0\nload8 r0 7500000000000000013\nstore8 8600000000000060087 r0\nload8 r0 7500000000000000014\nstore8 8600000000000060088 r0\nload8 r0 7500000000000000015\nstore8 8600000000000060089 r0\nhalt\n",
+      "name": "preserve live working context"
+    },
+    {
+      "mode": "chain-word",
+      "text": "describir",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "describirme",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "explicaras",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "request",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "con",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "pocas",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "palabras",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "forma",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "breve",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "simple",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "terms",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "few",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "porfa",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "mode": "chain-word",
+      "text": "possible",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "raw": "store8 8100000000000000003 0\nhalt\n",
+      "name": "open supervised request extension"
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "me explicas",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          34
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          34
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "me puedes describir",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          35
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          35
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "podrías describirme",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          36
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          36
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "quisiera que me explicaras",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          37
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          37
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "quiero que me expliques",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          38
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          38
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "necesito información",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          39
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          39
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "can you describe",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          40
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          40
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "could you describe",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          41
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          41
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "i would like information",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          42
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          42
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "i request information",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          43
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          43
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "would you explain",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          44
+        ],
+        [
+          "8100000000000000017",
+          1
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          8
+        ],
+        [
+          "7800000000000000176",
+          44
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ],
+        [
+          "8100000000000000512",
+          104
+        ],
+        [
+          "8100000000000000513",
+          195
+        ],
+        [
+          "8100000000000000514",
+          161
+        ],
+        [
+          "8100000000000000515",
+          98
+        ],
+        [
+          "8100000000000000516",
+          108
+        ],
+        [
+          "8100000000000000517",
+          97
+        ],
+        [
+          "8100000000000000518",
+          109
+        ],
+        [
+          "8100000000000000519",
+          101
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "con pocas palabras",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          45
+        ],
+        [
+          "8100000000000000017",
+          3
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          45
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "de forma breve",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          46
+        ],
+        [
+          "8100000000000000017",
+          3
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          46
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "in simple terms",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          47
+        ],
+        [
+          "8100000000000000017",
+          3
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          47
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "in a few words",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          48
+        ],
+        [
+          "8100000000000000017",
+          3
+        ],
+        [
+          "8100000000000000018",
+          1
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          48
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "porfa",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          49
+        ],
+        [
+          "8100000000000000017",
+          2
+        ],
+        [
+          "8100000000000000018",
+          0
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          49
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "si puedes",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          50
+        ],
+        [
+          "8100000000000000017",
+          2
+        ],
+        [
+          "8100000000000000018",
+          0
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          50
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-teach",
+      "text": "if possible",
+      "language": 1,
+      "fields": [
+        [
+          "8100000000000000016",
+          51
+        ],
+        [
+          "8100000000000000017",
+          2
+        ],
+        [
+          "8100000000000000018",
+          0
+        ],
+        [
+          "8100000000000000019",
+          0
+        ],
+        [
+          "8100000000000000020",
+          0
+        ],
+        [
+          "7800000000000000176",
+          51
+        ],
+        [
+          "7800000000000000177",
+          5
+        ],
+        [
+          "7800000000000000178",
+          0
+        ]
+      ],
+      "dialogue": false
+    },
+    {
+      "mode": "rephrase-seal",
+      "text": "",
+      "language": 1,
+      "fields": [],
+      "dialogue": false
+    },
+    {
+      "raw": "load8 r0 8600000000000060000\nstore8 7400000000000000003 r0\nstore8 8600000000000060000 0\nload8 r0 8600000000000060001\nstore8 7400000000000000008 r0\nstore8 8600000000000060001 0\nload8 r0 8600000000000060002\nstore8 7400000000000000009 r0\nstore8 8600000000000060002 0\nload8 r0 8600000000000060003\nstore8 7400000000000000010 r0\nstore8 8600000000000060003 0\nload8 r0 8600000000000060004\nstore8 7400000000000000011 r0\nstore8 8600000000000060004 0\nload8 r0 8600000000000060005\nstore8 7400000000000000012 r0\nstore8 8600000000000060005 0\nload8 r0 8600000000000060006\nstore8 7400000000000000013 r0\nstore8 8600000000000060006 0\nload8 r0 8600000000000060007\nstore8 7400000000000000014 r0\nstore8 8600000000000060007 0\nload8 r0 8600000000000060008\nstore8 7400000000000000015 r0\nstore8 8600000000000060008 0\nload8 r0 8600000000000060009\nstore8 7400000000000002100 r0\nstore8 8600000000000060009 0\nload8 r0 8600000000000060010\nstore8 7400000000000002101 r0\nstore8 8600000000000060010 0\nload8 r0 8600000000000060011\nstore8 7400000000000002102 r0\nstore8 8600000000000060011 0\nload8 r0 8600000000000060012\nstore8 7400000000000002103 r0\nstore8 8600000000000060012 0\nload8 r0 8600000000000060013\nstore8 7400000000000002104 r0\nstore8 8600000000000060013 0\nload8 r0 8600000000000060014\nstore8 7400000000000002105 r0\nstore8 8600000000000060014 0\nload8 r0 8600000000000060015\nstore8 7400000000000002106 r0\nstore8 8600000000000060015 0\nload8 r0 8600000000000060016\nstore8 7400000000000002107 r0\nstore8 8600000000000060016 0\nload8 r0 8600000000000060017\nstore8 7400000000000002200 r0\nstore8 8600000000000060017 0\nload8 r0 8600000000000060018\nstore8 7400000000000002201 r0\nstore8 8600000000000060018 0\nload8 r0 8600000000000060019\nstore8 7400000000000002202 r0\nstore8 8600000000000060019 0\nload8 r0 8600000000000060020\nstore8 7400000000000002203 r0\nstore8 8600000000000060020 0\nload8 r0 8600000000000060021\nstore8 7400000000000002204 r0\nstore8 8600000000000060021 0\nload8 r0 8600000000000060022\nstore8 7400000000000002205 r0\nstore8 8600000000000060022 0\nload8 r0 8600000000000060023\nstore8 7400000000000002206 r0\nstore8 8600000000000060023 0\nload8 r0 8600000000000060024\nstore8 7400000000000002207 r0\nstore8 8600000000000060024 0\nload8 r0 8600000000000060025\nstore8 7400000000000002208 r0\nstore8 8600000000000060025 0\nload8 r0 8600000000000060026\nstore8 7400000000000002209 r0\nstore8 8600000000000060026 0\nload8 r0 8600000000000060027\nstore8 7400000000000002210 r0\nstore8 8600000000000060027 0\nload8 r0 8600000000000060028\nstore8 7400000000000002211 r0\nstore8 8600000000000060028 0\nload8 r0 8600000000000060029\nstore8 7400000000000002212 r0\nstore8 8600000000000060029 0\nload8 r0 8600000000000060030\nstore8 7400000000000002213 r0\nstore8 8600000000000060030 0\nload8 r0 8600000000000060031\nstore8 7400000000000002214 r0\nstore8 8600000000000060031 0\nload8 r0 8600000000000060032\nstore8 7400000000000002215 r0\nstore8 8600000000000060032 0\nload8 r0 8600000000000060033\nstore8 7400000000000002216 r0\nstore8 8600000000000060033 0\nload8 r0 8600000000000060034\nstore8 7400000000000002217 r0\nstore8 8600000000000060034 0\nload8 r0 8600000000000060035\nstore8 7400000000000002218 r0\nstore8 8600000000000060035 0\nload8 r0 8600000000000060036\nstore8 7400000000000002219 r0\nstore8 8600000000000060036 0\nload8 r0 8600000000000060037\nstore8 7400000000000002220 r0\nstore8 8600000000000060037 0\nload8 r0 8600000000000060038\nstore8 7400000000000002221 r0\nstore8 8600000000000060038 0\nload8 r0 8600000000000060039\nstore8 7400000000000002222 r0\nstore8 8600000000000060039 0\nload8 r0 8600000000000060040\nstore8 7400000000000002223 r0\nstore8 8600000000000060040 0\nload8 r0 8600000000000060041\nstore8 7400000000000002224 r0\nstore8 8600000000000060041 0\nload8 r0 8600000000000060042\nstore8 7400000000000002225 r0\nstore8 8600000000000060042 0\nload8 r0 8600000000000060043\nstore8 7400000000000002226 r0\nstore8 8600000000000060043 0\nload8 r0 8600000000000060044\nstore8 7400000000000002227 r0\nstore8 8600000000000060044 0\nload8 r0 8600000000000060045\nstore8 7400000000000002228 r0\nstore8 8600000000000060045 0\nload8 r0 8600000000000060046\nstore8 7400000000000002229 r0\nstore8 8600000000000060046 0\nload8 r0 8600000000000060047\nstore8 7400000000000002230 r0\nstore8 8600000000000060047 0\nload8 r0 8600000000000060048\nstore8 7400000000000002231 r0\nstore8 8600000000000060048 0\nload8 r0 8600000000000060049\nstore8 7700000000000000004 r0\nstore8 8600000000000060049 0\nload8 r0 8600000000000060050\nstore8 7700000000000000005 r0\nstore8 8600000000000060050 0\nload8 r0 8600000000000060051\nstore8 7700000000000000006 r0\nstore8 8600000000000060051 0\nload8 r0 8600000000000060052\nstore8 7700000000000000007 r0\nstore8 8600000000000060052 0\nload8 r0 8600000000000060053\nstore8 7700000000000000008 r0\nstore8 8600000000000060053 0\nload8 r0 8600000000000060054\nstore8 7700000000000000009 r0\nstore8 8600000000000060054 0\nload8 r0 8600000000000060055\nstore8 7700000000000000010 r0\nstore8 8600000000000060055 0\nload8 r0 8600000000000060056\nstore8 7700000000000000011 r0\nstore8 8600000000000060056 0\nload8 r0 8600000000000060057\nstore8 7700000000000000012 r0\nstore8 8600000000000060057 0\nload8 r0 8600000000000060058\nstore8 7700000000000000013 r0\nstore8 8600000000000060058 0\nload8 r0 8600000000000060059\nstore8 7700000000000000014 r0\nstore8 8600000000000060059 0\nload8 r0 8600000000000060060\nstore8 7700000000000000015 r0\nstore8 8600000000000060060 0\nload8 r0 8600000000000060061\nstore8 7800000000000000012 r0\nstore8 8600000000000060061 0\nload8 r0 8600000000000060062\nstore8 7800000000000000013 r0\nstore8 8600000000000060062 0\nload8 r0 8600000000000060063\nstore8 7800000000000000014 r0\nstore8 8600000000000060063 0\nload8 r0 8600000000000060064\nstore8 7800000000000000015 r0\nstore8 8600000000000060064 0\nload8 r0 8600000000000060065\nstore8 7800000000000000016 r0\nstore8 8600000000000060065 0\nload8 r0 8600000000000060066\nstore8 7800000000000000017 r0\nstore8 8600000000000060066 0\nload8 r0 8600000000000060067\nstore8 7800000000000000018 r0\nstore8 8600000000000060067 0\nload8 r0 8600000000000060068\nstore8 7800000000000000019 r0\nstore8 8600000000000060068 0\nload8 r0 8600000000000060069\nstore8 7300000000000000003 r0\nstore8 8600000000000060069 0\nload8 r0 8600000000000060070\nstore8 7300000000000000004 r0\nstore8 8600000000000060070 0\nload8 r0 8600000000000060071\nstore8 7300000000000000005 r0\nstore8 8600000000000060071 0\nload8 r0 8600000000000060072\nstore8 7300000000000000006 r0\nstore8 8600000000000060072 0\nload8 r0 8600000000000060073\nstore8 7300000000000000007 r0\nstore8 8600000000000060073 0\nload8 r0 8600000000000060074\nstore8 7300000000000000008 r0\nstore8 8600000000000060074 0\nload8 r0 8600000000000060075\nstore8 7300000000000000009 r0\nstore8 8600000000000060075 0\nload8 r0 8600000000000060076\nstore8 7300000000000000010 r0\nstore8 8600000000000060076 0\nload8 r0 8600000000000060077\nstore8 7300000000000000011 r0\nstore8 8600000000000060077 0\nload8 r0 8600000000000060078\nstore8 7300000000000000012 r0\nstore8 8600000000000060078 0\nload8 r0 8600000000000060079\nstore8 7300000000000000013 r0\nstore8 8600000000000060079 0\nload8 r0 8600000000000060080\nstore8 7300000000000000014 r0\nstore8 8600000000000060080 0\nload8 r0 8600000000000060081\nstore8 7300000000000000015 r0\nstore8 8600000000000060081 0\nload8 r0 8600000000000060082\nstore8 7500000000000000008 r0\nstore8 8600000000000060082 0\nload8 r0 8600000000000060083\nstore8 7500000000000000009 r0\nstore8 8600000000000060083 0\nload8 r0 8600000000000060084\nstore8 7500000000000000010 r0\nstore8 8600000000000060084 0\nload8 r0 8600000000000060085\nstore8 7500000000000000011 r0\nstore8 8600000000000060085 0\nload8 r0 8600000000000060086\nstore8 7500000000000000012 r0\nstore8 8600000000000060086 0\nload8 r0 8600000000000060087\nstore8 7500000000000000013 r0\nstore8 8600000000000060087 0\nload8 r0 8600000000000060088\nstore8 7500000000000000014 r0\nstore8 8600000000000060088 0\nload8 r0 8600000000000060089\nstore8 7500000000000000015 r0\nstore8 8600000000000060089 0\nhalt\n",
+      "name": "restore live working context"
+    }
+  ]
+}

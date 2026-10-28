@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "base_bbyq_commit": "de285cb846593f43c593ac79f617be7d4204fca1",
+  "interface_source_commit": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+  "host_source_commit": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+  "agent_image_reused": true,
+  "checkpoint_sha256": "1083fbcb6a992d78fcbb11c4e8ca2f269f79fbbb3fcbf85e6fe049e69a8ad72d",
+  "controller_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+  "controller_bytes": 795328,
+  "executable_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+  "linked_source_sha256": "946cce5db67e905265d56b381dcced232761f4bb6f18e56e5e244f7d30acd47d",
+  "grammar_sha256": "095cbfca693d6c2f64bca27222b74c733cefe54a1a1bfd3f67176aecbaedbe2e",
+  "bytecode_sha256": "a0adf1cae849f89a9df75c27c37ebbdea6da430c8bfbff37d4a45ba39ad22a57",
+  "interface_words": 110,
+  "target_aliases": 69,
+  "command_frames": 74,
+  "grammar": "Original finite command frames plus XI-induced variable frames requiring two distinct target witnesses",
+  "prior_training_replayed": false,
+  "migration_bytes_changed": 14830,
+  "control_migration_bytes_changed": 2560,
+  "legacy_control_sha256": "d9a32f841f02c6de6330a9c5993b24d448fe3f1043b279b62cb0544b43d9de31",
+  "legacy_control_sha256s": [
+    "d9a32f841f02c6de6330a9c5993b24d448fe3f1043b279b62cb0544b43d9de31",
+    "f10a24753e57218406e85bbc5f2cb64b3f60410420e5b62eefca7274dc117475"
+  ],
+  "social_stage": "E025",
+  "social_fragment_lessons": 72,
+  "social_response_lessons": 18,
+  "w4u_migration_bytes_changed": 1458,
+  "legacy_w4u_sha256": "58c33dd9fa36b3f6eb218e7c0d1f9ca3cb0496bc719755272bfaf244cf427ff7",
+  "agents": {
+    "engine": "W4u",
+    "version": "0.1",
+    "artifact_sha256": "b09284b4bbd7586d6bc61752566db040e8383481dbfe12e7dddf9d37d673e37a",
+    "architecture": "bounded cooperative XI roles; sequential over one RVPC2",
+    "max_steps": 2,
+    "planner_sha256": "1cc5ef09e837b53b1be832424e157cf5122768be1e1b623577d13f06f79912de",
+    "explorer_sha256": "7d74f0bf1cc19daecc72b6c81a21b39cf7834809194d117a1b73aa89b6b83e08",
+    "verifier_sha256": "cc139e0a4b5d53b6762482257dc57c981df4a1e85685688fe3da1e6f0a1b75d1",
+    "advance_sha256": "a7f1d64a08db6f51da1b20ae9f9359ed896e775227cb95063c251184d72952da"
+  },
+  "metadata": {
+    "format": "RXE",
+    "version": 2,
+    "abi": "BBYQ-conversation-v1",
+    "ui": "chat",
+    "app_id": "org.reverse.bbyq",
+    "title": "BBY Q",
+    "app_version": "E025-Chain-1",
+    "source_sha": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+    "instructions": 12207,
+    "seed_bytes": 795328,
+    "input_bytes": 255,
+    "bytes": 1014739
+  },
+  "legacy_executable_sha256": "2e189e11a9ceda2d4dfc2299e61892929dc696411d595b8e3c138c8134c2802f",
+  "legacy_social_sha256": "34e8546a00c5df40327a75d59a69b5b12045a61c7c539177bdf04a4764bb68f3",
+  "chain": {
+    "profile": {
+      "name": "E025",
+      "schema": 25,
+      "topics": 64,
+      "accounts": 64,
+      "additional_lexical_entries": 8192,
+      "additional_facts": 4096,
+      "arithmetic_spellings": 128,
+      "social_fragments": 255,
+      "social_acts_per_turn": 8,
+      "input_bytes": 255,
+      "input_words": 15,
+      "training_policy": "development failures select curriculum; independent exams gate promotion; resumable finite runs"
+    },
+    "curriculum_lessons": 353,
+    "curriculum_sha256": "aca0e8721d2f96a38607a72cb52d69e09ddae476ac05d017e013c7a951a1e785",
+    "induced_command_frames": 32,
+    "command_teaching_presentations": 64,
+    "interface_migration_bytes": 1082
+  },
+  "compatible_w4u_sha256s": [
+    "34e8546a00c5df40327a75d59a69b5b12045a61c7c539177bdf04a4764bb68f3",
+    "58c33dd9fa36b3f6eb218e7c0d1f9ca3cb0496bc719755272bfaf244cf427ff7"
+  ]
+}

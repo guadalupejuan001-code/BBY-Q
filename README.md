@@ -1,10 +1,16 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
+**Entrega actual: E025-Chain-1 + W4u 0.1**, integrada en REVERSE 2.5.1.
+Se recupera el agente exacto de la APK 2.5.0, su currículo XI, estado y
+migraciones. [Fuentes recuperadas, compilación y comprobaciones](ai/releases/e025/README.md).
+El historial conservado E022 y su diagnóstico siguen disponibles debajo;
+la identidad del motor W4u se conserva.
+
 **W4u 0.1 — work for u:** motor propio de trabajo con planificador, explorador y
 verificador en XI. BBY Q conserva la conversación; REVERSE-PC aloja y ejecuta
 los programas internos. [Arquitectura, contrato y límites](docs/W4U_ENGINE.md).
 
-**Ruta activa: E022 — composición aprendida de peticiones ES/EN en XI.**
+**Base conservada: E022 — composición aprendida de peticiones ES/EN en XI.**
 
 **Corrección posterior del intérprete:** admite «Oye, ¿qué requiere…?» y deja
 de descartar palabras funcionales en preguntas incompletas, como «qué requiere
