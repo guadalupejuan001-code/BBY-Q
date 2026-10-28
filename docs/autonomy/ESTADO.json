@@ -37,7 +37,12 @@
     },
     "acceso_actual": "Nueva ejecución completada en este ciclo; compiló y ejecutó XI, enseñanza, examen y regresiones."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "ciclo-persistencia-e030-20261028T2338",
+    "rama": "autonomy/bbyq-preserve-frames-20261028",
+    "fase": "preparacion",
+    "inicio_utc": "2026-10-28T23:35:34.933Z"
+  },
   "ultima_actividad": {
     "id": "ciclo-patrones-xi-20261028T2238",
     "tipo": "aprendizaje_supervisado_de_marcos_en_XI",
