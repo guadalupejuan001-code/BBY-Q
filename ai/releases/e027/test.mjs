@@ -29,6 +29,8 @@ check(ask('hello', 'en').includes('BBY Q'), 'E025 English remains available');
 check(ask('aprende que tatuy es animal').includes('Aprendí'), 'E025 native learning');
 check(ask('que es tatuy').toLowerCase().includes('animal'), 'E025 factual retrieval');
 
+const stateBytesBeforeContext = fs.statSync(state).size;
+const appendStartNs = process.hrtime.bigint();
 const records = [];
 for (let i = 0; i < 200; i++) {
   const marker = 'ref_' + String(i).padStart(3, '0');
@@ -39,6 +41,8 @@ for (let i = 0; i < 200; i++) {
   equals(output, 'CTX guardado #' + String(i).padStart(3, '0'), 'append stores sequential segment '+i);
   records.push(line);
 }
+const appendMilliseconds = Number(process.hrtime.bigint() - appendStartNs) / 1e6;
+const stateBytesWithContext = fs.statSync(state).size;
 const bytes = records.reduce((s, row) => s + Buffer.byteLength(row, 'utf8'), 0);
 equals(ask('@ctx status'), 'CTX n=200 bytes=' + String(bytes).padStart(6,'0') + ' limite=114688', 'persisted live byte count');
 for (const i of [0, 37, 100, 199]) {
@@ -64,9 +68,10 @@ equals(ask('@ctx status'), 'CTX n=000 bytes=000000 limite=114688', 'clear resets
 equals(ask('@ctx find ref_000'), 'CTX sin coincidencia.', 'cleared text cannot be retrieved');
 check(ask('que es tatuy').toLowerCase().includes('animal'), 'clearing context preserves knowledge');
 
+const fullBytesBeforeClear = bytes + Buffer.byteLength('puenteazul' + utf8, 'utf8');
 const audit = path.join(out, 'audit-clear.xi');
 fs.writeFileSync(audit, '#!reverse-pc-machine-v1\n' +
-  'set r0 0\nset r1 0\nlabel audit_loop\ncmp r0 '+(bytes+16)+'\njge audit_end\n' +
+  'set r0 0\nset r1 0\nlabel audit_loop\ncmp r0 '+fullBytesBeforeClear+'\njge audit_end\n' +
   'set r7 8900000000000100000\nadd r7 r0\nload8 r2 $r7\nadd r1 r2\nadd r0 1\njmp audit_loop\n' +
   'label audit_end\nprint r1\nhalt\n');
 const auditOutput = execFileSync(runtime,['run', audit, state, state],{encoding:'utf8'});
@@ -75,6 +80,9 @@ equals(JSON.stringify(auditNumbers), JSON.stringify([0]), 'clear physically over
 const report = {
   version:'E027-Context-1-dev', checks, app_turns:turns, archived_records:200,
   tested_context_bytes:bytes, capacity_bytes:114688,
+  append_elapsed_ms:Math.round(appendMilliseconds),
+  serialized_state_bytes_before_context:stateBytesBeforeContext,
+  serialized_state_bytes_after_200_records:stateBytesWithContext,
   evaluated:['original greeting', 'persistent original facts', '200 append cycles',
    'indexed retrieval across process restarts', 'case-insensitive byte search',
    'search across segment boundary', 'UTF-8', 'oversize rejection', 'physical erase',
