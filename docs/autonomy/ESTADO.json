@@ -1,71 +1,71 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T15:05:52.115Z",
-  "estado": "ejecutor_verificado_regresion_e022_aprobada",
+  "actualizado_utc": "2026-10-28T19:27:41.555Z",
+  "estado": "diagnostico_e025_completado_dos_hechos_pendiente",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-w4u-daily-20261028",
-  "commit_codigo_observado": "6a48224e63d1a23d6bfc4866902749875650d6e8",
-  "rama_continuidad": "autonomy/bbyq-w4u-daily-20261028",
+  "rama_codigo_observada": "autonomy/bbyq-two-facts-e025-20261028",
+  "commit_codigo_observado": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
+  "rama_continuidad": "autonomy/bbyq-two-facts-e025-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
-    "archivo": "ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
-    "manifiesto": "ai/checkpoints/e022-manifest.json",
-    "commit_fuente": "e8498b765a6a95aa556d0e816aab926257769391",
-    "sha256_decodificado_declarado": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
-    "bytes_decodificados_declarados": 500410,
-    "verificacion_en_esta_sesion": "CI nueva: SHA-256 y 500410 bytes comprobados; snapshot lógico reproducido idéntico; memoria previa conservada."
+    "archivo": "ai/releases/e025/controller.rvp.gz.b64",
+    "version": "E025-Chain-1",
+    "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+    "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "verificacion_en_este_ciclo": "Nueva CI: cápsula y semilla intactas por SHA-256; 31 comprobaciones E025, 21 W4u, 96 controles atómicos. Ningún checkpoint candidato publicado."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
-    "workflow": ".github/workflows/bbyq-e022.yml",
-    "job": "compositional-requests",
+    "workflow": ".github/workflows/bbyq-e025.yml",
+    "job": "e025",
     "runner": "ubuntu-latest",
-    "timeout_minutos": 35,
-    "runtime_commit": "6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98",
+    "timeout_minutos": 15,
+    "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
-    "acceso_definicion": "verificado mediante GitHub",
     "ultima_ejecucion_observada": {
-      "id": 40711150887,
-      "job_id": 122896463149,
-      "estado": "completed",
+      "id": 40754152612,
+      "job_id": 123048435728,
       "conclusion": "success",
-      "head_sha": "6a48224e63d1a23d6bfc4866902749875650d6e8",
-      "checkout_merge_sha": "a5b81dc0ab24bc94461b90c78a6d04bf37e3b40c",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887",
-      "artefacto": {
-        "id": 12826737489,
-        "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887/artifacts/12826737489",
-        "sha256_zip": "c195b3f0bcd9b4e17e91462e82cf5e6ae59f1fbd00b822116b41483c1b964ab3"
-      },
-      "informe_persistido": "docs/autonomy/evidencias/ciclo-20261028T145747Z-e022-results.json"
+      "head_sha": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
+      "checkout_merge_sha": "051e00f53c5ac5c9f3abcbe744d46ce979d866e6",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612",
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612/artifacts/12844468388",
+      "artifact_sha256": "6717a433c236493747e0dfb10abec564ebf625a6d5a77bebc4cff2300fee1fa3"
     },
-    "ejecucion_nueva_en_esta_sesion": true,
-    "acceso_a_lanzamiento_actual": "Verificado mediante evento pull_request en el workflow existente; no se usó workflow_dispatch ni un nuevo ejecutor."
+    "acceso_actual": "Verificado por CI nueva del PR #29; misma infraestructura configurada."
   },
   "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-20261028T145747Z",
-    "tipo": "ingenieria_y_verificacion_nativa",
-    "registro": "docs/autonomy/ejecuciones/ciclo-20261028T145747Z.json",
-    "entrenamiento_nuevo": false,
-    "reproduccion_campana_e022": true,
+    "id": "ciclo-dos-hechos-e025-20261028T1925",
+    "tipo": "evaluacion_independiente_e025",
+    "registro": "docs/autonomy/ejecuciones/ciclo-dos-hechos-e025-20261028T1925.json",
+    "evidencia": "docs/autonomy/evidencias/ciclo-dos-hechos-e025-20261028T1925-results.json",
+    "entrenamiento_nuevo_publicado": false,
     "evaluacion_nativa_ejecutada": true
   },
   "cambios": [
-    "Se añade concurrency al workflow E022, grupo bbyq-e022-native con cancel-in-progress:false. Serializa E022 en este repositorio; no bloquea por sí solo otros workflows ni prueba coordinación W4u.",
-    "CI nueva con 6365 comprobaciones y checkpoint idéntico; no se añadió aprendizaje a la memoria publicada."
+    "Se localiza E025 y W4u publicados; se corrige el estado obsoleto que los consideraba ausentes.",
+    "Diagnóstico reproducible con 24 sujetos, 96 controles atómicos y 48 consultas conjuntas: cobertura conjunta 0/48.",
+    "Misma cápsula y semilla E025, sin nuevo aprendizaje publicado; tests y configuración de CI propuestos en PR #29."
   ],
-  "bloqueos": [
-    {
-      "id": "w4u_fuente_no_verificada",
-      "descripcion": "No se identificó una versión de W4u en los árboles y documentación inspeccionados de REVERSE-PC. La aplicación publicada documenta E016, distinta de E022 de BBY-Q.",
-      "requisito": "Localizar revisión, ruta, configuración y pruebas de W4u antes de atribuirle coordinación; no impide continuar trabajo nativo en BBY-Q."
-    }
-  ],
+  "bloqueos": [],
   "hipotesis_pendientes": [
-    "Medir si el estado vigente puede componer dos hechos de predicados diferentes sobre un mismo referente; no se midió esa habilidad en este ciclo."
+    "E025 recupera hechos individuales pero no cubre ambos hechos con las dos formulaciones examinadas. Diagnosticar si el fallo está en el análisis de dos intenciones, su representación o la composición de salida XI.",
+    "W4u 0.1 pasó 21 controles nativos; la coordinación autónoma del desarrollo del repositorio no queda demostrada por esos fixtures."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "e8498b765a6a95aa556d0e816aab926257769391",
-  "revision_notas_previa": "f12537cbe0a4e84729e6b76f726c098443546b32"
+  "commit_main_observado": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+  "revision_notas_previa": "99b094b693f5b4ca3c1eb8a13192a8917440fc47",
+  "resultados_dos_hechos": {
+    "controles_atomicos": {
+      "correct": 96,
+      "total": 96
+    },
+    "cobertura_conjunta": {
+      "correct": 0,
+      "total": 48
+    },
+    "alcance": "Factual token coverage in 48 fixed bilingual requests, not general language understanding or a complete hallucination metric. Facts taught only to disposable RVPC2 copies; each app-turn is a separate native process."
+  }
 }

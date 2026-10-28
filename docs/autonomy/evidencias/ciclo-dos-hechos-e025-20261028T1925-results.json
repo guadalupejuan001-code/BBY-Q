@@ -1,0 +1,44 @@
+{
+  "diagnostic": {
+    "stage": "E025-two-fact-baseline",
+    "subjects": 24,
+    "atomic_fact_coverage": {
+      "correct": 96,
+      "total": 96
+    },
+    "two_fact_coverage": {
+      "correct": 0,
+      "total": 48
+    },
+    "immutable_app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "immutable_seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "immutable_sources_preserved": true,
+    "new_model_checkpoint_published": false,
+    "scope": "Factual token coverage in 48 fixed bilingual requests, not general language understanding or a complete hallucination metric. Facts taught only to disposable RVPC2 copies; each app-turn is a separate native process.",
+    "cases_file": "ai/releases/e025/two-fact-cases.json"
+  },
+  "e025_regression": {
+    "checks": 31,
+    "version": "E025-Chain-1",
+    "w4u_version": "0.1",
+    "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "retained_independent_concepts": 12,
+    "new_override_writes": 70000,
+    "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+  },
+  "w4u_core": {
+    "checks": 21,
+    "result": "W4U_CORE_PASS",
+    "scope": "Native XI fixtures, not a full Android UI verification or autonomous repository coordinator."
+  },
+  "run": {
+    "id": 40754152612,
+    "job_id": 123048435728,
+    "conclusion": "success",
+    "head_sha": "2f0f5eb02b851faaa4a5157096ef851cd516184f",
+    "checkout_merge_sha": "051e00f53c5ac5c9f3abcbe744d46ce979d866e6",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40754152612/artifacts/12844468388",
+    "artifact_sha256": "6717a433c236493747e0dfb10abec564ebf625a6d5a77bebc4cff2300fee1fa3"
+  }
+}
