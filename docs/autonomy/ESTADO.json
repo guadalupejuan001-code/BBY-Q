@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T15:01:51.969Z",
-  "estado": "continuidad_preparada_ejecucion_nativa_pendiente",
+  "actualizado_utc": "2026-10-28T15:05:52.115Z",
+  "estado": "ejecutor_verificado_regresion_e022_aprobada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "main",
-  "commit_codigo_observado": "e8498b765a6a95aa556d0e816aab926257769391",
+  "rama_codigo_observada": "autonomy/bbyq-w4u-daily-20261028",
+  "commit_codigo_observado": "6a48224e63d1a23d6bfc4866902749875650d6e8",
   "rama_continuidad": "autonomy/bbyq-w4u-daily-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
@@ -13,7 +13,7 @@
     "commit_fuente": "e8498b765a6a95aa556d0e816aab926257769391",
     "sha256_decodificado_declarado": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
     "bytes_decodificados_declarados": 500410,
-    "verificacion_en_esta_sesion": "Manifiesto y presencia en el árbol verificados; no se ha ejecutado la descompresión ni la inferencia."
+    "verificacion_en_esta_sesion": "CI nueva: SHA-256 y 500410 bytes comprobados; snapshot lógico reproducido idéntico; memoria previa conservada."
   },
   "ejecutor": {
     "tipo": "GitHub Actions",
@@ -25,48 +25,47 @@
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "acceso_definicion": "verificado mediante GitHub",
     "ultima_ejecucion_observada": {
-      "id": 40582806741,
-      "conclusion": "success",
-      "commit": "e8498b765a6a95aa556d0e816aab926257769391",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40582806741"
-    },
-    "ejecucion_nueva_en_esta_sesion": false,
-    "acceso_a_lanzamiento_actual": "no probado; comprobar al activar el ciclo"
-  },
-  "ciclo_activo": {
-    "id": "ciclo-20261028T145747Z",
-    "inicio_utc": "2026-10-28T14:57:47.713Z",
-    "objetivo": "Serializar E022 y verificar ejecución nativa en el runner configurado",
-    "criterio": "CI nueva completa con integridad del checkpoint y regresiones E022 aprobadas",
-    "rama": "autonomy/bbyq-w4u-daily-20261028",
-    "ejecutor": {
-      "run_id": 40711150887,
+      "id": 40711150887,
       "job_id": 122896463149,
-      "commit": "6a48224e63d1a23d6bfc4866902749875650d6e8",
+      "estado": "completed",
+      "conclusion": "success",
+      "head_sha": "6a48224e63d1a23d6bfc4866902749875650d6e8",
+      "checkout_merge_sha": "a5b81dc0ab24bc94461b90c78a6d04bf37e3b40c",
       "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887",
-      "estado_observado": "in_progress",
-      "observado_utc": "2026-10-28T15:01:51.969Z"
-    }
+      "artefacto": {
+        "id": 12826737489,
+        "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887/artifacts/12826737489",
+        "sha256_zip": "c195b3f0bcd9b4e17e91462e82cf5e6ae59f1fbd00b822116b41483c1b964ab3"
+      },
+      "informe_persistido": "docs/autonomy/evidencias/ciclo-20261028T145747Z-e022-results.json"
+    },
+    "ejecucion_nueva_en_esta_sesion": true,
+    "acceso_a_lanzamiento_actual": "Verificado mediante evento pull_request en el workflow existente; no se usó workflow_dispatch ni un nuevo ejecutor."
   },
+  "ciclo_activo": null,
   "ultima_actividad": {
-    "tipo": "configuracion_de_continuidad",
-    "registro": "docs/autonomy/ejecuciones/configuracion-20261028T145056Z.json",
-    "entrenamiento_ejecutado": false,
-    "evaluacion_nativa_ejecutada": false
+    "id": "ciclo-20261028T145747Z",
+    "tipo": "ingenieria_y_verificacion_nativa",
+    "registro": "docs/autonomy/ejecuciones/ciclo-20261028T145747Z.json",
+    "entrenamiento_nuevo": false,
+    "reproduccion_campana_e022": true,
+    "evaluacion_nativa_ejecutada": true
   },
   "cambios": [
-    "Se documentan objetivo, estado verificable, siguiente paso y registro inicial; no se cambia el código ni los checkpoints."
+    "Se añade concurrency al workflow E022, grupo bbyq-e022-native con cancel-in-progress:false. Serializa E022 en este repositorio; no bloquea por sí solo otros workflows ni prueba coordinación W4u.",
+    "CI nueva con 6365 comprobaciones y checkpoint idéntico; no se añadió aprendizaje a la memoria publicada."
   ],
   "bloqueos": [
     {
-      "id": "ejecutor_no_probado",
-      "descripcion": "No se ha solicitado una ejecución nueva al preparar la programación. El éxito histórico no confirma disponibilidad actual.",
-      "reintentar_cuando": "La activación tenga acceso al canal autorizado para ejecutar el workflow configurado o a otro ejecutor ya configurado por el usuario."
+      "id": "w4u_fuente_no_verificada",
+      "descripcion": "No se identificó una versión de W4u en los árboles y documentación inspeccionados de REVERSE-PC. La aplicación publicada documenta E016, distinta de E022 de BBY-Q.",
+      "requisito": "Localizar revisión, ruta, configuración y pruebas de W4u antes de atribuirle coordinación; no impide continuar trabajo nativo en BBY-Q."
     }
   ],
   "hipotesis_pendientes": [
-    "Verificar si existen ramas, checkpoints o resultados posteriores al código observado.",
-    "Localizar y comprobar el estado real de W4u y su integración con REVERSE-PC; no está identificado en el árbol main inspeccionado."
+    "Medir si el estado vigente puede componer dos hechos de predicados diferentes sobre un mismo referente; no se midió esa habilidad en este ciclo."
   ],
-  "siguiente": "docs/autonomy/SIGUIENTE.md"
+  "siguiente": "docs/autonomy/SIGUIENTE.md",
+  "commit_main_observado": "e8498b765a6a95aa556d0e816aab926257769391",
+  "revision_notas_previa": "f12537cbe0a4e84729e6b76f726c098443546b32"
 }

@@ -1,35 +1,30 @@
 # Siguiente ciclo
 
-Estado al preparar la continuidad: se consultó `main` en `e8498b765a6a95aa556d0e816aab926257769391`; su checkpoint publicado es E022. Esto es una observación, no una selección fija para activaciones futuras.
+## Verificación completada
 
-## Objetivo inmediato
+El run 40711150887 y su job 122896463149 terminaron con success: 6.365 comprobaciones y checkpoint idéntico. No repetir esta campaña sin nueva evidencia. Evidencia:
+https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887
 
-Comprobar que el ejecutor configurado puede reproducir y examinar el estado vigente antes de enseñar nuevas capacidades, resolviendo primero cualquier checkpoint o rama más reciente y localizando el estado real de W4u.
+La revisión de ingeniería probada es `6a48224e63d1a23d6bfc4866902749875650d6e8`. Los commits posteriores que solo guardan notas usan `[skip ci]` para no repetir una campaña idéntica. Resolver los HEAD actuales y comprobar que ningún cambio posterior altera el código probado. No equiparar una marca de ESTADO.json con la actividad real del runner.
 
-## Requisitos
+Al comenzar otra activación, comprobar cualquier trabajo posterior y conservar la evidencia ya registrada. El acceso al runner quedó verificado mediante el evento pull_request; no se utilizó el comando gh pendiente anterior.
 
-- Acceso al repositorio y al ejecutor ya configurado.
-- Leer `OBJETIVO.md`, `ESTADO.json`, este archivo y el registro enlazado por el estado.
-- Resolver los HEAD y checkpoints actuales y comprobar si ya hay un ciclo activo.
-- Si estos archivos aún no están en `main`, la rama de continuidad inicial es `autonomy/bbyq-w4u-daily-20261028`; contrastarla siempre con cambios posteriores.
-- El ejecutor observado está definido en `.github/workflows/bbyq-e022.yml`, job `compositional-requests`, runner `ubuntu-latest`. No asumir que es el ejecutor actual si la configuración cambió.
+## Objetivo de inteligencia tras validar el runner
 
-## Instrucción pendiente exacta
+Diagnosticar y ampliar la composición de una respuesta con **dos hechos de predicados diferentes sobre el mismo referente**, a partir de memoria XI/Ether, en español e inglés.
 
-Cuando se confirme acceso al canal autorizado de lanzamiento de GitHub Actions y E022 siga siendo la base pertinente, solicitar **una sola vez** el workflow configurado:
+1. Confirmar si la revisión vigente ya permite esa composición. Medir el comportamiento inicial y dejar transcripciones; no suponer una puntuación de partida.
+2. Preparar sujetos de enseñanza y 24 sujetos independientes de examen, sin compartir nombres. Separar los ficheros y las respuestas esperadas del proceso de aprendizaje.
+3. Enseñar hechos y patrones de expresión mediante la ruta nativa. Si hace falta ingeniería, implementar la composición y selección de evidencia en XI/Ether, conservando el transporte existente.
+4. Examinar 48 consultas ES/EN: cada respuesta debe expresar los dos hechos respaldados del mismo sujeto. Añadir controles con un hecho desconocido, negación y cambio de referente; no rellenar la respuesta con hechos inventados.
+5. Comparar antes/después, comprobar persistencia tras reiniciar y ejecutar las regresiones pertinentes de la base vigente. Para E022, conservar las 6.365 comprobaciones de referencia y sus checkpoints.
 
-```sh
-gh workflow run bbyq-e022.yml --repo guadalupejuan001-code/BBY-Q --ref main
-```
+Criterio de aceptación: 48/48 consultas nuevas correctas sobre los dos hechos, controles sin invención ni mezcla de sujetos, persistencia verificada y ninguna pérdida en las regresiones. Si el diagnóstico demuestra que ya lo resuelve, seleccionar otra debilidad demostrada en lugar de repetir esta enseñanza.
 
-Este comando se conserva como instrucción de despacho, **no se ha ejecutado** y no acredita que `gh` esté configurado. Usar únicamente un canal de lanzamiento ya configurado; no instalar ni sustituir un ejecutor para sortear un bloqueo. Resolver la referencia actual antes de despachar si la base cambió. Si el workflow ya está en curso, observarlo en lugar de duplicarlo.
+## Requisito pendiente de W4u e integración
 
-## Criterio de aceptación
+Los árboles inspeccionados de REVERSE-PC (`main` cf7854fc0499801c3206fea38043806060b9ed5d y `feature/workbench-native-20261027` 09adc1290f8492ddccee362ef3906aef264ba48f) no identificaron una versión de W4u. La documentación publicada de la aplicación BBY Q describe E016, mientras BBY-Q publica E022.
 
-Una ejecución nueva identificada por ID, commit y URL concluye con evidencia nativa accesible, verifica la integridad y conservación del checkpoint y registra sus resultados. Un éxito histórico no satisface este criterio. Reproducir E022 tampoco se contará como aprendizaje nuevo.
+Localizar una revisión, ruta, configuración y pruebas verificables de W4u antes de atribuirle coordinación o mover checkpoints a REVERSE-PC. No suponer que un checkpoint mencionado en una conversación está publicado. Esta comprobación no autoriza sustituir un estado más reciente ni borrar memorias de la aplicación.
 
-Tras resolver este requisito, elegir una capacidad concreta de lenguaje, generación, contexto o generalización con un diagnóstico independiente antes/después; mantener el aprendizaje en XI/Ether y conservar los checkpoints anteriores. El siguiente objetivo debe quedar concretado a partir del diagnóstico real.
-
-## Si falla
-
-Registrar el error literal, los comandos realmente ejecutados y los que siguen pendientes. Actualizar `ESTADO.json`, este archivo y el registro del ciclo. No repetir el mismo despacho o entrenamiento sin un cambio verificable del acceso, la configuración o la hipótesis que explica el fallo.
+Actualizar ESTADO.json, este archivo y el registro también ante fallo. Reintentar solo si cambió la evidencia, el acceso o la hipótesis.
