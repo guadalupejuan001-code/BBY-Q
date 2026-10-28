@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T20:46:36.529Z",
-  "estado": "candidato_e026_validado_en_cuatro_formas",
+  "actualizado_utc": "2026-10-28T21:38:48.330Z",
+  "estado": "coexistencia_contexto_y_composicion_en_pruebas",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "autonomy/bbyq-e026-native-composition-20261028",
   "commit_codigo_observado": "4f15e00992c75f73b3a5824b503d2776e37b2311",
-  "rama_continuidad": "autonomy/bbyq-e026-native-composition-20261028",
+  "rama_continuidad": "autonomy/bbyq-context-composition-20261028",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -36,7 +36,15 @@
     },
     "acceso_actual": "Nueva ejecución del workflow E025 del PR #30 completada; mismo runner y dependencias fijadas."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "contexto-composicion-20261028T2138",
+    "inicio_utc": "2026-10-28T21:38:12.250Z",
+    "rama": "autonomy/bbyq-context-composition-20261028",
+    "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+    "run_id": 40773600595,
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
+    "objetivo": "Reunir E027 de main y E026 del PR #30 sin perder memoria, composición ni archivo contextual."
+  },
   "ultima_actividad": {
     "id": "ciclo-e026-composicion-20261028T2038",
     "tipo": "ingenieria_composicion_en_xi",
