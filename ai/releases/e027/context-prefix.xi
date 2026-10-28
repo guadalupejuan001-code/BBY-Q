@@ -688,7 +688,7 @@ add r0 1
 jmp lctx_find_skip_build
 label lctx_find_search_start
 set r6 0
-set r5 -1
+set r5 114688
 mov r12 r12
 sub r12 r4
 label lctx_find_position
@@ -770,8 +770,8 @@ store8 $r7 0
 add r0 1
 jmp lctx_find_skip_clear
 label lctx_find_search_done
-cmp r5 0
-jlt lctx_no_match
+cmp r5 114688
+je lctx_no_match
 jmp lctx_find_matched
 label lctx_find_matched
 load8 r13 8900000000000000002
