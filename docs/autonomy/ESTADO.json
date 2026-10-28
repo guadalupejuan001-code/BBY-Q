@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T14:57:47.713Z",
+  "actualizado_utc": "2026-10-28T15:01:51.969Z",
   "estado": "continuidad_preparada_ejecucion_nativa_pendiente",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "main",
@@ -38,7 +38,15 @@
     "inicio_utc": "2026-10-28T14:57:47.713Z",
     "objetivo": "Serializar E022 y verificar ejecución nativa en el runner configurado",
     "criterio": "CI nueva completa con integridad del checkpoint y regresiones E022 aprobadas",
-    "rama": "autonomy/bbyq-w4u-daily-20261028"
+    "rama": "autonomy/bbyq-w4u-daily-20261028",
+    "ejecutor": {
+      "run_id": 40711150887,
+      "job_id": 122896463149,
+      "commit": "6a48224e63d1a23d6bfc4866902749875650d6e8",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40711150887",
+      "estado_observado": "in_progress",
+      "observado_utc": "2026-10-28T15:01:51.969Z"
+    }
   },
   "ultima_actividad": {
     "tipo": "configuracion_de_continuidad",
