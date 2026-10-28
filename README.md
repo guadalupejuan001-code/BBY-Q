@@ -6,6 +6,16 @@ migraciones. [Fuentes recuperadas, compilación y comprobaciones](ai/releases/e0
 El historial conservado E022 y su diagnóstico siguen disponibles debajo;
 la identidad del motor W4u se conserva.
 
+## Estado de ingeniería del agente (28 octubre 2026)
+
+**Versión de la interfaz Android:** E025-Chain-1 + W4u 0.1. No confundir con las versiones nativas siguientes: **E027, E028 y E029 están integradas como código y tests en `main`, pero no se han desplegado en la APK**.
+
+- **[E027](docs/AI_E027_LONG_CONTEXT.md):** archivo de contexto XI/RVPC2 de hasta 512 fragmentos, 114.688 bytes de texto, con búsquedas, recuperación y borrado persistente. No equivale a una ventana de atención automática.
+- **[E028](docs/AI_E028_GROUNDED_CONTEXT.md):** identificación de entidades, consulta de una o dos propiedades, seguimiento referencial acotado, procedencia `[#NNN]` y abstención por evidencias negativas o contradictorias. CI: 464/464.
+- **[E029](docs/AI_E029_NATURAL_INTAKE.md):** registra afirmaciones sencillas que llegan como mensajes normales ES/EN sin `@ctx add`; el programa XI normaliza una afirmación por turno y reutiliza E027/E028 para contestar. CI: 285/285 controles, 58 admisiones nuevas, 12 entradas ambiguas no admitidas y 24/24 composiciones de desarrollo más 24/24 de transferencia. E028 (464), E027 (429), E025 (31) y W4u (21) conservan sus regresiones en [la CI reproducible](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40774348104).
+
+**Límites reales:** gramática factual estrecha; una relación por afirmación, no extracción de párrafos abiertos ni verificación externa de lo que afirma el usuario. Continúa pendiente la reconciliación con el candidato E026 de composición y la validación de la integración Android. El ingreso y la interpretación candidatos operan en XI; el runtime original sirve de anfitrión.
+
 **W4u 0.1 — work for u:** motor propio de trabajo con planificador, explorador y
 verificador en XI. BBY Q conserva la conversación; REVERSE-PC aloja y ejecuta
 los programas internos. [Arquitectura, contrato y límites](docs/W4U_ENGINE.md).
