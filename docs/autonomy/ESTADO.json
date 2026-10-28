@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T20:38:27.800Z",
+  "actualizado_utc": "2026-10-28T20:43:02.856Z",
   "estado": "candidato_composicion_xi_en_pruebas",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "autonomy/bbyq-two-facts-e025-20261028",
@@ -38,10 +38,18 @@
   "ciclo_activo": {
     "id": "e026-composicion-20261028",
     "inicio_utc": "2026-10-28T20:38:00.947Z",
-    "run_id": 40765031926,
+    "run_id": 40765695900,
     "rama": "autonomy/bbyq-e026-native-composition-20261028",
-    "commit": "dd862fac334683a8a4169f8a36d8df9527d8cd81",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765031926"
+    "commit": "4f15e00992c75f73b3a5824b503d2776e37b2311",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40765695900",
+    "intento_previo": {
+      "run_id": 40765031926,
+      "conclusion": "failure",
+      "desarrollo": 48,
+      "transferencia": 0,
+      "total_por_grupo": 48,
+      "cambio_para_reintentar": "Normalización canónica necesita/need en XI, sujetos nuevos y controles adversos adicionales."
+    }
   },
   "ultima_actividad": {
     "id": "ciclo-dos-hechos-e025-20261028T1925",
