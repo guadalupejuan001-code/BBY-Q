@@ -246,7 +246,7 @@ set r14 111
 print r14
 set r14 46
 print r14
-halt
+jmp lctx_finish
 label lctx_status
 load8 r4 8900000000000000002
 load8 r8 8900000000000000003
@@ -369,7 +369,7 @@ set r14 56
 print r14
 set r14 56
 print r14
-halt
+jmp lctx_finish
 label lctx_clear
 load8 r4 8900000000000000002
 load8 r8 8900000000000000003
@@ -432,7 +432,7 @@ set r14 111
 print r14
 set r14 46
 print r14
-halt
+jmp lctx_finish
 label lctx_add
 load8 r4 8900000000000000002
 load8 r8 8900000000000000003
@@ -550,7 +550,7 @@ store8 8900000000000000005 r8
 mov r8 r10
 div r8 65536
 store8 8900000000000000006 r8
-halt
+jmp lctx_finish
 label lctx_full
 set r14 67
 print r14
@@ -600,7 +600,7 @@ set r14 111
 print r14
 set r14 46
 print r14
-halt
+jmp lctx_finish
 label lctx_get
 set r4 0
 set r0 9
@@ -848,7 +848,7 @@ print r14
 add r0 1
 jmp lctx_emit_byte
 label lctx_emit_done
-halt
+jmp lctx_finish
 label lctx_absent
 set r14 67
 print r14
@@ -900,7 +900,7 @@ set r14 101
 print r14
 set r14 46
 print r14
-halt
+jmp lctx_finish
 label lctx_no_match
 set r14 67
 print r14
@@ -944,7 +944,7 @@ set r14 97
 print r14
 set r14 46
 print r14
-halt
+jmp lctx_finish
 label lctx_invalid
 set r14 67
 print r14
@@ -992,4 +992,20 @@ set r14 97
 print r14
 set r14 46
 print r14
+jmp lctx_finish
+# Scrub raw conversation mailbox for every @ctx command (including errors).
+label lctx_finish
+load8 r2 7400000000000000017
+set r0 0
+label lctx_finish_raw
+cmp r0 r2
+jge lctx_finish_control
+set r7 7400000000000000128
+add r7 r0
+store8 $r7 0
+add r0 1
+jmp lctx_finish_raw
+label lctx_finish_control
+store8 7400000000000000017 0
+store8 7400000000000000016 0
 halt
