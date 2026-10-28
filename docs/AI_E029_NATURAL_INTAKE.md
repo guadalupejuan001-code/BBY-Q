@@ -53,6 +53,27 @@ La CI `.github/workflows/bbyq-e029.yml` compila el runtime de REVERSE-PC fijado 
 
 **Condición de aceptación:** mejora reproducible sobre la ausencia de ingreso natural en E028, conservación de las respuestas fundamentales existentes, ninguna regresión del archivo E027 y W4u; informe de resultados guardado en CI. No se declaran aprobaciones antes de ejecutarla.
 
+## Resultados verificados en CI
+
+La ejecución [40774348104](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40774348104) terminó **completed/success** en la revisión de código `18657a31dadbfd11f574df807c5a3443718e6099`:
+
+| Examen nativo | Resultado |
+|---|---:|
+| E029, validaciones nuevas | **285/285** |
+| Turnos examinados en E029 | 298 |
+| Afirmaciones naturales admitidas | 58 |
+| Mensajes ambiguos no admitidos | 12 |
+| Composición sobre 12 sujetos de desarrollo (ES+EN) | 24/24 |
+| Composición sobre 12 sujetos distintos de transferencia (ES+EN) | 24/24 |
+| Regresiones E028 | 464/464 |
+| Regresiones E027 | 429/429 |
+| Regresiones E025 | 31/31 |
+| W4u | 21/21 |
+
+Se verificó también que el candidato E028 anterior no registraba una afirmación libre en la copia desechable del estado, mientras E029 sí admitió las 58 afirmaciones compatibles en el nuevo conjunto. Las pruebas no demuestran extracción semántica general ni rendimiento Android.
+
+El commit de fusión es `bc8432fc19889dc6ac6d183b2f622bdd450288b3`, [PR #34](https://github.com/guadalupejuan001-code/BBY-Q/pull/34). Esta publicación es **código nativo probado**, no una nueva APK.
+
 ## Etapas siguientes
 
 1. Enseñar un esquema configurable de relaciones y sinónimos en XI, con experimentos reservados, para no aumentar el código con una frase fija por cada patrón.
