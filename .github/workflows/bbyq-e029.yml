@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: bbyq-e029-${{ github.head_ref || github.ref }}
   cancel-in-progress: false
@@ -34,40 +35,17 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Reproduce E027 and build E030 on current E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original
-          python3 ai/releases/e030/regression.py deps/reverse/build/reverse_pc evidence/e029
-          mkdir -p evidence/e029-compat
-          cp evidence/e029/natural.rxe evidence/e029-compat/candidate.rxe
-          cp evidence/e029/controller.rvp evidence/e029-compat/controller.rvp
-      - name: Exercise natural XI conversational fact acquisition
-        run: |
-          set -euo pipefail
-          node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/e029 evidence/e029-natural-tests
-      - name: E028 entity and composition regressions with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e027-original evidence/e029-e028-regression
-      - name: E027 full archive regression with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e029-e027-regression
-      - name: Learn and examine new question frames in XI with fixed code
-        run: |
-          set -euo pipefail
-          python3 ai/releases/e030/test.py deps/reverse/build/reverse_pc evidence/e029 evidence/e030-learning
+      - name: Download exact preceding checkpoint without reteaching
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E030-XI-learned-frames-evidence
+          run-id: 40781527990
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Preserve and examine native learned state
+        run: python3 ai/releases/e030/persistence.py deps/reverse/build/reverse_pc prior evidence/preserved
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E030-XI-learned-frames-evidence
-          path: |
-            evidence/e025/tests.json
-            evidence/e025/verification.json
-            evidence/w4u/results.json
-            evidence/e029
-            evidence/e030-learning
-            evidence/e029-natural-tests/results.json
-            evidence/e029-e028-regression/results.json
-            evidence/e029-e027-regression/tests.json
+          name: BBYQ-E030-preserved-checkpoint-evidence
+          path: evidence
