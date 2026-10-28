@@ -275,17 +275,20 @@ mov r0 r4
 mov r8 r0
 div r8 100
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 100
 mov r8 r0
 div r8 10
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 10
 mov r8 r0
 div r8 1
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 1
 set r14 32
 print r14
@@ -305,32 +308,38 @@ mov r0 r6
 mov r8 r0
 div r8 100000
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 100000
 mov r8 r0
 div r8 10000
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 10000
 mov r8 r0
 div r8 1000
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 1000
 mov r8 r0
 div r8 100
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 100
 mov r8 r0
 div r8 10
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 10
 mov r8 r0
 div r8 1
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 1
 set r14 32
 print r14
@@ -509,17 +518,20 @@ mov r0 r4
 mov r8 r0
 div r8 100
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 100
 mov r8 r0
 div r8 10
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 10
 mov r8 r0
 div r8 1
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 1
 add r4 1
 mov r8 r4
@@ -711,17 +723,20 @@ mov r0 r4
 mov r8 r0
 div r8 100
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 100
 mov r8 r0
 div r8 10
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 10
 mov r8 r0
 div r8 1
 add r8 48
-print r8
+mov r14 r8
+print r14
 mod r0 1
 set r14 32
 print r14
@@ -733,7 +748,8 @@ set r7 8900000000000100000
 add r7 r6
 add r7 r0
 load8 r3 $r7
-print r3
+mov r14 r3
+print r14
 add r0 1
 jmp lctx_emit_byte
 label lctx_emit_done
