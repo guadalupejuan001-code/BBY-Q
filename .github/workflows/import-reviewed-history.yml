@@ -1,0 +1,22 @@
+name: Import reviewed source history
+on:
+  push:
+    branches: ['transport/import-20261028-bbyq']
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and transfer reviewed Git objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ef6deffe4f1112d44e248a48b4f7b4a955107f62146c85be8613c1c0fdfba0fe  bootstrap/source.bundle' | sha256sum -c
+          git bundle verify bootstrap/source.bundle
+          git fetch bootstrap/source.bundle refs/heads/integrate/latest-2026-10-28
+          test "$(git rev-parse FETCH_HEAD)" = ed32ab6b73a31e96080b62269ad1eb9f3e15709d
+          git push origin ed32ab6b73a31e96080b62269ad1eb9f3e15709d:refs/heads/integrate/latest-2026-10-28
