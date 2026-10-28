@@ -20,21 +20,32 @@ if (!source.startsWith(header) || source.split(header).length !== 2) {
   throw Error('unexpected E025 XI entry point');
 }
 const prefix = fs.readFileSync('ai/releases/e027/context-prefix.xi', 'utf8');
-const candidate = prefix + source.replace(header, 'label lctx_original');
+// Compose the two existing XI modules, without reimplementing their inference.
+const composition = fs.readFileSync('ai/releases/e026/prefix.xi', 'utf8')
+  .replace(header, 'label lctx_original');
+const continuation = fs.readFileSync('ai/releases/e026/suffix.xi', 'utf8');
+let body = source.replace(header, 'label c26_base_entry');
+for (const exit of ['label finish\\nhalt', 'label ui_finish\\nhalt']) {
+  const marker = exit.replace('\\n', '\n');
+  if (body.split(marker).length !== 2) throw Error('E025 exit contract changed');
+  body = body.replace(marker, marker.split('\n')[0] + '\njmp c26_finish');
+}
+const candidate = prefix + composition + body + continuation;
 fs.writeFileSync(path.join(out, 'candidate.xi'), candidate);
-run('compile', path.join(out, 'candidate.xi'), path.join(out, 'candidate-code.rxe'), 'BBY Q E027 long context');
+run('compile', path.join(out, 'candidate.xi'), path.join(out, 'candidate-code.rxe'), 'BBY Q E027 context and composition');
 run('pack-app', path.join(out, 'candidate-code.rxe'), path.join(out, 'controller.rvp'),
     path.join(out, 'candidate.rxe'), 'org.reverse.bbyq', 'BBY Q',
-    'E027-Context-1-dev', 'a8f6bb1a2ddb819e8a3173144325564d2460954c');
+    'E027-CtxCompose-2-dev', '496afe3ae9c4bf31472cbada5145d64e5b94ed2a');
 const sha = p => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const report = {
-  version: 'E027-Context-1-dev',
+  version: 'E027-CtxCompose-2-dev',
   original_e025_sha256: sha(path.join(out, 'BBY-Q.rxe')),
   seed_sha256: sha(path.join(out, 'controller.rvp')),
   candidate_sha256: sha(path.join(out, 'candidate.rxe')),
   xi_context: { segments: 512, max_bytes_per_segment: 224, total_max_bytes: 114688,
     features: ['append', 'get', 'find', 'status', 'clear'],
     storage: 'persistent RVPC2; byte-accurate, contiguous segments' },
+  composition: { forms: 4, intelligence: 'XI; native atomic responses reused' },
   limitation: 'Indexed retrieval, not automatic semantic integration into every E025 answer.'
 };
 fs.writeFileSync(path.join(out, 'candidate.json'), JSON.stringify(report, null, 2) + '\n');
