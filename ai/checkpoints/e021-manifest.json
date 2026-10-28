@@ -60,7 +60,7 @@
   "source_data_sha256": {
     "audit.xi": "cee9590e676a2dc8163aeb3c419162b47caa93135aa3f1a6ce8dc99f916b370b",
     "birth.xi": "efdcd37deeb20561b45701342e2eecd4a53cd76128ff49fd0c28611c3f4a5105",
-    "clause.xi": "edd6f771ebac1340632e7b7bb3632e9ce4b0fd06225a9f2e78be03156c4e9992",
+    "clause.xi": "923827af0d87b34223adf210f6301a0c1f9813a4bd9d89dcc1d846c439128613",
     "data/constructions.json": "d9daa51db8abda142950784dddcf519fdb63ebf052eeb817a40dcf7b1d3dd345",
     "data/cues.psv": "e3a10f6de0b61f0bb39964541080c301a68cbaa29bcd21aad04d0cc15cc07bcf",
     "data/surface.psv": "6ba63fe6f6292afaafe8b229dadb8dbf9856acc9608cfeca3fd36c70e7a95871",
@@ -73,5 +73,14 @@
     "seal.xi": "fd85af835d05056735f3ec39d638b8bb709166566f8a584e5c381387ae17be4f",
     "tests/native-e021.py": "0bbeb616d921ddee999aee1cf4345d212bd672e239ed4114163ba7f5d63bedf0",
     "tests/native-language.py": "e4f0d88cfa224a137fbe0162e51ac09ba3e1490d758d7379981f8826fad889d7"
-  }
+  },
+  "source_compatibility_fixes": [
+    {
+      "path": "ai/xi/lingua/clause.xi",
+      "original_sha256": "edd6f771ebac1340632e7b7bb3632e9ce4b0fd06225a9f2e78be03156c4e9992",
+      "corrected_sha256": "923827af0d87b34223adf210f6301a0c1f9813a4bd9d89dcc1d846c439128613",
+      "checkpoint_changed": false
+    }
+  ],
+  "source_compatibility_note": "Parser corrections only; published checkpoint bytes and historical training/results are unchanged. Original source digests are retained in source_compatibility_fixes; reproduction verifies the corrected sources."
 }
