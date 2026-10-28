@@ -1,5 +1,9 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
+**W4u 0.1 — work for u:** motor propio de trabajo con planificador, explorador y
+verificador en XI. BBY Q conserva la conversación; REVERSE-PC aloja y ejecuta
+los programas internos. [Arquitectura, contrato y límites](docs/W4U_ENGINE.md).
+
 **Ruta activa: E022 — composición aprendida de peticiones ES/EN en XI.**
 
 **Corrección posterior del intérprete:** admite «Oye, ¿qué requiere…?» y deja
