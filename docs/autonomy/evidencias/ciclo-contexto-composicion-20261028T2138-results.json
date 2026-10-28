@@ -1,0 +1,134 @@
+{
+  "version": "E027-CtxCompose-2-dev",
+  "run": {
+    "id": 40773600595,
+    "job_id": 123116981927,
+    "conclusion": "success",
+    "head_sha": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+    "checkout_merge_sha": "f27b89877f686c243f9ee9353e275aec907cfc1c",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
+    "artifact_id": 12854310856,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+    "artifact_sha256": "27bfed18ed9defca0592281cd3001d925d822a5ba862a09bb9d2a614b1ac0efa"
+  },
+  "reports": [
+    {
+      "checks": 31,
+      "version": "E025-Chain-1",
+      "w4u_version": "0.1",
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E025-Chain-1",
+      "metadata": {
+        "format": "RXE",
+        "version": 2,
+        "abi": "BBYQ-conversation-v1",
+        "ui": "chat",
+        "app_id": "org.reverse.bbyq",
+        "title": "BBY Q",
+        "app_version": "E025-Chain-1",
+        "source_sha": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+        "instructions": 12207,
+        "seed_bytes": 795328,
+        "input_bytes": 255,
+        "bytes": 1014739
+      },
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "w4u_sha256": "b09284b4bbd7586d6bc61752566db040e8383481dbfe12e7dddf9d37d673e37a",
+      "exact_repack": true,
+      "source_recompiled_and_equivalent": true,
+      "curriculum_modules_verified": 9
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "original_e025_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "xi_context": {
+        "segments": 512,
+        "max_bytes_per_segment": 224,
+        "total_max_bytes": 114688,
+        "features": [
+          "append",
+          "get",
+          "find",
+          "status",
+          "clear"
+        ],
+        "storage": "persistent RVPC2; byte-accurate, contiguous segments"
+      },
+      "composition": {
+        "forms": 4,
+        "intelligence": "XI; native atomic responses reused"
+      },
+      "limitation": "Indexed retrieval, not automatic semantic integration into every E025 answer."
+    },
+    {
+      "checks": 31,
+      "version": "E027-CtxCompose-2-dev",
+      "w4u_version": "0.1",
+      "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "checks": 429,
+      "app_turns": 229,
+      "archived_records": 200,
+      "tested_context_bytes": 42200,
+      "capacity_bytes": 114688,
+      "append_elapsed_ms": 30623,
+      "serialized_state_bytes_before_context": 795997,
+      "serialized_state_bytes_after_200_records": 1901829,
+      "evaluated": [
+        "original greeting",
+        "persistent original facts",
+        "200 append cycles",
+        "indexed retrieval across process restarts",
+        "case-insensitive byte search",
+        "search across segment boundary",
+        "UTF-8",
+        "oversize rejection",
+        "physical erase",
+        "knowledge isolation"
+      ],
+      "limitation": "No semantic synthesis of whole history; lexical retrieval is an explicit operation.",
+      "source": "Native pinned XI runtime, fresh disposable state for every CI test."
+    },
+    {
+      "stage": "E026-TwoFacts-dev",
+      "scores": {
+        "development": {
+          "baseline": 0,
+          "candidate": 48,
+          "total": 48
+        },
+        "transfer": {
+          "baseline": 0,
+          "candidate": 48,
+          "total": 48
+        }
+      },
+      "unknown_and_scratch_controls": 150,
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "scope": "Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Transfer to new subjects within four engineered forms; synonyms normalized in XI, not a held-out language benchmark. No learned pattern claim. Separate native process per turn.",
+      "production_deployed": false
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "checks": 11,
+      "native_process_per_turn": true,
+      "scope": "Persistent archive and composition coexist in the same RVPC2; indexed/lexical retrieval remains explicit, not automatic semantic grounding."
+    }
+  ],
+  "w4u_native_core_checks": 21,
+  "composition_examiner_note": "El campo stage E026 identifica el examinador reutilizado; el hash c7ad1e... identifica la cápsula combinada realmente examinada.",
+  "new_training_claimed": false
+}

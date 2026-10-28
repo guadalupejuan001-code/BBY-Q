@@ -1,0 +1,205 @@
+{
+  "id": "ciclo-contexto-composicion-20261028T2138",
+  "inicio_utc": "2026-10-28T21:38:12.250Z",
+  "fin_utc": "2026-10-28T21:43:30.418Z",
+  "objetivo": "Conservar conjuntamente contexto E027 y composición E026 sobre los cambios nuevos de main",
+  "criterio": "Regresiones de ambas capacidades y coexistencia en un RVPC2 aprobadas",
+  "resultado": "criterio_cumplido_candidato_no_desplegado",
+  "rama": "autonomy/bbyq-context-composition-20261028",
+  "commit_codigo": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+  "commit_main_fuente": "496afe3ae9c4bf31472cbada5145d64e5b94ed2a",
+  "revision_notas_previa": "0a44ffa7a8f7c92a0386beb92f38fd00c7a03aa2",
+  "checkpoint": {
+    "archivo": "ai/releases/e025/controller.rvp.gz.b64",
+    "version": "E025-Chain-1",
+    "commit_fuente": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+    "sha256_decodificado_declarado": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+    "verificacion_en_este_ciclo": "Semilla E025 intacta y cápsula auténtica recompilada/reempaquetada exactamente; pruebas sobre copias nativas, sin sustitución de memoria publicada."
+  },
+  "candidato": {
+    "version": "E027-CtxCompose-2-dev",
+    "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "rama": "autonomy/bbyq-context-composition-20261028",
+    "commit": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+    "artifact_app": "evidence/e027/candidate.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+    "produccion_desplegada": false,
+    "aprendizaje_de_patrones_nuevo": false,
+    "descripcion": "Archivo contextual E027 y composición E026 enlazados en una única cápsula XI/RVPC2."
+  },
+  "run": {
+    "id": 40773600595,
+    "job_id": 123116981927,
+    "conclusion": "success",
+    "head_sha": "9485ec2e366718de8d84ff82e5310d80287c84a9",
+    "checkout_merge_sha": "f27b89877f686c243f9ee9353e275aec907cfc1c",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595",
+    "artifact_id": 12854310856,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40773600595/artifacts/12854310856",
+    "artifact_sha256": "27bfed18ed9defca0592281cd3001d925d822a5ba862a09bb9d2a614b1ac0efa"
+  },
+  "preflight": {
+    "ci_in_progress": 0,
+    "ci_queued": 0,
+    "ciclo_activo_inicial": null,
+    "AGENTS": "Árbol completo de BBY-Q inspeccionado, sin AGENTS.md.",
+    "instrucciones_leidas": [
+      "docs/autonomy/OBJETIVO.md",
+      "docs/autonomy/ESTADO.json",
+      "docs/autonomy/SIGUIENTE.md",
+      "docs/autonomy/ejecuciones/ciclo-e026-composicion-20261028T2038.json"
+    ],
+    "contraste": "main incorporó E027; el PR #30 seguía abierto. El constructor E027 no enlazaba composición E026.",
+    "entorno": "Guía de entorno cloud leída; environment_status no está expuesto. Se utilizó únicamente el runner GitHub Actions configurado, no otro ejecutor."
+  },
+  "antes": {
+    "constructor_e027": "context-prefix.xi + E025",
+    "composicion_e026": "candidato separado en PR #30"
+  },
+  "despues": {
+    "constructor": "context-prefix + E026 prefix + E025 con salidas enlazadas + E026 suffix",
+    "regiones_temporales_separadas": true,
+    "capsula_unica": true
+  },
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "python3 ai/releases/e027/regression.py deps/reverse/build/reverse_pc evidence/e027",
+    "node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e027 evidence/e027-regression",
+    "python3 ai/releases/e026/test.py deps/reverse/build/reverse_pc evidence/e027 evidence/combined-composition",
+    "node ai/releases/e027/interop.mjs deps/reverse/build/reverse_pc evidence/e027 evidence/combined-interop"
+  ],
+  "constructor_interno": "regression.py invoca build.mjs; enlaza XI, compila y empaqueta con el runtime nativo. No hay inferencia ni aprendizaje externos.",
+  "resultados": [
+    {
+      "checks": 31,
+      "version": "E025-Chain-1",
+      "w4u_version": "0.1",
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E025-Chain-1",
+      "metadata": {
+        "format": "RXE",
+        "version": 2,
+        "abi": "BBYQ-conversation-v1",
+        "ui": "chat",
+        "app_id": "org.reverse.bbyq",
+        "title": "BBY Q",
+        "app_version": "E025-Chain-1",
+        "source_sha": "08b41fb8ffa8b46d856a37b317cd7a4725a54bb6",
+        "instructions": 12207,
+        "seed_bytes": 795328,
+        "input_bytes": 255,
+        "bytes": 1014739
+      },
+      "app_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "w4u_sha256": "b09284b4bbd7586d6bc61752566db040e8383481dbfe12e7dddf9d37d673e37a",
+      "exact_repack": true,
+      "source_recompiled_and_equivalent": true,
+      "curriculum_modules_verified": 9
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "original_e025_sha256": "34fb9f5b96c2d218bff43970c54c89c2f629e7668ee78f52619afa765961d730",
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "xi_context": {
+        "segments": 512,
+        "max_bytes_per_segment": 224,
+        "total_max_bytes": 114688,
+        "features": [
+          "append",
+          "get",
+          "find",
+          "status",
+          "clear"
+        ],
+        "storage": "persistent RVPC2; byte-accurate, contiguous segments"
+      },
+      "composition": {
+        "forms": 4,
+        "intelligence": "XI; native atomic responses reused"
+      },
+      "limitation": "Indexed retrieval, not automatic semantic integration into every E025 answer."
+    },
+    {
+      "checks": 31,
+      "version": "E027-CtxCompose-2-dev",
+      "w4u_version": "0.1",
+      "app_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "retained_independent_concepts": 12,
+      "new_override_writes": 70000,
+      "scope": "Native Linux XI/RXE execution; Android host is tested separately."
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "checks": 429,
+      "app_turns": 229,
+      "archived_records": 200,
+      "tested_context_bytes": 42200,
+      "capacity_bytes": 114688,
+      "append_elapsed_ms": 30623,
+      "serialized_state_bytes_before_context": 795997,
+      "serialized_state_bytes_after_200_records": 1901829,
+      "evaluated": [
+        "original greeting",
+        "persistent original facts",
+        "200 append cycles",
+        "indexed retrieval across process restarts",
+        "case-insensitive byte search",
+        "search across segment boundary",
+        "UTF-8",
+        "oversize rejection",
+        "physical erase",
+        "knowledge isolation"
+      ],
+      "limitation": "No semantic synthesis of whole history; lexical retrieval is an explicit operation.",
+      "source": "Native pinned XI runtime, fresh disposable state for every CI test."
+    },
+    {
+      "stage": "E026-TwoFacts-dev",
+      "scores": {
+        "development": {
+          "baseline": 0,
+          "candidate": 48,
+          "total": 48
+        },
+        "transfer": {
+          "baseline": 0,
+          "candidate": 48,
+          "total": 48
+        }
+      },
+      "unknown_and_scratch_controls": 150,
+      "seed_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "candidate_sha256": "c7ad1e99d556d730cb6dd64feceb39c86eed8d52b86b55da6d3ce002a5032fc8",
+      "scope": "Four engineered ASCII question forms in XI; exact concatenation of two native evidence-backed atomic answers. Transfer to new subjects within four engineered forms; synonyms normalized in XI, not a held-out language benchmark. No learned pattern claim. Separate native process per turn.",
+      "production_deployed": false
+    },
+    {
+      "version": "E027-CtxCompose-2-dev",
+      "checks": 11,
+      "native_process_per_turn": true,
+      "scope": "Persistent archive and composition coexist in the same RVPC2; indexed/lexical retrieval remains explicit, not automatic semantic grounding."
+    }
+  ],
+  "w4u_core_checks": 21,
+  "fallos": [],
+  "hipotesis_pendientes": [
+    "El archivo es recuperable por comandos explícitos e índice/búsqueda léxica; no se demuestra síntesis semántica automática del historial.",
+    "Las cuatro formas de composición siguen diseñadas. La propuesta de aprender nuevas formas con código fijo continúa pendiente sobre esta base combinada.",
+    "Candidato no desplegado en Android; una integración posterior debe preservar/migrar memorias privadas y probar la interfaz."
+  ],
+  "aprendizaje_nuevo": false,
+  "evidencia": "docs/autonomy/evidencias/ciclo-contexto-composicion-20261028T2138-results.json",
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}
