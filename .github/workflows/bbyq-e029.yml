@@ -42,6 +42,14 @@ jobs:
           ref: 406bf83b3c507a3d1f26e88252d5d66893fd36bf
           path: deps/omw
           persist-credentials: false
+      - name: Checkout original English WordNet gloss data only
+        uses: actions/checkout@v4
+        with:
+          repository: nltk/wordnet
+          ref: ce91915ae38a341ae845be4d825ef6003cddf395
+          path: deps/wordnet
+          persist-credentials: false
+          sparse-checkout: wn/data/wordnet-3.0
       - name: Import complete sources and examine native dictionary
         run: python3 ai/releases/e031/import_and_test.py deps/reverse/build/reverse_pc deps/omw evidence/dictionary
       - name: Candidate old knowledge and W4u regression

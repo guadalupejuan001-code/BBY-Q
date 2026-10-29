@@ -24,14 +24,26 @@ for lang,file in raws.items():
   if not line or line.startswith('#'):continue
   cols=line.split('\t');types[cols[1]]+=1;n+=1
   sid,typ=cols[:2]
-  if typ.endswith(':lemma'):
+  if typ.rsplit(':',1)[-1]=='lemma':
    forms=[cols[2]]+([v.strip() for v in cols[3].split(',')] if len(cols)>3 else [])
    for w in forms:
     if w in ('GAP!','PSEUDOGAP!') or not w:continue
     w=fold(w);words[lang][w].add(sid);lemmas[sid][lang].add(w)
-  elif typ.endswith(':def'):defs[sid][lang].append(cols[-1])
+  elif typ.rsplit(':',1)[-1]=='def':defs[sid][lang].append(cols[-1])
  counts[lang]={'source_records':n,'types':dict(types),'unique_forms':len(words[lang]),'sha256':sha(file)}
  assert words[lang],('Empty source',file)
+# English OMW supplies lemmas only; import original Princeton glosses as data.
+wn=Path('deps/wordnet/wn/data/wordnet-3.0');wn_hashes={}
+for name in ('noun','verb','adj','adv'):
+ file=wn/('data.'+name);wn_hashes[file.name]=sha(file)
+ for line in file.read_text().splitlines():
+  if not line or not line[0].isdigit():continue
+  head,gloss=line.split('|',1);cols=head.split();pos=cols[2]
+  if pos=='s':pos='a'
+  sid=cols[0]+'-'+pos
+  defs[sid]['en'].append(gloss.strip())
+shutil.copy2(wn/'LICENSE',out/'LICENSE-Princeton-WordNet.txt')
+print('SOURCE_COUNTS='+json.dumps(counts),flush=True)
 # Parse ALL entries without truncating senses, definitions or translations.
 pages=collections.defaultdict(bytearray);expected={};entries=0
 def bucket(word,lang):
@@ -104,6 +116,7 @@ assert bytes(original[1].get(T+i,0) for i in range(3072))==bytes(current[1].get(
 assert original[0]==current[0] and original[2]==current[2];checks+=1
 assert sha(seed_state)==oldhash;checks+=1
 manifest={'source_repository':'omwn/omw-data','source_commit':'406bf83b3c507a3d1f26e88252d5d66893fd36bf',
+ 'wordnet_data_repository':'nltk/wordnet','wordnet_data_commit':'ce91915ae38a341ae845be4d825ef6003cddf395','wordnet_data_sha256':wn_hashes,
  'languages':counts,'entries':entries,'pages':len(pages),'max_page_bytes':maxpage,'stored_bytes':sum(map(len,pages.values())),
  'dictionary_gzip_sha256':sha(out/'dictionary-pages.jsonl.gz'),
  'dictionary_gzip_bytes':(out/'dictionary-pages.jsonl.gz').stat().st_size,
