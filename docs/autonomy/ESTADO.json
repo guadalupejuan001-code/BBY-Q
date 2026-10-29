@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T00:43:56.905Z",
+  "actualizado_utc": "2026-10-29T01:29:06.656Z",
   "estado": "formas_temporales_aprendidas_y_separacion_pasado_presente_futuro_validada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "feature/bbyq-temporal-learning-20261029",
@@ -36,7 +36,16 @@
     },
     "acceso_actual": "Nueva CI completada: reempaquetado exacto E031, aprendizaje temporal y evaluación nativos, regresiones E025/W4u."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "relaciones-estados-minimos-20261029",
+    "rama": "feature/bbyq-minimal-relations-20261029",
+    "inicio_utc": "2026-10-29T01:29:06.656Z",
+    "tipo": "ingenieria_y_aprendizaje_relaciones_XI",
+    "objetivo": "Diccionarios compartidos, índices, caché invalidable y correcciones con procedencia; benchmark reservado sin pérdida de temporalidad",
+    "estado": "preparando",
+    "ejecutor": "workflow bbyq-e029.yml native-e029 ubuntu-latest",
+    "propietario": "esta activación"
+  },
   "ultima_actividad": {
     "id": "temporal-es-en-20261029",
     "tipo": "aprendizaje_temporal_nativo_en_XI",
@@ -329,5 +338,6 @@
     "scope": "Learned two-role possession frames, three relative tense buckets, single-token entity/object, explicit supervised time labels. Same surface referents across languages; no general translation/date/aspect/mood mastery.",
     "native_process_per_turn": true,
     "production_deployed": false
-  }
+  },
+  "principio_diseno": "Estados mínimos en Ether; aprendizaje e inferencia nativos en XI; materializar bajo demanda, conservar historial y verificar coste/precisión."
 }
