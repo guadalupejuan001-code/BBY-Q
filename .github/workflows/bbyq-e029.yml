@@ -1,7 +1,7 @@
 name: BBY Q E029 conversational fact learning (XI)
 on:
   pull_request:
-    paths: ['ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,17 +35,19 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Download exact preceding checkpoint without reteaching
-        uses: actions/download-artifact@v4
+      - name: Checkout full pinned bilingual Wordnet data
+        uses: actions/checkout@v4
         with:
-          name: BBYQ-E030-XI-learned-frames-evidence
-          run-id: 40781527990
-          github-token: ${{ github.token }}
-          path: prior
-      - name: Preserve and examine native learned state
-        run: python3 ai/releases/e030/persistence.py deps/reverse/build/reverse_pc prior evidence/preserved
+          repository: omwn/omw-data
+          ref: 406bf83b3c507a3d1f26e88252d5d66893fd36bf
+          path: deps/omw
+          persist-credentials: false
+      - name: Import complete sources and examine native dictionary
+        run: python3 ai/releases/e031/import_and_test.py deps/reverse/build/reverse_pc deps/omw evidence/dictionary
+      - name: Candidate old knowledge and W4u regression
+        run: python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/dictionary evidence/candidate-regression
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E030-preserved-checkpoint-evidence
+          name: BBYQ-E031-full-bilingual-dictionary
           path: evidence
