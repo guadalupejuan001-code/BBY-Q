@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T01:56:13.823Z",
+  "actualizado_utc": "2026-10-29T02:45:54.966Z",
   "estado": "relaciones_aprendidas_en_estados_compartidos_XI_validadas",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "feature/bbyq-minimal-relations-20261029",
@@ -37,7 +37,15 @@
     },
     "acceso_actual": "CI nueva completada con éxito:168 consultas independientes, conservación144 temporales y baterías históricas completas."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "composicion-relaciones-20261029-0242",
+    "inicio_utc": "2026-10-29T02:42:21.765Z",
+    "rama": "feature/bbyq-relational-composition-20261029",
+    "commit_codigo": "713b46e505c3f261fa9117f5a38c55854b0a9a87",
+    "run_id": 40808230808,
+    "estado": "in_progress",
+    "objetivo": "Composición de apertura/ubicación y referencia tipada; 48 consultas y 96 seguimientos con conservación previa"
+  },
   "ultima_actividad": {
     "id": "relaciones-estados-minimos-20261029",
     "tipo": "ingenieria_y_aprendizaje_relaciones_XI",
@@ -71,7 +79,7 @@
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
   "commit_main_observado": "7c04c54a9db4567e3d406c99907e157901558235",
-  "revision_notas_previa": "7c04c54a9db4567e3d406c99907e157901558235",
+  "revision_notas_previa": "d008e1b2002d4310e505cb6f5f227a8f7772f593",
   "candidato": {
     "version": "E033-Minimal-Relations-1-dev",
     "app_sha256": "14334cc91e164ee0299bda3a0a785bd8b0f5e3f41fab744f747d8de1a63dd4f2",
