@@ -1,0 +1,117 @@
+{
+  "id": "temporal-es-en-20261029",
+  "inicio_utc": "2026-10-29T00:33:30.119Z",
+  "fin_utc": "2026-10-29T00:43:56.905Z",
+  "instruccion_usuario": "implementalo o acelerar todo; ciclo de desarrollo",
+  "objetivo": "Aprender e interpretar pasado/presente/futuro ES/EN conservando memoria",
+  "rama": "feature/bbyq-temporal-learning-20261029",
+  "commit_codigo": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+  "main_fuente": "c93592e0cce4ccfdb3d66a062e6ab737a643dc4a",
+  "revision_notas_previa": "491c71bda4dff33a9a0e829b5f74f652b24bc212",
+  "run": {
+    "id": 40795445276,
+    "job_id": 123190694263,
+    "head_sha": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276",
+    "artifact_id": 12863926371,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276/artifacts/12863926371",
+    "artifact_sha256": "sha256:efca80d2ddc3ee2cfeb172fc56580d7cfcd3738f4c0ec30ec7a9ec7a88490372"
+  },
+  "checkpoint": {
+    "archivo": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+    "sha256_decodificado": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "checkpoint_anterior_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "checkpoint_anterior": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "app_sha256": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "regiones": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "formas_aprendidas": 48,
+    "contiene_hechos_temporales_de_examen": false
+  },
+  "preflight": {
+    "active_jobs": 0,
+    "queued_jobs": 0,
+    "AGENTS": [],
+    "lecturas": [
+      "OBJETIVO.md",
+      "ESTADO.json",
+      "SIGUIENTE.md",
+      "último registro diccionario",
+      "grammar/learn-pattern.xi"
+    ],
+    "exclusion": "Reserva previa del mismo ciclo por lease; activación posterior comprobó propiedad y no lanzó otro ciclo. Concurrency E029 existente.",
+    "ejecutor": "Nueva CI ubuntu-latest comprobada, dependencias fijadas; no environment_status expuesto, skill cloud runtime leída.",
+    "contraste": "El diccionario no prueba tiempos verbales; nueva instrucción directa priorizó aprendizaje temporal sobre el siguiente paso propuesto."
+  },
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "actions/download-artifact@v4 run-id=40793126384 name=BBYQ-E031-full-bilingual-dictionary path=prior",
+    "python3 ai/releases/e032/build.py deps/reverse/build/reverse_pc prior evidence/temporal",
+    "python3 ai/releases/e032/test.py deps/reverse/build/reverse_pc prior evidence/temporal",
+    "mkdir -p evidence/temporal-compat",
+    "cp evidence/temporal/temporal.rxe evidence/temporal-compat/dictionary.rxe",
+    "cp prior/dictionary/controller.rvp evidence/temporal-compat/controller.rvp",
+    "python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/temporal-compat evidence/candidate-regression"
+  ],
+  "resultados": {
+    "version": "E032-Temporal-1-dev",
+    "checks": 539,
+    "learned_frames": 48,
+    "labeled_examples": 96,
+    "reserved_subjects": 24,
+    "exact_temporal_queries": 144,
+    "total_temporal_queries": 144,
+    "cross_time_isolation_controls": 96,
+    "previous_code_exact": 0,
+    "future_assertions_marked_unconfirmed": true,
+    "same_time_conflict_abstains": true,
+    "candidate_sha256_before": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "candidate_sha256_after": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "learned_checkpoint_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "parent_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "learning_region": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "old_memory_unchanged_by_teaching": true,
+    "scope": "Learned two-role possession frames, three relative tense buckets, single-token entity/object, explicit supervised time labels. Same surface referents across languages; no general translation/date/aspect/mood mastery.",
+    "native_process_per_turn": true,
+    "production_deployed": false
+  },
+  "comparacion": "Mismo hash E032 antes/después de enseñar. Sonda inicial sin gramática rechaza interpretación temporal nueva; comparación completa 144 consultas con E031 sobre misma memoria da 0/144. No se afirma examen completo E032 sin enseñar de 144 casos.",
+  "separacion_datos": "48 marcos, dos ejemplos con sujetos/objetos variados cada uno; docentes maria/pedro, mary/peter, agua/pan/water/bread. Examen tempor[a-x], piano/radio/taxi/hotel, no presentes en demostraciones. Los eventos de examen se dan después de guardar checkpoint aprendido.",
+  "conservacion": "Enseñanza no modifica memoria fuera de región nueva; cápsula fija; E030/E029 y CLI E031 comprobados, fuente E031 recompilada/reempaquetada con hash idéntico.",
+  "regresiones": {
+    "e025_original": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  },
+  "fallos": [
+    {
+      "run": 40795308529,
+      "commit": "9738ee551321206839394012624f52e833258d82",
+      "causa": "Título distinto en verificación de recompilación E031 cambió hash RXE, no se inició enseñanza.",
+      "correccion": "Se usó título de compilación original para comparación exacta.",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795308529"
+    }
+  ],
+  "nota_empaquetado": "Después de verificar se excluye el symlink de bancos externos del artefacto futuro (configuración, sin modificar motor ni reejecutar CI). El artefacto probado existente sí incluye esa copia.",
+  "hipotesis_pendientes": [
+    "Tres categorías temporales relativas; no hay fechas ni desplazamiento del referente temporal al cambiar el día.",
+    "Primera semántica de posesión, sujeto/objeto de un token ASCII. Sin dominio general de conjugación, aspecto, modo, múltiples verbos o correferencia.",
+    "Pruebas ES/EN comparten identificadores de objetos; no demuestran traducción general.",
+    "La biblioteca E031 sigue requiriendo transporte explícito de páginas.",
+    "Antes de promover CI específica de temporalidad, reintegrar batería completa E029/E028/E027 y proteger capacidades históricas extensas."
+  ],
+  "aprendizaje_nuevo": true,
+  "despliegue_produccion": false,
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}

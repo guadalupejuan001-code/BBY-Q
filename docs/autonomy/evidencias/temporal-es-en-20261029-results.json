@@ -1,0 +1,43 @@
+{
+  "run": {
+    "id": 40795445276,
+    "job_id": 123190694263,
+    "head_sha": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276",
+    "artifact_id": 12863926371,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276/artifacts/12863926371",
+    "artifact_sha256": "sha256:efca80d2ddc3ee2cfeb172fc56580d7cfcd3738f4c0ec30ec7a9ec7a88490372"
+  },
+  "report": {
+    "version": "E032-Temporal-1-dev",
+    "checks": 539,
+    "learned_frames": 48,
+    "labeled_examples": 96,
+    "reserved_subjects": 24,
+    "exact_temporal_queries": 144,
+    "total_temporal_queries": 144,
+    "cross_time_isolation_controls": 96,
+    "previous_code_exact": 0,
+    "future_assertions_marked_unconfirmed": true,
+    "same_time_conflict_abstains": true,
+    "candidate_sha256_before": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "candidate_sha256_after": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "learned_checkpoint_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "parent_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "learning_region": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "old_memory_unchanged_by_teaching": true,
+    "scope": "Learned two-role possession frames, three relative tense buckets, single-token entity/object, explicit supervised time labels. Same surface referents across languages; no general translation/date/aspect/mood mastery.",
+    "native_process_per_turn": true,
+    "production_deployed": false
+  },
+  "regresiones": {
+    "e025_original": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  }
+}

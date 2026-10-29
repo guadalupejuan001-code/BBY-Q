@@ -49,3 +49,24 @@ Aceptar solo con comparación real antes/después y con E031 sobre la misma
 memoria, 144/144 preguntas reservadas, controles de aislamiento y conflicto,
 código idéntico entre enseñanza/examen, memoria anterior intacta durante
 enseñanza, persistencia y regresiones. No declarar resultados antes de CI.
+
+## Resultados verificados
+CI https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276, código `ca501af7e3306cea28eaf41f0f6d9e1db825eeda`: éxito.
+48 formas aprendidas en XI desde 96 ejemplos; **144/144** preguntas sobre
+24 sujetos reservados, frente a **0/144** de E031 sobre la misma memoria.
+**96 controles** de aislamiento entre categorías; **539 comprobaciones**
+en total. Futuro no confirmado y conflicto del mismo momento verificados.
+Mismo programa `d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048` durante enseñanza/examen.
+Memoria anterior intacta durante enseñanza. E030/E029 y CLI de diccionario
+perro/dog conservados. Regresiones E025 original/candidato 31 cada uno y
+W4u 21 + acción [4,2] aprobadas.
+
+[Checkpoint aprendido durable](../../checkpoints/e032/README.md),
+SHA256 `f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56`, guardado antes de los hechos
+temporales de examen. Los modelos previos se conservan.
+[Artefacto con cápsula y transcripciones](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276/artifacts/12863926371).
+
+La sonda inicial E032 sin enseñar mide ausencia de esa interpretación; la
+comparación completa de 144 casos es contra E031, no una campaña de 144
+casos E032 con reglas desactivadas. Son formas supervisadas de posesión,
+no conjugación general, comprensión libre de fechas o traducción.

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T00:23:03.634Z",
-  "estado": "diccionario_bilingue_completo_de_fuentes_fijadas_consultable_en_XI",
+  "actualizado_utc": "2026-10-29T00:43:56.905Z",
+  "estado": "formas_temporales_aprendidas_y_separacion_pasado_presente_futuro_validada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "feature/bbyq-dictionary-es-en-20261029",
-  "commit_codigo_observado": "e194d56096daf935caae33c7a9db0a130bc0fcec",
-  "rama_continuidad": "feature/bbyq-dictionary-es-en-20261029",
+  "rama_codigo_observada": "feature/bbyq-temporal-learning-20261029",
+  "commit_codigo_observado": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+  "rama_continuidad": "feature/bbyq-temporal-learning-20261029",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -24,63 +24,60 @@
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40793126384,
-      "job_id": 123182954057,
-      "head_sha": "e194d56096daf935caae33c7a9db0a130bc0fcec",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384",
+      "id": 40795445276,
+      "job_id": 123190694263,
+      "head_sha": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
       "status": "completed",
       "conclusion": "success",
-      "artifact_id": 12862856143,
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
-      "artifact_sha256": "sha256:70a9d7036f370f8328f22c7f29c3c9832ac7a875876f8992be03bc8e44ceb488",
-      "artifact_expires_at": "2027-01-27T00:17:53Z"
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276",
+      "artifact_id": 12863926371,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276/artifacts/12863926371",
+      "artifact_sha256": "sha256:efca80d2ddc3ee2cfeb172fc56580d7cfcd3738f4c0ec30ec7a9ec7a88490372"
     },
-    "acceso_actual": "Compilación y ejecución nueva completada con éxito; importación completa, examen XI y regresiones."
+    "acceso_actual": "Nueva CI completada: reempaquetado exacto E031, aprendizaje temporal y evaluación nativos, regresiones E025/W4u."
   },
   "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "diccionario-es-en-20261029",
-    "tipo": "adquisicion_masiva_de_referencia_lexica_bilingue",
-    "registro": "docs/autonomy/ejecuciones/diccionario-es-en-20261029.json",
-    "evidencia": "docs/autonomy/evidencias/diccionario-es-en-20261029-results.json",
+    "id": "temporal-es-en-20261029",
+    "tipo": "aprendizaje_temporal_nativo_en_XI",
+    "registro": "docs/autonomy/ejecuciones/temporal-es-en-20261029.json",
+    "evidencia": "docs/autonomy/evidencias/temporal-es-en-20261029-results.json",
     "evaluacion_nativa_ejecutada": true,
-    "aprendizaje_nativo_nuevo": false,
-    "datos_nuevos_incorporados": true,
-    "entrenamiento_nuevo_publicado": false
+    "aprendizaje_nativo_nuevo": true,
+    "entrenamiento_nuevo_publicado": true,
+    "nota": "Se guarda modelo de formas, sin hechos temporales de examen; no despliegue Android."
   },
   "cambios": [
-    "Se atendió instrucción directa de cargar diccionario español/inglés, en lugar de continuar mantenimiento de checkpoints.",
-    "Importadas 88950 formas ES y 147306 EN con acepciones/definiciones y equivalencias disponibles, sin truncar acepciones.",
-    "Consulta exacta y paginación seleccionadas en XI, 152/152 consultas nativas y 158 controles totales.",
-    "Preservadas memoria y patrones E030; E025 original/candidato 31 y W4u 21 aprobados."
+    "XI indujo 48 formas temporales desde 96 demostraciones con roles distintos; no se añadieron conjugaciones al intérprete por caso.",
+    "144/144 consultas reservadas, frente a E031 0/144 sobre misma memoria; 96 controles impiden trasladar pasado al presente/futuro.",
+    "Futuro marcado como previsión no confirmada; contradicción de la misma categoría provoca abstención.",
+    "Código igual antes/después de enseñar; memoria anterior intacta durante enseñanza, E030/E029 y diccionario conservados en pruebas pertinentes.",
+    "31 regresiones E025 original y 31 sobre candidato, 21 W4u y acción tipada [4,2]. Modelo aprendido guardado en repositorio sin hechos del examen."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "La biblioteca se consulta con @lex y transporte explícito de páginas; las palabras aún no se incorporan automáticamente al intérprete conversacional antiguo.",
-    "Referencia léxica importada no demuestra comprensión de definiciones ni razonamiento nuevo.",
-    "Fuentes WordNet/MCR no contienen todas las palabras existentes de ambos idiomas.",
-    "Convertir definiciones y enlaces en aprendizaje semántico nativo evaluado con oraciones independientes, preservando polisemia.",
-    "Conservar paquete de datos: artefacto configurado caduca; fuentes y hashes están fijados para reproducirlo."
+    "Tres categorías temporales relativas; no hay fechas ni desplazamiento del referente temporal al cambiar el día.",
+    "Primera semántica de posesión, sujeto/objeto de un token ASCII. Sin dominio general de conjugación, aspecto, modo, múltiples verbos o correferencia.",
+    "Pruebas ES/EN comparten identificadores de objetos; no demuestran traducción general.",
+    "La biblioteca E031 sigue requiriendo transporte explícito de páginas.",
+    "Antes de promover CI específica de temporalidad, reintegrar batería completa E029/E028/E027 y proteger capacidades históricas extensas."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "d9440d5300900b0418c8f14b4713b882c7f375dc",
-  "revision_notas_previa": "9c30f1a10bfb2078c7f78b0c9511ddecb1eafca1",
+  "commit_main_observado": "c93592e0cce4ccfdb3d66a062e6ab737a643dc4a",
+  "revision_notas_previa": "491c71bda4dff33a9a0e829b5f74f652b24bc212",
   "candidato": {
-    "version": "E031-Dictionary-1-dev",
-    "app_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
-    "rama": "feature/bbyq-dictionary-es-en-20261029",
-    "commit": "e194d56096daf935caae33c7a9db0a130bc0fcec",
-    "checkpoint_base": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
-    "checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
-    "artifact_app": "dictionary/dictionary.rxe",
-    "artifact_dictionary": "dictionary/dictionary-pages.jsonl.gz",
-    "artifact_dictionary_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
-    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
+    "version": "E032-Temporal-1-dev",
+    "app_sha256": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "rama": "feature/bbyq-temporal-learning-20261029",
+    "commit": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+    "checkpoint_base": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+    "checkpoint_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "artifact_app": "temporal/temporal.rxe",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40795445276/artifacts/12863926371",
     "produccion_desplegada": false,
-    "aprendizaje_de_patrones_nuevo": false,
-    "datos_lexicos_nuevos": true,
-    "consulta": "@lex mediante query.py: transporte de páginas y recuperación XI",
-    "descripcion": "Biblioteca de referencia léxica completa de fuentes ES/EN fijadas, todavía sin incorporación automática al razonamiento conversacional."
+    "aprendizaje_de_patrones_nuevo": true,
+    "patrones_temporales": 48,
+    "descripcion": "Aprendiz e intérprete XI de posesión con tres categorías temporales, sobre E031/E030."
   },
   "resultados_contexto": {
     "version": "E027-Context-1-dev",
@@ -132,6 +129,23 @@
       "aprendizaje_de_patrones_nuevo": true,
       "patrones": 2,
       "descripcion": "Marco de sujeto único inducido por XI, delante de E029/E028/E027/E025."
+    },
+    {
+      "version": "E031-Dictionary-1-dev",
+      "app_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
+      "rama": "feature/bbyq-dictionary-es-en-20261029",
+      "commit": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+      "checkpoint_base": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+      "checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+      "artifact_app": "dictionary/dictionary.rxe",
+      "artifact_dictionary": "dictionary/dictionary-pages.jsonl.gz",
+      "artifact_dictionary_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
+      "produccion_desplegada": false,
+      "aprendizaje_de_patrones_nuevo": false,
+      "datos_lexicos_nuevos": true,
+      "consulta": "@lex mediante query.py: transporte de páginas y recuperación XI",
+      "descripcion": "Biblioteca de referencia léxica completa de fuentes ES/EN fijadas, todavía sin incorporación automática al razonamiento conversacional."
     }
   ],
   "checkpoint_experimental": {
@@ -180,8 +194,8 @@
       4,
       2
     ],
-    "run_id": 40793126384,
-    "observacion": "31 regresiones sobre cápsula E031 incluyen acción maximiza calculadora desde REVERSE-PC",
+    "run_id": 40795445276,
+    "observacion": "Cápsula E032 en REVERSE-PC: 31 regresiones heredadas incluyen maximizar calculadora",
     "coordinacion_autonoma_repositorio_verificada": false,
     "android_verificado": false
   },
@@ -277,5 +291,43 @@
       "Definitions may only be supplied in English; missing Spanish glosses remain missing",
       "No new general reasoning demonstrated"
     ]
+  },
+  "checkpoint_temporal": {
+    "archivo": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+    "sha256_decodificado": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "checkpoint_anterior_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "checkpoint_anterior": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "app_sha256": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "regiones": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "formas_aprendidas": 48,
+    "contiene_hechos_temporales_de_examen": false
+  },
+  "resultados_temporales": {
+    "version": "E032-Temporal-1-dev",
+    "checks": 539,
+    "learned_frames": 48,
+    "labeled_examples": 96,
+    "reserved_subjects": 24,
+    "exact_temporal_queries": 144,
+    "total_temporal_queries": 144,
+    "cross_time_isolation_controls": 96,
+    "previous_code_exact": 0,
+    "future_assertions_marked_unconfirmed": true,
+    "same_time_conflict_abstains": true,
+    "candidate_sha256_before": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "candidate_sha256_after": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "learned_checkpoint_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "parent_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "learning_region": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "old_memory_unchanged_by_teaching": true,
+    "scope": "Learned two-role possession frames, three relative tense buckets, single-token entity/object, explicit supervised time labels. Same surface referents across languages; no general translation/date/aspect/mood mastery.",
+    "native_process_per_turn": true,
+    "production_deployed": false
   }
 }

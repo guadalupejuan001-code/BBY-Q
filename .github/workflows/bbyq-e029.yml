@@ -56,4 +56,6 @@ jobs:
         if: always()
         with:
           name: BBYQ-E032-native-temporal-learning
-          path: evidence
+          path: |
+            evidence
+            !evidence/temporal/dictionary-smoke/banks/**
