@@ -1,7 +1,7 @@
 name: BBY Q E029 conversational fact learning (XI)
 on:
   pull_request:
-    paths: ['ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,27 +35,25 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Checkout full pinned bilingual Wordnet data
-        uses: actions/checkout@v4
+      - name: Recover exact existing E031 candidate and dictionary
+        uses: actions/download-artifact@v4
         with:
-          repository: omwn/omw-data
-          ref: 406bf83b3c507a3d1f26e88252d5d66893fd36bf
-          path: deps/omw
-          persist-credentials: false
-      - name: Checkout original English WordNet gloss data only
-        uses: actions/checkout@v4
-        with:
-          repository: nltk/wordnet
-          ref: ce91915ae38a341ae845be4d825ef6003cddf395
-          path: deps/wordnet
-          persist-credentials: false
-          sparse-checkout: wn/data/wordnet-3.0
-      - name: Import complete sources and examine native dictionary
-        run: python3 ai/releases/e031/import_and_test.py deps/reverse/build/reverse_pc deps/omw evidence/dictionary
-      - name: Candidate old knowledge and W4u regression
-        run: python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/dictionary evidence/candidate-regression
+          name: BBYQ-E031-full-bilingual-dictionary
+          run-id: 40793126384
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Build and verify native temporal candidate
+        run: python3 ai/releases/e032/build.py deps/reverse/build/reverse_pc prior evidence/temporal
+      - name: Teach and independently examine temporal language in XI
+        run: python3 ai/releases/e032/test.py deps/reverse/build/reverse_pc prior evidence/temporal
+      - name: Prior agent and W4u regressions on temporal capsule
+        run: |
+          mkdir -p evidence/temporal-compat
+          cp evidence/temporal/temporal.rxe evidence/temporal-compat/dictionary.rxe
+          cp prior/dictionary/controller.rvp evidence/temporal-compat/controller.rvp
+          python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/temporal-compat evidence/candidate-regression
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E031-full-bilingual-dictionary
+          name: BBYQ-E032-native-temporal-learning
           path: evidence
