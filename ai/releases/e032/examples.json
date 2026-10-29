@@ -1,0 +1,386 @@
+[
+  {
+    "id": 1,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "{S} tenía {O}"
+  },
+  {
+    "id": 2,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "{S} no tenía {O}"
+  },
+  {
+    "id": 3,
+    "language": "es",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "¿{S} tenía {O}?"
+  },
+  {
+    "id": 4,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "ayer {S} tenía {O}"
+  },
+  {
+    "id": 5,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "ayer {S} no tenía {O}"
+  },
+  {
+    "id": 6,
+    "language": "es",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "¿{S} tenía {O} ayer?"
+  },
+  {
+    "id": 7,
+    "language": "es",
+    "intent": 1,
+    "time": 2,
+    "polarity": 1,
+    "text": "{S} tiene {O}"
+  },
+  {
+    "id": 8,
+    "language": "es",
+    "intent": 1,
+    "time": 2,
+    "polarity": 2,
+    "text": "{S} no tiene {O}"
+  },
+  {
+    "id": 9,
+    "language": "es",
+    "intent": 2,
+    "time": 2,
+    "polarity": 1,
+    "text": "¿{S} tiene {O}?"
+  },
+  {
+    "id": 10,
+    "language": "es",
+    "intent": 1,
+    "time": 2,
+    "polarity": 1,
+    "text": "hoy {S} tiene {O}"
+  },
+  {
+    "id": 11,
+    "language": "es",
+    "intent": 1,
+    "time": 2,
+    "polarity": 2,
+    "text": "hoy {S} no tiene {O}"
+  },
+  {
+    "id": 12,
+    "language": "es",
+    "intent": 2,
+    "time": 2,
+    "polarity": 1,
+    "text": "¿{S} tiene {O} ahora?"
+  },
+  {
+    "id": 13,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "{S} tendrá {O}"
+  },
+  {
+    "id": 14,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "{S} no tendrá {O}"
+  },
+  {
+    "id": 15,
+    "language": "es",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "¿{S} tendrá {O}?"
+  },
+  {
+    "id": 16,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "mañana {S} tendrá {O}"
+  },
+  {
+    "id": 17,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "mañana {S} no tendrá {O}"
+  },
+  {
+    "id": 18,
+    "language": "es",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "¿{S} tendrá {O} mañana?"
+  },
+  {
+    "id": 19,
+    "language": "en",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "{S} had {O}"
+  },
+  {
+    "id": 20,
+    "language": "en",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "{S} did not have {O}"
+  },
+  {
+    "id": 21,
+    "language": "en",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "did {S} have {O}?"
+  },
+  {
+    "id": 22,
+    "language": "en",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "yesterday {S} had {O}"
+  },
+  {
+    "id": 23,
+    "language": "en",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "yesterday {S} did not have {O}"
+  },
+  {
+    "id": 24,
+    "language": "en",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "did {S} have {O} yesterday?"
+  },
+  {
+    "id": 25,
+    "language": "en",
+    "intent": 1,
+    "time": 2,
+    "polarity": 1,
+    "text": "{S} has {O}"
+  },
+  {
+    "id": 26,
+    "language": "en",
+    "intent": 1,
+    "time": 2,
+    "polarity": 2,
+    "text": "{S} does not have {O}"
+  },
+  {
+    "id": 27,
+    "language": "en",
+    "intent": 2,
+    "time": 2,
+    "polarity": 1,
+    "text": "does {S} have {O}?"
+  },
+  {
+    "id": 28,
+    "language": "en",
+    "intent": 1,
+    "time": 2,
+    "polarity": 1,
+    "text": "today {S} has {O}"
+  },
+  {
+    "id": 29,
+    "language": "en",
+    "intent": 1,
+    "time": 2,
+    "polarity": 2,
+    "text": "today {S} does not have {O}"
+  },
+  {
+    "id": 30,
+    "language": "en",
+    "intent": 2,
+    "time": 2,
+    "polarity": 1,
+    "text": "does {S} have {O} now?"
+  },
+  {
+    "id": 31,
+    "language": "en",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "{S} will have {O}"
+  },
+  {
+    "id": 32,
+    "language": "en",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "{S} will not have {O}"
+  },
+  {
+    "id": 33,
+    "language": "en",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "will {S} have {O}?"
+  },
+  {
+    "id": 34,
+    "language": "en",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "tomorrow {S} will have {O}"
+  },
+  {
+    "id": 35,
+    "language": "en",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "tomorrow {S} will not have {O}"
+  },
+  {
+    "id": 36,
+    "language": "en",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "will {S} have {O} tomorrow?"
+  },
+  {
+    "id": 37,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "{S} tenia {O}"
+  },
+  {
+    "id": 38,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "{S} no tenia {O}"
+  },
+  {
+    "id": 39,
+    "language": "es",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "¿{S} tenia {O}?"
+  },
+  {
+    "id": 40,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 1,
+    "text": "ayer {S} tenia {O}"
+  },
+  {
+    "id": 41,
+    "language": "es",
+    "intent": 1,
+    "time": 1,
+    "polarity": 2,
+    "text": "ayer {S} no tenia {O}"
+  },
+  {
+    "id": 42,
+    "language": "es",
+    "intent": 2,
+    "time": 1,
+    "polarity": 1,
+    "text": "¿{S} tenia {O} ayer?"
+  },
+  {
+    "id": 43,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "{S} tendra {O}"
+  },
+  {
+    "id": 44,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "{S} no tendra {O}"
+  },
+  {
+    "id": 45,
+    "language": "es",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "¿{S} tendra {O}?"
+  },
+  {
+    "id": 46,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 1,
+    "text": "manana {S} tendra {O}"
+  },
+  {
+    "id": 47,
+    "language": "es",
+    "intent": 1,
+    "time": 3,
+    "polarity": 2,
+    "text": "manana {S} no tendra {O}"
+  },
+  {
+    "id": 48,
+    "language": "es",
+    "intent": 2,
+    "time": 3,
+    "polarity": 1,
+    "text": "¿{S} tendra {O} manana?"
+  }
+]
