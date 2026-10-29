@@ -75,6 +75,22 @@ El código fuente de **E031** se ha recuperado, pero su biblioteca de **236.256 
 
 La reproducción acumulada E034 descarga cápsulas de las CI **E032 y E033** (artefactos con caducidad indicada para enero de 2027). El código y los checkpoints originales ya quedan dentro del repositorio, pero la reproducción CI todavía debe evolucionar a una reconstrucción autosuficiente desde fuentes para depender menos de artefactos transitorios.
 
+## Pruebas frescas de la rama de consolidación
+
+Se ejecutaron nuevas pruebas sobre las fuentes recuperadas, independientes de los informes históricos:
+
+| Workflow | GitHub Actions | Resultado |
+|---|---|---|
+| E025 original, identidad y recuperación | [40919504482](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40919504482) | **success** |
+| E027 contexto y memoria nativa | [40919504474](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40919504474) | **success** |
+| Receptor Watch4 | [40919504627](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40919504627) | **success** |
+| E026 reconstrucción y examen | [40920837069](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40920837069) | **success**, 48/48 desarrollo, 48/48 transferencia |
+| E034 reconstrucción, aprendizaje y regresiones | [40919504506](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40919504506) | **success** |
+
+La reproducción E034 completa confirmó **761 verificaciones E034**, **1.069 E033**, **429 E027**, **464 E028**, **285 E029**, **31 E025** y la batería w4U, todas con el ejecutor fijado. [Artefacto actual de 14,4 MB](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40919504506/artifacts/12919130941). [Evidencia E026](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40920837069/artifacts/12918950546).
+
+La CI de E034 verificó la revisión `0882d20c250d68358748d3fa051f3582947eb3a9`. La comparación Git posterior confirma que los cambios de esa revisión al último código de la PR son **sólo cuatro archivos nuevos de documentación y el workflow de E026**, sin modificar las 61 fuentes/fixtures previamente probadas. Una segunda ejecución automática de E034 sobre esos metadatos no constituye un nuevo cambio en su código.
+
 ## Integración y límites
 
 El contenido importado **no reemplaza** `ai/releases/e025/controller.rvp.gz.b64`, los checkpoints E032/E033/E034 existentes, ni la memoria de un dispositivo Android. El checkpoint E034 es un candidato local/nativo, **no** el motor conversacional desplegado en REVERSE 2.5.1. Para utilizarlo allí hará falta revisión de ABI, migraciones y CI Android específicas.
