@@ -17,3 +17,11 @@ La consulta usa el índice, emite el valor con referencia [#rNNN] y reutiliza un
 Examen independiente:24 entidades reservadas,4 relaciones,168 preguntas ES/EN; comparar E032 con los mismos hechos y preguntas. Verificar deduplicación, colisiones de hash, ausencia de estados nuevos por consultas, invalidación de caché, reconstrucción de procedencia, UTF-8, múltiples palabras y rechazo atómico al llenar diccionarios/diario. Conservar144 respuestas temporales, E027/E028/E029 completos, E025 y W4u. Medir crecimiento real de archivo/gzip frente al archivo textual nativo; registrar diferencias de representación y no atribuir a compactación una aceleración no medida.
 
 Las32 preguntas de comparación anteriores se incluyen como diagnóstico de desarrollo, nunca como nueva prueba reservada. El modelo se guarda antes de ingresar hechos de examen. E032 y todos los checkpoints previos permanecen disponibles. Resultados pendientes de CI; no declarar capacidad aprobada antes de su ejecución.
+
+## Resultado verificado
+
+CI https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565, código 284172e5b0a7b73ffd75b8fa7676a776fcb5791c:1069 verificaciones propias;168/168 consultas reservadas frente a0/168 E032;144 temporales retenidas; E027429/E028464/E029285/E02531/W4u21 aprobadas. El ingreso de96 hechos conserva toda memoria previa fuera de la región840... y los diccionarios residen realmente dentro de ella. Fuente de cifras: docs/autonomy/evidencias/relaciones-estados-minimos-20261029-results.json.
+
+Checkpoint122091bytes gzip frente a119255 E032 (+2836). El crecimiento por96 hechos es30038bytes y4286gzip frente a97378y12819en archivo textual; se preserva procedencia normalizada por marco/roles. Diagnóstico de desarrollo20/32→27/32, sin presentarlo como reserva nueva. No hay una comparación causal de velocidad; mediana cacheada observada150,65ms.
+
+Las dos incidencias de aislamiento y su corrección constan en el registro del ciclo. Los checkpoints anteriores permanecen. El modelo nuevo está en ai/checkpoints/e033/minimal-model.rvp.gz.b64; no contiene hechos temporales ni de relaciones del examen. Capacidad de lenguaje y relaciones acotada; las fechas y generación abierta siguen pendientes.
