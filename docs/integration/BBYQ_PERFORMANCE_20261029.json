@@ -1,0 +1,113 @@
+{
+  "name": "BBY Q — verifiable performance measurements",
+  "date": "2026-10-29",
+  "status": "historical CI measurements, integration reproduction CI queued at first report",
+  "scope": "XI/Ether symbolic and supervised languages, not open-ended general AI benchmark",
+  "sources": {
+    "e032": {
+      "run": 40795445276,
+      "path": "docs/autonomy/evidencias/temporal-es-en-20261029-results.json",
+      "commit": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda"
+    },
+    "e033": {
+      "run": 40802286565,
+      "path": "docs/autonomy/evidencias/relaciones-estados-minimos-20261029-results.json",
+      "commit": "284172e5b0a7b73ffd75b8fa7676a776fcb5791c"
+    },
+    "e034": {
+      "run": 40808605984,
+      "path": "docs/autonomy/evidencias/composicion-relaciones-20261029-0242-results.json",
+      "commit": "7d8d8203d63ba8328d0f2ca6a236f20ae39f87e3"
+    },
+    "sovengi": {
+      "run": 40798417876,
+      "path": "benchmarks/sovengi-bbyq-20261029/results.json",
+      "review": "benchmarks/sovengi-bbyq-20261029/review.json",
+      "commit": "a96ede4c1a4f3223967c14f1bfa80d41c333da17"
+    }
+  },
+  "models": {
+    "e022": {
+      "rvpc2_bytes": 500410,
+      "source": "README.md (engineering recap)"
+    },
+    "e032": {
+      "rvpc2_bytes": 836481,
+      "rvpc2_gzip_bytes": 119255,
+      "source": "E033 parent state"
+    },
+    "e033": {
+      "rvpc2_bytes": 856177,
+      "rvpc2_gzip_bytes": 122091,
+      "median_cached_turn_ms": 150.6543465000334,
+      "native_peak_rss_kib": 47508,
+      "source": "E033 standalone CI"
+    },
+    "e034": {
+      "rvpc2_bytes": 863594,
+      "rvpc2_gzip_bytes": 123175,
+      "median_compound_turn_ms": 163.83644400001174,
+      "native_peak_rss_kib": 39964,
+      "candidate_rxe_bytes": 1346841,
+      "reference_state_bytes": 2,
+      "source": "E034 standalone CI"
+    }
+  },
+  "capabilities_verified": {
+    "e032": {
+      "exact_temporal": "144/144",
+      "cross_time_isolation": 96
+    },
+    "e033": {
+      "relational": "168/168",
+      "temporal_retained": "144/144"
+    },
+    "e034": {
+      "compound": "48/48",
+      "typed_followups": "96/96",
+      "relational_retained": "168/168",
+      "temporal_retained": "144/144",
+      "native_checks": 761,
+      "e033_reproduction_checks": 1069,
+      "w4u_regression": 21
+    }
+  },
+  "representation_study": {
+    "scenario": "96 structured facts",
+    "relational_growth_bytes": 30038,
+    "archive_growth_bytes": 97378,
+    "relational_gzip_growth_bytes": 4286,
+    "archive_gzip_growth_bytes": 12819,
+    "serialized_saving_percent": 69.15319682063709,
+    "caveat": "Normalized frame/entity/value representation does not preserve all original ASCII case/format. It is not lossless equivalence of arbitrary text."
+  },
+  "benchmark_same_protocol": {
+    "subject": "BBY Q E032 versus SOVENGI default 35-model rotating catalog",
+    "semantic_review": "AI-reviewed; not independently human-adjudicated",
+    "questions": 32,
+    "bbyq_full_pass": 20,
+    "sovengi_full_pass": 2,
+    "score_not_general_intelligence": true,
+    "repeated_calls": 12,
+    "bbyq_median_ms": 160.811249,
+    "sovengi_median_ms": 1140.65,
+    "bbyq_tree_peak_rss_mib": 45.5,
+    "sovengi_tree_peak_rss_mib": 995.11,
+    "ratio_sovengi_to_bbyq_repeated_latency": 7.0931,
+    "ratio_sovengi_to_bbyq_rss": 21.8705,
+    "caveats": [
+      "Same virtual runner/CPU affinity but different algorithm tasks and response lengths",
+      "Process tree RSS sampled, may count shared pages multiple times",
+      "BBYQ fact ingestion timed separately while SOVENGI context preparation occurs during query",
+      "First-use lazy model loading and rotating ensemble changes cost",
+      "32 domain-focused questions and AI-only semantic review are not proof of model general capability"
+    ]
+  },
+  "limitations": [
+    "Neither benchmark measures physical quantum acceleration or causal computer speedups",
+    "Positive test counts are per bounded program contracts, not open-ended conversation score",
+    "Latency/RSS across E033 and E034 are DIFFERENT tasks and runner runs: never infer a speedup/slowdown",
+    "Existing E034 checkpoint preserved; compilation into a final Android APK requires separate migration",
+    "Integration branch CI result and main merge status must be checked remotely"
+  ]
+}

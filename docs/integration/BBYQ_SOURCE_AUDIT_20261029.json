@@ -1,0 +1,85 @@
+{
+  "fecha": "2026-10-29",
+  "repositorio": "guadalupejuan001-code/BBY-Q",
+  "base_main": "337e161af2b333b70c9bc938741e7c08097093e0",
+  "rama_integracion": "integrate/bbyq-audited-sources-20261029",
+  "cantidad_ramas_observadas": 43,
+  "grupos": {
+    "main": [
+      "main"
+    ],
+    "ancestor_in_main": [
+      "archive/watch4-optics-20261025",
+      "autonomy/bbyq-w4u-daily-20261028",
+      "feature/bbyq-e005-relation-growth-xi-20261026",
+      "feature/bbyq-e006-shadow-jury-xi-20261026",
+      "feature/bbyq-e007-ether-context-vault-20261026",
+      "feature/bbyq-e009-native-language-20261026",
+      "feature/bbyq-e009-native-text-input-20261026",
+      "feature/bbyq-e010-preschool-bilingual-xi-20261026",
+      "feature/bbyq-xi-own-language-training-20261026",
+      "feature/e008-ether-constellation-xi-20261026",
+      "feature/bbyq-e027-long-context-20261028",
+      "feature/bbyq-e028-context-reasoning-20261028",
+      "feature/bbyq-e029-natural-facts-20261028",
+      "integrate/latest-2026-10-28"
+    ],
+    "historical_paths_in_main": [
+      "feature/bbyq-e011-compositional-language-20261026",
+      "feature/bbyq-e012-grounded-knowledge-20261026",
+      "feature/bbyq-e012-validation-stage-20261026",
+      "feature/bbyq-e013-performance-20261026",
+      "feature/bbyq-e014-quantity-stories-20261026",
+      "feature/bbyq-e015-bilingual-grammar-20261026",
+      "feature/bbyq-e016-grounded-conversation-20261026",
+      "feature/bbyq-e017-open-learning-20261026",
+      "feature/bbyq-e018-concise-dialogue-20261026",
+      "feature/bbyq-e019-context-questions-20261027",
+      "feature/bbyq-e020-million-stream-20261027",
+      "feature/bbyq-e021-language-campaign-20261027",
+      "feature/bbyq-e022-compositional-requests-20261027",
+      "staging/bbyq-e014-20261026"
+    ],
+    "source_gaps_imported_to_review": [
+      "autonomy/bbyq-context-composition-20261028",
+      "autonomy/bbyq-e026-native-composition-20261028",
+      "autonomy/bbyq-learned-forms-20261028",
+      "autonomy/bbyq-preserve-frames-20261028",
+      "autonomy/bbyq-two-facts-e025-20261028",
+      "autonomy/qd-cody-cycle0-20261028",
+      "benchmark/sovengi-bbyq-readonly-20261029",
+      "feature/bbyq-dictionary-es-en-20261029",
+      "feature/bbyq-minimal-relations-20261029",
+      "feature/bbyq-relational-composition-20261029",
+      "feature/bbyq-temporal-learning-20261029"
+    ],
+    "kept_as_separate_legacy_research": [
+      "feature/ether-native-relations-20261026",
+      "feature/quantum-ai-lab-20261025",
+      "transport/import-20261028-bbyq"
+    ]
+  },
+  "criterios": {
+    "ancestor_in_main": "Comprobación de alcance git compare: base anterior ya tiene todos sus commits; no volver a fusionar.",
+    "historical_paths_in_main": "Archivos históricos de esa línea están en main; los heads divergentes son obsoletos y pueden tener implementaciones anteriores; no sobrescribir bytes modernos.",
+    "source_gaps_imported_to_review": "Rutas fuente o de test/evidencia que faltaban realmente de la tabla de objetos Git de main, importadas a una rama separada mediante SHA de blobs; no promover automáticamente un nuevo runtime.",
+    "kept_as_separate_legacy_research": "Prototipos antiguos Python/variante C++ y source.bundle de transporte que no son XI/Ether actual; retener ramas como historia sin incorporarlas al ejecutor principal ni tratar sus datos como entrenamiento.",
+    "main": "Punto de control base, sin reemplazo de checkpoint ni autoridad de memoria."
+  },
+  "blobs_añadidos_a_rama": 61,
+  "fuentes_por_origen": {
+    "feature/bbyq-relational-composition-20261029": 36,
+    "autonomy/bbyq-context-composition-20261028": 9,
+    "benchmark/sovengi-bbyq-readonly-20261029": 9,
+    "autonomy/bbyq-two-facts-e025-20261028": 2,
+    "autonomy/qd-cody-cycle0-20261028": 5
+  },
+  "checkpoint_status": "Los checkpoints E025, E030, E032, E033 y E034 ya existentes en main NO se sustituyen. E034 no se instala en APK por esta integración.",
+  "condiciones": [
+    "Ningún cambio a BBY-Q docs/autonomy principal ni al estado privado de un teléfono",
+    "No fusionar SOVENGI, sus modelos, ni un motor Python externo",
+    "Reproducir CI E034, E025/w4U, E027/28/29",
+    "PR GitHub, no afirmar main integrado hasta confirmar sha del merge"
+  ],
+  "limitacion": "El inventario agrupa ramas de investigación y código obsoleto sin incorporarlas al runtime. '43 ramas observadas' no equivale a '43 PRs fusionadas'."
+}
