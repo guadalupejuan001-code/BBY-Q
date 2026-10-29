@@ -1,0 +1,46 @@
+name: BBY Q restored E026 two-fact composition native regression
+on:
+  pull_request:
+    paths: ['ai/releases/e026/**', '.github/workflows/bbyq-e026-restored.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-e026:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build original pinned XI/Ether runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Rebuild authentic E025 and XI-only E026 candidate and run regression
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          python3 ai/releases/e026/regression.py deps/reverse/build/reverse_pc evidence/e026 | tee evidence/e026-regression.log
+      - name: Evaluate original and candidate E026 on development and transfer
+        run: |
+          set -euo pipefail
+          python3 ai/releases/e026/test.py deps/reverse/build/reverse_pc evidence/e026 evidence/e026-evaluation | tee evidence/e026-evaluation.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-restored-E026-native-evidence
+          path: |
+            evidence/e026-evaluation/
+            evidence/e026/
+            evidence/*log
+          retention-days: 30
