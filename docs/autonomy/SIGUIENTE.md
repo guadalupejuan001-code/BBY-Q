@@ -1,29 +1,21 @@
-# Siguiente ciclo: composición sobre relaciones compartidas
+# Siguiente ciclo: generalizar la composición aprendida
 
-## Estado real
-BBY Q es principal. Principio del usuario: estados mínimos por Ether, aprendizaje e inferencia XI. E033 nativo en PR40, rama feature/bbyq-minimal-relations-20261029, código probado 284172e5b0a7b73ffd75b8fa7676a776fcb5791c. Resolver referencias reales al comenzar; notas y código tienen revisiones separadas. CI https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565 completed/success.
+## Referencias
+Resolver HEAD reales y leer ESTADO/último registro al comenzar. El candidato E034 está en feature/bbyq-relational-composition-20261029, PR41. Código probado7d8d8203d63ba8328d0f2ca6a236f20ae39f87e3; CIhttps://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40808605984 completed/success. El código y las notas tienen revisiones separadas. No iniciar otro ciclo si existe reserva o ejecución real; usar CAS en main y concurrencia de bbyq-e029/native-e029.
 
-Checkpoint preferido: ai/checkpoints/e033/minimal-model.rvp.gz.b64, RVPC2 SHA256 e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433, cápsula compatible SHA256 14334cc91e164ee0299bda3a0a785bd8b0f5e3f41fab744f747d8de1a63dd4f2. E032 anterior permanece en ai/checkpoints/e032/temporal-model.rvp.gz.b64, SHA f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56. El modelo E033 solo añade22 marcos aprendidos, sin hechos del examen. Modelo completo856177bytes,122091gzip; crecimiento2836gzip. No sobrescribir memoria privada al restaurarlo.
+Checkpoint preferido: ai/checkpoints/e034/composition-model.rvp.gz.b64; RVPC2 SHA256 876d3f2a82698e9582f17043028d9a75b454e4b5ebaf7cc5949b65a5bac58a10; cápsula compatible a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28. 863594bytes RVPC2/123175gzip, sin hechos de examen. Fuentes/cápsula/transcripciones enhttps://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40808605984/artifacts/12869038989, caducidad2027-01-27T02:49:15Z. E033 y E032 permanecen intactos.
 
-Código, cápsula, fuentes y transcripciones en https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565/artifacts/12866434141; caducidad del artefacto 2027-01-27T01:45:04Z. El checkpoint durable del repositorio no depende de ese plazo. Si falta el artefacto, reconstruir fuentes con padres/pins fijados; no asumir disponible un binario histórico.
+Resultado real: ocho formas nuevas desde16 demostraciones;48/48 consultas compuestas y96/96 seguimientos; conservación168 relacionales/144 temporales;761 verificaciones propias,1069 de reproducción y regresiones históricas aprobadas. Estado del ciclo: finalizado, sin bloqueos.
 
-## Comprobado
+## Trabajo concreto siguiente
+Ampliar la composición a otra familia semántica de entidades y relaciones, conservando la representación compartida. Sustituir el par de tipos actualmente fijado a taller/apertura/ubicación por un contrato explícito de tipos y planes que pueda aprenderse y evaluarse en XI; nunca unir propiedades solo porque sus nombres internados coincidan. Enseñar formas nuevas desde demostraciones y fijar historias y combinaciones reservadas antes del examen. No presentar un nuevo literal codificado a mano como aprendizaje de lenguaje.
 
-- 168/168 consultas nuevas con24 entidades y4 relaciones, frente a0/168 en E032 sobre los mismos hechos/preguntas.22 formas desde44 ejemplos, código fijo durante enseñanza.
-- Diccionarios compartidos (24 entidades y12 valores para96 eventos), índice de hechos, caché invalidada al corregir, duplicados sin estado adicional, conflictos conservadores y reconstrucción nativa @rel source N.
-- Crecimiento por96 hechos:30038bytes frente a97378del archivo textual E027; gzip4286frente a12819. Se preserva texto normalizado mediante marco/roles, no mayúsculas originales. No es una prueba de mínimo informacional absoluto.
-- Región nueva exacta8400000000000000000 longitud73728. Fuente original sin ocupación y checkpoint libre antes de enseñar. Ninguna memoria previa cambia al enseñar NI al ingresar96 hechos, salvo metadato de idioma.
--1069 verificaciones E033;144 consultas temporales conservadas. Regresiones E027429/E028464/E029285/E025 original31/candidato31/W4u21, acción[4,2]. CLI de diccionario perro/dog conservada.
-- Diagnóstico de desarrollo anterior:20/32→27/32. No reutilizarlo como test reservado nuevo. Persisten5 fallos abiertos de explicación/paráfrasis/pasos/traducción.
+Aceptación: respuestas correctas a dos propiedades en una familia distinta de taller, con ambas fuentes; seguimiento de entidad sin mezclar tipos; abstención ante propiedad ausente, conflicto o referente ambiguo; conservar48 consultas compuestas,96 seguimientos,168 relacionales y144 temporales. Comparar E034 y candidato sobre los mismos datos y medir tamaño, RAM y latencia en el mismo ejecutor. Si falla, mantener E034 y su checkpoint limpio.
 
-Se corrigieron dos defectos de aislamiento antes de aceptar el candidato:850... ya pertenecía a E025; después la auditoría detectó tablas remanentes fuera de la región declarada pese al paso funcional. El build y el examen ahora rechazan esos casos. E032 original nunca se sobrescribió.
+## Límites que guían la selección
+30 de32 marcos de relación ocupados. Si se necesita más capacidad, verificar el mapa real de memoria antes de ampliar y conservar las memorias/checkpoints; los huecos Ether no justifican materializar tablas vacías. Las referencias actuales son cuatro frases diseñadas y un antecedente tipado de dos bytes, no resolución general de pronombres. El operador nuevo solo une apertura/ubicación de talleres; no es generación abierta ni unión arbitraria con el archivo E027. Cinco fallos de lenguaje abierto del diagnóstico anterior siguen pendientes, sin mejora medida aquí.
 
-## Objetivo concreto siguiente
+W4u: fixtures nativos y acción tipada comprobados, no coordinación autónoma de repositorios ni Android. REVERSE-PC se ejecuta con el pin configurado; su main puede haber avanzado sin que eso cambie automáticamente el ejecutor. No modificar SOVENGI, crear programaciones o ejecutores. XI/Ether mantiene todo aprendizaje/inferencia.
 
-Componer dos consultas de relaciones compartidas con procedencia y seguimiento de entidad, reutilizando diccionarios/índices en lugar de duplicar texto o añadir un motor externo. Primero declarar roles, tipos de relación y resolución de referencias para evitar confundir entidades que comparten nombre. Mantener separados tiempo de ocurrencia y orden de revisiones; el diario actual no resuelve fechas absolutas.
-
-Requisitos: comprobar el HEAD, la reserva/ciclos y el ejecutor actuales; restaurar E033 limpio con cápsula compatible; conservar E032; fijar nuevas historias y familias de entidades separadas ANTES de evaluar. Aprendizaje e inferencia dentro de XI/Ether. No modificar ni fusionar SOVENGI.
-
-Aceptación: consultas nuevas de dos propiedades con fuentes correctas y antecedente inequívoco; abstenerse ante propiedad faltante o conflicto; preservar168 respuestas de relaciones y144 temporales, repetir regresiones pertinentes y medir crecimiento/latencia. Conservar el anterior si falla. No declarar generación abierta ni ventaja de velocidad por comparación entre runners distintos.
-
-Límites actuales:32 marcos,96 entidades,96 valores y255 eventos. Extender mediante paginación o migración verificable, sin perder diario ni checkpoints. W4u solo verificado en fixtures/acción nativa, no ingeniería autónoma ni Android. Usar exclusivamente el workflow bbyq-e029/native-e029 ubuntu-latest y pins REVERSE-PC a1b935ae0adf38615996bac92727e95289ad7cc1/Mundo X e2778d962af22f6f1a0794058dd4685fc2573966. Actualizar ESTADO, SIGUIENTE y registro también ante fallo; terminar el ciclo y esperar activación.
+## Reproducción y conservación
+Restaurar el checkpoint limpio E034 con cápsula compatible desde las evidencias del estado; comprobar hashes actuales. Conservar E033 y E032. El checkpoint se guarda en el repositorio antes de los hechos del examen. La reproducción E033 es verificación, no aprendizaje nuevo de BBY Q. Artefactos de CI caducan; no depender solo de binarios históricos. Guardar ESTADO, SIGUIENTE y registro incluso ante fallo, con comandos exactos pendientes si falta ejecución o escritura.

@@ -12,4 +12,8 @@ Aceptación fijada antes de ejecutar: 48 respuestas compuestas exactas con fuent
 
 Ejecutor exclusivo: workflow existente bbyq-e029.yml/native-e029, ubuntu-latest; mismo grupo de concurrencia, pins y límites. Los scripts Python solo compilan, transportan datos, invocan XI y verifican resultados; no eligen respuestas.
 
-Estado: candidato pendiente de CI nueva. No despliegue Android, no Transformer, no cambio de SOVENGI ni coordinación autónoma de repositorio atribuida a W4u.
+Estado: CI nueva completada con éxito. Resultados definitivos y límites en docs/AI_E034_RELATIONAL_COMPOSITION.md. 761 verificaciones propias; 48/48 consultas,96/96 seguimientos,168/144 retenciones; E0331069 y regresiones históricas aprobadas. No despliegue Android, no Transformer, no cambio de SOVENGI ni coordinación autónoma de repositorio atribuida a W4u.
+
+
+CI: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40808605984
+Checkpoint: ai/checkpoints/e034/composition-model.rvp.gz.b64
