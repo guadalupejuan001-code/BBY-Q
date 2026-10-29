@@ -5,7 +5,7 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('runtime');p.add_argument('prior');p.add_argument('out');a=p.parse_args()
 runtime=str(Path(a.runtime).resolve());prior=Path(a.prior).resolve()/'minimal';out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
 app=out/'composed.rxe';parent=prior/'minimal.rxe';state=out/'live.rvp';seed=gzip.decompress(base64.b64decode(Path('ai/checkpoints/e033/minimal-model.rvp.gz.b64').read_text()));state.write_bytes(seed)
-B=8400000000000000000;C=8300000000000000000;checks=0;turns=[];lessons=[];sha=lambda f:hashlib.sha256(Path(f).read_bytes()).hexdigest();fixed=sha(app)
+B=8400000000000000000;C=B+12;checks=0;turns=[];lessons=[];sha=lambda f:hashlib.sha256(Path(f).read_bytes()).hexdigest();fixed=sha(app)
 assert hashlib.sha256(seed).hexdigest()=='e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433'
 spec=importlib.util.spec_from_file_location('snapshot','ai/xi/knowledge/tests/native-knowledge.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 def snap(live=state):return m.snapshot(live)
@@ -30,7 +30,7 @@ def lesson(f,s,v,reject=False):
  else:
   ok(r.returncode==0,('native lesson',f['id'],r.stderr));dest.replace(state)
 before=snap()
-ok(not any(C<=k<C+16 and v for k,v in before[1].items()),'typed referent region unused in previous checkpoint')
+ok(not any(C<=k<C+2 and v for k,v in before[1].items()),'typed referent region unused in previous checkpoint')
 for f in new:
  lesson(f,*f['samples'][0]);eq(snap()[1].get(B+4096+(f['id']-1)*256),1,'one example remains pending')
  lesson(f,*f['samples'][0]);eq(snap()[1].get(B+4096+(f['id']-1)*256),1,'duplicate cannot activate')

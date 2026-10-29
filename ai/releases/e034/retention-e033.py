@@ -18,8 +18,8 @@ def ask(q,lang='es',live=state,used=app):
  t=time.perf_counter();r=subprocess.run([runtime,'app-turn',str(used),str(live),str(live),lang,q],capture_output=True,text=True,timeout=30)
  if r.returncode:raise AssertionError(('native turn failed',q,r.stderr))
  ans=r.stdout.rstrip();turns.append({'input':q,'language':lang,'output':ans,'app':sha(used),'seconds':time.perf_counter()-t});return ans
-def outside(s):return s[0],{k:v for k,v in s[1].items() if not B<=k<B+73728 and not 8300000000000000000<=k<8300000000000000016 and v},s[2]
-def truth(live=state):return {k:v for k,v in snap(live)[1].items() if B<=k<B+73728 and v and not B+5<=k<=B+11 and not B+16<=k<B+4096}
+def outside(s):return s[0],{k:v for k,v in s[1].items() if not B<=k<B+73728 and v},s[2]
+def truth(live=state):return {k:v for k,v in snap(live)[1].items() if B<=k<B+73728 and v and not B+5<=k<=B+13 and not B+16<=k<B+4096}
 forms=json.loads(Path('ai/releases/e033/examples.json').read_text())
 def lesson(f,s,v,reject=False):
  q=f['text'].replace('{S}',s).replace('{V}',v);fields=[(B+16,f['id']),(B+17,1 if f['language']=='es' else 2),(B+18,f['intent']),(B+19,f['relation']),(B+20,1),(B+21,len(q.encode())),(B+22,len(s.encode())),(B+23,len(v.encode()))]
