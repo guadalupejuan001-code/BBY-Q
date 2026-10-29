@@ -61,3 +61,8 @@ e2778d962af22f6f1a0794058dd4685fc2573966. Sin modelos externos.
 W4u se verificó con fixtures y acción nativa, no como coordinador autónomo
 de ingeniería. No desplegar ni reemplazar memorias privadas de Android aquí.
 Actualizar ESTADO, SIGUIENTE y registro incluso ante fallo.
+
+
+## Evaluación comparativa posterior, sin aprendizaje ni modificaciones
+
+Solicitud directa de comparar SOVENGI y BBY Q ejecutada en rama benchmark/sovengi-bbyq-readonly-20261029, CI 40798417876 success. Informe: benchmarks/sovengi-bbyq-20261029/RESULTADO.md; registro: docs/autonomy/ejecuciones/comparacion-sovengi-bbyq-20261029.json. Aciertos completos20/32 BBY Q y2/32 SOVENGI, con límites de dominios y revisión de IA documentados. Inferencia sobre copias; pesos, cápsula, checkpoint y main sin cambios. Esta prueba no autoriza fusionar el workflow temporal ni reentrenar SOVENGI. Terminar y esperar la siguiente instrucción; el plan de desarrollo anterior no se ejecuta aquí.

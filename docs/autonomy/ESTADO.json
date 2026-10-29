@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T00:43:56.905Z",
+  "actualizado_utc": "2026-10-29T01:12:43.941Z",
   "estado": "formas_temporales_aprendidas_y_separacion_pasado_presente_futuro_validada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "feature/bbyq-temporal-learning-20261029",
@@ -329,5 +329,17 @@
     "scope": "Learned two-role possession frames, three relative tense buckets, single-token entity/object, explicit supervised time labels. Same surface referents across languages; no general translation/date/aspect/mood mastery.",
     "native_process_per_turn": true,
     "production_deployed": false
+  },
+  "ultima_evaluacion": {
+    "id": "comparacion-sovengi-bbyq-20261029",
+    "tipo": "inferencia_comparativa_sin_entrenamiento",
+    "rama": "benchmark/sovengi-bbyq-readonly-20261029",
+    "commit_examinador": "a96ede4c1a4f3223967c14f1bfa80d41c333da17",
+    "registro": "docs/autonomy/ejecuciones/comparacion-sovengi-bbyq-20261029.json",
+    "evidencia": "benchmarks/sovengi-bbyq-20261029/results.json",
+    "run_id": 40798417876,
+    "aprendizaje_nuevo": false,
+    "modelos_modificados": false,
+    "main_modificado": false
   }
 }
