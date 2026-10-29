@@ -1,0 +1,172 @@
+{
+  "id": "relaciones-estados-minimos-20261029",
+  "inicio_utc": "2026-10-29T01:29:06.656Z",
+  "fin_utc": "2026-10-29T01:56:13.823Z",
+  "instruccion_usuario": "Implementa lo útil para BBY Q, con estados mínimos por Ether; ciclo de desarrollo",
+  "objetivo": "Relaciones aprendidas, almacenamiento compartido, recuperación indexada y correcciones con conservación verificable",
+  "rama": "feature/bbyq-minimal-relations-20261029",
+  "commit_codigo": "284172e5b0a7b73ffd75b8fa7676a776fcb5791c",
+  "main_inicio": "d8d26d43c2d9aa8ce7c8e910a7cc543d101fc941",
+  "revision_notas_previa": "7c04c54a9db4567e3d406c99907e157901558235",
+  "checkpoint": {
+    "archivo": "ai/checkpoints/e033/minimal-model.rvp.gz.b64",
+    "version": "E033-Minimal-Relations-1-dev",
+    "sha256_decodificado": "e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433",
+    "checkpoint_anterior": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+    "checkpoint_anterior_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "app_sha256": "14334cc91e164ee0299bda3a0a785bd8b0f5e3f41fab744f747d8de1a63dd4f2",
+    "region": {
+      "base_address": "8400000000000000000",
+      "length": 73728
+    },
+    "formas_aprendidas": 22,
+    "bytes_rvpc2": 856177,
+    "bytes_gzip": 122091,
+    "contiene_hechos_de_examen": false
+  },
+  "run": {
+    "id": 40802286565,
+    "job_id": 123212948825,
+    "head_sha": "284172e5b0a7b73ffd75b8fa7676a776fcb5791c",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565",
+    "artifact_id": 12866434141,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565/artifacts/12866434141",
+    "artifact_sha256": "sha256:627d35329eea8360cb5e411ba33c4749702cfa8e3e65a6ddf6d2d649f2656ac7",
+    "artifact_expires_utc": "2027-01-27T01:45:04Z"
+  },
+  "criterio_aceptacion": "168/168 consultas reservadas, aislamiento de memoria incluso tras hechos nuevos, conservación144 temporales y regresiones históricas; caché/capacidad/colisiones/procedencia verificadas; medir crecimiento sin afirmar mínimos teóricos.",
+  "preflight": {
+    "AGENTS": [],
+    "active_runs_al_inicio": 0,
+    "queued_runs_al_inicio": 0,
+    "lecturas": [
+      "OBJETIVO.md",
+      "ESTADO.json",
+      "SIGUIENTE.md",
+      "último registro temporal",
+      "E032 fuente/learner/tests",
+      "diagnóstico comparativo PR39"
+    ],
+    "exclusion": "Reserva propia por CAS en main y concurrency del workflow existente; la activación siguiente verificó la misma reserva y continuó sin duplicar.",
+    "ejecutor": "GitHub Actions ubuntu-latest existente comprobado con nueva ejecución; environment_status no expuesto. No otro ejecutor ni programación.",
+    "contraste": "La comparación mostró fallos de días, ubicaciones y correcciones. La instrucción directa de estados mínimos priorizó compartir/indexar relaciones antes de un Transformer no justificado por esa evidencia."
+  },
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "actions/download-artifact@v4 run-id40795445276 BBYQ-E032-native-temporal-learning path=prior",
+    "python3 ai/releases/e033/build.py deps/reverse/build/reverse_pc prior evidence/minimal",
+    "python3 ai/releases/e033/test.py deps/reverse/build/reverse_pc prior evidence/minimal",
+    "node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/legacy027",
+    "node ai/releases/e028/build.mjs deps/reverse/build/reverse_pc evidence/legacy028",
+    "cp evidence/minimal/minimal.rxe evidence/compat/candidate.rxe",
+    "cp evidence/minimal/minimal.rxe evidence/compat/dictionary.rxe",
+    "cp evidence/minimal/learned-model.rvp evidence/compat/controller.rvp",
+    "cp evidence/minimal/minimal.rxe evidence/compat-e029/natural.rxe",
+    "cp evidence/legacy028/candidate.rxe evidence/compat-e029/candidate.rxe",
+    "cp evidence/minimal/learned-model.rvp evidence/compat-e029/controller.rvp",
+    "node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/compat evidence/regression027",
+    "node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/compat evidence/legacy027 evidence/regression028",
+    "node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/compat-e029 evidence/regression029",
+    "python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/compat evidence/candidate-regression"
+  ],
+  "resultados": {
+    "version": "E033-Minimal-Relations-1-dev",
+    "checks": 1069,
+    "learned_frames": 22,
+    "labeled_examples": 44,
+    "reserved_entities": 24,
+    "reserved_relations": 4,
+    "reserved_query_correct": 168,
+    "reserved_query_total": 168,
+    "previous_code_correct": 0,
+    "temporal_retention": 144,
+    "old_memory_unchanged_by_teaching": true,
+    "new_region": {
+      "base_address": "8400000000000000000",
+      "length": 73728
+    },
+    "model_sha256": "e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433",
+    "candidate_sha256": "14334cc91e164ee0299bda3a0a785bd8b0f5e3f41fab744f747d8de1a63dd4f2",
+    "model_state_bytes": 856177,
+    "model_gzip_bytes": 122091,
+    "parent_model_state_bytes": 836481,
+    "parent_model_gzip_bytes": 119255,
+    "learned_region_nonzero_bytes": 778,
+    "shared_dictionary_nonzero_bytes_at_96_facts": 332,
+    "representation_96_facts": {
+      "entities": 24,
+      "values": 12,
+      "events": 96,
+      "new_serialized_growth": 30038,
+      "new_gzip_growth": 4286,
+      "archive_serialized_growth": 97378,
+      "archive_gzip_growth": 12819,
+      "note": "Canonical structured provenance versus original native text archive; new representation retains normalized text via frame ID, entity and value, not original ASCII casing."
+    },
+    "cache_native_hits_verified": 12,
+    "cached_turn_median_ms": 150.6543465000334,
+    "native_subprocess_peak_rss_kib": 47508,
+    "candidate_bytes": 1333231,
+    "parent_bytes": 1303800,
+    "same_time_contradiction_and_explicit_correction": true,
+    "journal_and_entity_capacity_atomic": true,
+    "training_scope": "Supervised generic one/two-role byte frames and explicit functional relation IDs, no Transformer and no open language mastery",
+    "production_deployed": false
+  },
+  "regresiones": {
+    "e027": 429,
+    "e028": 464,
+    "e029": 285,
+    "e025_original": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  },
+  "diagnostico_desarrollo": {
+    "antes": 20,
+    "despues": 27,
+    "total": 32,
+    "nuevo_test_reservado": false,
+    "archivo": "ai/releases/e033/diagnostico-desarrollo.json"
+  },
+  "separacion_datos": "44 demostraciones con tutora/tutorb y teachera/teacherb. Examen reserva[a-x] y combinaciones de valores diferentes; modelo guardado antes de hechos de examen. Capacidades nuevas acotadas a marcos aprendidos e IDs funcionales explícitos.",
+  "conservacion": "Hash de programa fijo durante enseñanza; estado anterior fuera de840... intacto al aprender y tras96 hechos, exceptuando selección de idioma. UTF-8, colisiones, duplicados, cache stale, evidencia histórica, saturación de entidades/valores/diario y borrado de mailbox verificados.",
+  "fallos": [
+    {
+      "run": 40801416726,
+      "commit": "5a8209586383aa295904b66af2e1e2cf4e6a60a2",
+      "conclusion_ci": "failure",
+      "causa": "La región850... pertenecía al módulo conversacional E025. La primera lección se rechazó; no se publicó aprendizaje.",
+      "correccion": "Región840... verificada libre en fuente y checkpoint; limpieza del mailbox y límites comprobados."
+    },
+    {
+      "run": 40801622032,
+      "commit": "1f57ccb2168402df307eed1ba5b9dc9b6d0693d2",
+      "conclusion_ci": "success",
+      "aceptado": false,
+      "causa": "Auditoría posterior detectó cinco constantes de tablas aún en850... y métrica de diccionario cero dentro de la región declarada. La aprobación funcional no bastaba.",
+      "correccion": "Se corrigieron todas las direcciones; el build rechaza referencias ajenas y la evaluación exige332bytes no nulos en diccionarios y conservación de toda memoria previa tras96 hechos.",
+      "modelo_o_estado_experimental_promovido": false
+    }
+  ],
+  "bloqueos": [],
+  "hipotesis_pendientes": [
+    "Relaciones funcionales con un valor vigente; gramática aprendida acotada, no extracción general de párrafos ni dominio general de lenguaje.",
+    "Capacidades reales:32 marcos,96 entidades,96 valores,255 eventos. Para ampliarlas, paginar o migrar con pruebas sin perder fuentes ni checkpoints.",
+    "Procedencia reconstruida normalizada desde marco y roles; conserva UTF-8, no las mayúsculas ASCII originales.",
+    "El diario representa orden de afirmaciones y revisiones de conocimiento; no equivale al tiempo de ocurrencia ni a fechas absolutas.",
+    "Las relaciones nuevas y el archivo contextual histórico comparten el agente RVPC2, pero aún requieren reconciliar consultas compuestas y referencias entre ambos almacenes.",
+    "El transporte explícito @lex permanece; no se incorpora automáticamente todo el diccionario al razonamiento.",
+    "Cinco preguntas abiertas del diagnóstico siguen sin respuesta útil; no hay generación libre general ni Transformer implementado.",
+    "Mediana observada de consulta cacheada150,65ms; no se midió una aceleración causal frente a una implementación sin caché. No comparar con otros runners como ganancia general.",
+    "Verificación nativa Linux. W4u probado con21 fixtures y acción tipada[4,2]; no coordinación autónoma de repositorio ni Android comprobados."
+  ],
+  "aprendizaje_nuevo": true,
+  "despliegue_produccion": false,
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}

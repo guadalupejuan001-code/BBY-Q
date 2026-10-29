@@ -24,3 +24,7 @@ Si no se puede ejecutar código con el ejecutor configurado, registrar el bloque
 Guardar de forma persistente estado, rama, revisión de código y checkpoint; cambios, comandos realmente ejecutados, resultados y evidencias; fallos, hipótesis y bloqueos; y el siguiente paso con requisitos y comprobación de éxito.
 
 Actualizar `SIGUIENTE.md` también si falla el intento. Registrar únicamente procesos iniciados por el ciclo y cerrarlos o dejar un identificador comprobable si continúa un trabajo externo. Enviar un resumen breve aquí y finalizar el ciclo hasta la siguiente activación.
+
+## Principio explícito de diseño del creador
+
+BBY Q es la inteligencia principal. Estados mínimos representados y operados mediante Ether, con aprendizaje e inferencia en XI. Compartir reglas y datos repetidos y materializar solo lo necesario; verificar la conservación del conocimiento y medir precisión, tamaño, RAM y tiempo. SOVENGI sirve de referencia independiente para aprender de resultados, sin fusionarlo ni sustituir BBY Q. La compactación no se da por demostrada por el nombre de la representación: debe medirse en cada ampliación.

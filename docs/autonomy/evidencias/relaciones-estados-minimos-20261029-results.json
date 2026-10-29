@@ -1,0 +1,84 @@
+{
+  "run": {
+    "id": 40802286565,
+    "job_id": 123212948825,
+    "head_sha": "284172e5b0a7b73ffd75b8fa7676a776fcb5791c",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565",
+    "artifact_id": 12866434141,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40802286565/artifacts/12866434141",
+    "artifact_sha256": "sha256:627d35329eea8360cb5e411ba33c4749702cfa8e3e65a6ddf6d2d649f2656ac7",
+    "artifact_expires_utc": "2027-01-27T01:45:04Z"
+  },
+  "report": {
+    "version": "E033-Minimal-Relations-1-dev",
+    "checks": 1069,
+    "learned_frames": 22,
+    "labeled_examples": 44,
+    "reserved_entities": 24,
+    "reserved_relations": 4,
+    "reserved_query_correct": 168,
+    "reserved_query_total": 168,
+    "previous_code_correct": 0,
+    "temporal_retention": 144,
+    "old_memory_unchanged_by_teaching": true,
+    "new_region": {
+      "base_address": "8400000000000000000",
+      "length": 73728
+    },
+    "model_sha256": "e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433",
+    "candidate_sha256": "14334cc91e164ee0299bda3a0a785bd8b0f5e3f41fab744f747d8de1a63dd4f2",
+    "model_state_bytes": 856177,
+    "model_gzip_bytes": 122091,
+    "parent_model_state_bytes": 836481,
+    "parent_model_gzip_bytes": 119255,
+    "learned_region_nonzero_bytes": 778,
+    "shared_dictionary_nonzero_bytes_at_96_facts": 332,
+    "representation_96_facts": {
+      "entities": 24,
+      "values": 12,
+      "events": 96,
+      "new_serialized_growth": 30038,
+      "new_gzip_growth": 4286,
+      "archive_serialized_growth": 97378,
+      "archive_gzip_growth": 12819,
+      "note": "Canonical structured provenance versus original native text archive; new representation retains normalized text via frame ID, entity and value, not original ASCII casing."
+    },
+    "cache_native_hits_verified": 12,
+    "cached_turn_median_ms": 150.6543465000334,
+    "native_subprocess_peak_rss_kib": 47508,
+    "candidate_bytes": 1333231,
+    "parent_bytes": 1303800,
+    "same_time_contradiction_and_explicit_correction": true,
+    "journal_and_entity_capacity_atomic": true,
+    "training_scope": "Supervised generic one/two-role byte frames and explicit functional relation IDs, no Transformer and no open language mastery",
+    "production_deployed": false
+  },
+  "regresiones": {
+    "e027": 429,
+    "e028": 464,
+    "e029": 285,
+    "e025_original": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  },
+  "comparacion_representacion": {
+    "entities": 24,
+    "values": 12,
+    "events": 96,
+    "new_serialized_growth": 30038,
+    "new_gzip_growth": 4286,
+    "archive_serialized_growth": 97378,
+    "archive_gzip_growth": 12819,
+    "note": "Canonical structured provenance versus original native text archive; new representation retains normalized text via frame ID, entity and value, not original ASCII casing."
+  },
+  "diagnostico_desarrollo": {
+    "antes": 20,
+    "despues": 27,
+    "total": 32,
+    "nueva_reserva": false
+  },
+  "aislamiento_tras_hechos_nuevos": true,
+  "metrica_solo_diagnostica": "150.65ms mediana de doce consultas cacheadas en esta CI; sin afirmación de aceleración causal."
+}
