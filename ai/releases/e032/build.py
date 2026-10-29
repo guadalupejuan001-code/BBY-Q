@@ -11,7 +11,7 @@ source=Path('ai/releases/e032/temporal.xi').read_text()+parent.replace('#!revers
 (out/'temporal-linked.xi').write_text(source)
 def run(*x):return subprocess.run([runtime,*map(str,x)],check=True,capture_output=True,text=True)
 # Recompile parent first: verification, not new learning.
-run('compile',prior/'dictionary-linked.xi',out/'parent-code.rxe','parent source verification')
+run('compile',prior/'dictionary-linked.xi',out/'parent-code.rxe','BBY Q bilingual dictionary XI')
 run('pack-app',out/'parent-code.rxe',prior/'controller.rvp',out/'parent-repacked.rxe','org.reverse.bbyq','BBY Q','E031-Dictionary-1-dev','d9440d5300900b0418c8f14b4713b882c7f375dc')
 assert sha(out/'parent-repacked.rxe')==sha(prior/'dictionary.rxe'),'Parent source/capsule mismatch'
 run('compile',out/'temporal-linked.xi',out/'temporal-code.rxe','BBY Q temporal separation and learned frames')
