@@ -1,0 +1,144 @@
+{
+  "id": "diccionario-es-en-20261029",
+  "inicio_utc": "2026-10-29T00:13:59.186Z",
+  "fin_utc": "2026-10-29T00:23:03.634Z",
+  "instruccion_usuario": "tirale todo el diccionario en español y inglés.",
+  "objetivo": "Carga completa de fuentes léxicas ES/EN y recuperación nativa, conservando memoria",
+  "rama": "feature/bbyq-dictionary-es-en-20261029",
+  "commit_codigo": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+  "main_inicial": "d9440d5300900b0418c8f14b4713b882c7f375dc",
+  "revision_notas_previa": "9c30f1a10bfb2078c7f78b0c9511ddecb1eafca1",
+  "preflight": {
+    "ci_active": 0,
+    "ci_queued": 0,
+    "ciclo_activo_inicial": null,
+    "AGENTS": [],
+    "entorno": "Skill cloud runtime leída; solo runner GitHub configurado utilizado.",
+    "lecturas": [
+      "OBJETIVO.md",
+      "ESTADO.json",
+      "SIGUIENTE.md",
+      "último registro de persistencia",
+      "learn-word.xi",
+      "runtime y memoria fijados"
+    ],
+    "limites_detectados": "512 entradas en modelo simbólico antiguo; 524288 overrides y contenedor 32 MiB en ejecutor. Biblioteca paginada sin sobreescribir gramática.",
+    "contraste": "Nueva instrucción del usuario prioriza vocabulario/IA sobre mantenimiento e interfaz."
+  },
+  "run": {
+    "id": 40793126384,
+    "job_id": 123182954057,
+    "head_sha": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384",
+    "status": "completed",
+    "conclusion": "success",
+    "artifact_id": 12862856143,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
+    "artifact_sha256": "sha256:70a9d7036f370f8328f22c7f29c3c9832ac7a875876f8992be03bc8e44ceb488",
+    "artifact_expires_at": "2027-01-27T00:17:53Z"
+  },
+  "checkpoint_base": {
+    "archivo": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "sha256_decodificado": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "patrones_archivo": "ai/checkpoints/e030/patterns.json",
+    "patrones_sha256": "c3b3a2554ed6235fa7edc77f623fd5ff855571b5ffe1ded61b6ae5f335b4e974",
+    "base_address": "9200000000000000000",
+    "region_length": 3072,
+    "checkpoint_origen_sha256": "5a0d469fc70248a2afc7a6a319a9a854d6498fa7682d9351e543f0d701ae7cf6",
+    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+    "datos_sinteticos_de_examen": false,
+    "nuevo_entrenamiento": false
+  },
+  "comandos_ejecutados": [
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025",
+    "node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u",
+    "python3 ai/releases/e031/import_and_test.py deps/reverse/build/reverse_pc deps/omw evidence/dictionary",
+    "python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/dictionary evidence/candidate-regression"
+  ],
+  "resultados": {
+    "version": "E031-Dictionary-1-dev",
+    "checks": 158,
+    "native_exact_queries": 152,
+    "unicode_cases": 24,
+    "multiword_cases": 75,
+    "unknown_controls": 2,
+    "candidate_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
+    "prior_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "prior_patterns_preserved": true,
+    "same_RVPC2_agent": true,
+    "source": {
+      "source_repository": "omwn/omw-data",
+      "source_commit": "406bf83b3c507a3d1f26e88252d5d66893fd36bf",
+      "wordnet_data_repository": "nltk/wordnet",
+      "wordnet_data_commit": "ce91915ae38a341ae845be4d825ef6003cddf395",
+      "wordnet_data_sha256": {
+        "data.noun": "489f145e0f68877c0be5bd0eb4117adaaac52f38f6204eb8d85dbe2158b614cc",
+        "data.verb": "29cc96ed80c9f47d94fe75e332a9df80f4b1c737205f92d2f433d63c6da2ab51",
+        "data.adj": "f24b635368be441501c9b8001e9271fd3b30b203f00d91e332979e6f8fe35646",
+        "data.adv": "e66dbbda0e0359e41b7f225bff71dd0c263dc7c66c1b61abc9ba334973d92979"
+      },
+      "languages": {
+        "en": {
+          "source_records": 206978,
+          "types": {
+            "lemma": 206978
+          },
+          "unique_forms": 147306,
+          "sha256": "d1409d88addcdb890b1606dd280b558cca4258b1f33bd580d54ed949daad1ede"
+        },
+        "es": {
+          "source_records": 166281,
+          "types": {
+            "spa:lemma": 145641,
+            "spa:def": 19444,
+            "spa:exe": 1196
+          },
+          "unique_forms": 88950,
+          "sha256": "0ec37ce94ee2acc63ad6b120e1051f9841d172778cc24adc0023fb8dccf0a7cd"
+        }
+      },
+      "entries": 236256,
+      "pages": 107312,
+      "max_page_bytes": 16984,
+      "stored_bytes": 93442728,
+      "dictionary_gzip_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
+      "dictionary_gzip_bytes": 39770663,
+      "scope": "All lemma records/variants and senses supplied by the pinned Spanish and English Wordnets. Not every word of either language; dictionary reference acquisition, not demonstrated general understanding."
+    },
+    "execution": "XI hashes full query, chooses page ID, compares full UTF-8 lemma, reads senses and emits data. Host transports complete pages without selecting answers.",
+    "limitations": [
+      "Explicit @lex lookup transport required; not automatically incorporated into general conversation or old 512-entry grammar",
+      "Definitions may only be supplied in English; missing Spanish glosses remain missing",
+      "No new general reasoning demonstrated"
+    ]
+  },
+  "regresiones": {
+    "e025_original": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  },
+  "fallos": [
+    {
+      "run": 40792943925,
+      "commit": "e5a4138702a4987255ed240c331efcabe2bcf9aa",
+      "causa": "Lector esperaba eng:lemma pero fuente histórica utiliza lemma sin prefijo; no se importaron entradas de ese intento.",
+      "correccion": "Acepta ambos esquemas y añade glosas originales WordNet 3.0 fijadas.",
+      "evidencia": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40792943925"
+    }
+  ],
+  "alcance": "Referencia léxica nueva consultable; no entrenamiento de comprensión general. No se declaró corpus completo como dominio total de idiomas.",
+  "aprendizaje_nuevo": false,
+  "datos_lexicos_nuevos": true,
+  "hipotesis_pendientes": [
+    "La biblioteca se consulta con @lex y transporte explícito de páginas; las palabras aún no se incorporan automáticamente al intérprete conversacional antiguo.",
+    "Referencia léxica importada no demuestra comprensión de definiciones ni razonamiento nuevo.",
+    "Fuentes WordNet/MCR no contienen todas las palabras existentes de ambos idiomas.",
+    "Convertir definiciones y enlaces en aprendizaje semántico nativo evaluado con oraciones independientes, preservando polisemia.",
+    "Conservar paquete de datos: artefacto configurado caduca; fuentes y hashes están fijados para reproducirlo."
+  ],
+  "siguiente": "docs/autonomy/SIGUIENTE.md"
+}
