@@ -1,7 +1,7 @@
-name: BBY Q E033 minimal relation states (XI/Ether)
+name: BBY Q E034 typed relational composition (XI/Ether)
 on:
   pull_request:
-    paths: ['ai/releases/e033/**', 'ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['ai/releases/e034/**', 'ai/releases/e033/**', 'ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,22 +42,34 @@ jobs:
           run-id: 40795445276
           github-token: ${{ github.token }}
           path: prior
-      - name: Verify parent and build minimal relation candidate
-        run: python3 ai/releases/e033/build.py deps/reverse/build/reverse_pc prior evidence/minimal
-      - name: Teach native frames and evaluate independent relation/retention cases
-        run: python3 ai/releases/e033/test.py deps/reverse/build/reverse_pc prior evidence/minimal
+      - name: Recover verified E033 source and capsule
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E033-minimal-relations
+          run-id: 40802286565
+          github-token: ${{ github.token }}
+          path: prior033
+      - name: Build relational composition and verify parent
+        run: python3 ai/releases/e034/build.py deps/reverse/build/reverse_pc prior033 evidence/composition
+      - name: Teach eight forms and examine reserved stories plus retention
+        run: python3 ai/releases/e034/test.py deps/reverse/build/reverse_pc prior033 evidence/composition
+      - name: Reproduce E033 stress and capacity tests as verification
+        run: |
+          mkdir -p evidence/minimal
+          cp evidence/composition/composed.rxe evidence/minimal/minimal.rxe
+          python3 ai/releases/e034/retention-e033.py deps/reverse/build/reverse_pc prior evidence/minimal
       - name: Restore historical regression harnesses without re-teaching production models
         run: |
           set -euo pipefail
           node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/legacy027
           node ai/releases/e028/build.mjs deps/reverse/build/reverse_pc evidence/legacy028
           mkdir -p evidence/compat evidence/compat-e029
-          cp evidence/minimal/minimal.rxe evidence/compat/candidate.rxe
-          cp evidence/minimal/minimal.rxe evidence/compat/dictionary.rxe
-          cp evidence/minimal/learned-model.rvp evidence/compat/controller.rvp
-          cp evidence/minimal/minimal.rxe evidence/compat-e029/natural.rxe
+          cp evidence/composition/composed.rxe evidence/compat/candidate.rxe
+          cp evidence/composition/composed.rxe evidence/compat/dictionary.rxe
+          cp evidence/composition/learned-model.rvp evidence/compat/controller.rvp
+          cp evidence/composition/composed.rxe evidence/compat-e029/natural.rxe
           cp evidence/legacy028/candidate.rxe evidence/compat-e029/candidate.rxe
-          cp evidence/minimal/learned-model.rvp evidence/compat-e029/controller.rvp
+          cp evidence/composition/learned-model.rvp evidence/compat-e029/controller.rvp
       - name: Complete archive, grounding, intake and old-agent regressions on learned model
         run: |
           set -euo pipefail
@@ -68,7 +80,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E033-minimal-relations
+          name: BBYQ-E034-relational-composition
           path: |
             evidence
             !evidence/minimal/dictionary-smoke/banks/**
