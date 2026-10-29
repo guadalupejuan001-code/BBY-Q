@@ -1,0 +1,125 @@
+{
+  "id": "comparacion-sovengi-bbyq-20261029",
+  "inicio_utc": "2026-10-29T01:06:29.817Z",
+  "fin_utc": "2026-10-29T01:12:43.941Z",
+  "instruccion": "Prueba ambos sin fusionar ni modificar las IA",
+  "objetivo": "Comparación verificable de precisión, latencia y RSS",
+  "rama": "benchmark/sovengi-bbyq-readonly-20261029",
+  "commit_examinador": "a96ede4c1a4f3223967c14f1bfa80d41c333da17",
+  "codigo_ia": {
+    "bbyq": "ca501af7e3306cea28eaf41f0f6d9e1db825eeda",
+    "sovengi": "58345eec2cb6a05d3fb0491e3a2f3d914cd1a48c"
+  },
+  "checkpoint": {
+    "archivo": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+    "sha256_decodificado": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+    "checkpoint_anterior_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "checkpoint_anterior": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "app_sha256": "d2c5e4ebb2b0c3b7af74abc881d6f8c1a5ff2e106f621d0ceba5cb312b525048",
+    "regiones": {
+      "base_address": "8650000000000000000",
+      "length": 86016
+    },
+    "formas_aprendidas": 48,
+    "contiene_hechos_temporales_de_examen": false
+  },
+  "preflight": {
+    "ciclo_activo": null,
+    "acciones_bbyq_en_curso": 0,
+    "acciones_bbyq_en_cola": 0,
+    "acciones_sovengi_en_curso": 0,
+    "AGENTS_sovengi": "Leído junto con ORDENES_USUARIO.md; instrucción actual solo evaluación prevalece sobre órdenes históricas de entrenamiento",
+    "AGENTS_bbyq": [],
+    "ejecutor": "GitHub Actions configurado, workflow bbyq-e029, mismo job ubuntu-latest y concurrency, timeout25min"
+  },
+  "run": {
+    "id": 40798417876,
+    "job_id": 123200384703,
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40798417876",
+    "conclusion": "success",
+    "harness_commit": "a96ede4c1a4f3223967c14f1bfa80d41c333da17",
+    "artifact_id": 12864548932,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40798417876/artifacts/12864548932",
+    "artifact_bytes": 101057,
+    "artifact_digest": "sha256:8d3fc53569126575f7e972f857c94e256a8c347f2ddbd10d1cefd56c7e3a0470"
+  },
+  "comandos_ejecutados": [
+    "actions/checkout@v4 de copias fijadas BBY Q, REVERSE-PC y UNIDAD con catálogo35",
+    "bash deps/reverse/scripts/setup-ether.sh",
+    "python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat",
+    "g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc",
+    "python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu",
+    "python -m pip install 'deps/sovengi[conversation]'",
+    "actions/download-artifact@v4 run40795445276 BBYQ-E032-native-temporal-learning",
+    "python -m py_compile benchmarks/sovengi-bbyq-20261029/run.py",
+    "python -m json.tool benchmarks/sovengi-bbyq-20261029/cases.json",
+    "python -u benchmarks/sovengi-bbyq-20261029/run.py --runtime deps/reverse/build/reverse_pc --sov deps/sovengi --app frozen-bbyq/temporal/temporal.rxe --checkpoint ai/checkpoints/e032/temporal-model.rvp.gz.b64 --cases benchmarks/sovengi-bbyq-20261029/cases.json --out evidence/comparison"
+  ],
+  "cambios": "Solo examinador, workflow aislado y evidencia en rama de benchmark; ningún cambio a pesos, aprendizaje o main",
+  "resultados": {
+    "precision": {
+      "bbyq": {
+        "pass": 20,
+        "partial": 0,
+        "total": 32,
+        "by_category": {
+          "temporal": {
+            "pass": 8,
+            "total": 8
+          },
+          "memory": {
+            "pass": 1,
+            "total": 8
+          },
+          "composition": {
+            "pass": 8,
+            "total": 8
+          },
+          "open": {
+            "pass": 3,
+            "total": 8
+          }
+        }
+      },
+      "sovengi": {
+        "pass": 2,
+        "partial": 2,
+        "total": 32,
+        "by_category": {
+          "temporal": {
+            "pass": 0,
+            "total": 8
+          },
+          "memory": {
+            "pass": 1,
+            "total": 8
+          },
+          "composition": {
+            "pass": 0,
+            "total": 8
+          },
+          "open": {
+            "pass": 1,
+            "total": 8
+          }
+        }
+      }
+    },
+    "tiempos_y_RSS": "benchmarks/sovengi-bbyq-20261029/results.json",
+    "modelos_sovengi_ejecutados": 35,
+    "fallos_tecnicos": 0
+  },
+  "fallos": "Fallos semánticos completos conservados en review.json; no se reentrenó ni ajustó con ellos",
+  "bloqueos": [],
+  "hipotesis_pendientes": [
+    "La señal de idioma de BBY Q se entrega por app-turn es/en; SOVENGI conserva su prompt de producto, habitualmente español. No interpretar sus fallos en inglés como una prueba aislada de competencia lingüística.",
+    "SOVENGI usa cuatro candidatos y selección de su configuración habitual. Esta diferencia forma parte del coste de producto; no demuestra una aceleración atribuible solamente al lenguaje XI.",
+    "La ingesta de hechos de BBY Q se registra fuera del tiempo final de consulta; en SOVENGI la lectura de los mensajes proporcionados ocurre en esa consulta.",
+    "No se probó diccionario explícito @lex ni se cargaron sus páginas; el RSS no representa toda la biblioteca de referencia en RAM."
+  ],
+  "siguiente": "Cerrada la comparación solicitada. Conservar referencias; no iniciar otro entrenamiento ni modificación desde esta prueba. El desarrollo temporal pendiente mantiene su SIGUIENTE anterior.",
+  "main_refs_sin_cambios": {
+    "sovengi": "58345eec2cb6a05d3fb0491e3a2f3d914cd1a48c",
+    "bbyq": "d8d26d43c2d9aa8ce7c8e910a7cc543d101fc941"
+  }
+}

@@ -1,0 +1,794 @@
+[
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.15942582399998173,
+    "output": "Según lo registrado: sí (pasado)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.15838300500001878,
+    "output": "According to the record: yes (past)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1624391060000221,
+    "output": "Según lo registrado: no (presente)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.16098364599997694,
+    "output": "Projected yes; it is not yet confirmed."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.162513204999982,
+    "output": "No tengo evidencia para ese momento."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1582125900000051,
+    "output": "I have no evidence for that time."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1604339119999736,
+    "output": "Hay afirmaciones contradictorias para ese momento."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1596308409999665,
+    "output": "According to the record: yes (past)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.18603213599999435,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1836473070000011,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.18420668299995668,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.19003086899999744,
+    "output": "I do not have enough information to answer."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.17970746399998916,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.17844129799999564,
+    "output": "I do not have enough information to answer."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.18094140099998413,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.18924121399999194,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1615583239999978,
+    "output": "zorul es orbe [#000]. zorul requiere luz [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1593810050000002,
+    "output": "xelmar is device [#000]. xelmar needs water [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.16370381399997314,
+    "output": "perlon es cristal [#000]. perlon requiere calor [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.15954161499996644,
+    "output": "dorwin is tool [#000]. dorwin needs energy [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.15902607999998963,
+    "output": "nisel es mineral [#000]. nisel requiere agua [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.16086903600000824,
+    "output": "corwin is crystal [#000]. corwin needs light [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.17282268799999656,
+    "output": "No tengo evidencia suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.150907157000006,
+    "output": "Evidencia negativa o contradictoria; no puedo afirmar esa propiedad."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1540613829999984,
+    "output": "Hola. Soy BBY Q."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.15553990600000134,
+    "output": "Hello. I am BBY Q."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.18317778200002977,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1804827550000141,
+    "output": "I do not have enough information to answer."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1615475549999701,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.1578372700000159,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.16839408100003084,
+    "output": "I do not have enough information to answer."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.16154456900000014,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.15324938500003782,
+    "output": "Según lo registrado: sí (pasado)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.18763263699997879,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.1605431280000289,
+    "output": "zorul es orbe [#000]. zorul requiere luz [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.16107936999998174,
+    "output": "Hola. Soy BBY Q."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.1571728790000293,
+    "output": "Según lo registrado: sí (pasado)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.18137035400002333,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.15629565900002262,
+    "output": "zorul es orbe [#000]. zorul requiere luz [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.16285965800000213,
+    "output": "Hola. Soy BBY Q."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.15777231900000288,
+    "output": "Según lo registrado: sí (pasado)."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.18237620400003607,
+    "output": "No tengo información suficiente para responder."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.16121801900004584,
+    "output": "zorul es orbe [#000]. zorul requiere luz [#001]."
+  },
+  {
+    "event": "response",
+    "arm": "bbyq",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.15556798899996238,
+    "output": "Hola. Soy BBY Q."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 2.252465764999954,
+    "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.1036747819999846,
+    "output": "Hay varias maneras de verano, pero en general se pueden ver el hemisferio de la hemorragia."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.8146168509999825,
+    "output": "La forma más corta de azul es una forma de calor que el azul es una forma de calor."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.2323223139999868,
+    "output": "Hay muchos otros animales que han sido adaptados a su atención, pero también han sido adaptados a su atención. Algunos de los animales que han ajustados a su aten"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.3539847189999819,
+    "output": "La radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.1340227730000265,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.3334440869999753,
+    "output": "con un piano, piano, piano, piano, piano, piano, piano, piano, etc."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.1507598030000281,
+    "output": "Helena helena helena will."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.380030309999995,
+    "output": "El taller Brisalto abre el jueves."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.8302690790000042,
+    "output": "El taller Lumarco abre el taller Lumarco abre el taller Lumarco abre el taller Lumarco abre el taller Lumarco"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.5667563570000311,
+    "output": "El taller Nivaro abre el martes."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 2.114871815000015,
+    "output": "Ondephop es un modelo de lenguaje de inteligencia artificial basado en la inteligencia artificial y en la inteligencia artificial."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.2035708440000121,
+    "output": "La libreta cobalina está en la caja."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.369062748000033,
+    "output": "Where is the notebook Willowings."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.3558146170000214,
+    "output": "La cita de Irval es el sábado."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.5470844459999853,
+    "output": "El farero de Brumalia es una forma de expresión que se llama Brumalia."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.2444135160000087,
+    "output": "Deberías consultarlo con un profesional de la salud."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.3861019710000164,
+    "output": "Un ejemplo, es un ejemplo de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.8194241359999523,
+    "output": "Cristal es un placer poder ayudarte."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.8510951979999959,
+    "output": "Dorwin is to the requirement."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.0667469190000247,
+    "output": "No es ninguna requiere agua."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.0075505709999675,
+    "output": "Dobine."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.6295849530000055,
+    "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.1006591899999876,
+    "output": "El hombre es mineral."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o01",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 0.7815929760000131,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o02",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.3929754289999892,
+    "output": "Esa es una pregunta muy interesante que no tengo esa pregunta."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o03",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.8844886759999895,
+    "output": "La lluvia es una forma de medir la lluvia que se encuentra en el planeta tierra, ya que es una forma de medir la lluvia que se encuentra en el planeta tierra. La l"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o04",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.9646888999999987,
+    "output": "Whystephystem es un modelo de lenguaje de inteligencia artificial basado en inteligencia artificial basado en inteligencia artificial basado en inteligencia ar"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o05",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.6872682549999922,
+    "output": "El gato duerme a la ventana."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o06",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.6017889139999966,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o07",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.8248633989999803,
+    "output": "Claro, aquí tienes algunos consejos que pueden ayudarte a entender mejor los consejos que pueden ayudarte a entender mejor los consejos:\n\n1. Aprende a entender"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o08",
+    "phase": "quality",
+    "status": "ok",
+    "seconds": 1.0187266940000086,
+    "output": "La persona que me dijo eso."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.2268076470000437,
+    "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.0710783170000013,
+    "output": "El taller Brisalto abre el jueves."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.0587247879999495,
+    "output": "Deberías consultarlo con un profesional de la salud."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.6283042769999838,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.1706241339999792,
+    "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.1106732480000119,
+    "output": "El taller Brisalto abre el jueves."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.2789737550000382,
+    "output": "Deberías consultarlo con un profesional de la salud."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 0.7869558819999725,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "t01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.192470362999984,
+    "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de"
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "m01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.4444831929999964,
+    "output": "El taller Brisalto abre el jueves."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "c01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.7352831930000434,
+    "output": "Deberías consultarlo con un profesional de la salud."
+  },
+  {
+    "event": "response",
+    "arm": "sovengi",
+    "id": "o01",
+    "phase": "repeat",
+    "status": "ok",
+    "seconds": 1.0582306400000334,
+    "output": "Hola, ¿en qué te puedo ayudar?"
+  }
+]

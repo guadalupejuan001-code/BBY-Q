@@ -1,0 +1,405 @@
+{
+  "version": "sovengi-bbyq-readonly-v1",
+  "environment": {
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "python": "3.12.15",
+    "cpu_count": 4,
+    "cpu_model": "AMD EPYC 7763 64-Core Processor",
+    "memory_total": "MemTotal:       16367516 kB",
+    "runner": "Linux",
+    "logical_cpu_affinity_per_worker": 1
+  },
+  "protocol_sha256": "81303a9d8de748031f16555c6175fe20a16db01df05aa06c5863feebe13d66a7",
+  "runs": {
+    "bbyq": {
+      "returncode": 0,
+      "sampled_process_tree_peak_rss_bytes": 47710208,
+      "summary": {
+        "initialization": {
+          "seconds": 0.005895248999991054,
+          "app_bytes": 1303800,
+          "state_bytes": 836481,
+          "state_gzip_bytes": 119255,
+          "runtime_bytes": 613904
+        },
+        "immutability": {
+          "app_unchanged": true,
+          "original_checkpoint_unchanged": true
+        },
+        "rss_peak_self_kib": 22340,
+        "rss_peak_children_kib": 25052,
+        "elapsed_seconds": 16.042657798999983,
+        "cpu_affinity": [
+          0
+        ]
+      },
+      "quality_calls": 32,
+      "technical_errors": 0,
+      "quality_latency_median_ms": 161.55293949998395,
+      "repeat_latency_median_ms": 160.81124900000532,
+      "repeat_by_case_ms": {
+        "t01": [
+          153.24938500003782,
+          157.1728790000293,
+          157.77231900000288
+        ],
+        "m01": [
+          187.63263699997879,
+          181.37035400002333,
+          182.37620400003607
+        ],
+        "c01": [
+          160.5431280000289,
+          156.29565900002262,
+          161.21801900004584
+        ],
+        "o01": [
+          161.07936999998174,
+          162.85965800000213,
+          155.56798899996238
+        ]
+      }
+    },
+    "sovengi": {
+      "returncode": 0,
+      "sampled_process_tree_peak_rss_bytes": 1043443712,
+      "summary": {
+        "initialization": {
+          "seconds": 3.0514855630000284,
+          "catalog_models": 35,
+          "weights_bytes": 1417104076,
+          "torch": "2.8.0+cpu",
+          "weights": [
+            {
+              "name": "reference-wiki1",
+              "path": "models/learning-repair-20261013/pattern-relations-v1/reference-wiki1",
+              "weight_bytes": 63087256,
+              "sha256": "a1b52c676927c2dbebc76a0550c545310760f130e479ba2e29ee946b00fdc671",
+              "model_id": "unidad-conversation-c0ee5f24b2424eb652f3ca9bda5fcb8841d703b4f8f5efc4db23427a8ed123c4"
+            },
+            {
+              "name": "memory-candidate",
+              "path": "models/sovengi-memory-20261013/candidate-best",
+              "weight_bytes": 63087256,
+              "sha256": "08a4f57c420bc3c454abc326f61a664fcdf23c756db9e6b0b53157f97105c031",
+              "model_id": "unidad-conversation-a52997f88799597080c93ec3e79ba4029d9eb5b6d756e2136098dd16e909ca0c"
+            },
+            {
+              "name": "C7",
+              "path": "models/conversation-reference-c7",
+              "weight_bytes": 27943524,
+              "sha256": "666527de240a7fc9b082f233699a1c808c6bdd8f929651824ce4975377c7c836",
+              "model_id": "unidad-conversation-bd1975c26297d4665dd95b2ad7d36349c62404a2489b72894d1a67f354a228d2"
+            },
+            {
+              "name": "V7",
+              "path": "models/conversation-language-v7",
+              "weight_bytes": 27876616,
+              "sha256": "dc4ba778deb188fabdf66b59aa2457578c720040bf0e36666ed9e234f1ed288e",
+              "model_id": "unidad-conversation-9081da24a3a73e748887dd66ee937798ef6808579ed5cdb78c3b27b70639cd9d"
+            },
+            {
+              "name": "conversation-basic-v1",
+              "path": "models/conversation-basic-v1",
+              "weight_bytes": 4358008,
+              "sha256": "92289bc6b2a3c46fa7130409cadfabce68cf49d2e1599b1385c26480350fe655",
+              "model_id": "unidad-conversation-67feadc3818a1739ee3f506c4e0f9a7b0436c695815c64f4c46b06c22f2640bf"
+            },
+            {
+              "name": "conversation-basics-v4",
+              "path": "models/conversation-basics-v4",
+              "weight_bytes": 4358008,
+              "sha256": "e77d57c13af16698743efaed680c8772479445610071083e1868c619237156ae",
+              "model_id": "unidad-conversation-cc55bb398d3aa188d4105e2dca63acae2c888a2a3af1386fc40465e7c7d44fa0"
+            },
+            {
+              "name": "conversation-basics-v5",
+              "path": "models/conversation-basics-v5",
+              "weight_bytes": 4358008,
+              "sha256": "c564039ba0d6d3bf681cc8a7c76555de91b8fbd6c8fc59fa5120889f13323e05",
+              "model_id": "unidad-conversation-04c65431b87bff6e9877611cefeff883542b0a0157dc962d144826944f6a54b9"
+            },
+            {
+              "name": "conversation-basics-v6",
+              "path": "models/conversation-basics-v6",
+              "weight_bytes": 4358008,
+              "sha256": "6bb2128334dc701cf9f97d2c6501d4761b89ef5b0c149bdd3439f89976d01dc2",
+              "model_id": "unidad-conversation-4708a11a968afeacf4f130632865dd376452a7fd7c060736b2f8da7bdc795d04"
+            },
+            {
+              "name": "conversation-context-v3",
+              "path": "models/conversation-context-v3",
+              "weight_bytes": 4358008,
+              "sha256": "14dc0c9b8372ede0ed4887469dd31c6f1d90109ef78dec7962a71357637209cb",
+              "model_id": "unidad-conversation-d63c1fcccb6148817aa9fc1cba8eafc297113fcbfc30dd1f5361c6e2d1dabbef"
+            },
+            {
+              "name": "conversation-copy-head-20261013",
+              "path": "models/conversation-copy-head-20261013",
+              "weight_bytes": 27943524,
+              "sha256": "c3d2d09bd4f82efd8c92f649482441e1e40bc29cd192a35ddfc1d56a45df400b",
+              "model_id": "unidad-conversation-20009f454b06bcb223c3d83bcbe4070f03383989776454d48b57f39af54654df"
+            },
+            {
+              "name": "conversation-initial-availability-e3",
+              "path": "models/conversation-initial-availability-e3",
+              "weight_bytes": 27943524,
+              "sha256": "6d8c8a3bacd8dbe02cddcd5fb680b397447ded3616bdda691bfdc2c75290cd83",
+              "model_id": "unidad-conversation-fb2c43de68b8f0fe3ff1b559de4c0931345fe6d6576ab3f05419bf50618422ab"
+            },
+            {
+              "name": "conversation-integration-20261013-c7",
+              "path": "models/conversation-integration-20261013/c7",
+              "weight_bytes": 27943524,
+              "sha256": "b15dbe194bfc4e0ee9ecf4b3cbffde70ef7c25928d2654b18b2ea78478849e3a",
+              "model_id": "unidad-conversation-f417996465cabf1c20cd739fbec8300a72cee2840e83d19919eff9729dc17b06"
+            },
+            {
+              "name": "conversation-integration-20261013-history-generated",
+              "path": "models/conversation-integration-20261013/history-generated",
+              "weight_bytes": 27943524,
+              "sha256": "3ed2338eb15533d8f1eb401426fa8775955a2c03061bf167756bdac2686c7a78",
+              "model_id": "unidad-conversation-be6414b4187c33e27aef54e67352aaa78393afb303f7b8daaf8c0eb7c2a558a2"
+            },
+            {
+              "name": "conversation-integration-20261013-history-ideal",
+              "path": "models/conversation-integration-20261013/history-ideal",
+              "weight_bytes": 27943524,
+              "sha256": "b0cd1f4caafa81c76176f2718f5f872332ffc070f620babdc87602fe015bfb33",
+              "model_id": "unidad-conversation-42e2f6c98ccb35d9f6585d73ed8c7c536f2b355745dc2022013d6b7abf80353b"
+            },
+            {
+              "name": "conversation-integration-20261013-natural-c7",
+              "path": "models/conversation-integration-20261013/natural-c7",
+              "weight_bytes": 27943524,
+              "sha256": "c4e971d920fdac6e4db3ad5e1b317b956e0fb45a0a1e0a8dd925b1b2ad259ca0",
+              "model_id": "unidad-conversation-c2363e4c5c9b10603ab7073fd258072e844a9d2a889651a7882005feb37a9954"
+            },
+            {
+              "name": "conversation-integration-20261013-natural-v7",
+              "path": "models/conversation-integration-20261013/natural-v7",
+              "weight_bytes": 27876616,
+              "sha256": "e39e34b559c0e80a445cc50e08065b711e31d4ba0d6396cb3e320f7bceb315e7",
+              "model_id": "unidad-conversation-7387a514e1be02fa6bb2fa7b14d113edb48adf0e34b21a1be94366c762f37fd1"
+            },
+            {
+              "name": "conversation-integration-20261013-v7",
+              "path": "models/conversation-integration-20261013/v7",
+              "weight_bytes": 27876616,
+              "sha256": "c6287cbb9046ca95ec26bc0ba620b5a5403cc5dcf6d721c4367771dae4bbd0dd",
+              "model_id": "unidad-conversation-9d27cc9a24a38beb2e6139dc62dcb13850ac4ac068ed89e6ce65eeef98bc7bf5"
+            },
+            {
+              "name": "conversation-language-uniform-b1",
+              "path": "models/conversation-language-uniform-b1",
+              "weight_bytes": 27876616,
+              "sha256": "67a77ccc76bb51ad0b62828b8e557b4ed0a1a1a8fe45383e3c4334430d409155",
+              "model_id": "unidad-conversation-737364a8c6f3a798aa4352fffed85ad7bec109ff26b0359510aa3bdab8e81ad6"
+            },
+            {
+              "name": "conversation-spanish-v2",
+              "path": "models/conversation-spanish-v2",
+              "weight_bytes": 4358008,
+              "sha256": "ed8b283c5efa87226e81314bd09b68eeefda75df0dc81c4e71dc095409e2654a",
+              "model_id": "unidad-conversation-c005754b0980808f8e2dfd38375a02e8f25625257955919f25164246095565b8"
+            },
+            {
+              "name": "learning-repair-20261013-autonomy-action-copy-v2-co-734c92f9440d",
+              "path": "models/learning-repair-20261013/autonomy/action-copy-v2-control-final-best256",
+              "weight_bytes": 63087256,
+              "sha256": "141da0470598094d9817794743ca1ba38366fe125d4811725f1b520538c22b5d",
+              "model_id": "unidad-conversation-734c92f9440d2d03bf1a6372e74335818e8ed65f00b69b24c2038d0ffffc0ac5"
+            },
+            {
+              "name": "learning-repair-20261013-autonomy-action-copy-v2-tr-e70ea28e8d5d",
+              "path": "models/learning-repair-20261013/autonomy/action-copy-v2-treatment-final-best256",
+              "weight_bytes": 63087256,
+              "sha256": "dcd07d43424e906fe2d97c4a2ba31649490707240b1ac8b012ccbb179d019bc9",
+              "model_id": "unidad-conversation-e70ea28e8d5dfb07481bcf966058f022ed3eebd392fc4afe773102a6e2e88088"
+            },
+            {
+              "name": "learning-repair-20261013-autonomy-action2048-final-best256",
+              "path": "models/learning-repair-20261013/autonomy/action2048-final-best256",
+              "weight_bytes": 63087256,
+              "sha256": "a2d15405f03edf74cc7fdeb05798e339205af930a6071f5640f16b6a980eb5e1",
+              "model_id": "unidad-conversation-e202eafc8f11bcda7587db496c6e7ac1670efbd612685c465658ae2f07bd54fa"
+            },
+            {
+              "name": "learning-repair-20261013-autonomy-context2048-untra-ba70fff6928d",
+              "path": "models/learning-repair-20261013/autonomy/context2048-untrained-parent1024",
+              "weight_bytes": 63087256,
+              "sha256": "80cc46e5dfb2413355af2ce63e1c3aa6efae3760cd58c5d9f6d35b6ec270ca4a",
+              "model_id": "unidad-conversation-ba70fff6928dcaf08087a4c966c1ea6496555bc04683933789908b4d8f49501c"
+            },
+            {
+              "name": "learning-repair-20261013-conversation-15m-final-last-step008192",
+              "path": "models/learning-repair-20261013/conversation-15m/final-last-step008192",
+              "weight_bytes": 60727960,
+              "sha256": "5fb3e10d8d4261c0bb704137d3e12540d2ed7e1d1979b8b40424bf3544f40c9c",
+              "model_id": "unidad-conversation-f06b96e6c4c5149979b4846f9d03a4dd43dc8521dd13e3d5733bb164f90268f5"
+            },
+            {
+              "name": "learning-repair-20261013-conversation-15m-intermedi-072eedd27616",
+              "path": "models/learning-repair-20261013/conversation-15m/intermediate-step004096",
+              "weight_bytes": 60727960,
+              "sha256": "0a71ae3feb61b7dabac9f31ecc4fd312f97ead8a790ed13b8144617b60e3e4e6",
+              "model_id": "unidad-conversation-072eedd276160f7581c5a70b57e66ae3000d2e664ed32f6b5a4669d4d12dcf57"
+            },
+            {
+              "name": "learning-repair-20261013-foundation-15m-final",
+              "path": "models/learning-repair-20261013/foundation-15m/final",
+              "weight_bytes": 60727960,
+              "sha256": "d2f00827ca0a74e175ab1189e1ed9d0f495e3a5f6b52981602022b892b37694d",
+              "model_id": "unidad-conversation-ee24651fb8cc3a01e1acbb57db5f40222a6b9b5fe150dbff7186b961945fa398"
+            },
+            {
+              "name": "learning-repair-20261013-foundation-15m-intermediate-step004096",
+              "path": "models/learning-repair-20261013/foundation-15m/intermediate-step004096",
+              "weight_bytes": 60727960,
+              "sha256": "703bc258c0ea3f1391d2e7a57b36d5a132b11090951313528b92d6d2444a7e88",
+              "model_id": "unidad-conversation-1e46abcba0e6d5cbf25380bc98b92190ef556afbd5acd3463c92e399f32e3666"
+            },
+            {
+              "name": "learning-repair-20261013-natural-latam-v4-control-f-a2cae3b62314",
+              "path": "models/learning-repair-20261013/natural-latam-v4/control-final-last-step004096",
+              "weight_bytes": 60727960,
+              "sha256": "7838bd314bc35ed4b21eba31158b9ccab322dec21d298bd22002fb8527139244",
+              "model_id": "unidad-conversation-a2cae3b623142153487760d2f09e1a9c2fc851a5a1a09f1cad83b9ffaa6c2d7d"
+            },
+            {
+              "name": "learning-repair-20261013-natural-latam-v4-final-tre-d6d860222baf",
+              "path": "models/learning-repair-20261013/natural-latam-v4/final-treatment-last-step004096",
+              "weight_bytes": 60727960,
+              "sha256": "5888240335df305a5f80aa438200b524af741278d8e8c7af234d8a60f86f7f6e",
+              "model_id": "unidad-conversation-d6d860222baf5e8952eade42fcda3a0bd52dc77000c0c254ca895a91fdab7160"
+            },
+            {
+              "name": "learning-repair-20261013-natural-latam-v4-intermedi-ec9ab262aaaa",
+              "path": "models/learning-repair-20261013/natural-latam-v4/intermediate-step001024",
+              "weight_bytes": 60727960,
+              "sha256": "43d28c06a313a49f6fd1fdeaa53387332a1dedcbfe95101d5163387be65ec9ad",
+              "model_id": "unidad-conversation-ec9ab262aaaa5761dfe77e51232ca9fcf78bea93b7af97ec17d971557f0166df"
+            },
+            {
+              "name": "learning-repair-20261013-pattern-relations-v1-candidate-best",
+              "path": "models/learning-repair-20261013/pattern-relations-v1/candidate-best",
+              "weight_bytes": 63087256,
+              "sha256": "5dac3add294974c78daa5e7fe4e475ef68b4536384134f3ef4334ae70637e916",
+              "model_id": "unidad-conversation-af515755f6eb176ed9968235231f24d8abdebca002f881a327ba69651bed1591"
+            },
+            {
+              "name": "learning-repair-20261013-wide-latam-v3-language-1-final-best2048",
+              "path": "models/learning-repair-20261013/wide-latam-v3/language-1-final-best2048",
+              "weight_bytes": 63087256,
+              "sha256": "b8856eed20322b4c0011b274fe582a3b9ff6b1ab57d874cb300420a617b5dc69",
+              "model_id": "unidad-conversation-a8c25b012d4cbf1da6b818983dc424ec219b93b7793115bb5d6474d8ef3087f8"
+            },
+            {
+              "name": "learning-repair-20261013-wide-latam-v3-language-2-final-best2048",
+              "path": "models/learning-repair-20261013/wide-latam-v3/language-2-final-best2048",
+              "weight_bytes": 63087256,
+              "sha256": "a1bc04ec65a66602370b1ee00f46cee9887beebd1d9d80abdc9956544330f00b",
+              "model_id": "unidad-conversation-f327bb762eab5a9b5c559f21dab380a6b6ab16fe8548dfd8e03d260ab8bd863a"
+            },
+            {
+              "name": "learning-repair-20261013-wide-latam-v3-natural-acti-3ccd6deb69d3",
+              "path": "models/learning-repair-20261013/wide-latam-v3/natural-action-retention-final-best1024",
+              "weight_bytes": 63087256,
+              "sha256": "4caf673d73cb70738c8209517a22ab0dd1200216c41124a6b18a0c6977f73ba7",
+              "model_id": "unidad-conversation-3ccd6deb69d32443f41096f06a9c2bacb2fe67e54a257de35a44d8f78aa4ef5b"
+            },
+            {
+              "name": "spanish-foundation-v1",
+              "path": "models/spanish-foundation-v1",
+              "weight_bytes": 27876616,
+              "sha256": "1b4e52bae66e2ff6a3d56730b8da4fd4f69d2376d1fe5ce7b79d1408aa82d3db",
+              "model_id": "unidad-conversation-9077c0ede2a5564e671f44e10762933287c5c9ba5efc2c070e5a23e071d025a0"
+            }
+          ],
+          "configuration_changes": [
+            "projectRoot resolves same checkout",
+            "state_dir redirects mutable conversation state to disposable test directory"
+          ]
+        },
+        "immutability": {
+          "weights_unchanged": true,
+          "models": 35
+        },
+        "rss_peak_self_kib": 1027232,
+        "rss_peak_children_kib": 0,
+        "elapsed_seconds": 62.958187183999996,
+        "cpu_affinity": [
+          0
+        ]
+      },
+      "quality_calls": 32,
+      "technical_errors": 0,
+      "quality_latency_median_ms": 1354.8996680000016,
+      "repeat_latency_median_ms": 1140.6486909999956,
+      "repeat_by_case_ms": {
+        "t01": [
+          1226.8076470000437,
+          1170.6241339999792,
+          1192.470362999984
+        ],
+        "m01": [
+          1071.0783170000013,
+          1110.6732480000119,
+          1444.4831929999964
+        ],
+        "c01": [
+          1058.7247879999495,
+          1278.9737550000382,
+          1735.2831930000434
+        ],
+        "o01": [
+          628.3042769999838,
+          786.9558819999725,
+          1058.2306400000334
+        ]
+      },
+      "actually_executed_model_ids": [
+        "unidad-conversation-04c65431b87bff6e9877611cefeff883542b0a0157dc962d144826944f6a54b9",
+        "unidad-conversation-072eedd276160f7581c5a70b57e66ae3000d2e664ed32f6b5a4669d4d12dcf57",
+        "unidad-conversation-1e46abcba0e6d5cbf25380bc98b92190ef556afbd5acd3463c92e399f32e3666",
+        "unidad-conversation-20009f454b06bcb223c3d83bcbe4070f03383989776454d48b57f39af54654df",
+        "unidad-conversation-3ccd6deb69d32443f41096f06a9c2bacb2fe67e54a257de35a44d8f78aa4ef5b",
+        "unidad-conversation-42e2f6c98ccb35d9f6585d73ed8c7c536f2b355745dc2022013d6b7abf80353b",
+        "unidad-conversation-4708a11a968afeacf4f130632865dd376452a7fd7c060736b2f8da7bdc795d04",
+        "unidad-conversation-67feadc3818a1739ee3f506c4e0f9a7b0436c695815c64f4c46b06c22f2640bf",
+        "unidad-conversation-734c92f9440d2d03bf1a6372e74335818e8ed65f00b69b24c2038d0ffffc0ac5",
+        "unidad-conversation-737364a8c6f3a798aa4352fffed85ad7bec109ff26b0359510aa3bdab8e81ad6",
+        "unidad-conversation-7387a514e1be02fa6bb2fa7b14d113edb48adf0e34b21a1be94366c762f37fd1",
+        "unidad-conversation-9077c0ede2a5564e671f44e10762933287c5c9ba5efc2c070e5a23e071d025a0",
+        "unidad-conversation-9081da24a3a73e748887dd66ee937798ef6808579ed5cdb78c3b27b70639cd9d",
+        "unidad-conversation-9d27cc9a24a38beb2e6139dc62dcb13850ac4ac068ed89e6ce65eeef98bc7bf5",
+        "unidad-conversation-a2cae3b623142153487760d2f09e1a9c2fc851a5a1a09f1cad83b9ffaa6c2d7d",
+        "unidad-conversation-a52997f88799597080c93ec3e79ba4029d9eb5b6d756e2136098dd16e909ca0c",
+        "unidad-conversation-a8c25b012d4cbf1da6b818983dc424ec219b93b7793115bb5d6474d8ef3087f8",
+        "unidad-conversation-af515755f6eb176ed9968235231f24d8abdebca002f881a327ba69651bed1591",
+        "unidad-conversation-ba70fff6928dcaf08087a4c966c1ea6496555bc04683933789908b4d8f49501c",
+        "unidad-conversation-bd1975c26297d4665dd95b2ad7d36349c62404a2489b72894d1a67f354a228d2",
+        "unidad-conversation-be6414b4187c33e27aef54e67352aaa78393afb303f7b8daaf8c0eb7c2a558a2",
+        "unidad-conversation-c005754b0980808f8e2dfd38375a02e8f25625257955919f25164246095565b8",
+        "unidad-conversation-c0ee5f24b2424eb652f3ca9bda5fcb8841d703b4f8f5efc4db23427a8ed123c4",
+        "unidad-conversation-c2363e4c5c9b10603ab7073fd258072e844a9d2a889651a7882005feb37a9954",
+        "unidad-conversation-cc55bb398d3aa188d4105e2dca63acae2c888a2a3af1386fc40465e7c7d44fa0",
+        "unidad-conversation-d63c1fcccb6148817aa9fc1cba8eafc297113fcbfc30dd1f5361c6e2d1dabbef",
+        "unidad-conversation-d6d860222baf5e8952eade42fcda3a0bd52dc77000c0c254ca895a91fdab7160",
+        "unidad-conversation-e202eafc8f11bcda7587db496c6e7ac1670efbd612685c465658ae2f07bd54fa",
+        "unidad-conversation-e70ea28e8d5dfb07481bcf966058f022ed3eebd392fc4afe773102a6e2e88088",
+        "unidad-conversation-ec9ab262aaaa5761dfe77e51232ca9fcf78bea93b7af97ec17d971557f0166df",
+        "unidad-conversation-ee24651fb8cc3a01e1acbb57db5f40222a6b9b5fe150dbff7186b961945fa398",
+        "unidad-conversation-f06b96e6c4c5149979b4846f9d03a4dd43dc8521dd13e3d5733bb164f90268f5",
+        "unidad-conversation-f327bb762eab5a9b5c559f21dab380a6b6ab16fe8548dfd8e03d260ab8bd863a",
+        "unidad-conversation-f417996465cabf1c20cd739fbec8300a72cee2840e83d19919eff9729dc17b06",
+        "unidad-conversation-fb2c43de68b8f0fe3ff1b559de4c0931345fe6d6576ab3f05419bf50618422ab"
+      ]
+    }
+  },
+  "elapsed_seconds": 79.55009272800004,
+  "original_checkpoint_unchanged": true,
+  "training_executed": false,
+  "semantic_review": "pending manual review of original outputs against frozen criteria",
+  "scope": "Same fictional facts and questions, one runner, one logical CPU. BBY Q uses persistent XI facts in disposable state; SOVENGI receives all supplied facts in its original context pipeline and uses its default rotating ensemble. End-to-end query latency, not equivalent token work. Native process startup/state IO included; SOVENGI model loading is lazy and first calls include it. RSS is sampled sum over worker and descendants, excludes driver; shared pages may be counted twice. No power/energy or Android measurements."
+}

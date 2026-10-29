@@ -1,0 +1,520 @@
+[
+  {
+    "id": 1,
+    "intent": 1,
+    "relation": 1,
+    "language": "es",
+    "text": "El taller {S} abre el {V}.",
+    "samples": [
+      [
+        "tutora",
+        "lunes"
+      ],
+      [
+        "tutorb",
+        "martes"
+      ]
+    ]
+  },
+  {
+    "id": 2,
+    "intent": 2,
+    "relation": 1,
+    "language": "es",
+    "text": "¿Qué día abre el taller {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "intent": 3,
+    "relation": 1,
+    "language": "es",
+    "text": "Corrección: el taller {S} abre el {V}.",
+    "samples": [
+      [
+        "tutora",
+        "lunes"
+      ],
+      [
+        "tutorb",
+        "martes"
+      ]
+    ]
+  },
+  {
+    "id": 4,
+    "intent": 1,
+    "relation": 1,
+    "language": "en",
+    "text": "The workshop {S} opens on {V}.",
+    "samples": [
+      [
+        "teachera",
+        "monday"
+      ],
+      [
+        "teacherb",
+        "tuesday"
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "intent": 2,
+    "relation": 1,
+    "language": "en",
+    "text": "On which day does the workshop {S} open?",
+    "samples": [
+      [
+        "teachera",
+        ""
+      ],
+      [
+        "teacherb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "intent": 3,
+    "relation": 1,
+    "language": "en",
+    "text": "Correction: the workshop {S} opens on {V}.",
+    "samples": [
+      [
+        "teachera",
+        "monday"
+      ],
+      [
+        "teacherb",
+        "tuesday"
+      ]
+    ]
+  },
+  {
+    "id": 7,
+    "intent": 1,
+    "relation": 2,
+    "language": "es",
+    "text": "La libreta {S} está en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "la caja blanca"
+      ],
+      [
+        "tutorb",
+        "el cajón negro"
+      ]
+    ]
+  },
+  {
+    "id": 8,
+    "intent": 2,
+    "relation": 2,
+    "language": "es",
+    "text": "¿Dónde está la libreta {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 9,
+    "intent": 3,
+    "relation": 2,
+    "language": "es",
+    "text": "Corrijo: la libreta {S} está en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "la caja blanca"
+      ],
+      [
+        "tutorb",
+        "el cajón negro"
+      ]
+    ]
+  },
+  {
+    "id": 10,
+    "intent": 1,
+    "relation": 2,
+    "language": "en",
+    "text": "The notebook {S} is in {V}.",
+    "samples": [
+      [
+        "teachera",
+        "the white box"
+      ],
+      [
+        "teacherb",
+        "the black drawer"
+      ]
+    ]
+  },
+  {
+    "id": 11,
+    "intent": 2,
+    "relation": 2,
+    "language": "en",
+    "text": "Where is the notebook {S}?",
+    "samples": [
+      [
+        "teachera",
+        ""
+      ],
+      [
+        "teacherb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 12,
+    "intent": 3,
+    "relation": 2,
+    "language": "en",
+    "text": "Correction: the notebook {S} is in {V}.",
+    "samples": [
+      [
+        "teachera",
+        "the white box"
+      ],
+      [
+        "teacherb",
+        "the black drawer"
+      ]
+    ]
+  },
+  {
+    "id": 13,
+    "intent": 1,
+    "relation": 3,
+    "language": "es",
+    "text": "La cita de {S} es el {V}.",
+    "samples": [
+      [
+        "tutora",
+        "lunes"
+      ],
+      [
+        "tutorb",
+        "martes"
+      ]
+    ]
+  },
+  {
+    "id": 14,
+    "intent": 2,
+    "relation": 3,
+    "language": "es",
+    "text": "¿Cuándo es la cita de {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 15,
+    "intent": 3,
+    "relation": 3,
+    "language": "es",
+    "text": "Corrijo: la cita de {S} es el {V}.",
+    "samples": [
+      [
+        "tutora",
+        "lunes"
+      ],
+      [
+        "tutorb",
+        "martes"
+      ]
+    ]
+  },
+  {
+    "id": 16,
+    "intent": 1,
+    "relation": 3,
+    "language": "en",
+    "text": "The appointment of {S} is on {V}.",
+    "samples": [
+      [
+        "teachera",
+        "monday"
+      ],
+      [
+        "teacherb",
+        "tuesday"
+      ]
+    ]
+  },
+  {
+    "id": 17,
+    "intent": 2,
+    "relation": 3,
+    "language": "en",
+    "text": "When is the appointment of {S}?",
+    "samples": [
+      [
+        "teachera",
+        ""
+      ],
+      [
+        "teacherb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 18,
+    "intent": 3,
+    "relation": 3,
+    "language": "en",
+    "text": "Correction: the appointment of {S} is on {V}.",
+    "samples": [
+      [
+        "teachera",
+        "monday"
+      ],
+      [
+        "teacherb",
+        "tuesday"
+      ]
+    ]
+  },
+  {
+    "id": 19,
+    "intent": 3,
+    "relation": 1,
+    "language": "es",
+    "text": "Corrijo: el taller {S} abre el {V}.",
+    "samples": [
+      [
+        "tutora",
+        "lunes"
+      ],
+      [
+        "tutorb",
+        "martes"
+      ]
+    ]
+  },
+  {
+    "id": 20,
+    "intent": 1,
+    "relation": 4,
+    "language": "es",
+    "text": "La baliza {S} pulsa en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "ámbar"
+      ],
+      [
+        "tutorb",
+        "violeta"
+      ]
+    ]
+  },
+  {
+    "id": 21,
+    "intent": 2,
+    "relation": 4,
+    "language": "es",
+    "text": "¿En qué pulsa la baliza {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 22,
+    "intent": 3,
+    "relation": 4,
+    "language": "es",
+    "text": "Corrijo: la baliza {S} pulsa en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "ámbar"
+      ],
+      [
+        "tutorb",
+        "violeta"
+      ]
+    ]
+  },
+  {
+    "id": 23,
+    "intent": 1,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "es",
+    "text": "El taller {S} está en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "la caja blanca"
+      ],
+      [
+        "tutorb",
+        "el cajón negro"
+      ]
+    ]
+  },
+  {
+    "id": 24,
+    "intent": 2,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "es",
+    "text": "¿Dónde está el taller {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 25,
+    "intent": 3,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "es",
+    "text": "Corrijo: el taller {S} está en {V}.",
+    "samples": [
+      [
+        "tutora",
+        "la caja blanca"
+      ],
+      [
+        "tutorb",
+        "el cajón negro"
+      ]
+    ]
+  },
+  {
+    "id": 26,
+    "intent": 1,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "en",
+    "text": "The workshop {S} is in {V}.",
+    "samples": [
+      [
+        "teachera",
+        "the white box"
+      ],
+      [
+        "teacherb",
+        "the black drawer"
+      ]
+    ]
+  },
+  {
+    "id": 27,
+    "intent": 2,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "en",
+    "text": "Where is the workshop {S}?",
+    "samples": [
+      [
+        "teachera",
+        ""
+      ],
+      [
+        "teacherb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 28,
+    "intent": 3,
+    "relation": 5,
+    "second_relation": 1,
+    "language": "en",
+    "text": "Correction: the workshop {S} is in {V}.",
+    "samples": [
+      [
+        "teachera",
+        "the white box"
+      ],
+      [
+        "teacherb",
+        "the black drawer"
+      ]
+    ]
+  },
+  {
+    "id": 29,
+    "intent": 4,
+    "relation": 1,
+    "second_relation": 5,
+    "language": "es",
+    "text": "¿Qué día abre y dónde está el taller {S}?",
+    "samples": [
+      [
+        "tutora",
+        ""
+      ],
+      [
+        "tutorb",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": 30,
+    "intent": 4,
+    "relation": 1,
+    "second_relation": 5,
+    "language": "en",
+    "text": "When and where does workshop {S} open?",
+    "samples": [
+      [
+        "teachera",
+        ""
+      ],
+      [
+        "teacherb",
+        ""
+      ]
+    ]
+  }
+]

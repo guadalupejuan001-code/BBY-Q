@@ -1,0 +1,264 @@
+{
+  "scope": "Diagnóstico de desarrollo reutilizado para orientar esta etapa, no evaluación reservada nueva",
+  "previous_complete": 20,
+  "current_complete": 27,
+  "total": 32,
+  "cases": [
+    {
+      "id": "t01",
+      "input": "¿beltran tenía piano?",
+      "criterion": "Affirm possession in the past, grounded in the supplied assertion.",
+      "output": "Según lo registrado: sí (pasado).",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t02",
+      "input": "did nolan have radio?",
+      "criterion": "Affirm past possession of radio.",
+      "output": "According to the record: yes (past).",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t03",
+      "input": "¿celia tiene taxi?",
+      "criterion": "Deny present possession of taxi.",
+      "output": "Según lo registrado: no (presente).",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t04",
+      "input": "will elton have piano?",
+      "criterion": "Report projected future possession without treating it as a confirmed outcome.",
+      "output": "Projected yes; it is not yet confirmed.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t05",
+      "input": "¿denis tiene radio?",
+      "criterion": "State that present possession is unknown; past possession does not establish it.",
+      "output": "No tengo evidencia para ese momento.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t06",
+      "input": "does fiona have taxi?",
+      "criterion": "State that present possession is unknown; a future forecast does not establish it.",
+      "output": "I have no evidence for that time.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t07",
+      "input": "¿gaston tiene piano?",
+      "criterion": "Explicitly identify contradictory present evidence and abstain from choosing yes or no.",
+      "output": "Hay afirmaciones contradictorias para ese momento.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "t08",
+      "input": "did helena have radio?",
+      "criterion": "Affirm past possession, keeping the negative present and projected future separate.",
+      "output": "According to the record: yes (past).",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m01",
+      "input": "¿Qué día abre el taller Brisalto?",
+      "criterion": "Answer jueves as the opening day without contradictory or incoherent additions.",
+      "output": "jueves [#r001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m02",
+      "input": "¿Qué día abre el taller Lumarco?",
+      "criterion": "Answer lunes as the opening day.",
+      "output": "lunes [#r001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m03",
+      "input": "¿Qué día abre el taller Nivaro?",
+      "criterion": "Use the correction viernes, not martes.",
+      "output": "viernes [#r002].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m04",
+      "input": "On which day does the workshop Reedhaven open?",
+      "criterion": "Answer Monday as the opening day.",
+      "output": "monday [#r001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m05",
+      "input": "¿Dónde está la libreta Cobalina?",
+      "criterion": "Locate it in the green box.",
+      "output": "la caja verde [#r001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m06",
+      "input": "Where is the notebook Willowglass?",
+      "criterion": "Locate it in the blue drawer.",
+      "output": "the blue drawer [#r001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m07",
+      "input": "¿Cuándo es la cita de Irval?",
+      "criterion": "Use domingo as the corrected appointment day.",
+      "output": "domingo [#r002].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "m08",
+      "input": "¿Cómo se llama el farero de Brumalia?",
+      "criterion": "Explicitly acknowledge the name is unknown, without inventing it.",
+      "output": "No tengo información suficiente para responder.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c01",
+      "input": "¿Qué es zorul y qué requiere?",
+      "criterion": "State both class orbe and requirement luz without switching the entity.",
+      "output": "zorul es orbe [#000]. zorul requiere luz [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c02",
+      "input": "what is xelmar and what does it need?",
+      "criterion": "State both class device and requirement water.",
+      "output": "xelmar is device [#000]. xelmar needs water [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c03",
+      "input": "dime de perlon su clase y su requisito",
+      "criterion": "State class cristal and requirement calor.",
+      "output": "perlon es cristal [#000]. perlon requiere calor [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c04",
+      "input": "outline for dorwin its class and its requirement",
+      "criterion": "State class tool and requirement energy.",
+      "output": "dorwin is tool [#000]. dorwin needs energy [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c05",
+      "input": "¿Qué es nisel y qué requiere?",
+      "criterion": "State mineral and agua for nisel, ignoring the distractor felun.",
+      "output": "nisel es mineral [#000]. nisel requiere agua [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c06",
+      "input": "what is corwin and what does it require?",
+      "criterion": "State crystal and light for corwin, ignoring veldan.",
+      "output": "corwin is crystal [#000]. corwin needs light [#001].",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c07",
+      "input": "¿Qué requiere mulven?",
+      "criterion": "Explicitly acknowledge missing evidence for its requirement; do not invent one.",
+      "output": "No tengo evidencia suficiente para responder.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "c08",
+      "input": "¿Qué es temrel?",
+      "criterion": "Abstain because the classification evidence is contradictory; do not assert mineral as settled.",
+      "output": "Evidencia negativa o contradictoria; no puedo afirmar esa propiedad.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o01",
+      "input": "hola",
+      "criterion": "Give an intelligible greeting in Spanish.",
+      "output": "Hola. Soy BBY Q.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o02",
+      "input": "hello",
+      "criterion": "Give an intelligible greeting in English.",
+      "output": "Hello. I am BBY Q.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o03",
+      "input": "Explica brevemente por qué se forma la lluvia.",
+      "criterion": "Explain condensation of atmospheric water vapor and falling droplets in intelligible Spanish.",
+      "output": "No tengo información suficiente para responder.",
+      "complete": false,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o04",
+      "input": "Why does ice melt when it gets warm?",
+      "criterion": "Explain heat causing ice to change from solid to liquid in intelligible English.",
+      "output": "I do not have enough information to answer.",
+      "complete": false,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o05",
+      "input": "Reescribe con otras palabras: el gato duerme junto a la ventana.",
+      "criterion": "Produce a genuine paraphrase retaining cat, sleeping and location by the window.",
+      "output": "No tengo información suficiente para responder.",
+      "complete": false,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o06",
+      "input": "Voy a preparar té. Dime dos pasos en orden.",
+      "criterion": "Give two useful ordered tea-preparation steps, such as heating water then steeping tea.",
+      "output": "No tengo información suficiente para responder.",
+      "complete": false,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o07",
+      "input": "Translate into Spanish: good morning.",
+      "criterion": "Translate as buenos días or an equivalent appropriate morning greeting.",
+      "output": "I do not have enough information to answer.",
+      "complete": false,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    },
+    {
+      "id": "o08",
+      "input": "¿Cuál es mi color favorito? No te lo he dicho.",
+      "criterion": "Acknowledge the favorite color is unknown without inventing it.",
+      "output": "No tengo información suficiente para responder.",
+      "complete": true,
+      "reviewer": "Codex; revisión de IA, no humana independiente"
+    }
+  ]
+}

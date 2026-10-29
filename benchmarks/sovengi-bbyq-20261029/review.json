@@ -1,0 +1,729 @@
+{
+  "version": "sovengi-bbyq-readonly-v1",
+  "reviewed_utc": "2026-10-29T01:12:43.941Z",
+  "reviewer": "Codex, revisión semántica de IA; sin panel humano independiente",
+  "protocol_sha256": "81303a9d8de748031f16555c6175fe20a16db01df05aa06c5863feebe13d66a7",
+  "policy": "Acierto completo solo si satisface todos los elementos del criterio previamente congelado. Parciales no cuentan como aciertos completos. No es un benchmark de inteligencia general.",
+  "counts": {
+    "bbyq": {
+      "pass": 20,
+      "partial": 0,
+      "total": 32,
+      "by_category": {
+        "temporal": {
+          "pass": 8,
+          "total": 8
+        },
+        "memory": {
+          "pass": 1,
+          "total": 8
+        },
+        "composition": {
+          "pass": 8,
+          "total": 8
+        },
+        "open": {
+          "pass": 3,
+          "total": 8
+        }
+      }
+    },
+    "sovengi": {
+      "pass": 2,
+      "partial": 2,
+      "total": 32,
+      "by_category": {
+        "temporal": {
+          "pass": 0,
+          "total": 8
+        },
+        "memory": {
+          "pass": 1,
+          "total": 8
+        },
+        "composition": {
+          "pass": 0,
+          "total": 8
+        },
+        "open": {
+          "pass": 1,
+          "total": 8
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "t01",
+      "category": "temporal",
+      "criterion": "Affirm possession in the past, grounded in the supplied assertion.",
+      "question": "¿beltran tenía piano?",
+      "facts": [
+        "beltran tenía piano"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Según lo registrado: sí (pasado).",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de",
+          "reason": "Repetición ajena a la pregunta."
+        }
+      }
+    },
+    {
+      "id": "t02",
+      "category": "temporal",
+      "criterion": "Affirm past possession of radio.",
+      "question": "did nolan have radio?",
+      "facts": [
+        "nolan had radio"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "According to the record: yes (past).",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Hay varias maneras de verano, pero en general se pueden ver el hemisferio de la hemorragia.",
+          "reason": "Texto ajeno a la posesión consultada."
+        }
+      }
+    },
+    {
+      "id": "t03",
+      "category": "temporal",
+      "criterion": "Deny present possession of taxi.",
+      "question": "¿celia tiene taxi?",
+      "facts": [
+        "celia no tiene taxi"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Según lo registrado: no (presente).",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La forma más corta de azul es una forma de calor que el azul es una forma de calor.",
+          "reason": "Texto ajeno a la posesión consultada."
+        }
+      }
+    },
+    {
+      "id": "t04",
+      "category": "temporal",
+      "criterion": "Report projected future possession without treating it as a confirmed outcome.",
+      "question": "will elton have piano?",
+      "facts": [
+        "elton will have piano"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Projected yes; it is not yet confirmed.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Hay muchos otros animales que han sido adaptados a su atención, pero también han sido adaptados a su atención. Algunos de los animales que han ajustados a su aten",
+          "reason": "No responde a la previsión de posesión."
+        }
+      }
+    },
+    {
+      "id": "t05",
+      "category": "temporal",
+      "criterion": "State that present possession is unknown; past possession does not establish it.",
+      "question": "¿denis tiene radio?",
+      "facts": [
+        "denis tenía radio"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "No tengo evidencia para ese momento.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio de radio",
+          "reason": "Repite radio sin resolver la falta de evidencia presente."
+        }
+      }
+    },
+    {
+      "id": "t06",
+      "category": "temporal",
+      "criterion": "State that present possession is unknown; a future forecast does not establish it.",
+      "question": "does fiona have taxi?",
+      "facts": [
+        "fiona will have taxi"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "I have no evidence for that time.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Hola, ¿en qué te puedo ayudar?",
+          "reason": "Saluda en lugar de reconocer la falta de evidencia presente."
+        }
+      }
+    },
+    {
+      "id": "t07",
+      "category": "temporal",
+      "criterion": "Explicitly identify contradictory present evidence and abstain from choosing yes or no.",
+      "question": "¿gaston tiene piano?",
+      "facts": [
+        "gaston tiene piano",
+        "gaston no tiene piano"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Hay afirmaciones contradictorias para ese momento.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "con un piano, piano, piano, piano, piano, piano, piano, piano, etc.",
+          "reason": "Repite piano sin identificar contradicción."
+        }
+      }
+    },
+    {
+      "id": "t08",
+      "category": "temporal",
+      "criterion": "Affirm past possession, keeping the negative present and projected future separate.",
+      "question": "did helena have radio?",
+      "facts": [
+        "helena had radio",
+        "helena does not have radio",
+        "helena will have radio"
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "According to the record: yes (past).",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Helena helena helena will.",
+          "reason": "Fragmento sin respuesta de posesión pasada."
+        }
+      }
+    },
+    {
+      "id": "m01",
+      "category": "memory",
+      "criterion": "Answer jueves as the opening day without contradictory or incoherent additions.",
+      "question": "¿Qué día abre el taller Brisalto?",
+      "facts": [
+        "El taller Brisalto abre el jueves."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No recupera el día proporcionado."
+        },
+        "sovengi": {
+          "status": "pass",
+          "output": "El taller Brisalto abre el jueves.",
+          "reason": "Identifica correctamente jueves y el taller."
+        }
+      }
+    },
+    {
+      "id": "m02",
+      "category": "memory",
+      "criterion": "Answer lunes as the opening day.",
+      "question": "¿Qué día abre el taller Lumarco?",
+      "facts": [
+        "El taller Lumarco abre el lunes."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No recupera el día proporcionado."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "El taller Lumarco abre el taller Lumarco abre el taller Lumarco abre el taller Lumarco abre el taller Lumarco",
+          "reason": "Repite el taller sin dar lunes."
+        }
+      }
+    },
+    {
+      "id": "m03",
+      "category": "memory",
+      "criterion": "Use the correction viernes, not martes.",
+      "question": "¿Qué día abre el taller Nivaro?",
+      "facts": [
+        "El taller Nivaro abre el martes.",
+        "Corrección: el taller Nivaro abre el viernes."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "Se abstiene, sin recuperar la corrección suministrada."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "El taller Nivaro abre el martes.",
+          "reason": "Da martes y pierde la corrección a viernes."
+        }
+      }
+    },
+    {
+      "id": "m04",
+      "category": "memory",
+      "criterion": "Answer Monday as the opening day.",
+      "question": "On which day does the workshop Reedhaven open?",
+      "facts": [
+        "The workshop Reedhaven opens on Monday."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "I do not have enough information to answer.",
+          "reason": "No recupera el día proporcionado."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Ondephop es un modelo de lenguaje de inteligencia artificial basado en la inteligencia artificial y en la inteligencia artificial.",
+          "reason": "Texto ajeno al día de apertura."
+        }
+      }
+    },
+    {
+      "id": "m05",
+      "category": "memory",
+      "criterion": "Locate it in the green box.",
+      "question": "¿Dónde está la libreta Cobalina?",
+      "facts": [
+        "La libreta Cobalina está en la caja verde."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No recupera la ubicación proporcionada."
+        },
+        "sovengi": {
+          "status": "partial",
+          "output": "La libreta cobalina está en la caja.",
+          "reason": "Identifica la caja, pero omite verde; respuesta incompleta."
+        }
+      }
+    },
+    {
+      "id": "m06",
+      "category": "memory",
+      "criterion": "Locate it in the blue drawer.",
+      "question": "Where is the notebook Willowglass?",
+      "facts": [
+        "The notebook Willowglass is in the blue drawer."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "I do not have enough information to answer.",
+          "reason": "No recupera la ubicación proporcionada."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Where is the notebook Willowings.",
+          "reason": "Repite una pregunta deformada sin localizar el cuaderno."
+        }
+      }
+    },
+    {
+      "id": "m07",
+      "category": "memory",
+      "criterion": "Use domingo as the corrected appointment day.",
+      "question": "¿Cuándo es la cita de Irval?",
+      "facts": [
+        "La cita de Irval es el sábado.",
+        "Corrijo: la cita de Irval es el domingo."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "Se abstiene, sin recuperar la corrección suministrada."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La cita de Irval es el sábado.",
+          "reason": "Da sábado y pierde la corrección a domingo."
+        }
+      }
+    },
+    {
+      "id": "m08",
+      "category": "memory",
+      "criterion": "Explicitly acknowledge the name is unknown, without inventing it.",
+      "question": "¿Cómo se llama el farero de Brumalia?",
+      "facts": [
+        "No te he dicho el nombre del farero de Brumalia."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "El farero de Brumalia es una forma de expresión que se llama Brumalia.",
+          "reason": "Inventa una caracterización en vez de admitir nombre desconocido."
+        }
+      }
+    },
+    {
+      "id": "c01",
+      "category": "composition",
+      "criterion": "State both class orbe and requirement luz without switching the entity.",
+      "question": "¿Qué es zorul y qué requiere?",
+      "facts": [
+        "zorul es orbe.",
+        "zorul requiere luz."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "zorul es orbe [#000]. zorul requiere luz [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Deberías consultarlo con un profesional de la salud.",
+          "reason": "Respuesta de salud ajena a los hechos."
+        }
+      }
+    },
+    {
+      "id": "c02",
+      "category": "composition",
+      "criterion": "State both class device and requirement water.",
+      "question": "what is xelmar and what does it need?",
+      "facts": [
+        "xelmar is device.",
+        "xelmar needs water."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "xelmar is device [#000]. xelmar needs water [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Un ejemplo, es un ejemplo de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia de la diferencia",
+          "reason": "Repite diferencia sin componer las dos propiedades."
+        }
+      }
+    },
+    {
+      "id": "c03",
+      "category": "composition",
+      "criterion": "State class cristal and requirement calor.",
+      "question": "dime de perlon su clase y su requisito",
+      "facts": [
+        "perlon es cristal.",
+        "perlon requiere calor."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "perlon es cristal [#000]. perlon requiere calor [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Cristal es un placer poder ayudarte.",
+          "reason": "No afirma la clase y requisito de perlon; usa cristal en una frase ajena."
+        }
+      }
+    },
+    {
+      "id": "c04",
+      "category": "composition",
+      "criterion": "State class tool and requirement energy.",
+      "question": "outline for dorwin its class and its requirement",
+      "facts": [
+        "dorwin is tool.",
+        "dorwin requires energy."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "dorwin is tool [#000]. dorwin needs energy [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Dorwin is to the requirement.",
+          "reason": "Fragmento incompleto sin clase y requisito."
+        }
+      }
+    },
+    {
+      "id": "c05",
+      "category": "composition",
+      "criterion": "State mineral and agua for nisel, ignoring the distractor felun.",
+      "question": "¿Qué es nisel y qué requiere?",
+      "facts": [
+        "nisel es mineral.",
+        "nisel requiere agua.",
+        "felun es artefacto.",
+        "felun requiere luz."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "nisel es mineral [#000]. nisel requiere agua [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "No es ninguna requiere agua.",
+          "reason": "Fragmento incoherente, no establece mineral y agua para nisel."
+        }
+      }
+    },
+    {
+      "id": "c06",
+      "category": "composition",
+      "criterion": "State crystal and light for corwin, ignoring veldan.",
+      "question": "what is corwin and what does it require?",
+      "facts": [
+        "corwin is crystal.",
+        "corwin requires light.",
+        "veldan is engine.",
+        "veldan requires water."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "corwin is crystal [#000]. corwin needs light [#001].",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Dobine.",
+          "reason": "Palabra sin relación con el requisito solicitado."
+        }
+      }
+    },
+    {
+      "id": "c07",
+      "category": "composition",
+      "criterion": "Explicitly acknowledge missing evidence for its requirement; do not invent one.",
+      "question": "¿Qué requiere mulven?",
+      "facts": [
+        "mulven es esfera."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "No tengo evidencia suficiente para responder.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de la mayor parte de",
+          "reason": "Repetición sin reconocer información ausente."
+        }
+      }
+    },
+    {
+      "id": "c08",
+      "category": "composition",
+      "criterion": "Abstain because the classification evidence is contradictory; do not assert mineral as settled.",
+      "question": "¿Qué es temrel?",
+      "facts": [
+        "temrel es mineral.",
+        "temrel no es mineral."
+      ],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Evidencia negativa o contradictoria; no puedo afirmar esa propiedad.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "El hombre es mineral.",
+          "reason": "Afirma que el hombre es mineral, sin detectar contradicción de temrel."
+        }
+      }
+    },
+    {
+      "id": "o01",
+      "category": "open",
+      "criterion": "Give an intelligible greeting in Spanish.",
+      "question": "hola",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Hola. Soy BBY Q.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "pass",
+          "output": "Hola, ¿en qué te puedo ayudar?",
+          "reason": "Saludo comprensible y pertinente."
+        }
+      }
+    },
+    {
+      "id": "o02",
+      "category": "open",
+      "criterion": "Give an intelligible greeting in English.",
+      "question": "hello",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "Hello. I am BBY Q.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Esa es una pregunta muy interesante que no tengo esa pregunta.",
+          "reason": "No contesta el saludo en inglés ni produce un saludo pertinente."
+        }
+      }
+    },
+    {
+      "id": "o03",
+      "category": "open",
+      "criterion": "Explain condensation of atmospheric water vapor and falling droplets in intelligible Spanish.",
+      "question": "Explica brevemente por qué se forma la lluvia.",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No explica la formación de lluvia."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La lluvia es una forma de medir la lluvia que se encuentra en el planeta tierra, ya que es una forma de medir la lluvia que se encuentra en el planeta tierra. La l",
+          "reason": "Repetición circular; no explica condensación ni caída de gotas."
+        }
+      }
+    },
+    {
+      "id": "o04",
+      "category": "open",
+      "criterion": "Explain heat causing ice to change from solid to liquid in intelligible English.",
+      "question": "Why does ice melt when it gets warm?",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "I do not have enough information to answer.",
+          "reason": "No explica la fusión del hielo."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Whystephystem es un modelo de lenguaje de inteligencia artificial basado en inteligencia artificial basado en inteligencia artificial basado en inteligencia ar",
+          "reason": "Texto ajeno a la fusión del hielo."
+        }
+      }
+    },
+    {
+      "id": "o05",
+      "category": "open",
+      "criterion": "Produce a genuine paraphrase retaining cat, sleeping and location by the window.",
+      "question": "Reescribe con otras palabras: el gato duerme junto a la ventana.",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No produce paráfrasis."
+        },
+        "sovengi": {
+          "status": "partial",
+          "output": "El gato duerme a la ventana.",
+          "reason": "Conserva gato, dormir y ventana, pero 'duerme a la ventana' no es una paráfrasis bien formada y precisa de junto a; parcial."
+        }
+      }
+    },
+    {
+      "id": "o06",
+      "category": "open",
+      "criterion": "Give two useful ordered tea-preparation steps, such as heating water then steeping tea.",
+      "question": "Voy a preparar té. Dime dos pasos en orden.",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "No propone pasos para preparar té."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Hola, ¿en qué te puedo ayudar?",
+          "reason": "Saludo en lugar de dos pasos ordenados."
+        }
+      }
+    },
+    {
+      "id": "o07",
+      "category": "open",
+      "criterion": "Translate as buenos días or an equivalent appropriate morning greeting.",
+      "question": "Translate into Spanish: good morning.",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "fail",
+          "output": "I do not have enough information to answer.",
+          "reason": "No traduce el saludo."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "Claro, aquí tienes algunos consejos que pueden ayudarte a entender mejor los consejos que pueden ayudarte a entender mejor los consejos:\n\n1. Aprende a entender",
+          "reason": "Consejos genéricos sin traducir good morning."
+        }
+      }
+    },
+    {
+      "id": "o08",
+      "category": "open",
+      "criterion": "Acknowledge the favorite color is unknown without inventing it.",
+      "question": "¿Cuál es mi color favorito? No te lo he dicho.",
+      "facts": [],
+      "arms": {
+        "bbyq": {
+          "status": "pass",
+          "output": "No tengo información suficiente para responder.",
+          "reason": "Cumple el criterio semántico congelado sin contradicción."
+        },
+        "sovengi": {
+          "status": "fail",
+          "output": "La persona que me dijo eso.",
+          "reason": "No reconoce la falta de información sobre el color."
+        }
+      }
+    }
+  ]
+}
