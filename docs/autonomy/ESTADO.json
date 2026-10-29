@@ -36,7 +36,12 @@
     },
     "acceso_actual": "Nueva CI completada: runtime compilado, artefacto original descargado y checkpoint restaurado/examinado."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "diccionario-es-en-20261029",
+    "rama": "feature/bbyq-dictionary-es-en-20261029",
+    "inicio_utc": "2026-10-29T00:13:59.186Z",
+    "objetivo": "Carga masiva diccionario bilingüe solicitada por usuario"
+  },
   "ultima_actividad": {
     "id": "ciclo-persistencia-e030-20261028T2338",
     "tipo": "preservacion_y_evaluacion_de_retencion",
