@@ -37,7 +37,11 @@
     },
     "acceso_actual": "Compilación y ejecución nueva completada con éxito; importación completa, examen XI y regresiones."
   },
-  "ciclo_activo": null,
+  "ciclo_activo": {
+    "id": "temporal-es-en-20261029",
+    "rama": "feature/bbyq-temporal-learning-20261029",
+    "inicio_utc": "2026-10-29T00:33:30.119Z"
+  },
   "ultima_actividad": {
     "id": "diccionario-es-en-20261029",
     "tipo": "adquisicion_masiva_de_referencia_lexica_bilingue",
