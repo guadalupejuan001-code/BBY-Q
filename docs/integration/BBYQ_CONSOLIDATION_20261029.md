@@ -69,6 +69,12 @@ La latencia observada de BBY Q fue aproximadamente **7,09 veces menor** y el RSS
 - La validación busca **conservar las capacidades anteriores**, con hash de checkpoint, exámenes reservados y regresiones. Es una elección de ingeniería acertada porque hace auditable la evolución.
 - La exactitud 48/48 en composición E034 demuestra una capacidad real **sobre un dominio tipado y supervisado**, no omnisciencia ni que toda computación sea acelerada por mecánica cuántica.
 
+## Dependencias externas que se mantienen explícitas
+
+El código fuente de **E031** se ha recuperado, pero su biblioteca de **236.256 entradas de WordNet/MCR** se obtiene mediante una fuente de datos fijada y un artefacto de aproximadamente 105,6 MB. No se introduce íntegra en el checkpoint ni se afirma que su vocabulario esté disponible sin el transporte de páginas. Su prueba original verificó 152/152 consultas exactas, no comprensión semántica de todo el diccionario. [CI E031](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384).
+
+La reproducción acumulada E034 descarga cápsulas de las CI **E032 y E033** (artefactos con caducidad indicada para enero de 2027). El código y los checkpoints originales ya quedan dentro del repositorio, pero la reproducción CI todavía debe evolucionar a una reconstrucción autosuficiente desde fuentes para depender menos de artefactos transitorios.
+
 ## Integración y límites
 
 El contenido importado **no reemplaza** `ai/releases/e025/controller.rvp.gz.b64`, los checkpoints E032/E033/E034 existentes, ni la memoria de un dispositivo Android. El checkpoint E034 es un candidato local/nativo, **no** el motor conversacional desplegado en REVERSE 2.5.1. Para utilizarlo allí hará falta revisión de ABI, migraciones y CI Android específicas.
