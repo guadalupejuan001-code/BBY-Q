@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T01:29:06.656Z",
+  "actualizado_utc": "2026-10-29T01:36:56.878Z",
   "estado": "formas_temporales_aprendidas_y_separacion_pasado_presente_futuro_validada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "feature/bbyq-temporal-learning-20261029",
@@ -42,9 +42,13 @@
     "inicio_utc": "2026-10-29T01:29:06.656Z",
     "tipo": "ingenieria_y_aprendizaje_relaciones_XI",
     "objetivo": "Diccionarios compartidos, índices, caché invalidable y correcciones con procedencia; benchmark reservado sin pérdida de temporalidad",
-    "estado": "preparando",
+    "estado": "en_verificacion",
     "ejecutor": "workflow bbyq-e029.yml native-e029 ubuntu-latest",
-    "propietario": "esta activación"
+    "propietario": "esta activación",
+    "commit_codigo": "5a8209586383aa295904b66af2e1e2cf4e6a60a2",
+    "run_id": 40801416726,
+    "pr": 40,
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40801416726"
   },
   "ultima_actividad": {
     "id": "temporal-es-en-20261029",
