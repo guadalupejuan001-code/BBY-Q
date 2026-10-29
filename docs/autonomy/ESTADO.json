@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-29T01:36:56.878Z",
+  "actualizado_utc": "2026-10-29T01:40:11.993Z",
   "estado": "formas_temporales_aprendidas_y_separacion_pasado_presente_futuro_validada",
   "repositorio": "guadalupejuan001-code/BBY-Q",
   "rama_codigo_observada": "feature/bbyq-temporal-learning-20261029",
@@ -45,10 +45,16 @@
     "estado": "en_verificacion",
     "ejecutor": "workflow bbyq-e029.yml native-e029 ubuntu-latest",
     "propietario": "esta activación",
-    "commit_codigo": "5a8209586383aa295904b66af2e1e2cf4e6a60a2",
-    "run_id": 40801416726,
+    "commit_codigo": "1f57ccb2168402df307eed1ba5b9dc9b6d0693d2",
+    "run_id": 40801622032,
     "pr": 40,
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40801416726"
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40801622032",
+    "reintento_justificado": "Región anterior colisionaba con E025; nueva región8400000000000000000 verificada libre en fuente y checkpoint, limpieza de mailbox y pruebas de capacidad ampliadas.",
+    "intento_anterior": {
+      "run_id": 40801416726,
+      "commit": "5a8209586383aa295904b66af2e1e2cf4e6a60a2",
+      "resultado": "failure antes de guardar aprendizaje"
+    }
   },
   "ultima_actividad": {
     "id": "temporal-es-en-20261029",
