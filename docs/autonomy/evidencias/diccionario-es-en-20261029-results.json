@@ -1,0 +1,76 @@
+{
+  "run": {
+    "id": 40793126384,
+    "job_id": 123182954057,
+    "head_sha": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384",
+    "status": "completed",
+    "conclusion": "success",
+    "artifact_id": 12862856143,
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
+    "artifact_sha256": "sha256:70a9d7036f370f8328f22c7f29c3c9832ac7a875876f8992be03bc8e44ceb488",
+    "artifact_expires_at": "2027-01-27T00:17:53Z"
+  },
+  "report": {
+    "version": "E031-Dictionary-1-dev",
+    "checks": 158,
+    "native_exact_queries": 152,
+    "unicode_cases": 24,
+    "multiword_cases": 75,
+    "unknown_controls": 2,
+    "candidate_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
+    "prior_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "prior_patterns_preserved": true,
+    "same_RVPC2_agent": true,
+    "source": {
+      "source_repository": "omwn/omw-data",
+      "source_commit": "406bf83b3c507a3d1f26e88252d5d66893fd36bf",
+      "wordnet_data_repository": "nltk/wordnet",
+      "wordnet_data_commit": "ce91915ae38a341ae845be4d825ef6003cddf395",
+      "wordnet_data_sha256": {
+        "data.noun": "489f145e0f68877c0be5bd0eb4117adaaac52f38f6204eb8d85dbe2158b614cc",
+        "data.verb": "29cc96ed80c9f47d94fe75e332a9df80f4b1c737205f92d2f433d63c6da2ab51",
+        "data.adj": "f24b635368be441501c9b8001e9271fd3b30b203f00d91e332979e6f8fe35646",
+        "data.adv": "e66dbbda0e0359e41b7f225bff71dd0c263dc7c66c1b61abc9ba334973d92979"
+      },
+      "languages": {
+        "en": {
+          "source_records": 206978,
+          "types": {
+            "lemma": 206978
+          },
+          "unique_forms": 147306,
+          "sha256": "d1409d88addcdb890b1606dd280b558cca4258b1f33bd580d54ed949daad1ede"
+        },
+        "es": {
+          "source_records": 166281,
+          "types": {
+            "spa:lemma": 145641,
+            "spa:def": 19444,
+            "spa:exe": 1196
+          },
+          "unique_forms": 88950,
+          "sha256": "0ec37ce94ee2acc63ad6b120e1051f9841d172778cc24adc0023fb8dccf0a7cd"
+        }
+      },
+      "entries": 236256,
+      "pages": 107312,
+      "max_page_bytes": 16984,
+      "stored_bytes": 93442728,
+      "dictionary_gzip_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
+      "dictionary_gzip_bytes": 39770663,
+      "scope": "All lemma records/variants and senses supplied by the pinned Spanish and English Wordnets. Not every word of either language; dictionary reference acquisition, not demonstrated general understanding."
+    },
+    "execution": "XI hashes full query, chooses page ID, compares full UTF-8 lemma, reads senses and emits data. Host transports complete pages without selecting answers.",
+    "limitations": [
+      "Explicit @lex lookup transport required; not automatically incorporated into general conversation or old 512-entry grammar",
+      "Definitions may only be supplied in English; missing Spanish glosses remain missing",
+      "No new general reasoning demonstrated"
+    ]
+  },
+  "regresiones": {
+    "e025": 31,
+    "e025_candidato": 31,
+    "w4u": 21
+  }
+}

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "actualizado_utc": "2026-10-28T23:39:43.489Z",
-  "estado": "patrones_aprendidos_preservados_y_restaurados_sin_reentrenar",
+  "actualizado_utc": "2026-10-29T00:23:03.634Z",
+  "estado": "diccionario_bilingue_completo_de_fuentes_fijadas_consultable_en_XI",
   "repositorio": "guadalupejuan001-code/BBY-Q",
-  "rama_codigo_observada": "autonomy/bbyq-preserve-frames-20261028",
-  "commit_codigo_observado": "430e7ee052d3623de9ebac401fed781304850b67",
-  "rama_continuidad": "autonomy/bbyq-preserve-frames-20261028",
+  "rama_codigo_observada": "feature/bbyq-dictionary-es-en-20261029",
+  "commit_codigo_observado": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+  "rama_continuidad": "feature/bbyq-dictionary-es-en-20261029",
   "nota_revision": "Este registro describe la revisión de código observada. Resolver el HEAD remoto al comenzar cada ciclo; el commit que contiene este registro no puede incluir su propio hash.",
   "checkpoint": {
     "archivo": "ai/releases/e025/controller.rvp.gz.b64",
@@ -24,60 +24,63 @@
     "runtime_commit": "a1b935ae0adf38615996bac92727e95289ad7cc1",
     "mundo_x_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
     "ultima_ejecucion_observada": {
-      "id": 40788612882,
-      "job_id": 123167941158,
-      "head_sha": "430e7ee052d3623de9ebac401fed781304850b67",
+      "id": 40793126384,
+      "job_id": 123182954057,
+      "head_sha": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384",
       "status": "completed",
       "conclusion": "success",
-      "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882",
-      "artifact_id": 12860950859,
-      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40788612882/artifacts/12860950859",
-      "artifact_sha256": "sha256:a1f57d756172f1a3d6dbf795e18c894c563bd0e51e119780c19a18a53085b747"
+      "artifact_id": 12862856143,
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
+      "artifact_sha256": "sha256:70a9d7036f370f8328f22c7f29c3c9832ac7a875876f8992be03bc8e44ceb488",
+      "artifact_expires_at": "2027-01-27T00:17:53Z"
     },
-    "acceso_actual": "Nueva CI completada: runtime compilado, artefacto original descargado y checkpoint restaurado/examinado."
+    "acceso_actual": "Compilación y ejecución nueva completada con éxito; importación completa, examen XI y regresiones."
   },
-  "ciclo_activo": {
-    "id": "diccionario-es-en-20261029",
-    "rama": "feature/bbyq-dictionary-es-en-20261029",
-    "inicio_utc": "2026-10-29T00:13:59.186Z",
-    "objetivo": "Carga masiva diccionario bilingüe solicitada por usuario"
-  },
+  "ciclo_activo": null,
   "ultima_actividad": {
-    "id": "ciclo-persistencia-e030-20261028T2338",
-    "tipo": "preservacion_y_evaluacion_de_retencion",
-    "registro": "docs/autonomy/ejecuciones/ciclo-persistencia-e030-20261028T2338.json",
-    "evidencia": "docs/autonomy/evidencias/ciclo-persistencia-e030-20261028T2338-results.json",
+    "id": "diccionario-es-en-20261029",
+    "tipo": "adquisicion_masiva_de_referencia_lexica_bilingue",
+    "registro": "docs/autonomy/ejecuciones/diccionario-es-en-20261029.json",
+    "evidencia": "docs/autonomy/evidencias/diccionario-es-en-20261029-results.json",
     "evaluacion_nativa_ejecutada": true,
     "aprendizaje_nativo_nuevo": false,
+    "datos_nuevos_incorporados": true,
     "entrenamiento_nuevo_publicado": false
   },
   "cambios": [
-    "Exportados patrones desde checkpoint nativo exacto sin reenseñar.",
-    "Checkpoint durable semilla E025 + patrones, sin hechos sintéticos; bytes leídos desde XI.",
-    "48/48 sobre 24 sujetos nuevos; 157 controles de restauración, regresiones E025 31/W4u 21 y acción tipada [4,2].",
-    "Corregida representación documental de direcciones grandes: cadenas decimales + longitud."
+    "Se atendió instrucción directa de cargar diccionario español/inglés, en lugar de continuar mantenimiento de checkpoints.",
+    "Importadas 88950 formas ES y 147306 EN con acepciones/definiciones y equivalencias disponibles, sin truncar acepciones.",
+    "Consulta exacta y paginación seleccionadas en XI, 152/152 consultas nativas y 158 controles totales.",
+    "Preservadas memoria y patrones E030; E025 original/candidato 31 y W4u 21 aprobados."
   ],
   "bloqueos": [],
   "hipotesis_pendientes": [
-    "Reconciliar fuentes E025/E026/E027/E029 y conflictos, conservando patrones.",
-    "CI del PR #36 es específica de persistencia: reintegrar batería completa antes de promover.",
-    "Sin despliegue Android ni coordinación autónoma de ingeniería W4u comprobada."
+    "La biblioteca se consulta con @lex y transporte explícito de páginas; las palabras aún no se incorporan automáticamente al intérprete conversacional antiguo.",
+    "Referencia léxica importada no demuestra comprensión de definiciones ni razonamiento nuevo.",
+    "Fuentes WordNet/MCR no contienen todas las palabras existentes de ambos idiomas.",
+    "Convertir definiciones y enlaces en aprendizaje semántico nativo evaluado con oraciones independientes, preservando polisemia.",
+    "Conservar paquete de datos: artefacto configurado caduca; fuentes y hashes están fijados para reproducirlo."
   ],
   "siguiente": "docs/autonomy/SIGUIENTE.md",
-  "commit_main_observado": "b8d255c84af91d08beb19be781e608ba1632961e",
-  "revision_notas_previa": "2d29696e0c9e0ddff0db4d3a75506b09e6b4fd1f",
+  "commit_main_observado": "d9440d5300900b0418c8f14b4713b882c7f375dc",
+  "revision_notas_previa": "9c30f1a10bfb2078c7f78b0c9511ddecb1eafca1",
   "candidato": {
-    "version": "E030-Learned-Frames-1-dev",
-    "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
-    "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
-    "rama": "autonomy/bbyq-learned-forms-20261028",
-    "commit": "0061bcda177fc31f609939860ed9d0a75e222d50",
-    "artifact_app": "e029/learned.rxe",
-    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+    "version": "E031-Dictionary-1-dev",
+    "app_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
+    "rama": "feature/bbyq-dictionary-es-en-20261029",
+    "commit": "e194d56096daf935caae33c7a9db0a130bc0fcec",
+    "checkpoint_base": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+    "checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "artifact_app": "dictionary/dictionary.rxe",
+    "artifact_dictionary": "dictionary/dictionary-pages.jsonl.gz",
+    "artifact_dictionary_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
+    "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143",
     "produccion_desplegada": false,
-    "aprendizaje_de_patrones_nuevo": true,
-    "patrones": 2,
-    "descripcion": "Marco de sujeto único inducido por XI, delante de E029/E028/E027/E025."
+    "aprendizaje_de_patrones_nuevo": false,
+    "datos_lexicos_nuevos": true,
+    "consulta": "@lex mediante query.py: transporte de páginas y recuperación XI",
+    "descripcion": "Biblioteca de referencia léxica completa de fuentes ES/EN fijadas, todavía sin incorporación automática al razonamiento conversacional."
   },
   "resultados_contexto": {
     "version": "E027-Context-1-dev",
@@ -116,6 +119,19 @@
       "produccion_desplegada": false,
       "aprendizaje_de_patrones_nuevo": false,
       "descripcion": "Archivo contextual E027 y composición E026 enlazados en una única cápsula XI/RVPC2."
+    },
+    {
+      "version": "E030-Learned-Frames-1-dev",
+      "app_sha256": "c9a33a322f58ac6d93f18ff3c59678ef637ac9612bb71845e122e8f5c9de43f9",
+      "semilla_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+      "rama": "autonomy/bbyq-learned-forms-20261028",
+      "commit": "0061bcda177fc31f609939860ed9d0a75e222d50",
+      "artifact_app": "e029/learned.rxe",
+      "artifact_url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40781527990/artifacts/12857507917",
+      "produccion_desplegada": false,
+      "aprendizaje_de_patrones_nuevo": true,
+      "patrones": 2,
+      "descripcion": "Marco de sujeto único inducido por XI, delante de E029/E028/E027/E025."
     }
   ],
   "checkpoint_experimental": {
@@ -164,7 +180,8 @@
       4,
       2
     ],
-    "run_id": 40788612882,
+    "run_id": 40793126384,
+    "observacion": "31 regresiones sobre cápsula E031 incluyen acción maximiza calculadora desde REVERSE-PC",
     "coordinacion_autonoma_repositorio_verificada": false,
     "android_verificado": false
   },
@@ -203,5 +220,62 @@
       2
     ],
     "scope": "Retention and portable restoration of existing native learning; new subjects test it without reteaching."
+  },
+  "resultados_diccionario": {
+    "version": "E031-Dictionary-1-dev",
+    "checks": 158,
+    "native_exact_queries": 152,
+    "unicode_cases": 24,
+    "multiword_cases": 75,
+    "unknown_controls": 2,
+    "candidate_sha256": "340a2b288a3659265c954fc93250fe33ac7df905c48c58caf7179bbe6e911fa6",
+    "prior_checkpoint_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+    "prior_patterns_preserved": true,
+    "same_RVPC2_agent": true,
+    "source": {
+      "source_repository": "omwn/omw-data",
+      "source_commit": "406bf83b3c507a3d1f26e88252d5d66893fd36bf",
+      "wordnet_data_repository": "nltk/wordnet",
+      "wordnet_data_commit": "ce91915ae38a341ae845be4d825ef6003cddf395",
+      "wordnet_data_sha256": {
+        "data.noun": "489f145e0f68877c0be5bd0eb4117adaaac52f38f6204eb8d85dbe2158b614cc",
+        "data.verb": "29cc96ed80c9f47d94fe75e332a9df80f4b1c737205f92d2f433d63c6da2ab51",
+        "data.adj": "f24b635368be441501c9b8001e9271fd3b30b203f00d91e332979e6f8fe35646",
+        "data.adv": "e66dbbda0e0359e41b7f225bff71dd0c263dc7c66c1b61abc9ba334973d92979"
+      },
+      "languages": {
+        "en": {
+          "source_records": 206978,
+          "types": {
+            "lemma": 206978
+          },
+          "unique_forms": 147306,
+          "sha256": "d1409d88addcdb890b1606dd280b558cca4258b1f33bd580d54ed949daad1ede"
+        },
+        "es": {
+          "source_records": 166281,
+          "types": {
+            "spa:lemma": 145641,
+            "spa:def": 19444,
+            "spa:exe": 1196
+          },
+          "unique_forms": 88950,
+          "sha256": "0ec37ce94ee2acc63ad6b120e1051f9841d172778cc24adc0023fb8dccf0a7cd"
+        }
+      },
+      "entries": 236256,
+      "pages": 107312,
+      "max_page_bytes": 16984,
+      "stored_bytes": 93442728,
+      "dictionary_gzip_sha256": "29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4",
+      "dictionary_gzip_bytes": 39770663,
+      "scope": "All lemma records/variants and senses supplied by the pinned Spanish and English Wordnets. Not every word of either language; dictionary reference acquisition, not demonstrated general understanding."
+    },
+    "execution": "XI hashes full query, chooses page ID, compares full UTF-8 lemma, reads senses and emits data. Host transports complete pages without selecting answers.",
+    "limitations": [
+      "Explicit @lex lookup transport required; not automatically incorporated into general conversation or old 512-entry grammar",
+      "Definitions may only be supplied in English; missing Spanish glosses remain missing",
+      "No new general reasoning demonstrated"
+    ]
   }
 }

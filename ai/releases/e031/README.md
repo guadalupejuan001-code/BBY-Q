@@ -34,3 +34,29 @@ bancos binarios, diccionario comprimido completo, cápsula, checkpoint y licenci
 Fuente inglesa: Princeton WordNet, licencia WordNet.
 Fuente española: MCR, CC BY 3.0; ver LICENSE de cada fuente en el paquete.
 Resultados solo se declaran después de CI.
+
+## Resultados comprobados
+CI https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384, código `e194d56096daf935caae33c7a9db0a130bc0fcec`:
+88.950 entradas ES + 147.306 EN = **236.256**. La fuente española aporta
+19.444 glosas (registros de definición) y las glosas inglesas provienen de los
+archivos originales PWN 3.0, copia de datos `nltk/wordnet` fijada en
+`ce91915ae38a341ae845be4d825ef6003cddf395`; no se importa ni ejecuta su motor Python.
+
+152/152 consultas exactas, 24 Unicode, 75 expresiones de varias palabras;
+158 controles totales. E025 original/candidato 31 cada uno y W4u 21 aprobados.
+Se preservaron patrones E030 y el checkpoint original. No hubo entrenamiento
+de comprensión ni razonamiento general nuevo.
+
+Paquete completo de 105.628.254 bytes:
+https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40793126384/artifacts/12862856143
+Incluye bancos binarios, dataset comprimido, cápsula, checkpoint y transcripciones.
+SHA256 del dataset comprimido:
+`29fa0ef8a9e698a9a4129d5e02bcffca6801998f826a7b63739567b019a14ba4`.
+93.442.728 bytes sin comprimir y 39.770.663 comprimidos; máximo de página
+16.984 bytes. El transporte mantiene una sola página en RVPC2 para no
+sobrescribir la memoria previa. Datos externos son referencia, no otra IA.
+
+Atribución: Princeton WordNet, ed. Christiane Fellbaum (1998), MIT Press.
+MCR: Aitor Gonzalez-Agirre, Egoitz Laparra y German Rigau (2012),
+*Multilingual Central Repository version 3.0: upgrading a very large lexical
+knowledge base*. Licencias originales incluidas en el paquete.
