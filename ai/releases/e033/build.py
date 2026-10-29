@@ -14,7 +14,9 @@ assert not any(8400000000000000000<=int(x)<8400000000000073728 for x in re.finda
 run('compile',prior/'temporal-linked.xi',out/'parent-code.rxe','BBY Q temporal separation and learned frames')
 run('pack-app',out/'parent-code.rxe',seed,out/'parent-repacked.rxe','org.reverse.bbyq','BBY Q','E032-Temporal-1-dev','c93592e0cce4ccfdb3d66a062e6ab737a643dc4a')
 assert sha(out/'parent-repacked.rxe')==sha(parent),'Exact parent source/capsule mismatch'
-linked=Path('ai/releases/e033/relations.xi').read_text()+source.replace('#!reverse-pc-machine-v1','label mr_parent_entry',1)
+native=Path('ai/releases/e033/relations.xi').read_text()
+assert all(8400000000000000000<=int(x)<8400000000000073728 or 7400000000000000000<=int(x)<7400000000000002000 for x in re.findall(r'\b[0-9]{19}\b',native)), 'Unexpected foreign address in relation module'
+linked=native+source.replace('#!reverse-pc-machine-v1','label mr_parent_entry',1)
 (out/'minimal-linked.xi').write_text(linked)
 run('compile',out/'minimal-linked.xi',out/'code.rxe','BBY Q minimal shared relation states in Ether')
 run('pack-app',out/'code.rxe',seed,out/'minimal.rxe','org.reverse.bbyq','BBY Q','E033-Minimal-Relations-1-dev','d8d26d43c2d9aa8ce7c8e910a7cc543d101fc941')

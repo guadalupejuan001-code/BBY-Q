@@ -59,7 +59,15 @@ for i in range(24):
 eq(correct,168,'reserved ES/EN relation answers');eq(previous,0,'parent lacks new relation recovery')
 mem=snap()[1];eq(mem[B+1],24,'four relations reuse each entity string once');eq(mem[B+2],12,'shared values stored once across entities');eq(mem[B+3],96,'one immutable event per distinct assertion')
 shared={k:v for k,v in mem.items() if B+32768<=k<B+61344 and v};learned_nonzero=len([v for k,v in snap(model)[1].items() if B<=k<B+73728 and v])
+ok(len(shared)>0,'shared dictionaries actually reside inside declared region')
+old_before=outside(snap(model));old_after=outside(snap());old_before[1].pop(7400000000000000003,None);old_after[1].pop(7400000000000000003,None)
+eq(old_after,old_before,'new world facts leave all prior knowledge unchanged, except selected response language')
 growth=state.stat().st_size-model.stat().st_size;gz_growth=len(gzip.compress(state.read_bytes(),mtime=0))-len(gzip.compress(model.read_bytes(),mtime=0))
+eq(ask('hola'),'Hola. Soy BBY Q.','greeting coexists with 96 new facts')
+ok('Calculadora es herramienta' in ask('que es calculadora'),'old desktop fact coexists with new dictionary')
+eq(ask('nueva es orbe.'),'Registré esa afirmación.','old admission coexists with 96 facts');eq(ask('nueva requiere luz.'),'Registré esa afirmación.','old requirement coexists')
+eq(ask('dime de nueva su clase y su requisito'),'nueva es orbe [#000]. nueva requiere luz [#001].','old learned form coexists with new state')
+eq(ask(sentence(1,'reservaa',intent=2)),'jueves [#r001].','new facts survive previous capability calls')
 # Same supplied facts as text in the existing native archive: compare representation deltas.
 archive=out/'archive-reference.rvp';archive.write_bytes(seed);archive_before=archive.stat().st_size;archive_gz_before=len(gzip.compress(archive.read_bytes(),mtime=0))
 for i in range(24):
