@@ -1,10 +1,11 @@
 name: BBY Q E029 conversational fact learning (XI)
 on:
   pull_request:
-    paths: ['ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: bbyq-e029-${{ github.head_ref || github.ref }}
   cancel-in-progress: false
@@ -34,35 +35,27 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Reproduce E027 and build separate E029 from E028
+      - name: Recover exact existing E031 candidate and dictionary
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E031-full-bilingual-dictionary
+          run-id: 40793126384
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Build and verify native temporal candidate
+        run: python3 ai/releases/e032/build.py deps/reverse/build/reverse_pc prior evidence/temporal
+      - name: Teach and independently examine temporal language in XI
+        run: python3 ai/releases/e032/test.py deps/reverse/build/reverse_pc prior evidence/temporal
+      - name: Prior agent and W4u regressions on temporal capsule
         run: |
-          set -euo pipefail
-          node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original
-          node ai/releases/e029/build.mjs deps/reverse/build/reverse_pc evidence/e029
-          mkdir -p evidence/e029-compat
-          cp evidence/e029/natural.rxe evidence/e029-compat/candidate.rxe
-          cp evidence/e029/controller.rvp evidence/e029-compat/controller.rvp
-      - name: Exercise natural XI conversational fact acquisition
-        run: |
-          set -euo pipefail
-          node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/e029 evidence/e029-natural-tests
-      - name: E028 entity and composition regressions with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e027-original evidence/e029-e028-regression
-      - name: E027 full archive regression with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e029-e027-regression
+          mkdir -p evidence/temporal-compat
+          cp evidence/temporal/temporal.rxe evidence/temporal-compat/dictionary.rxe
+          cp prior/dictionary/controller.rvp evidence/temporal-compat/controller.rvp
+          python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/temporal-compat evidence/candidate-regression
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E029-XI-natural-facts-evidence
+          name: BBYQ-E032-native-temporal-learning
           path: |
-            evidence/e025/tests.json
-            evidence/e025/verification.json
-            evidence/w4u/results.json
-            evidence/e029/natural.json
-            evidence/e029-natural-tests/results.json
-            evidence/e029-e028-regression/results.json
-            evidence/e029-e027-regression/tests.json
+            evidence
+            !evidence/temporal/dictionary-smoke/banks/**
