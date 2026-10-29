@@ -1,7 +1,7 @@
-name: BBY Q E029 conversational fact learning (XI)
+name: BBY Q and SOVENGI frozen inference comparison
 on:
   pull_request:
-    paths: ['ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['benchmarks/sovengi-bbyq-20261029/**', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,16 +13,74 @@ jobs:
   native-e029:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - uses: actions/checkout@v4
         with:
           repository: guadalupejuan001-code/REVERSE-PC
           ref: a1b935ae0adf38615996bac92727e95289ad7cc1
           path: deps/reverse
           persist-credentials: false
-      - name: Build pinned XI/Ether runtime
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/UNIDAD
+          ref: 58345eec2cb6a05d3fb0491e3a2f3d914cd1a48c
+          path: deps/sovengi
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            configs
+            src
+            models/context-reference-v1
+            models/coordination-reference-v1
+            models/learning-repair-20261013/pattern-relations-v1/reference-wiki1
+            models/sovengi-memory-20261013/candidate-best
+            models/conversation-reference-c7
+            models/conversation-language-v7
+            models/conversation-basic-v1
+            models/conversation-basics-v4
+            models/conversation-basics-v5
+            models/conversation-basics-v6
+            models/conversation-context-v3
+            models/conversation-copy-head-20261013
+            models/conversation-initial-availability-e3
+            models/conversation-integration-20261013/c7
+            models/conversation-integration-20261013/history-generated
+            models/conversation-integration-20261013/history-ideal
+            models/conversation-integration-20261013/natural-c7
+            models/conversation-integration-20261013/natural-v7
+            models/conversation-integration-20261013/v7
+            models/conversation-language-uniform-b1
+            models/conversation-spanish-v2
+            models/learning-repair-20261013/autonomy/action-copy-v2-control-final-best256
+            models/learning-repair-20261013/autonomy/action-copy-v2-treatment-final-best256
+            models/learning-repair-20261013/autonomy/action2048-final-best256
+            models/learning-repair-20261013/autonomy/context2048-untrained-parent1024
+            models/learning-repair-20261013/conversation-15m/final-last-step008192
+            models/learning-repair-20261013/conversation-15m/intermediate-step004096
+            models/learning-repair-20261013/foundation-15m/final
+            models/learning-repair-20261013/foundation-15m/intermediate-step004096
+            models/learning-repair-20261013/natural-latam-v4/control-final-last-step004096
+            models/learning-repair-20261013/natural-latam-v4/final-treatment-last-step004096
+            models/learning-repair-20261013/natural-latam-v4/intermediate-step001024
+            models/learning-repair-20261013/pattern-relations-v1/candidate-best
+            models/learning-repair-20261013/wide-latam-v3/language-1-final-best2048
+            models/learning-repair-20261013/wide-latam-v3/language-2-final-best2048
+            models/learning-repair-20261013/wide-latam-v3/natural-action-retention-final-best1024
+            models/spanish-foundation-v1
+      - name: Build unchanged pinned XI runtime
         run: |
           set -euo pipefail
           bash deps/reverse/scripts/setup-ether.sh
@@ -30,32 +88,28 @@ jobs:
           mkdir -p build
           python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
           g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
-      - name: Original E025 and W4u native regressions
+      - name: Install original SOVENGI inference dependencies
         run: |
-          set -euo pipefail
-          python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
-          node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Recover exact existing E031 candidate and dictionary
+          python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install 'deps/sovengi[conversation]'
+      - name: Download exact tested BBY Q artifact without rebuilding or teaching
         uses: actions/download-artifact@v4
         with:
-          name: BBYQ-E031-full-bilingual-dictionary
-          run-id: 40793126384
+          name: BBYQ-E032-native-temporal-learning
+          run-id: 40795445276
           github-token: ${{ github.token }}
-          path: prior
-      - name: Build and verify native temporal candidate
-        run: python3 ai/releases/e032/build.py deps/reverse/build/reverse_pc prior evidence/temporal
-      - name: Teach and independently examine temporal language in XI
-        run: python3 ai/releases/e032/test.py deps/reverse/build/reverse_pc prior evidence/temporal
-      - name: Prior agent and W4u regressions on temporal capsule
+          path: frozen-bbyq
+      - name: Freeze and syntax-check external examiner
         run: |
-          mkdir -p evidence/temporal-compat
-          cp evidence/temporal/temporal.rxe evidence/temporal-compat/dictionary.rxe
-          cp prior/dictionary/controller.rvp evidence/temporal-compat/controller.rvp
-          python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/temporal-compat evidence/candidate-regression
+          python -m py_compile benchmarks/sovengi-bbyq-20261029/run.py
+          python -m json.tool benchmarks/sovengi-bbyq-20261029/cases.json >/dev/null
+      - name: Compare original models on same CPU using disposable sessions
+        run: |
+          python -u benchmarks/sovengi-bbyq-20261029/run.py --runtime deps/reverse/build/reverse_pc --sov deps/sovengi --app frozen-bbyq/temporal/temporal.rxe --checkpoint ai/checkpoints/e032/temporal-model.rvp.gz.b64 --cases benchmarks/sovengi-bbyq-20261029/cases.json --out evidence/comparison
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E032-native-temporal-learning
+          name: SOVENGI-BBYQ-frozen-comparison
           path: |
-            evidence
-            !evidence/temporal/dictionary-smoke/banks/**
+            evidence/comparison/*.json
+            evidence/comparison/*.log
