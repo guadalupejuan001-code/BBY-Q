@@ -5,7 +5,7 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('runtime');p.add_argument('prior');p.add_argument('out');a=p.parse_args()
 runtime=str(Path(a.runtime).resolve());prior=Path(a.prior).resolve()/'temporal';out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
 app=out/'minimal.rxe';parent=prior/'temporal.rxe';state=out/'live.rvp';seed=gzip.decompress(base64.b64decode(Path('ai/checkpoints/e032/temporal-model.rvp.gz.b64').read_text()));state.write_bytes(seed)
-B=8500000000000000000;checks=0;turns=[];lessons=[];sha=lambda f:hashlib.sha256(Path(f).read_bytes()).hexdigest();fixed=sha(app)
+B=8400000000000000000;checks=0;turns=[];lessons=[];sha=lambda f:hashlib.sha256(Path(f).read_bytes()).hexdigest();fixed=sha(app)
 assert hashlib.sha256(seed).hexdigest()=='f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56'
 spec=importlib.util.spec_from_file_location('snapshot','ai/xi/knowledge/tests/native-knowledge.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 def snap(live=state):return m.snapshot(live)
@@ -31,6 +31,7 @@ def lesson(f,s,v,reject=False):
  else:
   ok(r.returncode==0,('native lesson',f['id'],r.stderr));dest.replace(state)
 before=snap()
+ok(not any(B<=k<B+73728 and v for k,v in before[1].items()),'new region is actually unused in persistent checkpoint')
 for f in forms:
  lesson(f,*f['samples'][0]);eq(snap()[1].get(B+4096+(f['id']-1)*256),1,'one demonstration not active')
  if f['id'] in [1,2]:lesson(f,*f['samples'][0]);eq(snap()[1].get(B+4096+(f['id']-1)*256),1,'duplicate cannot enable frame')
@@ -81,6 +82,7 @@ eq(ask(sentence(1,'auditada',intent=2)),'Hay datos contradictorios para esa rela
 eq(ask(sentence(1,'auditada','sábado',intent=3)),ack['es'],'explicit correction resolves conflict');eq(ask(sentence(1,'auditada',intent=2)),'sábado [#r004].','corrected truth')
 eq(ask('@rel source 3'),'#r003 <-r002 el taller auditada abre el domingo.','conflicting evidence preserved')
 eq(ask('@rel source 4'),'#r004 <-r003 corrección: el taller auditada abre el sábado.','full provenance chain')
+ok(all(snap()[1].get(7400000000000000128+i,0)==0 for i in range(255)),'handled turn erases native input mailbox')
 pre=truth();eq(ask(sentence(1,'desconocida',intent=2)),unknown['es'],'unknown entity');eq(truth(),pre,'unknown query allocates no truth state')
 for s,v in [('reserva norte','el cajón pequeño'),('peña','la caja ámbar')]:
  eq(ask(sentence(2,s,v)),ack['es'],'multiword or UTF-8 roles');ok(ask(sentence(2,s,intent=2)).startswith(v+' [#r'),'full UTF-8 role lookup')
@@ -105,6 +107,10 @@ cap=out/'capacity.rvp';restore(cap)
 for i in range(96):eq(ask(sentence(1,'cap'+str(i),'jueves'),live=cap),ack['es'],'fill entity dictionary')
 pre=truth(cap);eq(ask(sentence(1,'exceso','lunes'),live=cap),'Memoria de relaciones llena; no guardé cambios.','entity capacity rejection');eq(truth(cap),pre,'entity overflow publishes nothing')
 eq(ask(sentence(1,'cap95',intent=2),live=cap),'jueves [#r096].','existing lookup survives capacity')
+valuecap=out/'value-capacity.rvp';restore(valuecap)
+for i in range(96):eq(ask(sentence(1,'valor','dia'+str(i),intent=1 if i==0 else 3),live=valuecap),ack['es'],'fill shared value dictionary')
+pre=truth(valuecap);eq(ask(sentence(1,'valor','excedente',intent=3),live=valuecap),'Memoria de relaciones llena; no guardé cambios.','value capacity rejection');eq(truth(valuecap),pre,'value overflow publishes nothing')
+eq(ask(sentence(1,'valor',intent=2),live=valuecap),'dia95 [#r096].','existing value remains available at capacity')
 journal=out/'journal-capacity.rvp';restore(journal)
 for i in range(255):eq(ask(sentence(1,'limite',days[i%4],intent=1 if i==0 else 3),live=journal),ack['es'],'fill correction journal')
 pre=truth(journal);eq(ask(sentence(1,'nuevo','lunes'),live=journal),'Memoria de relaciones llena; no guardé cambios.','journal capacity rejection');eq(truth(journal),pre,'journal overflow leaves no orphan strings')

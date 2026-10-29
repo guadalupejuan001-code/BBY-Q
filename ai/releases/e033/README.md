@@ -4,7 +4,7 @@ BBY Q continúa siendo la IA principal. Aprendizaje, análisis de frases, diccio
 
 ## Arquitectura
 
-Región decimal exacta 8500000000000000000, longitud73728; ceros implícitos no materializados. Se conserva íntegra la memoria E032 anterior. Hasta32 marcos de256bytes, aprendidos desde dos ejemplos que cambian sus roles; después se descarta el primer ejemplo y quedan los literales y etiquetas necesarios. Intenciones: afirmación, pregunta, corrección explícita. Relaciones funcionales identificadas por ID1..16; sin ramificar el intérprete por cada verbo.
+Región decimal exacta 8400000000000000000, longitud73728; ceros implícitos no materializados. Se conserva íntegra la memoria E032 anterior. Hasta32 marcos de256bytes, aprendidos desde dos ejemplos que cambian sus roles; después se descarta el primer ejemplo y quedan los literales y etiquetas necesarios. Intenciones: afirmación, pregunta, corrección explícita. Relaciones funcionales identificadas por ID1..16; sin ramificar el intérprete por cada verbo.
 
 Dos diccionarios compartidos y direccionados por hash con comparación completa de bytes: entidades de hasta48bytes y valores de hasta80bytes, con96 elementos por diccionario y127 posiciones. Se comparten textos repetidos. Tabla de256 posiciones,8bytes por clave entidad/relación. Diario apendicular de255 eventos,8bytes cada uno: IDs de entidad, relación, valor, marco y enlace a la evidencia previa. El marco y los roles permiten reconstruir la afirmación normalizada mediante @rel source N, sin duplicar el texto de la frase. La normalización conserva UTF-8 y baja solo mayúsculas ASCII; no preserva el uso original de mayúsculas.
 
