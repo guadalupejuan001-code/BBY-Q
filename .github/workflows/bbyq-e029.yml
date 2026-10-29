@@ -1,10 +1,11 @@
-name: BBY Q E029 conversational fact learning (XI)
+name: BBY Q E033 minimal relation states (XI/Ether)
 on:
   pull_request:
-    paths: ['ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
+    paths: ['ai/releases/e033/**', 'ai/releases/e032/**', 'ai/releases/e031/**', 'ai/releases/e030/**', 'docs/AI_E030_LEARNED_FRAMES.md', 'ai/releases/e029/**', 'docs/AI_E029_NATURAL_INTAKE.md', '.github/workflows/bbyq-e029.yml']
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: bbyq-e029-${{ github.head_ref || github.ref }}
   cancel-in-progress: false
@@ -34,35 +35,40 @@ jobs:
           set -euo pipefail
           python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/e025
           node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/w4u
-      - name: Reproduce E027 and build separate E029 from E028
+      - name: Recover exact tested E032 capsule and source
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E032-native-temporal-learning
+          run-id: 40795445276
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Verify parent and build minimal relation candidate
+        run: python3 ai/releases/e033/build.py deps/reverse/build/reverse_pc prior evidence/minimal
+      - name: Teach native frames and evaluate independent relation/retention cases
+        run: python3 ai/releases/e033/test.py deps/reverse/build/reverse_pc prior evidence/minimal
+      - name: Restore historical regression harnesses without re-teaching production models
         run: |
           set -euo pipefail
-          node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/e027-original
-          node ai/releases/e029/build.mjs deps/reverse/build/reverse_pc evidence/e029
-          mkdir -p evidence/e029-compat
-          cp evidence/e029/natural.rxe evidence/e029-compat/candidate.rxe
-          cp evidence/e029/controller.rvp evidence/e029-compat/controller.rvp
-      - name: Exercise natural XI conversational fact acquisition
+          node ai/releases/e027/build.mjs deps/reverse/build/reverse_pc evidence/legacy027
+          node ai/releases/e028/build.mjs deps/reverse/build/reverse_pc evidence/legacy028
+          mkdir -p evidence/compat evidence/compat-e029
+          cp evidence/minimal/minimal.rxe evidence/compat/candidate.rxe
+          cp evidence/minimal/minimal.rxe evidence/compat/dictionary.rxe
+          cp evidence/minimal/learned-model.rvp evidence/compat/controller.rvp
+          cp evidence/minimal/minimal.rxe evidence/compat-e029/natural.rxe
+          cp evidence/legacy028/candidate.rxe evidence/compat-e029/candidate.rxe
+          cp evidence/minimal/learned-model.rvp evidence/compat-e029/controller.rvp
+      - name: Complete archive, grounding, intake and old-agent regressions on learned model
         run: |
           set -euo pipefail
-          node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/e029 evidence/e029-natural-tests
-      - name: E028 entity and composition regressions with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e027-original evidence/e029-e028-regression
-      - name: E027 full archive regression with E029
-        run: |
-          set -euo pipefail
-          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/e029-compat evidence/e029-e027-regression
+          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/compat evidence/regression027
+          node ai/releases/e028/test.mjs deps/reverse/build/reverse_pc evidence/compat evidence/legacy027 evidence/regression028
+          node ai/releases/e029/test.mjs deps/reverse/build/reverse_pc evidence/compat-e029 evidence/regression029
+          python3 ai/releases/e031/regression.py deps/reverse/build/reverse_pc evidence/compat evidence/candidate-regression
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBYQ-E029-XI-natural-facts-evidence
+          name: BBYQ-E033-minimal-relations
           path: |
-            evidence/e025/tests.json
-            evidence/e025/verification.json
-            evidence/w4u/results.json
-            evidence/e029/natural.json
-            evidence/e029-natural-tests/results.json
-            evidence/e029-e028-regression/results.json
-            evidence/e029-e027-regression/tests.json
+            evidence
+            !evidence/minimal/dictionary-smoke/banks/**
