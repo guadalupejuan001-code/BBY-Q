@@ -17,7 +17,12 @@ const RUNTIME_HASH='ef0c3a709121b8fd3cf4c996808ecfef8b60a7065d3f9c802280c58dc937
 export function exportData(out){
  fs.mkdirSync(out,{recursive:true});
  assert.equal(lessons.length,64);assert.equal(new Set(lessons.map(x=>x.term)).size,64);
- const native=facts();for(const f of native)assert.ok(Buffer.byteLength('@ctx add '+f.text)<=255);
+ const native=facts();for(const f of native){
+  assert.ok(Buffer.byteLength('@ctx add '+f.text)<=255,'input exceeds ABI');
+  assert.ok(Buffer.byteLength(f.text)<=224,'archive entry exceeds ABI');
+  assert.ok(Buffer.byteLength(f.value)<=80,'E028 reader value exceeds 80 bytes: '+f.id);
+  assert.ok(Buffer.byteLength(f.term)<=80,'subject exceeds parser');
+ }
  const corpus=lessons.flatMap(r=>[
   ['definition','que es '+r.term,`${r.term} es ${r.definition}.`],
   ['requirement','que requiere '+r.term,`${r.term} requiere ${r.requirement}.`],
@@ -106,7 +111,7 @@ function train(runtime,prior,pdf,out){
  stats.exploratory=probes.map(([input,expected])=>({input,expected,actual:ask(input,probe,'exploratory-not-scored',app)}));
  eq(sha(fs.readFileSync(candidate)),trainedHash,'exams do not mutate release seed');eq(sha(fs.readFileSync(oldApp)),APP_HASH,'F002 capsule untouched');eq(sha(gunzipSync(fs.readFileSync(oldZip))),STATE_HASH,'F002 state untouched');
  const zipped=gzipSync(fs.readFileSync(candidate),{level:9});fs.writeFileSync(path.join(out,'finance-f003.rvp.gz'),zipped);
- const report={campaign:'F003-Babylon',completed:true,checks,...stats,total_concepts:224,total_facts:448,new_concepts:64,new_facts:128,corpus,source,runtime_sha256:RUNTIME_HASH,prior_app_sha256:APP_HASH,prior_checkpoint_sha256:STATE_HASH,source_code_sha256:sha(fs.readFileSync(xi)),code_sha256:sha(oldCode),code_unchanged:true,app_sha256:sha(packed),checkpoint_sha256:trainedHash,checkpoint_bytes:fs.statSync(candidate).size,checkpoint_gzip_bytes:zipped.length,elapsed_ms:Date.now()-started,native_scope:'Persistent structured knowledge acquisition in XI/Ether, not neural weight tuning or full-book memorization.',evaluation_scope:'Recall of taught facts, designed query forms, composition of two stored properties, followup, retention and seed reopening. Not heldout semantic generalization.',financial_execution_enabled:false,android_updated:false,operator_memory_touched:false,newest_agent_replaced:false,limits:['255 input bytes inherited','512 contextual entries inherited, 448 occupied','Only supported query grammar','Numeric exam prepared, not taught or scored as successful','F003 derives from E034/F001/F002, not a replacement for the newer production agent']};
+ const report={campaign:'F003-Babylon',completed:true,checks,...stats,total_concepts:224,total_facts:448,new_concepts:64,new_facts:128,corpus,source,runtime_sha256:RUNTIME_HASH,prior_app_sha256:APP_HASH,prior_checkpoint_sha256:STATE_HASH,source_code_sha256:sha(fs.readFileSync(xi)),code_sha256:sha(oldCode),code_unchanged:true,app_sha256:sha(packed),checkpoint_sha256:trainedHash,checkpoint_bytes:fs.statSync(candidate).size,checkpoint_gzip_bytes:zipped.length,elapsed_ms:Date.now()-started,native_scope:'Persistent structured knowledge acquisition in XI/Ether, not neural weight tuning or full-book memorization.',evaluation_scope:'Recall of taught facts, designed query forms, composition of two stored properties, followup, retention and seed reopening. Not heldout semantic generalization.',financial_execution_enabled:false,android_updated:false,operator_memory_touched:false,newest_agent_replaced:false,limits:['255 input bytes inherited','512 contextual entries inherited, 448 occupied','80 bytes per property value inherited from E028 retrieval','Only supported query grammar','Numeric exam prepared, not taught or scored as successful','F003 derives from E034/F001/F002, not a replacement for the newer production agent']};
  save(path.join(out,'results.json'),report);console.log(JSON.stringify(report,null,2));
 }
 const a=process.argv.slice(2);
