@@ -75,7 +75,8 @@ function train(runtime,app,encoded,out){
  const atom=(r,i,rel)=>`${r.term} ${rel==='definition'?'es':'requiere'} ${r[rel].toLowerCase()} ${cite(2*i+(rel==='definition'?0:1))}.`;
  const baselineState=path.join(out,'baseline-eval.rvp');fs.copyFileSync(baseFile,baselineState);
  const status=ask('@ctx status',baselineState,'es','baseline');
- assert.match(status,/CTX n=0(?:\D|$)/,'do not overwrite a populated private archive');
+ const count=status.match(/^CTX n=(\d+)\s/);
+ assert.ok(count && Number(count[1])===0,'do not overwrite a populated private archive');
  let baseline=0;
  for(const [i,r] of rows.entries())baseline+=Number(ask('que es '+r.term,baselineState,'es','baseline')===atom(r,i,'definition'));
  const teachingStart=performance.now();
