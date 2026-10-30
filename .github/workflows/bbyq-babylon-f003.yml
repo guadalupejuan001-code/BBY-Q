@@ -1,0 +1,34 @@
+name: BBY Q F003 Babylon source and native learning
+on:
+  pull_request:
+    paths: ['ai/training/babylon/**', '.github/workflows/bbyq-babylon-f003.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bbyq-babylon-f003-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Download the requested freely distributed English book
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/source
+          curl --fail --location --retry 2 --connect-timeout 15 --max-time 90 'https://cpcglobal.org/publications/The%20Richest%20Man%20in%20Babylon.pdf' -o evidence/source/The-Richest-Man-in-Babylon-EN.pdf
+          test "$(head -c 5 evidence/source/The-Richest-Man-in-Babylon-EN.pdf)" = '%PDF-'
+          if ! command -v pdftotext >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y poppler-utils; fi
+          pdftotext -layout evidence/source/The-Richest-Man-in-Babylon-EN.pdf evidence/source/book-layout.txt
+          pdfinfo evidence/source/The-Richest-Man-in-Babylon-EN.pdf > evidence/source/pdfinfo.txt
+          grep -q 'Public Domain Notice' evidence/source/book-layout.txt
+          sha256sum evidence/source/The-Richest-Man-in-Babylon-EN.pdf > evidence/source/SHA256SUMS.txt
+          printf '%s\n' 'Retrieved for the operator-requested BBY Q training. Original English text is public domain in the United States; PDF page 2 explicitly permits free distribution. No commercial Spanish translation is copied. Reading or downloading does not by itself constitute model learning.' > evidence/source/PROVENANCE.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-F003-Babylon-source
+          path: evidence/source
+          retention-days: 90
