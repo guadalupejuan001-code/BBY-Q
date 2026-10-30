@@ -26,7 +26,9 @@ export function nativeBatch({runtime,source,inputState,outputState,queries,work,
   const code=path.join(work,tag+'-code.rxe'),app=path.join(work,tag+'-app.rxe');
   const ex=(args)=>execFileSync(runtime,args,{encoding:'utf8',maxBuffer:32*1024*1024,timeout:120000});
   ex(['compile',src,code,'F004 driver']);
-  ex(['pack-app',code,inputState,app,'org.reverse.bbyq','BBY Q','F004-batch','0000000000000000000000000000000000000000']);
+  const driverSeed=path.join(work,'driver-seed.rvp');
+  if(!fs.existsSync(driverSeed))ex(['init',driverSeed]);
+  ex(['pack-app',code,driverSeed,app,'org.reverse.bbyq','BBY Q','F004-batch','0000000000000000000000000000000000000000']);
   const temporary=path.join(work,tag+'-output.rvp');
   let raw;
   try {raw=ex(['app-turn',app,inputState,temporary,'es','@batch']);}
