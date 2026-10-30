@@ -77,6 +77,6 @@ export const lessons = `
 20-29,41-42|critical|conocimiento y ejecucion financiera|distincion entre aprender principios y autorizar movimientos de dinero|validar capacidades y permisos por separado
 `.trim().split('\n').map((line,i)=>{
  const [pages,origin,term,definition,requirement]=line.split('|');
- return {id:`f003-${String(i+1).padStart(3,'0')}`,pages,origin,term,definition,requirement};
+ return {id:`f003-${String(i+1).padStart(3,'0')}`,pages,origin,surface_term:term,term:term.replace(/^(el |la |the )/,''),definition,requirement};
 });
 export function facts(){return lessons.flatMap((r,i)=>[['es',r.definition],['requiere',r.requirement]].map(([relation,value],j)=>({id:`${r.id}-${j}`,term:r.term,relation,value,text:`${r.term} ${relation} ${value}`,source_pages:r.pages,origin:r.origin,expected_archive_id:320+2*i+j})));}
