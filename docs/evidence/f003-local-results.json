@@ -1,0 +1,53 @@
+{
+  "campaign": "F003-Babylon",
+  "completed": true,
+  "checks": 805,
+  "baseline_exact_new_definitions": 0,
+  "learning_ms": 36049,
+  "previous_facts_retained": 320,
+  "new_atomic_answers": 128,
+  "compositions": 64,
+  "followups": 64,
+  "operator_variants": 64,
+  "unknowns": 4,
+  "reopened_answers": 22,
+  "exploratory": [
+    {"input":"Si gano 2000 dolares cuanto es el diez por ciento","expected":"200","actual":"No tengo información suficiente para responder."},
+    {"input":"Tengo 1000 dolares divide en ahorro gastos y deuda como Dabasir","expected":"100, 700, 200","actual":"No tengo información suficiente para responder."},
+    {"input":"como aplico el libro a mi proyecto reverse","expected":"open application, not exact keyword lookup","actual":"No tengo información suficiente para responder."},
+    {"input":"explicame por que ahorrar no garantiza riqueza","expected":"open reasoning, not exact keyword lookup","actual":"No tengo información suficiente para responder."}
+  ],
+  "total_concepts": 224,
+  "total_facts": 448,
+  "new_concepts": 64,
+  "new_facts": 128,
+  "corpus": {
+    "concepts":64,"native_facts":128,"prepared_dialogues":448,"reserved_numeric_scenarios":128,
+    "book_lessons":56,"modern_applications":3,"critical_distinctions":5,
+    "full_book_verbatim_ingested":false,"dialogue_corpus_consumed":false,"numeric_corpus_consumed":false,"contains_private_financial_data":false
+  },
+  "source": {
+    "title":"The Richest Man in Babylon","author":"George S. Clason",
+    "url":"https://cpcglobal.org/publications/The%20Richest%20Man%20in%20Babylon.pdf",
+    "sha256":"76b620d86a163a1934aebeea997f75c1c685d0ecd877f4a0854f0ab3e0e29b69",
+    "pages":122,"language":"en","source_label_year":1926,"pdf_creation_year":2009,
+    "rights":"PDF page 2 declares public domain and permits free distribution. Original US text; no copyrighted Spanish translation copied.",
+    "rights_reference":"https://copyright.gov/what-is-copyright/",
+    "adaptation":"Original educational Spanish paraphrases. Book proposals are attributed, not universal guarantees. Modern application rows are explicitly distinguished."
+  },
+  "runtime_sha256":"ef0c3a709121b8fd3cf4c996808ecfef8b60a7065d3f9c802280c58dc9370d84",
+  "prior_app_sha256":"02edd2efc162e61a98b55d24b17301a6a2d909e32109401afd8c9ad9b62b5e41",
+  "prior_checkpoint_sha256":"80e10341872a93d5a9ca648958c7b1ebd38212209503f9cb558d6d1e7e5b0215",
+  "source_code_sha256":"6d9bd08b1d5a4928d70ea02595062e9abd9b58f6d56db0787933d4c25fefcf62",
+  "code_sha256":"6c8f49f47d721be597505736d50a56bd54af4300f1cab301f0a46a05860d274e",
+  "code_unchanged":true,
+  "app_sha256":"98a1a93f9c7385d51209f53c865dc30ba7bee6b732769afbb5a459a645cbdf27",
+  "checkpoint_sha256":"4b4438b8abb2cf2dd27a6feab09cbed76e6a71d98198a00af63aea71cb7bc308",
+  "checkpoint_bytes":1861012,
+  "checkpoint_gzip_bytes":250336,
+  "elapsed_ms":252389,
+  "native_scope":"Persistent structured knowledge acquisition in XI/Ether, not neural weight tuning or full-book memorization.",
+  "evaluation_scope":"Recall of taught facts, designed query forms, composition of two stored properties, followup, retention and seed reopening. Not heldout semantic generalization.",
+  "financial_execution_enabled":false,"android_updated":false,"operator_memory_touched":false,"newest_agent_replaced":false,
+  "limits":["255 input bytes inherited","512 contextual entries inherited, 448 occupied","80 bytes per property value and 48 per canonical subject inherited from E028 retrieval","Only supported query grammar","Numeric exam prepared, not taught or scored as successful","F003 derives from E034/F001/F002, not a replacement for the newer production agent"]
+}
