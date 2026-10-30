@@ -1,0 +1,83 @@
+{
+  "campaign": "F004-SecondHalf",
+  "scope": "PDF pages 62-122; native persistent contextual teaching",
+  "completed": true,
+  "assertions_passed": 1659,
+  "new_lessons": 128,
+  "new_facts": 256,
+  "total_concepts": 352,
+  "total_facts": 704,
+  "retention": {"correct": 448, "total": 448},
+  "new_atomic": {"correct": 256, "total": 256},
+  "composition": {"correct": 128, "total": 128},
+  "followup": {"correct": 128, "total": 128},
+  "operator_variants": {"correct": 128, "total": 128},
+  "reopen": {"correct": 256, "total": 256},
+  "unknown_controls": {"correct": 4, "total": 4},
+  "open_tasks": {"resolved": 0, "total": 6, "facts_added": 0, "actual_response": "No tengo información suficiente para responder."},
+  "capacity": {
+    "before": 512,
+    "after": 4096,
+    "occupied": 704,
+    "free": 3392,
+    "record_bytes": 224,
+    "input_bytes": 255,
+    "subject_bytes": 48,
+    "reader_value_before": 80,
+    "reader_value_after": 224,
+    "sparse_boundary_indices": [511, 512, 999, 1000, 4095],
+    "overflow_rejected": true,
+    "not_a_full_4096_fact_stress_test": true
+  },
+  "stages": [
+    {"chapter": "oro", "pages": [62, 72], "new_facts": 48, "total_facts": 496, "checkpoint_sha256": "ce18a2c4884a8214750887cabc206c415b48245396d15e1f1f8676bcc7c0e6a2"},
+    {"chapter": "prestamista", "pages": [73, 83], "new_facts": 48, "total_facts": 544, "checkpoint_sha256": "dcd5639dc7613d07ccbc5d4e20375b03c5f21f24e10ec2454ff6fb07f7121276"},
+    {"chapter": "murallas", "pages": [84, 87], "new_facts": 16, "total_facts": 560, "checkpoint_sha256": "4fb1058db8cba33dfae1ce6e2fcb1d1cf28882e6ff6ee844debbb2380a217bfa"},
+    {"chapter": "camellos", "pages": [88, 97], "new_facts": 32, "total_facts": 592, "checkpoint_sha256": "bd7b445441076152ecc29e68245cfcf6a2a8436c5ae45aedd80f9cf2eb17a04f"},
+    {"chapter": "tablillas", "pages": [98, 106], "new_facts": 48, "total_facts": 640, "checkpoint_sha256": "8ebc826fa8dbee1ab3cca18e835b09e5cf80438e0c59b8804bc1e4b909512f3c"},
+    {"chapter": "afortunado", "pages": [107, 122], "new_facts": 64, "total_facts": 704, "checkpoint_sha256": "f89605975dd00960eef82d840303f478e32dfb38548ed270cfd580775b95da2c"}
+  ],
+  "source": {
+    "title": "The Richest Man in Babylon",
+    "author": "George S. Clason",
+    "url": "https://cpcglobal.org/publications/The%20Richest%20Man%20in%20Babylon.pdf",
+    "sha256": "76b620d86a163a1934aebeea997f75c1c685d0ecd877f4a0854f0ab3e0e29b69",
+    "page_count": 122,
+    "page_range": [62, 122],
+    "language": "en",
+    "teaching_language": "es",
+    "method": "Original paraphrases and attributed reading exercises. Requirements are pedagogical inferences, not literal author quotations. No weights are tuned.",
+    "prior_scope_correction": "F003 PR47 selected lessons across the entire book; it was not exhaustive training on pages 1..61."
+  },
+  "identity": {
+    "app_sha256": "24026731bfeabf297c9b5d8be636107bf86fb292fa24ad7b1078bafe15690f8c",
+    "checkpoint_sha256": "f89605975dd00960eef82d840303f478e32dfb38548ed270cfd580775b95da2c",
+    "checkpoint_bytes": 2621832,
+    "checkpoint_gzip_bytes": 347337,
+    "runtime_sha256": "ef0c3a709121b8fd3cf4c996808ecfef8b60a7065d3f9c802280c58dc9370d84",
+    "native_code_sha256": "7d6efbd4f2b1ac61f000d8846a122d7c1c163cb0ca0572fb8065a89a68b90ec0",
+    "source_xi_sha256": "d24d6948ecfc37d4e700e60a1a225cace13248529a4dc875f3d8a80bbeb17489",
+    "base_app_sha256": "98a1a93f9c7385d51209f53c865dc30ba7bee6b732769afbb5a459a645cbdf27"
+  },
+  "execution_recovery": {
+    "initial_phase_commit": "d745ae64dda627f35c06277dd6dc2298c88a4565",
+    "initial_attempt_completed": false,
+    "error": "Synthetic test fixture omitted the required XI machine header; learning, retention and reopen had already passed.",
+    "fixed": "Add #!reverse-pc-machine-v1 to test fixture; no native model change.",
+    "resume_from_exact_stage6": true,
+    "earlier_native_assertions": 1621,
+    "earlier_transcript_audit_checks": 3377,
+    "postflight_assertions": 38,
+    "earlier_transcript_sha256": "3f3cd77e752bbc4d0192b65846fc6d3b91d8bcbe6cd2601804a7dec86b39d23d",
+    "corrected_full_runner_executed_end_to_end": false
+  },
+  "scope_exclusions": {
+    "neural_weight_training": true,
+    "full_book_comprehension": true,
+    "android_testing": true,
+    "apk_update": true,
+    "financial_execution": true,
+    "operator_memory_changes": true
+  },
+  "github_actions_verified": false
+}
