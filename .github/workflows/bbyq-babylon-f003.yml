@@ -21,14 +21,65 @@ jobs:
           mkdir -p evidence/source
           curl --fail --location --retry 2 --connect-timeout 15 --max-time 90 'https://cpcglobal.org/publications/The%20Richest%20Man%20in%20Babylon.pdf' -o evidence/source/The-Richest-Man-in-Babylon-EN.pdf
           test "$(head -c 5 evidence/source/The-Richest-Man-in-Babylon-EN.pdf)" = '%PDF-'
+          echo '76b620d86a163a1934aebeea997f75c1c685d0ecd877f4a0854f0ab3e0e29b69  evidence/source/The-Richest-Man-in-Babylon-EN.pdf' | sha256sum -c -
           if ! command -v pdftotext >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y poppler-utils; fi
           pdftotext -layout evidence/source/The-Richest-Man-in-Babylon-EN.pdf evidence/source/book-layout.txt
           pdfinfo evidence/source/The-Richest-Man-in-Babylon-EN.pdf > evidence/source/pdfinfo.txt
           grep -q 'Public Domain Notice' evidence/source/book-layout.txt
           sha256sum evidence/source/The-Richest-Man-in-Babylon-EN.pdf > evidence/source/SHA256SUMS.txt
           printf '%s\n' 'Retrieved for the operator-requested BBY Q training. Original English text is public domain in the United States; PDF page 2 explicitly permits free distribution. No commercial Spanish translation is copied. Reading or downloading does not by itself constitute model learning.' > evidence/source/PROVENANCE.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: BBYQ-F003-Babylon-source
           path: evidence/source
+          retention-days: 90
+  native:
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with: {node-version: '22.16.0'}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: BBYQ-F003-Babylon-source
+          path: source
+      - name: Recover the exact successful F002 artifact, not a newer user state
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: BBYQ-F001-economic-learning
+          run-id: 40996666892
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Restore the frozen F002 package layout
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p f002-package/modelo f002-package/datos
+          cp prior/finance-f002/BBY-Q-F002.rxe f002-package/modelo/
+          cp prior/finance-f002/finance-f002.rvp.gz f002-package/modelo/
+          cat prior/corpus/native-facts.jsonl prior/finance-f002/corpus/f002-native-facts.jsonl > f002-package/datos/hechos-nativos.jsonl
+          chmod +x prior/runtime/reverse_pc
+          for file in ai/training/babylon/*.mjs; do node --check "$file"; done
+      - name: Learn 128 facts and test recall retention dialogue and reopening in native XI
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/native
+          node ai/training/babylon/train-f003.mjs train prior/runtime/reverse_pc f002-package source/The-Richest-Man-in-Babylon-EN.pdf evidence/native 2>&1 | tee evidence/native-run.log
+      - name: Preserve reproducibility and provenance
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p evidence/sources evidence/runtime
+          cp ai/training/babylon/*.mjs evidence/sources/
+          cp prior/runtime/reverse_pc evidence/runtime/
+          git rev-parse HEAD > evidence/source-commit.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: BBYQ-F003-Babylon-native
+          path: evidence
           retention-days: 90
