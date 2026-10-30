@@ -1,0 +1,31 @@
+{
+  "version": "X10-Paged-Capacity-1",
+  "parent": "X09-All-Training-1",
+  "runtime_sha256": "8ee4a154b1dfd0c3f0892cdd34dcc9d894fa2781db812ba3af0d73b3bcf0d34e",
+  "seed_sha256": "71ba9704e279c08160a8af882a8628b77e938a30befa450e95a522315a39f995",
+  "limits": {
+    "lessons": 1048576,
+    "session_operations": 1048576,
+    "input_bytes": 1048576,
+    "output_bytes": 1048576,
+    "page_bytes": 8192
+  },
+  "roles": {
+    "validate.xi": "8c96dd22f0049e69eac084094a714721ab28ebf615d167e782808af3418b1a66",
+    "validate.rxe": "5ec224c0b40c78255d5b320fe3947584aa5dd2984755e5309db1b728aae4f44d",
+    "route.xi": "5fa6537ee1dd3b21b8bc3592ae0822893e2b62cd23ad000785d055616eb8040b",
+    "route.rxe": "1f8c2c9e1b6fe8c82be3f41a46deb27b6624a3c7538fd269a49d7c1b81e87ce2",
+    "record.xi": "9d158657f1cd09608f5506b49885b8e1b64bc60a9dc1e4a6e045634159385704",
+    "record.rxe": "e51479c6ad44518d809b8ca1905e07647ce49cbef3d2340f59f7d0183dff698f",
+    "stream.xi": "51a9e377fe9073b695f966058f2a50f1ff7fa1333e887681ca1f522f61c72bcd",
+    "stream.rxe": "d426e0d0e77b4dd1a7885b0557fded34694e1344e59efbd91456eb7b22aa2840"
+  },
+  "storage": "SQLite opaque 640-byte Ether record pages; XI selects and changes records",
+  "long_text_operations": [
+    "exact echo",
+    "extractive summary"
+  ],
+  "legacy_input_bytes": 16384,
+  "original_training_preserved": true,
+  "android_validated": false
+}

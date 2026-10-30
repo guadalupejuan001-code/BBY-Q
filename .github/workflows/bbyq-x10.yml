@@ -1,0 +1,27 @@
+name: BBY Q X10 source and preserved training
+on:
+  pull_request:
+    paths: ['ai/personal/x10/**', 'integration/x10/**', 'bbyq.mjs', '.github/workflows/bbyq-x10.yml']
+  push:
+    branches: [main]
+    paths: ['ai/personal/x10/**', 'integration/x10/**', 'bbyq.mjs', '.github/workflows/bbyq-x10.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Check extension source and SQLite availability
+        run: |
+          for source in ai/personal/x10/*.mjs integration/x10/*.mjs integration/x10/tests/*.mjs bbyq.mjs; do node --check "$source"; done
+          node --input-type=module -e "import {DatabaseSync} from 'node:sqlite'; new DatabaseSync(':memory:').close();"
+      - name: Verify original sessions and all repository checkpoints
+        run: node --test integration/x09/tests/initialization.test.mjs integration/x09/tests/prepare.test.mjs integration/x09/tests/retention/state.test.mjs integration/x09/tests/retention/repository.test.mjs
+      # Native and full-capacity checks require the owner's verified X09 ZIP.
+      # Measured local results and the exact command are committed with X10.

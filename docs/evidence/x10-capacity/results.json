@@ -1,0 +1,173 @@
+{
+  "ok": true,
+  "date": "2026-10-30",
+  "repository_base": "70852c46baead5f5885d0f08c8cc12f98bd6a62c",
+  "version": "X10-Paged-Capacity-1",
+  "limits": {
+    "lessons": 1048576,
+    "session_operations": 1048576,
+    "input_bytes": 1048576,
+    "output_bytes": 1048576,
+    "page_bytes": 8192
+  },
+  "total_passed_checks": 51,
+  "native_checks": 17,
+  "edge_checks": 5,
+  "preserved_repository_tests": {
+    "passed": 29,
+    "failed": 0,
+    "original_checkpoints": 17
+  },
+  "capacity_loads_are_synthetic": true,
+  "capacity_loads_are_training": false,
+  "android_validated": false,
+  "native": {
+    "ok": true,
+    "version": "X10-Paged-Capacity-1",
+    "checks": 17,
+    "limits": {
+      "lessons": 1048576,
+      "session_operations": 1048576,
+      "input_bytes": 1048576,
+      "output_bytes": 1048576,
+      "page_bytes": 8192
+    },
+    "full_capacity_executed": true,
+    "platform": "Linux x86-64 / Node 24.22.1",
+    "android_validated": false,
+    "observations": [
+      {
+        "name": "original-seed-and-every-legacy-lesson-preserved",
+        "ok": true,
+        "milliseconds": 3948.401893,
+        "legacy_lessons_compared": 480,
+        "entire_source_sha256": "71ba9704e279c08160a8af882a8628b77e938a30befa450e95a522315a39f995"
+      },
+      {
+        "name": "learn-reopen-query-correct-and-forget",
+        "ok": true,
+        "milliseconds": 1456.8974039999998
+      },
+      {
+        "name": "idempotence-conflicts-and-atomic-rollback",
+        "ok": true,
+        "milliseconds": 543.427549
+      },
+      {
+        "name": "malformed-fields-never-change-learning",
+        "ok": true,
+        "milliseconds": 362.83684900000026
+      },
+      {
+        "name": "CRLF-and-capitalized-training-fields-remain-compatible",
+        "ok": true,
+        "milliseconds": 381.2351230000004
+      },
+      {
+        "name": "unicode-pages-and-invalid-sequences-are-atomic",
+        "ok": true,
+        "milliseconds": 3798.1316699999998
+      },
+      {
+        "name": "one-MiB-input-and-response-above-old-output-ceiling",
+        "ok": true,
+        "milliseconds": 36327.787682,
+        "input_bytes": 1048576,
+        "output_bytes": 1048556,
+        "pages": 128
+      },
+      {
+        "name": "summaries-read-past-64-KiB-and-retain-native-text",
+        "ok": true,
+        "milliseconds": 7099.066834999998,
+        "input_bytes": 100020,
+        "output_bytes": 100026
+      },
+      {
+        "name": "original-reasoning-dictionary-campaign-and-book-still-run",
+        "ok": true,
+        "milliseconds": 44575.728404999994
+      },
+      {
+        "name": "legacy-curriculum-updates-are-visible-to-preserved-state",
+        "ok": true,
+        "milliseconds": 14455.67532200001
+      },
+      {
+        "name": "session-continues-past-4096-historical-operations",
+        "ok": true,
+        "milliseconds": 132.46171299999696
+      },
+      {
+        "name": "concurrent-retries-have-one-durable-commit",
+        "ok": true,
+        "milliseconds": 259.33006400000886
+      },
+      {
+        "name": "old-session-state-and-replay-history-migrate",
+        "ok": true,
+        "milliseconds": 12421.65557799999
+      },
+      {
+        "name": "tampered-native-role-is-refused-before-commit",
+        "ok": true,
+        "milliseconds": 8.283517000003485
+      },
+      {
+        "name": "CLI-default-build-and-file-input",
+        "ok": true,
+        "milliseconds": 232.39817600000242
+      },
+      {
+        "name": "all-1048576-native-record-pages-and-capacity-refusal",
+        "ok": true,
+        "milliseconds": 16110.895659000002,
+        "actual_stored_records": 1048576,
+        "synthetic_capacity_fixture": true,
+        "trained_original_lessons": 480,
+        "synthetic_population_milliseconds": 16109.289162000001,
+        "database_bytes": 890310656
+      },
+      {
+        "name": "all-1048576-session-receipts-limit-and-replay-at-capacity",
+        "ok": true,
+        "milliseconds": 78545.26596000002,
+        "actual_stored_receipts": 1048576,
+        "synthetic_history_fixture": true,
+        "native_turns_simulated": false,
+        "database_bytes": 284033024
+      }
+    ]
+  },
+  "edges": {
+    "ok": true,
+    "checks": 5,
+    "observations": [
+      {
+        "name": "invalid-imported-state-leaves-no-session",
+        "ok": true,
+        "milliseconds": 17.07999699999999
+      },
+      {
+        "name": "failed-initial-publication-cleans-staging",
+        "ok": true,
+        "milliseconds": 6415.184486
+      },
+      {
+        "name": "document-import-still-reaches-original-context",
+        "ok": true,
+        "milliseconds": 25809.697626
+      },
+      {
+        "name": "cleanup-failure-keeps-a-truthful-committed-receipt",
+        "ok": true,
+        "milliseconds": 137.843875999999
+      },
+      {
+        "name": "generated-XI-and-execution-evidence-survive-job-cleanup",
+        "ok": true,
+        "milliseconds": 24025.021399000005
+      }
+    ]
+  }
+}
