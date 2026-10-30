@@ -1,0 +1,91 @@
+{
+  "repository": "guadalupejuan001-code/BBY-Q",
+  "commit": "7c2e32d97efff6201eccb580000c2d9a71316bdc",
+  "files": [
+    {
+      "path": "ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64",
+      "git_blob_sha": "1257038f47ad6f2c4698a5aedb4c2fc01fb1fc00",
+      "size_bytes": 28337
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "d52774c9cd5f9404dbe0b82bb2b937e6d4f337fb",
+      "size_bytes": 32613
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E014_Quantity_Stories_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "c7df36fb7231cb51806206b8560b59f501b0d863",
+      "size_bytes": 35210
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E015_Grammar_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "a6cb366c291c9a70128114b97c6767ec6e98cc9d",
+      "size_bytes": 36308
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E016_Conversation_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "dbc60d55d0f9d8de45b95fa75ad41910ad25aab1",
+      "size_bytes": 43019
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E017_Open_Learning_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "b2b6a272ddd47bd3095bd2bf4527b77c08e66b6e",
+      "size_bytes": 56065
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E018_Concise_Dialogue_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "5e029628ba8465dabffb644335d52dc2257c914a",
+      "size_bytes": 59627
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E019_Context_Questions_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "9c6a0dd1541e22e5991960be1958bbbc4cccbb85",
+      "size_bytes": 63461
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E020_Million_Arithmetic_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "ce433c1aec79018e51967898c30750796ccf5471",
+      "size_bytes": 64668
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E021_Language_Dialogue_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "c078b6544fada2bc0d93e5415a94cff00b7b5532",
+      "size_bytes": 90273
+    },
+    {
+      "path": "ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
+      "git_blob_sha": "c84a37e925536442add08f43c59402b4feaa83ee",
+      "size_bytes": 96721
+    },
+    {
+      "path": "ai/checkpoints/E010-original.rvp.b64",
+      "git_blob_sha": "726e94ca1d41a778b685fd8664daf5af0c724fbe",
+      "size_bytes": 24965
+    },
+    {
+      "path": "ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+      "git_blob_sha": "bda37fb3705677fba6e5461bdc57cfba55fc7ca8",
+      "size_bytes": 151545
+    },
+    {
+      "path": "ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+      "git_blob_sha": "20ed5ea342ca13eed0f9de5ab73420b2c793780c",
+      "size_bytes": 159009
+    },
+    {
+      "path": "ai/checkpoints/e033/minimal-model.rvp.gz.b64",
+      "git_blob_sha": "1dab1d3d9a1cdd28e97c4644f85c2570755a20a2",
+      "size_bytes": 162789
+    },
+    {
+      "path": "ai/checkpoints/e034/composition-model.rvp.gz.b64",
+      "git_blob_sha": "a50b0b76eaa07a653c758b4e085b438c3537c29f",
+      "size_bytes": 164237
+    },
+    {
+      "path": "ai/releases/e025/controller.rvp.gz.b64",
+      "git_blob_sha": "b51123ff29bf9466f6a8aad094616dc092afef2f",
+      "size_bytes": 150969
+    }
+  ]
+}

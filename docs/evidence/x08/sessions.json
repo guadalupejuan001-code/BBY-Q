@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "checks": 24,
+  "concurrent_writers": 6,
+  "all_updates_retained": true,
+  "idempotent_replay": true,
+  "stale_revision_refused": true,
+  "simulated_failure_before_publication": true,
+  "retry_from_last_commit": true,
+  "actual_power_cut_tested": false,
+  "excluded": [
+    "P13",
+    "P14"
+  ],
+  "results": [
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 2,
+      "requestId": "parallel-0",
+      "replayed": false,
+      "state_sha256": "34c55a34f3f1ac60fbe668e713612c0a39f0963e25da58af5d649cf042ad5c63",
+      "parent_sha256": "a2a6a5c5c9bfd0b53c29e1e65a938119e9727c7cab2860da2dc87f32c217ca18"
+    },
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 4,
+      "requestId": "parallel-1",
+      "replayed": false,
+      "state_sha256": "28126729d8dbb3b439c475aad554b9c45264cdd54a61459596f270d045504e71",
+      "parent_sha256": "b88e82bcfa465a502f9af0de06306d3b3de81d937efb4d604e81bdc55b16d14d"
+    },
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 6,
+      "requestId": "parallel-2",
+      "replayed": false,
+      "state_sha256": "5e381cc5239f0bf99ca6f8094599af1221303d87782b44e2dfb3dd1bb464ab64",
+      "parent_sha256": "3b78079b68f3af6113b5df0ed217f7fac8fb18cb592eb446f334281865f2aa5e"
+    },
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 5,
+      "requestId": "parallel-3",
+      "replayed": false,
+      "state_sha256": "3b78079b68f3af6113b5df0ed217f7fac8fb18cb592eb446f334281865f2aa5e",
+      "parent_sha256": "28126729d8dbb3b439c475aad554b9c45264cdd54a61459596f270d045504e71"
+    },
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 3,
+      "requestId": "parallel-4",
+      "replayed": false,
+      "state_sha256": "b88e82bcfa465a502f9af0de06306d3b3de81d937efb4d604e81bdc55b16d14d",
+      "parent_sha256": "34c55a34f3f1ac60fbe668e713612c0a39f0963e25da58af5d649cf042ad5c63"
+    },
+    {
+      "ok": true,
+      "committed": true,
+      "response": "Equivalencia incorporada.",
+      "executed": false,
+      "transport": {
+        "version": 2,
+        "input_bytes": 37,
+        "output_bytes": 25,
+        "normalization": "none"
+      },
+      "generation": 1,
+      "requestId": "parallel-5",
+      "replayed": false,
+      "state_sha256": "a2a6a5c5c9bfd0b53c29e1e65a938119e9727c7cab2860da2dc87f32c217ca18",
+      "parent_sha256": "6f205595fe2f0032f76991205101f6c9f15d04ef1d10af77d7d87e6d12b3aef9"
+    }
+  ]
+}

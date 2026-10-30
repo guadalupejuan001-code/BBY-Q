@@ -19,3 +19,7 @@ W4u: fixtures nativos y acción tipada comprobados, no coordinación autónoma d
 
 ## Reproducción y conservación
 Restaurar el checkpoint limpio E034 con cápsula compatible desde las evidencias del estado; comprobar hashes actuales. Conservar E033 y E032. El checkpoint se guarda en el repositorio antes de los hechos del examen. La reproducción E033 es verificación, no aprendizaje nuevo de BBY Q. Artefactos de CI caducan; no depender solo de binarios históricos. Guardar ESTADO, SIGUIENTE y registro incluso ante fallo, con comandos exactos pendientes si falta ejecución o escritura.
+
+## Handoff X08 del operador (30 octubre 2026)
+
+La entrega nativa solicitada por el operador se integra mediante `integrate/bbyq-x08-complete-20261030`; ver `docs/integration/BBYQ_X08.md`, `PENDIENTES-X08.txt` y las evidencias X08. La semilla, base y roles están en `integration/x08/release/`, restaurables sin archivos de otra conversación. REVERSE dispone de una entrada nativa fijada a esta entrega. Conserva X07 y ambos entrenamientos F004, con biblioteca compartida y materialización XI por página. P13/P14 fueron excluidos. No interpretar retención como comprensión general. No iniciar por esta nota una automatización ni sustituir el checkpoint histórico E034; utilizar sesiones X08 para conversación mutable y revisar su manifiesto fijado. Las capacidades generales abiertas siguen en `docs/integration/PENDIENTES-X08.txt`.

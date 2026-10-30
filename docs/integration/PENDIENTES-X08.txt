@@ -1,0 +1,22 @@
+BBY Q — ESTADO X08
+
+Este ciclo integra los entrenamientos y corrige los fallos concretos descritos. Las capacidades generales no se consideran terminadas por aprobar gramáticas y casos acotados. P13 y P14 están excluidos por petición del operador.
+
+P01 — Conversación: mejorada/acotada. Consulta de lecciones y preguntas del libro con fuentes. Falta conversación libre y reformulación general.
+P02 — Formatos: conservado/acotado. Literales, JSON y listas existentes. Falta formato y paráfrasis arbitrarios.
+P03 — Memoria personal: conservada y probada en la migración. Falta extracción general de párrafos y correferencia libre.
+P04 — Textos: libro completo incorporado sin pérdida, lectura de páginas e índice léxico. Se conservan importación y citas. Falta comprensión semántica general de documentos.
+P05 — Razonamiento: se conserva la deducción explícita anterior. Negación lógica general, cuantificadores y razonamiento causal abierto siguen pendientes.
+P06 — Matemáticas: se conserva el cálculo racional y lineal anterior. Raíces, funciones, sistemas y problemas verbales libres siguen pendientes.
+P07 — Traducción/gramática: implementado acotado en XI, frases enseñadas, composición, reglas y cobertura parcial explícita. Falta traducción y corrección generales.
+P08 — Redacción/resumen/comparación: implementado acotado, resumen extractivo, comparación léxica y correo con campos. Falta generación libre y síntesis semántica.
+P09 — Código: se conservan las familias de programas anteriores y se amplían las variantes de petición de ejecución. Falta síntesis/edición arbitraria de proyectos.
+P10 — Herramientas: ejecutor/verificador anterior conservado; cancelación de peticiones antiguas antes de un turno nuevo. Falta ampliar herramientas e interpretación; no se habilitan operaciones externas.
+P11 — Planificación: se conserva el plan de 16 tareas declaradas. Falta descomposición libre de objetivos, recursos y calendarios.
+P12 — Transporte/persistencia: texto v2, publicación atómica, sesiones serializadas, revisiones y recibos idempotentes. Primitivas de bajo nivel rechazan un escritor concurrente. Los consumidores antiguos conservan sus límites. El fallo simulado antes de publicar no equivale a un corte eléctrico real.
+P13 — EXCLUIDO. No se crea otra APK ni se prueba Android/teléfono.
+P14 — EXCLUIDO. No se realizan comparaciones con modelos externos, voz ni imágenes.
+P15 — Consentimiento de archivo: corregido en la ruta entregada. E029 no guarda declaraciones normales sin un prefijo explícito. Se conservan las operaciones de enseñanza y los marcos personales explícitos.
+P16 — Entrenamiento: 480 conceptos, 960 relaciones, diez diferencias atribuidas y 122 páginas con reconstrucción de los 1.171 fragmentos previos. Banco ampliado a 4.096 posiciones; pruebas de llenado con registros cortos sintéticos y rechazo de desbordamiento de revisión. Lectura comprimida por página en XI. Falta aprendizaje semántico autónomo, extracción autónoma de PDFs y generalización libre. No se ajustaron pesos neuronales.
+
+La capacidad de posiciones no elimina los límites físicos de Inverse Memory. No se afirma que quepan 4.096 lecciones de cualquier longitud ni que todas las operaciones usen 16 KB de entrada.

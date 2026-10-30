@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "checks": 129,
+  "native_pages_decoded": 122,
+  "edge_cases": 6,
+  "original_bytes": 225418,
+  "compressed_bytes": 150437,
+  "dictionary_bytes": 3499,
+  "seed_preserved": true,
+  "model_sha256": "6f205595fe2f0032f76991205101f6c9f15d04ef1d10af77d7d87e6d12b3aef9",
+  "front_sha256": "d564d1ba43a13d5eb5b21399969094d11a732ed3495888daae580376bb17e476"
+}

@@ -1,0 +1,1874 @@
+{
+  "ok": true,
+  "input_preserved": true,
+  "input_sha256": "1b4b76e625920e86125ca1ac095c2d69d5ca2fca9edc744a4098a93bcfdbdc78",
+  "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/migrated.rvp",
+  "output_sha256": "f8893b35e429df4c509b99eed4ddb7e3607fc513dab1132d6d493a61b4177a7f",
+  "phases": [
+    {
+      "preflight_windows": 125
+    },
+    {
+      "phase": "upgrade-knowledge-bank.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-224.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-225.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-226.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-227.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-228.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-229.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-230.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-231.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-232.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-233.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-234.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-235.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-236.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-237.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-238.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-239.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-240.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-241.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-242.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-243.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-244.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-245.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-246.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-247.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-248.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-249.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-250.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-251.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-252.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-253.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-254.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-255.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-256.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-257.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-258.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-259.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-260.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-261.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-262.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-263.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-264.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-265.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-266.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-267.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-268.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-269.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-270.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-271.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-272.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-273.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-274.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-275.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-276.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-277.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-278.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-279.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-280.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-281.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-282.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-283.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-284.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-285.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-286.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-287.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-288.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-289.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-290.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-291.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-292.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-293.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-294.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-295.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-296.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-297.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-298.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-299.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-300.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-301.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-302.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-303.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-304.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-305.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-306.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-307.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-308.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-309.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-310.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-311.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-312.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-313.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-314.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-315.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-316.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-317.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-318.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-319.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-320.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-321.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-322.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-323.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-324.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-325.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-326.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-327.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-328.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-329.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-330.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-331.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-332.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-333.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-334.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-335.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-336.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-337.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-338.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-339.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-340.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-341.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-342.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-343.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-344.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-345.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-346.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-347.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-348.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-349.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-350.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-351.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-352.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-353.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-354.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-355.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-356.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-357.xi",
+      "status": [
+        2
+      ],
+      "existing_personal_definition_preserved": true
+    },
+    {
+      "phase": "install-lesson-358.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-359.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-360.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-361.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-362.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-363.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-364.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-365.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-366.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-367.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-368.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-369.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-370.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-371.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-372.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-373.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-374.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-375.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-376.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-377.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-378.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-379.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-380.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-381.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-382.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-383.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-384.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-385.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-386.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-387.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-388.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-389.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-390.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-391.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-392.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-393.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-394.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-395.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-396.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-397.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-398.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-399.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-400.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-401.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-402.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-403.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-404.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-405.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-406.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-407.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-408.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-409.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-410.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-411.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-412.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-413.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-414.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-415.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-416.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-417.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-418.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-419.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-420.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-421.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-422.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-423.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-424.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-425.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-426.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-427.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-428.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-429.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-430.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-431.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-432.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-433.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-434.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-435.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-436.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-437.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-438.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-439.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-440.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-441.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-442.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-443.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-444.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-445.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-446.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-447.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-448.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-449.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-450.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-451.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-452.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-453.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-454.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-455.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-456.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-457.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-458.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-459.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-460.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-461.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-462.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-463.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-464.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-465.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-466.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-467.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-468.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-469.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-470.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-471.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-472.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-473.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-474.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-475.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-476.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-477.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-478.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-lesson-479.xi",
+      "status": [
+        0
+      ],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-00.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-01.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-02.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-03.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-04.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-05.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-06.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-07.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-08.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-09.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-10.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "install-data-11.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    },
+    {
+      "phase": "activate-x08.xi",
+      "status": [],
+      "existing_personal_definition_preserved": false
+    }
+  ]
+}

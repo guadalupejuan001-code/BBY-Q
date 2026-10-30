@@ -1,0 +1,24 @@
+name: BBY Q X09 code and checkpoint integrity
+on:
+  pull_request:
+    paths: ['ai/personal/**', 'integration/x08/**', 'integration/x09/**', 'ai/checkpoints/**', 'ai/releases/e025/controller.rvp.gz.b64', 'bbyq.mjs', '.github/workflows/bbyq-x09.yml']
+  push:
+    branches: [main]
+    paths: ['ai/personal/**', 'integration/x08/**', 'integration/x09/**', 'ai/checkpoints/**', 'ai/releases/e025/controller.rvp.gz.b64', 'bbyq.mjs', '.github/workflows/bbyq-x09.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bbyq-x09-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify sessions, state comparison and all 17 existing repository checkpoints
+        run: node --test integration/x09/tests/initialization.test.mjs integration/x09/tests/prepare.test.mjs integration/x09/tests/retention/state.test.mjs integration/x09/tests/retention/repository.test.mjs

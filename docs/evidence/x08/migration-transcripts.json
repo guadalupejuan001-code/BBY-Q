@@ -1,0 +1,84 @@
+[
+  {
+    "ok": true,
+    "committed": true,
+    "response": "Registré tus datos.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/personal.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 37,
+      "output_bytes": 20,
+      "normalization": "none"
+    }
+  },
+  {
+    "ok": true,
+    "committed": true,
+    "response": "Lección incorporada; queda disponible al reabrir esta memoria.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/custom.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 158,
+      "output_bytes": 63,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "¿Cuál es mi código de proyecto 0?",
+    "ok": true,
+    "committed": true,
+    "response": "NUBE-914 [#p003].",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/verified-0.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 36,
+      "output_bytes": 17,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "que es estafa del caballo de nomasir",
+    "ok": true,
+    "committed": true,
+    "response": "Evidencia del currículo (coincidencias de términos):\nestafa del caballo de nomasir: mi corrección conservada sobre esa lección. Requiere contrastar mis fuentes [operador, páginas -].\ncinco leyes del oro: las cinco lecciones que arkad entrega a nomasir sobre conservar y emplear dinero. Requiere leer ahorro rendimiento consejo conocimiento y prudencia como un conjunto [clason-babylon-en, páginas 62-72].\nnomasir: el hijo de arkad que pierde capital y aprende a emplear las leyes del oro. Requiere comparar sus errores iniciales con sus decisiones posteriores [clason-babylon-en, páginas 62-69].\n",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/verified-1.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 36,
+      "output_bytes": 603,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "traduce al ingles: yo tengo tres coches",
+    "ok": true,
+    "committed": true,
+    "response": "Traducción: I have three cars",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/verified-2.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 39,
+      "output_bytes": 30,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "lee pagina 122",
+    "ok": true,
+    "committed": true,
+    "response": "Babilonia, página 122:\nSo saying Hadan Gula pulled the jeweled baubles from his ears and the rings from his fingers. Then reining his horse, He dropped back and rode with deep respect behind the Leader of the caravan. 122 Brought To You By http://TheDiamondsMine.com",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/migration/verified-3.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 14,
+      "output_bytes": 267,
+      "normalization": "none"
+    }
+  }
+]

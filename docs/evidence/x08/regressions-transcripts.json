@@ -1,0 +1,309 @@
+[
+  {
+    "input": "Responde únicamente con la palabra Ámbar.",
+    "ok": true,
+    "committed": true,
+    "response": "Ámbar",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-0.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 43,
+      "output_bytes": 6,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "Responde únicamente con el texto \"Lúa del Norte\".",
+    "ok": true,
+    "committed": true,
+    "response": "Lúa del Norte",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-1.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 51,
+      "output_bytes": 14,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "2 + 3 * 4",
+    "ok": true,
+    "committed": true,
+    "response": "El resultado es 14.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-2.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 9,
+      "output_bytes": 19,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "0.1 + 0.2",
+    "ok": true,
+    "committed": true,
+    "response": "El resultado es 0.3.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-3.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 9,
+      "output_bytes": 20,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "2/7 + 1/7",
+    "ok": true,
+    "committed": true,
+    "response": "El resultado es 3/7.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-4.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 9,
+      "output_bytes": 20,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "Resuelve 7x - 4 = 2x + 11.",
+    "ok": true,
+    "committed": true,
+    "response": "x = 3.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-5.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 26,
+      "output_bytes": 6,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "1 / 0",
+    "ok": true,
+    "committed": true,
+    "response": "No está definida la división por cero.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-6.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 5,
+      "output_bytes": 40,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "Planifica: Preparar observación\nTiempo disponible: 70 min\nTarea 1: Preparar | 15 min | depende de - | prioridad 4 | listo cuando material reunido\nTarea 2: Medir | 30 min | depende de 1 | prioridad 1 | listo cuando datos obtenidos",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: viable\nTiempo pendiente: 45 min. Disponible: 70 min.\n1. Tarea 1: Preparar [0-15 min]\n   Listo cuando: material reunido\n2. Tarea 2: Medir [15-45 min]\n   Listo cuando: datos obtenidos\nSiguiente paso: tarea 1: Preparar\nListo cuando: material reunido\nLa finalización requiere tu confirmación del criterio.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-7.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 230,
+      "output_bytes": 339,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "traduce al ingles: mi proyecto es nuevo",
+    "ok": true,
+    "committed": true,
+    "response": "Traducción: my project is new",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-8.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 39,
+      "output_bytes": 30,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "muestra el plan",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: viable\nTiempo pendiente: 45 min. Disponible: 70 min.\n1. Tarea 1: Preparar [0-15 min]\n   Listo cuando: material reunido\n2. Tarea 2: Medir [15-45 min]\n   Listo cuando: datos obtenidos\nSiguiente paso: tarea 1: Preparar\nListo cuando: material reunido\nLa finalización requiere tu confirmación del criterio.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-9.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 15,
+      "output_bytes": 339,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "bloquea tarea 1",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: bloqueado\nTiempo pendiente: 45 min. Disponible: 70 min.\nSin programar: tarea 1: Preparar (bloqueada por ti)\n   Listo cuando: material reunido\nSin programar: tarea 2: Medir (depende de una tarea bloqueada)\n   Listo cuando: datos obtenidos\nNo hay un siguiente paso disponible: resuelve los bloqueos.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-10.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 15,
+      "output_bytes": 333,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "desbloquea tarea 1",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: viable\nTiempo pendiente: 45 min. Disponible: 70 min.\n1. Tarea 1: Preparar [0-15 min]\n   Listo cuando: material reunido\n2. Tarea 2: Medir [15-45 min]\n   Listo cuando: datos obtenidos\nSiguiente paso: tarea 1: Preparar\nListo cuando: material reunido\nLa finalización requiere tu confirmación del criterio.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-11.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 18,
+      "output_bytes": 339,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "completa tarea 1: material reunido",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: viable\nTiempo pendiente: 30 min. Disponible: 70 min.\n1. Tarea 2: Medir [0-30 min]\n   Listo cuando: datos obtenidos\nCompletada por tu confirmación: tarea 1\nSiguiente paso: tarea 2: Medir\nListo cuando: datos obtenidos\nLa finalización requiere tu confirmación del criterio.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-12.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 34,
+      "output_bytes": 309,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "muestra el plan",
+    "ok": true,
+    "committed": true,
+    "response": "Plan: Preparar observación\nEstado: viable\nTiempo pendiente: 30 min. Disponible: 70 min.\n1. Tarea 2: Medir [0-30 min]\n   Listo cuando: datos obtenidos\nCompletada por tu confirmación: tarea 1\nSiguiente paso: tarea 2: Medir\nListo cuando: datos obtenidos\nLa finalización requiere tu confirmación del criterio.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-13.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 15,
+      "output_bytes": 309,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "recuerda que velorio es un archivo cifrado",
+    "ok": true,
+    "committed": true,
+    "response": "Registré esa afirmación.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-14.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 42,
+      "output_bytes": 26,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "consulta: nomasir caballo",
+    "ok": true,
+    "committed": true,
+    "response": "Evidencia del currículo (coincidencias de términos):\nestafa del caballo de nomasir: una apuesta perdida ante viajeros asociados con el supuesto rival de ninive. Requiere reconocer que la informacion favorable procedia de quienes ganaban con la apuesta [clason-F004-B, páginas 65].\ncinco leyes del oro: las cinco lecciones que arkad entrega a nomasir sobre conservar y emplear dinero. Requiere leer ahorro rendimiento consejo conocimiento y prudencia como un conjunto [clason-babylon-en, páginas 62-72].\nnomasir: el hijo de arkad que pierde capital y aprende a emplear las leyes del oro. Requiere comparar sus errores iniciales con sus decisiones posteriores [clason-babylon-en, páginas 62-69].\n",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-15.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 25,
+      "output_bytes": 699,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "@ctx status",
+    "ok": true,
+    "committed": true,
+    "response": "CTX n=001 bytes=000029 limite=114688",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-16.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 11,
+      "output_bytes": 36,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "Escribe y ejecuta en XI un programa que sume 637 y 284.",
+    "ok": true,
+    "committed": true,
+    "response": "Programa XI ejecutado y verificado por w4U. Resultado: 921.",
+    "executed": true,
+    "verified": true,
+    "result": {
+      "ok": true,
+      "phase": "run",
+      "values": [
+        921
+      ],
+      "binary_sha256": "a8077bc2e8dec981c6b1f27423b3dd0bc5d57096dd2c65d9684de4e0e807433a",
+      "native_output": "{\"type\":\"register\",\"register\":\"r0\",\"value\":921}\n",
+      "sandbox_initial_sha256": "b18685010345e3125e56204105c0e1c72569893372772a00c7e28ee261a2b356",
+      "sandbox_after_sha256": "b18685010345e3125e56204105c0e1c72569893372772a00c7e28ee261a2b356"
+    },
+    "trace": [
+      {
+        "role": "qdu-plan.xi",
+        "ok": true,
+        "output": "{\"type\":\"register\",\"register\":\"r0\",\"value\":0}\n",
+        "error": "REVERSE_PC_RUN_PASS saved=/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/.x06-chat-hIOWI9/working.rvp\n"
+      },
+      {
+        "role": "qdu-dispatch.xi",
+        "ok": true,
+        "output": "{\"type\":\"register\",\"register\":\"r0\",\"value\":0}\n",
+        "error": "REVERSE_PC_RUN_PASS saved=/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/.x06-chat-hIOWI9/working.rvp\n"
+      },
+      {
+        "role": "dispatch.xi",
+        "ok": true,
+        "output": "{\"type\":\"register\",\"register\":\"r0\",\"value\":0}\n",
+        "error": "REVERSE_PC_RUN_PASS saved=/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/.x06-chat-hIOWI9/working.rvp\n"
+      },
+      {
+        "role": "review.xi",
+        "ok": true,
+        "output": "{\"type\":\"register\",\"register\":\"r0\",\"value\":0}\n",
+        "error": "REVERSE_PC_RUN_PASS saved=/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/.x06-chat-hIOWI9/working.rvp\n"
+      }
+    ],
+    "source_sha256": "09c549d604963f3f060bf9913eaa23dfb2209ce2ffb3b5f3b476e7ab90e283e8",
+    "generation": 1,
+    "attempt": 1,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-17.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 55,
+      "output_bytes": 59,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "traduce al ingles: yo tengo un libro",
+    "ok": true,
+    "committed": true,
+    "response": "Traducción: I have a book",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/regressions/turn-18.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 36,
+      "output_bytes": 26,
+      "normalization": "none"
+    }
+  }
+]

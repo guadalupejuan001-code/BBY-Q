@@ -1,0 +1,6 @@
+{
+  "initial_oracle_error": "The supposedly absent word inexistente occurs in two taught requirements. A literal term match was valid evidence, not a hallucination.",
+  "replacement": "A separate query with three terms absent from the curriculum.",
+  "original_transcript": "evidence-01/transcripts.json",
+  "logic_changed_for_this_expectation": false
+}

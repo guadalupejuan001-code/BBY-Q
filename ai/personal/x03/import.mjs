@@ -1,0 +1,2 @@
+import fs from'node:fs';import path from'node:path';import{importDocument}from'./io.mjs';
+const[r,b,input,output,title,file]=process.argv.slice(2);if(!file)throw Error('usage: import.mjs RUNTIME X03_BUILD INPUT.rvp NEW_OUTPUT.rvp TITLE TEXT.txt');console.log(JSON.stringify(importDocument(path.resolve(r),path.resolve(b,'conversation.xi'),path.resolve(input),path.resolve(output),title,fs.readFileSync(file)),null,2));

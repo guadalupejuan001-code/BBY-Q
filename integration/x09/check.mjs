@@ -1,0 +1,35 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {prepare} from './prepare.mjs';
+import {prepare as prepareX08} from '../x08/prepare.mjs';
+import {prepareHistory} from './tests/retention/prepare.mjs';
+
+const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(here,'../..');
+if(process.argv.length!==5)throw Error('Usage: node integration/x09/check.mjs NEW_EVIDENCE_DIRECTORY RECOVERED_X09.zip HISTORICAL_STATE_DIRECTORY');
+const out=path.resolve(process.argv[2]);
+if(fs.existsSync(out))throw Error('Choose a new evidence directory');fs.mkdirSync(out,{recursive:true});
+const release=prepare(path.join(out,'release'),{archive:process.argv[3]}),previous=prepareX08(path.join(out,'x08'));
+const rt=release.runtime,base=release.native,old=path.join(previous.native,'model.rvp');
+function run(file,...args){execFileSync(process.execPath,[path.join(repo,file),...args],{cwd:repo,stdio:'inherit',timeout:600000});}
+run('integration/x09/tests/initialization.test.mjs');
+run('integration/x09/tests/retention/state.test.mjs');
+run('integration/x09/verify-source.mjs',rt,base,old,path.join(out,'source'));
+run('integration/x09/tests/integration.mjs',rt,base,old,path.join(out,'chat'));
+run('integration/x09/tests/post-review.mjs',rt,base,old,path.join(out,'post-review'));
+run('ai/personal/x09/dictionary/test.mjs',rt,previous.native,path.join(base,'dictionary'),old,path.join(out,'dictionary'));
+const alternate=path.join(release.directory,'training-sources/alternate-e009.rvp');
+run('ai/personal/x09/campaign/test.mjs',rt,old,alternate,path.join(base,'campaign'),path.join(out,'campaign'));
+run('ai/personal/x09/campaign/isolation.test.mjs',rt,path.join(base,'campaign'),path.join(out,'campaign'));
+const history=prepareHistory(path.join(out,'history'),{historicalDirectory:process.argv[4]});
+run('integration/x09/tests/retention/run.mjs','--candidate',path.join(base,'model.rvp'),'--baseline',old,'--history-root',history.directory,'--output',path.join(out,'retention'));
+const session=path.join(out,'cli-session');
+const cli=(...args)=>JSON.parse(execFileSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',release.directory,...args],{cwd:repo,encoding:'utf8',timeout:180000}));
+assert.equal(cli('init',session).ok,true);
+const turn=cli('turn',session,'smoke-1','calcula 17 + 25');assert.equal(turn.ok,true);assert.equal(turn.response,'El resultado es 42.');
+assert.equal(cli('turn',session,'smoke-1','calcula 17 + 25').replayed,true);
+const read=file=>JSON.parse(fs.readFileSync(path.join(out,file)));
+const summary={ok:true,platform:'Linux x86-64',android_validated:false,initialization_regressions:3,state_comparison_tests:6,source:read('source/results.json'),chat:read('chat/results.json'),post_review_checks:read('post-review/results.json').checks,dictionary_checks:read('dictionary/results.json').checks,campaign_checks:read('campaign/results.json').results.length,campaign_isolation:read('campaign/isolation-results.json').ok,historical_payloads_verified:read('retention/result.json').historical_payloads_verified,history_regressions:read('retention/result.json').regressions.length,changed_cells_outside_allowed_ranges:read('retention/result.json').comparison.changes_outside_allowed_ranges,cli_init_turn_and_retry:true,model_sha256:release.model_sha256};
+fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(summary,null,2)+'\n');console.log(JSON.stringify(summary));

@@ -1,0 +1,100 @@
+[
+  {
+    "input": "aprende: extra\ndefinición: a\nrequiere: b\nfuente: x\npáginas: -",
+    "ok": true,
+    "committed": true,
+    "response": "No cambié el banco: datos inválidos, conflicto, capacidad o revisión incompatible.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-0.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 63,
+      "output_bytes": 85,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "que es slot4095",
+    "ok": true,
+    "committed": true,
+    "response": "slot4095 es a [lección 4096, revisión 0].",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-1.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 15,
+      "output_bytes": 43,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "olvida leccion: slot4095",
+    "ok": true,
+    "committed": true,
+    "response": "Lección olvidada.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-2.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 24,
+      "output_bytes": 18,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "aprende: extra\ndefinición: a\nrequiere: b\nfuente: x\npáginas: -",
+    "ok": true,
+    "committed": true,
+    "response": "Lección incorporada; queda disponible al reabrir esta memoria.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-3.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 63,
+      "output_bytes": 63,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "que es extra",
+    "ok": true,
+    "committed": true,
+    "response": "extra es a [lección 4096, revisión 484].",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-4.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 12,
+      "output_bytes": 42,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "recuerda que luminaria es una estrella inventada",
+    "ok": true,
+    "committed": true,
+    "response": "Registré esa afirmación.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-5.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 48,
+      "output_bytes": 26,
+      "normalization": "none"
+    }
+  },
+  {
+    "input": "olvida leccion: extra",
+    "ok": true,
+    "committed": true,
+    "response": "No cambié el banco: datos inválidos, conflicto, capacidad o revisión incompatible.",
+    "executed": false,
+    "output": "/workspace/scratch/c7992600c96c/BBY-Q/integration/x08/candidate-results/capacity/turn-6.rvp",
+    "transport": {
+      "version": 2,
+      "input_bytes": 21,
+      "output_bytes": 85,
+      "normalization": "none"
+    }
+  }
+]

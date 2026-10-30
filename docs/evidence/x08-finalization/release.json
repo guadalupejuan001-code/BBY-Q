@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "checks": 10,
+  "canonical_release_restored": true,
+  "native_translation": true,
+  "book_page_122": true,
+  "idempotent_retry": true,
+  "tampering_rejected": true,
+  "existing_destination_preserved": true,
+  "android_tested": false
+}
