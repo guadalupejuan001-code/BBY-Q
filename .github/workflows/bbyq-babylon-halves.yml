@@ -1,0 +1,60 @@
+name: BBY Q F004 book in two native stages
+on:
+  pull_request:
+    paths: ['ai/training/babylon-halves/**', '.github/workflows/bbyq-babylon-halves.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bbyq-f004-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  sequential-learning:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22.16.0'}
+      - name: Recover verified F003 and unchanged XI host
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-F003-Babylon-learning
+          run-id: 41001114852
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Prepare exact source and separate candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/base-f003 work/runtime-linux work/libro evidence
+          cp prior/runtime/reverse_pc work/runtime-linux/reverse_pc
+          chmod +x work/runtime-linux/reverse_pc
+          cp prior/f003/BBY-Q-F003-Babilonia.rxe prior/f003/finance-f003.rvp.gz prior/f003/f003-reader.xi work/base-f003/
+          cat prior/old-native-facts.jsonl prior/f003/corpus/native-facts.jsonl > work/base-f003/hechos-previos.jsonl
+          cp prior/source/Clason-The-Richest-Man-in-Babylon-English.pdf work/libro/El-hombre-mas-rico-de-Babilonia-original-ingles.pdf
+          pdftotext -layout work/libro/El-hombre-mas-rico-de-Babilonia-original-ingles.pdf work/libro/texto-extraido.txt
+          for file in ai/training/babylon-halves/*.mjs; do node --check "$file"; done
+      - name: Learn first half then second and test retention
+        shell: bash
+        run: |
+          set -euo pipefail
+          node ai/training/babylon-halves/train.mjs work evidence/f004 2>&1 | tee evidence/training.log
+          node ai/training/babylon-halves/boundary-tests.mjs work evidence/f004 evidence/boundaries 2>&1 | tee evidence/boundaries.log
+      - name: Include exact source and provenance
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p evidence/sources evidence/runtime
+          cp ai/training/babylon-halves/*.mjs evidence/sources/
+          cp work/runtime-linux/reverse_pc evidence/runtime/reverse_pc
+          git rev-parse HEAD > evidence/source-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-F004-two-halves
+          path: evidence
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,14 @@
+// La lectura de paginas se ejecuta en XI y toma los bytes del archivo del agente.
+// No hay respuestas del libro pregrabadas en JavaScript ni acceso a un servidor.
+export function withPageReader(base) {
+ const lines=['#!reverse-pc-machine-v1'];const p='@libro pagina ';
+ const say=s=>{for(const b of Buffer.from(s))lines.push(`set r14 ${b}`,'print r14');};
+ lines.push('load8 r2 7400000000000000017',`cmp r2 ${p.length}`,'jle f004_page_delegate');
+ for(let i=0;i<p.length;i++)lines.push(`load8 r3 ${7400000000000000128n+BigInt(i)}`,`cmp r3 ${p.charCodeAt(i)}`,'jne f004_page_delegate');
+ lines.push(`set r0 ${p.length}`,'set r1 0','label f004_page_parse','cmp r0 r2','jge f004_page_parsed','set r7 7400000000000000128','add r7 r0','load8 r3 $r7','cmp r3 48','jlt f004_page_invalid','cmp r3 57','jgt f004_page_invalid','sub r3 48','mul r1 10','add r1 r3','cmp r1 122','jgt f004_page_invalid','add r0 1','jmp f004_page_parse','label f004_page_parsed','cmp r1 1','jlt f004_page_invalid','mov r10 r1','div r10 100','add r10 48','mov r11 r1','div r11 10','mod r11 10','add r11 48','mov r12 r1','mod r12 10','add r12 48','load8 r9 8900000000000000002','load8 r8 8900000000000000003','mul r8 256','add r9 r8','set r4 0','set r13 0','label f004_page_scan','cmp r4 r9','jge f004_page_done','mov r7 r4','mul r7 4','add r7 8900000000000001024','load8 r5 $r7','add r7 1','load8 r8 $r7','mul r8 256','add r5 r8','add r7 1','load8 r8 $r7','mul r8 65536','add r5 r8','add r7 1','load8 r6 $r7','cmp r6 14','jle f004_page_next');
+ for(const [i,ch]of [[0,98],[1,98],[2,108],[3,32],[4,112],[5,'r10'],[6,'r11'],[7,'r12'],[8,32],[9,115],[13,32]])lines.push('set r7 8900000000000100000','add r7 r5',`add r7 ${i}`,'load8 r3 $r7',`cmp r3 ${ch}`,'jne f004_page_next');
+ lines.push('cmp r13 0','je f004_page_emit_start','set r14 32','print r14','label f004_page_emit_start','set r15 14','label f004_page_emit','cmp r15 r6','jge f004_page_emitted','set r7 8900000000000100000','add r7 r5','add r7 r15','load8 r14 $r7','print r14','add r15 1','jmp f004_page_emit','label f004_page_emitted','add r13 1','label f004_page_next','add r4 1','jmp f004_page_scan','label f004_page_done','cmp r13 0','jgt f004_page_finish');
+ say('No se ha incorporado esa pagina.');lines.push('jmp f004_page_finish','label f004_page_invalid');say('Pagina invalida; usa un numero de 1 a 122.');
+ lines.push('label f004_page_finish','load8 r2 7400000000000000017','set r0 0','label f004_page_clear','cmp r0 r2','jge f004_page_halt','set r7 7400000000000000128','add r7 r0','store8 $r7 0','add r0 1','jmp f004_page_clear','label f004_page_halt','store8 7400000000000000016 0','store8 7400000000000000017 0','halt','label f004_page_delegate','load8 r3 7400000000000000128','cmp r3 64','je lf_parent_entry',base.replace(/^#![^\n]*\n/,''));
+ return lines.join('\n')+'\n';
+}
