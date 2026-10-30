@@ -1,0 +1,59 @@
+name: BBY Q F003 Babylon native knowledge
+on:
+  pull_request:
+    paths: ['ai/training/babylon/*.mjs', '.github/workflows/bbyq-babylon-training.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bbyq-f003-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  native-training:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22.16.0'}
+      - name: Recover exact F002 and its unchanged compiled XI host
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-F001-economic-learning
+          run-id: 40996666892
+          github-token: ${{ github.token }}
+          path: prior
+      - name: Recover verified public-domain source PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-F003-Babylon-source
+          run-id: 40999971672
+          github-token: ${{ github.token }}
+          path: evidence/source
+      - name: Verify source and reproduce native learning
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' '76b620d86a163a1934aebeea997f75c1c685d0ecd877f4a0854f0ab3e0e29b69  evidence/source/Clason-The-Richest-Man-in-Babylon-English.pdf' | sha256sum --check
+          node --check ai/training/babylon/curriculum.mjs
+          node --check ai/training/babylon/train.mjs
+          chmod +x prior/runtime/reverse_pc
+          cat prior/corpus/native-facts.jsonl prior/finance-f002/corpus/f002-native-facts.jsonl > evidence/old-native-facts.jsonl
+          node ai/training/babylon/train.mjs train prior/runtime/reverse_pc prior/finance-f002/BBY-Q-F002.rxe prior/finance-f002/finance-f002.rvp.gz evidence/old-native-facts.jsonl evidence/f003 2>&1 | tee evidence/native-run.log
+      - name: Include reproducible transport and provenance
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p evidence/sources evidence/runtime
+          cp ai/training/babylon/*.mjs evidence/sources/
+          cp prior/runtime/reverse_pc evidence/runtime/reverse_pc
+          git rev-parse HEAD > evidence/source-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-F003-Babylon-learning
+          path: evidence
+          retention-days: 90
+          if-no-files-found: error
