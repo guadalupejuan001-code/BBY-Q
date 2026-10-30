@@ -1,0 +1,473 @@
+{
+  "format": "BBYQ-X09-Code-Verification-1",
+  "tested_source_commit": "e30dfe012fb4e5419e50309c3133a45c4e580196",
+  "base_main": "7c2e32d97efff6201eccb580000c2d9a71316bdc",
+  "node": "v24.22.1",
+  "architecture": "x64",
+  "verification": "Executed locally against the repository source; not a claim of GitHub CI or Android validation",
+  "original_repository_training_files_unchanged": true,
+  "x08_release_checks": 10,
+  "results": {
+    "ok": true,
+    "platform": "Linux x86-64",
+    "android_validated": false,
+    "initialization_regressions": 3,
+    "state_comparison_tests": 6,
+    "source": {
+      "ok": true,
+      "xi_roles_recompiled": 6,
+      "exact_native_binaries": true,
+      "exact_model_rebuilt_from_x08": true,
+      "model_sha256": "71ba9704e279c08160a8af882a8628b77e938a30befa450e95a522315a39f995",
+      "previous_training_preserved": true
+    },
+    "chat": {
+      "ok": true,
+      "chat_cases": 7,
+      "invalid_utf8_rejected": true,
+      "migration_previous_training_preserved": true,
+      "migration_idempotent": true,
+      "session_upgrade": true,
+      "replay_idempotent": true,
+      "request_language_bound": true,
+      "both_extensions_in_same_session": true,
+      "seed_preserved": true,
+      "original_x08_preserved": true,
+      "observations": 15
+    },
+    "post_review_checks": 6,
+    "dictionary_checks": 81,
+    "campaign_checks": 12,
+    "campaign_isolation": true,
+    "historical_payloads_verified": 22,
+    "history_regressions": 0,
+    "changed_cells_outside_allowed_ranges": 0,
+    "cli_init_turn_and_retry": true,
+    "model_sha256": "71ba9704e279c08160a8af882a8628b77e938a30befa450e95a522315a39f995"
+  },
+  "publication_scope": "X09 source, build metadata and verification reports; corpus, native binaries and historical RVPC2 payloads are local inputs",
+  "local_archive_preparation_verified": true,
+  "code_and_repository_checks": {
+    "tests": 29,
+    "passed": 29,
+    "failed": 0
+  },
+  "source_modules_sha256": {
+    "ai/personal/x03/io.mjs": "e66be3350da69730e711a90e51260c6a02040d16c475ae3af0c7290d7846fc76",
+    "ai/personal/x05/io.mjs": "26e916750728c0a3727120f0e798a3da6237b9b8d9d35c564f6f9c2c55bfdf06",
+    "ai/personal/x06/schema.mjs": "218585c94d4d71c5fea3196d01dff6d52198cc298b011136022e0d48f1f01398",
+    "ai/personal/x09/build.mjs": "8669b02cf099bdea85cea7d568161aa5812f093b7bc7914a4f4a68c7a05b0207",
+    "ai/personal/x09/campaign/build.mjs": "73ff1315f636f692f215d10a851b767d9ca6d913903d192d07d704236f619425",
+    "ai/personal/x09/campaign/e009-calibrate.xi": "52d9ee9360b6967a26592c5613d8ffa931027dba572718c049f2b55399904ba0",
+    "ai/personal/x09/campaign/role.mjs": "57ebcd8328ad5585fe5defb6048ef1db745214ae3dde03eacc16a6136481f8c6",
+    "ai/personal/x09/campaign/schema.mjs": "20b2f50793bfe0ae299c1a099220d7ff7660c479c6a05b54b82650fc770c8168",
+    "ai/personal/x09/campaign/service.mjs": "ce590bcfab4e967eec506d36b625e5a808d0f788c641422cbb6bf4996d2700a2",
+    "ai/personal/x09/campaign/state.mjs": "903aef6a6ff7895beeab3c867dcefef7971fa9c085201b13b4ced0f4247d42ab",
+    "ai/personal/x09/dictionary/build.mjs": "5f5ecbe0e2edf73e76758fb17e0386a39a66b62745d2b8331f9b4e2510ce7c8b",
+    "ai/personal/x09/dictionary/native.mjs": "3942cccb86f5fb59fb1f4fb3c18a15dc7bf07fabc77273698c6868c5c8b24919",
+    "ai/personal/x09/dictionary/original-lookup.xi": "1b527993567a2166657d8b3bf5d13320ceec280bc6e0a29863e3405ffe945fbd",
+    "ai/personal/x09/dictionary/service.mjs": "2a932df2e4138bb15b25841ffafd805d3f8e7ab2e4bb3f5baa988cc7a0eaabeb",
+    "ai/personal/x09/dictionary/store.mjs": "bf2abd5d5dcc98134fa56730f9437edbd0c0d030f5fed04b8027d165df7b6ede",
+    "ai/personal/x09/io.mjs": "224fc51bdf0da583cff181fb601ef4951b4eec7cbd8f07254481fe615f4274dd",
+    "ai/personal/x09/migrate.mjs": "e97d6813b6f418bc098c3f4c9d8dc00af744904dec74af6e4d36abdbcd52a430",
+    "ai/personal/x09/run.mjs": "19c7f73004763cf767648eeebf400353eb61200d32f0dd9caf3847a88e64afa9",
+    "ai/personal/x09/session.mjs": "b1429e2c3291b29f9593de5ed24d2bfe81a49c2d2c8520d5b17cc8933aafc296",
+    "ai/personal/x09/transport.mjs": "d2c7cea5e68a032d710a1eadcd958864862223a571fb0ce24520d5ab07d45bd4"
+  },
+  "capability_probes": [
+    {
+      "name": "greeting",
+      "input": "hola",
+      "ok": true,
+      "response": "Hola, X. Te leo.",
+      "milliseconds": 16116.813343000002
+    },
+    {
+      "name": "explanation",
+      "input": "Explícame por qué el cielo es azul.",
+      "ok": true,
+      "response": "No guardé esa afirmación. Para conservarla, escribe «recuerda que …» o usa una enseñanza explícita.",
+      "milliseconds": 20199.207601
+    },
+    {
+      "name": "poem",
+      "input": "Escribe un poema de cuatro versos sobre una guitarra.",
+      "ok": true,
+      "response": "No tengo información suficiente para responder.",
+      "milliseconds": 21117.994653
+    },
+    {
+      "name": "arithmetic-natural",
+      "input": "¿Cuánto es 17 + 25?",
+      "ok": true,
+      "response": "El resultado es 42.",
+      "milliseconds": 18547.716485000004
+    },
+    {
+      "name": "logic",
+      "input": "Todos los gatos son mamíferos. Luna es un gato. ¿Luna es mamífero?",
+      "ok": true,
+      "response": "Necesito una premisa o pregunta completa dentro de la gramática declarada.",
+      "milliseconds": 15720.102997999988
+    },
+    {
+      "name": "current-data",
+      "input": "Busca en internet el precio de Bitcoin ahora.",
+      "ok": true,
+      "response": "No tengo información suficiente para responder.",
+      "milliseconds": 14531.980526
+    }
+  ],
+  "capability_latency_ms": {
+    "sample": 6,
+    "min": 14531.980526,
+    "max": 21117.994653,
+    "scope": "These six local Linux probes, with other verification work present; not a mobile benchmark"
+  },
+  "clean_checkout_cli_verified": {
+    "prepare_from_local_zip": true,
+    "initialize_session": true,
+    "dictionary_lookup": true,
+    "idempotent_retry": true
+  },
+  "local_input_retention": {
+    "format": "BBYQ-X09-Retention-1",
+    "ok": true,
+    "historical_payloads_verified": 22,
+    "versioned_checkpoint_audits": 17,
+    "earlier_campaign_audits": 5,
+    "input_files_unchanged": true,
+    "identities": [
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E011_Compositional_ES_EN.rvp.b64",
+        "raw_sha256": "1d739bb5edb2dec3eb2e3a515fc97976da03bc1277be591921eff42281bf597b",
+        "state_sha256": "efe5585761d4745b868c83e55cc1c6356291f396649458c03814ca27b2f6b453",
+        "bytes": 21252
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E012_Knowledge_ES_EN.rvp.gz.b64",
+        "raw_sha256": "a594515d689cf63666d49da0990edd1cf1a2d2a47dd9e5c6ffb99edb28343186",
+        "state_sha256": "8961833bb7140d7b63494dbd96ff02136559fd25eeca5a51f65fe3148131844f",
+        "bytes": 157115
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E014_Quantity_Stories_ES_EN.rvp.gz.b64",
+        "raw_sha256": "4d33b6aa9e5991b67e0aff9cdc5340aaed0596b139948055f5a814db8128ee68",
+        "state_sha256": "c3b732c4d704c21d1d0f99b0f774840de1ab66281813c5664a920d580fdf27b5",
+        "bytes": 169297
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E015_Grammar_ES_EN.rvp.gz.b64",
+        "raw_sha256": "9f05d4c199f6265ee356632b7cc96cce5826248403dbe56f39c18d5d892c270a",
+        "state_sha256": "b32e95d54b866230adfa020d4c706e36d25a4b1ceb66ede7e63b795fd03dd0b1",
+        "bytes": 174811
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E016_Conversation_ES_EN.rvp.gz.b64",
+        "raw_sha256": "a8da6b0a92f8a9ff46fc5aa70408790e67b62bbda7089790e023c227dbf082aa",
+        "state_sha256": "55992a06df9ec9cad6889f3dabbdbc179d2626cfd32667efec1f74b78660e732",
+        "bytes": 209659
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E017_Open_Learning_ES_EN.rvp.gz.b64",
+        "raw_sha256": "211b3e8e60feef9924f8ea706d0d60a9097f53bf1f4557a91e920e4abfad332f",
+        "state_sha256": "5ae5283a213a84c78ae9fc1eac0ff5972b018feed3c677f0a4e7d38f8aed7c4c",
+        "bytes": 279677
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E018_Concise_Dialogue_ES_EN.rvp.gz.b64",
+        "raw_sha256": "f7168d6d1a9eab676a3cb51a1ce21f9a105b3b480caffda3f9112394e3f7deea",
+        "state_sha256": "df074a27d284025ccd033373c92f116c5c3237455e9f51891fcfa0392828aaec",
+        "bytes": 298808
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E019_Context_Questions_ES_EN.rvp.gz.b64",
+        "raw_sha256": "550c21d2d8d2a2090337e96477bcabe85a39f1acfccc17cf9177120b18ea0c32",
+        "state_sha256": "aa8be33d964af55d9976f46745775113d6996630cbbfad3bb5c2b4d75833e9d0",
+        "bytes": 319274
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E020_Million_Arithmetic_ES_EN.rvp.gz.b64",
+        "raw_sha256": "9c23ee5d6eac837032b9859bf07881f1223436120ee2e077da07d2a20493c844",
+        "state_sha256": "9fdf0b3f5300ea63607f6c0656d09c3ad1bfb7dbf96a167e775c48c35ae4fafc",
+        "bytes": 325721
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E021_Language_Dialogue_ES_EN.rvp.gz.b64",
+        "raw_sha256": "5ba7403fc9e710b4f42d388cf0f81f1fe9b4a2ed46db73427dab093ba2bbf035",
+        "state_sha256": "3246c34cb2d51037476f206020c55d8453a3060a4d2c511887c4b3fb3bdb4b1b",
+        "bytes": 465830
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/BBYQ_E022_Compositional_Requests_ES_EN.rvp.gz.b64",
+        "raw_sha256": "d097c5877a06d3f0018dbd607098e4182f4f5d33e4b38bb33497ec5b8f892b99",
+        "state_sha256": "33a2490be0d7a9252222991da1cd376e7cfb4ecb0014987c65d1b8b24278f20f",
+        "bytes": 500410
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/E010-original.rvp.b64",
+        "raw_sha256": "ec7c9c88d974cde5f7f953f58f681bffcb3213409e9d42ea22550b30f518a3ec",
+        "state_sha256": "de1a02a77c93cab6f2671858a2543dd65c7bf2d2858917290808ae1ae3c5ff1f",
+        "bytes": 18722
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/e030/preserved-patterns.rvp.gz.b64",
+        "raw_sha256": "348d8e401aa1b0e8608f4bc61d0b45949c11aa3c84b96a0130f142a0a3013ca7",
+        "state_sha256": "18030f0c4e7098a0d19d07c3b3a93507d982caa1ae70e047bd9c2d118e9a3d4b",
+        "bytes": 798168
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/e032/temporal-model.rvp.gz.b64",
+        "raw_sha256": "ff3dbc751b41c3f495d7903dace7617cfcfd026ad209c4cf47a1644a540e86c5",
+        "state_sha256": "f1c2ace6a8d35643c0ae68103f3cb0aa33a0325c9fea004f00fd5e38d60ffb56",
+        "bytes": 836481
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/e033/minimal-model.rvp.gz.b64",
+        "raw_sha256": "f989e680a9be0f2faab67faa0f5f67563940beee631ad3b6b0968ac50bb3754d",
+        "state_sha256": "e61d68b755c741d77c9fcf13f4612fc8df343276ec03f9c981b1c630d7eec433",
+        "bytes": 856177
+      },
+      {
+        "path": "checkpoints/ai/checkpoints/e034/composition-model.rvp.gz.b64",
+        "raw_sha256": "d13b977cd094d8de199490c8e18be2a47bd6e979b54301a5af870425aec2c49c",
+        "state_sha256": "876d3f2a82698e9582f17043028d9a75b454e4b5ebaf7cc5949b65a5bac58a10",
+        "bytes": 863594
+      },
+      {
+        "path": "checkpoints/ai/releases/e025/controller.rvp.gz.b64",
+        "raw_sha256": "94d25828057ce45507b0c01e07186184c285dbe47997a803f8a210dcbfa06791",
+        "state_sha256": "ce058a65092dd9892b6fd55276a17287b764a16bc526ccbfa0085154baef9631",
+        "bytes": 795328
+      },
+      {
+        "path": "historical-library/BBYQ_E005_XI_seed42.rvp",
+        "raw_sha256": "b3f23e5d3f030903a372733c01667ebab98f01b482454d6fea032d720e4a4fab",
+        "state_sha256": "b3f23e5d3f030903a372733c01667ebab98f01b482454d6fea032d720e4a4fab",
+        "bytes": 5642
+      },
+      {
+        "path": "historical-library/BBYQ_E007_Ether_Vault_seed42.rvp",
+        "raw_sha256": "2227d6ae6b40b655e7d3b6b84893d2e94a54bd364c704b8e4cace2bfae8626bf",
+        "state_sha256": "2227d6ae6b40b655e7d3b6b84893d2e94a54bd364c704b8e4cace2bfae8626bf",
+        "bytes": 6162
+      },
+      {
+        "path": "historical-library/BBYQ_E008_EtherConstellation_seed42.rvp",
+        "raw_sha256": "48ba78a1847031aa140a2997e82014496824c4760394115b659748069d5e8b9c",
+        "state_sha256": "48ba78a1847031aa140a2997e82014496824c4760394115b659748069d5e8b9c",
+        "bytes": 6632
+      },
+      {
+        "path": "historical-library/BBYQ_E009_XI_cuarto_contiene_llave.rvp",
+        "raw_sha256": "0c72684012a7988eed9ceb843351d8468711c7e2c22d8138a0cc2f1fe517e9cb",
+        "state_sha256": "0c72684012a7988eed9ceb843351d8468711c7e2c22d8138a0cc2f1fe517e9cb",
+        "bytes": 9916
+      },
+      {
+        "path": "historical-library/BBYQ_E009_XI_edificio_incluye_libro.rvp",
+        "raw_sha256": "7685e983bdee073a8458f555f3d91010c9e512211590356941fd879f79c3b21d",
+        "state_sha256": "7685e983bdee073a8458f555f3d91010c9e512211590356941fd879f79c3b21d",
+        "bytes": 10141
+      }
+    ],
+    "comparison": {
+      "ok": true,
+      "baseline_sha256": "6f205595fe2f0032f76991205101f6c9f15d04ef1d10af77d7d87e6d12b3aef9",
+      "candidate_sha256": "71ba9704e279c08160a8af882a8628b77e938a30befa450e95a522315a39f995",
+      "kernel_sha256": "7a9e2e60345b9230b9d1875fe0d2c70a8ef5fdf015d3f97938a41d14dc878270",
+      "baseline_overrides": 408734,
+      "candidate_overrides": 409059,
+      "changed_cells": 325,
+      "changes_outside_allowed_ranges": 0,
+      "first_changes": [
+        {
+          "address": "9180000000000000000",
+          "before": null,
+          "after": 76,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000001",
+          "before": null,
+          "after": 71,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000002",
+          "before": null,
+          "after": 9,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000016",
+          "before": null,
+          "after": 10,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000017",
+          "before": null,
+          "after": 40,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000018",
+          "before": null,
+          "after": 9,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000019",
+          "before": null,
+          "after": 10,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000024",
+          "before": null,
+          "after": 8,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000025",
+          "before": null,
+          "after": 32,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000026",
+          "before": null,
+          "after": 2,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000027",
+          "before": null,
+          "after": 1,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000064",
+          "before": null,
+          "after": 118,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000065",
+          "before": null,
+          "after": 133,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000066",
+          "before": null,
+          "after": 233,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000067",
+          "before": null,
+          "after": 131,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000068",
+          "before": null,
+          "after": 189,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000069",
+          "before": null,
+          "after": 238,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000070",
+          "before": null,
+          "after": 7,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000071",
+          "before": null,
+          "after": 58,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000072",
+          "before": null,
+          "after": 132,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000073",
+          "before": null,
+          "after": 88,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000074",
+          "before": null,
+          "after": 245,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000075",
+          "before": null,
+          "after": 85,
+          "range": "E009 alternate campaigns, persistent bank"
+        },
+        {
+          "address": "9180000000000000076",
+          "before": null,
+          "after": 243,
+          "range": "E009 alternate campaigns, persistent bank"
+        }
+      ],
+      "ranges": [
+        {
+          "name": "E009 alternate campaigns, persistent bank",
+          "start": "9180000000000000000",
+          "end_exclusive": "9180000000001000000",
+          "baseline_overrides": 0,
+          "candidate_nonzero_cells": 325,
+          "sparse_sha256": "b1eba63b10f4fb36efcc7040ad79ff56386d86a8b954c57cb1fcfc9af7a2b954"
+        }
+      ],
+      "serializer_counters": [
+        {
+          "key": "MXIM2",
+          "before": "73660477",
+          "after": "73660802"
+        }
+      ],
+      "errors": []
+    },
+    "regressions": [],
+    "historical_classifications": [
+      {
+        "name": "BBYQ_E005_XI_seed42.rvp",
+        "classification": "historical_trained_model_preserved_in_current_bank"
+      },
+      {
+        "name": "BBYQ_E007_Ether_Vault_seed42.rvp",
+        "classification": "both_historical_models_preserved_in_current_banks"
+      },
+      {
+        "name": "BBYQ_E008_EtherConstellation_seed42.rvp",
+        "classification": "all_four_historical_banks_preserved"
+      },
+      {
+        "name": "BBYQ_E009_XI_cuarto_contiene_llave.rvp",
+        "classification": "all_original_bytes_preserved"
+      },
+      {
+        "name": "BBYQ_E009_XI_edificio_incluye_libro.rvp",
+        "classification": "alternate_E009_campaign_not_merged_into_active_E009_bank"
+      }
+    ],
+    "scope": "Exact archived payload identities plus code-derived learned-record retention and strict X08-to-X09 state preservation. Separate route/campaign tests must demonstrate operational access to newly installed campaigns."
+  }
+}

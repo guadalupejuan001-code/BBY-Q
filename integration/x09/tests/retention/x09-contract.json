@@ -1,0 +1,21 @@
+{
+  "format": "BBYQ-X09-Retention-Contract-1",
+  "allowed_additions": [
+    {
+      "name": "E009 alternate campaigns, persistent bank",
+      "start": "9180000000000000000",
+      "end_exclusive": "9180000000001000000",
+      "requires_empty_baseline": true,
+      "requires_nonempty_candidate": true
+    }
+  ],
+  "must_be_zero": [
+    {
+      "name": "E009 campaign scratch",
+      "start": "9180000000001000000",
+      "end_exclusive": "9180000000002000000"
+    }
+  ],
+  "allowed_serializer_counters": ["MXIM2"],
+  "expected_cells": []
+}
