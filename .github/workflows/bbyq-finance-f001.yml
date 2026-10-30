@@ -1,4 +1,4 @@
-name: BBY Q F001 economic knowledge native XI
+name: BBY Q F001 F002 economic knowledge native XI
 on:
   pull_request:
     paths: ['ai/training/finance/**', '.github/workflows/bbyq-finance-f001.yml']
@@ -18,11 +18,12 @@ jobs:
         with: {persist-credentials: false}
       - uses: actions/setup-node@v4
         with: {node-version: '22.16.0'}
-      - name: Validate and export educational corpus
+      - name: Validate and export educational corpora
         run: |
-          node --check ai/training/finance/curriculum.mjs
-          node --check ai/training/finance/f001.mjs
+          set -euo pipefail
+          for file in ai/training/finance/*.mjs; do node --check "$file"; done
           node ai/training/finance/f001.mjs export evidence/corpus
+          node ai/training/finance/train-f002.mjs export evidence/corpus-f002
       - uses: actions/checkout@v4
         with:
           repository: guadalupejuan001-code/REVERSE-PC
@@ -44,7 +45,7 @@ jobs:
           run-id: 40808605984
           github-token: ${{ github.token }}
           path: prior034
-      - name: Ingest 160 facts and examine native responses on disposable copies
+      - name: Reproduce F001 knowledge acquisition
         run: |
           set -euo pipefail
           capsule=$(find prior034 -type f -name composed.rxe -print -quit)
@@ -52,6 +53,10 @@ jobs:
           mkdir -p evidence/runtime
           cp deps/reverse/build/reverse_pc evidence/runtime/reverse_pc
           node ai/training/finance/f001.mjs train deps/reverse/build/reverse_pc "$capsule" ai/checkpoints/e034/composition-model.rvp.gz.b64 evidence/native 2>&1 | tee evidence/native-run.log
+      - name: Train F002 on 160 additional facts and test native XI dialogue
+        run: |
+          set -euo pipefail
+          node ai/training/finance/train-f002.mjs train deps/reverse/build/reverse_pc evidence evidence/finance-f002 2>&1 | tee evidence/f002-run.log
       - name: Retain original E025 and W4u execution regression
         run: |
           set -euo pipefail
