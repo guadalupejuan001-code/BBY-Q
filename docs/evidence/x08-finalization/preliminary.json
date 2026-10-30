@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "stage": "first reconstruction",
+  "declared_concepts": 480,
+  "persisted_concepts": 479,
+  "missing_key": "cambio final de hadan gula",
+  "model_sha256": "4f481bf62818c7f0afa3eab67311e64182164bb3442af5683f2577fdfa2cda0c",
+  "canonical_sha256": "6f205595fe2f0032f76991205101f6c9f15d04ef1d10af77d7d87e6d12b3aef9",
+  "cause": "Not isolated; no inference failure attributed to a particular runtime component",
+  "resolution": "Distinct output per build phase; complete curriculum retention is a publication gate; exact rebuild identity required",
+  "not_counted_as_success": true
+}

@@ -1,0 +1,36 @@
+{
+  "final_results": "results.json",
+  "retained_observations": [
+    {
+      "kind": "compiler",
+      "observed": "Demasiadas instrucciones RXE",
+      "resolution": "Two native XI roles on one shared state; original instruction budget retained."
+    },
+    {
+      "kind": "long_text",
+      "observed": "XI machine instruction-step budget exceeded on the long summary",
+      "resolution": "Erase only written output plus owned scratch; final long response passes."
+    },
+    {
+      "kind": "oracle",
+      "observed": "The negative search word inexistente appeared in two real taught requirements.",
+      "resolution": "Initial protocol and errata preserved; absent terms use a separate negative test."
+    },
+    {
+      "kind": "retention",
+      "observed": "Alternative key presupuesto de arkad [F003-B] did not equal its native lowercase key.",
+      "resolution": "Canonical alternative keys normalized; all 960 facts verified."
+    },
+    {
+      "kind": "capacity",
+      "observed": "Inverse Memory classical override budget exceeded before filling 4096 slots with the uncompressed book.",
+      "resolution": "Lossless shared-dictionary page codec; all 4096 short records fit with unchanged runtime."
+    },
+    {
+      "kind": "code_review",
+      "observed": "Lexical comparison treated accented bytes and digit suffixes as word boundaries.",
+      "resolution": "Whole UTF-8/alphanumeric tokens; four additional text cases pass."
+    }
+  ],
+  "scope_note": "These are earlier failures/findings; their runs are not reported as final successes."
+}

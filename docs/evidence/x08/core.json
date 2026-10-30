@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "turns": 45,
+  "checks": 1763,
+  "concepts_retained": 480,
+  "facts_retained": 960,
+  "original_pages_retained": 122,
+  "protocol_sha256": "b3cb54f39c64accea86f009e10a6170d47265469372bc9b9f332221f7e59432b",
+  "model_sha256": "6f205595fe2f0032f76991205101f6c9f15d04ef1d10af77d7d87e6d12b3aef9",
+  "front_sha256": "d564d1ba43a13d5eb5b21399969094d11a732ed3495888daae580376bb17e476",
+  "code_sha256": "b4e23efed1d5b2538e5d80b0bbbcb17aff4ed0fd7269519dca16ba5f40b645ba",
+  "excluded": [
+    "P13",
+    "P14"
+  ],
+  "scope": "In-scope deterministic native integration; no general-language or external-model benchmark claimed"
+}

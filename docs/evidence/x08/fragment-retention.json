@@ -1,0 +1,8 @@
+{
+  "pages": 122,
+  "fragments": 1171,
+  "bytes": 225418,
+  "exact_fragment_digests": true,
+  "normalized_book_sha256": "2cad1744cd765f5def76e6ca4dcc21d7d52a9da5300dcf68c242863a946154dc",
+  "representation": "Book text is stored once in compressed pages; original fragment spans apply to a decoded page by page_byte_offset. No fragment content is dropped."
+}

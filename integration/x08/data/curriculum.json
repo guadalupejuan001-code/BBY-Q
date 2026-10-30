@@ -1,0 +1,5010 @@
+{
+  "concepts": [
+    {
+      "key": "farmear dinero",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        0,
+        1
+      ],
+      "definition": "generar ingresos repetibles ofreciendo valor o asumiendo riesgos identificados",
+      "requirement": "medir ingresos costes tiempo y posibles perdidas"
+    },
+    {
+      "key": "poner dinero a trabajar",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        2,
+        3
+      ],
+      "definition": "asignar capital a una actividad con un resultado incierto",
+      "requirement": "comparar alternativas costes riesgos y plazo"
+    },
+    {
+      "key": "hacer caja",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        4,
+        5
+      ],
+      "definition": "recibir efectivo disponible mediante cobros",
+      "requirement": "distinguir cobros de beneficios contables"
+    },
+    {
+      "key": "monetizar reverse",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        6,
+        7
+      ],
+      "definition": "probar una oferta de pago alrededor de reverse",
+      "requirement": "identificar comprador utilidad precio y coste de entrega"
+    },
+    {
+      "key": "monetizar bby q",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        8,
+        9
+      ],
+      "definition": "probar una oferta de pago basada en capacidades demostradas de bby q",
+      "requirement": "validar utilidad costes y capacidad real antes de vender"
+    },
+    {
+      "key": "monetizar un renderizador",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        10,
+        11
+      ],
+      "definition": "cobrar por licencias servicios o productos que utilicen un renderizador",
+      "requirement": "demostrar calidad compatibilidad y coste de soporte"
+    },
+    {
+      "key": "vender una apk",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        12,
+        13
+      ],
+      "definition": "ofrecer una aplicacion a cambio de un precio declarado",
+      "requirement": "entregar una funcion comprobada y explicar sus condiciones"
+    },
+    {
+      "key": "escalar un negocio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        14,
+        15
+      ],
+      "definition": "aumentar operaciones conservando calidad y viabilidad economica",
+      "requirement": "medir capacidad demanda margen y necesidad de efectivo"
+    },
+    {
+      "key": "ingreso",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        16,
+        17
+      ],
+      "definition": "importe obtenido por una actividad antes de restar sus costes",
+      "requirement": "indicar concepto periodo moneda y criterio de registro"
+    },
+    {
+      "key": "beneficio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        18,
+        19
+      ],
+      "definition": "diferencia entre ingresos y gastos del periodo definido",
+      "requirement": "incluir todos los gastos relevantes sin confundirlo con efectivo"
+    },
+    {
+      "key": "beneficio bruto",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        20,
+        21
+      ],
+      "definition": "ingresos por ventas menos el coste de lo vendido",
+      "requirement": "identificar el coste de los productos o servicios vendidos"
+    },
+    {
+      "key": "beneficio neto",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        22,
+        23
+      ],
+      "definition": "resultado restante despues de los gastos e impuestos aplicables",
+      "requirement": "datos completos del periodo y criterio contable consistente"
+    },
+    {
+      "key": "flujo de caja",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        24,
+        25
+      ],
+      "definition": "entradas y salidas efectivas de dinero durante un periodo",
+      "requirement": "registrar fechas de cobro y pago"
+    },
+    {
+      "key": "liquidez",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        26,
+        27
+      ],
+      "definition": "capacidad de disponer de medios para atender pagos",
+      "requirement": "comparar efectivo disponible con obligaciones y plazos"
+    },
+    {
+      "key": "capital",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        28,
+        29
+      ],
+      "definition": "recursos destinados a financiar una actividad o inversion",
+      "requirement": "registrar origen uso y riesgo de perdida"
+    },
+    {
+      "key": "patrimonio neto",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        30,
+        31
+      ],
+      "definition": "valor de activos menos obligaciones en una fecha",
+      "requirement": "valorar activos y deudas con el mismo criterio temporal"
+    },
+    {
+      "key": "activo",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        32,
+        33
+      ],
+      "definition": "recurso controlado del que se esperan beneficios economicos",
+      "requirement": "describir valor disponibilidad y riesgos"
+    },
+    {
+      "key": "pasivo",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        34,
+        35
+      ],
+      "definition": "obligacion pendiente de cumplimiento frente a otra parte",
+      "requirement": "conocer importe vencimiento y condiciones"
+    },
+    {
+      "key": "presupuesto",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        36,
+        37
+      ],
+      "definition": "plan de ingresos gastos y asignaciones para un periodo",
+      "requirement": "comparar lo previsto con lo realizado"
+    },
+    {
+      "key": "ahorro",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        38,
+        39
+      ],
+      "definition": "parte de los recursos que se reserva para un uso posterior",
+      "requirement": "definir objetivo plazo y disponibilidad necesaria"
+    },
+    {
+      "key": "reserva de emergencia",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        40,
+        41
+      ],
+      "definition": "recursos disponibles para imprevistos definidos por su titular",
+      "requirement": "dimensionar necesidades y mantener acceso adecuado"
+    },
+    {
+      "key": "coste fijo",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        42,
+        43
+      ],
+      "definition": "coste que permanece estable dentro de un rango de actividad",
+      "requirement": "definir periodo y rango relevante"
+    },
+    {
+      "key": "coste variable",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        44,
+        45
+      ],
+      "definition": "coste que cambia con el nivel de actividad",
+      "requirement": "medir su relacion con cada unidad o servicio"
+    },
+    {
+      "key": "coste total",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        46,
+        47
+      ],
+      "definition": "suma de los costes incluidos en un alcance definido",
+      "requirement": "evitar omisiones y doble conteo"
+    },
+    {
+      "key": "coste de oportunidad",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        48,
+        49
+      ],
+      "definition": "valor de la mejor alternativa descartada al elegir",
+      "requirement": "comparar alternativas realmente disponibles"
+    },
+    {
+      "key": "coste hundido",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        50,
+        51
+      ],
+      "definition": "coste ya incurrido que no puede recuperarse con la decision actual",
+      "requirement": "separar gastos pasados de costes y beneficios futuros"
+    },
+    {
+      "key": "margen de contribucion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        52,
+        53
+      ],
+      "definition": "precio por unidad menos coste variable por unidad",
+      "requirement": "usar importes y unidades comparables"
+    },
+    {
+      "key": "margen porcentual",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        54,
+        55
+      ],
+      "definition": "beneficio especificado dividido entre ingresos comparables",
+      "requirement": "aclarar si el beneficio considerado es bruto o neto"
+    },
+    {
+      "key": "recargo sobre coste",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        56,
+        57
+      ],
+      "definition": "incremento de precio expresado respecto al coste base",
+      "requirement": "distinguir su denominador del margen sobre ventas"
+    },
+    {
+      "key": "punto de equilibrio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        58,
+        59
+      ],
+      "definition": "volumen en el que ingresos y costes modelados se igualan",
+      "requirement": "costes fijos precio y coste variable por unidad"
+    },
+    {
+      "key": "precio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        60,
+        61
+      ],
+      "definition": "importe solicitado a cambio de un producto o servicio",
+      "requirement": "explicar moneda cargos condiciones y unidad vendida"
+    },
+    {
+      "key": "descuento",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        62,
+        63
+      ],
+      "definition": "reduccion de un precio de referencia real",
+      "requirement": "calcular su efecto sobre ingresos y margen"
+    },
+    {
+      "key": "comision",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        64,
+        65
+      ],
+      "definition": "importe cobrado por una intermediacion o servicio",
+      "requirement": "conocer base porcentaje minimo y momento de cobro"
+    },
+    {
+      "key": "reembolso",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        66,
+        67
+      ],
+      "definition": "devolucion de un importe segun las condiciones aplicables",
+      "requirement": "registrar efecto en caja ingresos y costes"
+    },
+    {
+      "key": "rentabilidad",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        68,
+        69
+      ],
+      "definition": "relacion entre un resultado economico y los recursos considerados",
+      "requirement": "definir formula periodo costes y riesgo"
+    },
+    {
+      "key": "retorno esperado",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        70,
+        71
+      ],
+      "definition": "promedio ponderado de resultados posibles bajo unas probabilidades supuestas",
+      "requirement": "explicitar escenarios probabilidades y perdida posible"
+    },
+    {
+      "key": "riesgo",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        72,
+        73
+      ],
+      "definition": "posibilidad de resultados adversos o diferentes de los previstos",
+      "requirement": "identificar exposicion incertidumbre y capacidad de asumir perdidas"
+    },
+    {
+      "key": "diversificacion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        74,
+        75
+      ],
+      "definition": "distribucion de exposiciones entre fuentes de riesgo distintas",
+      "requirement": "evaluar concentraciones y dependencias entre posiciones"
+    },
+    {
+      "key": "volatilidad",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        76,
+        77
+      ],
+      "definition": "medida de variacion de un precio o rendimiento",
+      "requirement": "especificar muestra horizonte y metodo de calculo"
+    },
+    {
+      "key": "perdida maxima observada",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        78,
+        79
+      ],
+      "definition": "mayor perdida medida dentro de una muestra definida",
+      "requirement": "evitar presentarla como limite garantizado de perdidas futuras"
+    },
+    {
+      "key": "apalancamiento",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        80,
+        81
+      ],
+      "definition": "uso de financiacion o exposicion amplificada respecto al capital propio",
+      "requirement": "comprender obligaciones garantias y amplificacion de perdidas"
+    },
+    {
+      "key": "interes simple",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        82,
+        83
+      ],
+      "definition": "interes calculado sobre una base que no capitaliza intereses",
+      "requirement": "conocer principal tasa plazo y convencion temporal"
+    },
+    {
+      "key": "interes compuesto",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        84,
+        85
+      ],
+      "definition": "acumulacion de intereses sobre una base que incorpora intereses previos",
+      "requirement": "conocer tasa frecuencia aportaciones costes y plazo"
+    },
+    {
+      "key": "deuda",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        86,
+        87
+      ],
+      "definition": "obligacion de devolver recursos bajo condiciones acordadas",
+      "requirement": "registrar saldo tasa pagos y vencimiento"
+    },
+    {
+      "key": "inflacion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        88,
+        89
+      ],
+      "definition": "aumento del nivel general de precios medido para un periodo",
+      "requirement": "distinguir cambios nominales de poder adquisitivo"
+    },
+    {
+      "key": "rendimiento real",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        90,
+        91
+      ],
+      "definition": "rendimiento ajustado por el cambio del nivel de precios",
+      "requirement": "usar periodos comparables y considerar costes e impuestos"
+    },
+    {
+      "key": "accion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        92,
+        93
+      ],
+      "definition": "participacion en la propiedad de una empresa",
+      "requirement": "evaluar negocio derechos precio y riesgo"
+    },
+    {
+      "key": "bono",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        94,
+        95
+      ],
+      "definition": "instrumento de deuda con condiciones contractuales definidas",
+      "requirement": "evaluar emisor vencimiento intereses y riesgo de impago"
+    },
+    {
+      "key": "fondo de inversion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        96,
+        97
+      ],
+      "definition": "vehiculo que agrupa recursos para invertir segun una politica",
+      "requirement": "revisar composicion costes liquidez y riesgos"
+    },
+    {
+      "key": "criptomoneda",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        98,
+        99
+      ],
+      "definition": "activo digital cuyo funcionamiento depende de un protocolo especifico",
+      "requirement": "verificar custodia liquidez riesgos y utilidad sin prometer beneficios"
+    },
+    {
+      "key": "orden de mercado",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        100,
+        101
+      ],
+      "definition": "instruccion de operar al precio disponible sin garantizar un precio concreto",
+      "requirement": "autorizacion vigente y comprension del posible deslizamiento"
+    },
+    {
+      "key": "orden limitada",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        102,
+        103
+      ],
+      "definition": "instruccion de operar solo dentro de un precio limite indicado",
+      "requirement": "aceptar que puede no ejecutarse"
+    },
+    {
+      "key": "deslizamiento",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        104,
+        105
+      ],
+      "definition": "diferencia entre un precio de referencia y el precio de ejecucion",
+      "requirement": "medir liquidez momento y condiciones de la operacion"
+    },
+    {
+      "key": "simulacion financiera",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        106,
+        107
+      ],
+      "definition": "evaluacion de escenarios con supuestos sin mover dinero real",
+      "requirement": "separar resultados simulados de resultados ejecutados"
+    },
+    {
+      "key": "prueba historica",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        108,
+        109
+      ],
+      "definition": "evaluacion de una estrategia sobre datos anteriores",
+      "requirement": "evitar informacion futura y considerar costes y sesgos"
+    },
+    {
+      "key": "sobreajuste",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        110,
+        111
+      ],
+      "definition": "adaptacion excesiva a ejemplos que no representa bien casos nuevos",
+      "requirement": "reservar pruebas separadas y revisar supuestos"
+    },
+    {
+      "key": "prediccion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        112,
+        113
+      ],
+      "definition": "estimacion de un resultado futuro condicionada por datos y un modelo",
+      "requirement": "expresar horizonte incertidumbre fecha y condiciones de invalidez"
+    },
+    {
+      "key": "hipotesis",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        114,
+        115
+      ],
+      "definition": "explicacion o propuesta que necesita contraste",
+      "requirement": "definir evidencia que la apoye o la contradiga"
+    },
+    {
+      "key": "evidencia",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        116,
+        117
+      ],
+      "definition": "informacion verificable relevante para una afirmacion",
+      "requirement": "conservar fuente fecha alcance y limitaciones"
+    },
+    {
+      "key": "valor para el cliente",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        118,
+        119
+      ],
+      "definition": "utilidad percibida de una oferta en un contexto concreto",
+      "requirement": "entender el problema y comprobar que la solucion ayuda"
+    },
+    {
+      "key": "propuesta de valor",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        120,
+        121
+      ],
+      "definition": "explicacion de a quien sirve una oferta y que problema resuelve",
+      "requirement": "diferenciar beneficios verificables de promesas"
+    },
+    {
+      "key": "modelo de negocio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        122,
+        123
+      ],
+      "definition": "descripcion de como una actividad entrega valor y obtiene ingresos",
+      "requirement": "identificar clientes oferta distribucion costes y cobros"
+    },
+    {
+      "key": "servicio",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        124,
+        125
+      ],
+      "definition": "actividad realizada para atender una necesidad acordada",
+      "requirement": "definir alcance entrega precio y responsabilidades"
+    },
+    {
+      "key": "licencia",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        126,
+        127
+      ],
+      "definition": "permiso de uso bajo condiciones definidas",
+      "requirement": "establecer derechos limites duracion y contraprestacion"
+    },
+    {
+      "key": "suscripcion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        128,
+        129
+      ],
+      "definition": "acuerdo de acceso o servicio con pagos periodicos definidos",
+      "requirement": "explicar precio renovacion cancelacion y entrega"
+    },
+    {
+      "key": "publicidad",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        130,
+        131
+      ],
+      "definition": "comunicacion pagada para presentar una oferta a una audiencia",
+      "requirement": "medir coste alcance resultados y claridad del mensaje"
+    },
+    {
+      "key": "conversion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        132,
+        133
+      ],
+      "definition": "accion objetivo realizada respecto a oportunidades observadas",
+      "requirement": "definir evento denominador y periodo"
+    },
+    {
+      "key": "coste de adquisicion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        134,
+        135
+      ],
+      "definition": "coste atribuible a obtener nuevos clientes en un periodo",
+      "requirement": "delimitar gastos clientes nuevos y metodo de atribucion"
+    },
+    {
+      "key": "valor de vida del cliente",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        136,
+        137
+      ],
+      "definition": "estimacion del valor economico de una relacion comercial",
+      "requirement": "explicitar horizonte costes retencion y supuestos"
+    },
+    {
+      "key": "retencion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        138,
+        139
+      ],
+      "definition": "continuidad de uso o relacion dentro de una cohorte definida",
+      "requirement": "medir periodos comparables sin confundir permanencia con satisfaccion"
+    },
+    {
+      "key": "abandono",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        140,
+        141
+      ],
+      "definition": "salida o inactividad segun una definicion y un periodo",
+      "requirement": "definir cohorte y criterio antes de comparar"
+    },
+    {
+      "key": "persuasion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        142,
+        143
+      ],
+      "definition": "comunicacion dirigida a influir en una decision",
+      "requirement": "distinguir explicacion verificable de engaño o coercion"
+    },
+    {
+      "key": "sesgo de anclaje",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        144,
+        145
+      ],
+      "definition": "influencia de una referencia inicial sobre una estimacion posterior",
+      "requirement": "comparar referencias pertinentes y costes completos"
+    },
+    {
+      "key": "escasez real",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        146,
+        147
+      ],
+      "definition": "disponibilidad limitada que puede verificarse",
+      "requirement": "indicar cantidades o condiciones verdaderas"
+    },
+    {
+      "key": "experimento comercial",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        148,
+        149
+      ],
+      "definition": "comparacion planificada para evaluar una hipotesis de negocio",
+      "requirement": "definir metrica muestra costes y criterio de decision"
+    },
+    {
+      "key": "validacion de demanda",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        150,
+        151
+      ],
+      "definition": "obtencion de evidencia de interes y disposicion a pagar",
+      "requirement": "distinguir opiniones reservas pagos y compras repetidas"
+    },
+    {
+      "key": "automatizacion",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        152,
+        153
+      ],
+      "definition": "ejecucion repetible de pasos mediante un sistema",
+      "requirement": "verificar errores costes permisos y posibilidad de detenerlo"
+    },
+    {
+      "key": "autorizacion financiera",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        154,
+        155
+      ],
+      "definition": "permiso explicito para una operacion delimitada",
+      "requirement": "identificar importe destino condiciones y vigencia"
+    },
+    {
+      "key": "modo de aprendizaje",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        156,
+        157
+      ],
+      "definition": "estado dedicado a incorporar y comprobar conocimiento",
+      "requirement": "mantener separadas las practicas y las operaciones reales"
+    },
+    {
+      "key": "estar listo",
+      "source": "F001-operador",
+      "pages": "-",
+      "origin": 1,
+      "original_indices": [
+        158,
+        159
+      ],
+      "definition": "haber superado criterios definidos para una tarea concreta",
+      "requirement": "mostrar pruebas pertinentes sin atribuir capacidades no verificadas"
+    },
+    {
+      "key": "economia unitaria",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        160,
+        161
+      ],
+      "definition": "analisis de ingresos y costes atribuibles a una unidad de negocio",
+      "requirement": "definir la unidad y separar costes variables de costes fijos"
+    },
+    {
+      "key": "margen incremental",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        162,
+        163
+      ],
+      "definition": "resultado adicional causado por una venta o decision adicional",
+      "requirement": "comparar ingresos y costes que realmente cambian"
+    },
+    {
+      "key": "reinversion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        164,
+        165
+      ],
+      "definition": "uso de recursos obtenidos para financiar nuevas actividades",
+      "requirement": "comparar rendimiento esperado liquidez y necesidades pendientes"
+    },
+    {
+      "key": "capital de trabajo",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        166,
+        167
+      ],
+      "definition": "diferencia entre activos corrientes y pasivos corrientes",
+      "requirement": "usar una misma fecha y examinar cuando se cobra y se paga"
+    },
+    {
+      "key": "consumo neto de caja",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        168,
+        169
+      ],
+      "definition": "salida neta de efectivo durante un periodo definido",
+      "requirement": "medir cobros y pagos reales del mismo periodo"
+    },
+    {
+      "key": "autonomia de caja",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        170,
+        171
+      ],
+      "definition": "tiempo estimado que cubre el efectivo bajo un consumo neto supuesto",
+      "requirement": "declarar el supuesto de consumo y los cambios previsibles"
+    },
+    {
+      "key": "conciliacion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        172,
+        173
+      ],
+      "definition": "comparacion de registros para identificar diferencias y duplicados",
+      "requirement": "usar identificadores fechas importes y fuentes originales"
+    },
+    {
+      "key": "cuenta por cobrar",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        174,
+        175
+      ],
+      "definition": "importe pendiente de cobro a un cliente",
+      "requirement": "verificar vencimiento posibilidad de cobro y soporte documental"
+    },
+    {
+      "key": "cuenta por pagar",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        176,
+        177
+      ],
+      "definition": "importe pendiente de pago a un proveedor",
+      "requirement": "registrar vencimiento moneda y condiciones"
+    },
+    {
+      "key": "inventario",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        178,
+        179
+      ],
+      "definition": "bienes mantenidos para venta o uso en una actividad",
+      "requirement": "medir unidades coste deterioro y tiempo de reposicion"
+    },
+    {
+      "key": "rotacion de inventario",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        180,
+        181
+      ],
+      "definition": "medida de renovacion del inventario durante un periodo",
+      "requirement": "declarar formula periodo y criterio de valoracion"
+    },
+    {
+      "key": "reserva para impuestos",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        182,
+        183
+      ],
+      "definition": "dinero apartado para obligaciones tributarias estimadas",
+      "requirement": "verificar reglas vigentes y situacion aplicable antes de calcular"
+    },
+    {
+      "key": "moneda de referencia",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        184,
+        185
+      ],
+      "definition": "unidad monetaria elegida para presentar una comparacion",
+      "requirement": "declarar conversiones fuente fecha y costes de cambio"
+    },
+    {
+      "key": "tipo de cambio",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        186,
+        187
+      ],
+      "definition": "precio de una moneda expresado en otra",
+      "requirement": "indicar par direccion fecha y cargos aplicables"
+    },
+    {
+      "key": "resultado realizado",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        188,
+        189
+      ],
+      "definition": "ganancia o perdida reconocida tras cerrar una operacion segun el criterio usado",
+      "requirement": "distinguir efectivo recibido coste comisiones e impuestos"
+    },
+    {
+      "key": "resultado no realizado",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        190,
+        191
+      ],
+      "definition": "cambio de valor de una posicion que sigue abierta",
+      "requirement": "usar una valoracion fechada sin confundirla con dinero cobrado"
+    },
+    {
+      "key": "rentabilidad anualizada",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        192,
+        193
+      ],
+      "definition": "expresion anual equivalente de un rendimiento observado",
+      "requirement": "especificar plazo metodo y no presentarla como pronostico"
+    },
+    {
+      "key": "crecimiento compuesto",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        194,
+        195
+      ],
+      "definition": "acumulacion multiplicativa de cambios sucesivos sobre una base",
+      "requirement": "usar tasas y periodos consistentes sin garantizar su continuidad"
+    },
+    {
+      "key": "promedio ponderado",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        196,
+        197
+      ],
+      "definition": "media calculada asignando un peso a cada observacion",
+      "requirement": "normalizar pesos e identificar que representa cada uno"
+    },
+    {
+      "key": "valor esperado",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        198,
+        199
+      ],
+      "definition": "suma de resultados multiplicados por sus probabilidades supuestas",
+      "requirement": "documentar probabilidades perdidas posibles y limitaciones"
+    },
+    {
+      "key": "concentracion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        200,
+        201
+      ],
+      "definition": "dependencia elevada de una posicion cliente o fuente de ingresos",
+      "requirement": "medir exposiciones comunes y escenarios adversos"
+    },
+    {
+      "key": "riesgo de liquidez",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        202,
+        203
+      ],
+      "definition": "posibilidad de no convertir una posicion en efectivo en condiciones aceptables",
+      "requirement": "evaluar plazos volumen y costes de salida"
+    },
+    {
+      "key": "riesgo de contraparte",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        204,
+        205
+      ],
+      "definition": "posibilidad de que otra parte incumpla sus obligaciones",
+      "requirement": "verificar compromisos solvencia y condiciones de recuperacion"
+    },
+    {
+      "key": "riesgo operativo",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        206,
+        207
+      ],
+      "definition": "posibilidad de perdidas por fallos de procesos personas o sistemas",
+      "requirement": "registrar incidentes controles y formas de detener operaciones"
+    },
+    {
+      "key": "sesgo de supervivencia",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        208,
+        209
+      ],
+      "definition": "error de analizar solo casos que permanecieron o tuvieron exito",
+      "requirement": "incluir fracasos salidas y datos ausentes relevantes"
+    },
+    {
+      "key": "fuga de informacion futura",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        210,
+        211
+      ],
+      "definition": "uso en una prueba de datos que no estaban disponibles al decidir",
+      "requirement": "ordenar datos por disponibilidad real y respetar cortes temporales"
+    },
+    {
+      "key": "prueba fuera de muestra",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        212,
+        213
+      ],
+      "definition": "evaluacion con datos no utilizados para ajustar el sistema",
+      "requirement": "separar ajuste seleccion y examen final"
+    },
+    {
+      "key": "prueba progresiva temporal",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        214,
+        215
+      ],
+      "definition": "evaluacion que ajusta con pasado y prueba en periodos posteriores",
+      "requirement": "fijar ventanas y conservar resultados sin seleccionar solo aciertos"
+    },
+    {
+      "key": "registro de predicciones",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        216,
+        217
+      ],
+      "definition": "archivo fechado de pronosticos emitidos antes de conocer resultados",
+      "requirement": "guardar horizonte valor incertidumbre y criterio de evaluacion"
+    },
+    {
+      "key": "calibracion probabilistica",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        218,
+        219
+      ],
+      "definition": "correspondencia entre probabilidades declaradas y frecuencias observadas",
+      "requirement": "usar suficientes casos comparables y evitar evaluar solo aciertos"
+    },
+    {
+      "key": "tasa de acierto",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        220,
+        221
+      ],
+      "definition": "fraccion de resultados clasificados como correctos bajo una regla",
+      "requirement": "definir acierto muestra y periodo sin confundirlo con beneficio"
+    },
+    {
+      "key": "error absoluto",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        222,
+        223
+      ],
+      "definition": "magnitud de la diferencia entre una estimacion y su resultado",
+      "requirement": "usar unidades comparables y conservar tambien los errores grandes"
+    },
+    {
+      "key": "comparacion de referencia",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        224,
+        225
+      ],
+      "definition": "contraste de un sistema con una alternativa claramente definida",
+      "requirement": "usar los mismos datos costes horizontes y reglas de evaluacion"
+    },
+    {
+      "key": "simulacion en papel",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        226,
+        227
+      ],
+      "definition": "registro de operaciones hipoteticas sin enviar ordenes reales",
+      "requirement": "incluir costes deslizamiento y restricciones de ejecucion"
+    },
+    {
+      "key": "regla de parada",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        228,
+        229
+      ],
+      "definition": "condicion predefinida para detener un experimento",
+      "requirement": "definir umbral medicion y responsable sin modificarlo tras perder"
+    },
+    {
+      "key": "idempotencia",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        230,
+        231
+      ],
+      "definition": "propiedad de no duplicar un efecto al repetir una misma solicitud",
+      "requirement": "identificar cada operacion y comprobar su resultado previo"
+    },
+    {
+      "key": "limite de exposicion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        232,
+        233
+      ],
+      "definition": "restriccion sobre los recursos comprometidos en una actividad",
+      "requirement": "definir importe alcance vigencia y quien puede modificarlo"
+    },
+    {
+      "key": "registro de autorizacion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        234,
+        235
+      ],
+      "definition": "evidencia de permiso para una accion delimitada",
+      "requirement": "conservar alcance importe destino fecha y posibilidad de revocacion"
+    },
+    {
+      "key": "presupuesto experimental",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        236,
+        237
+      ],
+      "definition": "cantidad y recursos destinados a probar una hipotesis",
+      "requirement": "separar el ensayo de obligaciones y medir coste total"
+    },
+    {
+      "key": "resultado verificable",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        238,
+        239
+      ],
+      "definition": "afirmacion respaldada por registros que pueden revisarse",
+      "requirement": "mostrar datos metodo fecha y condiciones de la medicion"
+    },
+    {
+      "key": "cliente objetivo",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        240,
+        241
+      ],
+      "definition": "grupo concreto al que se dirige una oferta",
+      "requirement": "identificar una necesidad y comprobar disposicion a pagar"
+    },
+    {
+      "key": "problema del cliente",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        242,
+        243
+      ],
+      "definition": "dificultad o necesidad que una oferta pretende resolver",
+      "requirement": "contrastar su importancia con personas del grupo elegido"
+    },
+    {
+      "key": "segmentacion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        244,
+        245
+      ],
+      "definition": "division de un mercado en grupos relevantes para una oferta",
+      "requirement": "usar criterios pertinentes y datos obtenidos con permiso"
+    },
+    {
+      "key": "canal de distribucion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        246,
+        247
+      ],
+      "definition": "medio por el que una oferta llega a sus compradores",
+      "requirement": "medir alcance costes control y conversion"
+    },
+    {
+      "key": "canal de adquisicion",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        248,
+        249
+      ],
+      "definition": "medio por el que se consiguen posibles clientes",
+      "requirement": "medir coste calidad y resultados atribuibles"
+    },
+    {
+      "key": "embudo comercial",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        250,
+        251
+      ],
+      "definition": "secuencia definida desde el contacto hasta una accion comercial",
+      "requirement": "contar pasos abandonos y conversiones con el mismo criterio"
+    },
+    {
+      "key": "oferta piloto",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        252,
+        253
+      ],
+      "definition": "version limitada de una propuesta para probar su utilidad comercial",
+      "requirement": "definir entregable precio condiciones y evidencia buscada"
+    },
+    {
+      "key": "demostracion de producto",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        254,
+        255
+      ],
+      "definition": "presentacion comprobable de una funcion del producto",
+      "requirement": "mostrar condiciones reales y distinguir prototipo de version disponible"
+    },
+    {
+      "key": "venta de servicios",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        256,
+        257
+      ],
+      "definition": "obtencion de ingresos por trabajo o resultados acordados",
+      "requirement": "estimar alcance horas costes y criterios de aceptacion"
+    },
+    {
+      "key": "licencia de software",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        258,
+        259
+      ],
+      "definition": "permiso de uso de un programa bajo condiciones definidas",
+      "requirement": "verificar derechos alcance distribucion soporte y precio"
+    },
+    {
+      "key": "soporte de software",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        260,
+        261
+      ],
+      "definition": "atencion de incidencias y dudas sobre un programa",
+      "requirement": "definir cobertura horarios coste y responsabilidades"
+    },
+    {
+      "key": "coste de mantenimiento",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        262,
+        263
+      ],
+      "definition": "recursos necesarios para conservar una funcion o servicio",
+      "requirement": "incluir actualizaciones soporte infraestructura y pruebas"
+    },
+    {
+      "key": "ingreso recurrente",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        264,
+        265
+      ],
+      "definition": "ingreso que se repite bajo una relacion o mecanismo definido",
+      "requirement": "medir continuidad cancelaciones costes y cumplimiento"
+    },
+    {
+      "key": "venta adicional",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        266,
+        267
+      ],
+      "definition": "oferta de una mejora o ampliacion al cliente",
+      "requirement": "mostrar utilidad precio y opcion real de rechazarla"
+    },
+    {
+      "key": "venta complementaria",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        268,
+        269
+      ],
+      "definition": "oferta de otro producto relacionado con una compra",
+      "requirement": "comprobar pertinencia y comunicar el coste total"
+    },
+    {
+      "key": "precio basado en valor",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        270,
+        271
+      ],
+      "definition": "precio orientado por la utilidad percibida de la oferta",
+      "requirement": "contrastar disposicion a pagar alternativas y costes"
+    },
+    {
+      "key": "precio basado en costes",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        272,
+        273
+      ],
+      "definition": "precio construido desde costes y un incremento definido",
+      "requirement": "comprobar demanda y distinguir margen de recargo"
+    },
+    {
+      "key": "prueba de precios",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        274,
+        275
+      ],
+      "definition": "experimento para comparar respuestas a precios definidos",
+      "requirement": "mantener condiciones comparables y registrar margen no solo ventas"
+    },
+    {
+      "key": "sensibilidad al precio",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        276,
+        277
+      ],
+      "definition": "grado en que cambia una respuesta ante cambios de precio",
+      "requirement": "definir contexto medida y alternativas disponibles"
+    },
+    {
+      "key": "cohorte de clientes",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        278,
+        279
+      ],
+      "definition": "grupo que comparte un criterio de entrada o caracteristica temporal",
+      "requirement": "comparar grupos con definiciones y periodos consistentes"
+    },
+    {
+      "key": "beneficio por hora",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        280,
+        281
+      ],
+      "definition": "resultado economico dividido entre horas consideradas",
+      "requirement": "incluir trabajo de soporte preparacion y mantenimiento"
+    },
+    {
+      "key": "capacidad de entrega",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        282,
+        283
+      ],
+      "definition": "volumen que puede atenderse con recursos y calidad definidos",
+      "requirement": "medir tiempo errores cuellos de botella y coste adicional"
+    },
+    {
+      "key": "cuello de botella",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        284,
+        285
+      ],
+      "definition": "recurso o etapa que restringe el flujo del proceso",
+      "requirement": "medir capacidad y comprobar que la restriccion es real"
+    },
+    {
+      "key": "producto minimo comprobable",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        286,
+        287
+      ],
+      "definition": "version acotada que permite demostrar una utilidad concreta",
+      "requirement": "elegir una funcion verificable y criterios de aceptacion"
+    },
+    {
+      "key": "prueba de rendimiento",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        288,
+        289
+      ],
+      "definition": "medicion del comportamiento de un sistema bajo condiciones definidas",
+      "requirement": "registrar dispositivo carga version metodo y repeticiones"
+    },
+    {
+      "key": "ventaja tecnica demostrada",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        290,
+        291
+      ],
+      "definition": "mejora observada frente a una referencia comparable",
+      "requirement": "comparar la misma tarea y publicar tambien limitaciones"
+    },
+    {
+      "key": "monetizar xi",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        292,
+        293
+      ],
+      "definition": "probar ingresos por herramientas servicios o licencias basados en xi",
+      "requirement": "demostrar utilidad estabilidad derechos y coste de soporte"
+    },
+    {
+      "key": "monetizar ether",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        294,
+        295
+      ],
+      "definition": "probar una oferta basada en funciones verificadas de ether",
+      "requirement": "medir beneficio para un comprador sin prometer recursos ilimitados"
+    },
+    {
+      "key": "monetizar laplace",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        296,
+        297
+      ],
+      "definition": "evaluar una oferta de analisis basada en resultados comprobables de laplace",
+      "requirement": "separar predicciones simulaciones y operaciones sin garantizar ganancias"
+    },
+    {
+      "key": "objetivo economico de bby q",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        298,
+        299
+      ],
+      "definition": "aprender a explicar evaluar y posteriormente asistir en decisiones sobre dinero",
+      "requirement": "superar pruebas separadas antes de ampliar permisos"
+    },
+    {
+      "key": "papel de w4u",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        300,
+        301
+      ],
+      "definition": "coordinar y verificar tareas dentro de la arquitectura definida por el operador",
+      "requirement": "respetar permisos y distinguir tareas propuestas de tareas ejecutadas"
+    },
+    {
+      "key": "papel de qdu",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        302,
+        303
+      ],
+      "definition": "modulo de programacion subordinado a bby q y coordinado por w4u",
+      "requirement": "probar codigo y entregar evidencia sin convertirse en otra ia principal"
+    },
+    {
+      "key": "prediccion a quince minutos",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        304,
+        305
+      ],
+      "definition": "estimacion cuyo horizonte termina quince minutos despues del instante definido",
+      "requirement": "guardar hora inicial fuente resultado y errores antes de recalibrar"
+    },
+    {
+      "key": "validar laplace",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        306,
+        307
+      ],
+      "definition": "comparar predicciones previas de laplace con resultados posteriores",
+      "requirement": "conservar fallos y aciertos fuera de datos usados para ajustarlo"
+    },
+    {
+      "key": "farmear mi tecnologia",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        308,
+        309
+      ],
+      "definition": "buscar ingresos repetibles a partir de productos o servicios propios",
+      "requirement": "elegir una funcion demostrada un comprador y costes verificables"
+    },
+    {
+      "key": "mas datos de entrenamiento",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        310,
+        311
+      ],
+      "definition": "ampliacion del material disponible para enseñar al modelo",
+      "requirement": "distinguir ejemplos preparados ejemplos consumidos y pruebas superadas"
+    },
+    {
+      "key": "conocimiento incorporado",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        312,
+        313
+      ],
+      "definition": "informacion que el modelo puede recuperar tras una adquisicion comprobada",
+      "requirement": "probar consulta retencion y ausencia de cambios no deseados"
+    },
+    {
+      "key": "capacidad conversacional",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        314,
+        315
+      ],
+      "definition": "habilidad de interpretar y responder dentro de un conjunto de situaciones",
+      "requirement": "probar variantes contexto correcciones y casos no enseñados"
+    },
+    {
+      "key": "precio actual",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        316,
+        317
+      ],
+      "definition": "cotizacion correspondiente a un momento y una fuente identificados",
+      "requirement": "consultar una fuente vigente y no inventar datos desde el entrenamiento"
+    },
+    {
+      "key": "permiso para aprender",
+      "source": "F002-operador",
+      "pages": "-",
+      "origin": 2,
+      "original_indices": [
+        318,
+        319
+      ],
+      "definition": "autorizacion para incorporar o comprobar conocimiento",
+      "requirement": "no confundirlo con permiso para gastar transferir o invertir"
+    },
+    {
+      "key": "libro de babilonia",
+      "source": "clason-babylon-en",
+      "pages": "20-29",
+      "origin": 3,
+      "original_indices": [
+        320,
+        321
+      ],
+      "definition": "una coleccion de parabolas financieras de george s clason",
+      "requirement": "distinguir lecciones narrativas de datos actuales y garantias"
+    },
+    {
+      "key": "arkad",
+      "source": "clason-babylon-en",
+      "pages": "20-29",
+      "origin": 3,
+      "original_indices": [
+        322,
+        323
+      ],
+      "definition": "el personaje que explica como aprendio a conservar y emplear sus ingresos",
+      "requirement": "estudiar sus decisiones y errores sin prometer repetir su fortuna"
+    },
+    {
+      "key": "bansir y kobbi",
+      "source": "clason-babylon-en",
+      "pages": "14-19",
+      "origin": 3,
+      "original_indices": [
+        324,
+        325
+      ],
+      "definition": "personajes que buscan aprender por que su trabajo no les deja riqueza",
+      "requirement": "distinguir ganar dinero de conservar una parte de lo ganado"
+    },
+    {
+      "key": "algamish",
+      "source": "clason-babylon-en",
+      "pages": "21-28",
+      "origin": 3,
+      "original_indices": [
+        326,
+        327
+      ],
+      "definition": "el mentor que ensena a arkad a conservar parte de sus ingresos",
+      "requirement": "aplicar ahorro y criterio al elegir donde poner el capital"
+    },
+    {
+      "key": "pagarte primero",
+      "source": "clason-babylon-en",
+      "pages": "22-29",
+      "origin": 3,
+      "original_indices": [
+        328,
+        329
+      ],
+      "definition": "reservar para tu futuro una parte de lo que ganas segun el libro",
+      "requirement": "separar el ahorro previsto en lugar de esperar a que sobre dinero"
+    },
+    {
+      "key": "regla del diez por ciento",
+      "source": "clason-babylon-en",
+      "pages": "34-36",
+      "origin": 3,
+      "original_indices": [
+        330,
+        331
+      ],
+      "definition": "la propuesta de arkad de conservar al menos una de cada diez monedas ganadas",
+      "requirement": "identificar el ingreso y separar la parte que se pretende conservar"
+    },
+    {
+      "key": "siete remedios",
+      "source": "clason-babylon-en",
+      "pages": "30-49",
+      "origin": 3,
+      "original_indices": [
+        332,
+        333
+      ],
+      "definition": "las lecciones de arkad sobre ahorro gastos rendimiento proteccion vivienda futuro y capacidad",
+      "requirement": "estudiar cada leccion y su contexto antes de aplicarla"
+    },
+    {
+      "key": "controlar los gastos",
+      "source": "clason-babylon-en",
+      "pages": "37-38",
+      "origin": 3,
+      "original_indices": [
+        334,
+        335
+      ],
+      "definition": "examinar el uso de los ingresos para conservar una parte segun arkad",
+      "requirement": "anotar necesidades y deseos dentro de un presupuesto"
+    },
+    {
+      "key": "deseos y necesidades",
+      "source": "clason-babylon-en",
+      "pages": "37-38",
+      "origin": 3,
+      "original_indices": [
+        336,
+        337
+      ],
+      "definition": "la distincion del libro entre gastos necesarios y deseos que exceden los recursos",
+      "requirement": "priorizar gastos en vez de llamar necesario a todo lo deseado"
+    },
+    {
+      "key": "presupuesto de arkad",
+      "source": "clason-babylon-en",
+      "pages": "37-38",
+      "origin": 3,
+      "original_indices": [
+        338,
+        339
+      ],
+      "definition": "un plan de gastos que no consume la parte reservada para acumular recursos",
+      "requirement": "elegir usos concretos y revisar gastos sin eliminar todo disfrute"
+    },
+    {
+      "key": "multiplicar el ahorro",
+      "source": "clason-babylon-en",
+      "pages": "39-40",
+      "origin": 3,
+      "original_indices": [
+        340,
+        341
+      ],
+      "definition": "buscar que el capital acumulado produzca nuevos ingresos segun el libro",
+      "requirement": "examinar el uso del capital junto con su riesgo de perdida"
+    },
+    {
+      "key": "reinvertir los rendimientos",
+      "source": "clason-babylon-en",
+      "pages": "39-40",
+      "origin": 3,
+      "original_indices": [
+        342,
+        343
+      ],
+      "definition": "incorporar ganancias al capital para que tambien puedan producir ingresos",
+      "requirement": "distinguir el capital inicial de los rendimientos acumulados"
+    },
+    {
+      "key": "proteger el capital",
+      "source": "clason-babylon-en",
+      "pages": "41-42",
+      "origin": 3,
+      "original_indices": [
+        344,
+        345
+      ],
+      "definition": "evitar que la busqueda de rendimiento destruya el ahorro segun arkad",
+      "requirement": "estudiar peligros y posibilidades de recuperacion antes de entregar dinero"
+    },
+    {
+      "key": "consejo competente",
+      "source": "clason-babylon-en",
+      "pages": "41-42",
+      "origin": 3,
+      "original_indices": [
+        346,
+        347
+      ],
+      "definition": "consultar a personas con experiencia pertinente en la actividad considerada",
+      "requirement": "comprobar que la experiencia corresponde al negocio y no solo a otra habilidad"
+    },
+    {
+      "key": "error de azmur",
+      "source": "clason-babylon-en",
+      "pages": "23-24,41-42",
+      "origin": 3,
+      "original_indices": [
+        348,
+        349
+      ],
+      "definition": "confiar la compra de joyas a un fabricante de ladrillos sin experiencia en gemas",
+      "requirement": "distinguir confianza personal de competencia en una inversion"
+    },
+    {
+      "key": "vivienda en babilonia",
+      "source": "clason-babylon-en",
+      "pages": "43-44",
+      "origin": 3,
+      "original_indices": [
+        350,
+        351
+      ],
+      "definition": "la recomendacion de arkad de poseer la vivienda dentro del contexto del relato",
+      "requirement": "reconocer el contexto antes de trasladar la recomendacion a otros mercados"
+    },
+    {
+      "key": "ingresos para el futuro",
+      "source": "clason-babylon-en",
+      "pages": "45-46",
+      "origin": 3,
+      "original_indices": [
+        352,
+        353
+      ],
+      "definition": "preparar recursos para la vejez y para quienes dependen del ingreso segun arkad",
+      "requirement": "considerar necesidades futuras y la duracion de los recursos"
+    },
+    {
+      "key": "aumentar la capacidad de ganar",
+      "source": "clason-babylon-en",
+      "pages": "47-49",
+      "origin": 3,
+      "original_indices": [
+        354,
+        355
+      ],
+      "definition": "desarrollar habilidades y calidad del trabajo para aspirar a mayores ingresos",
+      "requirement": "mejorar el oficio y vincular el esfuerzo con resultados utiles"
+    },
+    {
+      "key": "metas de ingresos",
+      "source": "clason-babylon-en",
+      "pages": "47-48",
+      "origin": 3,
+      "original_indices": [
+        356,
+        357
+      ],
+      "definition": "deseos concretos de mejora en vez de querer riqueza sin una meta definida",
+      "requirement": "formular una meta comprensible y trabajar en la capacidad necesaria"
+    },
+    {
+      "key": "aprendizaje del oficio",
+      "source": "clason-babylon-en",
+      "pages": "48-49",
+      "origin": 3,
+      "original_indices": [
+        358,
+        359
+      ],
+      "definition": "perfeccionar conocimientos y habilidad en la actividad que produce ingresos",
+      "requirement": "practicar y aprender de personas con experiencia pertinente"
+    },
+    {
+      "key": "fortuna y oportunidades",
+      "source": "clason-babylon-en",
+      "pages": "50-61",
+      "origin": 3,
+      "original_indices": [
+        360,
+        361
+      ],
+      "definition": "la relacion que el relato establece entre actuar y aprovechar oportunidades",
+      "requirement": "reconocer oportunidades sin confundirlas con ganancias garantizadas"
+    },
+    {
+      "key": "procrastinacion economica",
+      "source": "clason-babylon-en",
+      "pages": "54-61",
+      "origin": 3,
+      "original_indices": [
+        362,
+        363
+      ],
+      "definition": "posponer una decision hasta perder una oportunidad segun el relato",
+      "requirement": "distinguir una demora evitable de una investigacion necesaria"
+    },
+    {
+      "key": "accion con prudencia",
+      "source": "clason-babylon-en",
+      "pages": "50-61,41-42",
+      "origin": 3,
+      "original_indices": [
+        364,
+        365
+      ],
+      "definition": "combinar disposicion a actuar con examen de los riesgos del dinero",
+      "requirement": "evitar tanto la paralisis como entregar capital sin entender el negocio"
+    },
+    {
+      "key": "cinco leyes del oro",
+      "source": "clason-babylon-en",
+      "pages": "62-72",
+      "origin": 3,
+      "original_indices": [
+        366,
+        367
+      ],
+      "definition": "las cinco lecciones que arkad entrega a nomasir sobre conservar y emplear dinero",
+      "requirement": "leer ahorro rendimiento consejo conocimiento y prudencia como un conjunto"
+    },
+    {
+      "key": "primera ley del oro",
+      "source": "clason-babylon-en",
+      "pages": "66,70",
+      "origin": 3,
+      "original_indices": [
+        368,
+        369
+      ],
+      "definition": "conservar una decima parte de los ingresos para el futuro segun arkad",
+      "requirement": "formar una reserva mediante aportaciones y no solo desear riqueza"
+    },
+    {
+      "key": "segunda ley del oro",
+      "source": "clason-babylon-en",
+      "pages": "66,70",
+      "origin": 3,
+      "original_indices": [
+        370,
+        371
+      ],
+      "definition": "emplear con criterio el capital para que genere nuevos recursos",
+      "requirement": "encontrar usos productivos y comprender como obtendrian ingresos"
+    },
+    {
+      "key": "tercera ley del oro",
+      "source": "clason-babylon-en",
+      "pages": "66,70",
+      "origin": 3,
+      "original_indices": [
+        372,
+        373
+      ],
+      "definition": "proteger el dinero con prudencia y consejo experimentado",
+      "requirement": "examinar la competencia de quienes orientan una inversion"
+    },
+    {
+      "key": "cuarta ley del oro",
+      "source": "clason-babylon-en",
+      "pages": "66,71",
+      "origin": 3,
+      "original_indices": [
+        374,
+        375
+      ],
+      "definition": "la advertencia contra invertir en actividades que no se comprenden",
+      "requirement": "aprender el funcionamiento y los peligros antes de comprometer capital"
+    },
+    {
+      "key": "quinta ley del oro",
+      "source": "clason-babylon-en",
+      "pages": "66,71-72",
+      "origin": 3,
+      "original_indices": [
+        376,
+        377
+      ],
+      "definition": "la advertencia contra rendimientos imposibles y consejos de embaucadores",
+      "requirement": "cuestionar promesas extraordinarias y la propia inexperiencia"
+    },
+    {
+      "key": "nomasir",
+      "source": "clason-babylon-en",
+      "pages": "62-69",
+      "origin": 3,
+      "original_indices": [
+        378,
+        379
+      ],
+      "definition": "el hijo de arkad que pierde capital y aprende a emplear las leyes del oro",
+      "requirement": "comparar sus errores iniciales con sus decisiones posteriores"
+    },
+    {
+      "key": "oro y conocimiento",
+      "source": "clason-babylon-en",
+      "pages": "68-69",
+      "origin": 3,
+      "original_indices": [
+        380,
+        381
+      ],
+      "definition": "la idea del relato de que el dinero sin criterio puede perderse rapidamente",
+      "requirement": "aprender a conservar y emplear recursos en lugar de depender de una suma inicial"
+    },
+    {
+      "key": "negocio de los metales",
+      "source": "clason-babylon-en",
+      "pages": "67-68",
+      "origin": 3,
+      "original_indices": [
+        382,
+        383
+      ],
+      "definition": "el ejemplo de reunir cobre y estano ante la necesidad prevista de puertas",
+      "requirement": "examinar demanda compradores alternativos y riesgos del plan narrado"
+    },
+    {
+      "key": "mathon",
+      "source": "clason-babylon-en",
+      "pages": "73-83",
+      "origin": 3,
+      "original_indices": [
+        384,
+        385
+      ],
+      "definition": "el prestamista que explica a rodan criterios para prestar y proteger recursos",
+      "requirement": "examinar proposito capacidad de devolucion y garantias"
+    },
+    {
+      "key": "rodan",
+      "source": "clason-babylon-en",
+      "pages": "73-83",
+      "origin": 3,
+      "original_indices": [
+        386,
+        387
+      ],
+      "definition": "el fabricante de lanzas que consulta que hacer con un premio de cincuenta monedas",
+      "requirement": "decidir con criterio aunque familiares soliciten el dinero"
+    },
+    {
+      "key": "prestar con criterio",
+      "source": "clason-babylon-en",
+      "pages": "76-83",
+      "origin": 3,
+      "original_indices": [
+        388,
+        389
+      ],
+      "definition": "examinar al prestatario y el uso del dinero antes de prestar segun mathon",
+      "requirement": "evaluar devolucion experiencia y condiciones sin decidir solo por afecto"
+    },
+    {
+      "key": "devolucion del prestamo",
+      "source": "clason-babylon-en",
+      "pages": "76-80",
+      "origin": 3,
+      "original_indices": [
+        390,
+        391
+      ],
+      "definition": "la posibilidad de recuperar lo prestado mediante recursos o ingresos del prestatario",
+      "requirement": "buscar una fuente de pago y no confiar solo en sus deseos"
+    },
+    {
+      "key": "garantia del prestamo",
+      "source": "clason-babylon-en",
+      "pages": "76-81",
+      "origin": 3,
+      "original_indices": [
+        392,
+        393
+      ],
+      "definition": "un respaldo que mathon examina para proteger el capital prestado",
+      "requirement": "considerar el valor recuperable y las circunstancias del deudor"
+    },
+    {
+      "key": "ayudar sin cargar todo",
+      "source": "clason-babylon-en",
+      "pages": "74-76",
+      "origin": 3,
+      "original_indices": [
+        394,
+        395
+      ],
+      "definition": "la leccion de no asumir sin examen la carga economica de otra persona",
+      "requirement": "definir que ayuda se ofrece y que consecuencias puede soportarse"
+    },
+    {
+      "key": "murallas de babilonia",
+      "source": "clason-babylon-en",
+      "pages": "84-87",
+      "origin": 3,
+      "original_indices": [
+        396,
+        397
+      ],
+      "definition": "la parabola que representa el valor de prepararse y protegerse ante adversidades",
+      "requirement": "considerar proteccion antes de que aparezca una necesidad urgente"
+    },
+    {
+      "key": "dabasir",
+      "source": "clason-babylon-en",
+      "pages": "88-97",
+      "origin": 3,
+      "original_indices": [
+        398,
+        399
+      ],
+      "definition": "el comerciante de camellos que afronta sus deudas y organiza un plan",
+      "requirement": "reconocer obligaciones y sostener acciones verificables para atenderlas"
+    },
+    {
+      "key": "plan de dabasir",
+      "source": "clason-babylon-en",
+      "pages": "99-103",
+      "origin": 3,
+      "original_indices": [
+        400,
+        401
+      ],
+      "definition": "el reparto del relato de diez por ciento para ahorro veinte para deuda y setenta para vivir",
+      "requirement": "registrar ingresos deudas y pagos para comprobar el avance"
+    },
+    {
+      "key": "registro de deudas de dabasir",
+      "source": "clason-babylon-en",
+      "pages": "100-103",
+      "origin": 3,
+      "original_indices": [
+        402,
+        403
+      ],
+      "definition": "la lista de acreedores e importes usada para organizar la devolucion",
+      "requirement": "identificar a cada acreedor y actualizar lo que queda pendiente"
+    },
+    {
+      "key": "acuerdo con acreedores",
+      "source": "clason-babylon-en",
+      "pages": "101-103",
+      "origin": 3,
+      "original_indices": [
+        404,
+        405
+      ],
+      "definition": "la comunicacion de dabasir sobre el reparto previsto para devolver sus deudas",
+      "requirement": "explicar el plan y registrar pagos en vez de desaparecer"
+    },
+    {
+      "key": "revisar avances",
+      "source": "clason-babylon-en",
+      "pages": "101-106",
+      "origin": 3,
+      "original_indices": [
+        406,
+        407
+      ],
+      "definition": "comprobar periodicamente ingresos ahorro y deudas dentro del plan narrado",
+      "requirement": "comparar registros entre periodos y mantener la constancia"
+    },
+    {
+      "key": "sharru nada",
+      "source": "clason-babylon-en",
+      "pages": "107-122",
+      "origin": 3,
+      "original_indices": [
+        408,
+        409
+      ],
+      "definition": "el mercader que relata como el trabajo y las relaciones influyeron en su trayectoria",
+      "requirement": "examinar el relato sin convertirlo en una garantia de exito para todos"
+    },
+    {
+      "key": "hadan gula",
+      "source": "clason-babylon-en",
+      "pages": "107-122",
+      "origin": 3,
+      "original_indices": [
+        410,
+        411
+      ],
+      "definition": "el joven que escucha la historia de su abuelo y reconsidera su actitud hacia el trabajo",
+      "requirement": "distinguir aparentar riqueza de desarrollar capacidad y criterio"
+    },
+    {
+      "key": "trabajo y oportunidad",
+      "source": "clason-babylon-en",
+      "pages": "110-122",
+      "origin": 3,
+      "original_indices": [
+        412,
+        413
+      ],
+      "definition": "la leccion narrativa de que habilidad esfuerzo y relaciones pueden abrir oportunidades",
+      "requirement": "identificar trabajo util y aprender sin atribuir toda pobreza a falta de esfuerzo"
+    },
+    {
+      "key": "disfrute sostenible",
+      "source": "clason-babylon-en",
+      "pages": "28-29,37-38",
+      "origin": 3,
+      "original_indices": [
+        414,
+        415
+      ],
+      "definition": "la idea de disfrutar la vida dentro de los recursos sin gastar todo el ingreso",
+      "requirement": "equilibrar deseos presentes con la parte destinada al futuro"
+    },
+    {
+      "key": "porcentaje no universal",
+      "source": "clason-babylon-en",
+      "pages": "34-38,99-103",
+      "origin": 3,
+      "original_indices": [
+        416,
+        417
+      ],
+      "definition": "una cautela moderna sobre usar las proporciones del libro como referencia y no mandato",
+      "requirement": "comprobar necesidades obligaciones y viabilidad antes de fijar porcentajes"
+    },
+    {
+      "key": "ahorro con ingresos variables",
+      "source": "clason-babylon-en",
+      "pages": "34-38",
+      "origin": 3,
+      "original_indices": [
+        418,
+        419
+      ],
+      "definition": "una aplicacion moderna que ajusta el ahorro a cobros que cambian entre periodos",
+      "requirement": "registrar cobros reales y revisar compromisos sin inventar ingresos estables"
+    },
+    {
+      "key": "necesidades antes del porcentaje",
+      "source": "clason-babylon-en",
+      "pages": "34-38",
+      "origin": 3,
+      "original_indices": [
+        420,
+        421
+      ],
+      "definition": "una cautela moderna que evita imponer una regla si faltan recursos esenciales",
+      "requirement": "examinar primero los gastos indispensables y la viabilidad del plan"
+    },
+    {
+      "key": "deuda moderna y babilonia",
+      "source": "clason-babylon-en",
+      "pages": "99-106",
+      "origin": 3,
+      "original_indices": [
+        422,
+        423
+      ],
+      "definition": "una comparacion educativa entre el relato y contratos financieros actuales",
+      "requirement": "verificar tasas vencimientos cargos y obligaciones sin copiar el veinte por ciento a ciegas"
+    },
+    {
+      "key": "comprar o alquilar hoy",
+      "source": "clason-babylon-en",
+      "pages": "43-44",
+      "origin": 3,
+      "original_indices": [
+        424,
+        425
+      ],
+      "definition": "una comparacion moderna que no se resuelve solo con la preferencia de arkad",
+      "requirement": "examinar precio renta intereses mantenimiento impuestos plazo y movilidad"
+    },
+    {
+      "key": "rendimiento no garantizado",
+      "source": "clason-babylon-en",
+      "pages": "39-42,66-72",
+      "origin": 3,
+      "original_indices": [
+        426,
+        427
+      ],
+      "definition": "una cautela moderna contra presentar las parabolas como promesa de ganancias",
+      "requirement": "distinguir un ejemplo narrativo de evidencia sobre resultados futuros"
+    },
+    {
+      "key": "rendimiento y acceso al dinero",
+      "source": "clason-babylon-en",
+      "pages": "41-42,81-83",
+      "origin": 3,
+      "original_indices": [
+        428,
+        429
+      ],
+      "definition": "una comparacion moderna entre posible ganancia y posibilidad de recuperar el capital",
+      "requirement": "examinar plazos costes de salida y perdidas posibles"
+    },
+    {
+      "key": "criterio frente a promesas",
+      "source": "clason-babylon-en",
+      "pages": "41-42,66-72",
+      "origin": 3,
+      "original_indices": [
+        430,
+        431
+      ],
+      "definition": "una aplicacion del libro que pide pruebas ante ofertas de riqueza rapida",
+      "requirement": "solicitar datos comprensibles y reconocer lo que no se sabe"
+    },
+    {
+      "key": "babilonia aplicada a reverse",
+      "source": "clason-babylon-en",
+      "pages": "47-49,79-80",
+      "origin": 3,
+      "original_indices": [
+        432,
+        433
+      ],
+      "definition": "una propuesta educativa de convertir funciones utiles de reverse en ofertas comprobables",
+      "requirement": "demostrar utilidad calcular costes y probar demanda antes de aumentar gasto"
+    },
+    {
+      "key": "babilonia aplicada a xi",
+      "source": "clason-babylon-en",
+      "pages": "47-49,79-80",
+      "origin": 3,
+      "original_indices": [
+        434,
+        435
+      ],
+      "definition": "una propuesta educativa de mejorar herramientas xi que resuelvan un problema real",
+      "requirement": "medir utilidad estabilidad y coste de soporte antes de prometer ingresos"
+    },
+    {
+      "key": "babilonia aplicada a ether",
+      "source": "clason-babylon-en",
+      "pages": "41-42,47-49",
+      "origin": 3,
+      "original_indices": [
+        436,
+        437
+      ],
+      "definition": "una propuesta educativa de financiar pruebas verificables de ether con recursos delimitados",
+      "requirement": "separar experimentos de obligaciones y registrar costes y resultados"
+    },
+    {
+      "key": "babilonia aplicada a laplace",
+      "source": "clason-babylon-en",
+      "pages": "41-42,66-72",
+      "origin": 3,
+      "original_indices": [
+        438,
+        439
+      ],
+      "definition": "una propuesta educativa de comprobar predicciones antes de atribuirles valor economico",
+      "requirement": "guardar fallos y aciertos sin tomar el libro como prueba de rentabilidad"
+    },
+    {
+      "key": "babilonia aplicada a bby q",
+      "source": "clason-babylon-en",
+      "pages": "47-49,66-72",
+      "origin": 3,
+      "original_indices": [
+        440,
+        441
+      ],
+      "definition": "una propuesta educativa de aprender dinero con pruebas antes de ampliar responsabilidades",
+      "requirement": "separar conocimiento incorporado razonamiento demostrado y permisos de ejecucion"
+    },
+    {
+      "key": "alcance del libro de babilonia",
+      "source": "clason-babylon-en",
+      "pages": "20-29,66-72",
+      "origin": 3,
+      "original_indices": [
+        442,
+        443
+      ],
+      "definition": "una delimitacion que lo trata como educacion narrativa y no como fuente de cotizaciones",
+      "requirement": "consultar datos actuales para precios tasas o normas que el libro no proporciona"
+    },
+    {
+      "key": "limites de una parabola",
+      "source": "clason-babylon-en",
+      "pages": "20-29,107-122",
+      "origin": 3,
+      "original_indices": [
+        444,
+        445
+      ],
+      "definition": "una advertencia de que un relato no demuestra una ley universal ni explica todos los resultados",
+      "requirement": "examinar contexto evidencia y circunstancias que el relato no representa"
+    },
+    {
+      "key": "permiso para aplicar el libro",
+      "source": "clason-babylon-en",
+      "pages": "41-42,47-49",
+      "origin": 3,
+      "original_indices": [
+        446,
+        447
+      ],
+      "definition": "la distincion entre aprender sus ideas y recibir autorizacion para mover dinero",
+      "requirement": "obtener permiso delimitado y verificable antes de cualquier operacion real"
+    },
+    {
+      "key": "hombre mas rico de babilonia",
+      "definition": "libro de clason sobre adquirir conservar y emplear dinero mediante relatos",
+      "requirement": "distinguir sus ensenanzas de garantias de riqueza",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "pagarse primero",
+      "definition": "propuesta de clason de reservar parte del ingreso antes del gasto discrecional",
+      "requirement": "separar de forma deliberada la parte que se conservara",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "decima parte de arkad",
+      "definition": "propuesta del relato de conservar al menos una de cada diez monedas ganadas",
+      "requirement": "reconocer que es una regla del libro y no una garantia de exito",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "conservar lo ganado",
+      "definition": "principio del relato de no consumir la totalidad de los ingresos",
+      "requirement": "distinguir dinero ganado de dinero efectivamente retenido",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "necesidades y deseos de arkad",
+      "definition": "distincion del relato entre gastos necesarios y deseos que exceden los recursos",
+      "requirement": "revisar cada gasto antes de asignarle dinero",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "presupuesto de arkad [f003-b]",
+      "definition": "plan del relato para cubrir necesidades disfrute y ahorro de forma deliberada",
+      "requirement": "ajustar gastos para proteger los objetivos elegidos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "crecimiento del gasto en el libro",
+      "definition": "advertencia de clason sobre gastos que aumentan cuando crecen los ingresos",
+      "requirement": "revisar habitos en lugar de gastar automaticamente todo aumento",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "valor de cada moneda",
+      "definition": "criterio de clason de buscar utilidad apreciada por cada moneda gastada",
+      "requirement": "comparar el gasto con necesidades y objetivos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "dinero como semilla",
+      "definition": "metafora del libro sobre un capital que puede producir nuevos ingresos",
+      "requirement": "preservar la base y comprender como generaria rendimientos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "rendimientos reinvertidos de arkad",
+      "definition": "uso en el relato de los ingresos del capital para ampliar el capital",
+      "requirement": "no consumir automaticamente todo rendimiento recibido",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "renta del capital en babilonia",
+      "definition": "pago que el relato describe por prestar recursos a una actividad productiva",
+      "requirement": "examinar la actividad y la posibilidad de recuperar lo prestado",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "proteccion del principal de arkad",
+      "definition": "prioridad del relato de conservar el capital antes de buscar altos rendimientos",
+      "requirement": "examinar peligros recuperacion y experiencia del consejo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "consejo competente de algamish",
+      "definition": "ensenanza de pedir orientacion a quien conoce el asunto especifico",
+      "requirement": "comprobar experiencia pertinente y no solo confianza personal",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "error de las joyas de arkad",
+      "definition": "perdida del relato al confiar la compra de joyas a alguien sin ese conocimiento",
+      "requirement": "distinguir experiencia en un oficio de experiencia en otro",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "reiniciar despues de una perdida",
+      "definition": "respuesta de arkad al volver a ahorrar despues de su primera inversion fallida",
+      "requirement": "conservar el aprendizaje y corregir la causa del error",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "consumir las ganancias de arkad",
+      "definition": "error del relato de gastar todos los rendimientos antes de consolidar el capital",
+      "requirement": "distinguir disfrute actual de reinversion para objetivos futuros",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "vivienda segun clason",
+      "definition": "propuesta del libro de convertir la vivienda propia en una ventaja economica",
+      "requirement": "leerla como propuesta del relato y revisar las condiciones reales",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "prevision de ingresos de arkad",
+      "definition": "preparacion del relato para la vejez y las necesidades futuras de la familia",
+      "requirement": "planificar con anticipacion en lugar de esperar a perder ingresos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "aportaciones regulares de ansan",
+      "definition": "ejemplo del libro de acumular recursos mediante pequenos depositos repetidos",
+      "requirement": "sostener una periodicidad y revisar lo acumulado",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "capacidad de ganar de arkad",
+      "definition": "habilidad que el relato propone mejorar mediante estudio practica y oficio",
+      "requirement": "desarrollar destrezas utiles y aplicarlas al trabajo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "deseo concreto de arkad",
+      "definition": "objetivo definido que el relato contrapone al deseo vago de ser rico",
+      "requirement": "precisar lo que se busca y trabajar en un paso alcanzable",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "perfeccionar el oficio",
+      "definition": "propuesta de clason de mejorar metodos herramientas y calidad del trabajo",
+      "requirement": "aprender de personas competentes y practicar con constancia",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "aprendizaje economico de arkad",
+      "definition": "estudio del relato sobre adquirir conservar y utilizar el dinero",
+      "requirement": "aprender tambien a investigar lo que todavia se desconoce",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "disciplina cotidiana de arkad",
+      "definition": "cumplimiento constante de tareas elegidas que el relato ilustra con una piedra",
+      "requirement": "elegir compromisos practicables y sostenerlos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "riqueza y disfrute en clason",
+      "definition": "equilibrio del relato entre guardar recursos y disfrutar la vida",
+      "requirement": "evitar tanto gastar todo como temer cualquier gasto",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "primera cura de clason",
+      "definition": "reservar una parte de cada ingreso para comenzar a acumular recursos",
+      "requirement": "iniciar el habito de conservar dinero",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "segunda cura de clason",
+      "definition": "controlar los gastos mediante un presupuesto deliberado",
+      "requirement": "diferenciar necesidades deseos y objetivos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "tercera cura de clason",
+      "definition": "poner el capital a producir y reinvertir sus rendimientos",
+      "requirement": "comprender la actividad financiada y preservar el capital",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "cuarta cura de clason",
+      "definition": "proteger el capital frente a perdidas evitables",
+      "requirement": "examinar riesgos y consultar experiencia pertinente",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "quinta cura de clason",
+      "definition": "buscar una ventaja economica en la vivienda propia segun el relato",
+      "requirement": "contrastar la propuesta del libro con costes y circunstancias",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "sexta cura de clason",
+      "definition": "preparar ingresos para etapas futuras y proteccion familiar",
+      "requirement": "planificar necesidades antes de que aparezcan",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "septima cura de clason",
+      "definition": "aumentar la capacidad de generar ingresos mejorando las propias habilidades",
+      "requirement": "estudiar practicar y perfeccionar un oficio",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "cinco leyes del oro [f003-b]",
+      "definition": "reglas del relato sobre ahorrar emplear y proteger el capital con prudencia",
+      "requirement": "estudiarlas como principios educativos sin prometer resultados",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "primera ley del oro [f003-b]",
+      "definition": "propuesta de reservar una decima parte para el futuro propio y familiar",
+      "requirement": "mantener una reserva deliberada de los ingresos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "segunda ley del oro [f003-b]",
+      "definition": "propuesta de buscar un empleo productivo para el capital conservado",
+      "requirement": "entender de donde procederia su rendimiento",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "tercera ley del oro [f003-b]",
+      "definition": "propuesta de invertir con prudencia y consejo experimentado",
+      "requirement": "comprobar competencia y riesgos antes de comprometer capital",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "cuarta ley del oro [f003-b]",
+      "definition": "advertencia sobre invertir en negocios que no se comprenden",
+      "requirement": "investigar la actividad en lugar de confiar solo en entusiasmo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "quinta ley del oro [f003-b]",
+      "definition": "advertencia contra rendimientos imposibles enganos e inexperiencia",
+      "requirement": "examinar las promesas antes de entregar recursos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "oportunidad segun clason",
+      "definition": "posibilidad que el relato vincula con preparacion y accion",
+      "requirement": "actuar sobre oportunidades comprendidas y no esperar solo suerte",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "procrastinacion en babilonia",
+      "definition": "demora que el relato presenta como causa de oportunidades desaprovechadas",
+      "requirement": "distinguir estudiar una decision de posponerla indefinidamente",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "prestamo prudente de mathon",
+      "definition": "entrega de capital evaluando uso y devolucion en el relato",
+      "requirement": "revisar proposito experiencia y capacidad de devolverlo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "capacidad de devolver un prestamo",
+      "definition": "posibilidad del prestatario de restituir recursos segun mathon",
+      "requirement": "examinar medios de pago y no solo promesas",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "garantia en el relato de mathon",
+      "definition": "respaldo que el prestamista busca para recuperar su capital",
+      "requirement": "examinar que ocurriria si el negocio no logra sus resultados",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "ayudar sin asumir toda la carga",
+      "definition": "ensenanza del relato de apoyar sin heredar imprudentemente el problema ajeno",
+      "requirement": "elegir una ayuda compatible con los propios recursos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "experiencia comercial de mathon",
+      "definition": "conocimiento de compra venta y clientes que el relato exige al comerciante",
+      "requirement": "comprobar como compraria venderia y devolveria lo prestado",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "ensayo pequeno de mathon",
+      "definition": "propuesta del relato de probar capacidad con una suma limitada",
+      "requirement": "pedir un plan y no comprometer todo el capital de una vez",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "capital perdido y frutos futuros",
+      "definition": "advertencia de que perder capital tambien elimina sus posibles ingresos",
+      "requirement": "considerar la base y no solo el rendimiento prometido",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "murallas de babilonia [f003-b]",
+      "definition": "metafora del libro sobre prepararse contra acontecimientos adversos",
+      "requirement": "construir proteccion antes de necesitarla",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "plan de dabasir [f003-b]",
+      "definition": "plan del relato de 10 por ciento para ahorrar 70 para vivir y 20 para deudas",
+      "requirement": "registrar ingresos gastos deudas y acuerdos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "ahorro de dabasir",
+      "definition": "decima parte de los ingresos que el personaje decide conservar",
+      "requirement": "apartar esa porcion dentro del plan narrativo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "gastos de dabasir",
+      "definition": "siete decimas de los ingresos que el personaje destina a vivir",
+      "requirement": "mantener sus gastos dentro de esa parte segun el relato",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "pago de dabasir",
+      "definition": "dos decimas de los ingresos que el personaje destina a sus acreedores",
+      "requirement": "distribuir los pagos segun los acuerdos del relato",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "registro de deudas de dabasir [f003-b]",
+      "definition": "lista del relato con cada acreedor y el importe adeudado",
+      "requirement": "anotar cantidades y actualizar lo que se devuelve",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "acuerdo con acreedores del relato",
+      "definition": "pacto narrativo de pagos periodicos basado en recursos disponibles",
+      "requirement": "explicar cifras y obtener acuerdo en lugar de asumirlo",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "evitar nueva deuda de consumo",
+      "definition": "parte del plan narrativo de pagar compras corrientes con recursos disponibles",
+      "requirement": "no ampliar las obligaciones mientras se intenta reducirlas",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "trabajo en el relato de sharru nada",
+      "definition": "actividad que el personaje relaciona con destreza confianza y oportunidades",
+      "requirement": "desarrollar una contribucion util sin confundir esfuerzo con garantia",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "babilonia aplicado a reverse",
+      "definition": "adaptacion que propone demostrar utilidad antes de ampliar gasto en reverse",
+      "requirement": "medir demanda coste de entrega y un piloto limitado",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "babilonia aplicado a bby q",
+      "definition": "adaptacion que propone demostrar capacidades antes de ofrecerlas a clientes",
+      "requirement": "probar resultados conservar errores y no anunciar funciones inexistentes",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "babilonia aplicado a laplace",
+      "definition": "adaptacion que trata las predicciones como inciertas y no dinero garantizado",
+      "requirement": "registrar pronosticos costes fallos y resultados antes de arriesgar recursos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "lectura critica de clason",
+      "definition": "distincion entre una parabola educativa y evidencia de resultados universales",
+      "requirement": "contrastar cada aplicacion y no culpar a alguien por su pobreza",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "porcentajes del libro",
+      "definition": "reglas del relato y no presupuestos adecuados para todas las personas",
+      "requirement": "examinar necesidades obligaciones e ingresos antes de aplicarlas",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "vivienda en contexto actual",
+      "definition": "comparacion de comprar y alquilar sin asumir que comprar siempre conviene",
+      "requirement": "incluir costes totales riesgos plazo y alternativas",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "cifras de los relatos",
+      "definition": "ejemplos del libro que no deben aceptarse como calculos modernos verificados",
+      "requirement": "recalcular tasas periodos y supuestos antes de utilizarlos",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "conocimiento y ejecucion financiera",
+      "definition": "distincion entre aprender principios y autorizar movimientos de dinero",
+      "requirement": "validar capacidades y permisos por separado",
+      "source": "clason-F003-B",
+      "pages": "-",
+      "origin": 3
+    },
+    {
+      "key": "babilonia proposito del libro",
+      "definition": "un relato educativo para aprender a adquirir conservar y emplear dinero",
+      "requirement": "separar la ensenanza narrativa de datos financieros actuales",
+      "source": "clason-F004-A",
+      "pages": "6-7",
+      "origin": 3
+    },
+    {
+      "key": "babilonia contexto historico",
+      "definition": "el marco historico que Clason presenta para situar sus parabolas",
+      "requirement": "atribuir las afirmaciones historicas al texto y no asumir verificacion actual",
+      "source": "clason-F004-A",
+      "pages": "8-12",
+      "origin": 3
+    },
+    {
+      "key": "babilonia infraestructura productiva",
+      "definition": "el ejemplo de transformar suelo y agua en produccion mediante canales",
+      "requirement": "relacionar una mejora tecnica con una necesidad y un resultado util",
+      "source": "clason-F004-A",
+      "pages": "8",
+      "origin": 3
+    },
+    {
+      "key": "babilonia registros escritos",
+      "definition": "el uso narrado de tablillas para conservar acuerdos propiedades y obligaciones",
+      "requirement": "distinguir lo prometido de lo entregado y mantener evidencia",
+      "source": "clason-F004-A",
+      "pages": "10",
+      "origin": 3
+    },
+    {
+      "key": "babilonia problema de bansir",
+      "definition": "trabajar en carros durante anos sin conservar recursos suficientes",
+      "requirement": "examinar tanto la entrada como la salida del dinero",
+      "source": "clason-F004-A",
+      "pages": "14-16",
+      "origin": 3
+    },
+    {
+      "key": "babilonia oficio y administracion",
+      "definition": "la diferencia entre dominar un oficio y aprender a conservar su ingreso",
+      "requirement": "identificar que habilidad falta en vez de confundir esfuerzo con ahorro",
+      "source": "clason-F004-A",
+      "pages": "16-18",
+      "origin": 3
+    },
+    {
+      "key": "babilonia bolsa y flujo",
+      "definition": "la distincion entre monedas disponibles y una fuente que repone la bolsa",
+      "requirement": "distinguir un saldo acumulado de un ingreso recurrente",
+      "source": "clason-F004-A",
+      "pages": "18",
+      "origin": 3
+    },
+    {
+      "key": "babilonia aprender con otros",
+      "definition": "la decision de Bansir y Kobbi de acudir a Arkad junto con sus amigos",
+      "requirement": "buscar experiencia pertinente y compartir preguntas",
+      "source": "clason-F004-A",
+      "pages": "18-19",
+      "origin": 3
+    },
+    {
+      "key": "babilonia fortuna repentina",
+      "definition": "la advertencia narrativa sobre recibir dinero sin saber administrarlo",
+      "requirement": "estudiar como conservarlo antes de ampliar el gasto",
+      "source": "clason-F004-A",
+      "pages": "20",
+      "origin": 3
+    },
+    {
+      "key": "babilonia trato con algamish",
+      "definition": "el intercambio de trabajo de escriba por una leccion sobre riqueza",
+      "requirement": "reconocer el valor de aprender ademas del pago inmediato",
+      "source": "clason-F004-A",
+      "pages": "21-23",
+      "origin": 3
+    },
+    {
+      "key": "babilonia ahorro como semilla",
+      "definition": "la comparacion del primer ahorro con el comienzo de un patrimonio",
+      "requirement": "conservar una parte y darle continuidad antes de esperar grandes resultados",
+      "source": "clason-F004-A",
+      "pages": "23-24",
+      "origin": 3
+    },
+    {
+      "key": "babilonia fraude de las joyas",
+      "definition": "la perdida de Arkad cuando Azmur compra vidrio creyendo que son gemas",
+      "requirement": "verificar competencia especifica y autenticidad antes de entregar capital",
+      "source": "clason-F004-A",
+      "pages": "25",
+      "origin": 3
+    },
+    {
+      "key": "babilonia recomenzar tras perder",
+      "definition": "la decision de Arkad de volver a ahorrar despues de su primer error",
+      "requirement": "corregir la causa de la perdida y no limitarse a repetir la apuesta",
+      "source": "clason-F004-A",
+      "pages": "25",
+      "origin": 3
+    },
+    {
+      "key": "babilonia consumir rendimientos",
+      "definition": "el error de gastar en banquetes lo que produce el ahorro inicial",
+      "requirement": "distinguir disfrutar de una ganancia de reinvertirla para ampliar el capital",
+      "source": "clason-F004-A",
+      "pages": "25-26",
+      "origin": 3
+    },
+    {
+      "key": "babilonia confianza demostrada",
+      "definition": "la asociacion que Algamish ofrece tras observar la conducta de Arkad",
+      "requirement": "demostrar capacidad con resultados antes de asumir mayor responsabilidad",
+      "source": "clason-F004-A",
+      "pages": "26",
+      "origin": 3
+    },
+    {
+      "key": "babilonia constancia practica",
+      "definition": "la propuesta de completar tareas pequenas elegidas con cuidado",
+      "requirement": "evitar metas impracticables y revisar el cumplimiento",
+      "source": "clason-F004-A",
+      "pages": "27",
+      "origin": 3
+    },
+    {
+      "key": "babilonia fin de las obras",
+      "definition": "el problema narrado de ingresos que desaparecen al terminar las obras reales",
+      "requirement": "no confundir un ingreso temporal con una fuente permanente",
+      "source": "clason-F004-A",
+      "pages": "30-31",
+      "origin": 3
+    },
+    {
+      "key": "babilonia escuela de maestros",
+      "definition": "la clase de cien personas destinada a aprender y luego ensenar",
+      "requirement": "aplicar y comprobar una leccion antes de transmitirla como dominada",
+      "source": "clason-F004-A",
+      "pages": "32-33",
+      "origin": 3
+    },
+    {
+      "key": "babilonia cesta de huevos",
+      "definition": "el ejemplo de agregar diez huevos y retirar nueve para acumular uno",
+      "requirement": "comparar entradas y salidas por periodo",
+      "source": "clason-F004-A",
+      "pages": "34-36",
+      "origin": 3
+    },
+    {
+      "key": "babilonia deseos crecientes",
+      "definition": "la observacion de Arkad de que los deseos pueden absorber mas ingresos",
+      "requirement": "examinar gastos elegidos sin declarar necesario todo deseo",
+      "source": "clason-F004-A",
+      "pages": "37-38",
+      "origin": 3
+    },
+    {
+      "key": "babilonia presupuesto elegido",
+      "definition": "un plan que la propia persona ajusta para sus prioridades",
+      "requirement": "conservar decisiones conscientes sobre necesidades disfrute y ahorro",
+      "source": "clason-F004-A",
+      "pages": "38",
+      "origin": 3
+    },
+    {
+      "key": "babilonia capital y rentas",
+      "definition": "la separacion entre el capital prestado y los rendimientos que produce",
+      "requirement": "registrar ambos y decidir que parte se reinvierte",
+      "source": "clason-F004-A",
+      "pages": "39-40",
+      "origin": 3
+    },
+    {
+      "key": "babilonia ejemplo compuesto",
+      "definition": "el relato de diez monedas que aumentan al reinvertir rendimientos",
+      "requirement": "identificar capital tasa periodo y supuestos antes de recalcular el ejemplo",
+      "source": "clason-F004-A",
+      "pages": "40",
+      "origin": 3
+    },
+    {
+      "key": "babilonia recuperar el principal",
+      "definition": "la prioridad que Arkad da a recuperar el capital frente a ganancias llamativas",
+      "requirement": "evaluar riesgo y acceso al dinero antes de comprometerlo",
+      "source": "clason-F004-A",
+      "pages": "41-42",
+      "origin": 3
+    },
+    {
+      "key": "babilonia casa en su contexto",
+      "definition": "la preferencia de Arkad por vivienda propia bajo las condiciones del relato",
+      "requirement": "no convertir esa preferencia en una comparacion actual ya resuelta",
+      "source": "clason-F004-A",
+      "pages": "43-44",
+      "origin": 3
+    },
+    {
+      "key": "babilonia aportes de ansan",
+      "definition": "el ejemplo del zapatero que realiza pequenos aportes regulares para su futuro",
+      "requirement": "distinguir aportaciones rendimientos y tiempo transcurrido",
+      "source": "clason-F004-A",
+      "pages": "45-46",
+      "origin": 3
+    },
+    {
+      "key": "babilonia proteccion familiar",
+      "definition": "la preocupacion de Arkad por recursos para la vejez y los dependientes",
+      "requirement": "preparar el futuro sin esperar a reunir una gran suma de una vez",
+      "source": "clason-F004-A",
+      "pages": "45-46",
+      "origin": 3
+    },
+    {
+      "key": "babilonia objetivos concretos",
+      "definition": "la preferencia por una meta definida frente al deseo vago de riqueza",
+      "requirement": "relacionar una meta con capacidades y acciones realizables",
+      "source": "clason-F004-A",
+      "pages": "47-48",
+      "origin": 3
+    },
+    {
+      "key": "babilonia mejorar el oficio",
+      "definition": "el aprendizaje de herramientas metodos y calidad para servir mejor",
+      "requirement": "comprobar la utilidad de la habilidad y no prometer ingresos automaticos",
+      "source": "clason-F004-A",
+      "pages": "48",
+      "origin": 3
+    },
+    {
+      "key": "babilonia azar y ocupacion",
+      "definition": "la distincion del debate entre ganancias ocasionales y una actividad productiva",
+      "requirement": "no inferir un ingreso repetible a partir de una victoria aislada",
+      "source": "clason-F004-A",
+      "pages": "51-54",
+      "origin": 3
+    },
+    {
+      "key": "babilonia terreno e irrigacion",
+      "definition": "la oportunidad narrada de mejorar tierra mediante elevacion de agua",
+      "requirement": "examinar el plan y distinguir analisis necesario de demora sin motivo",
+      "source": "clason-F004-A",
+      "pages": "55-56",
+      "origin": 3
+    },
+    {
+      "key": "babilonia ovejas y demora",
+      "definition": "la compra perdida cuando el comprador posterga cerrar un trato que juzga favorable",
+      "requirement": "distinguir una oportunidad evaluada de presion para comprar sin comprobar",
+      "source": "clason-F004-A",
+      "pages": "57-61",
+      "origin": 3
+    },
+    {
+      "key": "babilonia relato de kalabab",
+      "definition": "la narracion de Kalabab sobre lo que Nomasir aprendio de Arkad",
+      "requirement": "distinguir narrador personajes y lecciones atribuidas",
+      "source": "clason-F004-A",
+      "pages": "62-64",
+      "origin": 3
+    },
+    {
+      "key": "babilonia dos legados",
+      "definition": "la bolsa de oro y la tablilla que Arkad entrega a Nomasir",
+      "requirement": "comparar disponer de capital con saber emplearlo",
+      "source": "clason-F004-A",
+      "pages": "63-64",
+      "origin": 3
+    },
+    {
+      "key": "babilonia rendicion de cuentas",
+      "definition": "el compromiso de Nomasir de regresar diez anos despues y explicar sus resultados",
+      "requirement": "registrar decisiones y resultados en vez de depender de una impresion",
+      "source": "clason-F004-A",
+      "pages": "64",
+      "origin": 3
+    },
+    {
+      "key": "babilonia carrera amañada",
+      "definition": "la estafa en que companeros de viaje y el supuesto rival comparten las apuestas",
+      "requirement": "verificar incentivos y posibles acuerdos entre quienes ofrecen una ganancia",
+      "source": "clason-F004-A",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "babilonia socio sin aporte",
+      "definition": "el socio que promete capital pero demora su aportacion y deteriora el negocio",
+      "requirement": "comprobar aportes reales experiencia y conducta antes de financiar una sociedad",
+      "source": "clason-F004-A",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "babilonia reconstruccion de nomasir",
+      "definition": "la vuelta al trabajo y al ahorro despues de perder su dinero",
+      "requirement": "relacionar el error con una conducta corregida y recursos disponibles",
+      "source": "clason-F004-A",
+      "pages": "66-67",
+      "origin": 3
+    },
+    {
+      "key": "babilonia demanda de metales",
+      "definition": "la compra conjunta de cobre y estano ante la necesidad de puertas de bronce",
+      "requirement": "relacionar demanda prevista suministro y compradores",
+      "source": "clason-F004-A",
+      "pages": "67-68",
+      "origin": 3
+    },
+    {
+      "key": "babilonia comprador alternativo",
+      "definition": "la posibilidad de vender los metales a otros aunque el rey no los compre",
+      "requirement": "examinar una salida alternativa y no depender de un unico escenario",
+      "source": "clason-F004-A",
+      "pages": "68",
+      "origin": 3
+    },
+    {
+      "key": "babilonia capital atrapado",
+      "definition": "la advertencia contra negocios de los que no se puede recuperar el dinero",
+      "requirement": "evaluar tanto posible ganancia como posibilidad de salida",
+      "source": "clason-F004-A",
+      "pages": "68-71",
+      "origin": 3
+    },
+    {
+      "key": "babilonia tres bolsas",
+      "definition": "el gesto de Nomasir de devolver una bolsa por el oro y dos por la sabiduria",
+      "requirement": "entender el simbolo sin tratarlo como una tasa de rendimiento prometida",
+      "source": "clason-F004-A",
+      "pages": "68-69",
+      "origin": 3
+    },
+    {
+      "key": "babilonia recompensa de rodan",
+      "definition": "las cincuenta monedas que Rodan recibe por mejorar una punta de lanza",
+      "requirement": "distinguir una recompensa extraordinaria de un ingreso habitual",
+      "source": "clason-F004-A",
+      "pages": "73-74",
+      "origin": 3
+    },
+    {
+      "key": "babilonia presion familiar",
+      "definition": "la peticion de prestar a un familiar que desea convertirse en comerciante",
+      "requirement": "separar afecto personal de capacidad para realizar el negocio",
+      "source": "clason-F004-A",
+      "pages": "74-76",
+      "origin": 3
+    },
+    {
+      "key": "babilonia buey y asno",
+      "definition": "la fabula en que ayudar al buey termina imponiendo su trabajo al asno",
+      "requirement": "definir una ayuda que no traslade una carga imposible a quien ayuda",
+      "source": "clason-F004-A",
+      "pages": "75-76",
+      "origin": 3
+    },
+    {
+      "key": "babilonia respaldo e ingresos",
+      "definition": "los criterios de Mathon sobre bienes y capacidad de ganar para devolver un prestamo",
+      "requirement": "examinar como se pagara y que ocurriria ante una perdida",
+      "source": "clason-F004-A",
+      "pages": "76-80",
+      "origin": 3
+    },
+    {
+      "key": "babilonia conocer la compraventa",
+      "definition": "la exigencia de saber donde comprar y a quien vender antes de pedir capital",
+      "requirement": "verificar el mecanismo del negocio y no solo el deseo de ser comerciante",
+      "source": "clason-F004-A",
+      "pages": "80",
+      "origin": 3
+    },
+    {
+      "key": "babilonia experimento pequeno",
+      "definition": "la propuesta de arriesgar un ahorro anual y no cincuenta anos en un negocio sin demostrar",
+      "requirement": "probar capacidad con una cantidad delimitada antes de ampliar recursos",
+      "source": "clason-F004-A",
+      "pages": "81",
+      "origin": 3
+    },
+    {
+      "key": "babilonia perdida futura",
+      "definition": "la observacion de que perder el capital elimina tambien su posible rendimiento posterior",
+      "requirement": "considerar consecuencias futuras sin suponer ganancias garantizadas",
+      "source": "clason-F004-A",
+      "pages": "82-83",
+      "origin": 3
+    },
+    {
+      "key": "babilonia defensa de banzar",
+      "definition": "la confianza de los habitantes en las murallas durante el ataque del relato",
+      "requirement": "preparar proteccion antes de necesitarla",
+      "source": "clason-F004-A",
+      "pages": "84-86",
+      "origin": 3
+    },
+    {
+      "key": "babilonia analogia de las murallas",
+      "definition": "la comparacion del autor entre defensas fisicas y protecciones financieras",
+      "requirement": "entender la analogia sin afirmar que un producto sea invulnerable",
+      "source": "clason-F004-A",
+      "pages": "87",
+      "origin": 3
+    },
+    {
+      "key": "babilonia encuentro con tarkad",
+      "definition": "el encuentro entre un deudor sin recursos y Dabasir que reclama una deuda",
+      "requirement": "distinguir la situacion del personaje de una regla sobre toda persona endeudada",
+      "source": "clason-F004-A",
+      "pages": "88-89",
+      "origin": 3
+    },
+    {
+      "key": "babilonia ayuda de sira",
+      "definition": "la ayuda de Sira para escapar y el reto de Dabasir de volver a enfrentar sus obligaciones",
+      "requirement": "leer el episodio como relato y no como juicio sobre personas esclavizadas",
+      "source": "clason-F004-A",
+      "pages": "93-95",
+      "origin": 3
+    },
+    {
+      "key": "babilonia deudas y acreedores",
+      "definition": "la distincion de Dabasir entre deudas que debe resolver y personas que confiaron en el",
+      "requirement": "comunicar un plan de pago sin tratar a cada acreedor como enemigo",
+      "source": "clason-F004-A",
+      "pages": "95-96",
+      "origin": 3
+    },
+    {
+      "key": "babilonia capacidad recuperada",
+      "definition": "el uso del conocimiento de camellos para trabajar con Nebatur por mediacion de Mathon",
+      "requirement": "conectar una habilidad demostrada con una necesidad concreta",
+      "source": "clason-F004-A",
+      "pages": "96",
+      "origin": 3
+    },
+    {
+      "key": "babilonia tres destinos del ingreso",
+      "definition": "el reparto narrado entre ahorro vida cotidiana y devolucion de deudas",
+      "requirement": "distinguir las tres partes sin aplicarlas a ciegas a cualquier presupuesto",
+      "source": "clason-F004-A",
+      "pages": "99-100",
+      "origin": 3
+    },
+    {
+      "key": "babilonia inventario de obligaciones",
+      "definition": "la lista de nombres e importes que Dabasir escribe antes de organizar pagos",
+      "requirement": "conocer cuanto se debe a cada persona y actualizar el registro",
+      "source": "clason-F004-A",
+      "pages": "100-101",
+      "origin": 3
+    },
+    {
+      "key": "babilonia pacto de pagos",
+      "definition": "la explicacion de Dabasir de lo que puede pagar con sus ingresos",
+      "requirement": "comunicar capacidad real aunque no todos acepten el plan",
+      "source": "clason-F004-A",
+      "pages": "101",
+      "origin": 3
+    },
+    {
+      "key": "babilonia ingresos desiguales",
+      "definition": "los periodos con diecinueve once y cuarenta y dos monedas en el relato",
+      "requirement": "calcular con los ingresos de cada periodo y no inventar un sueldo constante",
+      "source": "clason-F004-A",
+      "pages": "101-102",
+      "origin": 3
+    },
+    {
+      "key": "babilonia seguimiento de deuda",
+      "definition": "los registros sucesivos que permiten observar pagos ahorro y saldo pendiente",
+      "requirement": "comparar periodos y comprobar que el saldo realmente disminuye",
+      "source": "clason-F004-A",
+      "pages": "102-103",
+      "origin": 3
+    },
+    {
+      "key": "babilonia cartas de shrewsbury",
+      "definition": "el marco narrativo que traslada el plan de las tablillas a un profesor y su esposa",
+      "requirement": "distinguir una ilustracion literaria de un estudio moderno controlado",
+      "source": "clason-F004-A",
+      "pages": "104-106",
+      "origin": 3
+    },
+    {
+      "key": "babilonia salir del credito continuo",
+      "definition": "la decision narrada de pagar compras nuevas al contado mientras se abona la deuda anterior",
+      "requirement": "evitar confundir pagar una parte con dejar de generar deuda nueva",
+      "source": "clason-F004-A",
+      "pages": "104-105",
+      "origin": 3
+    },
+    {
+      "key": "babilonia hadan y su abuelo",
+      "definition": "el contraste entre la apariencia que busca Hadan Gula y la trayectoria de Arad Gula",
+      "requirement": "examinar como se obtuvo un patrimonio y no solo sus signos externos",
+      "source": "clason-F004-A",
+      "pages": "107-122",
+      "origin": 3
+    },
+    {
+      "key": "babilonia trabajo y relaciones",
+      "definition": "la historia de Sharru Nada sobre trabajo aprendizaje y ayuda de otras personas",
+      "requirement": "reconocer acciones y apoyos sin atribuir toda pobreza a falta de esfuerzo",
+      "source": "clason-F004-A",
+      "pages": "107-122",
+      "origin": 3
+    },
+    {
+      "key": "relato de kalabab",
+      "definition": "el relato de las cinco leyes que kalabab cuenta a los trabajadores de una caravana",
+      "requirement": "distinguir al narrador kalabab del padre arkad y del hijo nomasir",
+      "source": "clason-F004-B",
+      "pages": "62-63",
+      "origin": 3
+    },
+    {
+      "key": "eleccion entre oro y sabiduria",
+      "definition": "la pregunta inicial que contrapone recibir dinero con conocer como conservarlo",
+      "requirement": "examinar por que una suma inicial puede desaparecer sin criterio para usarla",
+      "source": "clason-F004-B",
+      "pages": "62",
+      "origin": 3
+    },
+    {
+      "key": "prueba de herencia de nomasir",
+      "definition": "el encargo de arkad de demostrar durante diez anos capacidad para administrar recursos",
+      "requirement": "distinguir recibir patrimonio de demostrar que se puede conservar y emplear",
+      "source": "clason-F004-B",
+      "pages": "63-64",
+      "origin": 3
+    },
+    {
+      "key": "dos regalos para nomasir",
+      "definition": "una bolsa de oro y una tablilla con cinco leyes entregadas por arkad",
+      "requirement": "comparar el recurso material con el conocimiento que orienta su uso",
+      "source": "clason-F004-B",
+      "pages": "64",
+      "origin": 3
+    },
+    {
+      "key": "destino elegido por nomasir",
+      "definition": "la ciudad de ninive escogida porque crecia y parecia ofrecer oportunidades",
+      "requirement": "separar una expectativa sobre una ciudad de pruebas sobre un negocio concreto",
+      "source": "clason-F004-B",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "estafa del caballo de nomasir",
+      "definition": "una apuesta perdida ante viajeros asociados con el supuesto rival de ninive",
+      "requirement": "reconocer que la informacion favorable procedia de quienes ganaban con la apuesta",
+      "source": "clason-F004-B",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "complicidad en la carrera",
+      "definition": "la colaboracion oculta entre los viajeros y el dueno del caballo ganador",
+      "requirement": "distinguir una recomendacion interesada de una comprobacion independiente",
+      "source": "clason-F004-B",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "socio de la tienda de nomasir",
+      "definition": "el joven que prometio aportar capital despues y gasto mal el dinero ya invertido",
+      "requirement": "examinar aportaciones efectivas y capacidad de gestion antes de confiar recursos",
+      "source": "clason-F004-B",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "inventario inmovil de nomasir",
+      "definition": "la mercancia dificil de vender que quedo tras la mala gestion de la tienda",
+      "requirement": "distinguir tener mercancia de disponer de dinero para reponer lo que se vende",
+      "source": "clason-F004-B",
+      "pages": "65",
+      "origin": 3
+    },
+    {
+      "key": "liquidacion de nomasir",
+      "definition": "la venta del negocio y despues de bienes personales durante la perdida de recursos",
+      "requirement": "seguir la secuencia de perdida de capital y necesidad de cubrir la subsistencia",
+      "source": "clason-F004-B",
+      "pages": "65-66",
+      "origin": 3
+    },
+    {
+      "key": "lectura tardia de las leyes",
+      "definition": "el estudio de la tablilla despues de que nomasir perdiera su capital inicial",
+      "requirement": "comparar consultar criterios antes de actuar con aprender solo despues de perder",
+      "source": "clason-F004-B",
+      "pages": "66",
+      "origin": 3
+    },
+    {
+      "key": "empleo de reconstruccion de nomasir",
+      "definition": "el trabajo dirigiendo una cuadrilla en la muralla que le permitio volver a ahorrar",
+      "requirement": "identificar una fuente de ingreso real antes de planear nuevas inversiones",
+      "source": "clason-F004-B",
+      "pages": "67",
+      "origin": 3
+    },
+    {
+      "key": "primera moneda recuperada de nomasir",
+      "definition": "el pequeno ahorro de sus nuevas ganancias que aumento mediante aportaciones",
+      "requirement": "distinguir reconstruir el capital gradualmente de recuperarlo con una gran apuesta",
+      "source": "clason-F004-B",
+      "pages": "67",
+      "origin": 3
+    },
+    {
+      "key": "temor tras la perdida de nomasir",
+      "definition": "la preocupacion por perder tambien el ahorro conseguido con su propio trabajo",
+      "requirement": "leer su prudencia junto con la evaluacion del plan de metales que vino despues",
+      "source": "clason-F004-B",
+      "pages": "67",
+      "origin": 3
+    },
+    {
+      "key": "demanda de puertas de ninive",
+      "definition": "la necesidad prevista de cobre y estano para fabricar puertas de bronce",
+      "requirement": "relacionar una obra observada con los materiales y el comprador del negocio",
+      "source": "clason-F004-B",
+      "pages": "67-68",
+      "origin": 3
+    },
+    {
+      "key": "compra colectiva de metales",
+      "definition": "la reunion de capital para traer cobre y estano de minas lejanas",
+      "requirement": "identificar que se compra quien lo transporta y de donde saldria el ingreso",
+      "source": "clason-F004-B",
+      "pages": "67-68",
+      "origin": 3
+    },
+    {
+      "key": "salida alternativa de los metales",
+      "definition": "la posibilidad narrada de vender el metal aunque el rey no lo comprara",
+      "requirement": "comparar depender de un unico comprador con conservar una salida alternativa",
+      "source": "clason-F004-B",
+      "pages": "68",
+      "origin": 3
+    },
+    {
+      "key": "revision colectiva de negocios",
+      "definition": "la discusion cuidadosa de cada propuesta por los socios experimentados de nomasir",
+      "requirement": "buscar debilidades del plan y no solo motivos para esperar una ganancia",
+      "source": "clason-F004-B",
+      "pages": "68",
+      "origin": 3
+    },
+    {
+      "key": "capital atado de nomasir",
+      "definition": "el riesgo mencionado de inmovilizar dinero en inversiones improductivas",
+      "requirement": "examinar recuperacion del capital ademas de la rentabilidad anunciada",
+      "source": "clason-F004-B",
+      "pages": "68",
+      "origin": 3
+    },
+    {
+      "key": "tres bolsas de nomasir",
+      "definition": "la devolucion de una bolsa por el capital recibido y dos por el valor de la sabiduria",
+      "requirement": "leer las bolsas como parte del relato y no como una tasa de retorno prometida",
+      "source": "clason-F004-B",
+      "pages": "68-69",
+      "origin": 3
+    },
+    {
+      "key": "acumulacion segun kalabab",
+      "definition": "la combinacion narrativa de aportaciones conservadas y ganancias que producen ganancias",
+      "requirement": "distinguir ahorro aportado de rendimiento y de reinversion del rendimiento",
+      "source": "clason-F004-B",
+      "pages": "70",
+      "origin": 3
+    },
+    {
+      "key": "prudencia en las cinco leyes",
+      "definition": "la relacion entre consejo pertinente conocimiento del negocio y proteccion del ahorro",
+      "requirement": "estudiar juntas las condiciones que acompanan la busqueda de rendimiento",
+      "source": "clason-F004-B",
+      "pages": "70-71",
+      "origin": 3
+    },
+    {
+      "key": "promesas imposibles de kalabab",
+      "definition": "la advertencia contra planes seductores que atribuyen poderes magicos al dinero",
+      "requirement": "pedir un mecanismo comprensible en vez de tratar una historia atractiva como prueba",
+      "source": "clason-F004-B",
+      "pages": "71",
+      "origin": 3
+    },
+    {
+      "key": "pregunta de los diez anos",
+      "definition": "la invitacion de kalabab a pensar que ocurrira con las ganancias recien cobradas",
+      "requirement": "seguir las decisiones sobre el ingreso mas alla del momento de recibirlo",
+      "source": "clason-F004-B",
+      "pages": "72",
+      "origin": 3
+    },
+    {
+      "key": "premio de rodan",
+      "definition": "las cincuenta monedas recibidas por mejorar la punta de las lanzas de la guardia",
+      "requirement": "identificar la habilidad y el resultado util que dieron origen al premio",
+      "source": "clason-F004-B",
+      "pages": "73-74",
+      "origin": 3
+    },
+    {
+      "key": "consulta de rodan a mathon",
+      "definition": "la busqueda de consejo sobre dinero que ya posee y no una solicitud de prestamo",
+      "requirement": "distinguir necesitar criterio para administrar de necesitar capital adicional",
+      "source": "clason-F004-B",
+      "pages": "73-74",
+      "origin": 3
+    },
+    {
+      "key": "peticion de la hermana de rodan",
+      "definition": "la solicitud de prestar el premio a araman para que se convierta en comerciante",
+      "requirement": "separar el afecto familiar de la evidencia sobre la capacidad de devolver dinero",
+      "source": "clason-F004-B",
+      "pages": "74",
+      "origin": 3
+    },
+    {
+      "key": "responsabilidad del premio",
+      "definition": "el cambio de expectativas y solicitudes que rodan encuentra al recibir dinero",
+      "requirement": "reconocer que tener recursos no obliga a aceptar cualquier uso que otros propongan",
+      "source": "clason-F004-B",
+      "pages": "74-75",
+      "origin": 3
+    },
+    {
+      "key": "fabula del buey y el asno",
+      "definition": "la historia del asno que termina arando cuando ayuda al buey a evitar su trabajo",
+      "requirement": "identificar la consecuencia no prevista de asumir la carga de otro",
+      "source": "clason-F004-B",
+      "pages": "75-76",
+      "origin": 3
+    },
+    {
+      "key": "fin de amistad en la fabula",
+      "definition": "la ruptura entre los animales despues de que la ayuda transfiriera el trabajo",
+      "requirement": "examinar consecuencias para quien ayuda y para la relacion entre ambos",
+      "source": "clason-F004-B",
+      "pages": "76",
+      "origin": 3
+    },
+    {
+      "key": "doble efecto de un mal prestamo",
+      "definition": "la perdida para el prestamista y una deuda dificil de pagar para el prestatario",
+      "requirement": "examinar utilidad del dinero y posibilidad de devolucion para ambas partes",
+      "source": "clason-F004-B",
+      "pages": "76",
+      "origin": 3
+    },
+    {
+      "key": "cofre de prendas de mathon",
+      "definition": "el conjunto de objetos vinculados a prestamos y a la experiencia de cobrarlos",
+      "requirement": "distinguir guardar evidencia de un prestamo de asegurar por ello su recuperacion",
+      "source": "clason-F004-B",
+      "pages": "76",
+      "origin": 3
+    },
+    {
+      "key": "prestamo respaldado por bienes",
+      "definition": "la categoria de mathon basada en posesiones que podrian venderse para devolver dinero",
+      "requirement": "examinar el respaldo descrito sin asumir que todo bien vale siempre lo anunciado",
+      "source": "clason-F004-B",
+      "pages": "77",
+      "origin": 3
+    },
+    {
+      "key": "prestamo respaldado por ingresos",
+      "definition": "la categoria basada en capacidad de ganar y atender el pago con el trabajo",
+      "requirement": "distinguir voluntad de pagar de ingresos disponibles y posibles contratiempos",
+      "source": "clason-F004-B",
+      "pages": "77",
+      "origin": 3
+    },
+    {
+      "key": "prestamo sin respaldo de mathon",
+      "definition": "la categoria sin bienes ni ingresos asegurados que el relato considera dificil",
+      "requirement": "reconocer datos insuficientes sin convertir la pobreza en un juicio sobre dignidad",
+      "source": "clason-F004-B",
+      "pages": "77",
+      "origin": 3
+    },
+    {
+      "key": "prenda sin devolucion de mathon",
+      "definition": "el objeto de un amigo fallecido que permanece en el cofre sin pago del prestamo",
+      "requirement": "reconocer que la amistad y la intencion de ayudar no eliminan contratiempos",
+      "source": "clason-F004-B",
+      "pages": "77",
+      "origin": 3
+    },
+    {
+      "key": "anillo del agricultor",
+      "definition": "la prenda de un agricultor que devuelve ayuda previa y financia cabras de pelo fino",
+      "requirement": "relacionar experiencia previa con un uso productivo especifico del dinero",
+      "source": "clason-F004-B",
+      "pages": "78",
+      "origin": 3
+    },
+    {
+      "key": "negocio de cabras y alfombras",
+      "definition": "la mejora prevista de alfombras mediante lana mas fina de una nueva manada",
+      "requirement": "identificar insumo producto cliente y fuente prevista para devolver el prestamo",
+      "source": "clason-F004-B",
+      "pages": "78",
+      "origin": 3
+    },
+    {
+      "key": "brazalete de la madre",
+      "definition": "la garantia de una madre cuyo hijo fue abandonado por su socio de caravana",
+      "requirement": "separar el valor de una garantia de la calidad del negocio que financia",
+      "source": "clason-F004-B",
+      "pages": "78-79",
+      "origin": 3
+    },
+    {
+      "key": "nudo de nebatur",
+      "definition": "la prenda del comerciante de camellos que solicita capital para comprar manadas",
+      "requirement": "leer su experiencia comercial como evidencia pertinente y no como una garantia universal",
+      "source": "clason-F004-B",
+      "pages": "79",
+      "origin": 3
+    },
+    {
+      "key": "escarabajo del joven ambicioso",
+      "definition": "la prenda de un padre que respalda al hijo cuyo intento de enriquecerse colapsa",
+      "requirement": "identificar que una garantia puede trasladar perdidas a alguien distinto del deudor",
+      "source": "clason-F004-B",
+      "pages": "79",
+      "origin": 3
+    },
+    {
+      "key": "deuda precipitada del joven",
+      "definition": "el endeudamiento que acompana un crecimiento mayor que su experiencia",
+      "requirement": "distinguir ambicion de capacidad para sostener las obligaciones asumidas",
+      "source": "clason-F004-B",
+      "pages": "79",
+      "origin": 3
+    },
+    {
+      "key": "preguntas de mathon a araman",
+      "definition": "las preguntas sobre conocimiento del oficio lugares de compra y posibles ventas",
+      "requirement": "exigir un plan comercial concreto antes de aceptar una promesa de riqueza",
+      "source": "clason-F004-B",
+      "pages": "80",
+      "origin": 3
+    },
+    {
+      "key": "robo en la ruta de smyrna",
+      "definition": "el ejemplo de perder dinero o alfombras durante un viaje y no poder pagar",
+      "requirement": "considerar un resultado adverso ademas del margen de una compraventa exitosa",
+      "source": "clason-F004-B",
+      "pages": "80",
+      "origin": 3
+    },
+    {
+      "key": "cincuenta anos de rodan",
+      "definition": "la comparacion del premio con ahorrar una moneda por ano durante cincuenta anos",
+      "requirement": "expresar el coste de una perdida en tiempo de trabajo y no solo en monedas",
+      "source": "clason-F004-B",
+      "pages": "81",
+      "origin": 3
+    },
+    {
+      "key": "prueba limitada para araman",
+      "definition": "la propuesta de prestar el ahorro de un ano para probar un plan revisado",
+      "requirement": "delimitar el ensayo para que un fallo no comprometa todo el premio",
+      "source": "clason-F004-B",
+      "pages": "81",
+      "origin": 3
+    },
+    {
+      "key": "prioridades del dinero de rodan",
+      "definition": "la preferencia expresada por conservar el dinero y despues hacerlo crecer",
+      "requirement": "comparar seguridad del principal y rendimiento sin confundirlos",
+      "source": "clason-F004-B",
+      "pages": "81-82",
+      "origin": 3
+    },
+    {
+      "key": "cautela del cofre de mathon",
+      "definition": "la advertencia final de comprobar como podria volver el dinero antes de prestarlo",
+      "requirement": "buscar condiciones de recuperacion y no basarse solo en ganancias extraordinarias",
+      "source": "clason-F004-B",
+      "pages": "83",
+      "origin": 3
+    },
+    {
+      "key": "puesto de banzar",
+      "definition": "el lugar junto al acceso a las murallas desde donde el guardia informa a los ciudadanos",
+      "requirement": "distinguir la informacion disponible al guardia de los temores de la multitud",
+      "source": "clason-F004-B",
+      "pages": "84",
+      "origin": 3
+    },
+    {
+      "key": "ataque durante la ausencia del ejercito",
+      "definition": "la amenaza inesperada cuando las fuerzas principales estaban fuera de babilonia",
+      "requirement": "examinar por que una proteccion previa importa aun cuando no se esperaba el ataque",
+      "source": "clason-F004-B",
+      "pages": "84",
+      "origin": 3
+    },
+    {
+      "key": "temor del mercader anciano",
+      "definition": "la preocupacion por su esposa sus alimentos y sus bienes durante el asedio",
+      "requirement": "identificar las necesidades que una proteccion pretende preservar",
+      "source": "clason-F004-B",
+      "pages": "84-85",
+      "origin": 3
+    },
+    {
+      "key": "familia del soldado herido",
+      "definition": "la madre que busca informacion para tranquilizar a su esposo y proteger a sus hijos",
+      "requirement": "reconocer que el alcance de una proteccion incluye a quienes dependen del protegido",
+      "source": "clason-F004-B",
+      "pages": "85",
+      "origin": 3
+    },
+    {
+      "key": "pregunta de la nina a banzar",
+      "definition": "la busqueda de seguridad de una nina asustada por el combate y los heridos",
+      "requirement": "separar un mensaje tranquilizador de las defensas concretas que lo sostienen",
+      "source": "clason-F004-B",
+      "pages": "85-86",
+      "origin": 3
+    },
+    {
+      "key": "resistencia durante el asedio",
+      "definition": "la defensa prolongada de muros y puertas hasta la retirada del ejercito atacante",
+      "requirement": "distinguir una barrera construida con anterioridad de improvisar cuando llega el peligro",
+      "source": "clason-F004-B",
+      "pages": "86",
+      "origin": 3
+    },
+    {
+      "key": "analogia protectora de clason",
+      "definition": "la comparacion de las murallas con seguros ahorro e inversiones consideradas fiables",
+      "requirement": "leerla como analogia del libro y verificar por separado cada proteccion moderna",
+      "source": "clason-F004-B",
+      "pages": "87",
+      "origin": 3
+    },
+    {
+      "key": "limite de la metafora de murallas",
+      "definition": "la diferencia entre el desenlace del relato y una garantia de seguridad absoluta",
+      "requirement": "no convertir una imagen de proteccion en una promesa de ausencia total de riesgo",
+      "source": "clason-F004-B",
+      "pages": "84-87",
+      "origin": 3
+    },
+    {
+      "key": "encuentro de tarkad y dabasir",
+      "definition": "el encuentro del joven hambriento con el comerciante al que debe monedas",
+      "requirement": "identificar las obligaciones existentes antes de pensar en nuevos prestamos",
+      "source": "clason-F004-B",
+      "pages": "88",
+      "origin": 3
+    },
+    {
+      "key": "promesas incumplidas de tarkad",
+      "definition": "la dificultad del joven para devolver pequenas cantidades previamente prestadas",
+      "requirement": "distinguir pedir tiempo con un plan de repetir promesas sin medios de pago",
+      "source": "clason-F004-B",
+      "pages": "88-89",
+      "origin": 3
+    },
+    {
+      "key": "piedra de color de dabasir",
+      "definition": "la comparacion entre mirar por una piedra y percibir la situacion de forma distorsionada",
+      "requirement": "examinar como interpreta sus decisiones el narrador sin atribuir poderes a la piedra",
+      "source": "clason-F004-B",
+      "pages": "89",
+      "origin": 3
+    },
+    {
+      "key": "oficio original de dabasir",
+      "definition": "el trabajo de fabricar sillas de montar aprendido de su padre",
+      "requirement": "identificar habilidades previas que pueden ayudar a producir ingresos",
+      "source": "clason-F004-B",
+      "pages": "90",
+      "origin": 3
+    },
+    {
+      "key": "compras aplazadas de dabasir",
+      "definition": "los lujos adquiridos a credito que superaban lo que podia cubrir con sus ganancias",
+      "requirement": "relacionar pagos futuros con recursos disponibles y no solo con permiso para comprar",
+      "source": "clason-F004-B",
+      "pages": "90",
+      "origin": 3
+    },
+    {
+      "key": "prestamos entre amigos de dabasir",
+      "definition": "el dinero solicitado a conocidos que tampoco pudo devolver tras acumular gastos",
+      "requirement": "observar como nuevas obligaciones se suman cuando no se corrige la diferencia entre gasto e ingreso",
+      "source": "clason-F004-B",
+      "pages": "90",
+      "origin": 3
+    },
+    {
+      "key": "huida de dabasir",
+      "definition": "el abandono de babilonia seguido de viajes robos captura y esclavizacion",
+      "requirement": "seguir la secuencia del relato sin presentar la huida como solucion de las deudas",
+      "source": "clason-F004-B",
+      "pages": "90-91",
+      "origin": 3
+    },
+    {
+      "key": "intervencion de sira",
+      "definition": "la decision que permite a dabasir trabajar con camellos y demostrar una habilidad",
+      "requirement": "identificar ayuda externa y conocimientos utiles ademas de la voluntad personal",
+      "source": "clason-F004-B",
+      "pages": "91-92",
+      "origin": 3
+    },
+    {
+      "key": "habilidades de camellero de dabasir",
+      "definition": "la capacidad de cargar conducir cuidar camellos y reparar sus aparejos",
+      "requirement": "vincular una habilidad concreta con un servicio por el que alguien necesita pagar",
+      "source": "clason-F004-B",
+      "pages": "92",
+      "origin": 3
+    },
+    {
+      "key": "metafora de libertad de sira",
+      "definition": "el lenguaje del relato sobre actuar ante las deudas en vez de resignarse",
+      "requirement": "interpretar la metafora sin atribuir menor dignidad a personas endeudadas o esclavizadas",
+      "source": "clason-F004-B",
+      "pages": "92-93",
+      "origin": 3
+    },
+    {
+      "key": "ayuda para la fuga de dabasir",
+      "definition": "los camellos provisiones y ropa que sira facilita para su salida",
+      "requirement": "reconocer los recursos y la ayuda recibida en lugar de explicar todo por determinacion",
+      "source": "clason-F004-B",
+      "pages": "93-94",
+      "origin": 3
+    },
+    {
+      "key": "crisis de dabasir en el desierto",
+      "definition": "el agotamiento de recursos durante el viaje y la decision de regresar a babilonia",
+      "requirement": "distinguir una escena narrativa de recomendaciones sobre hambre sed o salud",
+      "source": "clason-F004-B",
+      "pages": "94-95",
+      "origin": 3
+    },
+    {
+      "key": "acreedores como amigos de dabasir",
+      "definition": "la distincion del protagonista entre sus deudas y quienes habian confiado en el",
+      "requirement": "separar el problema economico de la hostilidad hacia las personas relacionadas",
+      "source": "clason-F004-B",
+      "pages": "95",
+      "origin": 3
+    },
+    {
+      "key": "regreso responsable de dabasir",
+      "definition": "la decision de presentarse ante los acreedores y proponer pagos posibles",
+      "requirement": "comunicar recursos reales y acciones concretas en vez de ocultar la dificultad",
+      "source": "clason-F004-B",
+      "pages": "95-96",
+      "origin": 3
+    },
+    {
+      "key": "recomendacion de mathon a nebatur",
+      "definition": "el contacto que convierte la experiencia con camellos en trabajo de compra de manadas",
+      "requirement": "relacionar habilidades contactos demanda e ingresos al analizar la recuperacion",
+      "source": "clason-F004-B",
+      "pages": "96",
+      "origin": 3
+    },
+    {
+      "key": "determinacion y medios de dabasir",
+      "definition": "la combinacion narrativa de decision ayuda trabajo especializado y pagos graduales",
+      "requirement": "no atribuir el desenlace solo a fuerza de voluntad ni convertirlo en garantia universal",
+      "source": "clason-F004-B",
+      "pages": "96-97",
+      "origin": 3
+    },
+    {
+      "key": "marco epistolar de las tablillas",
+      "definition": "las cartas que presentan una traduccion de registros de dabasir dentro del libro",
+      "requirement": "distinguir el recurso narrativo de una prueba arqueologica verificada por este modulo",
+      "source": "clason-F004-B",
+      "pages": "98-99",
+      "origin": 3
+    },
+    {
+      "key": "registro permanente de dabasir",
+      "definition": "la decision de escribir sus asuntos para orientar y revisar el plan",
+      "requirement": "mantener registros de lo acordado y de lo que efectivamente ocurre",
+      "source": "clason-F004-B",
+      "pages": "99",
+      "origin": 3
+    },
+    {
+      "key": "tres propositos de dabasir",
+      "definition": "preparar el futuro sostener el hogar y devolver las obligaciones pendientes",
+      "requirement": "analizar los tres usos juntos en vez de omitir necesidades de la vida diaria",
+      "source": "clason-F004-B",
+      "pages": "99-100",
+      "origin": 3
+    },
+    {
+      "key": "reserva propia de dabasir",
+      "definition": "la decima parte de lo ganado que el relato separa para el futuro",
+      "requirement": "distinguir la proporcion narrativa de una recomendacion apropiada para cualquier persona",
+      "source": "clason-F004-B",
+      "pages": "99",
+      "origin": 3
+    },
+    {
+      "key": "porcion domestica de dabasir",
+      "definition": "las siete decimas partes destinadas a vivienda ropa alimentos y disfrute",
+      "requirement": "comprobar si los recursos del ejemplo cubren las necesidades mencionadas",
+      "source": "clason-F004-B",
+      "pages": "100",
+      "origin": 3
+    },
+    {
+      "key": "porcion para acreedores de dabasir",
+      "definition": "las dos decimas partes que se reparten entre obligaciones previas",
+      "requirement": "distinguir el fondo total para deudas de la cantidad que recibe cada acreedor",
+      "source": "clason-F004-B",
+      "pages": "100",
+      "origin": 3
+    },
+    {
+      "key": "lista visible de acreedores",
+      "definition": "los nombres e importes conservados antes de una seccion que el libro declara ilegible",
+      "requirement": "no tratar una lista incompleta como si contuviera todos los componentes del total",
+      "source": "clason-F004-B",
+      "pages": "100",
+      "origin": 3
+    },
+    {
+      "key": "total declarado de las tablillas",
+      "definition": "las ciento diecinueve piezas de plata y ciento cuarenta y una de cobre indicadas en el relato",
+      "requirement": "mantener las unidades separadas sin inventar un tipo de cambio entre metales",
+      "source": "clason-F004-B",
+      "pages": "100-101",
+      "origin": 3
+    },
+    {
+      "key": "presentacion del plan de dabasir",
+      "definition": "la visita a los acreedores explicando que el pago dependia de su capacidad de ganar",
+      "requirement": "distinguir el plan propuesto de la aceptacion efectiva de cada acreedor",
+      "source": "clason-F004-B",
+      "pages": "101",
+      "origin": 3
+    },
+    {
+      "key": "reaccion de ahmar",
+      "definition": "el rechazo inicial del amigo al plan de pagos presentado por dabasir",
+      "requirement": "registrar desacuerdos en vez de afirmar que todos aceptaron inmediatamente",
+      "source": "clason-F004-B",
+      "pages": "101",
+      "origin": 3
+    },
+    {
+      "key": "urgencia de birejik",
+      "definition": "la peticion del agricultor de recibir antes su dinero porque lo necesitaba",
+      "requirement": "reconocer que los acreedores tambien tienen necesidades y preferencias diferentes",
+      "source": "clason-F004-B",
+      "pages": "101",
+      "origin": 3
+    },
+    {
+      "key": "exigencia de alkahad",
+      "definition": "la presion del dueno de la vivienda por recibir un pago mas rapido",
+      "requirement": "comparar exigencias con la capacidad de pago descrita sin inventar dinero adicional",
+      "source": "clason-F004-B",
+      "pages": "101-102",
+      "origin": 3
+    },
+    {
+      "key": "primer periodo de dabasir",
+      "definition": "el ingreso de diecinueve piezas de plata por comprar buenos camellos para nebatur",
+      "requirement": "usar el ingreso observado del periodo y no asumir una cantidad fija para todos los meses",
+      "source": "clason-F004-B",
+      "pages": "101",
+      "origin": 3
+    },
+    {
+      "key": "periodo bajo de dabasir",
+      "definition": "el ingreso de once piezas de plata cuando hubo pocas compras de camellos",
+      "requirement": "reconocer variacion de ingresos y no confundir un mes menor con ingreso inexistente",
+      "source": "clason-F004-B",
+      "pages": "102",
+      "origin": 3
+    },
+    {
+      "key": "periodo alto de dabasir",
+      "definition": "el ingreso de cuarenta y dos piezas de plata al encontrar una buena manada",
+      "requirement": "distinguir un buen resultado puntual de una ganancia repetible garantizada",
+      "source": "clason-F004-B",
+      "pages": "102",
+      "origin": 3
+    },
+    {
+      "key": "pagos en monedas indivisibles",
+      "definition": "el reparto entre acreedores realizado tan parejo como permitian las monedas de cobre",
+      "requirement": "reconocer que una regla proporcional necesita un criterio cuando las unidades son indivisibles",
+      "source": "clason-F004-B",
+      "pages": "101-102",
+      "origin": 3
+    },
+    {
+      "key": "sostenimiento del hogar durante el plan",
+      "definition": "la explicacion de dabasir de que comer y trabajar sin tanta preocupacion ayuda a pagar",
+      "requirement": "no tratar las necesidades indispensables como si fueran recursos siempre disponibles para deuda",
+      "source": "clason-F004-B",
+      "pages": "102",
+      "origin": 3
+    },
+    {
+      "key": "seguimiento de varias lunas",
+      "definition": "los registros que muestran aportaciones pagos y ahorro en distintos periodos",
+      "requirement": "comparar avances acumulados sin confundirlos con un unico ingreso mensual",
+      "source": "clason-F004-B",
+      "pages": "102-103",
+      "origin": 3
+    },
+    {
+      "key": "final de las deudas de dabasir",
+      "definition": "el momento en que el protagonista registra el ultimo pago y agradece el plan",
+      "requirement": "distinguir terminar de pagar de dejar de planificar el uso del ingreso",
+      "source": "clason-F004-B",
+      "pages": "103",
+      "origin": 3
+    },
+    {
+      "key": "cambio de trato de los acreedores",
+      "definition": "las disculpas de ahmar y el reconocimiento de alkahad despues del cumplimiento",
+      "requirement": "relacionar la confianza del relato con acciones observadas y no solo con promesas",
+      "source": "clason-F004-B",
+      "pages": "103",
+      "origin": 3
+    },
+    {
+      "key": "circulo de credito de shrewsbury",
+      "definition": "la dificultad de pagar deudas mientras se seguia comprando a credito y a mayor coste",
+      "requirement": "identificar que mantener el mecanismo que genera deuda dificulta reducirla",
+      "source": "clason-F004-B",
+      "pages": "104",
+      "origin": 3
+    },
+    {
+      "key": "acuerdo escrito de shrewsbury",
+      "definition": "la aceptacion de pagos proporcionales junto con nuevas compras al contado",
+      "requirement": "distinguir un acuerdo aceptado de imponer unilateralmente condiciones a los acreedores",
+      "source": "clason-F004-B",
+      "pages": "104-105",
+      "origin": 3
+    },
+    {
+      "key": "revision de gastos de shrewsbury",
+      "definition": "la reduccion negociada de renta y la comparacion de productos de menor coste",
+      "requirement": "examinar gastos concretos sin asumir que reducirlos es igual de facil para todos",
+      "source": "clason-F004-B",
+      "pages": "105",
+      "origin": 3
+    },
+    {
+      "key": "uso posterior del ahorro de shrewsbury",
+      "definition": "la inversion de aportaciones mensuales y el plan de aumentar recursos al terminar deudas",
+      "requirement": "distinguir una expectativa del narrador de rendimientos comprobados o garantizados",
+      "source": "clason-F004-B",
+      "pages": "105-106",
+      "origin": 3
+    },
+    {
+      "key": "viaje de sharru nada y hadan gula",
+      "definition": "la caravana desde damasco en la que un mercader relata su pasado al nieto de su antiguo socio",
+      "requirement": "distinguir a hadan gula de su abuelo arad gula y del narrador sharru nada",
+      "source": "clason-F004-B",
+      "pages": "107",
+      "origin": 3
+    },
+    {
+      "key": "herencia deteriorada de hadan gula",
+      "definition": "la fortuna del abuelo que la familia ya no conserva como antes",
+      "requirement": "distinguir haber heredado recursos de saber mantener la fuente que los produjo",
+      "source": "clason-F004-B",
+      "pages": "107",
+      "origin": 3
+    },
+    {
+      "key": "idea inicial de hadan gula",
+      "definition": "la preferencia por gastar en lujo y evitar el trabajo si poseyera riqueza",
+      "requirement": "comparar consumir riqueza con desarrollar actividades que la sostengan",
+      "source": "clason-F004-B",
+      "pages": "107-108",
+      "origin": 3
+    },
+    {
+      "key": "recuerdo de los labradores",
+      "definition": "la escena del campo que lleva a sharru nada a recordar su pasado",
+      "requirement": "seguir como se introduce la historia sin tratar una observacion como experimento economico",
+      "source": "clason-F004-B",
+      "pages": "108-109",
+      "origin": 3
+    },
+    {
+      "key": "pasado esclavizado de sharru nada",
+      "definition": "la condicion que el narrador revela al explicar como conocio a otros trabajadores",
+      "requirement": "reconocer la coercion del contexto sin presentarla como un modelo laboral aceptable",
+      "source": "clason-F004-B",
+      "pages": "109-110",
+      "origin": 3
+    },
+    {
+      "key": "origen de la esclavizacion de sharru",
+      "definition": "la venta tras una garantia familiar relacionada con la violencia de su hermano",
+      "requirement": "distinguir una desgracia impuesta por otros de una prueba de incapacidad personal",
+      "source": "clason-F004-B",
+      "pages": "110",
+      "origin": 3
+    },
+    {
+      "key": "consejo de megiddo",
+      "definition": "la defensa del trabajo bien hecho como fuente de capacidad y oportunidades en el relato",
+      "requirement": "relacionar calidad con resultados sin prometer que todo esfuerzo recibe una recompensa justa",
+      "source": "clason-F004-B",
+      "pages": "110-111",
+      "origin": 3
+    },
+    {
+      "key": "postura de zabado",
+      "definition": "la preferencia del personaje por aparentar trabajo y buscar tareas faciles",
+      "requirement": "comparar las decisiones narradas sin usar el relato para justificar castigos o abusos",
+      "source": "clason-F004-B",
+      "pages": "111",
+      "origin": 3
+    },
+    {
+      "key": "informacion de godoso",
+      "definition": "la explicacion de que mostrar disposicion y habilidad podia influir en la compra del narrador",
+      "requirement": "distinguir comunicar capacidad de garantizar control sobre condiciones coercitivas",
+      "source": "clason-F004-B",
+      "pages": "111-112",
+      "origin": 3
+    },
+    {
+      "key": "presentacion de megiddo",
+      "definition": "la conversacion sobre una finca que demuestra al comprador su conocimiento agricola",
+      "requirement": "observar como una habilidad especifica se conecta con una necesidad identificada",
+      "source": "clason-F004-B",
+      "pages": "112-113",
+      "origin": 3
+    },
+    {
+      "key": "propuesta de aprendizaje al panadero",
+      "definition": "la oferta de sharru nada de aprender el oficio con voluntad y practica",
+      "requirement": "distinguir afirmar una habilidad inexistente de ofrecer aprenderla y demostrarla",
+      "source": "clason-F004-B",
+      "pages": "113",
+      "origin": 3
+    },
+    {
+      "key": "ensenanza de nana naid",
+      "definition": "el aprendizaje de moler grano preparar el horno y producir tortas de miel",
+      "requirement": "identificar operaciones concretas necesarias para entregar un producto util",
+      "source": "clason-F004-B",
+      "pages": "113",
+      "origin": 3
+    },
+    {
+      "key": "ayuda de swasti",
+      "definition": "la alimentacion el apoyo cotidiano y la ayuda con la ropa que recibe el protagonista",
+      "requirement": "reconocer contribuciones de otras personas en su trayectoria",
+      "source": "clason-F004-B",
+      "pages": "113-114",
+      "origin": 3
+    },
+    {
+      "key": "aprendizaje progresivo de panaderia",
+      "definition": "el paso de tareas iniciales a amasar hornear y elaborar tortas de miel",
+      "requirement": "construir dominio de un proceso antes de aumentar la produccion",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "tiempo disponible de sharru nada",
+      "definition": "las tardes libres despues de completar la hornada que usa para proponer ventas",
+      "requirement": "identificar recursos disponibles sin suponer que aumentar horas siempre es viable",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "oferta de tortas en la calle",
+      "definition": "la propuesta de vender produccion adicional a compradores fuera de la panaderia",
+      "requirement": "relacionar producto cliente canal de venta y capacidad de entrega",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "acuerdo de reparto de las tortas",
+      "definition": "la division del ingreso en mitad para costes y dos cuartos para panadero y vendedor",
+      "requirement": "distinguir ingreso bruto costes y parte recibida por cada participante",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "cuarto del ingreso de sharru",
+      "definition": "la cuarta parte de las ventas que el protagonista conserva segun el acuerdo",
+      "requirement": "no confundir su parte de las ventas con todo el dinero cobrado a los clientes",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "bandeja y presentacion de las tortas",
+      "definition": "la preparacion de una bandeja y ropa limpia para salir a vender",
+      "requirement": "distinguir facilitar la presentacion del producto de inventar cualidades que no tiene",
+      "source": "clason-F004-B",
+      "pages": "114",
+      "origin": 3
+    },
+    {
+      "key": "primer dia de venta de tortas",
+      "definition": "el comienzo sin compradores seguido por ventas cuando aparecen personas con hambre",
+      "requirement": "observar demanda en una situacion concreta sin inferir dominio de la voluntad del cliente",
+      "source": "clason-F004-B",
+      "pages": "114-115",
+      "origin": 3
+    },
+    {
+      "key": "clientes habituales de sharru nada",
+      "definition": "los compradores repetidos que encuentra al salir a vender cada dia",
+      "requirement": "distinguir una venta aislada de la repeticion observada de compras",
+      "source": "clason-F004-B",
+      "pages": "115",
+      "origin": 3
+    },
+    {
+      "key": "encuentro comercial con arad gula",
+      "definition": "el contacto con un vendedor de alfombras que compra tortas y conversa con el protagonista",
+      "requirement": "identificar como un servicio concreto puede dar lugar a relaciones de confianza",
+      "source": "clason-F004-B",
+      "pages": "115",
+      "origin": 3
+    },
+    {
+      "key": "calculo del objetivo de libertad",
+      "definition": "la reflexion de sharru sobre cuanto podria acumular con sus ingresos de ventas",
+      "requirement": "necesitar ganancias retenidas plazo y objetivo antes de calcular un plan",
+      "source": "clason-F004-B",
+      "pages": "115",
+      "origin": 3
+    },
+    {
+      "key": "busqueda de nuevos compradores",
+      "definition": "la extension de las ventas hacia los supervisores que trabajaban fuera de las puertas",
+      "requirement": "comparar ampliar canales con suponer que cualquier aumento de produccion se vendera",
+      "source": "clason-F004-B",
+      "pages": "115-116",
+      "origin": 3
+    },
+    {
+      "key": "decision de libertad de arad gula",
+      "definition": "la eleccion de comprar su libertad y continuar su actividad comercial",
+      "requirement": "examinar recursos y contexto del personaje sin equipararlo a una relacion laboral moderna",
+      "source": "clason-F004-B",
+      "pages": "116-117",
+      "origin": 3
+    },
+    {
+      "key": "resultado comercial de arad gula",
+      "definition": "el aumento de ventas y confianza que narra tras recuperar su libertad",
+      "requirement": "atribuir el resultado al relato sin declararlo una ley causal universal",
+      "source": "clason-F004-B",
+      "pages": "117",
+      "origin": 3
+    },
+    {
+      "key": "deudas de juego de nana naid",
+      "definition": "las perdidas del panadero que lo llevan a incumplir pagos y comprometer a sharru",
+      "requirement": "reconocer que las decisiones de un tercero pueden afectar a quien trabaja bien",
+      "source": "clason-F004-B",
+      "pages": "118",
+      "origin": 3
+    },
+    {
+      "key": "garantia sobre sharru nada",
+      "definition": "el uso de su condicion esclavizada como respaldo de una deuda del panadero",
+      "requirement": "reconocer la injusticia del contexto y no trasladar personas como garantia a un sistema moderno",
+      "source": "clason-F004-B",
+      "pages": "118",
+      "origin": 3
+    },
+    {
+      "key": "trabajo forzado en el canal",
+      "definition": "las condiciones extremas que quebrantan al protagonista pese a su disposicion a trabajar",
+      "requirement": "distinguir esfuerzo de control sobre el entorno y rechazar una garantia automatica de exito",
+      "source": "clason-F004-B",
+      "pages": "119",
+      "origin": 3
+    },
+    {
+      "key": "rescate de arad gula",
+      "definition": "la busqueda y compra de la libertad de sharru para convertirlo en socio",
+      "requirement": "reconocer ayuda concreta relaciones y recursos externos en el desenlace",
+      "source": "clason-F004-B",
+      "pages": "120",
+      "origin": 3
+    },
+    {
+      "key": "sociedad libre de sharru y arad",
+      "definition": "la propuesta de ir a damasco como socios despues de romper la tablilla de propiedad",
+      "requirement": "distinguir cooperacion entre personas libres del contexto coercitivo anterior",
+      "source": "clason-F004-B",
+      "pages": "120-121",
+      "origin": 3
+    },
+    {
+      "key": "cambio final de hadan gula",
+      "definition": "la decision del joven de valorar el oficio y empezar con humildad en vez de aparentar riqueza",
+      "requirement": "comparar desarrollar capacidad con exhibir consumo sin presentar el relato como prueba universal",
+      "source": "clason-F004-B",
+      "pages": "121-122",
+      "origin": 3
+    }
+  ],
+  "relations": 960,
+  "conflicts": [
+    {
+      "key": "presupuesto de arkad",
+      "canonical": {
+        "key": "presupuesto de arkad",
+        "source": "clason-babylon-en",
+        "pages": "37-38",
+        "origin": 3,
+        "original_indices": [
+          338,
+          339
+        ],
+        "definition": "un plan de gastos que no consume la parte reservada para acumular recursos",
+        "requirement": "elegir usos concretos y revisar gastos sin eliminar todo disfrute"
+      },
+      "alternative": {
+        "key": "presupuesto de arkad [f003-b]",
+        "definition": "plan del relato para cubrir necesidades disfrute y ahorro de forma deliberada",
+        "requirement": "ajustar gastos para proteger los objetivos elegidos",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "cinco leyes del oro",
+      "canonical": {
+        "key": "cinco leyes del oro",
+        "source": "clason-babylon-en",
+        "pages": "62-72",
+        "origin": 3,
+        "original_indices": [
+          366,
+          367
+        ],
+        "definition": "las cinco lecciones que arkad entrega a nomasir sobre conservar y emplear dinero",
+        "requirement": "leer ahorro rendimiento consejo conocimiento y prudencia como un conjunto"
+      },
+      "alternative": {
+        "key": "cinco leyes del oro [f003-b]",
+        "definition": "reglas del relato sobre ahorrar emplear y proteger el capital con prudencia",
+        "requirement": "estudiarlas como principios educativos sin prometer resultados",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "primera ley del oro",
+      "canonical": {
+        "key": "primera ley del oro",
+        "source": "clason-babylon-en",
+        "pages": "66,70",
+        "origin": 3,
+        "original_indices": [
+          368,
+          369
+        ],
+        "definition": "conservar una decima parte de los ingresos para el futuro segun arkad",
+        "requirement": "formar una reserva mediante aportaciones y no solo desear riqueza"
+      },
+      "alternative": {
+        "key": "primera ley del oro [f003-b]",
+        "definition": "propuesta de reservar una decima parte para el futuro propio y familiar",
+        "requirement": "mantener una reserva deliberada de los ingresos",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "segunda ley del oro",
+      "canonical": {
+        "key": "segunda ley del oro",
+        "source": "clason-babylon-en",
+        "pages": "66,70",
+        "origin": 3,
+        "original_indices": [
+          370,
+          371
+        ],
+        "definition": "emplear con criterio el capital para que genere nuevos recursos",
+        "requirement": "encontrar usos productivos y comprender como obtendrian ingresos"
+      },
+      "alternative": {
+        "key": "segunda ley del oro [f003-b]",
+        "definition": "propuesta de buscar un empleo productivo para el capital conservado",
+        "requirement": "entender de donde procederia su rendimiento",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "tercera ley del oro",
+      "canonical": {
+        "key": "tercera ley del oro",
+        "source": "clason-babylon-en",
+        "pages": "66,70",
+        "origin": 3,
+        "original_indices": [
+          372,
+          373
+        ],
+        "definition": "proteger el dinero con prudencia y consejo experimentado",
+        "requirement": "examinar la competencia de quienes orientan una inversion"
+      },
+      "alternative": {
+        "key": "tercera ley del oro [f003-b]",
+        "definition": "propuesta de invertir con prudencia y consejo experimentado",
+        "requirement": "comprobar competencia y riesgos antes de comprometer capital",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "cuarta ley del oro",
+      "canonical": {
+        "key": "cuarta ley del oro",
+        "source": "clason-babylon-en",
+        "pages": "66,71",
+        "origin": 3,
+        "original_indices": [
+          374,
+          375
+        ],
+        "definition": "la advertencia contra invertir en actividades que no se comprenden",
+        "requirement": "aprender el funcionamiento y los peligros antes de comprometer capital"
+      },
+      "alternative": {
+        "key": "cuarta ley del oro [f003-b]",
+        "definition": "advertencia sobre invertir en negocios que no se comprenden",
+        "requirement": "investigar la actividad en lugar de confiar solo en entusiasmo",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "quinta ley del oro",
+      "canonical": {
+        "key": "quinta ley del oro",
+        "source": "clason-babylon-en",
+        "pages": "66,71-72",
+        "origin": 3,
+        "original_indices": [
+          376,
+          377
+        ],
+        "definition": "la advertencia contra rendimientos imposibles y consejos de embaucadores",
+        "requirement": "cuestionar promesas extraordinarias y la propia inexperiencia"
+      },
+      "alternative": {
+        "key": "quinta ley del oro [f003-b]",
+        "definition": "advertencia contra rendimientos imposibles enganos e inexperiencia",
+        "requirement": "examinar las promesas antes de entregar recursos",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "murallas de babilonia",
+      "canonical": {
+        "key": "murallas de babilonia",
+        "source": "clason-babylon-en",
+        "pages": "84-87",
+        "origin": 3,
+        "original_indices": [
+          396,
+          397
+        ],
+        "definition": "la parabola que representa el valor de prepararse y protegerse ante adversidades",
+        "requirement": "considerar proteccion antes de que aparezca una necesidad urgente"
+      },
+      "alternative": {
+        "key": "murallas de babilonia [f003-b]",
+        "definition": "metafora del libro sobre prepararse contra acontecimientos adversos",
+        "requirement": "construir proteccion antes de necesitarla",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "plan de dabasir",
+      "canonical": {
+        "key": "plan de dabasir",
+        "source": "clason-babylon-en",
+        "pages": "99-103",
+        "origin": 3,
+        "original_indices": [
+          400,
+          401
+        ],
+        "definition": "el reparto del relato de diez por ciento para ahorro veinte para deuda y setenta para vivir",
+        "requirement": "registrar ingresos deudas y pagos para comprobar el avance"
+      },
+      "alternative": {
+        "key": "plan de dabasir [f003-b]",
+        "definition": "plan del relato de 10 por ciento para ahorrar 70 para vivir y 20 para deudas",
+        "requirement": "registrar ingresos gastos deudas y acuerdos",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    },
+    {
+      "key": "registro de deudas de dabasir",
+      "canonical": {
+        "key": "registro de deudas de dabasir",
+        "source": "clason-babylon-en",
+        "pages": "100-103",
+        "origin": 3,
+        "original_indices": [
+          402,
+          403
+        ],
+        "definition": "la lista de acreedores e importes usada para organizar la devolucion",
+        "requirement": "identificar a cada acreedor y actualizar lo que queda pendiente"
+      },
+      "alternative": {
+        "key": "registro de deudas de dabasir [f003-b]",
+        "definition": "lista del relato con cada acreedor y el importe adeudado",
+        "requirement": "anotar cantidades y actualizar lo que se devuelve",
+        "source": "clason-F003-B",
+        "pages": "-",
+        "origin": 3
+      },
+      "resolution": "Both attributed versions retained; canonical X07 and personal edits preserved."
+    }
+  ],
+  "reconciliation": "Canonical X07 values preserved; conflicting F003-A versions have attributed keys. Both F004 additions retained.",
+  "inputs": [
+    {
+      "name": "curriculum.json",
+      "sha256": "735d1e78a5b1079c1e479c637f47b7ed8b2f95e19aba528fd2d1ac7f9e2fe261"
+    },
+    {
+      "name": "hechos-previos.jsonl",
+      "sha256": "03c8c0b76408ba8b0e9b47e8c52a17bfae0399414e920543bab82256942736b0"
+    },
+    {
+      "name": "native-training-records.jsonl",
+      "sha256": "7eb02b5b89af611331a56ccb0837b22c18ed287217277657a33d0630792e28c6"
+    },
+    {
+      "name": "lessons.json",
+      "sha256": "d3a138153315ccc64d5f335c7797cdde642972b531c984f42b5125123084885a"
+    },
+    {
+      "name": "pages.jsonl",
+      "sha256": "729694b145bdc4573fc811345f10d7b4b40f22060cf2c0642a1804956da0eda4"
+    },
+    {
+      "name": "previous-facts.jsonl",
+      "sha256": "75fd54849dc9cf2ef71b1f6b1adfad0b9c7ab0e0af4bd28c5139e7e592c6d833"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+import fs from 'node:fs';import path from 'node:path';import {chat} from './io.mjs';
+const[r,b,i,o,...q]=process.argv.slice(2);if(!o||!q.length)throw Error('usage: run.mjs RUNTIME X07_BUILD INPUT.rvp NEW_OUTPUT.rvp MESSAGE | --file UTF8_FILE');const message=q[0]==='--file'?fs.readFileSync(q[1]):q.join(' '),result=chat(...[r,b,i,o].map(p=>path.resolve(p)),message);console.log(JSON.stringify(result,null,2));if(!result.ok)process.exitCode=1;

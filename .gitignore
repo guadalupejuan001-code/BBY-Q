@@ -7,3 +7,12 @@ app/libs/*.aar
 __pycache__/
 *.pyc
 .bbyq-xi-cache/
+
+# Private/reproducible X08 inputs and generated working state
+/runtime-linux/
+/ai/releases/x07/
+/integration/x08/*/
+!/integration/x08/data/
+!/integration/x08/tests/
+!/integration/x08/release/
+/integration/x08/*.log

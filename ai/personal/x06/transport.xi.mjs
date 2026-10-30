@@ -1,0 +1,17 @@
+import {F,C,S,T,I} from './schema.mjs';
+// Emits native validation, framing and erasure. No natural-language decisions.
+export function transport(a){
+ const{w,L,ld,st,get,put,say,zero,emit}=a;
+ L('x6_text_v2');ld(0,F);w('cmp r0 86','jne x6_error_version');ld(0,F+1n);w('cmp r0 2','jne x6_error_version');ld(0,F+4n);w('cmp r0 1','je x6_text_language','cmp r0 2','jne x6_error_language');L('x6_text_language');get(9,F+8n);w('cmp r9 1','jlt x6_error_empty','cmp r9 16384','jgt x6_error_size','set r4 0');
+ // Canonical UTF-8: reject bad continuation, overlong encodings, surrogates,
+ // values above U+10FFFF. TAB, LF and CR are the only accepted C0 controls.
+ L('x6_utf8');w('cmp r4 r9','jge x6_text_valid',`set r7 ${C}`,'add r7 r4','load8 r3 $r7','add r4 1','cmp r3 128','jge x6_utf8_lead','cmp r3 127','je x6_error_control','cmp r3 32','jge x6_utf8','cmp r3 9','je x6_utf8','cmp r3 10','je x6_utf8','cmp r3 13','je x6_utf8','jmp x6_error_control');
+ L('x6_utf8_lead');w('cmp r3 194','jlt x6_error_utf8','cmp r3 223','jle x6_utf8_two','cmp r3 239','jle x6_utf8_three','cmp r3 244','jle x6_utf8_four','jmp x6_error_utf8');L('x6_utf8_two');w('set r5 1','set r6 128','set r10 191','jmp x6_utf8_next');L('x6_utf8_three');w('set r5 2','set r6 128','set r10 191','cmp r3 224','jne x6_utf8_not_e0','set r6 160');L('x6_utf8_not_e0');w('cmp r3 237','jne x6_utf8_next','set r10 159','jmp x6_utf8_next');L('x6_utf8_four');w('set r5 3','set r6 128','set r10 191','cmp r3 240','jne x6_utf8_not_f0','set r6 144');L('x6_utf8_not_f0');w('cmp r3 244','jne x6_utf8_next','set r10 143');
+ L('x6_utf8_next');w('cmp r4 r9','jge x6_error_utf8',`set r7 ${C}`,'add r7 r4','load8 r3 $r7','cmp r3 r6','jlt x6_error_utf8','cmp r3 r10','jgt x6_error_utf8','add r4 1','sub r5 1','cmp r5 0','je x6_utf8','set r6 128','set r10 191','jmp x6_utf8_next');
+ L('x6_text_valid');st(F+2n,0);st(F+3n,1);st(F+10n,0);st(S+200n,1);put(E_address(),9);w('set r0 0');put(P_address(),0);st(S+100n,0);w('jmp x6_routes');
+ for(const[name,code]of Object.entries({version:5,language:6,empty:1,size:2,utf8:3,control:4,unsupported:7})){L('x6_error_'+name);st(F+2n,0);st(F+3n,3);st(F+10n,code);w('halt');}
+ L('x6_echo');get(8,P_address());get(1,E_address());w('sub r1 r8','cmp r1 1','jlt x6_format',`add r8 ${C}`);emit();w('jmp x6_done');
+ L('x6_to_parent');get(9,E_address());w('cmp r9 255','jgt x6_error_unsupported','set r0 0');L('x6_parent_bytes');w('cmp r0 r9','jge x6_parent_ready',`set r7 ${C}`,'add r7 r0','load8 r3 $r7','cmp r3 9','je x6_error_unsupported','cmp r3 10','je x6_error_unsupported','cmp r3 13','je x6_error_unsupported',`set r7 ${I}`,'add r7 r0','store8 $r7 r3','add r0 1','jmp x6_parent_bytes');L('x6_parent_ready');st(7400000000000000017n,'r9');st(7400000000000000016n,1);ld(0,F+4n);st(7400000000000000003n,'r0');zero(S,4096,'parent_scratch');w('jmp x6_parent');
+}
+const P_address=()=>S+16n,E_address=()=>S+18n;
+export function finishSource(){return`#!reverse-pc-machine-v1\nload8 r0 ${F}\ncmp r0 86\njne x6finish_refuse\nload8 r0 ${F+1n}\ncmp r0 2\njne x6finish_refuse\nset r0 0\nlabel x6finish_payload\nset r7 ${F}\nadd r7 r0\nstore8 $r7 0\nadd r0 1\ncmp r0 16640\njlt x6finish_payload\nstore8 ${F} 86\nstore8 ${F+1n} 2\nset r0 0\nlabel x6finish_scratch\nset r7 ${S}\nadd r7 r0\nstore8 $r7 0\nadd r0 1\ncmp r0 4096\njlt x6finish_scratch\nset r0 0\nlabel x6finish_work\nset r7 ${T}\nadd r7 r0\nstore8 $r7 0\nadd r0 1\ncmp r0 8192\njlt x6finish_work\nhalt\nlabel x6finish_refuse\nset r0 0\nmod r0 0\n`;}

@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "checks": 23,
+  "capacity_occupied": 4096,
+  "synthetic_records": true,
+  "natural_lessons_used_for_capacity_test": false,
+  "overflow_refused": true,
+  "highest_slot_query_delete_reuse": true,
+  "legacy_archive_collision_absent": true,
+  "revision_wrap_refused": true,
+  "front_sha256": "d564d1ba43a13d5eb5b21399969094d11a732ed3495888daae580376bb17e476"
+}

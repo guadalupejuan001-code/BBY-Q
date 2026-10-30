@@ -1,5 +1,7 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
+**Entrega nativa X08 (30 octubre 2026):** currículo reconciliado de 480 conceptos/960 relaciones y libro completo, operaciones de lenguaje en XI y sesiones con publicación atómica. Modelo y base incluidos, con restauración verificada y entrada nativa para REVERSE. [Alcance, uso y pruebas](docs/integration/BBYQ_X08.md). P13/P14 están excluidos; esta revisión no actualiza la APK. Las entregas Android descritas debajo son históricas.
+
 **Entrega actual: E025-Chain-1 + W4u 0.1**, integrada en REVERSE 2.5.1.
 Se recupera el agente exacto de la APK 2.5.0, su currículo XI, estado y
 migraciones. [Fuentes recuperadas, compilación y comprobaciones](ai/releases/e025/README.md).

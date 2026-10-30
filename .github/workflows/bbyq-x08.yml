@@ -1,0 +1,55 @@
+name: BBY Q X08 reproducible native release
+on:
+  pull_request:
+    paths: ['ai/personal/**', 'integration/x08/**', '.github/workflows/bbyq-x08.yml']
+  push:
+    branches: [main]
+    paths: ['ai/personal/**', 'integration/x08/**', '.github/workflows/bbyq-x08.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bbyq-x08-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 03c255fc920979f4d6b928f05ebd930d01fff1b5
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build the original XI runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Restore and test the self-contained release
+        run: |
+          set -euo pipefail
+          node integration/x08/prepare.mjs build/x08-release
+          node integration/x08/tests/release.test.mjs deps/reverse/build/reverse_pc build/release-tests
+      - name: Rebuild from pinned X07 and run all six native batteries
+        run: |
+          set -euo pipefail
+          bash integration/x08/check.sh deps/reverse/build/reverse_pc build/x08-release/parent build/rebuilt > build/rebuild.log 2>&1
+          node integration/x08/verify-rebuild.mjs build/x08-release/native build/rebuilt/native
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBY-Q-X08-native-integration
+          path: |
+            build/release-tests/results.json
+            build/rebuilt/**/results.json
+            build/rebuild.log
+          retention-days: 14
