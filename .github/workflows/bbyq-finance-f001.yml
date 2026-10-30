@@ -1,0 +1,76 @@
+name: BBY Q F001 F002 economic knowledge native XI
+on:
+  pull_request:
+    paths: ['ai/training/finance/**', '.github/workflows/bbyq-finance-f001.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bbyq-finance-f001-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  finance-native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22.16.0'}
+      - name: Validate and export educational corpora
+        run: |
+          set -euo pipefail
+          for file in ai/training/finance/*.mjs; do node --check "$file"; done
+          node ai/training/finance/f001.mjs export evidence/corpus
+          node ai/training/finance/train-f002.mjs export evidence/corpus-f002
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build unchanged pinned XI Ether host
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Recover exact previously verified E034 XI capsule
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E034-relational-composition
+          run-id: 40808605984
+          github-token: ${{ github.token }}
+          path: prior034
+      - name: Reproduce F001 knowledge acquisition
+        run: |
+          set -euo pipefail
+          capsule=$(find prior034 -type f -name composed.rxe -print -quit)
+          test -n "$capsule"
+          mkdir -p evidence/runtime
+          cp deps/reverse/build/reverse_pc evidence/runtime/reverse_pc
+          node ai/training/finance/f001.mjs train deps/reverse/build/reverse_pc "$capsule" ai/checkpoints/e034/composition-model.rvp.gz.b64 evidence/native 2>&1 | tee evidence/native-run.log
+      - name: Train F002 on 160 additional facts and test native XI dialogue
+        run: |
+          set -euo pipefail
+          node ai/training/finance/train-f002.mjs train deps/reverse/build/reverse_pc evidence evidence/finance-f002 2>&1 | tee evidence/f002-run.log
+      - name: Retain original E025 and W4u execution regression
+        run: |
+          set -euo pipefail
+          python3 ai/releases/e025/test.py deps/reverse/build/reverse_pc evidence/regression-e025
+          node ai/xi/w4u/tests/native-w4u.mjs deps/reverse/build/reverse_pc evidence/regression-w4u
+      - name: Include reproducible data and transport sources
+        if: always()
+        run: |
+          mkdir -p evidence/sources
+          cp ai/training/finance/*.mjs evidence/sources/
+          git rev-parse HEAD > evidence/source-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-F001-economic-learning
+          path: evidence
+          retention-days: 90
