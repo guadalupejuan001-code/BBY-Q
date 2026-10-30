@@ -1,0 +1,37 @@
+name: BBY Q F003 Babylon public-domain source
+on:
+  pull_request:
+    paths: ['.github/workflows/bbyq-babylon-source.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Download freely distributed original English PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/source
+          url='https://cpcglobal.org/publications/The%20Richest%20Man%20in%20Babylon.pdf'
+          curl --fail --location --retry 2 --connect-timeout 20 --max-time 90 "$url" -o evidence/source/Clason-The-Richest-Man-in-Babylon-English.pdf
+          test "$(head -c 5 evidence/source/Clason-The-Richest-Man-in-Babylon-English.pdf)" = '%PDF-'
+          printf '%s\n' "$url" > evidence/source/source-url.txt
+          printf '%s\n' 'The source PDF carries a public-domain/free-distribution notice on page 2. English original only; no modern commercial Spanish translation. Derived Spanish training material is separately authored and attributed.' > evidence/source/rights-note.txt
+          sha256sum evidence/source/*.pdf > evidence/source/SHA256SUMS.txt
+      - name: Extract text for source audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v pdftotext >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; fi
+          pdfinfo evidence/source/*.pdf > evidence/source/pdfinfo.txt
+          pdftotext -layout evidence/source/*.pdf evidence/source/book-en.txt
+          test -s evidence/source/book-en.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-F003-Babylon-source
+          path: evidence/source
+          retention-days: 90
+          if-no-files-found: error
