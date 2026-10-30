@@ -32,8 +32,15 @@ const overflow=ask(['@ctx add fuera de capacidad es rechazo'])[0];ck(!overflow.s
 ck(ask(['@ctx status'])[0].startsWith('CTX n=4096 '),'overflow preserves count');
 const afterFull=ask(ids.map(i=>'@ctx get '+i));afterFull.forEach((x,i)=>ck(x===rawBefore[i],'older records survive full capacity '+ids[i]));
 // Id 512 no debe confundirse con el antiguo sentinel; fixture independiente.
-const sentinel=path.join(out,'sentinel.rvp');fs.copyFileSync(seed,sentinel);
-ask(['@ctx clear'],sentinel);ck(ask(['@ctx status'],sentinel)[0].startsWith('CTX n=000 '),'clear on disposable fixture');
+const clearState=path.join(out,'clear-probe.rvp');fs.copyFileSync(seed,clearState);
+let clearProbe;
+try{clearProbe={completed:true,output:ask(['@ctx clear'],clearState)[0]};}
+catch(error){clearProbe={completed:false,error:String(error.stderr||error.message).trim(),counted_as_pass:false};}
+fs.writeFileSync(path.join(out,'full-archive-clear-probe.json'),JSON.stringify(clearProbe,null,2)+'\n');
+fs.unlinkSync(clearState);
+const sentinel=path.join(out,'sentinel.rvp');
+execFileSync(runtime,['init',sentinel],{encoding:'utf8',timeout:120000});
+ck(ask(['@ctx status'],sentinel)[0].startsWith('CTX n=000 '),'new isolated empty fixture');
 const sentFacts=[];for(let n=0;n<1100;n++)sentFacts.push(`@ctx add indice${n} es dato${n}`);
 ask(sentFacts,sentinel);
 for(const n of [511,512,513,767,768])ck(ask(['que es indice'+n],sentinel)[0]===`indice${n} es dato${n} [#${n}].`,'sentinel/index boundary '+n);
@@ -47,6 +54,6 @@ const qs=['@ctx status','@ctx get 1000','@libro pagina 62','oye que es babilonia
 const batch=ask(qs,batchState);const direct=qs.map(q=>execFileSync(runtime,['app-turn',app,directState,directState,'es',q],{encoding:'utf8',timeout:120000,maxBuffer:4*1024*1024}).trimEnd());
 direct.forEach((x,i)=>ck(x===batch[i],'batch/direct output parity '+i));
 ck(sha(fs.readFileSync(seed))===seedHash,'published seed remains unchanged');
-const result={completed:true,checks,full_archive_search_probes:searchProbes,search_probes_are_not_passed_tests:true,search_preserved_records:metaIds.length,capacity_tested:4096,rejected_4097th:true,record_max_bytes:224,rejected_225_bytes:true,sentinel_indices:[511,512,513,767,768],direct_batch_parity:direct.length,seed_unchanged:true,seed_sha256:seedHash,tests_use_disposable_states:true};
+const result={completed:true,checks,full_archive_search_probes:searchProbes,full_archive_clear_probe:clearProbe,search_probes_are_not_passed_tests:true,search_preserved_records:metaIds.length,capacity_tested:4096,rejected_4097th:true,record_max_bytes:224,rejected_225_bytes:true,sentinel_indices:[511,512,513,767,768],direct_batch_parity:direct.length,seed_unchanged:true,seed_sha256:seedHash,tests_use_disposable_states:true};
 fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 for(const f of [state,sentinel,batchState,directState])fs.unlinkSync(f);

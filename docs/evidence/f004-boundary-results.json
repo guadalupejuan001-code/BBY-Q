@@ -1,0 +1,20 @@
+{
+  "completed":true,
+  "checks":2409,
+  "full_archive_search_probes":[
+    {"query":"@ctx find bbl p122 s","completed":false,"error":"REVERSE_PC_FAIL line 22735: XI machine instruction-step budget exceeded","counted_as_pass":false},
+    {"query":"@ctx find babilonia trabajo y relaciones","completed":true,"output":"#1137 babilonia trabajo y relaciones requiere reconocer acciones y apoyos sin atribuir toda pobreza a falta de esfuerzo"}
+  ],
+  "full_archive_clear_probe":{"completed":false,"error":"REVERSE_PC_FAIL line 22352: XI machine instruction-step budget exceeded","counted_as_pass":false},
+  "search_probes_are_not_passed_tests":true,
+  "search_preserved_records":6,
+  "capacity_tested":4096,
+  "rejected_4097th":true,
+  "record_max_bytes":224,
+  "rejected_225_bytes":true,
+  "sentinel_indices":[511,512,513,767,768],
+  "direct_batch_parity":8,
+  "seed_unchanged":true,
+  "seed_sha256":"8808fc02b22a32c78eeacb616290b0c582effd4735072e6d656feb39232f6421",
+  "tests_use_disposable_states":true
+}
