@@ -11,8 +11,8 @@ export const source = {
 };
 // pages | origin | concept | definition | requirement
 export const lessons = `
-20-29|book|el hombre mas rico de babilonia|libro de clason que ensena mediante relatos a adquirir conservar y emplear dinero|distinguir sus ensenanzas de garantias de riqueza
-23-24|book|pagarse primero|propuesta de clason de reservar parte de cada ingreso antes del gasto discrecional|separar de forma deliberada la parte que se conservara
+20-29|book|el hombre mas rico de babilonia|libro de clason sobre adquirir conservar y emplear dinero mediante relatos|distinguir sus ensenanzas de garantias de riqueza
+23-24|book|pagarse primero|propuesta de clason de reservar parte del ingreso antes del gasto discrecional|separar de forma deliberada la parte que se conservara
 23-24,35-36|book|decima parte de arkad|propuesta del relato de conservar al menos una de cada diez monedas ganadas|reconocer que es una regla del libro y no una garantia de exito
 23,26|book|conservar lo ganado|principio del relato de no consumir la totalidad de los ingresos|distinguir dinero ganado de dinero efectivamente retenido
 37-38|book|necesidades y deseos de arkad|distincion del relato entre gastos necesarios y deseos que exceden los recursos|revisar cada gasto antes de asignarle dinero
@@ -43,7 +43,7 @@ export const lessons = `
 43-44|book|quinta cura de clason|buscar una ventaja economica en la vivienda propia segun el relato|contrastar la propuesta del libro con costes y circunstancias
 45-46|book|sexta cura de clason|preparar ingresos para etapas futuras y proteccion familiar|planificar necesidades antes de que aparezcan
 47-49|book|septima cura de clason|aumentar la capacidad de generar ingresos mejorando las propias habilidades|estudiar practicar y perfeccionar un oficio
-66,70-71|book|cinco leyes del oro|reglas narrativas de clason sobre ahorro empleo prudente y proteccion del capital|estudiarlas como principios educativos sin prometer resultados
+66,70-71|book|cinco leyes del oro|reglas del relato sobre ahorrar emplear y proteger el capital con prudencia|estudiarlas como principios educativos sin prometer resultados
 66,70|book|primera ley del oro|propuesta de reservar una decima parte para el futuro propio y familiar|mantener una reserva deliberada de los ingresos
 66,70|book|segunda ley del oro|propuesta de buscar un empleo productivo para el capital conservado|entender de donde procederia su rendimiento
 66,70-71|book|tercera ley del oro|propuesta de invertir con prudencia y consejo experimentado|comprobar competencia y riesgos antes de comprometer capital
@@ -57,9 +57,9 @@ export const lessons = `
 75-76,80-82|book|ayudar sin asumir toda la carga|ensenanza del relato de apoyar sin heredar imprudentemente el problema ajeno|elegir una ayuda compatible con los propios recursos
 80|book|experiencia comercial de mathon|conocimiento de compra venta y clientes que el relato exige al comerciante|comprobar como compraria venderia y devolveria lo prestado
 81|book|ensayo pequeno de mathon|propuesta del relato de probar capacidad con una suma limitada|pedir un plan y no comprometer todo el capital de una vez
-82-83|book|capital perdido y frutos futuros|advertencia del relato de que perder capital tambien elimina sus posibles ingresos|considerar la base y no solo el rendimiento prometido
+82-83|book|capital perdido y frutos futuros|advertencia de que perder capital tambien elimina sus posibles ingresos|considerar la base y no solo el rendimiento prometido
 84-87|book|murallas de babilonia|metafora del libro sobre prepararse contra acontecimientos adversos|construir proteccion antes de necesitarla
-99-106|book|plan de dabasir|propuesta narrativa de diez por ciento para ahorro setenta para vivir y veinte para deudas|registrar ingresos gastos deudas y acuerdos
+99-106|book|plan de dabasir|plan del relato de 10 por ciento para ahorrar 70 para vivir y 20 para deudas|registrar ingresos gastos deudas y acuerdos
 99|book|ahorro de dabasir|decima parte de los ingresos que el personaje decide conservar|apartar esa porcion dentro del plan narrativo
 100|book|gastos de dabasir|siete decimas de los ingresos que el personaje destina a vivir|mantener sus gastos dentro de esa parte segun el relato
 100|book|pago de dabasir|dos decimas de los ingresos que el personaje destina a sus acreedores|distribuir los pagos segun los acuerdos del relato
@@ -67,14 +67,14 @@ export const lessons = `
 104-105|book|acuerdo con acreedores del relato|pacto narrativo de pagos periodicos basado en recursos disponibles|explicar cifras y obtener acuerdo en lugar de asumirlo
 100,104-105|book|evitar nueva deuda de consumo|parte del plan narrativo de pagar compras corrientes con recursos disponibles|no ampliar las obligaciones mientras se intenta reducirlas
 120-121|book|trabajo en el relato de sharru nada|actividad que el personaje relaciona con destreza confianza y oportunidades|desarrollar una contribucion util sin confundir esfuerzo con garantia
-47-49,80-81|application|babilonia aplicado a reverse|adaptacion educativa que propone demostrar utilidad antes de ampliar gasto en reverse|medir demanda coste de entrega y un piloto limitado
-47-49,81|application|babilonia aplicado a bby q|adaptacion que propone desarrollar habilidades comprobables antes de vender capacidades|probar resultados conservar errores y no anunciar funciones inexistentes
-41-42,71|application|babilonia aplicado a laplace|adaptacion que exige tratar una prediccion como incierta y no como dinero garantizado|registrar pronosticos costes fallos y resultados antes de arriesgar recursos
+47-49,80-81|application|babilonia aplicado a reverse|adaptacion que propone demostrar utilidad antes de ampliar gasto en reverse|medir demanda coste de entrega y un piloto limitado
+47-49,81|application|babilonia aplicado a bby q|adaptacion que propone demostrar capacidades antes de ofrecerlas a clientes|probar resultados conservar errores y no anunciar funciones inexistentes
+41-42,71|application|babilonia aplicado a laplace|adaptacion que trata las predicciones como inciertas y no dinero garantizado|registrar pronosticos costes fallos y resultados antes de arriesgar recursos
 20-29,66|critical|lectura critica de clason|distincion entre una parabola educativa y evidencia de resultados universales|contrastar cada aplicacion y no culpar a alguien por su pobreza
-35-38,99-100|critical|porcentajes del libro|reglas propuestas en relatos y no presupuestos personales automaticamente adecuados|examinar necesidades obligaciones e ingresos antes de aplicarlas
-43-44|critical|vivienda en contexto actual|adaptacion que compara comprar y alquilar sin asumir que comprar siempre conviene|incluir costes totales riesgos plazo y alternativas
+35-38,99-100|critical|porcentajes del libro|reglas del relato y no presupuestos adecuados para todas las personas|examinar necesidades obligaciones e ingresos antes de aplicarlas
+43-44|critical|vivienda en contexto actual|comparacion de comprar y alquilar sin asumir que comprar siempre conviene|incluir costes totales riesgos plazo y alternativas
 40,45-46|critical|cifras de los relatos|ejemplos del libro que no deben aceptarse como calculos modernos verificados|recalcular tasas periodos y supuestos antes de utilizarlos
-20-29,41-42|critical|conocimiento y ejecucion financiera|distincion de este proyecto entre aprender principios y autorizar movimientos de dinero|validar capacidades y permisos por separado
+20-29,41-42|critical|conocimiento y ejecucion financiera|distincion entre aprender principios y autorizar movimientos de dinero|validar capacidades y permisos por separado
 `.trim().split('\n').map((line,i)=>{
  const [pages,origin,term,definition,requirement]=line.split('|');
  return {id:`f003-${String(i+1).padStart(3,'0')}`,pages,origin,term,definition,requirement};
