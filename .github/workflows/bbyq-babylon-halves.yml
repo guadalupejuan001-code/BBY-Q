@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with: {persist-credentials: false}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with: {node-version: '22.16.0'}
       - name: Recover verified F003 and unchanged XI host
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: BBYQ-F003-Babylon-learning
           run-id: 41001114852
@@ -35,7 +35,8 @@ jobs:
           cp prior/f003/BBY-Q-F003-Babilonia.rxe prior/f003/finance-f003.rvp.gz prior/f003/f003-reader.xi work/base-f003/
           cat prior/old-native-facts.jsonl prior/f003/corpus/native-facts.jsonl > work/base-f003/hechos-previos.jsonl
           cp prior/source/Clason-The-Richest-Man-in-Babylon-English.pdf work/libro/El-hombre-mas-rico-de-Babilonia-original-ingles.pdf
-          pdftotext -layout work/libro/El-hombre-mas-rico-de-Babilonia-original-ingles.pdf work/libro/texto-extraido.txt
+          cp prior/source/book-en.txt work/libro/texto-extraido.txt
+          printf '%s\n' '80abe2ae68e13ca26bf9788fb7ba2bc0aea8d8cea8e5e67d86fa1c21cada93eb  work/libro/texto-extraido.txt' | sha256sum --check
           for file in ai/training/babylon-halves/*.mjs; do node --check "$file"; done
       - name: Learn first half then second and test retention
         shell: bash
@@ -51,7 +52,7 @@ jobs:
           cp ai/training/babylon-halves/*.mjs evidence/sources/
           cp work/runtime-linux/reverse_pc evidence/runtime/reverse_pc
           git rev-parse HEAD > evidence/source-commit.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: BBYQ-F004-two-halves
