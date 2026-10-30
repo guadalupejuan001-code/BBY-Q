@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {rows,source} from './curriculum.mjs';
+import {fixReader} from './reader-fix.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const write=(p,o)=>fs.writeFileSync(p,JSON.stringify(o,null,2)+'\n');
 const jsonl=(p,rs)=>fs.writeFileSync(p,rs.map(r=>JSON.stringify(r)).join('\n')+'\n');
@@ -49,21 +50,34 @@ function train(runtime,oldApp,oldGzip,oldFacts,out){
  const meta=JSON.parse(exec('inspect-rxe',oldApp));
  const offset=appBytes.indexOf(Buffer.from('RXE1\r\n\x1a\n','binary')),codeSize=appBytes.readUInt32LE(32);
  assert.ok(offset>0&&offset+codeSize+oldState.length===appBytes.length,'RXE2 layout');
- const code=path.join(out,'unchanged-code.rxe');fs.writeFileSync(code,appBytes.subarray(offset,offset+codeSize));
+ const originalCode=path.join(out,'base-code.rxe');fs.writeFileSync(originalCode,appBytes.subarray(offset,offset+codeSize));
+ const reader=fixReader(exec,originalCode,out),code=reader.code;
+ const initialSeed=path.join(out,'base-seed.rvp');fs.writeFileSync(initialSeed,oldState);
+ const preApp=path.join(out,'pretraining.rxe');exec('pack-app',code,initialSeed,preApp,'org.reverse.bbyq','BBY Q','F003-2',reader.digest.slice(0,40));
  const candidate=path.join(out,'finance-f003.rvp');fs.writeFileSync(candidate,oldState);
  const transcript=path.join(out,'transcripts.jsonl');fs.writeFileSync(transcript,'');
  let checks=0;const stats={baseline_new_exact:0,ingested:0,old_retention:0,new_single_queries:0,new_composed_queries:0,new_followups:0,style_queries:0,reopen_queries:0};
  const eq=(a,b,label)=>{assert.equal(a,b,label);checks++;if(checks%32===0)console.log('PASS',checks,label);};
  const answer=(f)=>`${f.text} [#${String(f.index).padStart(3,'0')}].`;
- function ask(q,state,phase='evaluation',app=oldApp){
+ function ask(q,state,phase='evaluation',app=preApp){
   assert.ok(Buffer.byteLength(q)<=255,'input too long');const t=performance.now();const a=exec('app-turn',app,state,state,'es',q);
   fs.appendFileSync(transcript,JSON.stringify({phase,input:q,output:a,ms:Math.round((performance.now()-t)*100)/100})+'\n');return a;
  }
- function count(state,app=oldApp){const m=ask('@ctx status',state,'archive-audit',app).match(/^CTX n=(\d+)/);assert.ok(m);return Number(m[1]);}
+ function count(state,app=preApp){const m=ask('@ctx status',state,'archive-audit',app).match(/^CTX n=(\d+)/);assert.ok(m);return Number(m[1]);}
  eq(count(candidate),320,'F002 archive');
  const baseline=path.join(out,'baseline.rvp');fs.writeFileSync(baseline,oldState);
  for(const f of facts){const a=ask('que '+f.relation+' '+f.term,baseline,'before-learning');stats.baseline_new_exact+=Number(a===answer(f));}
  eq(count(baseline),320,'baseline questions do not add facts');
+ // Boundary regressions are isolated from the published candidate.
+ const boundary=path.join(out,'boundary.rvp');stats.reader_boundary_queries=0;
+ for(const relation of ['es','requiere'])for(const len of [80,81,95,224-Buffer.byteLength('x '+relation+' ')]){
+  fs.writeFileSync(boundary,oldState);const text='x '+relation+' '+'a'.repeat(len);
+  eq(ask('@ctx add '+text,boundary,'reader-boundary'),'CTX guardado #320','boundary add '+relation+' '+len);
+  eq(ask('que '+relation+' x',boundary,'reader-boundary'),text+' [#320].','boundary read '+relation+' '+len);stats.reader_boundary_queries++;
+ }
+ fs.writeFileSync(boundary,oldState);
+ for(const letter of ['a','b'])ask('@ctx add z es '+letter.repeat(100),boundary,'reader-contradiction');
+ eq(ask('que es z',boundary,'reader-contradiction'),'Evidencia negativa o contradictoria; no puedo afirmar esa propiedad.','long contradictory values remain a conflict');
  const t=performance.now();
  for(const f of facts){eq(ask('@ctx add '+f.text,candidate,'learning'),'CTX guardado #'+String(f.index).padStart(3,'0'),'ingest '+f.index);stats.ingested++;}
  stats.ingestion_ms=Math.round(performance.now()-t);eq(count(candidate),448,'all native facts');
@@ -82,7 +96,7 @@ function train(runtime,oldApp,oldGzip,oldFacts,out){
  eq(count(evaluation),448,'supported questions do not become assertions');
  eq(ask('que es babiloniainexistente y que requiere',evaluation),'Falta evidencia para combinar ambas propiedades.','unknown term abstention');
  const app=path.join(out,'BBY-Q-F003-Babilonia.rxe');
- exec('pack-app',code,candidate,app,'org.reverse.bbyq','BBY Q','F003-1',meta.source_sha);
+ exec('pack-app',code,candidate,app,'org.reverse.bbyq','BBY Q','F003-2',reader.digest.slice(0,40));
  const reopened=path.join(out,'fresh.rvp');exec('app-init',app,reopened);eq(count(reopened,app),448,'fresh seed');
  for(const f of facts){eq(ask('que '+f.relation+' '+f.term,reopened,'fresh-seed',app),answer(f),'reopen '+f.index);stats.reopen_queries++;}
  eq(count(reopened,app),448,'fresh queries preserve count');
@@ -96,10 +110,10 @@ function train(runtime,oldApp,oldGzip,oldFacts,out){
  eq(sha(fs.readFileSync(candidate)),candidateHash,'candidate not mutated by tests');
  eq(sha(fs.readFileSync(oldApp)),APP,'base app untouched');eq(sha(gunzipSync(fs.readFileSync(oldGzip))),STATE,'base state untouched');
  const compressed=gzipSync(fs.readFileSync(candidate),{level:9});fs.writeFileSync(path.join(out,'finance-f003.rvp.gz'),compressed);
- const report={version:'F003-1-Babilonia',checks,...stats,new_concepts:64,book_concepts:48,modern_applications:16,new_facts:128,total_facts:448,remaining_context_slots:64,
+ const report={version:'F003-2-Babilonia',checks,...stats,new_concepts:64,book_concepts:48,modern_applications:16,new_facts:128,total_facts:448,remaining_context_slots:64,
   prepared_dialogue_examples:dialogues.length,dialogue_corpus_consumed:false,
   app_sha256:sha(fs.readFileSync(app)),checkpoint_sha256:candidateHash,checkpoint_bytes:fs.statSync(candidate).size,checkpoint_gzip_bytes:compressed.length,
-  native_code_sha256:sha(fs.readFileSync(code)),native_code_changed:false,source_xi_sha:meta.source_sha,runtime_sha256:sha(fs.readFileSync(runtime)),
+  native_code_sha256:sha(fs.readFileSync(code)),native_code_changed:true,reader_fix:reader.report,source_xi_sha:reader.digest,runtime_sha256:sha(fs.readFileSync(runtime)),
   base_app_sha256:APP,base_checkpoint_sha256:STATE,originals_preserved:true,
   open_probe_count:probeResults.length,open_probes_acknowledged_as_assertions:probeResults.filter(r=>r.rote_acknowledgement).length,open_probes_that_added_facts:probeResults.filter(r=>r.archive_after>448).length,
   native_scope:'Ensenanza de hechos persistentes y consulta en XI/Ether. No ajuste de pesos neuronales ni lectura autonoma de PDF.',
