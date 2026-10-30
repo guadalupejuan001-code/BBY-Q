@@ -1,0 +1,13 @@
+{
+  ".github/workflows/bbyq-x10.yml": "cba6259067ead6c4b659d4cc6bca428d773bfe125a08c62d11a2fddff38f4278",
+  "ai/personal/x10/native.mjs": "fdce5c0a5ef918718370fc6abdb696821f0298069fbc48273c940bf9cef18af2",
+  "ai/personal/x10/pages.mjs": "0e27c43208132c1645439350a3c77a1739fa66e50cd23d691f4bb9baf4094315",
+  "ai/personal/x10/schema.mjs": "b0b333983d9f607690e637486848540dfea8a6eed816562f7fbec290b75e9939",
+  "ai/personal/x10/session.mjs": "8c684cfad1aa99de2a11e612c8861c1de7bd6a99d018df482b797ea4d2419ee1",
+  "bbyq.mjs": "767aad6e8e916f53a1fa1439b9f57c478093a62dfec540ad1f20268dccf4833f",
+  "docs/integration/BBYQ_X10_CAPACITY.md": "1fab761992c38c55d056a04283643a37a9e0ef12bc3732062f34919c79788373",
+  "integration/x10/check.mjs": "f7ad5207cf4589525092f0852e02e37d14b6ffed73532295d3b821bd4ac78981",
+  "integration/x10/prepare.mjs": "c0cac449e5c8cae9176a51aa4abd4c5b66278093c7f66a7cbdae0272960fb515",
+  "integration/x10/tests/edge-cases.mjs": "38adda4c21e475bfab06329d1a8c590fd1586538d84e7944a7f4a93ebe9e14cd",
+  "integration/x10/tests/worker.mjs": "c5360c726e0001966158a0cd21065aebe70c65c479c09db9a7225bb8432cac3b"
+}
