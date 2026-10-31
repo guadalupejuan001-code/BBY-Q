@@ -126,7 +126,17 @@ export function paraphraseSource(){
    'cmp r6 4','je p06_multiline',
    'cmp r6 5','je p06_multiline','jmp p06_done');
  L('p06_multiline');w('cmp r3 10','je p06_next_byte','cmp r3 13','je p06_next_byte','jmp p06_done');
- L('p06_next_byte');w('add r0 1','jmp p06_validate');
+ L('p06_next_byte');
+ // Do not reinterpret a second conjoined instruction as part of the topic.
+ // A bounded false negative is safer than silently dropping an imperative.
+ w('cmp r6 3','jgt p06_advance','cmp r3 32','jne p06_advance',
+   'mov r7 r0','add r7 2','cmp r7 r9','jge p06_advance',
+   'set r7 '+INPUT,'add r7 r0','add r7 1','load8 r4 $r7',
+   'cmp r4 89','jne p06_lower_y','set r4 121');
+ L('p06_lower_y');
+ w('cmp r4 121','jne p06_advance','add r7 1','load8 r4 $r7',
+   'cmp r4 32','je p06_done');
+ L('p06_advance');w('add r0 1','jmp p06_validate');
  L('p06_dispatch');w('set r11 0');
  for(const [i,rule]of RULES.entries()){
   const label='p06_output_'+(i+1);
