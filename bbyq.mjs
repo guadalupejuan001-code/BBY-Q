@@ -34,8 +34,8 @@ try{
    else if(words[0]==='--learn'){learn=true;words.shift();}
    else break;
   }
-  if(!session||!id||!words.length)throw Error('Usage: node bbyq.mjs turn SESSION REQUEST_ID [--language=en] [--module=e034|p03] [--learn] MESSAGE | --file UTF8_FILE');
-  if(!capacity&&(module||learn))throw Error('Los módulos E034/P03 requieren el motor X10.');
+  if(!session||!id||!words.length)throw Error('Usage: node bbyq.mjs turn SESSION REQUEST_ID [--language=en] [--module=e034|p03|p04] [--learn] MESSAGE | --file UTF8_FILE');
+  if(!capacity&&(module||learn))throw Error('Los módulos E034/P03/P04 requieren el motor X10.');
   let message=words.join(' ');if(words[0]==='--file'){if(words.length!==2)throw Error('--file requires exactly one UTF-8 file');message=fs.readFileSync(words[1]);}
   result=(capacity?transactX10:transact)(runtime,base,session,id,message,{language,...(module?{module}:{}),...(learn?{learn}: {})});
  }else if(command==='status'){
