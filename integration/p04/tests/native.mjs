@@ -87,6 +87,8 @@ for(const [i,[input,mode,count,subject]] of known.entries()){
  if(mode===1&&i<8)samples.push({subject,poem:result.response});
  fs.rmSync(job,{recursive:true,force:true});
 }
+const distinctStructures=new Set(samples.map(s=>s.poem.replaceAll(s.subject,'{tema}')));
+assert.ok(distinctStructures.size>=3,'Independent native fragment choices must vary structure, not only substitute the topic');
 const job=path.join(out,'overflow');fs.mkdirSync(job);
 const p=new NativePages(runtime,{'compose.rxe':binary},job);
 assert.throws(()=>p.compose(Buffer.from('a'.repeat(COMPOSE_LIMIT+1))),/máximo de 768 bytes/);
