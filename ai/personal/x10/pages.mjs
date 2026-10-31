@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {B,INPUT,LENGTH,TOTAL,OFFSET,STATUS,KEY,KEY_LENGTH,RECORD,ROW_BYTES,COUNT,REVISION,EXISTS,CAPACITY,MODE,OP,START,SEEN,SENTENCES,ENDED,LIMITS,VERSION} from './schema.mjs';
 import {INTENT_NAMES,INTENT_ADDRESS} from '../p01/intent.mjs';
+import {REASON_BASE,REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 
 export const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export function fail(code,message){const error=new Error(message);error.code=code;return error;}
@@ -60,6 +61,20 @@ export class NativePages{
   this.role('intent.rxe');const m=this.map(),id=readNumber(m,INTENT_ADDRESS,1);
   if(!Number.isInteger(id)||id<0||id>=INTENT_NAMES.length)throw fail('E_INTENT','Respuesta P01 no válida.');
   return {id,name:INTENT_NAMES[id],confidence:readNumber(m,INTENT_ADDRESS+1n,1),readOnly:readNumber(m,INTENT_ADDRESS+2n,1)!==0,rule:readNumber(m,INTENT_ADDRESS+4n,1)};
+ }
+ reason(raw){
+  if(!this.roles['reason.rxe'])throw fail('E_BUILD','P03 requiere un motor X10 recompilado con su rol XI.');
+  if(raw.length>REASON_MAX_BYTES)throw fail('E_P03_SIZE','P03 admite hasta '+REASON_MAX_BYTES+' bytes por problema.');
+  this.stage({data:raw,total:raw.length});
+  const output=speech(this.role('reason.rxe')),map=this.map();
+  const mode=readNumber(map,REASON_BASE,1),invalid=readNumber(map,REASON_BASE+6n,1)!==0;
+  if(!Number.isInteger(mode)||mode<0||mode>REASON_MODE.partial)throw fail('E_P03_RESULT','El módulo XI entregó un estado incompatible.');
+  if(invalid)throw fail('E_P03_FORMAT','Entrada P03 fuera de los límites sintácticos de su gramática.');
+  const response=new TextDecoder('utf-8',{fatal:true}).decode(output);
+  if(!response)throw fail('E_P03_RESULT','P03 no emitió ninguna respuesta.');
+  return {response,mode,eligible:readNumber(map,REASON_BASE+7n,1)===1,
+   premises:readNumber(map,REASON_BASE+1n,1),unparsed:readNumber(map,REASON_BASE+2n,1),
+   proof_nodes:readNumber(map,REASON_BASE+3n,1),readOnly:true};
  }
  record(record,{count,revision,capacity=LIMITS.lessons}){
   this.stage({numbers:[[COUNT,count],[REVISION,revision],[CAPACITY,capacity],[EXISTS,record?1:0,1]],bytes:[[RECORD,record||Buffer.alloc(ROW_BYTES)]]});

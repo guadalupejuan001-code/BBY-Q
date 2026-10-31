@@ -1,0 +1,62 @@
+name: BBY Q P03 native inference and preserved X10 conversation
+on:
+  push:
+    branches: [feature/bbyq-p03-reasoning-xi-20261031, main]
+    paths:
+      - 'ai/personal/p03/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p03/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p03.yml'
+  pull_request:
+    paths:
+      - 'ai/personal/p03/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p03/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p03.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-reasoning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify P03 source and retained X09/X10/P01/P02 contracts
+        run: |
+          set -euo pipefail
+          for f in ai/personal/p03/*.mjs integration/p03/tests/*.mjs ai/personal/x10/{pages,session}.mjs integration/x10/prepare.mjs bbyq.mjs; do node --check "$f"; done
+          node --test integration/p01/tests/contracts.test.mjs integration/p02/tests/contracts.test.mjs integration/p03/tests/contracts.test.mjs
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Compile original XI/Ether runtime at pinned commit
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Execute 100+ novel syllogisms and audit native memory isolation
+        run: node integration/p03/tests/native.mjs deps/reverse/build/reverse_pc build/p03-native
+      - name: Exercise actual X10 auto-reasoning, CLI and transactional replay
+        run: node integration/p03/tests/cli.mjs deps/reverse/build/reverse_pc build/p03-cli
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-P03-native-proof-evidence
+          path: |
+            build/p03-native/results.json
+            build/p03-cli/results.json
+          retention-days: 14
