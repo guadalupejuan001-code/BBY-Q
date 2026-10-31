@@ -216,7 +216,8 @@ export function transact(runtime,base,root,requestId,message,options={}){
   job=fs.mkdtempSync(path.join(path.resolve(root),'.x10-turn-'));
   const result=execute(db,runtime,base,raw,options,roles,job);
   if(Buffer.byteLength(result.response)>LIMITS.output_bytes)throw fail('E_OUTPUT_SIZE','La respuesta supera 1048576 bytes.');
-  saveConversation(db,raw,result,requestId,generation+1);
+  // Existing X10 builds without P05 remain untouched until their roles are rebuilt.
+  if(roles['context.rxe']&&options.operation!=='import')saveConversation(db,raw,result,requestId,generation+1);
   const {context_skip_record,...publicResult}=result;
   const receipt={...publicResult,ok:true,committed:true,version:VERSION,generation:generation+1,requestId,replayed:false,transport:{input_bytes:raw.length,output_bytes:Buffer.byteLength(result.response),page_bytes:LIMITS.page_bytes}};
   put(db,'generation',generation+1);put(db,'operations',Number(get(db,'operations'))+1);
