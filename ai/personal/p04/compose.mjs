@@ -229,6 +229,6 @@ export function composeSource(){
  say('. No he verificado estas premisas fuera del texto recibido.');
  w('jmp p04_done');
  L('p04_done');w('halt');
- L('p04_unhandled');st(P,0);w('halt');
+ L('p04_unhandled');st(P,0);st(P+1n,0);st(P+2n,0);w('halt');
  return code.join('\n')+'\n';
 }
