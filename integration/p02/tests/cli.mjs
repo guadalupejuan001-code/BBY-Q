@@ -38,7 +38,8 @@ fs.copyFileSync(runtime,path.join(build,'runtime','reverse_pc'));
 fs.writeFileSync(path.join(build,'capacity','build.json'),JSON.stringify({version:VERSION,limits:LIMITS,
  runtime_sha256:sha(fs.readFileSync(runtime)),roles},null,2)+'\n');
 fs.writeFileSync(path.join(build,'native','build.json'),'{"version":"X09-All-Training-1","fixture":"synthetic-untrained"}\n');
-installRelational(build,app);
+assert.equal(sha(fs.readFileSync(app)),'a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28');
+installRelational(build);
 const db=new DatabaseSync(path.join(session,'memory.sqlite'));
 db.exec(
  'CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL) STRICT;'+
