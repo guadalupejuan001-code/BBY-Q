@@ -1,0 +1,79 @@
+name: BBY Q P02 preserved E034-X10 skill bridge
+on:
+  push:
+    branches: [feature/bbyq-p02-e034-bridge-20261031, main]
+    paths:
+      - 'ai/personal/p02/**'
+      - 'ai/personal/x10/session.mjs'
+      - 'integration/p02/**'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p02.yml'
+  pull_request:
+    paths:
+      - 'ai/personal/p02/**'
+      - 'ai/personal/x10/session.mjs'
+      - 'integration/p02/**'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p02.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-e034:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Check source, checkpoint and X10 integration
+        run: |
+          set -euo pipefail
+          node --check ai/personal/p02/relational.mjs
+          node --check ai/personal/x10/session.mjs
+          node --check bbyq.mjs
+          node --check integration/p02/tests/native.mjs
+          node --check integration/p02/tests/cli.mjs
+          node --test integration/p02/tests/contracts.test.mjs
+          node --test integration/p01/tests/contracts.test.mjs
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build the pinned XI/Ether runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Retrieve the exact E034 candidate proven in October 2026
+        uses: actions/download-artifact@v4
+        with:
+          name: BBYQ-E034-relational-composition
+          run-id: 40808605984
+          github-token: ${{ github.token }}
+          path: deps/e034
+      - name: Verify the fixed E034 program identity
+        run: |
+          set -euo pipefail
+          echo "a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28  deps/e034/composition/composed.rxe" | sha256sum -c -
+      - name: Exercise E034 from a separate X10-compatible SQLite transaction
+        run: |
+          node integration/p02/tests/native.mjs deps/reverse/build/reverse_pc deps/e034/composition/composed.rxe evidence/p02
+      - name: Exercise the actual X10 entrypoint and CLI with synthetic X09 fixture
+        run: |
+          node integration/p02/tests/cli.mjs deps/reverse/build/reverse_pc deps/e034/composition/composed.rxe evidence/p02-cli
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-P02-E034-bridge-evidence
+          path: |
+            evidence/p02/results.json
+            evidence/p02-cli/result.json
+          retention-days: 14

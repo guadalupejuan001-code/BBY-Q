@@ -10,6 +10,7 @@ import {importDocument} from '../x03/io.mjs';
 import {SCHEMA as CAMPAIGN_SCHEMA} from '../x09/campaign/schema.mjs';
 import {LIMITS,VERSION,LEGACY_BANK,LEGACY_ROWS,LEGACY_CAPACITY,ROW_BYTES} from './schema.mjs';
 import {NativePages,sha,fail,cells,readBytes,readNumber,run,verified} from './pages.mjs';
+import {relationalTurn} from '../p02/relational.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -119,6 +120,11 @@ function fallback(db,runtime,base,raw,options,job,readOnly=false){
 }
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
+ if(options.module==='e034'){
+  if(options.operation==='import')throw fail('E_OPERATION','La importación de documentos sigue perteneciendo a X10.');
+  const intent=pages.intent(raw),result=relationalTurn(db,{runtime,build:path.resolve(base,'..'),job,raw,language:options.language||'es',learn:options.learn===true});
+  return {...result,intent:intent.name,intent_confidence:intent.confidence,intent_read_only:!options.learn};
+ }
  if(options.operation==='import')return fallback(db,runtime,base,raw,options,job);
  const route=pages.route(raw),intent=pages.intent(raw);
  const intentMeta={intent:intent.name,intent_confidence:intent.confidence,intent_rule:intent.rule,intent_read_only:intent.readOnly};
@@ -148,9 +154,15 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
+  if(options.module!==undefined&&!['x10','e034'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
+  if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   const raw=Buffer.from(message);if(!raw.length)throw fail('E_EMPTY','El mensaje está vacío.');if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE','El mensaje supera 1048576 bytes.');
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
-  const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language),digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag)]));
+  const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
+  // Preserve historic X09/X10 replay identifiers for the default path.
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):'';
+  const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
   const existing=db.prepare('SELECT digest,result FROM receipts WHERE id=?').get(requestId);
@@ -172,5 +184,5 @@ export function transact(runtime,base,root,requestId,message,options={}){
 }
 export function inspect(root){
  if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
- const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
+ const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
 }
