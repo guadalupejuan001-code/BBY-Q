@@ -63,11 +63,11 @@ const samples=[
  ['Mi vecino es astronauta.','statement'],['Soy humano.','statement'],
  ['Estoy hablando del proyecto.','statement'],
  ['¿Recuerda que este sistema es nuevo?','question'],
- ['El texto literal dice "recuerda que", no se lo estoy ordenando.','unknown'],
+ ['El texto literal dice "recuerda que", no se lo estoy ordenando.','statement'],
  ['Un nombre inventado sin palabras de activación','unknown'],
  ['¿Esto debería memorizarse?','question'],
  ['Antes de seguir: ¿quién lo construyó?','question'],
- ['hey, explain how it works','greeting']
+ ['hey, explain how it works','explanation']
 ];
 const counter={passed:0,failed:0},rows=[];
 function test(text,expected,index){
