@@ -4,6 +4,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {B,INPUT,LENGTH,TOTAL,OFFSET,STATUS,KEY,KEY_LENGTH,RECORD,ROW_BYTES,COUNT,REVISION,EXISTS,CAPACITY,MODE,OP,START,SEEN,SENTENCES,ENDED,LIMITS,VERSION} from './schema.mjs';
+import {INTENT_NAMES,INTENT_ADDRESS} from '../p01/intent.mjs';
 
 export const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export function fail(code,message){const error=new Error(message);error.code=code;return error;}
@@ -53,6 +54,13 @@ export class NativePages{
   if(readNumber(this.map(),B+48n,1))throw fail('E_UTF8','El mensaje termina en una secuencia UTF-8 incompleta.');
  }
  route(raw){this.stage({data:raw.subarray(0,LIMITS.page_bytes),total:raw.length});this.role('route.rxe');const map=this.map();if(readNumber(map,STATUS,1))throw fail('E_FORMAT','Se requiere una lección completa dentro de los límites de sus campos.');return {mode:readNumber(map,MODE,1),operation:readNumber(map,OP,1),key:readBytes(map,KEY,readNumber(map,KEY_LENGTH,1))};}
+ intent(raw){
+  if(!this.roles['intent.rxe'])throw fail('E_BUILD','El módulo P01 no está presente: reconstruye la entrega X10.');
+  this.stage({data:raw.subarray(0,LIMITS.page_bytes),total:raw.length});
+  this.role('intent.rxe');const m=this.map(),id=readNumber(m,INTENT_ADDRESS,1);
+  if(!Number.isInteger(id)||id<0||id>=INTENT_NAMES.length)throw fail('E_INTENT','Respuesta P01 no válida.');
+  return {id,name:INTENT_NAMES[id],confidence:readNumber(m,INTENT_ADDRESS+1n,1),readOnly:readNumber(m,INTENT_ADDRESS+2n,1)!==0,rule:readNumber(m,INTENT_ADDRESS+4n,1)};
+ }
  record(record,{count,revision,capacity=LIMITS.lessons}){
   this.stage({numbers:[[COUNT,count],[REVISION,revision],[CAPACITY,capacity],[EXISTS,record?1:0,1]],bytes:[[RECORD,record||Buffer.alloc(ROW_BYTES)]]});
   const response=speech(this.role('record.rxe')),map=this.map();
