@@ -14,7 +14,7 @@ export const INTENT_NAMES=Object.freeze([
 export const CURRICULUM=Object.freeze([
   [5,97,true,'recuerda que'],[5,97,true,'oye recuerda que'],[5,95,true,'por favor recuerda que'],[5,97,true,'aprende'],[5,96,true,'ensena traduccion'],
   [5,95,true,'ensena que'],[5,95,true,'guarda que'],[5,95,true,'anota que'],
-  [6,97,true,'corrige leccion'],[6,97,true,'corrige'],[6,95,true,'oye corrige'],[6,95,true,'correccion'],
+  [6,98,true,'olvida leccion'],[6,97,true,'corrige leccion'],[6,97,true,'corrige'],[6,95,true,'oye corrige'],[6,95,true,'correccion'],
   [6,94,true,'quise decir'],[6,94,true,'no me equivoque'],[6,93,true,'me equivoque'],[6,90,true,'mejor dicho'],
   [8,99,true,'escribe y ejecuta'],[8,99,true,'genera y ejecuta'],
   [8,98,true,'escribe un programa'],
@@ -109,7 +109,8 @@ export function intentSource(){
     const bytes=Buffer.from(' '+cue+' ','utf8');
     if(bytes.length>80)throw Error('Invalid P01 cue length');
     const addr=D+BigInt(offset);
-    entries.push({kind,confidence,anchored,bytes,addr});
+    const writable=kind===5||(kind===6&&(cue==='corrige leccion'||cue==='olvida leccion'));
+    entries.push({kind,confidence,anchored,bytes,addr,writable});
     offset+=bytes.length;
   }
   if(offset>3072||entries.length>255)throw Error('P01 curriculum is outside its bounded layout');
@@ -144,7 +145,7 @@ export function intentSource(){
         'cmp r0 0','jne '+tag+'_next');L(queryAllowed);
     }
     st(P,entry.kind);st(P+1n,entry.confidence);
-    st(P+2n,(entry.kind===5||entry.kind===6)?0:1);
+    st(P+2n,entry.writable?0:1);
     st(P+4n,i+1);w('halt');
     L(tag+'_done');
   }
