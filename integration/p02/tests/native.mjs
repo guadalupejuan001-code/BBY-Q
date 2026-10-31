@@ -82,6 +82,12 @@ const context=ask('@ctx add Registro alfa persistente',{learn:true});
 assert.match(context.response,/CTX guardado/);
 const get=ask('@ctx get 0');
 assert.match(get.response,/Registro alfa persistente/);
+const dryClear=ask('@ctx clear');
+assert.match(dryClear.response,/no se guardó ni borró/);
+assert.match(ask('@ctx get 0').response,/Registro alfa persistente/,'read-only clear cannot erase E027 archive');
+const dryAdd=ask('@ctx add Registro beta NO persistente');
+assert.match(dryAdd.response,/no se guardó ni borró/);
+assert.match(ask('@ctx status').response,/n=001/,'read-only append cannot persist an E027 archive record');
 // Explicit correction persists while preserving previous evidence.
 const correction=ask('Corrijo: el taller galaxa está en la sala verde.',{learn:true});
 assert.match(correction.response,/Registré esa relación/);
