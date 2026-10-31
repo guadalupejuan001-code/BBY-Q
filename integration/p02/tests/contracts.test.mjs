@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import zlib from 'node:zlib';
+import crypto from 'node:crypto';
 import {CAPSULE_SHA,LEARNED_SHA,E034_VERSION,learnedSeed,MAX_E034_TEXT} from '../../../ai/personal/p02/relational.mjs';
 
 test('E034 checkpoint is exactly the audited learned model',()=>{
@@ -11,6 +13,11 @@ test('E034 checkpoint is exactly the audited learned model',()=>{
  assert.equal(CAPSULE_SHA,'a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28');
  assert.equal(E034_VERSION,'E034-Relational-Composition-1-dev');
  assert.equal(MAX_E034_TEXT,240);
+ const bundled=fs.readFileSync(new URL('../../../ai/releases/e034/composed.rxe.gz.b64',import.meta.url),'utf8').trim();
+ const packed=Buffer.from(bundled,'base64'),binary=zlib.gunzipSync(packed,{maxOutputLength:3*1024*1024});
+ assert.equal(packed.toString('base64'),bundled);
+ assert.equal(crypto.createHash('sha256').update(binary).digest('hex'),CAPSULE_SHA);
+ assert.equal(binary.length,1346841);
 });
 test('X10 retains old runtime and only dispatches explicitly requested E034',()=>{
  const session=fs.readFileSync(new URL('../../../ai/personal/x10/session.mjs',import.meta.url),'utf8');
