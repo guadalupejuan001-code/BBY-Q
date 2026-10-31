@@ -32,7 +32,7 @@ function token(code,put,name,bytes,lengthCheck=true){
   const done=name+'_fold_'+i;
   put('load8 r3 '+(INPUT+BigInt(i)),
       'cmp r3 65','jlt '+done,'cmp r3 90','jgt '+done,'add r3 32');
-  code('label '+done);put('cmp r3 '+bytes[i],'jne '+miss);
+  code(done);put('cmp r3 '+bytes[i],'jne '+miss);
  }
  return miss;
 }
@@ -47,6 +47,9 @@ export function contextSource(){
  for(let k=0;k<exact.length;k++){
   const [value,mode]=exact[k],tag='p05_exact_'+k,bytes=Buffer.from(value,'utf8');
   L(tag);const miss=token(L,w,tag,bytes); // generated comparators fold uppercase ASCII in native XI
+  if(mode===5||mode===9){
+   w('load8 r13 '+(CONTEXT_BASE+3n),'cmp r13 0','jle p05_not_found');st(CONTEXT_BASE+1n,1);
+  }
   st(CONTEXT_BASE,mode);w('jmp p05_done');L(miss);
  }
  for(let k=0;k<prefixes.length;k++){
@@ -122,6 +125,7 @@ export function contextSource(){
  // A pronoun is admitted only for a single-token subject at the beginning
  // of the immediately previous recorded user utterance and a supported verb.
  w('set r6 '+CONTEXT_SLOT_BASE,'load8 r12 '+(CONTEXT_BASE+32n),
+   'load8 r4 '+(CONTEXT_BASE+33n),'mul r4 256','add r12 r4',
    'cmp r12 6','jlt p05_ambiguous','set r2 0');
  L('p05_subject');
  w('cmp r2 40','jge p05_ambiguous','cmp r2 r12','jge p05_ambiguous',
