@@ -35,6 +35,7 @@ jobs:
           node --check ai/personal/x10/session.mjs
           node --check bbyq.mjs
           node --check integration/p02/tests/native.mjs
+          node --check integration/p02/tests/cli.mjs
           node --test integration/p02/tests/contracts.test.mjs
           node --test integration/p01/tests/contracts.test.mjs
       - uses: actions/checkout@v4
@@ -65,9 +66,14 @@ jobs:
       - name: Exercise E034 from a separate X10-compatible SQLite transaction
         run: |
           node integration/p02/tests/native.mjs deps/reverse/build/reverse_pc deps/e034/composition/composed.rxe evidence/p02
+      - name: Exercise the actual X10 entrypoint and CLI with synthetic X09 fixture
+        run: |
+          node integration/p02/tests/cli.mjs deps/reverse/build/reverse_pc deps/e034/composition/composed.rxe evidence/p02-cli
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: BBYQ-P02-E034-bridge-evidence
-          path: evidence/p02/results.json
+          path: |
+            evidence/p02/results.json
+            evidence/p02-cli/result.json
           retention-days: 14
