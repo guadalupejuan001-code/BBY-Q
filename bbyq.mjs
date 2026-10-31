@@ -21,7 +21,7 @@ try{
   if(rest.length>1)throw Error('Usage: node bbyq.mjs prepare [NEW_BUILD_DIRECTORY] --archive RECOVERED_X09.zip');
   result=prepare(rest[0]||build,{archive});
  }else if(command==='install-e034'){
-  if(rest.length!==1||!capacity)throw Error('Usage: node bbyq.mjs install-e034 VERIFIED_E034_ARTIFACT.zip | composed.rxe (requires X10 build)');
+  if(rest.length>1||!capacity)throw Error('Usage: node bbyq.mjs install-e034 [VERIFIED_E034_ARTIFACT.zip | composed.rxe] (defaults to bundled verified capsule; requires X10 build)');
   result=installRelational(build,rest[0]);
  }else if(command==='init'){
   if(rest.length<1||rest.length>2)throw Error('Usage: node bbyq.mjs init NEW_SESSION_DIRECTORY [INITIAL_X09_STATE.rvp]');
