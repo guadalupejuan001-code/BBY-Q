@@ -8,6 +8,7 @@ import {INTENT_NAMES,INTENT_ADDRESS} from '../p01/intent.mjs';
 import {REASON_BASE,REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 import {COMPOSE_BASE,COMPOSE_LIMIT,COMPOSE_MODES} from '../p04/compose.mjs';
 import {CONTEXT_BASE,CONTEXT_SLOT_BASE,CONTEXT_SLOT_STRIDE,CONTEXT_MAX_CANDIDATES,CONTEXT_MAX_ENTRY_BYTES,CONTEXT_MAX_QUERY_BYTES,CONTEXT_MODES} from '../p05/context.mjs';
+import {PARAPHRASE_BASE,PARAPHRASE_MAX_INPUT,PARAPHRASE_MAX_OUTPUT,PARAPHRASE_MODES,PARAPHRASE_RULES} from '../p06/paraphrase.mjs';
 
 export const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export function fail(code,message){const error=new Error(message);error.code=code;return error;}
@@ -108,6 +109,22 @@ export class NativePages{
   if([CONTEXT_MODES.named,CONTEXT_MODES.pronoun,CONTEXT_MODES.last,CONTEXT_MODES.answer].includes(mode)&&slot<1)
    throw fail('E_CONTEXT_RESULT','Referencia al historial sin entrada.');
   return {mode,slot,handled:mode!==CONTEXT_MODES.unsupported,readOnly:true};
+ }
+ paraphrase(raw){
+  if(!this.roles['paraphrase.rxe'])throw fail('E_P06_BUILD','El rol de reformulación XI no está instalado.');
+  if(raw.length>PARAPHRASE_MAX_INPUT)return {handled:false,mode:PARAPHRASE_MODES.unsupported,rule:0,canonical:null,readOnly:true};
+  this.stage({data:raw,total:raw.length});
+  const bytes=speech(this.role('paraphrase.rxe')),map=this.map();
+  const handled=readNumber(map,PARAPHRASE_BASE,1)===1,mode=readNumber(map,PARAPHRASE_BASE+1n,1),
+   rule=readNumber(map,PARAPHRASE_BASE+2n,1),n=readNumber(map,PARAPHRASE_BASE+3n,2);
+  if(!handled){if(bytes.length)throw fail('E_P06_RESULT','El rol XI emitió texto sin reconocer la frase.');
+   return {handled:false,mode:PARAPHRASE_MODES.unsupported,rule:0,canonical:null,readOnly:true};}
+  if(mode<1||mode>PARAPHRASE_MODES.reasoning||rule<1||rule>PARAPHRASE_RULES.length||
+   PARAPHRASE_RULES[rule-1].mode!==mode||n!==bytes.length||n>PARAPHRASE_MAX_OUTPUT)
+   throw fail('E_P06_RESULT','Resultado o tamaño de la reformulación XI incompatible.');
+  const canonical=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
+  if(!canonical||canonical.includes('\0'))throw fail('E_P06_RESULT','Reformulación vacía o inválida.');
+  return {handled:true,mode,rule,canonical,readOnly:true};
  }
  record(record,{count,revision,capacity=LIMITS.lessons}){
   this.stage({numbers:[[COUNT,count],[REVISION,revision],[CAPACITY,capacity],[EXISTS,record?1:0,1]],bytes:[[RECORD,record||Buffer.alloc(ROW_BYTES)]]});
