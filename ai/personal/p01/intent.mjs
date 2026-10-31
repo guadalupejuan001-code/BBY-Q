@@ -65,6 +65,7 @@ export function intentSource(){
     'cmp r3 34','je p01_quote','cmp r3 39','je p01_quote',
     'cmp r3 96','je p01_quote',
     'cmp r3 194','je p01_c2','cmp r3 195','je p01_c3',
+    'cmp r3 226','je p01_e2',
     'cmp r3 65','jlt p01_ascii','cmp r3 90','jgt p01_ascii','add r3 32');
   L('p01_ascii');
   w('cmp r3 97','jlt p01_digit','cmp r3 122','jle p01_put');
@@ -75,8 +76,16 @@ export function intentSource(){
   L('p01_quote');st(P+5n,1);w('set r3 32','jmp p01_put');
   L('p01_c2');
   w('cmp r0 r9','jge p01_space','set r7 '+INPUT,'add r7 r0','load8 r6 $r7',
-    'cmp r6 191','jne p01_c2_end');st(P+3n,1);
+    'cmp r6 191','je p01_c2_question','cmp r6 171','je p01_c2_quote',
+    'cmp r6 187','je p01_c2_quote','jmp p01_c2_end');
+  L('p01_c2_question');st(P+3n,1);w('jmp p01_c2_end');
+  L('p01_c2_quote');st(P+5n,1);
   L('p01_c2_end');w('add r0 1','set r3 32','jmp p01_put');
+  L('p01_e2');
+  w('mov r7 r0','add r7 1','cmp r7 r9','jge p01_space',
+    'set r7 '+INPUT,'add r7 r0','load8 r6 $r7','cmp r6 128','jne p01_space',
+    'add r7 1','load8 r6 $r7','cmp r6 152','jlt p01_space',
+    'cmp r6 159','jgt p01_space');st(P+5n,1);w('jmp p01_space');
   L('p01_c3');
   w('cmp r0 r9','jge p01_space','set r7 '+INPUT,'add r7 r0','load8 r6 $r7');
   const accents=[
