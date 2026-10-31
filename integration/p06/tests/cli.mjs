@@ -109,7 +109,7 @@ eq(cliResult.ok,true);eq(cliResult.paraphrase_mode,PARAPHRASE_MODES.story);
 eq(cliResult.composition_mode,2);
 const recent=ask('recent','@context recent');
 eq(recent.extension,'P05-context-XI');
-assert.match(recent.response,/Hazme cuatro versos/);checks++;
+assert.match(recent.response,/Inventa una historia acerca de un reloj/);checks++;
 const final=inspect(session);
 eq(final.state_sha256,initial.state_sha256,'P06 did not change original trained model');
 eq(final.relational_state_sha256,initial.relational_state_sha256,'P06 did not change E034');
