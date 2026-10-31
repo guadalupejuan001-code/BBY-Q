@@ -75,8 +75,11 @@ for(const [i,[input,mode,count,subject]] of known.entries()){
   }else if(mode===2){
    assert.equal(result.response.split('.').length-1,count,input);
    assert.ok(result.response.length>=count*30,input);
+   assert.equal(result.response.split(subject).length-1,1,'fiction reuses its subject through Spanish ellipsis');
   }else{
-   assert.match(result.response,/Explicación basada en los datos aportados:/);
+   assert.match(result.response,/Según los datos aportados,/);
+   assert.match(result.response,/Esto se atribuye a que /);
+   assert.match(result.response,/En consecuencia, /);
    assert.match(result.response,/No he verificado estas premisas fuera del texto recibido\./);
   }
  }else assert.equal(result.response,'');
