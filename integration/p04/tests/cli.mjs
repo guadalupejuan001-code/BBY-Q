@@ -66,7 +66,7 @@ eq(story.response.split('.').length-1,3);
 const factual=ask('explain','Explica con datos:\nhecho: la lámpara se apagó\ncausa: faltó corriente\nefecto: quedó a oscuras');
 eq(factual.extension,'P04-native-XI');
 eq(factual.composition_mode,COMPOSE_MODES.grounded_explanation);
-assert.match(factual.response,/La causa indicada es faltó corriente/);checks++;
+assert.match(factual.response,/Esto se atribuye a que faltó corriente/);checks++;
 const prior=inspect(session);
 eq(ask('bad','Explica un misterio sin información',{module:'p04'}).error.code,'E_P04_FORMAT');
 assert.deepEqual(inspect(session),prior);checks++;
