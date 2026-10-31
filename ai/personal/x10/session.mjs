@@ -13,6 +13,7 @@ import {NativePages,sha,fail,cells,readBytes,readNumber,run,verified} from './pa
 import {relationalTurn} from '../p02/relational.mjs';
 import {REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 import {COMPOSE_LIMIT} from '../p04/compose.mjs';
+import {history,contextTurn,saveConversation} from '../p05/store.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -122,6 +123,15 @@ function fallback(db,runtime,base,raw,options,job,readOnly=false){
 }
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
+ if(options.operation!=='import'&&(options.module===undefined||options.module==='x10'||options.module==='p05')){
+  if(!roles['context.rxe']){
+   if(options.module==='p05')throw fail('E_BUILD','Se necesita reconstruir el rol de memoria P05.');
+  }else{
+   const rows=history(db),decision=pages.context(raw,rows.map(row=>row.utterance));
+   const recalled=contextTurn(db,decision,rows,{explicit:options.module==='p05'});
+   if(recalled)return recalled;
+  }
+ }
  if(options.module==='p04'){
   if(options.operation==='import')throw fail('E_OPERATION','P04 no importa documentos.');
   const composed=pages.compose(raw);
@@ -187,14 +197,14 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
-  if(options.module!==undefined&&!['x10','e034','p03','p04'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.module!==undefined&&!['x10','e034','p03','p04','p05'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   const raw=Buffer.from(message);if(!raw.length)throw fail('E_EMPTY','El mensaje está vacío.');if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE','El mensaje supera 1048576 bytes.');
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
-  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':'';
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':'';
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
@@ -206,7 +216,10 @@ export function transact(runtime,base,root,requestId,message,options={}){
   job=fs.mkdtempSync(path.join(path.resolve(root),'.x10-turn-'));
   const result=execute(db,runtime,base,raw,options,roles,job);
   if(Buffer.byteLength(result.response)>LIMITS.output_bytes)throw fail('E_OUTPUT_SIZE','La respuesta supera 1048576 bytes.');
-  const receipt={...result,ok:true,committed:true,version:VERSION,generation:generation+1,requestId,replayed:false,transport:{input_bytes:raw.length,output_bytes:Buffer.byteLength(result.response),page_bytes:LIMITS.page_bytes}};
+  // Existing X10 builds without P05 remain untouched until their roles are rebuilt.
+  if(roles['context.rxe']&&options.operation!=='import')saveConversation(db,raw,result,requestId,generation+1);
+  const {context_skip_record,...publicResult}=result;
+  const receipt={...publicResult,ok:true,committed:true,version:VERSION,generation:generation+1,requestId,replayed:false,transport:{input_bytes:raw.length,output_bytes:Buffer.byteLength(result.response),page_bytes:LIMITS.page_bytes}};
   put(db,'generation',generation+1);put(db,'operations',Number(get(db,'operations'))+1);
   if(Buffer.byteLength(JSON.stringify(receipt))>64*1024*1024)throw fail('E_RECEIPT_SIZE','El comprobante supera la capacidad configurada.');
   db.prepare('INSERT INTO receipts VALUES(?,?,?,?)').run(requestId,digest,generation+1,encode(receipt));
@@ -217,5 +230,5 @@ export function transact(runtime,base,root,requestId,message,options={}){
 }
 export function inspect(root){
  if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
- const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
+ const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;const contextAvailable=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='conversation_turns'").get();const contextTurns=contextAvailable?db.prepare('SELECT COUNT(*) AS n FROM conversation_turns').get().n:0;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,conversation_index_turns:contextTurns,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
 }

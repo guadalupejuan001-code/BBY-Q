@@ -1,0 +1,62 @@
+name: BBY Q P05 native conversational memory and X10 retention
+on:
+  push:
+    branches: [main, feature/bbyq-p05-context-20261031]
+    paths:
+      - 'ai/personal/p05/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p05/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p05.yml'
+  pull_request:
+    paths:
+      - 'ai/personal/p05/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p05/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p05.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-dialogue-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Syntax, source and preserved contracts
+        run: |
+          set -euo pipefail
+          for f in ai/personal/p05/*.mjs integration/p05/tests/*.mjs ai/personal/x10/{pages,session}.mjs integration/x10/prepare.mjs bbyq.mjs; do node --check "$f"; done
+          node --test integration/p01/tests/contracts.test.mjs integration/p02/tests/contracts.test.mjs integration/p03/tests/contracts.test.mjs integration/p04/tests/contracts.test.mjs integration/p05/tests/contracts.test.mjs
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build pinned native XI runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Native XI topic lookup, pronoun restraint and unseen topics
+        run: node integration/p05/tests/native.mjs deps/reverse/build/reverse_pc build/p05-native
+      - name: Real X10 CLI context persistence, rollback, bounded history
+        run: node integration/p05/tests/cli.mjs deps/reverse/build/reverse_pc build/p05-cli
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-P05-XI-context-evidence
+          path: |
+            build/p05-native/results.json
+            build/p05-cli/results.json
+          retention-days: 14

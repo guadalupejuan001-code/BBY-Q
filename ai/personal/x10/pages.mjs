@@ -7,6 +7,7 @@ import {B,INPUT,LENGTH,TOTAL,OFFSET,STATUS,KEY,KEY_LENGTH,RECORD,ROW_BYTES,COUNT
 import {INTENT_NAMES,INTENT_ADDRESS} from '../p01/intent.mjs';
 import {REASON_BASE,REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 import {COMPOSE_BASE,COMPOSE_LIMIT,COMPOSE_MODES} from '../p04/compose.mjs';
+import {CONTEXT_BASE,CONTEXT_SLOT_BASE,CONTEXT_SLOT_STRIDE,CONTEXT_MAX_CANDIDATES,CONTEXT_MAX_ENTRY_BYTES,CONTEXT_MAX_QUERY_BYTES,CONTEXT_MODES} from '../p05/context.mjs';
 
 export const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export function fail(code,message){const error=new Error(message);error.code=code;return error;}
@@ -88,6 +89,25 @@ export class NativePages{
   if(handled&&!response)throw fail('E_P04_RESULT','P04 no produjo una respuesta.');
   if(!handled&&response)throw fail('E_P04_RESULT','P04 no reconocido produjo texto inesperado.');
   return {handled,mode,count,response,readOnly:true};
+ }
+ context(raw,entries=[]){
+  if(!this.roles['context.rxe'])throw fail('E_BUILD','El rol nativo P05 no está instalado en X10.');
+  if(raw.length>CONTEXT_MAX_QUERY_BYTES)return {mode:CONTEXT_MODES.unsupported,slot:0,handled:false};
+  if(entries.length>CONTEXT_MAX_CANDIDATES)throw fail('E_CONTEXT_FRAME','Demasiados turnos para la ventana P05.');
+  const numbers=[[CONTEXT_BASE+3n,entries.length,1]],bytes=[];
+  for(const[i,item]of entries.entries()){
+   const source=Buffer.from(item);
+   if(source.length>CONTEXT_MAX_ENTRY_BYTES)throw fail('E_CONTEXT_FRAME','Un mensaje previo supera el contrato P05.');
+   numbers.push([CONTEXT_BASE+32n+BigInt(2*i),source.length,2]);
+   bytes.push([CONTEXT_SLOT_BASE+BigInt(CONTEXT_SLOT_STRIDE*i),source]);
+  }
+  this.stage({data:raw,total:raw.length,numbers,bytes});
+  this.role('context.rxe');const map=this.map();
+  const mode=readNumber(map,CONTEXT_BASE,1),slot=readNumber(map,CONTEXT_BASE+1n,1);
+  if(mode>CONTEXT_MODES.answer||slot>entries.length)throw fail('E_CONTEXT_RESULT','Selección de historial incompatible.');
+  if([CONTEXT_MODES.named,CONTEXT_MODES.pronoun,CONTEXT_MODES.last,CONTEXT_MODES.answer].includes(mode)&&slot<1)
+   throw fail('E_CONTEXT_RESULT','Referencia al historial sin entrada.');
+  return {mode,slot,handled:mode!==CONTEXT_MODES.unsupported,readOnly:true};
  }
  record(record,{count,revision,capacity=LIMITS.lessons}){
   this.stage({numbers:[[COUNT,count],[REVISION,revision],[CAPACITY,capacity],[EXISTS,record?1:0,1]],bytes:[[RECORD,record||Buffer.alloc(ROW_BYTES)]]});
