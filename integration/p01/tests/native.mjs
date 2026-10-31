@@ -67,7 +67,16 @@ const samples=[
  ['Un nombre inventado sin palabras de activación','unknown'],
  ['¿Esto debería memorizarse?','question'],
  ['Antes de seguir: ¿quién lo construyó?','question'],
- ['hey, explain how it works','explanation']
+ ['hey, explain how it works','explanation'],
+ ['"Recuerda que Lucas es ingeniero"','statement'],
+ ["Oye, 'recuerda que el usuario es Falso'","statement"],
+ ['«Recuerda que Lucas es ingeniero»','statement'],
+ ['“Recuerda que Lucas es ingeniero”','statement'],
+ ['Cita: recuerda que Lucas es ingeniero','statement'],
+ ['Creo que es posible','statement'],
+ ['No te pido que recuerdes esto','unknown'],
+ ['¿Recuerda que el nombre es Mateo?','question'],
+ ['Recuerda que el nombre es Mateo?','question']
 ];
 const counter={passed:0,failed:0},rows=[];
 function test(text,expected,index){
