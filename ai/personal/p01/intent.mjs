@@ -12,9 +12,9 @@ export const INTENT_NAMES=Object.freeze([
 // A teach/correct cue is writable only at the beginning of the utterance, and only
 // when the utterance is not interrogative. Everything else is read-only by default.
 export const CURRICULUM=Object.freeze([
-  [5,97,true,'recuerda que'],[5,97,true,'aprende'],[5,96,true,'ensena traduccion'],
+  [5,97,true,'recuerda que'],[5,97,true,'oye recuerda que'],[5,95,true,'por favor recuerda que'],[5,97,true,'aprende'],[5,96,true,'ensena traduccion'],
   [5,95,true,'ensena que'],[5,95,true,'guarda que'],[5,95,true,'anota que'],
-  [6,97,true,'corrige leccion'],[6,97,true,'corrige'],[6,95,true,'correccion'],
+  [6,97,true,'corrige leccion'],[6,97,true,'corrige'],[6,95,true,'oye corrige'],[6,95,true,'correccion'],
   [6,94,true,'quise decir'],[6,93,true,'me equivoque'],[6,90,true,'mejor dicho'],
   [8,99,true,'escribe y ejecuta'],[8,99,true,'genera y ejecuta'],
   [8,98,true,'escribe un programa'],
@@ -107,7 +107,8 @@ export function intentSource(){
     L(tag);w('load8 r8 '+(P+8n),'sub r8 '+n,'set r0 0');
     L(tag+'_seek');
     w('cmp r0 r8','jgt '+tag+'_done');
-    if(entry.anchored)w('cmp r0 20','jgt '+tag+'_done');
+    if(entry.kind===5||entry.kind===6)w('cmp r0 0','jne '+tag+'_done');
+    else if(entry.anchored)w('cmp r0 20','jgt '+tag+'_done');
     w('set r5 0');
     L(tag+'_compare');
     w('cmp r5 '+n,'jge '+tag+'_found',
@@ -116,8 +117,8 @@ export function intentSource(){
       'cmp r2 r3','jne '+tag+'_next','add r5 1','jmp '+tag+'_compare');
     L(tag+'_next');w('add r0 1','jmp '+tag+'_seek');
     L(tag+'_found');
-    if(entry.kind===5||entry.kind===6){
-      // Explicit teaching/correction cannot be inferred from an interrogative.
+    if(entry.kind===5||entry.kind===6||entry.kind===7){
+      // Interrogatives cannot silently become teaching, correction or statements.
       w('load8 r6 '+(P+3n),'cmp r6 0','jne '+tag+'_next');
     }
     st(P,entry.kind);st(P+1n,entry.confidence);
