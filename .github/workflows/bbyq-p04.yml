@@ -1,0 +1,62 @@
+name: BBY Q P04 native compositional language and X10 regression
+on:
+  push:
+    branches: [feature/bbyq-p04-composition-xi-20261031, main]
+    paths:
+      - 'ai/personal/p04/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p04/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p04.yml'
+  pull_request:
+    paths:
+      - 'ai/personal/p04/**'
+      - 'ai/personal/x10/**'
+      - 'integration/p04/**'
+      - 'integration/x10/prepare.mjs'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-p04.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Syntax and preserved P01 P02 P03 X10 contracts
+        run: |
+          set -euo pipefail
+          for f in ai/personal/p04/*.mjs integration/p04/tests/*.mjs ai/personal/x10/{pages,session}.mjs integration/x10/prepare.mjs bbyq.mjs; do node --check "$f"; done
+          node --test integration/p01/tests/contracts.test.mjs integration/p02/tests/contracts.test.mjs integration/p03/tests/contracts.test.mjs integration/p04/tests/contracts.test.mjs
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build pinned XI Ether native runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Compile and examine P04 generator with unseen topics and data
+        run: node integration/p04/tests/native.mjs deps/reverse/build/reverse_pc build/p04-native
+      - name: Verify actual X10 transactional and CLI P04 integration
+        run: node integration/p04/tests/cli.mjs deps/reverse/build/reverse_pc build/p04-cli
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-P04-XI-language-evidence
+          path: |
+            build/p04-native/results.json
+            build/p04-cli/results.json
+          retention-days: 14
