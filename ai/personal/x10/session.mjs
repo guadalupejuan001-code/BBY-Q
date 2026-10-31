@@ -12,6 +12,7 @@ import {LIMITS,VERSION,LEGACY_BANK,LEGACY_ROWS,LEGACY_CAPACITY,ROW_BYTES} from '
 import {NativePages,sha,fail,cells,readBytes,readNumber,run,verified} from './pages.mjs';
 import {relationalTurn} from '../p02/relational.mjs';
 import {REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
+import {COMPOSE_LIMIT} from '../p04/compose.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -121,6 +122,13 @@ function fallback(db,runtime,base,raw,options,job,readOnly=false){
 }
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
+ if(options.module==='p04'){
+  if(options.operation==='import')throw fail('E_OPERATION','P04 no importa documentos.');
+  const composed=pages.compose(raw);
+  if(!composed.handled)throw fail('E_P04_FORMAT','P04 admite poemas, cuentos e informes causales basados en datos explícitos.');
+  return {ok:true,response:composed.response,extension:'P04-native-XI',composition_mode:composed.mode,
+   composition_units:composed.count,knowledge_read_only:true,intent_read_only:true};
+ }
  if(options.module==='p03'){
   if(options.operation==='import')throw fail('E_OPERATION','P03 no importa documentos ni cambia entrenamientos.');
   const intent=pages.intent(raw),reason=pages.reason(raw);
@@ -138,6 +146,11 @@ function execute(db,runtime,base,raw,options,roles,job){
  const intentMeta={intent:intent.name,intent_confidence:intent.confidence,intent_rule:intent.rule,intent_read_only:intent.readOnly};
  if(route.mode===2||route.mode===3)return {ok:true,response:pages.stream(raw,route.mode),extension:'X10-streamed-text',...intentMeta};
  if(route.mode!==1){
+  if((intent.name==='creation'||intent.name==='explanation')&&raw.length<=COMPOSE_LIMIT&&roles['compose.rxe']){
+   const composed=pages.compose(raw);
+   if(composed.handled)return {ok:true,response:composed.response,extension:'P04-native-XI',
+    composition_mode:composed.mode,composition_units:composed.count,knowledge_read_only:true,...intentMeta};
+  }
   // Only the native XI program can decide whether a user supplied a complete,
   // supported syllogism. Unsupported/ambiguous text retains the old X09 path.
   if(raw.length<=REASON_MAX_BYTES&&roles['reason.rxe']){
@@ -174,14 +187,14 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
-  if(options.module!==undefined&&!['x10','e034','p03'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.module!==undefined&&!['x10','e034','p03','p04'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   const raw=Buffer.from(message);if(!raw.length)throw fail('E_EMPTY','El mensaje está vacío.');if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE','El mensaje supera 1048576 bytes.');
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
-  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':'';
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':'';
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
