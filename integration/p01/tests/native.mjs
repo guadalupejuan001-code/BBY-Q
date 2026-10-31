@@ -57,6 +57,7 @@ const samples=[
  ['Guarda que la revisión es dos','teaching'],['Anota que el dato cambió','teaching'],
  ['Corrige: el dato anterior es incorrecto','correction'],
  ['Corrige lección: ahorro','correction'],
+ ['Olvida lección: ahorro','correction'],
  ['Quise decir jueves, no martes','correction'],
  ['No, me equivoqué. Era otra persona.','correction'],
  ['Atena es una nave.','statement'],['Tengo dos motores.','statement'],
@@ -98,7 +99,8 @@ function test(text,expected,index){
   before.get(a)!==after.get(a)&&!allowed(a));
  assert.deepEqual(modified,[],'P01 altered foreign state: '+text);
  assert.equal(after.get(S),173,'P01 touched foreign sentinel');
- assert.equal(readonly,!['teaching','correction'].includes(name),'wrong read-only policy: '+text);
+ const explicitWrite=name==='teaching'||(name==='correction'&&/^(corrige|olvida) lecci[oó]n:/iu.test(text));
+ assert.equal(readonly,!explicitWrite,'wrong read-only policy: '+text);
  const ok=name===expected;
  rows.push({id:key,input:text,expected,actual:name,readonly,confidence:readNumber(after,INTENT_ADDRESS+1n,1),matched_rule:readNumber(after,INTENT_ADDRESS+4n,1),ms,ok});
  if(ok)counter.passed++;else counter.failed++;
