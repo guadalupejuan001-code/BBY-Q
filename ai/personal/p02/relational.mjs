@@ -10,6 +10,7 @@ import {cells,readNumber,run,fail} from '../x10/pages.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const checkpoint=path.resolve(here,'../../checkpoints/e034/composition-model.rvp.gz.b64');
+const bundledApp=path.resolve(here,'../../releases/e034/composed.rxe.gz.b64');
 const B=8400000000000000000n;
 export const CAPSULE_SHA='a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28';
 export const LEARNED_SHA='876d3f2a82698e9582f17043028d9a75b454e4b5ebaf7cc5949b65a5bac58a10';
@@ -31,14 +32,21 @@ export function learnedSeed(){
 }
 
 function capsuleBytes(archive){
- const source=path.resolve(archive);
- if(!fs.existsSync(source))throw fail('E_E034_SOURCE','No existe el archivo E034 suministrado.');
  let bytes;
- if(source.endsWith('.zip')){
+ if(archive===undefined){
+  const encoded=fs.readFileSync(bundledApp,'utf8').trim();
+  const packed=Buffer.from(encoded,'base64');
+  if(packed.toString('base64')!==encoded)throw fail('E_E034_SOURCE','La cápsula E034 incluida tiene una codificación inválida.');
+  bytes=zlib.gunzipSync(packed,{maxOutputLength:3*1024*1024});
+ }else{
+  const source=path.resolve(archive);
+  if(!fs.existsSync(source))throw fail('E_E034_SOURCE','No existe el archivo E034 suministrado.');
+  if(source.endsWith('.zip')){
   const p=spawnSync('unzip',['-p',source,'composition/composed.rxe'],{encoding:null,maxBuffer:3*1024*1024,timeout:30000});
   if(p.status!==0)throw fail('E_E034_SOURCE','No se pudo recuperar composition/composed.rxe del archivo E034.');
   bytes=p.stdout;
- }else bytes=fs.readFileSync(source);
+  }else bytes=fs.readFileSync(source);
+ }
  if(sha(bytes)!==CAPSULE_SHA)throw fail('E_E034_CAPSULE','La cápsula E034 no corresponde al código probado.');
  return bytes;
 }
