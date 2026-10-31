@@ -8,7 +8,7 @@ No se han añadido pesos neuronales ni un Transformer, y **no** se afirma genera
 
 ## Arquitectura
 
-- `ai/personal/p04/compose.mjs`: emisor del rol `compose.xi`, currículo de formatos acotados, cuatro variantes por etapa, validación de tema y construcción de respuestas. Datos fuente en UTF-8, límites de 768 bytes por petición y 80 bytes por tema. Entrada y salida nativas XI.
+- `ai/personal/p04/compose.mjs`: emisor del rol `compose.xi`, currículo de formatos acotados, cuatro posibles aperturas y cuatro cierres seleccionados de manera independiente por etapa (hasta 16 combinaciones por línea), validación de tema y construcción de respuestas. Datos fuente en UTF-8, límites de 768 bytes por petición y 80 bytes por tema. Entrada y salida nativas XI.
 - `integration/x10/prepare.mjs`: genera, compila y registra por hash `compose.rxe` junto con los roles `validate`, `route`, `record`, `stream`, `intent` y `reason`.
 - `ai/personal/x10/pages.mjs`: ejecuta el compositor sobre la memoria de trabajo nativa y devuelve tipo de composición, número de unidades y texto.
 - `ai/personal/x10/session.mjs`: permite `module:'p04'` con recibo transaccional X10 y ruta automática únicamente para intenciones de creación o explicación identificadas por P01 y reconocidas nativamente por P04. Las peticiones no reconocidas siguen a X09/P03 según la ruta previa.
@@ -25,7 +25,7 @@ Crea un poema de tres versos sobre el mar.
 Escribe un poema sobre una estrella.
 ```
 
-Las formas `dos/tres/cuatro/cinco/seis` y los números `2..6` se interpretan en XI. Cada línea combina un inicio, el tema UTF-8 proporcionado y un cierre. Se seleccionan cuatro variantes por etapa según un resumen de bytes del tema. La última línea es un cierre aunque la longitud del poema cambie.
+Las formas `dos/tres/cuatro/cinco/seis` y los números `2..6` se interpretan en XI. Cada línea combina un inicio, el tema UTF-8 proporcionado y un cierre. Las aperturas y los cierres se eligen por índices independientes calculados en XI a partir de los bytes del tema y de la posición de la línea: hay hasta 16 combinaciones por etapa, además del contenido variable del tema. La última línea es un cierre aunque la longitud del poema cambie.
 
 ### Historias de 2 a 6 frases
 
