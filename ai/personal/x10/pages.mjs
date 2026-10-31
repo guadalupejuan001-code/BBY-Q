@@ -6,6 +6,7 @@ import {spawnSync} from 'node:child_process';
 import {B,INPUT,LENGTH,TOTAL,OFFSET,STATUS,KEY,KEY_LENGTH,RECORD,ROW_BYTES,COUNT,REVISION,EXISTS,CAPACITY,MODE,OP,START,SEEN,SENTENCES,ENDED,LIMITS,VERSION} from './schema.mjs';
 import {INTENT_NAMES,INTENT_ADDRESS} from '../p01/intent.mjs';
 import {REASON_BASE,REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
+import {COMPOSE_BASE,COMPOSE_LIMIT,COMPOSE_MODES} from '../p04/compose.mjs';
 
 export const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 export function fail(code,message){const error=new Error(message);error.code=code;return error;}
@@ -75,6 +76,18 @@ export class NativePages{
   return {response,mode,eligible:readNumber(map,REASON_BASE+7n,1)===1,
    premises:readNumber(map,REASON_BASE+1n,1),unparsed:readNumber(map,REASON_BASE+2n,1),
    proof_nodes:readNumber(map,REASON_BASE+3n,1),readOnly:true};
+ }
+ compose(raw){
+  if(!this.roles['compose.rxe'])throw fail('E_BUILD','P04 requiere un motor X10 reconstruido con el rol XI de composición.');
+  if(raw.length>COMPOSE_LIMIT)throw fail('E_P04_SIZE','El compositor P04 admite un máximo de '+COMPOSE_LIMIT+' bytes.');
+  this.stage({data:raw,total:raw.length});
+  const output=speech(this.role('compose.rxe')),map=this.map(),handled=readNumber(map,COMPOSE_BASE,1)===1;
+  const mode=readNumber(map,COMPOSE_BASE+1n,1),count=readNumber(map,COMPOSE_BASE+2n,1);
+  if(handled&&(mode<1||mode>COMPOSE_MODES.grounded_explanation||count<2||count>6))throw fail('E_P04_RESULT','Estructura P04 incompatible.');
+  const response=new TextDecoder('utf-8',{fatal:true}).decode(output);
+  if(handled&&!response)throw fail('E_P04_RESULT','P04 no produjo una respuesta.');
+  if(!handled&&response)throw fail('E_P04_RESULT','P04 no reconocido produjo texto inesperado.');
+  return {handled,mode,count,response,readOnly:true};
  }
  record(record,{count,revision,capacity=LIMITS.lessons}){
   this.stage({numbers:[[COUNT,count],[REVISION,revision],[CAPACITY,capacity],[EXISTS,record?1:0,1]],bytes:[[RECORD,record||Buffer.alloc(ROW_BYTES)]]});
