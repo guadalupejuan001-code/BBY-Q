@@ -169,13 +169,17 @@ export function composeSource(){
     say(items[index][n][0]);w('jmp '+openDone);L(miss);
    }
    w('jmp p04_unhandled');
-   L(openDone);emitSpan(P+8n);
+   L(openDone);
+   // Spanish subject ellipsis: fiction can keep the protagonist from the
+   // opening sentence without needlessly repeating the noun in every line.
+   if(prefix!=='p04_story'||index===0)emitSpan(P+8n);
    ld(1,P+4n);
    w('mul r1 3','mov r2 r0','mul r2 7','add r1 r2','mod r1 '+VARIANTS);
    for(let n=0;n<VARIANTS;n++){
     const miss=u('p04_end_next');
     w('cmp r1 '+n,'jne '+miss);
-    say(items[index][n][1]);w('jmp '+after);L(miss);
+    say(prefix==='p04_story'&&index>0?items[index][n][1].trimStart():items[index][n][1]);
+    w('jmp '+after);L(miss);
    }
    w('jmp p04_unhandled');
   }
@@ -233,9 +237,9 @@ export function composeSource(){
  parseField(P+104n,false);
  matchCue('efecto: ');
  parseField(P+108n,true);
- L('p04_fields_done');st(P,1);say('Explicación basada en los datos aportados: ');
- emitSpan(P+100n);say('. La causa indicada es ');emitSpan(P+104n);
- say('. El efecto descrito es ');emitSpan(P+108n);
+ L('p04_fields_done');st(P,1);say('Según los datos aportados, ');
+ emitSpan(P+100n);say('. Esto se atribuye a que ');emitSpan(P+104n);
+ say('. En consecuencia, ');emitSpan(P+108n);
  say('. No he verificado estas premisas fuera del texto recibido.');
  w('jmp p04_done');
  L('p04_done');w('halt');
