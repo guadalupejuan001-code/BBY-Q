@@ -53,7 +53,7 @@ export function intentSource(){
   const st=(a,v)=>w('store8 '+a+' '+v);
   // P+0=kind; P+1=confidence; P+2=read-only; P+3=question punctuation;
   // P+4=matched cue (1-based); P+8=normalized length.
-  st(P,0);st(P+1n,0);st(P+2n,1);st(P+3n,0);st(P+4n,0);st(P+8n,0);
+  st(P,0);st(P+1n,0);st(P+2n,1);st(P+3n,0);st(P+4n,0);st(P+5n,0);st(P+8n,0);
   w('load8 r9 '+LENGTH,'load8 r4 '+(LENGTH+1n),'mul r4 256','add r9 r4',
     'cmp r9 0','jle p01_unknown',
     'cmp r9 190','jle p01_setup','set r9 190');
@@ -62,6 +62,8 @@ export function intentSource(){
   w('cmp r0 r9','jge p01_finish','set r7 '+INPUT,'add r7 r0',
     'load8 r3 $r7','add r0 1',
     'cmp r3 63','je p01_question',
+    'cmp r3 34','je p01_quote','cmp r3 39','je p01_quote',
+    'cmp r3 96','je p01_quote',
     'cmp r3 194','je p01_c2','cmp r3 195','je p01_c3',
     'cmp r3 65','jlt p01_ascii','cmp r3 90','jgt p01_ascii','add r3 32');
   L('p01_ascii');
@@ -70,6 +72,7 @@ export function intentSource(){
   w('cmp r3 48','jlt p01_space','cmp r3 57','jle p01_put');
   L('p01_space');w('set r3 32','jmp p01_put');
   L('p01_question');st(P+3n,1);w('set r3 32','jmp p01_put');
+  L('p01_quote');st(P+5n,1);w('set r3 32','jmp p01_put');
   L('p01_c2');
   w('cmp r0 r9','jge p01_space','set r7 '+INPUT,'add r7 r0','load8 r6 $r7',
     'cmp r6 191','jne p01_c2_end');st(P+3n,1);
@@ -120,6 +123,16 @@ export function intentSource(){
     if(entry.kind===5||entry.kind===6||entry.kind===7){
       // Interrogatives cannot silently become teaching, correction or statements.
       w('load8 r6 '+(P+3n),'cmp r6 0','jne '+tag+'_next');
+    }
+    if(entry.kind===5||entry.kind===6){
+      // A quoted instruction is data, never permission to change training.
+      w('load8 r6 '+(P+5n),'cmp r6 0','jne '+tag+'_next');
+    }
+    if(entry.kind===2){
+      // A subordinate 'que' clause alone does not prove a question.
+      const queryAllowed=tag+'_query_allowed';
+      w('load8 r6 '+(P+3n),'cmp r6 1','je '+queryAllowed,
+        'cmp r0 0','jne '+tag+'_next');L(queryAllowed);
     }
     st(P,entry.kind);st(P+1n,entry.confidence);
     st(P+2n,(entry.kind===5||entry.kind===6)?0:1);
