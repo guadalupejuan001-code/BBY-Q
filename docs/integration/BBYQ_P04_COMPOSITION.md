@@ -35,7 +35,7 @@ Crea una historia de cuatro frases sobre un bosque.
 Inventa un cuento sobre una brújula.
 ```
 
-Las frases siguen una secuencia de introducción, desarrollo y desenlace. El generador conserva el tema de la petición y no declara que sus acontecimientos sean datos del mundo real.
+Las frases siguen una secuencia de introducción, desarrollo y desenlace. El tema aparece explícitamente en la primera frase; después se mantiene por elipsis del sujeto, una propiedad del español que evita repetir mecánicamente el mismo nombre. No se declara que sus acontecimientos sean datos del mundo real.
 
 ### Explicación con causa y efecto proporcionados
 
