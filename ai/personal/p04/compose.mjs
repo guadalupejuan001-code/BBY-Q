@@ -159,13 +159,23 @@ export function composeSource(){
  const after='p04_after_creative_line';
  function banks(prefix,items){
   for(let index=0;index<items.length;index++){
-   const tag=prefix+'_'+index;
+   const tag=prefix+'_'+index,openDone=tag+'_open_done';
    L(tag);
+   // Two independent native selections permit 4x4 combinations per line:
+   // one choice selects the syntactic opening, another the ending.
    for(let n=0;n<VARIANTS;n++){
-    const miss=u('p04_variant_next');
+    const miss=u('p04_open_next');
     w('cmp r1 '+n,'jne '+miss);
-    say(items[index][n][0]);emitSpan(P+8n);say(items[index][n][1]);
-    w('jmp '+after);L(miss);
+    say(items[index][n][0]);w('jmp '+openDone);L(miss);
+   }
+   w('jmp p04_unhandled');
+   L(openDone);emitSpan(P+8n);
+   ld(1,P+4n);
+   w('mul r1 3','mov r2 r0','mul r2 7','add r1 r2','mod r1 '+VARIANTS);
+   for(let n=0;n<VARIANTS;n++){
+    const miss=u('p04_end_next');
+    w('cmp r1 '+n,'jne '+miss);
+    say(items[index][n][1]);w('jmp '+after);L(miss);
    }
    w('jmp p04_unhandled');
   }
