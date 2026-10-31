@@ -2,7 +2,7 @@
 
 **Fecha:** 31 de octubre de 2026  
 **Estatus:** candidato de integración en el mismo punto de entrada conversacional, conservando bancos distintos.  
-**Dependencia:** la cápsula nativa E034 exacta se distribuyó en un artefacto histórico de GitHub Actions; el repositorio conserva el código y el checkpoint aprendido, pero no el RXE empaquetado de E034. No fingir que un checkout por sí solo incluye esa cápsula.
+**Distribución:** el repositorio conserva la cápsula E034 exacta comprimida en `ai/releases/e034/composed.rxe.gz.b64`, además del código y el checkpoint aprendido. Se recuperó de un artefacto histórico y se verificó SHA-256 antes de incorporarla. No necesita descargar ese artefacto para instalar el módulo.
 
 ## Propósito
 
@@ -14,7 +14,7 @@ La cápsula comprobada E034 contiene E027/E028/E029, el aprendizaje de E030/E031
 
 - Cápsula `composition/composed.rxe`: `a0edbe6122beb5ab57d0e2dbd60c26524bc946737806eb71f2ed133fde068a28`, 1.346.841 bytes.
 - Checkpoint aprendido `ai/checkpoints/e034/composition-model.rvp.gz.b64`: descomprimido SHA-256 `876d3f2a82698e9582f17043028d9a75b454e4b5ebaf7cc5949b65a5bac58a10`, 863.594 bytes.
-- Fuente histórica y artefacto original: [GitHub Actions E034](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40808605984). La cápsula se extrae de su ZIP y se verifica por hash antes de instalarla.
+- Fuente histórica y artefacto original: [GitHub Actions E034](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/40808605984). La misma cápsula comprimida ahora está fijada en `ai/releases/e034/composed.rxe.gz.b64`, y su contenido se verifica por SHA-256 al instalar.
 - La nueva versión preserva sin alterar `native/model.rvp.gz`, `capacity/`, las lecciones y los comprobantes anteriores.
 
 ## Funcionamiento
@@ -35,13 +35,14 @@ Si la ejecución, la integridad o la confirmación falla, la transacción X10 se
 
 ## Instalación y uso
 
-Se necesita una entrega X10 ya preparada y verificada mediante su paquete X09 auténtico. Después, usando el **artefacto histórico exacto** de E034 o directamente el archivo `composed.rxe` extraído:
+Se necesita una entrega X10 ya preparada y verificada mediante su paquete X09 auténtico. Después, el instalador utiliza por defecto la **cápsula histórica exacta integrada en el repositorio**. También acepta el ZIP histórico o un `composed.rxe` extraído para verificarlos:
 
 ```bash
-node bbyq.mjs --build build/x10 install-e034 BBYQ-E034-relational-composition.zip
+node bbyq.mjs --build build/x10 install-e034
+# Alternativa: node bbyq.mjs --build build/x10 install-e034 BBYQ-E034-relational-composition.zip
 ```
 
-El instalador lee `composition/composed.rxe` del ZIP y compara su hash. También valida el checkpoint E034 conservado en el repositorio. No borra el estado principal.
+El instalador descomprime y valida la cápsula incluida en el repositorio, o lee `composition/composed.rxe` del ZIP si se suministra uno. Comprueba el hash SHA-256 de ambos formatos y del checkpoint E034 antes de instalar. No borra el estado principal. No borra el estado principal.
 
 Para una sesión X10 existente o nueva:
 
@@ -66,7 +67,7 @@ Por defecto, sin `--module=e034`, se conserva el trayecto X10/X09 original. Eleg
 
 ### Limitaciones y pendientes
 
-- La cápsula compilada E034 proviene de un artefacto histórico de GitHub Actions con fecha de caducidad; el instalador no depende de una URL permanente inventada. Conviene conservarla o construir una entrega reproducible autónoma a partir de sus fuentes.
+- La cápsula compilada E034 está preservada en `ai/releases/e034/composed.rxe.gz.b64`, con una identidad comprobable frente al artefacto histórico que la generó. La compilación determinista desde toda la cadena E027–E034, sin artefactos previos, todavía no está demostrada.
 - No se ha verificado una sesión completa que simultáneamente ejecute un **X09 binario real restaurado desde su ZIP**, el motor X10 y el módulo E034: la prueba de despacho X10 utiliza una base intencionalmente sintética. Los test nativos E034 sí usan el ejecutor real XI y la cápsula exacta.
 - Solo existe **selección explícita de módulo**, no arbitración semántica automática de E034 en lenguaje libre. La integración automática sin falsas derivaciones pertenece a una fase posterior.
 - El aprendizaje E034 sigue siendo simbólico en XI/Ether, no entrenamiento de pesos neuronales.
