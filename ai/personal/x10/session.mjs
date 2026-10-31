@@ -84,20 +84,20 @@ export function upgradeSession(runtime,base,oldRoot,newRoot){
  // The old session is only read; state and all replay identifiers are retained.
  return initialize(newRoot,base,input,{history:{head,root:oldRoot}});
 }
-function synchronizeLegacy(db,runtime,input,job){
+function synchronizeLegacy(db,runtime,input,job,keepDirty=false){
  const dirty=db.prepare('SELECT slot,record FROM dirty_slots ORDER BY slot').all();if(!dirty.length)return;
  for(const[rowIndex,item]of dirty.entries()){
   let source='#!reverse-pc-machine-v1\n';for(const[i,value]of Buffer.from(item.record).entries())source+=`store8 ${LEGACY_ROWS+BigInt(item.slot*ROW_BYTES+i)} ${value}\n`;
   if(rowIndex===dirty.length-1){const count=db.prepare('SELECT COUNT(*) AS n FROM legacy_slots JOIN lessons USING(key)').get().n,revision=Number(get(db,'revision'));for(const[address,value,n]of [[LEGACY_BANK+2n,count,2],[LEGACY_BANK+8n,revision,4]])for(let i=0;i<n;i++)source+=`store8 ${address+BigInt(i)} ${Math.floor(value/256**i)%256}\n`;}
   source+='halt\n';const file=path.join(job,'sync-legacy.xi');fs.writeFileSync(file,source);run(runtime,['run',file,input,input]);
  }
- db.exec('DELETE FROM dirty_slots');
+ if(!keepDirty)db.exec('DELETE FROM dirty_slots');
 }
-function fallback(db,runtime,base,raw,options,job){
+function fallback(db,runtime,base,raw,options,job,readOnly=false){
  if(raw.length>16384)throw fail('E_UNSUPPORTED_TEXT','Esta operación conserva su límite de 16384 bytes. Los mensajes de hasta 1 MiB admiten repetición exacta y resumen extractivo.');
  const stored=db.prepare('SELECT data,digest FROM state WHERE id=1').get(),bytes=zlib.inflateRawSync(stored.data,{maxOutputLength:32*1024*1024});
  if(sha(bytes)!==stored.digest)throw fail('E_STATE','La memoria persistente no coincide con su huella.');
- const input=path.join(job,'main.rvp'),output=path.join(job,'next.rvp');fs.writeFileSync(input,bytes,{mode:0o600});synchronizeLegacy(db,runtime,input,job);
+ const input=path.join(job,'main.rvp'),output=path.join(job,'next.rvp');fs.writeFileSync(input,bytes,{mode:0o600});synchronizeLegacy(db,runtime,input,job,readOnly);
  let result;
  if(options.operation==='import'){
   const m=JSON.parse(fs.readFileSync(path.join(base,'build.json'))),source=path.join(base,'conversation.xi');if(sha(fs.readFileSync(source))!==m.conversation_source_sha256)throw fail('E_BUILD','Fuente de importación alterada.');
@@ -106,20 +106,28 @@ function fallback(db,runtime,base,raw,options,job){
  if(!result.ok)throw fail(result.error.code,result.error.message);
  // Generated programs are durable attachments, not paths into a deleted job.
  const attachments={};if(fs.existsSync(output+'.files'))for(const name of fs.readdirSync(output+'.files'))attachments[name]=fs.readFileSync(path.join(output+'.files',name)).toString('base64');
- const next=fs.readFileSync(output);db.prepare('UPDATE state SET data=?,digest=? WHERE id=1').run(zlib.deflateRawSync(next),sha(next));
- const revision=readNumber(cells(output),LEGACY_BANK+8n);put(db,'revision',Math.max(revision,Number(get(db,'revision'))));
- return {...result,output:undefined,...(Object.keys(attachments).length?{attachments}:{}),extension:'X09-preserved'};
+ // A non-teaching message may execute the old reasoning modules, but its
+ // tentative RVPC2 changes are discarded. Preserve pending X10 dirty slots.
+ if(!readOnly){
+  const next=fs.readFileSync(output);db.prepare('UPDATE state SET data=?,digest=? WHERE id=1').run(zlib.deflateRawSync(next),sha(next));
+  const revision=readNumber(cells(output),LEGACY_BANK+8n);put(db,'revision',Math.max(revision,Number(get(db,'revision'))));
+ }
+ // Prevent a legacy acknowledgement from claiming a fact was durably saved.
+ const acknowledged=['Registré tus datos.','Registré esa afirmación.'];
+ const response=readOnly&&acknowledged.includes(result.response)?'Recibí la afirmación, pero no la guardé como aprendizaje. Para conservarla, pide «recuerda que ...».':result.response;
+ return {...result,response,output:undefined,...(Object.keys(attachments).length?{attachments}:{}),extension:'X09-preserved',knowledge_read_only:readOnly};
 }
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
  if(options.operation==='import')return fallback(db,runtime,base,raw,options,job);
- const route=pages.route(raw);
- if(route.mode===2||route.mode===3)return {ok:true,response:pages.stream(raw,route.mode),extension:'X10-streamed-text'};
- if(route.mode!==1)return fallback(db,runtime,base,raw,options,job);
+ const route=pages.route(raw),intent=pages.intent(raw);
+ const intentMeta={intent:intent.name,intent_confidence:intent.confidence,intent_rule:intent.rule,intent_read_only:intent.readOnly};
+ if(route.mode===2||route.mode===3)return {ok:true,response:pages.stream(raw,route.mode),extension:'X10-streamed-text',...intentMeta};
+ if(route.mode!==1)return {...fallback(db,runtime,base,raw,options,job,intent.readOnly),...intentMeta};
  const old=route.operation===8?undefined:db.prepare('SELECT record,digest FROM lessons WHERE key=?').get(route.key);
  if(old&&sha(old.record)!==old.digest)throw fail('E_RECORD','La página de entrenamiento no coincide con su huella.');
  // A missing definition can still be known by an older reasoning module.
- if(!old&&route.operation>=4&&route.operation<=7)return fallback(db,runtime,base,raw,options,job);
+ if(!old&&route.operation>=4&&route.operation<=7)return {...fallback(db,runtime,base,raw,options,job,true),...intentMeta};
  const beforeCount=Number(get(db,'count')),beforeRevision=Number(get(db,'revision'));
  const result=pages.record(old?Buffer.from(old.record):null,{count:beforeCount,revision:beforeRevision});
  if(result.status&&result.status!==3)throw fail(['','','E_CONFLICT','E_MISSING','E_CAPACITY','E_REVISION'][result.status]||'E_RECORD',result.response);
@@ -130,7 +138,7 @@ function execute(db,runtime,base,raw,options,roles,job){
   put(db,'count',result.count);put(db,'revision',result.revision);
   const legacy=db.prepare('SELECT slot FROM legacy_slots WHERE key=?').get(route.key);if(legacy)db.prepare('INSERT INTO dirty_slots VALUES(?,?) ON CONFLICT(slot) DO UPDATE SET record=excluded.record').run(legacy.slot,result.record||Buffer.alloc(ROW_BYTES));
  }
- return {ok:true,response:result.response,extension:'X10-paged-lessons',lessons:result.count,revision:result.revision};
+ return {ok:true,response:result.response,extension:'X10-paged-lessons',lessons:result.count,revision:result.revision,...intentMeta};
 }
 export function transact(runtime,base,root,requestId,message,options={}){
  let db,job,outcome,inTransaction=false;
