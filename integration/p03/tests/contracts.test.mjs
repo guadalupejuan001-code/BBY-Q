@@ -38,7 +38,7 @@ test('P03 compiles with verified X10 build, P01 and P02 remain intact',()=>{
  assert.match(pages,/this\.role\('reason\.rxe'\)/);
  assert.match(session,/options\.module==='p03'/);
  assert.match(session,/if\(options\.module==='e034'\)/);
- assert.match(session,/reasoning\.eligible/);
+ assert.match(session,/reasoning\?\.eligible/);
  assert.match(session,/P03-native-XI/);
  assert.match(session,/options\.learn===true&&options\.module!=='e034'/);
  assert.match(session,/synchronizeLegacy\(db,runtime,input,job,readOnly\)/);
