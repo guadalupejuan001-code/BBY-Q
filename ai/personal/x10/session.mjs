@@ -14,6 +14,7 @@ import {relationalTurn} from '../p02/relational.mjs';
 import {REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 import {COMPOSE_LIMIT} from '../p04/compose.mjs';
 import {history,contextTurn,saveConversation} from '../p05/store.mjs';
+import {PARAPHRASE_MAX_INPUT,PARAPHRASE_MODES} from '../p06/paraphrase.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -121,8 +122,40 @@ function fallback(db,runtime,base,raw,options,job,readOnly=false){
  const response=readOnly&&acknowledged.includes(result.response)?'Recibí la afirmación, pero no la guardé como aprendizaje. Para conservarla, pide «recuerda que ...».':result.response;
  return {...result,response,output:undefined,...(Object.keys(attachments).length?{attachments}:{}),extension:'X09-preserved',knowledge_read_only:readOnly};
 }
+function generalized(db,pages,raw,roles,{explicit=false}={}){
+ if(!roles['paraphrase.rxe']){
+  if(explicit)throw fail('E_P06_BUILD','P06 necesita reconstruir X10 con el rol nativo de reformulación.');
+  return null;
+ }
+ if(raw.length>PARAPHRASE_MAX_INPUT)return explicit?{ok:true,response:'Este texto supera el límite P06 de 512 bytes. No cambié ninguna memoria.',extension:'P06-abstained-XI',knowledge_read_only:true,paraphrase_handled:false}:null;
+ const transformed=pages.paraphrase(raw);
+ const abstain={ok:true,response:'No reconozco una equivalencia lingüística comprobada para esa frase. No voy a cambiar su significado ni inventar una respuesta.',extension:'P06-abstained-XI',knowledge_read_only:true,paraphrase_handled:false};
+ if(!transformed.handled)return explicit?abstain:null;
+ const canonical=Buffer.from(transformed.canonical,'utf8');let result;
+ if(transformed.mode===PARAPHRASE_MODES.recall&&roles['context.rxe']){
+  const rows=history(db),decision=pages.context(canonical,rows.map(row=>row.utterance));
+  result=contextTurn(db,decision,rows);
+ }else if([PARAPHRASE_MODES.poem,PARAPHRASE_MODES.story,PARAPHRASE_MODES.explanation].includes(transformed.mode)&&roles['compose.rxe']){
+  const composed=pages.compose(canonical),expected=transformed.mode===PARAPHRASE_MODES.poem?1:transformed.mode===PARAPHRASE_MODES.story?2:3;
+  if(composed.handled&&composed.mode===expected)
+   result={ok:true,response:composed.response,extension:'P04-native-XI',composition_mode:composed.mode,composition_units:composed.count,knowledge_read_only:true};
+ }else if(transformed.mode===PARAPHRASE_MODES.reasoning&&roles['reason.rxe']){
+  let reason;
+  try{reason=pages.reason(canonical);}catch(e){if(e.code!=='E_P03_FORMAT')throw e;}
+  if(reason?.eligible&&reason.unparsed===0&&![REASON_MODE.partial,REASON_MODE.unsupported].includes(reason.mode))
+   result={ok:true,response:reason.response,extension:'P03-native-XI',reasoning_mode:reason.mode,reasoning_premises:reason.premises,knowledge_read_only:true};
+ }
+ if(!result)return explicit?abstain:null;
+ return {...result,paraphrase_handled:true,paraphrase_rule:transformed.rule,
+  paraphrase_mode:transformed.mode,paraphrase_canonical:transformed.canonical,
+  paraphrase_engine:'P06-native-XI',knowledge_read_only:true};
+}
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
+ if(options.module==='p06'){
+  if(options.operation==='import')throw fail('E_OPERATION','P06 no procesa importaciones ni modifica entrenamientos.');
+  return generalized(db,pages,raw,roles,{explicit:true});
+ }
  if(options.operation!=='import'&&(options.module===undefined||options.module==='x10'||options.module==='p05')){
   if(!roles['context.rxe']){
    if(options.module==='p05')throw fail('E_BUILD','Se necesita reconstruir el rol de memoria P05.');
@@ -171,6 +204,13 @@ function execute(db,runtime,base,raw,options,roles,job){
      reasoning_premises:reasoning.premises,reasoning_unparsed:reasoning.unparsed,
      reasoning_proof_nodes:reasoning.proof_nodes,knowledge_read_only:true,...intentMeta};
   }
+  // Native P06 proposes only bounded, read-only paraphrases after all
+  // existing skills had the chance to process the original message.
+  if(raw.length<=PARAPHRASE_MAX_INPUT&&roles['paraphrase.rxe']&&
+     !['teaching','correction'].includes(intent.name)){
+   const alternative=generalized(db,pages,raw,roles);
+   if(alternative)return {...alternative,...intentMeta};
+  }
   return {...fallback(db,runtime,base,raw,options,job,intent.readOnly),...intentMeta};
  }
  const old=route.operation===8?undefined:db.prepare('SELECT record,digest FROM lessons WHERE key=?').get(route.key);
@@ -197,14 +237,14 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
-  if(options.module!==undefined&&!['x10','e034','p03','p04','p05'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.module!==undefined&&!['x10','e034','p03','p04','p05','p06'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   const raw=Buffer.from(message);if(!raw.length)throw fail('E_EMPTY','El mensaje está vacío.');if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE','El mensaje supera 1048576 bytes.');
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
-  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':'';
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':'';
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
