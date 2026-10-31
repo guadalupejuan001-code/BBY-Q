@@ -119,8 +119,8 @@ export function relationalTurn(db,{runtime,build,job,raw,language='es',learn=fal
  let response=p.stdout.trimEnd();
  // A legacy acknowledgement must never claim a fact was saved when the
  // read-only projection discarded its writes.
- if(!learn&&/^(Registré esa relación\.|Registré esa afirmación\.|Recorded that relation\.|I recorded that statement\.)$/u.test(response))
-  response='Consulta de solo lectura: no se guardó ninguna afirmación. Usa --learn para enseñar explícitamente.';
+ if(!learn&&/^(Registré esa relación\.|Registré esa afirmación\.|Recorded that relation\.|I recorded that statement\.|CTX guardado.*|CTX vaciado\.|Aprendí.*|I learned.*)$/u.test(response))
+  response='Consulta de solo lectura: no se guardó ni borró información. Usa --learn para autorizar cambios.';
  return {ok:true,response,extension:'E034-isolated-XI',relational_checkpoint:LEARNED_SHA,
   relational_state_sha256:sha(written),learn_requested:learn,
   knowledge_write_enabled:learn,typed_focus_persisted:!learn,
