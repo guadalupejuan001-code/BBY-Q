@@ -29,3 +29,28 @@ node integration/c15/tests/dialogue-eval.mjs /ruta/reverse_pc carpeta-nueva
 Se generan `summary.json` y `dialogue-evaluation.json`, con solicitudes, respuestas producidas, reglas de calificación, tiempos, alternativas y evolución de las recomendaciones.
 
 El experimento no activa ejecución automática de rutas ni modifica el algoritmo productivo C15.
+
+
+## Resultados medidos (GitHub Actions, 1 noviembre 2026)
+
+Ejecución reproducible: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/41364467854
+
+| Métrica | Resultado |
+| --- | --- |
+| Solicitudes nuevas redactadas para el ensayo | 12 |
+| Respuestas automáticas nativas verificadas | 9 de 9 ejecutables |
+| Solicitudes automáticas que llegaron a un X09 no restaurado | 3 de 12 |
+| Motor explícito correcto (4 de cada dominio) | 12/12 por rúbrica limitada |
+| Recomendaciones C15 coincidentes con ruta esperada | 2 de 12 |
+| Recomendaciones admitidas en lugar de abstenerse | 6 de 12 |
+| Recompensas ficticias explícitas, vinculadas a respuestas ejecutadas | 6 |
+| Q de P04 tras tres resultados 100/100 de calibración | 8750/10000 |
+| Nueva temática con la misma estructura y contexto 70 | C15-outcome-Q activo |
+| Paráfrasis de poema con contexto distinto 6 | Continúa C14-supervised-prior |
+| Mejora del contenido de respuesta reservada | 0; texto idéntico |
+
+**Diagnóstico:** el aprendizaje Q **sí** se actualiza y recupera en la consulta de un ejemplo distinto del mismo contexto (70). Sin embargo, una paráfrasis («haz un poema de tres versos sobre un cometa») recibe el contexto **6**; las tres experiencias positivas se guardaron en el contexto **70**. El sistema no comparte crédito entre esas dos representaciones de una misma intención. Este es un problema observable de generalización y representación, no una demostración de que el código Q esté roto.
+
+Las tres solicitudes automáticas no resueltas cayeron al fallback X09 del fixture, que no incluye la tabla `dirty_slots` ni el modelo histórico restaurado. La ejecución falló con `ERR_SQLITE_ERROR`. No se atribuye ese fallo, sin más, al X10 completo del propietario.
+
+**Decisión técnica:** no activar selección autónoma. Antes de hacerlo hay que ampliar la equivalencia de formulaciones (P01/C14), ofrecer rutas nativas antes del fallback cuando la gramática lo pruebe, y volver a medir calidad en sesiones X09 auténticas y conversaciones recopiladas con autorización. Las evaluaciones actuales son un piloto con rúbricas objetivas limitadas, no un estudio de conversación humana.
