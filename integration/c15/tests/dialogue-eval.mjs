@@ -163,12 +163,15 @@ for(const [i,item]of calibrations.entries()){
   assert.equal(rewarded.result.c15_training.trained_action,module==='p04'?3:2);
   episodes.push({requestId,module,actual_extension:answered.result.extension,
    response:answered.result.response,objective_reward:objectiveReward,
-   rubric:measured,rewarded_q:rewarded.result.c15_training.q_value_q10000,
+   rubric:measured,context:answered.result.c15_shadow?.context??null,original_proposal:answered.result.c15_shadow?.suggested_action??null,rewarded_q:rewarded.result.c15_training.q_value_q10000,
    total_feedback:rewarded.result.c15_training.total_feedback});
  }
 }
 const end=call(learned,'heldout-after',heldout.text,{module:'p04',shadowC15:true});
 assert.equal(end.result.ok,true,'heldout post-reward response missing');
+const nearPrompt='escribe un poema sobre el horizonte.';
+const near=call(learned,'heldout-near',nearPrompt,{module:'p04',shadowC15:true});
+const nearOracle=oracle({kind:'poem',topic:'horizonte',units:4},near.result);
 const afterLearn=inspect(learned);
 assert.equal(afterLearn.state_sha256,beforeLearn.state_sha256,'Training changed original X09');
 assert.equal(afterLearn.c15_feedback_events,6,'Missing outcome feedback events');
@@ -189,6 +192,8 @@ const report={
  seed_sha256:beforeAll.state_sha256,
  fixture_previous_integration:{checks:fixtureResult.checks,turns:fixtureResult.conversational_turns},
  sample_size:tasks.length,domain_count:3,
+ fixture_blocked_automatic:results.filter(x=>x.routes[0].error?.code==='ERR_SQLITE_ERROR').map(x=>({id:x.id,issue:x.routes[0].error?.message})),
+ valid_automatic_native:results.filter(x=>x.routes[0].ok&&['P03-native-XI','P04-native-XI','P05-context-XI'].includes(x.routes[0].extension)).length,
  routes_tested:routeModules.map(x=>x.key),
  metric_definition:'fraction of responses satisfying task-specific exact, limited observables',
  route_scores:routeModules.map(({key})=>{
@@ -204,6 +209,10 @@ const report={
  learning_probe:{
   calibration_cases:calibrations.length,reward_events:episodes.length,
   heldout_request:heldout.text,prior_source:oldSuggestion?.source,
+  before_context:oldSuggestion?.context,after_context:end.result.c15_shadow?.context,
+  near_holdout_request:nearPrompt,near_context:near.result.c15_shadow?.context,
+  near_source:near.result.c15_shadow?.source,near_proposal:near.result.c15_shadow?.suggested_action,
+  near_pass:nearOracle.pass,
   after_source:end.result.c15_shadow?.source,
   before_proposal:oldSuggestion?.suggested_action,after_proposal:end.result.c15_shadow?.suggested_action,
   before_answer:start.result.response,after_answer:end.result.response,
@@ -216,10 +225,18 @@ const report={
 fs.writeFileSync(path.join(out,'dialogue-evaluation.json'),JSON.stringify(report,null,2)+'\n');
 fs.writeFileSync(path.join(out,'summary.json'),JSON.stringify({
  ok:true,sample_size:report.sample_size,route_scores:report.route_scores,
+ valid_automatic_native:report.valid_automatic_native,
+ fixture_blocked_automatic:report.fixture_blocked_automatic,
  c15_prior:report.c15_prior,learning_probe:{
   calibration_cases:report.learning_probe.calibration_cases,
   reward_events:report.learning_probe.reward_events,
   prior_source:report.learning_probe.prior_source,
+  before_context:report.learning_probe.before_context,
+  after_context:report.learning_probe.after_context,
+  near_context:report.learning_probe.near_context,
+  near_source:report.learning_probe.near_source,
+  near_proposal:report.learning_probe.near_proposal,
+  near_pass:report.learning_probe.near_pass,
   after_source:report.learning_probe.after_source,
   before_proposal:report.learning_probe.before_proposal,
   after_proposal:report.learning_probe.after_proposal,
