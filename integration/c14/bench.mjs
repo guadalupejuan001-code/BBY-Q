@@ -90,7 +90,16 @@ fs.writeFileSync(stagePath,stage.join('\n')+'\n');
 native(['run',stagePath,model,staged]);
 const learned=execute(path.join(src,'train-batch.xi'),staged,trained);
 assert.deepEqual(learned,[800,800],'All 800 labels processed natively in XI');
-const learnedCells=cells(trained);
+const seedResult=path.join(out,'reconstructed-seed.rvp');
+const seeded=execute(path.join(src,'supervised-seed.xi'),model,seedResult);
+assert.deepEqual(seeded,[800],'Native trained checkpoint seed preserves 800 examples');
+const seedCells=cells(seedResult),learnedCells=cells(trained);
+for(let slot=0;slot<1152;slot++){
+ assert.equal(readNumber(seedCells,A(100+slot),1),readNumber(learnedCells,A(100+slot),1),
+  'Native XI seed and trained weights disagree at '+slot);
+}
+assert.equal(readNumber(seedCells,A(6),2),800,'XI seed total updates');
+
 assert.equal(readNumber(learnedCells,A(4),1),0);
 assert.equal(readNumber(learnedCells,A(5),1),0);
 for(let i=0;i<trainEncoded.length*2;i++)assert.equal(readNumber(learnedCells,A(3000+i),1),0,'Batch staging must be cleared');
