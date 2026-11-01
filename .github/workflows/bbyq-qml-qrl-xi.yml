@@ -38,8 +38,8 @@ jobs:
           set -euo pipefail
           R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
           P="ai/xi/qml_qrl"
-          mkdir -p evidence
           cd "$RUNNER_TEMP"
+          mkdir -p evidence
           "$R" init blank.rvp
           "$R" run "$GITHUB_WORKSPACE/$P/core-birth.xi" blank.rvp core.rvp > evidence/core.jsonl
           "$R" run "$GITHUB_WORKSPACE/$P/calibrate.xi" core.rvp calibrate.rvp > evidence/calibration.jsonl
