@@ -1,6 +1,7 @@
 // Byte framing and native page I/O only. No text interpretation or ranking.
 import fs from 'node:fs';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {B,INPUT,LENGTH,TOTAL,OFFSET,STATUS,KEY,KEY_LENGTH,RECORD,ROW_BYTES,COUNT,REVISION,EXISTS,CAPACITY,MODE,OP,START,SEEN,SENTENCES,ENDED,LIMITS,VERSION} from './schema.mjs';
@@ -56,6 +57,18 @@ export class NativePages{
   if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE',`El mensaje supera ${LIMITS.input_bytes} bytes.`);
   for(let offset=0;offset<raw.length;offset+=LIMITS.page_bytes){this.stage({data:raw.subarray(offset,offset+LIMITS.page_bytes),offset,total:raw.length});this.role('validate.rxe');if(readNumber(this.map(),STATUS,1))throw fail('E_UTF8','El mensaje contiene UTF-8 no válido o un control no permitido.');}
   if(readNumber(this.map(),B+48n,1))throw fail('E_UTF8','El mensaje termina en una secuencia UTF-8 incompleta.');
+ }
+ quantumRoute(raw){
+  // XI alone interprets quantum conversational intent and operands.
+  this.stage({data:raw.subarray(0,96),total:raw.length});
+  const source=fileURLToPath(new URL('../../xi/qml_qrl/conversation-route.xi',import.meta.url));
+  run(this.runtime,['run',source,this.state,this.state]);
+  const m=this.map(),address=8180000000000000000n;
+  const action=readNumber(m,address,1),first=readNumber(m,address+1n,1),
+   second=readNumber(m,address+2n,1),prefixed=readNumber(m,address+3n,1)===1;
+  if(![0,1,2,3,4,5,6,7,8,254].includes(action)||
+     ([5,7].includes(action)&&(first>1||second>1)))throw fail('E_QUANTUM_ROUTE','Respuesta XI incompatible.');
+  return {action,first,second,prefixed};
  }
  route(raw){this.stage({data:raw.subarray(0,LIMITS.page_bytes),total:raw.length});this.role('route.rxe');const map=this.map();if(readNumber(map,STATUS,1))throw fail('E_FORMAT','Se requiere una lección completa dentro de los límites de sus campos.');return {mode:readNumber(map,MODE,1),operation:readNumber(map,OP,1),key:readBytes(map,KEY,readNumber(map,KEY_LENGTH,1))};}
  intent(raw){
