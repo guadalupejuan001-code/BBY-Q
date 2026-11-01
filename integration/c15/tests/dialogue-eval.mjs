@@ -15,7 +15,7 @@ import {VERSION} from '../../../ai/personal/x10/schema.mjs';
 const [runtimeArg,outArg]=process.argv.slice(2);
 if(!runtimeArg||!outArg)throw Error('Usage: dialogue-eval.mjs /path/reverse_pc FRESH_EVIDENCE_DIR');
 const runtime=path.resolve(runtimeArg),out=path.resolve(outArg);
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 if(fs.existsSync(out))throw Error('Provide a new directory for evidence.');
 fs.mkdirSync(out,{recursive:true});
 const fixture=path.join(out,'verified-fixture');
