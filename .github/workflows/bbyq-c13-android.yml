@@ -64,7 +64,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gradle -p android-xi-lab --no-daemon --stacktrace :app:assembleDebug > "$RUNNER_TEMP/c13-gradle.log" 2>&1 || { tail -180 "$RUNNER_TEMP/c13-gradle.log"; exit 1; }
+          gradle -p android-xi-lab --no-daemon :app:assembleDebug > android-xi-lab/c13-gradle.log 2>&1 || {
+            echo '=== FIRST FAILURE ROOT CAUSE ==='
+            grep -n -E 'error:|FAILED|CMake Error|What went wrong|Execution failed|FAILURE|Could not|cannot find symbol|No such file|Caused by:' android-xi-lab/c13-gradle.log | head -60 || true
+            echo '=== BUILD LOG BEGINNING ==='
+            head -100 android-xi-lab/c13-gradle.log
+            echo '=== BUILD LOG END ==='
+            tail -80 android-xi-lab/c13-gradle.log
+            exit 1
+          }
           apk=android-xi-lab/app/build/outputs/apk/debug/app-debug.apk
           test -s "$apk"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs --verbose "$apk" > "$RUNNER_TEMP/c13-signature.txt"
@@ -96,6 +104,7 @@ jobs:
           path: |
             android-xi-lab/app/build/outputs/apk/debug/app-debug.apk
             android-xi-lab/c13-build-evidence.json
+            android-xi-lab/c13-gradle.log
             android-xi-lab/app/src/main/assets/xi/manifest.json
           if-no-files-found: warn
           retention-days: 30
