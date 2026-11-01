@@ -126,12 +126,12 @@ export function recordFeedback(db,{runtime,job,feedback,language='es'}){
  if(db.prepare('SELECT 1 FROM c15_feedback WHERE target_id=?').get(targetId))
   throw fail('E_C15_DUPLICATE','Este resultado ya recibió una calificación y no puede contarse dos veces.');
  const dir=path.join(job,'c15-feedback');fs.mkdirSync(dir,{recursive:true,mode:0o700});
- const {target}=openPolicy(db,{runtime,dir});
+ const {target:policyState}=openPolicy(db,{runtime,dir});
  const frame=encodeFrame(path.join(dir,'feedback-frame.xi'),[
   [1,shadow.context],[2,shadow.actual_action],[3,reward]
  ]);
  const prepared=path.join(dir,'prepared.rvp'),trained=path.join(dir,'trained.rvp');
- run(runtime,['run',frame,target,prepared]);
+ run(runtime,['run',frame,policyState,prepared]);
  const values=readRegisters(run(runtime,['run',program('update'),prepared,trained]));
  if(values.length!==5||values[0]!==shadow.context||values[1]!==shadow.actual_action||
     values[2]<0||values[2]>10000||values[3]<1||values[3]>65535||
