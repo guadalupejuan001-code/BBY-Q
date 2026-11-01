@@ -30,7 +30,8 @@ export function c14Shadow(db,{runtime,roles,job,raw}){
  if(raw.length>190)
   return {...base,available:false,reason:'La extracción P01 XI admite hasta 190 bytes por mensaje.'};
  const dir=path.join(job,'c14-isolated');fs.mkdirSync(dir,{recursive:true,mode:0o700});
- const pages=new NativePages(runtime,roles,path.join(dir,'frames'));
+ const frames=path.join(dir,'frames');fs.mkdirSync(frames,{mode:0o700});
+ const pages=new NativePages(runtime,roles,frames);
  pages.validate(raw);
  let memoryReference=false,historyMode=0;
  if(roles['context.rxe']){
