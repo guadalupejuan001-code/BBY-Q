@@ -34,12 +34,13 @@ El agente es **bandido contextual de un paso** (caso particular de RL con `gamma
 - Cada accion se explora; `Q <- Q + trunc[(R-Q)/2]`, cuatro pasadas por llamada.
 - `qrl-train.xi` conserva Q de dos contextos y sus acciones en bytes XI/Ether, con eleccion greedy y desempate por circuito mas corto.
 - `qrl-act.xi` carga la politica y crea una prueba fisico-matematica con `expect`, `probz` y uncompute.
+- `qrl-audit.xi` lee los 16 Q almacenados sin escribir ni alterar estado; CI compara dos entrenamientos sucesivos.
 
 **Limitacion crucial:** la ISA XI actual publica los observables cuánticos en JSON pero no puede leer `expect/probz` en registros `r0..r15`. La recompensa y la optimizacion aqui proceden de la formula Born analitica tabulada dentro de XI. Se contrastan con las consultas al simulador y NO se pretende que QRL haya aprendido de feedback medido directamente del nucleo. La fidelidad calculada es exacta respecto a los valores tabulados y aproximada respecto a la rotacion real (~0.00005 en coseno).
 
 ## Ciclo 4 — Pruebas y aceptación
 - Workflow `.github/workflows/bbyq-qml-qrl-xi.yml`: compila el ejecutor REVERSE-PC fijado, ejecuta ambos conjuntos, evalúa holdout, prueba fidelidad y reversibilidad con Born, aprende dos contextos y verifica el rechazo transaccional de una etiqueta invalida.
-- `calibrate.xi` prueba las 8 rotaciones con el nucleo nativo.
+- `calibrate.xi` prueba las 8 rotaciones con el nucleo nativo y compara cada probabilidad Born con la curva esperada (tolerancia 0.0002), ademas del uncompute.
 - Los controles de aceptacion incluyen `k=0` para identidad, `k=4` para inversion, `4/4` en ambos holdouts sinteticos, QRL `k=0/4` en objetivos opuestos, y que el estado quede fisicamente en `|0>` al deshacer el circuito.
 - No se afirman ventajas sobre clasificacion clasica; con un cubit y datos triviales no puede demostrarse.
 
