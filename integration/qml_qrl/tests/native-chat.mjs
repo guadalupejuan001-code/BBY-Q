@@ -235,6 +235,104 @@ eq(final.quantum_connected,true,'new quantum memory persisted');
  eq(c14CLI.status,0,'C14 CLI exit');
  eq(JSON.parse(c14CLI.stdout).c14_shadow.suggested_action,3,'C14 CLI XI recommendation');
 
+
+ // C15: feedback is bound to a real reply, not a proposed unexecuted action.
+ const beforeRL=inspect(session),poemPrompt='escribe un poema sobre una estrella';
+ eq(beforeRL.c15_policy_sha256,null,'C15 begins without persistent learned Q weights');
+ eq(beforeRL.c15_feedback_events,0,'no silent feedback at startup');
+ const produced=askOk('c15-produced-1',poemPrompt,{module:'p04',shadowC15:true});
+ eq(produced.extension,'P04-native-XI','P04 really generated the response being evaluated');
+ eq(produced.c15_shadow.available,true,'C15 native XI metadata available');
+ eq(produced.c15_shadow.actual_action,3,'actual X10 extension is P04, no fabricated action');
+ eq(produced.c15_shadow.feedback_eligible,true,'executed route is eligible for explicit rating');
+ eq(produced.c15_shadow.applied,false,'C15 recommendation cannot override X10');
+ eq(produced.c15_shadow.source,'C14-supervised-prior','untrained Q agent begins with C14 prior');
+ eq(produced.c15_shadow.total_feedback,0,'C15 observation does not train');
+ eq(inspect(session).c15_policy_sha256,null,'read-only C15 observation creates no stored model');
+
+ const wrongFeedback=ask('c15-unbound','calificación',{module:'c15',rlFeedback:{targetId:'c14-classic',reward:100}});
+ eq(wrongFeedback.error.code,'E_C15_PROVENANCE','cannot rate a response without captured executed-route evidence');
+ const unknownFeedback=ask('c15-unknown','calificación',{module:'c15',rlFeedback:{targetId:'no-such-turn',reward:100}});
+ eq(unknownFeedback.error.code,'E_C15_TARGET','cannot create invented source responses');
+ const missingFeedback=ask('c15-no-feedback','calificación',{module:'c15'});
+ eq(missingFeedback.error.code,'E_C15_FEEDBACK','training needs explicit feedback');
+ const wrongModule=ask('c15-wrong-module','calificación',{rlFeedback:{targetId:'c15-produced-1',reward:100}});
+ eq(wrongModule.error.code,'E_C15_FEEDBACK','no feedback is accepted on normal X10 chat');
+ eq(inspect(session).c15_feedback_events,0,'all invalid feedback leaves agent untrained');
+
+ const rated=askOk('c15-grade-1','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-1',reward:100}});
+ eq(rated.extension,'C15-native-XI-explicit-outcome-feedback','native XI rating route');
+ eq(rated.c15_training.trained_action,3,'reward attributed to actual P04, never C14 inference');
+ eq(rated.c15_training.q_value_q10000,5000,'XI 0.5 TD update after first 100/100 rating');
+ eq(rated.c15_training.action_feedback_count,1,'one actual response counted');
+ eq(rated.c15_training.total_feedback,1,'one explicit rating globally');
+ eq(inspect(session).c15_feedback_events,1,'durable rating evidence inserted');
+ const firstLearnedHash=inspect(session).c15_policy_sha256;
+ ok(typeof firstLearnedHash==='string'&&firstLearnedHash.length===64,'C15 Q model has SHA-256');
+ eq(inspect(session).state_sha256,beforeRL.state_sha256,'the historical X09 state is untouched by real reward');
+ eq(inspect(session).cognitive_policy_sha256,beforeRL.cognitive_policy_sha256,'C12 policy is untouched by C15');
+
+ const ratedReplay=ask('c15-grade-1','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-1',reward:100}});
+ eq(ratedReplay.replayed,true,'duplicate request ID yields cached X10 receipt');
+ eq(inspect(session).c15_policy_sha256,firstLearnedHash,'cached replay never trains twice');
+ const repeatedGrade=ask('c15-repeat','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-1',reward:80}});
+ eq(repeatedGrade.error.code,'E_C15_DUPLICATE','independent request ID cannot rate the same reply twice');
+ const changedReplay=ask('c15-grade-1','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-1',reward:75}});
+ eq(changedReplay.error.code,'E_REPLAY_MISMATCH','same ID with different reward rejected');
+ eq(inspect(session).c15_policy_sha256,firstLearnedHash,'all replay attacks leave Q model unchanged');
+
+ const poem2=askOk('c15-produced-2',poemPrompt,{module:'p04',shadowC15:true});
+ eq(poem2.c15_shadow.actual_action,3,'second response executed P04');
+ eq(poem2.c15_shadow.source,'C14-supervised-prior','one reward not enough to override prior');
+ const grade2=askOk('c15-grade-2','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-2',reward:100}});
+ eq(grade2.c15_training.q_value_q10000,7500,'second independent XI reward');
+ eq(grade2.c15_training.action_feedback_count,2,'two distinct response IDs');
+ const poem3=askOk('c15-produced-3',poemPrompt,{module:'p04',shadowC15:true});
+ eq(poem3.c15_shadow.source,'C14-supervised-prior','two examples still below Q evidence gate');
+ const grade3=askOk('c15-grade-3','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-3',reward:100}});
+ eq(grade3.c15_training.q_value_q10000,8750,'third independent XI reward');
+ const poem4=askOk('c15-produced-4',poemPrompt,{module:'p04',shadowC15:true});
+ eq(poem4.c15_shadow.source,'C15-outcome-Q','three high reward outcomes enable learned advice');
+ eq(poem4.c15_shadow.samples_for_action,3,'Q source requires at least 3 rated executed answers');
+ eq(poem4.c15_shadow.suggested_action,3,'learned policy recommends the verified P04 route');
+ eq(poem4.c15_shadow.applied,false,'learning never replaces the response');
+ const ratedFailure=ask('c15-fault','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-4',reward:0},testFault:'before_commit'});
+ eq(ratedFailure.error.code,'E_INJECTED','failure injection rolls back XI Q and rating receipt');
+ const afterFault=inspect(session);
+ eq(afterFault.c15_feedback_events,3,'failed reward never counts as learning');
+ eq(afterFault.c15_policy_sha256,grade3.c15_training.policy_sha256,'native Q remains identical after rollback');
+
+ const negative=askOk('c15-low-reward','calificación',{module:'c15',rlFeedback:{targetId:'c15-produced-4',reward:0}});
+ eq(negative.c15_training.q_value_q10000,4375,'negative user rating lowers learned route score');
+ eq(negative.c15_training.action_feedback_count,4,'four rated actual responses');
+ const weakened=askOk('c15-after-negative',poemPrompt,{module:'p04',shadowC15:true});
+ eq(weakened.c15_shadow.source,'C14-supervised-prior','low Q confidence falls back to supervised prior');
+ eq(weakened.c15_shadow.admitted,true,'C14 prior may remain admissible');
+ eq(weakened.c15_shadow.total_feedback,4,'durable Q model survives across independent turns');
+
+ const long15=askOk('c15-long','Orion'.repeat(50),{module:'p05',shadowC15:true});
+ eq(long15.c15_shadow.available,false,'unsupported long user prompt does not alter valid X10 response');
+ const c15Status=inspect(session),c15db=new DatabaseSync(path.join(session,'memory.sqlite'));
+ const storedAgent=c15db.prepare('SELECT data,digest FROM c15_policy WHERE id=1').get();
+ eq(sha(zlib.inflateRawSync(storedAgent.data)),storedAgent.digest,'C15 persistent XI Q state digest');
+ eq(c15db.prepare('SELECT count(*) AS n FROM c15_feedback').get().n,4,'four unique rated real answer IDs');
+ c15db.close();
+ eq(c15Status.state_sha256,beforeRL.state_sha256,'X09 main memory unchanged after feedback');
+ eq(c15Status.cognitive_policy_sha256,beforeRL.cognitive_policy_sha256,'C12 Q memory unchanged');
+ eq(c15Status.quantum_state_sha256,beforeRL.quantum_state_sha256,'synthetic VQC/QRL remains independent');
+
+ const previewCLI=spawnSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',build,
+  'turn',session,'c15-cli-preview','--module=p04','--shadow-c15',poemPrompt],
+  {encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ eq(previewCLI.status,0,'CLI opt-in C15 preview exit');
+ eq(JSON.parse(previewCLI.stdout).c15_shadow.actual_action,3,'CLI preserves original executed P04 action');
+ const ratingCLI=spawnSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',build,
+  'turn',session,'c15-cli-feedback','--module=c15','--rl-feedback=c15-cli-preview,80','calificación'],
+  {encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ eq(ratingCLI.status,0,'CLI explicit feedback exits normally');
+ eq(JSON.parse(ratingCLI.stdout).c15_training.action_feedback_count,5,'CLI routes feedback through native XI');
+ eq(inspect(session).c15_feedback_events,5,'five verified individual rated response IDs');
+
 const report={ok:true,checks,conversational_turns:log.length,synthetic_x09_fixture:true,
  native_xi_parser:true,native_xi_engines:true,manual_prefix_or_explicit_module:true,
  persistent_quantum_state:true,transactional_rollback:true,replay_protected:true,
