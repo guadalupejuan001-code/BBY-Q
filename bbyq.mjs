@@ -7,6 +7,7 @@ import {initialize,transact} from './ai/personal/x09/session.mjs';
 import {initialize as initializeX10,transact as transactX10,upgradeSession,inspect} from './ai/personal/x10/session.mjs';
 import {migrateState} from './ai/personal/x09/migrate.mjs';
 import {installRelational} from './ai/personal/p02/relational.mjs';
+import {quantumCommand} from './integration/qml_qrl/cli.mjs';
 
 const root=path.dirname(fileURLToPath(import.meta.url)),args=process.argv.slice(2);
 let build=path.join(root,'build/x10');
@@ -15,7 +16,9 @@ const [command,...rest]=args,base=path.join(build,'native'),runtime=path.join(bu
 const capacity=fs.existsSync(path.join(build,'capacity/build.json'));
 try{
  let result;
- if(command==='prepare'){
+ if(command==='quantum'){
+  result=quantumCommand({root,build,argv:rest});
+ }else if(command==='prepare'){
   let archive;const at=rest.indexOf('--archive');
   if(at>=0){if(!rest[at+1])throw Error('--archive requires a ZIP file');archive=rest[at+1];rest.splice(at,2);}
   if(rest.length>1)throw Error('Usage: node bbyq.mjs prepare [NEW_BUILD_DIRECTORY] --archive RECOVERED_X09.zip');
@@ -49,6 +52,6 @@ try{
  }else if(command==='migrate-state'){
   if(rest.length!==2)throw Error('Usage: node bbyq.mjs migrate-state X08_INPUT.rvp NEW_OUTPUT.rvp');
   result=migrateState(runtime,base,...rest);
- }else throw Error('Commands: prepare, install-e034, init, turn, status, upgrade-session, migrate-session, migrate-state. Linux x86-64 and Node 24+. Optional prefix: --build DIRECTORY.');
+ }else throw Error('Commands: quantum, prepare, install-e034, init, turn, status, upgrade-session, migrate-session, migrate-state. Linux x86-64 and Node 24+. Optional prefix: --build DIRECTORY.');
  console.log(JSON.stringify(result,null,2));if(!result.ok)process.exitCode=1;
 }catch(error){console.error(JSON.stringify({ok:false,error:{code:error.code||'E_X09',message:error.message}}));process.exitCode=1;}

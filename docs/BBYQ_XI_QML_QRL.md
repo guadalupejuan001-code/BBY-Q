@@ -3,7 +3,7 @@
 ## Objetivo y contrato
 Todos los **motores** de calculo, optimizacion, entrenamiento, inferencia, politica y control son archivos `.xi` del lenguaje original del autor. Se usa el interprete ya existente de REVERSE-PC / Mundo X; no se introduce ningun modelo Python, JavaScript, PyTorch, Qiskit ni pesos externos para aprender. Los scripts shell de CI solamente compilan el interprete existente, ejecutan programas XI y comparan sus resultados.
 
-**No sustituye** las rutas conversacionales E005-E034, P01-P06 o X09/X10, no altera `bbyq.mjs` ni cambia pesos/checkpoints historicos. Es laboratorio independiente y optativo en `ai/xi/qml_qrl/`, con su estado RVPC2.
+**Hasta C04 no sustituía** las rutas conversacionales E005-E034, P01-P06 o X09/X10, C05–C07 agregan un subcomando a `bbyq.mjs` sin cambiar pesos/checkpoints historicos. Es laboratorio independiente y optativo en `ai/xi/qml_qrl/`, con su estado RVPC2.
 
 ## Ciclo 1 — Representacion
 - `core-birth.xi`: instala una tabla aproximada de `cos(k*pi/4)`, `k=0..7`, con escala 10000 y desplazamiento 10000, en Inverse Ether Memory.
@@ -68,3 +68,59 @@ Para el agente QRL se debe ejecutar `qrl-birth.xi` sobre el estado inicializado 
 4. Entrenamiento QRL multietapa con estados reales, credit assignment y episodios reproducibles; mantener validation holdout y rollback.
 
 **Estado del desarrollo:** el codigo XI y las pruebas CI son propuestas ejecutables. El resultado de CI, no este documento, determina si estan validadas en REVERSE-PC.
+
+## Ciclos C05–C07: motores ampliados y acceso operativo
+
+**C05: VQC2 entrelazado.** `vqc2-*.xi` usa dos bits de entrada, dos cúbits y un
+circuito `X(x0) X(x1) · H(2) · CX(2,3) · H(2) T(2)^k H(2)`.
+La capa H/CX prepara estados de Bell; el observable clasificador es la paridad
+`Z₂Z₃` y no la medida de un cúbit. El modelo selecciona `k=0..7` en XI
+minimizando Brier Q10000 con penalización de profundidad. Hay 4 ejemplos de
+entrenamiento y 4 de holdout sintéticos, para XOR y XNOR de forma independiente.
+La inferencia consulta Born/expectación nativas y deshace cada operador.
+
+**C06: QRL2 secuencial.** Dos decisiones por episodio sobre la paridad de un
+par Bell: `0=I`, `1=X`. La tabla persistente de 16 valores Q está indexada
+por objetivo, etapa, paridad y acción. En XI se entrena con actualización
+TD de objetivo Bellman, recompensa terminal, descuento `gamma=0.9` y costo de
+acciones. Las decisiones se ejecutan contra el simulador de dos cúbits y
+se comprueban con `expect Z:4 Z:5`, `expect X:4 X:5` y `probz`.
+Es un MDP determinista, **no** QRL cuántico profundo ni aprendizaje de
+recompensas físicas medidas. El feedback se calcula con transiciones en XI.
+
+**C07: conexión CLI.** `bbyq.mjs quantum` ofrece transporte al intérprete
+XI y persistencia RVPC2 aislada. JavaScript únicamente gestiona archivos,
+validación de argumentos y salida JSON; la lógica de aprendizaje, clasificación
+y política permanece enteramente en XI. Los entrenamientos usan reemplazo
+atómico del estado solo tras una ejecución correcta.
+
+```sh
+R=/ruta/al/reverse_pc
+S=/ruta/a/mi-estado-qml-qrl
+node bbyq.mjs quantum --runtime="$R" --state="$S" init
+node bbyq.mjs quantum --runtime="$R" --state="$S" train-xor
+node bbyq.mjs quantum --runtime="$R" --state="$S" eval
+node bbyq.mjs quantum --runtime="$R" --state="$S" classify 0 1
+node bbyq.mjs quantum --runtime="$R" --state="$S" train-agent
+node bbyq.mjs quantum --runtime="$R" --state="$S" plan 1 0
+node bbyq.mjs quantum --runtime="$R" --state="$S" status
+```
+
+El conjunto inverso se selecciona con `train-xnor`. `eval`, `classify` y
+`plan` no modifican la memoria `memory.rvp`.
+
+La verificación está en `.github/workflows/bbyq-qml-qrl-next.yml`: construye
+el intérprete original fijado, comprueba Bell y sus marginales, cuatro
+objetivos del agente, ambos holdouts, aprendizaje retenido y rollback.
+
+### Límites que se mantienen
+
+- No hay APK conversacional en esta ampliación. La carpeta `app/` corresponde a
+  `WatchOptics`, no a un empaquetador de X10 para Android.
+- `quantum` está disponible en el punto de entrada CLI, pero todavía no se
+  activa desde las respuestas conversacionales X10.
+- El simulador no expone actualmente observables Born a registros XI, por lo
+  que el entrenamiento usa el modelo matemático tabulado, y la prueba cuántica
+  es independiente de la actualización.
+- Ninguna ventaja cuántica, generalización lingüística ni ejecución sobre
+  hardware cuántico real queda demostrada por estos problemas sintéticos.
