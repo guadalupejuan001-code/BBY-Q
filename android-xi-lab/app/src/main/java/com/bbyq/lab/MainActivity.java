@@ -144,6 +144,7 @@ public final class MainActivity extends Activity {
         console.setTextIsSelectable(true);console.setPadding(dp(4),dp(12),dp(4),dp(4));
         output.addView(console,margin(3));
         addLine(root,"LABORATORIO — No es aún BBY Q X10 completo. El estado aquí no sustituye sesiones del escritorio.",14,MUTED,12,false);
+        runJob("C13 BOOT",()->lab.command("quantum estado")); // Safe read-only native preflight.
     }
     private interface Task {String call()throws Exception;}
     private void runCmd(String value){runJob("XI / "+value,()->lab.command(value));}
@@ -154,6 +155,17 @@ public final class MainActivity extends Activity {
             String result;
             try{result=task.call();}
             catch(Exception e){result="ERROR (sin publicar estado): "+e.getMessage();}
+            // Android smoke markers carry NO user text or data.
+            if(title.equals("C13 BOOT")&&result.startsWith("VQC2 ")&&result.contains("QRL2"))
+                android.util.Log.i("BBYQ_XI_C13","BOOT_NATIVE_OK");
+            if(title.equals("XI / quantum entrena xor")&&result.startsWith("VQC2 entrenado en XI"))
+                android.util.Log.i("BBYQ_XI_C13","VQC_TRAIN_OK");
+            if(title.equals("XI / quantum clasifica 0 1")&&result.startsWith("VQC2 Bell"))
+                android.util.Log.i("BBYQ_XI_C13","VQC_CLASSIFY_OK");
+            if(title.equals("XI / quantum entrena agente")&&result.startsWith("QRL2 XI entrenado"))
+                android.util.Log.i("BBYQ_XI_C13","QRL_TRAIN_OK");
+            if(title.equals("XI / quantum planea 1 0")&&result.startsWith("QRL2: objetivo=1"))
+                android.util.Log.i("BBYQ_XI_C13","QRL_PLAN_OK");
             final String message=title+"\n\n"+result;
             runOnUiThread(()->{console.setText(message);busy.set(false);});
         });
