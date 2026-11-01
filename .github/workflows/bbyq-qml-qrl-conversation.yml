@@ -1,0 +1,57 @@
+name: BBY Q C08-C10 XI conversational bridge
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'ai/personal/x10/**'
+      - 'integration/qml_qrl/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-conversation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'ai/personal/x10/**'
+      - 'integration/qml_qrl/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-conversation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  conversation-to-quantum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify JavaScript transport source
+        run: |
+          set -euo pipefail
+          for file in bbyq.mjs ai/personal/x10/pages.mjs ai/personal/x10/session.mjs integration/qml_qrl/{cli,conversation}.mjs integration/qml_qrl/tests/native-chat.mjs; do
+            node --check "$file"
+          done
+          node --test integration/p01/tests/contracts.test.mjs integration/p02/tests/contracts.test.mjs integration/p03/tests/contracts.test.mjs integration/p04/tests/contracts.test.mjs integration/p05/tests/contracts.test.mjs integration/p06/tests/contracts.test.mjs
+      - name: Build pinned native XI runtime from REVERSE-PC
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: X10 dialogue to XI VQC/QRL, persistent RVPC2, replay and rollback
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/native-chat.mjs "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$GITHUB_WORKSPACE/build/quantum-chat-test"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-xi-quantum-conversation-evidence
+          path: build/quantum-chat-test/results.json
+          if-no-files-found: warn
