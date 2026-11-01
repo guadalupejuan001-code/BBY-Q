@@ -1,0 +1,73 @@
+name: BBY Q C15 XI reward-bound conversational decisions
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/cognitive15/**'
+      - 'integration/c15/**'
+      - 'integration/qml_qrl/tests/native-chat.mjs'
+      - 'ai/personal/x10/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_C15_OUTCOME_LEARNING.md'
+      - '.github/workflows/bbyq-c15.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/cognitive15/**'
+      - 'integration/c15/**'
+      - 'integration/qml_qrl/tests/native-chat.mjs'
+      - 'ai/personal/x10/**'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-c15.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  outcome-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify XI reward source, known executed routes and X10 import integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check integration/c15/agent.mjs
+          node --check ai/personal/x10/session.mjs
+          node --check bbyq.mjs
+          node --check integration/qml_qrl/tests/native-chat.mjs
+          node --test integration/c15/tests/contracts.test.mjs integration/c14/corpus.test.mjs
+          node integration/c11/audit.mjs > c15-historical-audit.json
+      - name: Build pinned REVERSE-PC native XI interpreter
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Real XI agent and X10 transcript reward attribution, replay and rollback
+        timeout-minutes: 12
+        shell: bash
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/native-chat.mjs "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/c15-acceptance
+          node -e "const r=require('./build/c15-acceptance/results.json');if(!r.ok||r.checks<165)throw Error('C15 integration assertions insufficient');console.log({checks:r.checks,turns:r.conversational_turns,synthetic_x09_fixture:r.synthetic_x09_fixture});"
+      - name: Publish reproducible C15 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-c15-xi-native-outcome-evidence
+          path: |
+            c15-historical-audit.json
+            build/c15-acceptance/results.json
+          if-no-files-found: warn
+          retention-days: 30
