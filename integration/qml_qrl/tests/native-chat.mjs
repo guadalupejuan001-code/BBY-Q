@@ -79,7 +79,7 @@ eq(inspect(session).state_sha256,baseline.state_sha256,'X09 bytes unchanged');
 const h0=inspect(session).quantum_state_sha256;
 
 const untrained=askOk('untrained','QUANTUM CLASIFICA 0 1');
-ok(untrained.response.includes('sin entrenar'),'no fabricated untrained prediction');
+ok(untrained.response.includes('no está entrenado'),'no fabricated untrained prediction');
 eq(inspect(session).quantum_state_sha256,h0,'read-only status unchanged');
 const train=askOk('train-xor','quantum entrena xor');
 eq(train.quantum_action,2,'XI route supervised training');
