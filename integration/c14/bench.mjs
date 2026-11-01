@@ -9,6 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {execFileSync,spawnSync} from 'node:child_process';
 import {corpus} from './corpus.mjs';
 import {intentSource} from '../../ai/personal/p01/intent.mjs';
+import {validatorSource} from '../../ai/personal/x10/native.mjs';
 import {NativePages,sha,readNumber,run,cells} from '../../ai/personal/x10/pages.mjs';
 
 const [runtimeArg,outArg]=process.argv.slice(2);
@@ -38,9 +39,12 @@ const role=path.join(out,'intent.rxe');
 const source=path.join(out,'intent.xi');
 fs.writeFileSync(source,intentSource());
 native(['compile',source,role,'C14 P01 native']);
+const validator=path.join(out,'validate.rxe'),validatorFile=path.join(out,'validate.xi');
+fs.writeFileSync(validatorFile,validatorSource());
+native(['compile',validatorFile,validator,'C14 X10 native UTF8 validator']);
 const frames=path.join(out,'frames');
 fs.mkdirSync(frames);
-const pages=new NativePages(runtime,{'intent.rxe':role},frames);
+const pages=new NativePages(runtime,{'intent.rxe':role,'validate.rxe':validator},frames);
 const featureProgram=path.join(src,'features.xi');
 const features=(text,contextFlag=0)=>{
  const raw=Buffer.from(text,'utf8');
