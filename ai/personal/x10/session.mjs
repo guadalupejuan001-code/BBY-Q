@@ -158,7 +158,7 @@ function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
  // The host checks a prefix only to avoid extra native startup for ordinary chat.
  // Authorization, full grammar and operand parsing belong to the XI router.
- const quantumCandidate=options.module==='quantum'||(options.module!=='cognitive'&&/^(?:quantum |cuantico |cuántico |bby q quantum )/i.test(raw.subarray(0,64).toString('utf8')));
+ const quantumCandidate=options.module==='quantum'||((options.module===undefined||options.module==='x10')&&/^(?:quantum |cuantico |cuántico |bby q quantum )/i.test(raw.subarray(0,64).toString('utf8')));
  if(options.operation!=='import'&&quantumCandidate){
   const decision=pages.quantumRoute(raw);
   if(options.module==='quantum'||decision.prefixed)
