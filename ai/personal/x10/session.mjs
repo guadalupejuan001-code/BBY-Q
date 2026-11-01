@@ -18,6 +18,7 @@ import {PARAPHRASE_MAX_INPUT,PARAPHRASE_MODES} from '../p06/paraphrase.mjs';
 import {quantumConversation} from '../../../integration/qml_qrl/conversation.mjs';
 import {cognitiveDecision,cognitiveTurn} from '../../../integration/c12/shadow.mjs';
 import {c14Shadow} from '../../../integration/c14/shadow.mjs';
+import {c15Shadow,recordFeedback} from '../../../integration/c15/agent.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -163,6 +164,11 @@ function execute(db,runtime,base,raw,options,roles,job){
   if(options.module==='quantum'||decision.prefixed)
    return quantumConversation(db,{runtime,base,job,decision,language:options.language||'es'});
  }
+ if(options.module==='c15'){
+  if(options.operation==='import'||!options.rlFeedback)
+   throw fail('E_C15_FEEDBACK','C15 requiere una calificación explícita de una respuesta anterior.');
+  return recordFeedback(db,{runtime,job,feedback:options.rlFeedback,language:options.language||'es'});
+ }
  if(options.module==='cognitive'){
   if(options.operation==='import')throw fail('E_COGNITIVE_IMPORT','No se puede importar material como retroalimentación Q.');
   return cognitiveTurn(db,{runtime,roles,job,raw,feedback:options.policyFeedback??null,language:options.language||'es'});
@@ -252,11 +258,26 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
-  if(options.module!==undefined&&!['x10','e034','p03','p04','p05','p06','quantum','cognitive'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.module!==undefined&&!['x10','e034','p03','p04','p05','p06','quantum','cognitive','c15'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   if(options.shadow!==undefined&&typeof options.shadow!=='boolean')throw fail('E_COGNITIVE_OPTION','El modo de observación debe ser booleano.');
   if(options.shadowC14!==undefined&&typeof options.shadowC14!=='boolean')throw fail('E_C14_OPTION','El modo C14 debe ser booleano.');
+  if(options.shadowC15!==undefined&&typeof options.shadowC15!=='boolean')
+   throw fail('E_C15_OPTION','El modo C15 debe ser booleano.');
+  if(options.rlFeedback!==undefined){
+   const f=options.rlFeedback;
+   if(options.module!=='c15'||!f||typeof f.targetId!=='string'||
+      !/^[A-Za-z0-9_.-]{1,96}$/.test(f.targetId)||
+      !Number.isInteger(f.reward)||f.reward<0||f.reward>100)
+    throw fail('E_C15_FEEDBACK','Solo --module=c15 permite --rl-feedback=ID,0..100.');
+  }
+  if(options.module==='c15'&&!options.rlFeedback)
+   throw fail('E_C15_FEEDBACK','Calificación explícita obligatoria para C15.');
+  if(options.shadowC15&&options.module==='c15')
+   throw fail('E_C15_OPTION','No se observa una respuesta nueva durante una calificación.');
+  if(options.shadowC15&&options.operation==='import')
+   throw fail('E_C15_IMPORT','C15 no evalúa importaciones de documentos.');
   if(options.shadowC14&&options.operation==='import')throw fail('E_C14_IMPORT','C14 no analiza importaciones de documentos.');
   if(options.policyFeedback!==undefined){
    const f=options.policyFeedback;
@@ -268,8 +289,8 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
-  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':options.module==='quantum'?'\0module:quantum':options.module==='cognitive'?'\0module:cognitive':'';
-  const cognitiveTag=(options.shadow?'\0cognitive-shadow:1':'')+(options.shadowC14?'\0c14-shadow:1':'')+(options.policyFeedback?'\0policy-feedback:'+options.policyFeedback.action+','+options.policyFeedback.reward:'');
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':options.module==='quantum'?'\0module:quantum':options.module==='cognitive'?'\0module:cognitive':options.module==='c15'?'\0module:c15':'';
+  const cognitiveTag=(options.shadow?'\0cognitive-shadow:1':'')+(options.shadowC14?'\0c14-shadow:1':'')+(options.shadowC15?'\0c15-shadow:1':'')+(options.policyFeedback?'\0policy-feedback:'+options.policyFeedback.action+','+options.policyFeedback.reward:'')+(options.rlFeedback?'\0rl-feedback:'+options.rlFeedback.targetId+','+options.rlFeedback.reward:'');
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag+cognitiveTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
@@ -297,6 +318,17 @@ export function transact(runtime,base,root,requestId,message,options={}){
      code:error.code||'E_C14_NATIVE',reason:error.message};
    }
   }
+  if(options.shadowC15&&options.operation!=='import'){
+   const shadowDir=path.join(job,'c15-shadow');
+   try{
+    result.c15_shadow=c15Shadow(db,{runtime,roles,job:shadowDir,raw,result});
+    result.c15_shadow.actual_extension=result.extension??null;
+   }catch(error){
+    // A failed experimental observation must NEVER suppress a valid X10 reply.
+    result.c15_shadow={available:false,applied:false,engine:'C15 XI',
+     code:error.code||'E_C15_NATIVE',reason:error.message};
+   }
+  }
   if(Buffer.byteLength(result.response)>LIMITS.output_bytes)throw fail('E_OUTPUT_SIZE','La respuesta supera 1048576 bytes.');
   // Existing X10 builds without P05 remain untouched until their roles are rebuilt.
   if(roles['context.rxe']&&options.operation!=='import')saveConversation(db,raw,result,requestId,generation+1);
@@ -312,5 +344,9 @@ export function transact(runtime,base,root,requestId,message,options={}){
 }
 export function inspect(root){
  if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
- const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;const quantumExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='quantum_state'").get();const quantum=quantumExists?db.prepare('SELECT digest FROM quantum_state WHERE id=1').get():null;const cognitiveExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='cognitive_policy'").get();const cognitive=cognitiveExists?db.prepare('SELECT digest FROM cognitive_policy WHERE id=1').get():null;const contextAvailable=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='conversation_turns'").get();const contextTurns=contextAvailable?db.prepare('SELECT COUNT(*) AS n FROM conversation_turns').get().n:0;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,conversation_index_turns:contextTurns,quantum_connected:!!quantum,quantum_state_sha256:quantum?.digest||null,cognitive_policy_sha256:cognitive?.digest||null,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
+ const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;const quantumExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='quantum_state'").get();const quantum=quantumExists?db.prepare('SELECT digest FROM quantum_state WHERE id=1').get():null;const cognitiveExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='cognitive_policy'").get();const cognitive=cognitiveExists?db.prepare('SELECT digest FROM cognitive_policy WHERE id=1').get():null;const c15Exists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='c15_policy'").get();
+ const c15=c15Exists?db.prepare('SELECT digest FROM c15_policy WHERE id=1').get():null;
+ const c15FeedbackExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='c15_feedback'").get();
+ const c15Feedback=c15FeedbackExists?db.prepare('SELECT count(*) AS n FROM c15_feedback').get().n:0;
+ const contextAvailable=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='conversation_turns'").get();const contextTurns=contextAvailable?db.prepare('SELECT COUNT(*) AS n FROM conversation_turns').get().n:0;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,conversation_index_turns:contextTurns,quantum_connected:!!quantum,quantum_state_sha256:quantum?.digest||null,cognitive_policy_sha256:cognitive?.digest||null,c15_policy_sha256:c15?.digest||null,c15_feedback_events:c15Feedback,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
 }
