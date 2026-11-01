@@ -1,0 +1,77 @@
+name: BBY Q C14 XI supervised cognitive routing
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/cognitive14/**'
+      - 'integration/c14/**'
+      - 'docs/BBYQ_C14_SUPERVISED.md'
+      - '.github/workflows/bbyq-c14.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/cognitive14/**'
+      - 'integration/c14/**'
+      - 'docs/BBYQ_C14_SUPERVISED.md'
+      - '.github/workflows/bbyq-c14.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  supervised-xi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify corpus, XI source contracts and no test leakage
+        run: |
+          set -euo pipefail
+          node --check integration/c14/corpus.mjs
+          node --check integration/c14/bench.mjs
+          node --test integration/c14/corpus.test.mjs integration/p01/tests/contracts.test.mjs
+      - name: Compile pinned native XI machine, no ML dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Train 800 and score 200 new template+topic holdout examples
+        timeout-minutes: 16
+        shell: bash
+        run: |
+          set -euo pipefail
+          node integration/c14/bench.mjs "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/c14
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          r=json.loads(Path('build/c14/report.json').read_text())
+          assert r['ok'] and r['corpus']['training']==800 and r['corpus']['holdout']==200
+          assert r['model']['weights_counter_sum']==800
+          assert r['safety']['blocked'] and r['safety']['malformed_label_rejected']
+          assert r['holdout']['accuracy_percent']>=55, 'Synthetic routing too inaccurate for shadow test'
+          assert r['holdout']['accuracy_percent']>r['baselines']['p01_only_supervised_accuracy_percent'],'No measurable routing gain over equal-label coarse baseline'
+          print(json.dumps({'C14_ACCEPTED':True,'holdout_accuracy_pct':r['holdout']['accuracy_percent'],
+                'p01_baseline_pct':r['baselines']['p01_only_supervised_accuracy_percent'],
+                'abstain_pct':r['holdout']['abstained_percent']}))
+          PY
+      - name: Publish native XI supervised model and transparent evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-C14-XI-supervised-800train-200holdout
+          path: |
+            build/c14/report.json
+            build/c14/corpus-manifest.json
+            build/c14/trained.rvp
+          if-no-files-found: warn
+          retention-days: 30
