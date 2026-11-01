@@ -30,12 +30,13 @@ try{
   if(rest.length<1||rest.length>2)throw Error('Usage: node bbyq.mjs init NEW_SESSION_DIRECTORY [INITIAL_X09_STATE.rvp]');
   result=(capacity?initializeX10:initialize)(rest[0],base,rest[1]);
  }else if(command==='turn'){
-  const [session,id,...words]=rest;let language='es',module,learn=false,shadow=false,policyFeedback;
+  const [session,id,...words]=rest;let language='es',module,learn=false,shadow=false,shadowC14=false,policyFeedback;
   while(words.length&&words[0].startsWith('--')){
    if(words[0].startsWith('--language='))language=words.shift().slice(11);
    else if(words[0].startsWith('--module='))module=words.shift().slice(9);
    else if(words[0]==='--learn'){learn=true;words.shift();}
    else if(words[0]==='--shadow'){shadow=true;words.shift();}
+   else if(words[0]==='--shadow-c14'){shadowC14=true;words.shift();}
    else if(words[0].startsWith('--policy-feedback=')){
     const match=/^--policy-feedback=([0-3]),(100|[0-9]{1,2})$/.exec(words.shift());
     if(!match)throw Error('Usage: --policy-feedback=ACTION_0_TO_3,REWARD_0_TO_100');
@@ -43,10 +44,10 @@ try{
    }
    else break;
   }
-  if(!session||!id||!words.length)throw Error('Usage: node bbyq.mjs turn SESSION REQUEST_ID [--language=en] [--module=e034|p03|p04|p05|p06|quantum|cognitive] [--shadow] [--policy-feedback=ACTION,REWARD] [--learn] MESSAGE | --file UTF8_FILE');
-  if(!capacity&&(module||learn))throw Error('Los módulos E034/P03/P04/P05/P06/quantum/cognitive requieren el motor X10.');
+  if(!session||!id||!words.length)throw Error('Usage: node bbyq.mjs turn SESSION REQUEST_ID [--language=en] [--module=e034|p03|p04|p05|p06|quantum|cognitive] [--shadow] [--shadow-c14] [--policy-feedback=ACTION,REWARD] [--learn] MESSAGE | --file UTF8_FILE');
+  if(!capacity&&(module||learn||shadow||shadowC14||policyFeedback))throw Error('Los módulos E034/P03/P04/P05/P06/quantum/cognitive y los análisis C12/C14 requieren X10.');
   let message=words.join(' ');if(words[0]==='--file'){if(words.length!==2)throw Error('--file requires exactly one UTF-8 file');message=fs.readFileSync(words[1]);}
-  result=(capacity?transactX10:transact)(runtime,base,session,id,message,{language,...(module?{module}:{}),...(learn?{learn}: {}),...(shadow?{shadow}: {}),...(policyFeedback?{policyFeedback}: {})});
+  result=(capacity?transactX10:transact)(runtime,base,session,id,message,{language,...(module?{module}:{}),...(learn?{learn}: {}),...(shadow?{shadow}: {}),...(shadowC14?{shadowC14}: {}),...(policyFeedback?{policyFeedback}: {})});
  }else if(command==='status'){
   if(rest.length!==1)throw Error('Usage: node bbyq.mjs status X10_SESSION');result=inspect(rest[0]);
  }else if(command==='upgrade-session'){
