@@ -17,6 +17,7 @@ import {history,contextTurn,saveConversation} from '../p05/store.mjs';
 import {PARAPHRASE_MAX_INPUT,PARAPHRASE_MODES} from '../p06/paraphrase.mjs';
 import {quantumConversation} from '../../../integration/qml_qrl/conversation.mjs';
 import {cognitiveDecision,cognitiveTurn} from '../../../integration/c12/shadow.mjs';
+import {c14Shadow} from '../../../integration/c14/shadow.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -255,6 +256,8 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   if(options.shadow!==undefined&&typeof options.shadow!=='boolean')throw fail('E_COGNITIVE_OPTION','El modo de observación debe ser booleano.');
+  if(options.shadowC14!==undefined&&typeof options.shadowC14!=='boolean')throw fail('E_C14_OPTION','El modo C14 debe ser booleano.');
+  if(options.shadowC14&&options.operation==='import')throw fail('E_C14_IMPORT','C14 no analiza importaciones de documentos.');
   if(options.policyFeedback!==undefined){
    const f=options.policyFeedback;
    if(options.module!=='cognitive'||!f||!Number.isInteger(f.action)||f.action<0||f.action>3||
@@ -266,7 +269,7 @@ export function transact(runtime,base,root,requestId,message,options={}){
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
   const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':options.module==='quantum'?'\0module:quantum':options.module==='cognitive'?'\0module:cognitive':'';
-  const cognitiveTag=(options.shadow?'\0cognitive-shadow:1':'')+(options.policyFeedback?'\0policy-feedback:'+options.policyFeedback.action+','+options.policyFeedback.reward:'');
+  const cognitiveTag=(options.shadow?'\0cognitive-shadow:1':'')+(options.shadowC14?'\0c14-shadow:1':'')+(options.policyFeedback?'\0policy-feedback:'+options.policyFeedback.action+','+options.policyFeedback.reward:'');
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag+cognitiveTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
@@ -282,6 +285,17 @@ export function transact(runtime,base,root,requestId,message,options={}){
    result.cognitive_shadow=cognitiveDecision(db,{runtime,roles,job:shadowDir,raw});
    // The actual response is unchanged; this is a non-intervening recommendation.
    result.cognitive_shadow.actual_extension=result.extension??null;
+  }
+  if(options.shadowC14&&options.operation!=='import'){
+   const shadowDir=path.join(job,'c14-shadow');
+   try{
+    result.c14_shadow=c14Shadow(db,{runtime,roles,job:shadowDir,raw});
+    result.c14_shadow.actual_extension=result.extension??null;
+   }catch(error){
+    // Observational research may fail without cancelling a valid X10 response.
+    result.c14_shadow={available:false,applied:false,engine:'C14 native XI',
+     code:error.code||'E_C14_NATIVE',reason:error.message};
+   }
   }
   if(Buffer.byteLength(result.response)>LIMITS.output_bytes)throw fail('E_OUTPUT_SIZE','La respuesta supera 1048576 bytes.');
   // Existing X10 builds without P05 remain untouched until their roles are rebuilt.
