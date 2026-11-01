@@ -4,6 +4,9 @@ on:
     paths:
       - 'ai/xi/cognitive14/**'
       - 'integration/c14/**'
+      - 'ai/personal/x10/**'
+      - 'integration/qml_qrl/tests/native-chat.mjs'
+      - 'bbyq.mjs'
       - 'docs/BBYQ_C14_SUPERVISED.md'
       - '.github/workflows/bbyq-c14.yml'
   push:
@@ -64,6 +67,12 @@ jobs:
                 'p01_baseline_pct':r['baselines']['p01_only_supervised_accuracy_percent'],
                 'abstain_pct':r['holdout']['abstained_percent']}))
           PY
+      - name: Verify real X10 opt-in C14 shadow preserves existing dialogue and C12 state
+        timeout-minutes: 8
+        shell: bash
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/native-chat.mjs "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/c14-x10
       - name: Publish native XI supervised model and transparent evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,5 +82,6 @@ jobs:
             build/c14/report.json
             build/c14/corpus-manifest.json
             build/c14/trained.rvp
+            build/c14-x10/results.json
           if-no-files-found: warn
           retention-days: 30
