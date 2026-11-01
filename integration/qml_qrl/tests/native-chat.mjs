@@ -149,6 +149,60 @@ const final=inspect(session);
 eq(final.state_sha256,baseline.state_sha256,'historic X09 state unchanged');
 eq(final.relational_state_sha256,baseline.relational_state_sha256,'E034 state unchanged');
 eq(final.quantum_connected,true,'new quantum memory persisted');
+
+ // C12: the new policy never rewrites the legacy reply and only learns on explicit feedback.
+ const beforePolicy=inspect(session),cognitiveRead=askOk('c12-read','Explícame la energía.',{module:'cognitive'});
+ eq(cognitiveRead.extension,'C12-cognitive-policy-XI','opt-in cognitive route');
+ eq(cognitiveRead.cognitive_shadow.feedback_updates,0,'new policy has no training');
+ eq(cognitiveRead.cognitive_shadow.suggested_action,0,'zero Q selects safe legacy route');
+ eq(cognitiveRead.cognitive_shadow.applied,false,'recommendation never applied to response');
+ eq(inspect(session).state_sha256,beforePolicy.state_sha256,'X09 preserved at cognitive initialization');
+ const policyHash=inspect(session).cognitive_policy_sha256;
+ ok(typeof policyHash==='string'&&policyHash.length===64,'XI policy stored with sha256');
+ const trained=askOk('c12-reward','Explícame la energía.',{module:'cognitive',policyFeedback:{action:2,reward:100}});
+ eq(trained.cognitive_shadow.suggested_action,2,'XI policy learns explicit best action');
+ eq(trained.cognitive_shadow.score_q10000,5000,'XI Q incremental update');
+ eq(trained.cognitive_shadow.feedback_updates,1,'one explicit label');
+ ok(inspect(session).cognitive_policy_sha256!==policyHash,'policy weights changed after feedback');
+ const updatedPolicyHash=inspect(session).cognitive_policy_sha256;
+ const replayReward=ask('c12-reward','Explícame la energía.',{module:'cognitive',policyFeedback:{action:2,reward:100}});
+ eq(replayReward.replayed,true,'no duplicate policy training on replay');
+ eq(inspect(session).cognitive_policy_sha256,updatedPolicyHash,'replay keeps policy weights');
+ const mismatchReward=ask('c12-reward','Explícame la energía.',{module:'cognitive',policyFeedback:{action:3,reward:100}});
+ eq(mismatchReward.error.code,'E_REPLAY_MISMATCH','different Q feedback rejects old request id');
+ const repeated=askOk('c12-score','Explícame la energía.',{module:'cognitive'});
+ eq(repeated.cognitive_shadow.suggested_action,2,'Q recommendation survives multiple transactions');
+ eq(repeated.cognitive_shadow.read_only,true,'no feedback means no learning');
+ eq(inspect(session).cognitive_policy_sha256,updatedPolicyHash,'Q score is read only');
+ const snapshot=inspect(session);
+ const faultPolicy=ask('c12-injected','Explícame la energía.',{module:'cognitive',policyFeedback:{action:3,reward:80},testFault:'before_commit'});
+ eq(faultPolicy.error.code,'E_INJECTED','policy failure injected before atomic X10 commit');
+ eq(inspect(session),snapshot,'Q feedback, model and receipt all rolled back');
+ const invalidPolicy=ask('c12-invalid','Explícame la energía.',{module:'cognitive',policyFeedback:{action:5,reward:90}});
+ eq(invalidPolicy.error.code,'E_COGNITIVE_FEEDBACK','rejects unknown feedback action');
+ eq(inspect(session),snapshot,'invalid feedback never mutates anything');
+ const oldReply=askOk('c12-old','Nebulosa es un tema.',{module:'p05'});
+ const shadowReply=askOk('c12-shadow','Nebulosa es un tema.',{module:'p05',shadow:true});
+ eq(shadowReply.response,oldReply.response,'opt-in shadow never substitutes a dialogue response');
+ eq(shadowReply.cognitive_shadow.applied,false,'shadow observation only');
+ eq(shadowReply.cognitive_shadow.feedback_updates,1,'shadow can see earlier explicit Q feedback');
+ eq(inspect(session).cognitive_policy_sha256,updatedPolicyHash,'shadow did not change weights');
+ const cliShadow=spawnSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',build,'turn',
+  session,'c12-cli','--module=cognitive','--shadow','Explícame la energía.'],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ eq(cliShadow.status,0,'cognitive CLI exit');
+ eq(JSON.parse(cliShadow.stdout).cognitive_shadow.suggested_action,2,'CLI reads trained XI policy');
+ const cliFeedback=spawnSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',build,'turn',
+  session,'c12-cli-feedback','--module=cognitive','--policy-feedback=2,80','Explícame la energía.'],
+  {encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ eq(cliFeedback.status,0,'explicit feedback CLI exit');
+ eq(JSON.parse(cliFeedback.stdout).cognitive_shadow.feedback_updates,2,'CLI forwards explicit feedback to XI');
+ eq(inspect(session).state_sha256,baseline.state_sha256,'historic model still untouched after C12');
+ const cognitiveFinal=inspect(session),cdb=new DatabaseSync(path.join(session,'memory.sqlite'));
+ const policyRecord=cdb.prepare('SELECT data,digest FROM cognitive_policy WHERE id=1').get();
+ eq(sha(zlib.inflateRawSync(policyRecord.data)),policyRecord.digest,'Q policy durable digest');
+ cdb.close();
+ ok(cognitiveFinal.cognitive_policy_sha256!==null,'policy persistence available');
+
 const report={ok:true,checks,conversational_turns:log.length,synthetic_x09_fixture:true,
  native_xi_parser:true,native_xi_engines:true,manual_prefix_or_explicit_module:true,
  persistent_quantum_state:true,transactional_rollback:true,replay_protected:true,
