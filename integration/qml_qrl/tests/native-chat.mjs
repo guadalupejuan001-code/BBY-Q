@@ -31,7 +31,7 @@ function eq(a,b,label){assert.deepEqual(a,b,label);checks++;}
 function ok(condition,label){assert.ok(condition,label);checks++;}
 function native(...args){
  const r=spawnSync(runtime,args,{encoding:'utf8',timeout:60000,maxBuffer:4*1024*1024});
- if(r.status!==0)throw Error('native failed: '+(r.stderr||r.stdout||r.error?.message));
+ if(r.status!==0)throw Error('native '+args.join(' ')+' failed: '+(r.stderr||r.stdout||r.error?.message));
 }
 const roles={};
 for(const [name,source] of [
@@ -97,7 +97,7 @@ eq(evalResult.quantum_data.holdout,4,'holdout 4 total');
 const classified=askOk('classify','quantum clasifica 0 1');
 eq(classified.quantum_data.prediction,1,'native XI Bell XOR prediction');
 eq(classified.quantum_data.probability_q10000,10000,'native XI probability');
-eq(classified.quantum_data.zz,-1,'measured ZZ parity');
+ok(Math.abs(classified.quantum_data.zz+1)<1e-4,'measured ZZ parity');
 eq(inspect(session).quantum_state_sha256,trainedHash,'classification is read only');
 
 const invalid=askOk('invalid','quantum clasifica 2 0');

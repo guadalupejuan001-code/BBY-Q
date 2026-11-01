@@ -40,15 +40,17 @@ jobs:
         run: |
           set -euo pipefail
           git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
-          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
-          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
           bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
-          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
-          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
       - name: X10 dialogue to XI VQC/QRL, persistent RVPC2, replay and rollback
         run: |
           set -euo pipefail
-          node integration/qml_qrl/tests/native-chat.mjs "$RUNNER_TEMP/reverse-pc-build/reverse_pc" "$GITHUB_WORKSPACE/build/quantum-chat-test"
+          node integration/qml_qrl/tests/native-chat.mjs "$RUNNER_TEMP/reverse-pc/build/reverse_pc" "$GITHUB_WORKSPACE/build/quantum-chat-test"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
