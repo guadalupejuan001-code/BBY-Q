@@ -44,8 +44,7 @@ jobs:
           "$R" run "$GITHUB_WORKSPACE/$P/core-birth.xi" blank.rvp core.rvp > evidence/core.jsonl
           "$R" run "$GITHUB_WORKSPACE/$P/calibrate.xi" core.rvp calibrate.rvp > evidence/calibration.jsonl
           # Calibration is read-only in Ether logically, but quantum allocations may differ.
-          test "$(jq -r 'select(.type=="probz")|.probability_one' evidence/calibration.jsonl | wc -l)" -eq 16
-          awk '/"probability_one"/ { if ($0 ~ /"probability_one":/) { } }' evidence/calibration.jsonl
+          test "$(jq -s '[.[] | select(.type=="probz")] | length' evidence/calibration.jsonl)" -eq 16
           "$R" run "$GITHUB_WORKSPACE/$P/vqc-birth.xi" core.rvp vqc.rvp >/dev/null
           "$R" run "$GITHUB_WORKSPACE/$P/qrl-birth.xi" vqc.rvp seeded.rvp >/dev/null
 
@@ -86,8 +85,8 @@ jobs:
           test "$(jq -r 'select(.type=="register" and .register=="r8")|.value' evidence/qrl-objective-zero.jsonl)" = 0
 
           # Check Born values of the uncomputed and sampled native circuits.
-          first_prob() { jq -r '[. | select(.type=="probz")|.probability_one][0]' "$1"; }
-          last_prob() { jq -r '[. | select(.type=="probz")|.probability_one][-1]' "$1"; }
+          first_prob() { jq -s -r '[.[] | select(.type=="probz") | .probability_one][0]' "$1"; }
+          last_prob() { jq -s -r '[.[] | select(.type=="probz") | .probability_one][-1]' "$1"; }
           awk -v p="$(first_prob evidence/identity-witness.jsonl)" 'BEGIN{exit !(p > .999999)}'
           awk -v p="$(first_prob evidence/inverted-witness.jsonl)" 'BEGIN{exit !(p < .000001)}'
           awk -v p="$(first_prob evidence/qrl-objective-one.jsonl)" 'BEGIN{exit !(p > .999999)}'
