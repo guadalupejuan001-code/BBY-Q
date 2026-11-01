@@ -1,0 +1,65 @@
+name: BBY Q C15 measured dialogue probe (not synthetic label accuracy)
+on:
+  pull_request:
+    paths:
+      - 'integration/c15/tests/dialogue-eval.mjs'
+      - 'docs/BBYQ_C15_DIALOGUE_EVALUATION.md'
+      - '.github/workflows/bbyq-c15-dialogue-eval.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-native-dialogues:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify JS harness and C15 reward provenance
+        run: |
+          set -euo pipefail
+          node --check integration/c15/tests/dialogue-eval.mjs
+          node --test integration/c15/tests/contracts.test.mjs
+      - name: Build pinned REVERSE-PC native XI interpreter
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Compare real native XI responses, independent bounded oracles, C15 Q-learning
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          node integration/c15/tests/dialogue-eval.mjs \
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/c15-dialogue-eval
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path('build/c15-dialogue-eval/summary.json').read_text())
+          assert result['sample_size']==12
+          assert len(result['route_scores'])==4
+          assert result['learning_probe']['reward_events']==6
+          assert result['learning_probe']['answer_text_unchanged'] is True
+          assert result['learning_probe']['quality_gain_on_heldout']==0
+          print('C15_DIALOGUE_RESULT',json.dumps(result,ensure_ascii=False))
+          PY
+      - name: Publish full prompt/answer evidence and limitations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-C15-native-dialogue-comparison-and-learning
+          path: |
+            build/c15-dialogue-eval/summary.json
+            build/c15-dialogue-eval/dialogue-evaluation.json
+          if-no-files-found: warn
+          retention-days: 30
