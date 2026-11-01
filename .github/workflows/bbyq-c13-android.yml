@@ -1,0 +1,101 @@
+name: BBY Q C13 Android native XI laboratory APK
+on:
+  pull_request:
+    paths:
+      - 'android-xi-lab/**'
+      - 'ai/xi/qml_qrl/**'
+      - 'ai/xi/cognitive/**'
+      - 'ai/personal/p01/intent.mjs'
+      - '.github/workflows/bbyq-c13-android.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'android-xi-lab/**'
+      - 'ai/xi/qml_qrl/**'
+      - 'ai/xi/cognitive/**'
+      - 'ai/personal/p01/intent.mjs'
+      - '.github/workflows/bbyq-c13-android.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.9'}
+      - name: Verify XI-only sources and pin original dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C deps/reverse-pc rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C deps/mundo-x rev-parse HEAD)" = e2778d962af22f6f1a0794058dd4685fc2573966
+          node android-xi-lab/scripts/prepare-assets.mjs
+          node android-xi-lab/scripts/verify-contract.mjs
+          python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+      - name: Install Android build tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' \
+            'cmake;3.22.1' 'platform-tools'
+      - name: Compile native JNI on ARM64 and x86-64, package Android APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          gradle -p android-xi-lab --no-daemon --stacktrace :app:assembleDebug > "$RUNNER_TEMP/c13-gradle.log" 2>&1 || { tail -180 "$RUNNER_TEMP/c13-gradle.log"; exit 1; }
+          apk=android-xi-lab/app/build/outputs/apk/debug/app-debug.apk
+          test -s "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs --verbose "$apk" > "$RUNNER_TEMP/c13-signature.txt"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > "$RUNNER_TEMP/c13-package.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,zipfile,json
+          p=Path('android-xi-lab/app/build/outputs/apk/debug/app-debug.apk')
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              names=set(z.namelist())
+              for item in ['lib/arm64-v8a/libreverse_os.so','lib/x86_64/libreverse_os.so',
+                           'assets/xi/conversation-route.xi','assets/xi/vqc2-train.xi',
+                           'assets/xi/qrl2-train.xi','assets/xi/policy-update.xi',
+                           'assets/xi/p01-intent.xi','assets/xi/manifest.json']:
+                  assert item in names,item
+          result={'ok':True,'apk':p.name,'bytes':p.stat().st_size,
+                  'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+                  'native_xi':True,'arm64':True,'x86_64':True,
+                  'full_x10':False,'version':'C13 Lab 0.1.0'}
+          Path('android-xi-lab/c13-build-evidence.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result))
+          PY
+      - name: Publish Android lab APK and build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-C13-native-XI-Android-Lab-APK
+          path: |
+            android-xi-lab/app/build/outputs/apk/debug/app-debug.apk
+            android-xi-lab/c13-build-evidence.json
+            android-xi-lab/app/src/main/assets/xi/manifest.json
+          if-no-files-found: warn
+          retention-days: 30
