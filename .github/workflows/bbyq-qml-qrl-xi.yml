@@ -45,6 +45,11 @@ jobs:
           "$R" run "$GITHUB_WORKSPACE/$P/calibrate.xi" core.rvp calibrate.rvp > evidence/calibration.jsonl
           # Calibration is read-only in Ether logically, but quantum allocations may differ.
           test "$(jq -s '[.[] | select(.type=="probz")] | length' evidence/calibration.jsonl)" -eq 16
+          jq -s -r '[.[] | select(.type=="probz") | .probability_one] | .[]' evidence/calibration.jsonl > evidence/calibration-probs.txt
+          awk 'BEGIN{split("0 0.1464466094 0.5 0.8535533906 1 0.8535533906 0.5 0.1464466094", expected, " ")}
+              {if(NR%2==1){k=(NR+1)/2; d=$1-expected[k]; if(d<0)d=-d; if(d>0.0002)exit 1}
+               else if($1>0.000001)exit 1}
+              END{if(NR!=16)exit 1}' evidence/calibration-probs.txt
           "$R" run "$GITHUB_WORKSPACE/$P/vqc-birth.xi" core.rvp vqc.rvp >/dev/null
           "$R" run "$GITHUB_WORKSPACE/$P/qrl-birth.xi" vqc.rvp seeded.rvp >/dev/null
 
@@ -75,6 +80,13 @@ jobs:
 
           "$R" run "$GITHUB_WORKSPACE/$P/qrl-train.xi" seeded.rvp qrl-one.rvp > evidence/qrl-train-one.jsonl
           "$R" run "$GITHUB_WORKSPACE/$P/qrl-train.xi" qrl-one.rvp qrl-two.rvp > evidence/qrl-train-two.jsonl
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-audit.xi" qrl-one.rvp qrl-one-audited.rvp > evidence/qrl-audit-one.jsonl
+          cmp qrl-one.rvp qrl-one-audited.rvp
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-audit.xi" qrl-two.rvp qrl-two-audited.rvp > evidence/qrl-audit-two.jsonl
+          cmp qrl-two.rvp qrl-two-audited.rvp
+          q_before="$(jq -s '[.[]|select(.type=="register" and .register=="r5")|.value][12]' evidence/qrl-audit-one.jsonl)"
+          q_after="$(jq -s '[.[]|select(.type=="register" and .register=="r5")|.value][12]' evidence/qrl-audit-two.jsonl)"
+          test "$q_after" -gt "$q_before"
           test "$(jq -r 'select(.type=="register" and .register=="r14")|.value' evidence/qrl-train-two.jsonl)" = 0
           test "$(jq -r 'select(.type=="register" and .register=="r15")|.value' evidence/qrl-train-two.jsonl)" = 4
           test "$(jq -r 'select(.type=="register" and .register=="r13")|.value' evidence/qrl-train-two.jsonl)" = 2
