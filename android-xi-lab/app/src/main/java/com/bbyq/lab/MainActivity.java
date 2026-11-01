@@ -60,7 +60,7 @@ public final class MainActivity extends Activity {
     }
     private Button button(String name,boolean primary){
         Button b=new Button(this);
-        b.setText(name);b.setTextAllCaps(false);b.setTextColor(INK);b.setTextSize(13);
+        b.setText(name);b.setAllCaps(false);b.setTextColor(INK);b.setTextSize(13);
         b.setBackgroundTintList(ColorStateList.valueOf(primary?ACTION:PANEL));
         b.setPadding(dp(6),dp(4),dp(6),dp(4));b.setMinHeight(dp(46));
         return b;
