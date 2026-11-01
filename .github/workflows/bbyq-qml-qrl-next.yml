@@ -1,0 +1,113 @@
+name: BBY Q XI VQC2 and sequential QRL2 (C05-C07)
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'integration/qml_qrl/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-next.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'integration/qml_qrl/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-next.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  vqc2-qrl2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.1'
+      - name: Build pinned original REVERSE-PC native XI runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Original JavaScript transport syntax
+        run: |
+          node --check bbyq.mjs
+          node --check integration/qml_qrl/cli.mjs
+      - name: Native XI two-qubit supervised parity and sequential learning
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          S="$RUNNER_TEMP/bbyq-quantum"
+          P="ai/xi/qml_qrl"
+          mkdir -p evidence
+          Q() { node bbyq.mjs quantum --runtime="$R" --state="$S" "$@"; }
+          Q init > evidence/init.json
+          Q status > evidence/initial-status.json
+          jq -e '.vqc2_trained == false and .qrl2_trained == false' evidence/initial-status.json
+          Q train-xor > evidence/xor-train.json
+          Q eval > evidence/xor-eval.json
+          Q classify 0 1 > evidence/xor-bell.json
+          jq -e '.k == 0' evidence/xor-train.json
+          jq -e '.correct == 4 and .holdout == 4' evidence/xor-eval.json
+          jq -e '.predicted == 1 and .p_parity_one_q10000 == 10000 and .input_parity == 1 and .state_unchanged == true' evidence/xor-bell.json
+          jq -e '(.bell_zz_expectation < -0.9999) and (.bell_xx_expectation > 0.9999)' evidence/xor-bell.json
+          jq -e '(.qubit_one_probabilities|length)==4 and (.qubit_one_probabilities[0] > 0.4999) and (.qubit_one_probabilities[0] < 0.5001) and (.qubit_one_probabilities[2] < 0.000001) and (.qubit_one_probabilities[3] < 0.000001)' evidence/xor-bell.json
+          Q train-xnor > evidence/xnor-train.json
+          Q eval > evidence/xnor-eval.json
+          Q classify 0 1 > evidence/xnor-bell.json
+          jq -e '.k == 4' evidence/xnor-train.json
+          jq -e '.correct == 4 and .holdout == 4' evidence/xnor-eval.json
+          jq -e '.predicted == 0 and .p_parity_one_q10000 == 0 and .state_unchanged == true' evidence/xnor-bell.json
+          jq -e '(.bell_zz_expectation > 0.9999) and (.bell_xx_expectation > 0.9999)' evidence/xnor-bell.json
+          Q train-agent > evidence/qrl2-train-1.json
+          "$R" run "$P/qrl2-audit.xi" "$S/memory.rvp" "$RUNNER_TEMP/audit-before.rvp" > evidence/qtable-before.jsonl
+          cmp "$S/memory.rvp" "$RUNNER_TEMP/audit-before.rvp"
+          Q train-agent > evidence/qrl2-train-2.json
+          "$R" run "$P/qrl2-audit.xi" "$S/memory.rvp" "$RUNNER_TEMP/audit-after.rvp" > evidence/qtable-after.jsonl
+          cmp "$S/memory.rvp" "$RUNNER_TEMP/audit-after.rvp"
+          jq -e '.epochs == 2' evidence/qrl2-train-2.json
+          before="$(jq -s '[.[]|select(.type=="register")|.value][0]' evidence/qtable-before.jsonl)"
+          after="$(jq -s '[.[]|select(.type=="register")|.value][0]' evidence/qtable-after.jsonl)"
+          test "$after" -ge "$before"
+          for target in 0 1; do
+            for initial in 0 1; do
+              Q plan "$target" "$initial" > "evidence/qrl2-plan-$target-$initial.json"
+              jq -e --argjson t "$target" '.target == $t and .final == $t and .success == true and .state_unchanged == true and (.actions|length)==2' "evidence/qrl2-plan-$target-$initial.json"
+              jq -e '(.qubit_one_probabilities|length)==4 and (.qubit_one_probabilities[0] > 0.4999) and (.qubit_one_probabilities[0] < 0.5001) and (.qubit_one_probabilities[2] < 0.000001) and (.qubit_one_probabilities[3] < 0.000001)' "evidence/qrl2-plan-$target-$initial.json"
+            done
+          done
+          "$R" run "$P/vqc2-feed-xor.xi" "$S/memory.rvp" "$RUNNER_TEMP/fed.rvp" >/dev/null
+          "$R" run "$P/vqc2-bad-label.xi" "$RUNNER_TEMP/fed.rvp" "$RUNNER_TEMP/bad-label.rvp" >/dev/null
+          if "$R" run "$P/vqc2-train.xi" "$RUNNER_TEMP/bad-label.rvp" "$RUNNER_TEMP/invalid-result.rvp" >/dev/null; then
+            echo 'Malformed label was accepted' >&2
+            exit 1
+          fi
+          test ! -e "$RUNNER_TEMP/invalid-result.rvp"
+          "$R" run "$P/qrl2-invalid-target.xi" "$S/memory.rvp" "$RUNNER_TEMP/bad-target.rvp" >/dev/null
+          if "$R" run "$P/qrl2-act.xi" "$RUNNER_TEMP/bad-target.rvp" "$RUNNER_TEMP/invalid-policy.rvp" >/dev/null; then
+            echo 'Malformed target was accepted' >&2
+            exit 1
+          fi
+          test ! -e "$RUNNER_TEMP/invalid-policy.rvp"
+          if Q classify 2 0 > /dev/null; then
+            echo 'CLI accepted invalid bit' >&2
+            exit 1
+          fi
+          Q status > evidence/final-status.json
+          jq -e '.vqc2_trained == true and .qrl2_trained == true and .qrl2_epochs == 2' evidence/final-status.json
+          echo 'PASS: native two-qubit entangled XI VQC2, two-step Q policy, holdout, rollback and isolated CLI'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bbyq-xi-c05-c07-evidence
+          path: evidence/
+          if-no-files-found: warn
