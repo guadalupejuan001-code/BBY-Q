@@ -9,8 +9,8 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {DatabaseSync} from 'node:sqlite';
 import {fileURLToPath} from 'node:url';
-import {transact,inspect} from '../../ai/personal/x10/session.mjs';
-import {VERSION} from '../../ai/personal/x10/schema.mjs';
+import {transact,inspect} from '../../../ai/personal/x10/session.mjs';
+import {VERSION} from '../../../ai/personal/x10/schema.mjs';
 
 const [runtimeArg,outArg]=process.argv.slice(2);
 if(!runtimeArg||!outArg)throw Error('Usage: dialogue-eval.mjs /path/reverse_pc FRESH_EVIDENCE_DIR');
