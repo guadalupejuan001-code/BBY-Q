@@ -203,6 +203,38 @@ eq(final.quantum_connected,true,'new quantum memory persisted');
  cdb.close();
  ok(cognitiveFinal.cognitive_policy_sha256!==null,'policy persistence available');
 
+
+ // C14: opt-in native XI supervised checkpoint recommends routes, never applies.
+ const pre14=inspect(session);
+ const classic14=askOk('c14-classic','Escribe un poema sobre un faro.',{module:'p05'});
+ const shadow14=askOk('c14-shadow','Escribe un poema sobre un faro.',{module:'p05',shadowC14:true});
+ eq(shadow14.response,classic14.response,'C14 shadow leaves exact X10/P05 text unchanged');
+ eq(shadow14.c14_shadow.available,true,'synthetic XI seed available');
+ eq(shadow14.c14_shadow.applied,false,'native XI route not applied');
+ eq(shadow14.c14_shadow.suggested_action,3,'native XI recommends P04 for poem');
+ eq(shadow14.c14_shadow.abstained,false,'trained creative route has enough evidence');
+ eq(shadow14.c14_shadow.trained_examples,800,'pinned supervised seed restored');
+ eq(inspect(session).state_sha256,pre14.state_sha256,'C14 never changes X09 main memory');
+ eq(inspect(session).cognitive_policy_sha256,pre14.cognitive_policy_sha256,'C14 never changes previous C12 weights');
+ const safe14=askOk('c14-safe','Recuerda que mañana revisaré Aurora.',{module:'p05',shadowC14:true});
+ eq(safe14.c14_shadow.available,true,'guard can be inspected');
+ eq(safe14.c14_shadow.abstained,true,'native C14 abstains on explicit teaching');
+ eq(safe14.c14_shadow.suggested_action,0,'guarded route falls back to X10');
+ const recall14=askOk('c14-recall','¿Qué dije sobre Aurora?',{module:'p05',shadowC14:true});
+ eq(recall14.c14_shadow.applied,false,'P05 response still owns actual recall');
+ const replay14=ask('c14-shadow','Escribe un poema sobre un faro.',{module:'p05',shadowC14:true});
+ eq(replay14.replayed,true,'C14 replay returns receipt without rebuilding the model');
+ const clash14=ask('c14-shadow','Escribe un poema sobre un faro.',{module:'p05'});
+ eq(clash14.error.code,'E_REPLAY_MISMATCH','opt-in flag must change X10 replay digest');
+ const long14=askOk('c14-long','Orion'.repeat(50),{module:'p05',shadowC14:true});
+ eq(long14.c14_shadow.available,false,'out-of-scope >190 byte input does not block X10 response');
+ eq(inspect(session).cognitive_policy_sha256,pre14.cognitive_policy_sha256,'C12 training remains intact after C14');
+ const c14CLI=spawnSync(process.execPath,[path.join(repo,'bbyq.mjs'),'--build',build,
+  'turn',session,'c14-cli','--module=p05','--shadow-c14','Escribe un poema sobre un faro.'],
+  {encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ eq(c14CLI.status,0,'C14 CLI exit');
+ eq(JSON.parse(c14CLI.stdout).c14_shadow.suggested_action,3,'C14 CLI XI recommendation');
+
 const report={ok:true,checks,conversational_turns:log.length,synthetic_x09_fixture:true,
  native_xi_parser:true,native_xi_engines:true,manual_prefix_or_explicit_module:true,
  persistent_quantum_state:true,transactional_rollback:true,replay_protected:true,
