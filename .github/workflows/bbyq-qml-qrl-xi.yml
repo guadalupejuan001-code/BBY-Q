@@ -1,0 +1,116 @@
+name: BBY Q native XI QML QRL (cycles 01-04)
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-xi.yml'
+  push:
+    branches: [main, feature/bbyq-qml-qrl-xi-cycles-20261101]
+    paths:
+      - 'ai/xi/qml_qrl/**'
+      - 'docs/BBYQ_XI_QML_QRL.md'
+      - '.github/workflows/bbyq-qml-qrl-xi.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  xi-quantum-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned original REVERSE-PC and Mundo X
+        shell: bash
+        run: |
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = 6d4de14a2dfbce4b8a7f1cb50e29d11b9073fe98
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+      - name: Build original XI runtime (no separate learner or ML framework)
+        shell: bash
+        run: |
+          cmake -S "$RUNNER_TEMP/reverse-pc" -B "$RUNNER_TEMP/reverse-pc-build" -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+          cmake --build "$RUNNER_TEMP/reverse-pc-build" --target reverse_pc --parallel 2
+      - name: Native XI full cycle and independent checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/reverse-pc-build/reverse_pc"
+          P="ai/xi/qml_qrl"
+          cd "$RUNNER_TEMP"
+          mkdir -p evidence
+          "$R" init blank.rvp
+          "$R" run "$GITHUB_WORKSPACE/$P/core-birth.xi" blank.rvp core.rvp > evidence/core.jsonl
+          "$R" run "$GITHUB_WORKSPACE/$P/calibrate.xi" core.rvp calibrate.rvp > evidence/calibration.jsonl
+          # Calibration is read-only in Ether logically, but quantum allocations may differ.
+          test "$(jq -s '[.[] | select(.type=="probz")] | length' evidence/calibration.jsonl)" -eq 16
+          jq -s -r '[.[] | select(.type=="probz") | .probability_one] | .[]' evidence/calibration.jsonl > evidence/calibration-probs.txt
+          awk 'BEGIN{split("0 0.1464466094 0.5 0.8535533906 1 0.8535533906 0.5 0.1464466094", expected, " ")}
+              {if(NR%2==1){k=(NR+1)/2; d=$1-expected[k]; if(d<0)d=-d; if(d>0.0002)exit 1}
+               else if($1>0.000001)exit 1}
+              END{if(NR!=16)exit 1}' evidence/calibration-probs.txt
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-birth.xi" core.rvp vqc.rvp >/dev/null
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-birth.xi" vqc.rvp seeded.rvp >/dev/null
+
+          "$R" run "$GITHUB_WORKSPACE/$P/feed-identity.xi" seeded.rvp identity-feed.rvp >/dev/null
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-train.xi" identity-feed.rvp identity-trained.rvp > evidence/identity-train.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r4")|.value' evidence/identity-train.jsonl)" = 0
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-eval.xi" identity-trained.rvp identity-eval.rvp > evidence/identity-eval.jsonl
+          cmp identity-trained.rvp identity-eval.rvp
+          test "$(jq -r 'select(.type=="register" and .register=="r11")|.value' evidence/identity-eval.jsonl)" = 4
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-infer.xi" identity-trained.rvp identity-witness.rvp > evidence/identity-witness.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r12")|.value' evidence/identity-witness.jsonl)" = 10000
+
+          "$R" run "$GITHUB_WORKSPACE/$P/feed-invert.xi" seeded.rvp inverted-feed.rvp >/dev/null
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-train.xi" inverted-feed.rvp inverted-trained.rvp > evidence/inverted-train.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r4")|.value' evidence/inverted-train.jsonl)" = 4
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-eval.xi" inverted-trained.rvp inverted-eval.rvp > evidence/inverted-eval.jsonl
+          cmp inverted-trained.rvp inverted-eval.rvp
+          test "$(jq -r 'select(.type=="register" and .register=="r11")|.value' evidence/inverted-eval.jsonl)" = 4
+          "$R" run "$GITHUB_WORKSPACE/$P/vqc-infer.xi" inverted-trained.rvp inverted-witness.rvp > evidence/inverted-witness.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r12")|.value' evidence/inverted-witness.jsonl)" = 0
+
+          "$R" run "$GITHUB_WORKSPACE/$P/bad-label.xi" identity-feed.rvp malformed.rvp >/dev/null
+          if "$R" run "$GITHUB_WORKSPACE/$P/vqc-train.xi" malformed.rvp impossible.rvp >/dev/null; then
+            echo 'ERROR XI accepted malformed supervised label' >&2
+            exit 1
+          fi
+          test ! -e impossible.rvp
+
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-train.xi" seeded.rvp qrl-one.rvp > evidence/qrl-train-one.jsonl
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-train.xi" qrl-one.rvp qrl-two.rvp > evidence/qrl-train-two.jsonl
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-audit.xi" qrl-one.rvp qrl-one-audited.rvp > evidence/qrl-audit-one.jsonl
+          cmp qrl-one.rvp qrl-one-audited.rvp
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-audit.xi" qrl-two.rvp qrl-two-audited.rvp > evidence/qrl-audit-two.jsonl
+          cmp qrl-two.rvp qrl-two-audited.rvp
+          q_before="$(jq -s '[.[]|select(.type=="register" and .register=="r5")|.value][12]' evidence/qrl-audit-one.jsonl)"
+          q_after="$(jq -s '[.[]|select(.type=="register" and .register=="r5")|.value][12]' evidence/qrl-audit-two.jsonl)"
+          test "$q_after" -gt "$q_before"
+          test "$(jq -r 'select(.type=="register" and .register=="r14")|.value' evidence/qrl-train-two.jsonl)" = 0
+          test "$(jq -r 'select(.type=="register" and .register=="r15")|.value' evidence/qrl-train-two.jsonl)" = 4
+          test "$(jq -r 'select(.type=="register" and .register=="r13")|.value' evidence/qrl-train-two.jsonl)" = 2
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-act.xi" qrl-two.rvp qrl-one-witness.rvp > evidence/qrl-objective-one.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r8")|.value' evidence/qrl-objective-one.jsonl)" = 4
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-target-zero.xi" qrl-two.rvp qrl-target-zero.rvp >/dev/null
+          "$R" run "$GITHUB_WORKSPACE/$P/qrl-act.xi" qrl-target-zero.rvp qrl-zero-witness.rvp > evidence/qrl-objective-zero.jsonl
+          test "$(jq -r 'select(.type=="register" and .register=="r8")|.value' evidence/qrl-objective-zero.jsonl)" = 0
+
+          # Check Born values of the uncomputed and sampled native circuits.
+          first_prob() { jq -s -r '[.[] | select(.type=="probz") | .probability_one][0]' "$1"; }
+          last_prob() { jq -s -r '[.[] | select(.type=="probz") | .probability_one][-1]' "$1"; }
+          awk -v p="$(first_prob evidence/identity-witness.jsonl)" 'BEGIN{exit !(p > .999999)}'
+          awk -v p="$(first_prob evidence/inverted-witness.jsonl)" 'BEGIN{exit !(p < .000001)}'
+          awk -v p="$(first_prob evidence/qrl-objective-one.jsonl)" 'BEGIN{exit !(p > .999999)}'
+          awk -v p="$(first_prob evidence/qrl-objective-zero.jsonl)" 'BEGIN{exit !(p < .000001)}'
+          for file in evidence/identity-witness.jsonl evidence/inverted-witness.jsonl evidence/qrl-objective-one.jsonl evidence/qrl-objective-zero.jsonl; do
+            awk -v p="$(last_prob "$file")" 'BEGIN{exit !(p < .000001)}'
+          done
+          echo 'PASS: XI-only VQC/QRL, holdout, retained Q, malformed rejection, native Born'
+      - name: Publish raw validation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-qml-qrl-xi-evidence
+          path: ${{ runner.temp }}/evidence/
+          if-no-files-found: warn
