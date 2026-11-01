@@ -1,0 +1,73 @@
+name: BBY Q C11 history audit + C12 XI cognitive shadow
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/cognitive/**'
+      - 'integration/c11/**'
+      - 'integration/c12/**'
+      - 'ai/personal/x10/**'
+      - 'integration/qml_qrl/tests/**'
+      - 'bbyq.mjs'
+      - 'docs/BBYQ_C11_INTEGRITY.md'
+      - 'docs/BBYQ_C12_COGNITIVE.md'
+      - '.github/workflows/bbyq-c11-c12.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/cognitive/**'
+      - 'integration/c11/**'
+      - 'integration/c12/**'
+      - 'ai/personal/x10/**'
+      - 'integration/qml_qrl/tests/**'
+      - 'bbyq.mjs'
+      - '.github/workflows/bbyq-c11-c12.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  history-and-shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: C11 verify historical checkpoints and source contracts
+        run: |
+          set -euo pipefail
+          mkdir -p build/evidence
+          for file in bbyq.mjs integration/c11/audit.mjs integration/c12/shadow.mjs ai/personal/x10/session.mjs integration/qml_qrl/tests/native-chat.mjs; do node --check "$file"; done
+          node integration/c11/audit.mjs | tee build/evidence/c11.json
+          node --test integration/x09/tests/retention/repository.test.mjs \
+            integration/x09/tests/retention/state.test.mjs \
+            integration/p01/tests/contracts.test.mjs integration/p02/tests/contracts.test.mjs \
+            integration/p03/tests/contracts.test.mjs integration/p04/tests/contracts.test.mjs \
+            integration/p05/tests/contracts.test.mjs integration/p06/tests/contracts.test.mjs
+      - name: Build pinned original X10-capable REVERSE-PC runtime
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: C12 integrated XI feedback, non-intervening shadow and atomic rollback
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/native-chat.mjs \
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" "$GITHUB_WORKSPACE/build/evidence/c12"
+      - name: Publish C11 C12 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bbyq-c11-c12-integrity-and-policy
+          path: |
+            build/evidence/c11.json
+            build/evidence/c12/results.json
+          if-no-files-found: warn
