@@ -117,10 +117,67 @@ objetivos del agente, ambos holdouts, aprendizaje retenido y rollback.
 
 - No hay APK conversacional en esta ampliación. La carpeta `app/` corresponde a
   `WatchOptics`, no a un empaquetador de X10 para Android.
-- `quantum` está disponible en el punto de entrada CLI, pero todavía no se
-  activa desde las respuestas conversacionales X10.
+- Históricamente, hasta C07, `quantum` solo era un subcomando de laboratorio. La integración conversacional explícita se añade en C08–C10.
 - El simulador no expone actualmente observables Born a registros XI, por lo
   que el entrenamiento usa el modelo matemático tabulado, y la prueba cuántica
   es independiente de la actualización.
 - Ninguna ventaja cuántica, generalización lingüística ni ejecución sobre
   hardware cuántico real queda demostrada por estos problemas sintéticos.
+
+## Ciclos C08–C10: integración real con la conversación X10
+
+**C08: intención nativa XI.** `ai/xi/qml_qrl/conversation-route.xi` interpreta
+una gramática acotada en español e inglés, distingue órdenes de consulta,
+entrenamiento y planificación, y rechaza parámetros inválidos o frases compuestas.
+Las rutas abiertas son `quantum ...`, `cuantico ...`, `cuántico ...`
+y `bby q quantum ...`; también se admiten órdenes sin prefijo al invocar
+explícitamente `--module=quantum`. El filtro previo en JavaScript solo evita
+ejecuciones nativas para mensajes claramente ajenos; **XI decide el comando**
+y el sentido de sus dos argumentos binarios.
+
+**C09: transacción de sesión completa.** La ejecución entra al mismo
+`bbyq.mjs turn` y `ai/personal/x10/session.mjs` que la conversación general.
+El puente `integration/qml_qrl/conversation.mjs` reutiliza los motores
+QML/QRL XI existentes, conserva una memoria RVPC2 en la tabla SQLite
+`quantum_state` (aparte del estado X09 y de E034) y comprueba su SHA-256.
+Los resultados de aprendizaje se publican **dentro de la misma transacción**
+que el comprobante X10; un fallo antes del COMMIT hace rollback del aprendizaje.
+Un identificador repetido con idéntico mensaje reproduce su recibo, sin
+reentrenar. Una solicitud contradictoria se rechaza.
+
+**C10: suite de prueba.** `integration/qml_qrl/tests/native-chat.mjs` utiliza
+sesiones sintéticas de X10 y el intérprete nativo XI; verifica ambos motores,
+probabilidades y correlaciones Bell, consultas sin mutación, roles X10
+existentes, restricciones de aprendizaje, múltiples pasos QRL, replay,
+rollback, CLI real y preservación de estados X09/E034.
+La CI se encuentra en `.github/workflows/bbyq-qml-qrl-conversation.yml`.
+
+### Utilización desde una sesión conversacional existente de X10
+
+Requiere un build X10 válido, Node 24 y su ejecutor `reverse_pc`
+correspondiente (el antiguo entrenamiento X09 se preserva).
+Para conversar con los motores conectados:
+
+```sh
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q001 "quantum estado"
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q002 "quantum entrena xor"
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q003 "quantum clasifica 0 1"
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q004 "quantum evalúa"
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q005 "quantum entrena agente"
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q006 "quantum planea 1 0"
+```
+
+Cada solicitud debe usar un `REQUEST_ID` nuevo. Un mismo identificador
+repetido con mensaje idéntico devuelve el resultado previo, sin entrenar.
+
+También funciona el modo explícito `--module=quantum` y órdenes sin prefijo:
+
+```sh
+node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion-x10 q007 --module=quantum "clasifica 0 1"
+```
+
+**Límites:** la integración de chat ejecuta **comandos de laboratorio**
+y describe sus resultados. **No** entrena lenguaje natural usando QML/QRL,
+ni utiliza automáticamente sus políticas para producir cualquier respuesta
+ordinaria. Las pruebas sintéticas no demuestran ventaja cuántica ni aprendizaje
+a escala general. No se genera ni se valida una APK Android en C08–C10.

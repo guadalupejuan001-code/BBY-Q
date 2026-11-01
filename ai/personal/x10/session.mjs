@@ -15,6 +15,7 @@ import {REASON_MAX_BYTES,REASON_MODE} from '../p03/reason.mjs';
 import {COMPOSE_LIMIT} from '../p04/compose.mjs';
 import {history,contextTurn,saveConversation} from '../p05/store.mjs';
 import {PARAPHRASE_MAX_INPUT,PARAPHRASE_MODES} from '../p06/paraphrase.mjs';
+import {quantumConversation} from '../../../integration/qml_qrl/conversation.mjs';
 
 const encode=value=>zlib.deflateRawSync(Buffer.from(JSON.stringify(value)));
 const decode=bytes=>JSON.parse(zlib.inflateRawSync(bytes,{maxOutputLength:64*1024*1024}));
@@ -152,6 +153,14 @@ function generalized(db,pages,raw,roles,{explicit=false}={}){
 }
 function execute(db,runtime,base,raw,options,roles,job){
  const pages=new NativePages(runtime,roles,job);pages.validate(raw);
+ // The host checks a prefix only to avoid extra native startup for ordinary chat.
+ // Authorization, full grammar and operand parsing belong to the XI router.
+ const quantumCandidate=options.module==='quantum'||/^(?:quantum |cuantico |cuántico |bby q quantum )/i.test(raw.subarray(0,64).toString('utf8'));
+ if(options.operation!=='import'&&quantumCandidate){
+  const decision=pages.quantumRoute(raw);
+  if(options.module==='quantum'||decision.prefixed)
+   return quantumConversation(db,{runtime,base,job,decision,language:options.language||'es'});
+ }
  if(options.module==='p06'){
   if(options.operation==='import')throw fail('E_OPERATION','P06 no procesa importaciones ni modifica entrenamientos.');
   return generalized(db,pages,raw,roles,{explicit:true});
@@ -237,14 +246,14 @@ export function transact(runtime,base,root,requestId,message,options={}){
   if(!(typeof message==='string'||Buffer.isBuffer(message)||message instanceof Uint8Array))throw fail('E_INPUT_TYPE','Se requiere texto o bytes UTF-8.');
   if(options.language!==undefined&&!['es','en'].includes(options.language))throw fail('E_LANGUAGE','Idioma no válido.');
   if(options.operation!==undefined&&!['chat','import'].includes(options.operation))throw fail('E_OPERATION','Operación no compatible.');
-  if(options.module!==undefined&&!['x10','e034','p03','p04','p05','p06'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
+  if(options.module!==undefined&&!['x10','e034','p03','p04','p05','p06','quantum'].includes(options.module))throw fail('E_MODULE','Módulo conversacional desconocido.');
   if(options.learn!==undefined&&typeof options.learn!=='boolean')throw fail('E_LEARN','La autorización de aprendizaje debe ser booleana.');
   if(options.learn===true&&options.module!=='e034')throw fail('E_LEARN','--learn solo se admite en el módulo E034.');
   const raw=Buffer.from(message);if(!raw.length)throw fail('E_EMPTY','El mensaje está vacío.');if(raw.length>LIMITS.input_bytes)throw fail('E_SIZE','El mensaje supera 1048576 bytes.');
   if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
   const languageTag=options.language===undefined||options.language==='es'?'':('\0language:'+options.language);
   // Preserve historic X09/X10 replay identifiers for the default path.
-  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':'';
+  const moduleTag=options.module==='e034'?'\0module:e034\0learn:'+(options.learn===true?'1':'0'):options.module==='p03'?'\0module:p03':options.module==='p04'?'\0module:p04':options.module==='p05'?'\0module:p05':options.module==='p06'?'\0module:p06':options.module==='quantum'?'\0module:quantum':'';
   const digest=sha(Buffer.concat([Buffer.from((options.operation||'chat')+'\0'+(options.title||'')+'\0'),raw,Buffer.from(languageTag+moduleTag)]));
   const {roles}=verified(runtime,base);db=connect(root);db.exec('BEGIN IMMEDIATE');inTransaction=true;
   if(get(db,'version')!==VERSION)throw fail('E_SESSION','Versión de sesión incompatible.');
@@ -270,5 +279,5 @@ export function transact(runtime,base,root,requestId,message,options={}){
 }
 export function inspect(root){
  if(!fs.existsSync(fileOf(root)))throw fail('E_SESSION','Sesión X10 no inicializada.');
- const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;const contextAvailable=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='conversation_turns'").get();const contextTurns=contextAvailable?db.prepare('SELECT COUNT(*) AS n FROM conversation_turns').get().n:0;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,conversation_index_turns:contextTurns,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
+ const db=connect(root);try{const state=db.prepare('SELECT length(data) AS compressed_bytes,digest FROM state WHERE id=1').get();const hasRelational=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='relational_state'").get();const linked=hasRelational?db.prepare('SELECT digest FROM relational_state WHERE id=1').get():null;const quantumExists=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='quantum_state'").get();const quantum=quantumExists?db.prepare('SELECT digest FROM quantum_state WHERE id=1').get():null;const contextAvailable=!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='conversation_turns'").get();const contextTurns=contextAvailable?db.prepare('SELECT COUNT(*) AS n FROM conversation_turns').get().n:0;return {ok:true,version:get(db,'version'),generation:Number(get(db,'generation')),operations:Number(get(db,'operations')),lessons:Number(get(db,'count')),revision:Number(get(db,'revision')),limits:LIMITS,source_sha256:get(db,'source_sha256'),state_sha256:state.digest,compressed_state_bytes:state.compressed_bytes,relational_enabled:!!linked,relational_state_sha256:linked?.digest||null,conversation_index_turns:contextTurns,quantum_connected:!!quantum,quantum_state_sha256:quantum?.digest||null,integrity:db.prepare('PRAGMA integrity_check').get().integrity_check};}finally{db.close();}
 }
