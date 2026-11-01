@@ -29,6 +29,18 @@ El resultado contiene report.json, corpus-manifest.json y trained.rvp. Se inform
 
 ## Próxima puerta de integración
 
-Aunque C14 supere al comparador en la prueba sintética, **NO reemplaza automáticamente las rutas X10** ni modifica el entrenamiento histórico C12 o X09. La integración en sesiones reales requiere primero comprobación con entrenamiento X09 completo y evaluación de respuestas reales.
+La ejecución nativa comprobó 800 ejemplos de entrenamiento y 200 ejemplos separados, con 200/200 rutas sintéticas correctas, frente a 100/200 del comparador P01 de 18 contextos. Estos resultados solo miden la clasificación del corpus descrito, **no una mejora en la precisión de respuestas reales**.
+
+El estado aprendido se conserva en ai/xi/cognitive14/supervised-seed.xi como 13 celdas no nulas y dos bytes de recuento, además del estado RVPC2 de evidencia. La CI comprueba que cada byte de peso reconstruido por XI coincide con el del entrenamiento real y que los contadores suman 800. No se transfieren pesos externos.
+
+### Observación optativa en una sesión X10
+
+Una sesión X10 correctamente construida puede pedir un diagnóstico en paralelo:
+
+    node bbyq.mjs --build /ruta/build-x10 turn /ruta/sesion c14-1 --shadow-c14 "Escribe un poema sobre el faro."
+
+El recibo conserva intacto el campo response y añade c14_shadow con suggested_route, semantic_class, support, training_purity_percent y applied:false. No se guarda el modelo supervisado en las lecciones X09 ni se reemplaza el anterior C12. Si C14 no puede evaluar un texto largo o falla, el diálogo X10 continúa y su recibo explica la limitación.
+
+**C14 jamás ejecuta automáticamente la ruta sugerida.** Para introducir decisiones reales necesitamos primero pruebas en conversaciones nuevas, respuestas completas y verificación de los paquetes originales X09; esta evaluación sigue pendiente.
 
 VQC2/QRL2 cuánticos de los ciclos C05–C10 no participan en esta política supervisada. Su ventaja cuántica no se afirma.
