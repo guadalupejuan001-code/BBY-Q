@@ -1,0 +1,56 @@
+name: Quantum3 external qsim reference
+on:
+  pull_request:
+    paths:
+      - 'benchmarks/quantum3-reference/**'
+      - '.github/workflows/quantum3-qsim-reference.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'benchmarks/quantum3-reference/**'
+      - '.github/workflows/quantum3-qsim-reference.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  same-circuit-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: quantumlib/qsim
+          ref: 50cac4b3fa331450b70387735479a00e223b8d25
+          path: deps/qsim
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 59ac79386bc427620a10227489eb7f7be12c55c7
+          path: deps/reverse
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build original XI and pinned Ether
+        run: bash deps/reverse/scripts/build-xi-session.sh "$GITHUB_WORKSPACE/deps/mundo-x" "$GITHUB_WORKSPACE/deps/reverse/build"
+      - name: Compare complete observables, gradients and one-step SGD
+        run: >-
+          python3 benchmarks/quantum3-reference/run.py
+          --runtime deps/reverse --mundo-x deps/mundo-x --qsim deps/qsim
+          --samples-per-agent 4 --repetitions 5
+          --output build/quantum3-qsim-reference
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quantum3-external-qsim-reference
+          path: build/quantum3-qsim-reference/
+          if-no-files-found: warn
+          retention-days: 90
