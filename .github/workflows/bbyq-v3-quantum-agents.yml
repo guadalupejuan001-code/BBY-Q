@@ -67,6 +67,10 @@ jobs:
           assert s['native_episode_total_ms']>s['native_update_total_ms']>0
           print(json.dumps(final,indent=2))
           PY
+      - name: Validate exact classical equivalent and both integration modes
+        run: |
+          python integration/quantum3/validate_analytic.py --runtime deps/reverse --checkpoint build/campaign/checkpoint-01000.rvp --output build/validation/analytic.json
+          python integration/quantum3/validate_integration.py --runtime deps/reverse --checkpoint build/campaign/checkpoint-01000.rvp --output build/validation/integration.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

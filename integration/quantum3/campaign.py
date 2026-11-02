@@ -12,6 +12,7 @@ import json
 import math
 from pathlib import Path
 import platform
+import shutil
 import statistics
 import struct
 import subprocess
@@ -57,7 +58,14 @@ class Experiment:
         self.Session = XiSession
         self.binary = Path(args.session_binary).resolve() if args.session_binary else self.runtime/'build/xi_session'
         self.cli = self.runtime/'build/reverse_pc'
-        self.lib = '\n'.join((XI/p).read_text() for p in ['common.xi','benchmarks.xi','qrl3.xi'])
+        self.joint_mode = getattr(args, 'joint_mode', 'independent')
+        self.source_names = ['birth.xi','common-analytic.xi' if getattr(args,'analytic',False) else 'common.xi','benchmarks.xi',
+                             'qrl3.xi' if self.joint_mode=='independent' else 'qrl3-coupled.xi']
+        if getattr(args,'analytic',False):
+            self.source_names.append('analytic.xi')
+        if self.joint_mode!='independent':
+            self.source_names.append('coupled.xi')
+        self.lib = '\n'.join((XI/p).read_text() for p in self.source_names if p!='birth.xi')
         self.out = Path(args.output).resolve()
         self.out.mkdir(parents=True, exist_ok=True)
         self.train_seeds = [sample_seed(args.seed, 'train', i) for i in range(args.episodes)]
@@ -74,6 +82,8 @@ class Experiment:
         seed = sample_seed(self.args.seed, split, index)
         baseline = 1 if ablate else 2 if self.args.classical else 0
         lines = [f'store64 {A+256} {seed}', f'store64 {A+280} {baseline}']
+        if self.joint_mode!='independent':
+            lines.append(f'store64 {A+544} {2 if self.joint_mode=="joint" else 1}')
         if self.args.agent == 'vqc':
             lines += [f'store64 {A+272} {TASKS[self.args.task]}',
                       f'fstore {A+296} {0.6 if split == "ood" else 0.1}',
@@ -139,11 +149,13 @@ class Experiment:
         manifest = self.out/'manifest.json'
         if manifest.exists() and not args.resume:
             raise RuntimeError('campaign exists; choose a new output or use --resume')
-        sources = {p:sha(XI/p) for p in ['birth.xi','common.xi','benchmarks.xi','qrl3.xi']}
+        sources = {p:sha(XI/p) for p in self.source_names}
         identity = {'agent':args.agent,'task':args.task,'seed':args.seed,'classical':args.classical,
                     'joint_mode':getattr(args,'joint_mode','independent'),
+                    'analytic_classical_equivalent':getattr(args,'analytic',False),
                     'runtime_sha256':sha(self.binary),'xi_source_sha256':sources,
-                    'step_budget':args.step_budget}
+                    'step_budget':args.step_budget,
+                    'initial_checkpoint_sha256':sha(args.initial_checkpoint) if getattr(args,'initial_checkpoint',None) else None}
         records = []
         training = []
         if args.resume:
@@ -157,9 +169,14 @@ class Experiment:
             start = len(training)
         else:
             state = self.out/'initial.rvp'
-            subprocess.run([self.cli,'init',state],check=True,capture_output=True)
+            initial=getattr(args,'initial_checkpoint',None)
+            if initial:
+                shutil.copyfile(initial,state)
+            else:
+                subprocess.run([self.cli,'init',state],check=True,capture_output=True)
             with self.Session(self.binary,state) as initializer:
-                initializer.execute((XI/'birth.xi').read_text()+'\n'+self.lib)
+                if not initial:
+                    initializer.execute((XI/'birth.xi').read_text()+'\n'+self.lib)
                 state = self.out/'checkpoint-00000.rvp'
                 initializer.save(state)
             start = 0
@@ -189,6 +206,10 @@ class Experiment:
                     item = {'episodes':ep,'checkpoint':checkpoint.name,'checkpoint_sha256':digest,
                             'model':self.model_state(learner), 'usage':learner.metrics(),
                             'iid':self.evaluate(checkpoint), 'ood':self.evaluate(checkpoint,'ood')}
+                    if self.joint_mode!='independent':
+                        self.args.agent='vqc'
+                        item['representation_model']=self.model_state(learner)
+                        self.args.agent='qrl'
                     if self.args.agent == 'qrl':
                         item['greedy_iid']=self.evaluate(checkpoint,greedy=True)
                         item['greedy_ood']=self.evaluate(checkpoint,'ood',greedy=True)
@@ -235,9 +256,14 @@ def main():
     parser.add_argument('--seed',type=int,default=173)
     parser.add_argument('--eval-size',type=int,default=64)
     parser.add_argument('--classical',action='store_true')
+    parser.add_argument('--analytic',action='store_true',help='Exact classical feature-map equivalent, used only as a baseline')
+    parser.add_argument('--joint-mode',choices=['independent','frozen','joint'],default='independent')
+    parser.add_argument('--initial-checkpoint')
     parser.add_argument('--resume',action='store_true')
     parser.add_argument('--output',required=True)
     args=parser.parse_args()
+    if args.analytic:
+        args.classical=True
     if args.task not in (TASKS if args.agent=='vqc' else ['line_easy','line_slip']):
         parser.error('task does not match agent')
     if args.episodes<1 or args.eval_size<1:
