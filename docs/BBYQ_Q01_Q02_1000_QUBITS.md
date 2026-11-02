@@ -11,6 +11,7 @@ El REVERSE-PC original distingue capacidad de *registro de estabilizadores* y ca
 - `q1000-birth.xi` crea en **XI** un registro **GHZ de 1.000 cúbits entrelazados**, direcciones `100..1099`. Usa una H y 999 CX, representación **Clifford/estabilizadores**. No usa un multiplicador de amplitudes denso.
 - Los cúbits `2,3` y `4,5` de VQC2 y QRL2 permanecen independientes del registro GHZ. Esto produce hasta **1.004 cúbits activos** cuando ambos agentes consultan sus circuitos. Se refiere a un componente GHZ de 1.000, no a que VQC2 y QRL2 entrenen cada uno una política de 1.000 cúbits.
 - `q1000-audit.xi` verifica huella, correlación Z del primer/último cúbit, correlación Z del primero/intermedio, correlación X de extremos esperada 0 y probabilidades Z=1 de 0,5 en extremos. El host verifica además `active_qubits` y `largest_component=1000`.
+- `q1000-overflow.xi` prueba que extender el mismo componente desde 1.000 hasta 1.025 cúbits se rechaza de manera atómica, conforme al límite de 1.024. El checkpoint original no se reemplaza.
 - `q1000-uncompute.xi` deshace H/CX en estado de **prueba desechable**, comprueba que las probabilidades de 1 regresan a 0 y no modifica el RVPC2 almacenado.
 - `enable-1000` permite anexar el registro a una sesión previa de VQC2/QRL2, tras verificar que solo se emplearon sus cuatro cúbits reservados y que no existe ya un registro GHZ. Guarda por reemplazo atómico cuando todas las validaciones concluyen.
 - `init-1000` inicializa de cero una sesión de laboratorio VQC2/QRL2 más el GHZ-1000. `audit-1000` comprueba un estado ya existente sin cambiarlo.
@@ -33,6 +34,8 @@ node bbyq.mjs quantum --runtime=/ruta/reverse_pc --state=/ruta/quantum-1000 plan
 # O anexarlo a una sesión de laboratorio VQC2/QRL2 previa
 node bbyq.mjs quantum --runtime=/ruta/reverse_pc --state=/ruta/quantum-anterior enable-1000
 ```
+
+El workflow publica además dos estados RVPC2 de ejemplo: una sesión con VQC2 y QRL2 ya entrenados más el componente GHZ de 1.000 cúbits, y otra sesión GHZ recién inicializada con VQC2/QRL2 aún sin entrenar.
 
 Las consultas y los fallos no deben alterar la huella original. El entrenamiento normal sí modifica la parte Ether de parámetros VQC2/QRL2.
 
