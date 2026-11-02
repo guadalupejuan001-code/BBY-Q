@@ -113,7 +113,15 @@ for(const role of ['vqc','qrl']){
  }
  eq(steps,n,'complete budget was learned');
  const shaBeforeInference=digest(memory);
- const readback=train.map(x=>({index:x.index,expected:x.label})),fullProbe=readback.filter((_,i)=>i%Math.max(1,Math.floor(n/32))===0).slice(0,32);
+ const readback=train.map(x=>({index:x.index,expected:x.label})),fullProbe=[];
+ const paired=Math.min(16,n/2);
+ for(let j=0;j<paired;j++){
+  const approximate=Math.floor(j*n/paired);
+  const even=approximate-(approximate%2);
+  fullProbe.push(readback[even],readback[even+1]);
+ }
+ eq(fullProbe.filter(x=>x.expected===0).length,paired,'balanced trained evaluation probe: class 0');
+ eq(fullProbe.filter(x=>x.expected===1).length,paired,'balanced trained evaluation probe: class 1');
  const fullMeasured=fullProbe.map(x=>({...x,observed:measured(x.index)}));
  const unseenAll=heldout.map(x=>({...x,observed:measured(x.index)}));
  const compositional=[];
