@@ -11,24 +11,15 @@ on:
       - 'integration/qml_qrl/tests/agents1000-learning-speed.mjs'
       - '.github/workflows/bbyq-q05-learning-speed.yml'
   workflow_dispatch:
-    inputs:
-      episodes_per_agent:
-        description: 'Even unique one-hot episodes for EACH 1000-qubit agent, 16..1000'
-        required: true
-        default: '128'
-        type: choice
-        options:
-          - '32'
-          - '64'
-          - '128'
-          - '256'
-          - '512'
-          - '1000'
 permissions:
   contents: read
 jobs:
   benchmark-two-1000-qubit-agents:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        episodes: [128, 800]
     timeout-minutes: 58
     steps:
       - uses: actions/checkout@v4
@@ -62,16 +53,16 @@ jobs:
         timeout-minutes: 49
         shell: bash
         env:
-          EPISODES: ${{ github.event.inputs.episodes_per_agent || '128' }}
+          EPISODES: ${{ matrix.episodes }}
         run: |
           set -euo pipefail
-          case "$EPISODES" in 32|64|128|256|512|1000) ;; *) echo "Invalid sample count" >&2; exit 1;; esac
+          case "$EPISODES" in 32|64|128|256|512|800|1000) ;; *) echo "Invalid sample count" >&2; exit 1;; esac
           node integration/qml_qrl/tests/agents1000-learning-speed.mjs \
-            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/q05-learning-speed "$EPISODES"
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" "build/q05-learning-speed-$EPISODES" "$EPISODES"
           python3 - <<'PY'
           from pathlib import Path
-          import json
-          s=json.loads(Path('build/q05-learning-speed/summary.json').read_text())
+          import json, os
+          s=json.loads(Path('build/q05-learning-speed-'+os.environ['EPISODES']+'/summary.json').read_text())
           assert s['ok'] and s['conditions']['qubits_per_agent']==1000
           assert s['conditions']['active_qubits']==2000
           for agent in ('vqc','qrl'):
@@ -88,10 +79,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BBYQ-Q05-two-1000qubit-XI-learning-speed
+          name: BBYQ-Q05-two-1000qubit-XI-learning-speed-${{ matrix.episodes }}
           path: |
-            build/q05-learning-speed/summary.json
-            build/q05-learning-speed/results.json
-            build/q05-learning-speed/agents/memory.rvp
+            build/q05-learning-speed-${{ matrix.episodes }}/summary.json
+            build/q05-learning-speed-${{ matrix.episodes }}/results.json
+            build/q05-learning-speed-${{ matrix.episodes }}/agents/memory.rvp
           if-no-files-found: warn
           retention-days: 30
