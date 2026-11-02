@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {quantumAgents1000} from './agents1000.mjs';
 
 const A=8100000000000000000n;
 const address=n=>String(A+BigInt(n));
@@ -52,10 +53,13 @@ export function quantumCommand({root,build,argv}){
     else args.push(arg);
   }
   const [command,...values]=args;
-  if(!flags.state||!command)fail('Uso: quantum --runtime=REVERSE_PC --state=CARPETA init|init-1000|enable-1000|audit-1000|status|train-xor|train-xnor|eval|classify BIT BIT|train-agent|plan OBJETIVO ESTADO.');
+  if(!flags.state||!command)fail('Uso: quantum --runtime=REVERSE_PC --state=CARPETA init|init-1000|enable-1000|audit-1000|init-agents-1000|enable-agents-1000|agents-1000-status|vqc1000-train INDEX LABEL|vqc1000-infer INDICES|qrl1000-train INDEX GOAL|qrl1000-act INDICES|status|train-xor|train-xnor|eval|classify BIT BIT|train-agent|plan OBJETIVO ESTADO.');
   const runtime=path.resolve(flags.runtime||path.join(build,'runtime/reverse_pc'));
   if(!fs.existsSync(runtime))fail('No se encontró reverse_pc; especifica --runtime=.');
   const state=path.resolve(flags.state),memory=path.join(state,fileName);
+  if(['init-agents-1000','enable-agents-1000','agents-1000-audit','agents-1000-status',
+      'vqc1000-train','vqc1000-infer','qrl1000-train','qrl1000-act'].includes(command))
+    return quantumAgents1000({root,runtime,state,command,values});
   const program=name=>path.join(root,'ai/xi/qml_qrl',name+'.xi');
   const invoke=(script,input,output)=>native(runtime,['run',script,input,output]);
   if(command==='init'||command==='init-1000'){
