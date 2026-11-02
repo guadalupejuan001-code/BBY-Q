@@ -19,6 +19,26 @@ function native(runtime,args){
   const stdout=execFileSync(runtime,args,{encoding:'utf8',timeout:120000,maxBuffer:8*1024*1024});
   return stdout.trim().split(/\r?\n/).filter(Boolean).map(line=>JSON.parse(line));
 }
+function validateQ1000(events){
+ const statistics=events.find(e=>e.type==='stats');
+ const values=matches(events).map(e=>e.value),probabilities=probs(events);
+ if(!statistics||statistics.largest_component!==1000||
+    statistics.active_qubits<1000||statistics.active_qubits>4096||
+    statistics.limits?.max_active_qubits<1000||
+    statistics.limits?.max_component_qubits<1000||
+    values.length!==3||Math.abs(values[0]-1)>1e-9||
+    Math.abs(values[1]-1)>1e-9||Math.abs(values[2])>1e-9||
+    probabilities.length!==2||probabilities.some(x=>Math.abs(x-0.5)>1e-9))
+    fail('El registro GHZ-1000 no superó las verificaciones nativas de dimensión, entrelazamiento y probabilidades.');
+ return {registered_qubits:1000,active_qubits:statistics.active_qubits,
+  largest_entangled_component:statistics.largest_component,
+  core_max_active_qubits:statistics.limits.max_active_qubits,
+  core_max_component_qubits:statistics.limits.max_component_qubits,
+  zz_first_last:values[0],zz_first_middle:values[1],xx_pair:values[2],
+  p_one_first:probabilities[0],p_one_last:probabilities[1],
+  representation:'Clifford/stabilizer GHZ; not arbitrary 2^1000 amplitudes',
+  trained_policy_qubits:2};
+}
 function configFile(directory,pairs){
   const name=path.join(directory,'input.xi');
   fs.writeFileSync(name,'#!reverse-pc-machine-v1\n'+pairs.map(([p,v])=>'store8 '+address(p)+' '+v).join('\n')+'\nhalt\n');
@@ -32,13 +52,13 @@ export function quantumCommand({root,build,argv}){
     else args.push(arg);
   }
   const [command,...values]=args;
-  if(!flags.state||!command)fail('Uso: quantum --runtime=REVERSE_PC --state=CARPETA init|status|train-xor|train-xnor|eval|classify BIT BIT|train-agent|plan OBJETIVO ESTADO.');
+  if(!flags.state||!command)fail('Uso: quantum --runtime=REVERSE_PC --state=CARPETA init|init-1000|enable-1000|audit-1000|status|train-xor|train-xnor|eval|classify BIT BIT|train-agent|plan OBJETIVO ESTADO.');
   const runtime=path.resolve(flags.runtime||path.join(build,'runtime/reverse_pc'));
   if(!fs.existsSync(runtime))fail('No se encontró reverse_pc; especifica --runtime=.');
   const state=path.resolve(flags.state),memory=path.join(state,fileName);
   const program=name=>path.join(root,'ai/xi/qml_qrl',name+'.xi');
   const invoke=(script,input,output)=>native(runtime,['run',script,input,output]);
-  if(command==='init'){
+  if(command==='init'||command==='init-1000'){
     if(values.length)fail('init no admite argumentos.');
     if(fs.existsSync(state))fail('La carpeta de memoria ya existe; no se sobrescribe.');
     fs.mkdirSync(path.dirname(state),{recursive:true});
@@ -49,9 +69,18 @@ export function quantumCommand({root,build,argv}){
       invoke(program('core-birth'),blank,core);
       invoke(program('vqc2-birth'),core,vqc);
       invoke(program('qrl2-birth'),vqc,path.join(staging,fileName));
+      let quantum1000=null;
+      if(command==='init-1000'){
+        const attached=path.join(staging,'ghz1000.rvp');
+        const report=invoke(program('q1000-birth'),path.join(staging,fileName),attached);
+        quantum1000=validateQ1000(report);
+        fs.renameSync(attached,path.join(staging,fileName));
+      }
       for(const filename of ['blank.rvp','core.rvp','vqc.rvp'])fs.unlinkSync(path.join(staging,filename));
       fs.renameSync(staging,state);
-      return {ok:true,action:command,engine:'XI',state,sha256:hash(memory),vqc2:'not-trained',qrl2:'not-trained'};
+      return {ok:true,action:command,engine:'XI',state,sha256:hash(memory),
+       vqc2:'not-trained',qrl2:'not-trained',
+       ...(quantum1000?{quantum1000}: {})};
     }finally{if(fs.existsSync(staging))fs.rmSync(staging,{recursive:true,force:true});}
   }
   if(!fs.existsSync(memory))fail('Memoria no inicializada. Ejecuta quantum ... init.');
@@ -59,10 +88,34 @@ export function quantumCommand({root,build,argv}){
   const run=(name,input,filename)=>invoke(program(name),input,path.join(job,filename));
   const original=hash(memory);
   try{
+    if(command==='enable-1000'){
+      if(values.length)fail('enable-1000 no admite argumentos.');
+      const before=run('q1000-stats',memory,'q1000-preflight.rvp').find(e=>e.type==='stats');
+      if(!before||before.active_qubits>4||before.largest_component>2)
+        fail('La memoria incluye cúbits no reservados por VQC2/QRL2. No se insertará GHZ-1000 encima de un circuito desconocido.');
+      const events=run('q1000-birth',memory,'q1000-attached.rvp');
+      const quantum1000=validateQ1000(events);
+      fs.renameSync(path.join(job,'q1000-attached.rvp'),memory);
+      return {ok:true,action:command,engine:'XI GHZ-1000',...quantum1000,
+       prior_training_preserved:true,state_sha256:hash(memory)};
+    }
+    if(command==='audit-1000'){
+      if(values.length)fail('audit-1000 no admite argumentos.');
+      const events=run('q1000-audit',memory,'q1000-audited.rvp');
+      const quantum1000=validateQ1000(events);
+      return {ok:true,action:command,engine:'XI GHZ-1000',...quantum1000,
+       state_unchanged:hash(memory)===original,state_sha256:original};
+    }
     if(command==='status'){
       if(values.length)fail('status no admite argumentos.');
       const r=registers(run('vqc2-status',memory,'status.rvp'));
-      return {ok:true,action:command,state_sha256:original,version_vqc2:r[0],vqc2_trained:r[1]===1,vqc2_k:r[1]===1?r[2]:null,version_qrl2:r[3],qrl2_trained:r[4]===1,qrl2_epochs:r[5]};
+      const stats=run('q1000-stats',memory,'width.rvp').find(e=>e.type==='stats');
+      return {ok:true,action:command,state_sha256:original,
+       active_qubits:stats?.active_qubits??null,
+       largest_entangled_component:stats?.largest_component??null,
+       core_max_active_qubits:stats?.limits?.max_active_qubits??null,
+       core_max_component_qubits:stats?.limits?.max_component_qubits??null,
+       version_vqc2:r[0],vqc2_trained:r[1]===1,vqc2_k:r[1]===1?r[2]:null,version_qrl2:r[3],qrl2_trained:r[4]===1,qrl2_epochs:r[5]};
     }
     if(command==='train-xor'||command==='train-xnor'){
       if(values.length)fail('train no admite argumentos.');
