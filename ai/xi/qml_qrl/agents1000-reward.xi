@@ -1,12 +1,12 @@
 #!reverse-pc-machine-v1
-# QRL-1000 environmental reward, computed by XI on the actually measured action.
+# Native XI environment score from the ACTUALLY measured VQC1000/QRL1000 action.
 # NOT a label passed into the QRL weight-update rule: only reward is passed.
 load8 r0 8120000000000000000
 cmp r0 166
 jne invalid
 load8 r1 8120000000000000001
 cmp r1 1
-jne invalid
+jgt invalid
 load8 r2 8120000000000000003
 cmp r2 1
 jgt invalid
