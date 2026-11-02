@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "coupling_modes": [
+    {
+      "mode": "frozen",
+      "before": {
+        "parameter_sha256": "7afbd5b6c64d6fd182c7ad57dcca55d6d78d836cbc36394705d5e8a218ac53b8",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 3,
+        "maximum_rotation_updates": 4,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "after": {
+        "parameter_sha256": "7afbd5b6c64d6fd182c7ad57dcca55d6d78d836cbc36394705d5e8a218ac53b8",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 3,
+        "maximum_rotation_updates": 4,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "qrl_after": {
+        "parameter_sha256": "649242ab021e11b7b418c73e18af8310f1c1a8e1628f1fe49a04afae65f5f9ba",
+        "rotation_parameters_updated": 48,
+        "rotation_parameters_changed": 48,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 1,
+        "training_episodes_in_checkpoint": 3,
+        "training_decisions_in_checkpoint": 20
+      },
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 2000,
+        "rotations": 20320,
+        "observations": 10160,
+        "gates": 7620,
+        "preparations": 2540,
+        "max_prepared_block": 4,
+        "distinct_rotated_qubits": 2000,
+        "distinct_observed_qubits": 2000
+      }
+    },
+    {
+      "mode": "joint",
+      "before": {
+        "parameter_sha256": "7afbd5b6c64d6fd182c7ad57dcca55d6d78d836cbc36394705d5e8a218ac53b8",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 3,
+        "maximum_rotation_updates": 4,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "after": {
+        "parameter_sha256": "666f3fdba88d2ec56317c57f803825b251636eae02cbdfa189001c131cfee2f4",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 4,
+        "maximum_rotation_updates": 5,
+        "training_episodes_in_checkpoint": 1003,
+        "training_decisions_in_checkpoint": 0
+      },
+      "qrl_after": {
+        "parameter_sha256": "1269ae6ab63898dd2f107e3ee9b2b87e87b98fc8d95296e6ac1fb9e68a1108a8",
+        "rotation_parameters_updated": 48,
+        "rotation_parameters_changed": 48,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 1,
+        "training_episodes_in_checkpoint": 3,
+        "training_decisions_in_checkpoint": 20
+      },
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 2000,
+        "rotations": 22384,
+        "observations": 11192,
+        "gates": 8394,
+        "preparations": 2798,
+        "max_prepared_block": 4,
+        "distinct_rotated_qubits": 2000,
+        "distinct_observed_qubits": 2000
+      }
+    }
+  ],
+  "planner_executed_in_xi": true,
+  "planner_preserved_model": true,
+  "end_to_end_joint_gradient": false
+}

@@ -1,0 +1,2214 @@
+{
+  "results": [
+    {
+      "binary": "reference-xi-session",
+      "binary_sha256": "2934056daa5d5f1424c79e00a92860e09b4785f7a2ecbad1a69393ec0f8cc5df",
+      "block_width": 1,
+      "blocks": 1000,
+      "qubits": 1000,
+      "median_native_ms": 5.110785501077771,
+      "median_cpu_ms": 7.2734999999999985,
+      "median_transport_ms": 7.262013,
+      "observable_sum": 329.3888690135008,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 0,
+        "preparations": 1000,
+        "max_prepared_block": 1,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 1000,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 2000,
+        "T_instructions": 0,
+        "payload_bytes": 120000,
+        "norm": 0.9999999999999658
+      },
+      "usage": {
+        "peak_rss_kib": 13440,
+        "cpu_ms": 242.715,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 120000
+      },
+      "samples": [
+        {
+          "native_ms": 5.224378999322653,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.389116,
+          "cpu_ms": 7.295999999999999
+        },
+        {
+          "native_ms": 5.068818001076579,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.282288,
+          "cpu_ms": 7.3309999999999995
+        },
+        {
+          "native_ms": 5.192941999062896,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.273255,
+          "cpu_ms": 7.2719999999999985
+        },
+        {
+          "native_ms": 5.421380000188947,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.622832,
+          "cpu_ms": 7.6739999999999995
+        },
+        {
+          "native_ms": 5.516511999070644,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.871971,
+          "cpu_ms": 7.848999999999997
+        },
+        {
+          "native_ms": 5.207693999633193,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.232333,
+          "cpu_ms": 7.274999999999999
+        },
+        {
+          "native_ms": 5.160714998841286,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.306378,
+          "cpu_ms": 7.2760000000000105
+        },
+        {
+          "native_ms": 5.058522999286652,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.104714,
+          "cpu_ms": 7.124000000000009
+        },
+        {
+          "native_ms": 5.029811000451446,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.132817,
+          "cpu_ms": 7.100999999999999
+        },
+        {
+          "native_ms": 5.114446001127362,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.394774,
+          "cpu_ms": 7.442000000000007
+        },
+        {
+          "native_ms": 5.10130700096488,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.185023,
+          "cpu_ms": 7.234999999999999
+        },
+        {
+          "native_ms": 4.982600999996066,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.033979,
+          "cpu_ms": 7.067000000000007
+        },
+        {
+          "native_ms": 5.27416200004518,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.359071,
+          "cpu_ms": 7.420000000000002
+        },
+        {
+          "native_ms": 5.189436998218298,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.273394,
+          "cpu_ms": 7.331999999999994
+        },
+        {
+          "native_ms": 5.021708998829126,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.998187,
+          "cpu_ms": 7.059000000000012
+        },
+        {
+          "native_ms": 5.012203998863697,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.02762,
+          "cpu_ms": 7.087999999999994
+        },
+        {
+          "native_ms": 5.102088000625372,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.131374,
+          "cpu_ms": 7.195000000000022
+        },
+        {
+          "native_ms": 5.3521279990673065,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.430878,
+          "cpu_ms": 7.47999999999999
+        },
+        {
+          "native_ms": 5.0743760000914335,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.084625,
+          "cpu_ms": 7.156000000000006
+        },
+        {
+          "native_ms": 5.0378529988229275,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.030018,
+          "cpu_ms": 7.080999999999989
+        },
+        {
+          "native_ms": 5.038623999804258,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.039689,
+          "cpu_ms": 7.093999999999994
+        },
+        {
+          "native_ms": 5.172261999920011,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.250771,
+          "cpu_ms": 7.271000000000015
+        },
+        {
+          "native_ms": 6.473287999629974,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 9.02558,
+          "cpu_ms": 9.002999999999986
+        },
+        {
+          "native_ms": 5.238719999790192,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 9.26222,
+          "cpu_ms": 9.287000000000006
+        },
+        {
+          "native_ms": 5.089649001136422,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.290605,
+          "cpu_ms": 7.282999999999987
+        },
+        {
+          "native_ms": 5.067656999453902,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.187787,
+          "cpu_ms": 7.180999999999983
+        },
+        {
+          "native_ms": 5.10712500102818,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.292312,
+          "cpu_ms": 7.340000000000003
+        },
+        {
+          "native_ms": 5.093605000525713,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.211677,
+          "cpu_ms": 7.2620000000000005
+        },
+        {
+          "native_ms": 5.2912579998373985,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.35817,
+          "cpu_ms": 7.398000000000025
+        },
+        {
+          "native_ms": 5.173423999920487,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.226554,
+          "cpu_ms": 7.207999999999998
+        }
+      ]
+    },
+    {
+      "binary": "reference-xi-session",
+      "binary_sha256": "2934056daa5d5f1424c79e00a92860e09b4785f7a2ecbad1a69393ec0f8cc5df",
+      "block_width": 2,
+      "blocks": 500,
+      "qubits": 1000,
+      "median_native_ms": 6.494024500250816,
+      "median_cpu_ms": 8.614999999999995,
+      "median_transport_ms": 8.627810499999999,
+      "observable_sum": 243.12581741870173,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 500,
+        "preparations": 500,
+        "max_prepared_block": 2,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 500,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 2000,
+        "T_instructions": 0,
+        "payload_bytes": 120000,
+        "norm": 0.9999999999999829
+      },
+      "usage": {
+        "peak_rss_kib": 14080,
+        "cpu_ms": 288.506,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 120000
+      },
+      "samples": [
+        {
+          "native_ms": 8.929027000442147,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 11.536034,
+          "cpu_ms": 11.354
+        },
+        {
+          "native_ms": 6.48968300037086,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.202201,
+          "cpu_ms": 9.172999999999995
+        },
+        {
+          "native_ms": 6.357777999714017,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.411951,
+          "cpu_ms": 8.397999999999996
+        },
+        {
+          "native_ms": 6.3661399986594915,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.493712,
+          "cpu_ms": 8.509999999999998
+        },
+        {
+          "native_ms": 6.281956000253558,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.389597,
+          "cpu_ms": 8.361999999999995
+        },
+        {
+          "native_ms": 6.44344500079751,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.533891,
+          "cpu_ms": 8.540000000000006
+        },
+        {
+          "native_ms": 6.4374959990382195,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.48557,
+          "cpu_ms": 8.457999999999998
+        },
+        {
+          "native_ms": 6.3661299999803305,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.440663,
+          "cpu_ms": 8.426999999999992
+        },
+        {
+          "native_ms": 6.319141000509262,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.345433,
+          "cpu_ms": 8.34299999999999
+        },
+        {
+          "native_ms": 6.334093000739813,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.388576,
+          "cpu_ms": 8.402000000000001
+        },
+        {
+          "native_ms": 6.7599229998886585,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.967994,
+          "cpu_ms": 8.923000000000002
+        },
+        {
+          "native_ms": 6.348923999816179,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.481484,
+          "cpu_ms": 8.49499999999999
+        },
+        {
+          "native_ms": 6.357237000018358,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.471599,
+          "cpu_ms": 8.483000000000004
+        },
+        {
+          "native_ms": 7.397898999974132,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.700164,
+          "cpu_ms": 9.62899999999999
+        },
+        {
+          "native_ms": 7.235378000885248,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.538269,
+          "cpu_ms": 9.507000000000005
+        },
+        {
+          "native_ms": 6.6878270003944635,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.80938,
+          "cpu_ms": 8.701999999999998
+        },
+        {
+          "native_ms": 6.962853999808431,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.002355,
+          "cpu_ms": 8.978999999999985
+        },
+        {
+          "native_ms": 6.646294999867678,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.76879,
+          "cpu_ms": 8.739000000000004
+        },
+        {
+          "native_ms": 6.755646999925375,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.938746,
+          "cpu_ms": 8.915999999999997
+        },
+        {
+          "native_ms": 6.498366000130773,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.623984,
+          "cpu_ms": 8.585000000000008
+        },
+        {
+          "native_ms": 6.475813001394272,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.636183,
+          "cpu_ms": 8.645999999999987
+        },
+        {
+          "native_ms": 6.472537999972701,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.55323,
+          "cpu_ms": 8.556000000000012
+        },
+        {
+          "native_ms": 6.551765000447631,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.631637,
+          "cpu_ms": 8.635999999999996
+        },
+        {
+          "native_ms": 6.407150000333786,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.489696,
+          "cpu_ms": 8.482
+        },
+        {
+          "native_ms": 7.3287159986793995,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.42788,
+          "cpu_ms": 9.418000000000006
+        },
+        {
+          "native_ms": 6.645693998783827,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.938516,
+          "cpu_ms": 8.896999999999991
+        },
+        {
+          "native_ms": 6.7407149989157915,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.900124,
+          "cpu_ms": 8.89100000000002
+        },
+        {
+          "native_ms": 6.419539999216795,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.617065,
+          "cpu_ms": 8.593999999999994
+        },
+        {
+          "native_ms": 6.5791059993207455,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.586759,
+          "cpu_ms": 8.558999999999969
+        },
+        {
+          "native_ms": 6.582539999857545,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.670303,
+          "cpu_ms": 8.641999999999996
+        }
+      ]
+    },
+    {
+      "binary": "reference-xi-session",
+      "binary_sha256": "2934056daa5d5f1424c79e00a92860e09b4785f7a2ecbad1a69393ec0f8cc5df",
+      "block_width": 4,
+      "blocks": 250,
+      "qubits": 1000,
+      "median_native_ms": 8.763245499692857,
+      "median_cpu_ms": 10.798499999999997,
+      "median_transport_ms": 10.832442,
+      "observable_sum": 112.3853159308054,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 750,
+        "preparations": 250,
+        "max_prepared_block": 4,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 250,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 4000,
+        "T_instructions": 0,
+        "payload_bytes": 152000,
+        "norm": 0.999999999999985
+      },
+      "usage": {
+        "peak_rss_kib": 14168,
+        "cpu_ms": 353.378,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 152000
+      },
+      "samples": [
+        {
+          "native_ms": 8.747857999056578,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.793459,
+          "cpu_ms": 10.760999999999996
+        },
+        {
+          "native_ms": 9.45194099843502,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.616497,
+          "cpu_ms": 11.532000000000004
+        },
+        {
+          "native_ms": 8.627729998901486,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.616536,
+          "cpu_ms": 10.601999999999997
+        },
+        {
+          "native_ms": 8.992841999977827,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.15863,
+          "cpu_ms": 11.097999999999999
+        },
+        {
+          "native_ms": 8.62712899968028,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.620151,
+          "cpu_ms": 10.59299999999999
+        },
+        {
+          "native_ms": 8.782880000770092,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.805476,
+          "cpu_ms": 10.784000000000006
+        },
+        {
+          "native_ms": 9.535244999453425,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.578431,
+          "cpu_ms": 11.543000000000006
+        },
+        {
+          "native_ms": 8.675871999934316,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.835181,
+          "cpu_ms": 10.816000000000003
+        },
+        {
+          "native_ms": 8.683483000844717,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.741641,
+          "cpu_ms": 10.718999999999994
+        },
+        {
+          "native_ms": 8.658615998923779,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.682684,
+          "cpu_ms": 10.653999999999996
+        },
+        {
+          "native_ms": 9.04173400066793,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.108635,
+          "cpu_ms": 11.064999999999998
+        },
+        {
+          "native_ms": 9.284444000571966,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.372336,
+          "cpu_ms": 11.34699999999998
+        },
+        {
+          "native_ms": 8.784572999924421,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.000194,
+          "cpu_ms": 10.966000000000008
+        },
+        {
+          "native_ms": 8.686347000300884,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.745712,
+          "cpu_ms": 10.704999999999984
+        },
+        {
+          "native_ms": 8.778633000329137,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.88898,
+          "cpu_ms": 10.812999999999988
+        },
+        {
+          "native_ms": 9.36672499962151,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.413237,
+          "cpu_ms": 11.384999999999991
+        },
+        {
+          "native_ms": 8.643332999199629,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.748772,
+          "cpu_ms": 10.719999999999999
+        },
+        {
+          "native_ms": 8.737773001194,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.788701,
+          "cpu_ms": 10.747000000000014
+        },
+        {
+          "native_ms": 8.635041000321507,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.724596,
+          "cpu_ms": 10.664000000000016
+        },
+        {
+          "native_ms": 9.32756800018251,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.362171,
+          "cpu_ms": 11.337000000000018
+        },
+        {
+          "native_ms": 8.853033998981118,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.962539,
+          "cpu_ms": 10.938999999999993
+        },
+        {
+          "native_ms": 8.69272599928081,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.718797,
+          "cpu_ms": 10.704999999999984
+        },
+        {
+          "native_ms": 8.695710999891162,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.728021,
+          "cpu_ms": 10.675999999999988
+        },
+        {
+          "native_ms": 8.721540000289679,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.829703,
+          "cpu_ms": 10.776999999999987
+        },
+        {
+          "native_ms": 9.571068000048399,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.634134,
+          "cpu_ms": 11.622000000000014
+        },
+        {
+          "native_ms": 8.867665998637676,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.970581,
+          "cpu_ms": 10.90300000000002
+        },
+        {
+          "native_ms": 9.224564999341965,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.236955,
+          "cpu_ms": 11.217999999999961
+        },
+        {
+          "native_ms": 8.692415999248624,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.660962,
+          "cpu_ms": 10.622000000000014
+        },
+        {
+          "native_ms": 9.238053999841213,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 11.234201,
+          "cpu_ms": 11.221000000000004
+        },
+        {
+          "native_ms": 8.704003000631928,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 10.74065,
+          "cpu_ms": 10.700999999999965
+        }
+      ]
+    },
+    {
+      "binary": "reference-xi-session",
+      "binary_sha256": "2934056daa5d5f1424c79e00a92860e09b4785f7a2ecbad1a69393ec0f8cc5df",
+      "block_width": 5,
+      "blocks": 200,
+      "qubits": 1000,
+      "median_native_ms": 15.426294000819325,
+      "median_cpu_ms": 18.190999999999995,
+      "median_transport_ms": 18.228825,
+      "observable_sum": 67.61460717351146,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 800,
+        "preparations": 200,
+        "max_prepared_block": 5,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 200,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 6400,
+        "T_instructions": 0,
+        "payload_bytes": 195200,
+        "norm": 0.9999999999999692
+      },
+      "usage": {
+        "peak_rss_kib": 14296,
+        "cpu_ms": 585.236,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 195200
+      },
+      "samples": [
+        {
+          "native_ms": 15.743791999295354,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 18.01102,
+          "cpu_ms": 17.971999999999994
+        },
+        {
+          "native_ms": 12.454839000478387,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.758151,
+          "cpu_ms": 14.710999999999999
+        },
+        {
+          "native_ms": 18.208703000098467,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 20.770919,
+          "cpu_ms": 20.73100000000001
+        },
+        {
+          "native_ms": 13.309384999796748,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 16.361496,
+          "cpu_ms": 16.331000000000003
+        },
+        {
+          "native_ms": 13.35865799896419,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 15.872101,
+          "cpu_ms": 15.825000000000003
+        },
+        {
+          "native_ms": 12.208624999970198,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.467011,
+          "cpu_ms": 14.401999999999987
+        },
+        {
+          "native_ms": 13.274383001029491,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 15.557805,
+          "cpu_ms": 15.518
+        },
+        {
+          "native_ms": 12.152250999584794,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.598135,
+          "cpu_ms": 14.540999999999997
+        },
+        {
+          "native_ms": 12.26702200062573,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.650483,
+          "cpu_ms": 14.587000000000018
+        },
+        {
+          "native_ms": 11.380564000457525,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.050082,
+          "cpu_ms": 14.019000000000005
+        },
+        {
+          "native_ms": 15.168987000361085,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 18.44663,
+          "cpu_ms": 18.409999999999997
+        },
+        {
+          "native_ms": 11.98675100132823,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.648808,
+          "cpu_ms": 14.61499999999998
+        },
+        {
+          "native_ms": 11.986111000180244,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 14.219595,
+          "cpu_ms": 14.09699999999998
+        },
+        {
+          "native_ms": 17.9344549998641,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 20.936234,
+          "cpu_ms": 19.902000000000015
+        },
+        {
+          "native_ms": 18.768803998827934,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 25.585217,
+          "cpu_ms": 25.017999999999972
+        },
+        {
+          "native_ms": 18.28217399865389,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.899059,
+          "cpu_ms": 21.839999999999975
+        },
+        {
+          "native_ms": 18.039063999429345,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.45664,
+          "cpu_ms": 21.460999999999956
+        },
+        {
+          "native_ms": 19.213380999863148,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 22.696414,
+          "cpu_ms": 22.754999999999995
+        },
+        {
+          "native_ms": 17.717027999460697,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.127874,
+          "cpu_ms": 21.121000000000038
+        },
+        {
+          "native_ms": 17.65657899901271,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.090418,
+          "cpu_ms": 21.093000000000018
+        },
+        {
+          "native_ms": 16.02809999883175,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 19.326018,
+          "cpu_ms": 19.339
+        },
+        {
+          "native_ms": 18.158730998635292,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.445503,
+          "cpu_ms": 21.426000000000045
+        },
+        {
+          "native_ms": 18.15026899985969,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.381128,
+          "cpu_ms": 21.352999999999952
+        },
+        {
+          "native_ms": 15.683601001277566,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 18.518675,
+          "cpu_ms": 18.502999999999986
+        },
+        {
+          "native_ms": 17.14792599901557,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 20.484672,
+          "cpu_ms": 20.442000000000007
+        },
+        {
+          "native_ms": 18.372718000784516,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 21.74725,
+          "cpu_ms": 21.740999999999985
+        },
+        {
+          "native_ms": 12.233150999993086,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 15.218332,
+          "cpu_ms": 15.202999999999975
+        },
+        {
+          "native_ms": 10.804152000695467,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 12.824471,
+          "cpu_ms": 12.788999999999987
+        },
+        {
+          "native_ms": 11.631715999916196,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 13.644524,
+          "cpu_ms": 13.621000000000095
+        },
+        {
+          "native_ms": 11.042744999751449,
+          "observable_sum": 67.61460717351146,
+          "transport_ms": 13.10092,
+          "cpu_ms": 13.06499999999994
+        }
+      ]
+    },
+    {
+      "binary": "reference-xi-session",
+      "binary_sha256": "2934056daa5d5f1424c79e00a92860e09b4785f7a2ecbad1a69393ec0f8cc5df",
+      "block_width": 8,
+      "blocks": 125,
+      "qubits": 1000,
+      "median_native_ms": 42.04829049948603,
+      "median_cpu_ms": 44.31699999999998,
+      "median_transport_ms": 44.382363,
+      "observable_sum": -17.791749858408018,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 875,
+        "preparations": 125,
+        "max_prepared_block": 8,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 125,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 32000,
+        "T_instructions": 0,
+        "payload_bytes": 600000,
+        "norm": 0.999999999999983
+      },
+      "usage": {
+        "peak_rss_kib": 14296,
+        "cpu_ms": 1517.592,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 600000
+      },
+      "samples": [
+        {
+          "native_ms": 40.03385099954903,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 44.162909,
+          "cpu_ms": 43.41999999999999
+        },
+        {
+          "native_ms": 42.03972799889743,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 44.589239,
+          "cpu_ms": 44.42500000000001
+        },
+        {
+          "native_ms": 38.662923000752926,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 40.862156,
+          "cpu_ms": 40.83000000000001
+        },
+        {
+          "native_ms": 38.178845999762416,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 40.708047,
+          "cpu_ms": 40.69399999999999
+        },
+        {
+          "native_ms": 41.16861999966204,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 43.72438,
+          "cpu_ms": 43.67399999999998
+        },
+        {
+          "native_ms": 39.7660149987787,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 42.276938,
+          "cpu_ms": 42.242999999999995
+        },
+        {
+          "native_ms": 40.03224699944258,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 42.530905,
+          "cpu_ms": 42.502999999999986
+        },
+        {
+          "native_ms": 37.68795100040734,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 39.882277,
+          "cpu_ms": 39.84800000000001
+        },
+        {
+          "native_ms": 44.00605599954724,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 46.225699,
+          "cpu_ms": 46.18700000000001
+        },
+        {
+          "native_ms": 38.81677999906242,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 41.239294,
+          "cpu_ms": 41.11499999999995
+        },
+        {
+          "native_ms": 37.97596700116992,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 40.376718,
+          "cpu_ms": 40.29000000000008
+        },
+        {
+          "native_ms": 60.05140200071037,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 63.718871,
+          "cpu_ms": 63.692999999999984
+        },
+        {
+          "native_ms": 42.303678998723626,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 44.523953,
+          "cpu_ms": 44.476
+        },
+        {
+          "native_ms": 40.24832700006664,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 42.533037,
+          "cpu_ms": 42.49300000000005
+        },
+        {
+          "native_ms": 42.056853000074625,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 44.240773,
+          "cpu_ms": 44.208999999999946
+        },
+        {
+          "native_ms": 43.33367200009525,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 46.166632,
+          "cpu_ms": 46.28800000000001
+        },
+        {
+          "native_ms": 39.512819999828935,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 42.160637,
+          "cpu_ms": 42.12099999999998
+        },
+        {
+          "native_ms": 56.50855600088835,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 59.014066,
+          "cpu_ms": 58.53200000000004
+        },
+        {
+          "native_ms": 59.66328699886799,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 63.425593,
+          "cpu_ms": 63.47300000000007
+        },
+        {
+          "native_ms": 63.72811000049114,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 66.88526,
+          "cpu_ms": 66.88200000000006
+        },
+        {
+          "native_ms": 69.0416599996388,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 72.86755,
+          "cpu_ms": 72.83600000000001
+        },
+        {
+          "native_ms": 52.626091999933124,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 56.205006,
+          "cpu_ms": 56.194999999999936
+        },
+        {
+          "native_ms": 43.83091700077057,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 46.254682,
+          "cpu_ms": 46.215999999999894
+        },
+        {
+          "native_ms": 44.40544700063765,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 46.982319,
+          "cpu_ms": 46.92699999999991
+        },
+        {
+          "native_ms": 40.95718700066209,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 43.162549,
+          "cpu_ms": 43.13800000000015
+        },
+        {
+          "native_ms": 43.05233599990606,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 45.628526,
+          "cpu_ms": 45.58199999999988
+        },
+        {
+          "native_ms": 41.095481000840664,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 43.767153,
+          "cpu_ms": 43.743999999999915
+        },
+        {
+          "native_ms": 43.10934999957681,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 45.532895,
+          "cpu_ms": 45.455000000000155
+        },
+        {
+          "native_ms": 39.23023100011051,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 41.429034,
+          "cpu_ms": 41.41599999999994
+        },
+        {
+          "native_ms": 43.253522999584675,
+          "observable_sum": -17.791749858408018,
+          "transport_ms": 45.56663,
+          "cpu_ms": 45.54299999999989
+        }
+      ]
+    },
+    {
+      "binary": "xi_session-long",
+      "binary_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+      "block_width": 1,
+      "blocks": 1000,
+      "qubits": 1000,
+      "median_native_ms": 4.20494999922812,
+      "median_cpu_ms": 6.383000000000003,
+      "median_transport_ms": 6.3811395,
+      "observable_sum": 329.3888690135008,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 0,
+        "preparations": 1000,
+        "max_prepared_block": 1,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 1000,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 2000,
+        "T_instructions": 0,
+        "payload_bytes": 120000,
+        "norm": 0.9999999999999658
+      },
+      "usage": {
+        "peak_rss_kib": 14424,
+        "cpu_ms": 207.814,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 120000
+      },
+      "samples": [
+        {
+          "native_ms": 3.951164999976754,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.424313,
+          "cpu_ms": 6.439999999999998
+        },
+        {
+          "native_ms": 4.338997999206185,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.427443,
+          "cpu_ms": 6.492000000000001
+        },
+        {
+          "native_ms": 4.287101000547409,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.421048,
+          "cpu_ms": 6.417000000000002
+        },
+        {
+          "native_ms": 3.7675829995423555,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 5.783861,
+          "cpu_ms": 5.805
+        },
+        {
+          "native_ms": 3.9281810000538826,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 5.972345,
+          "cpu_ms": 5.988999999999997
+        },
+        {
+          "native_ms": 4.328813001513481,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.652525,
+          "cpu_ms": 6.592999999999996
+        },
+        {
+          "native_ms": 4.448431000113487,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.965549,
+          "cpu_ms": 6.938000000000002
+        },
+        {
+          "native_ms": 4.78588000126183,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 7.107754,
+          "cpu_ms": 7.177
+        },
+        {
+          "native_ms": 4.209596998989582,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.982679,
+          "cpu_ms": 6.9410000000000025
+        },
+        {
+          "native_ms": 4.2740020006895065,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.39494,
+          "cpu_ms": 6.378
+        },
+        {
+          "native_ms": 4.219501998275518,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.522013,
+          "cpu_ms": 6.557000000000002
+        },
+        {
+          "native_ms": 4.089859999716282,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.355111,
+          "cpu_ms": 6.341999999999999
+        },
+        {
+          "native_ms": 4.031114000827074,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.118231,
+          "cpu_ms": 6.1429999999999865
+        },
+        {
+          "native_ms": 4.005175000056624,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.110419,
+          "cpu_ms": 6.128
+        },
+        {
+          "native_ms": 4.367201000452042,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.367339,
+          "cpu_ms": 6.388000000000005
+        },
+        {
+          "native_ms": 4.010832998901606,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.192606,
+          "cpu_ms": 6.218999999999994
+        },
+        {
+          "native_ms": 4.30625999905169,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.432705,
+          "cpu_ms": 6.438999999999993
+        },
+        {
+          "native_ms": 4.002411000430584,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.144049,
+          "cpu_ms": 6.180000000000007
+        },
+        {
+          "native_ms": 4.408872000873089,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.555667,
+          "cpu_ms": 6.599000000000018
+        },
+        {
+          "native_ms": 3.7313289996236563,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 5.715335,
+          "cpu_ms": 5.735000000000014
+        },
+        {
+          "native_ms": 4.327641000971198,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.274331,
+          "cpu_ms": 6.302999999999997
+        },
+        {
+          "native_ms": 4.694494999945164,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.825352,
+          "cpu_ms": 6.879000000000019
+        },
+        {
+          "native_ms": 4.33415099978447,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.923011,
+          "cpu_ms": 6.896999999999991
+        },
+        {
+          "native_ms": 4.200302999466658,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.289453,
+          "cpu_ms": 6.320999999999998
+        },
+        {
+          "native_ms": 4.049239998683333,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.448894,
+          "cpu_ms": 6.475999999999999
+        },
+        {
+          "native_ms": 4.018454000353813,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.204077,
+          "cpu_ms": 6.213999999999999
+        },
+        {
+          "native_ms": 3.873710999265313,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.100084,
+          "cpu_ms": 6.131
+        },
+        {
+          "native_ms": 4.265210000798106,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.46256,
+          "cpu_ms": 6.431000000000012
+        },
+        {
+          "native_ms": 3.922793000936508,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 6.08467,
+          "cpu_ms": 6.088999999999999
+        },
+        {
+          "native_ms": 3.749135999009013,
+          "observable_sum": 329.3888690135008,
+          "transport_ms": 5.872042,
+          "cpu_ms": 5.8279999999999745
+        }
+      ]
+    },
+    {
+      "binary": "xi_session-long",
+      "binary_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+      "block_width": 2,
+      "blocks": 500,
+      "qubits": 1000,
+      "median_native_ms": 4.79668049979955,
+      "median_cpu_ms": 7.056500000000014,
+      "median_transport_ms": 7.0682005,
+      "observable_sum": 243.12581741870173,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 500,
+        "preparations": 500,
+        "max_prepared_block": 2,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 500,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 2000,
+        "T_instructions": 0,
+        "payload_bytes": 124000,
+        "norm": 0.9999999999999829
+      },
+      "usage": {
+        "peak_rss_kib": 14424,
+        "cpu_ms": 231.286,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 124000
+      },
+      "samples": [
+        {
+          "native_ms": 4.297416999936104,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.309754,
+          "cpu_ms": 6.276
+        },
+        {
+          "native_ms": 4.2599409986287355,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.256781,
+          "cpu_ms": 6.254999999999999
+        },
+        {
+          "native_ms": 6.125943001359701,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.248341,
+          "cpu_ms": 8.245999999999999
+        },
+        {
+          "native_ms": 5.221243999898434,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.765407,
+          "cpu_ms": 7.869999999999997
+        },
+        {
+          "native_ms": 4.890453999862075,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.161454,
+          "cpu_ms": 7.163000000000004
+        },
+        {
+          "native_ms": 5.6111809983849525,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 9.987669,
+          "cpu_ms": 8.393
+        },
+        {
+          "native_ms": 4.930443998426199,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.090233,
+          "cpu_ms": 7.082999999999998
+        },
+        {
+          "native_ms": 4.7804819997400045,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.258318,
+          "cpu_ms": 7.277999999999992
+        },
+        {
+          "native_ms": 4.408040000125766,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.69937,
+          "cpu_ms": 6.665000000000006
+        },
+        {
+          "native_ms": 4.776064999401569,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.935348,
+          "cpu_ms": 6.932000000000002
+        },
+        {
+          "native_ms": 4.567096000537276,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.705659,
+          "cpu_ms": 6.715999999999994
+        },
+        {
+          "native_ms": 4.569140000268817,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.690738,
+          "cpu_ms": 6.668000000000006
+        },
+        {
+          "native_ms": 4.8074009995907545,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.949971,
+          "cpu_ms": 6.9410000000000025
+        },
+        {
+          "native_ms": 4.29997100122273,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.616306,
+          "cpu_ms": 6.560999999999993
+        },
+        {
+          "native_ms": 4.332499001175165,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.342052,
+          "cpu_ms": 6.3359999999999985
+        },
+        {
+          "native_ms": 4.730157000944018,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.031061,
+          "cpu_ms": 7.032000000000011
+        },
+        {
+          "native_ms": 4.294792000204325,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.342548,
+          "cpu_ms": 6.319000000000017
+        },
+        {
+          "native_ms": 4.816194001585245,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.09094,
+          "cpu_ms": 7.131
+        },
+        {
+          "native_ms": 4.914690000936389,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.450511,
+          "cpu_ms": 7.502999999999986
+        },
+        {
+          "native_ms": 4.9637430012226105,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.786368,
+          "cpu_ms": 7.740000000000009
+        },
+        {
+          "native_ms": 5.044340999796987,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.374959,
+          "cpu_ms": 7.303999999999974
+        },
+        {
+          "native_ms": 4.67408400028944,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.50357,
+          "cpu_ms": 7.453000000000003
+        },
+        {
+          "native_ms": 4.883394001051784,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.048847,
+          "cpu_ms": 7.02000000000001
+        },
+        {
+          "native_ms": 5.680301999673247,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 8.160692,
+          "cpu_ms": 8.044000000000011
+        },
+        {
+          "native_ms": 5.407849000766873,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.573934,
+          "cpu_ms": 7.560000000000002
+        },
+        {
+          "native_ms": 5.279129000380635,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.59814,
+          "cpu_ms": 7.568999999999988
+        },
+        {
+          "native_ms": 4.516770999878645,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.737577,
+          "cpu_ms": 6.736000000000018
+        },
+        {
+          "native_ms": 4.490241998806596,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 6.754421,
+          "cpu_ms": 6.693000000000012
+        },
+        {
+          "native_ms": 4.785960000008345,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.005904,
+          "cpu_ms": 6.948999999999984
+        },
+        {
+          "native_ms": 5.057582000270486,
+          "observable_sum": 243.12581741870173,
+          "transport_ms": 7.087554,
+          "cpu_ms": 7.081000000000017
+        }
+      ]
+    },
+    {
+      "binary": "xi_session-long",
+      "binary_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+      "block_width": 4,
+      "blocks": 250,
+      "qubits": 1000,
+      "median_native_ms": 5.135040999390185,
+      "median_cpu_ms": 7.296000000000001,
+      "median_transport_ms": 7.3451355,
+      "observable_sum": 112.3853159308054,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 750,
+        "preparations": 250,
+        "max_prepared_block": 4,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 250,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 4000,
+        "T_instructions": 0,
+        "payload_bytes": 164000,
+        "norm": 0.9999999999999976
+      },
+      "usage": {
+        "peak_rss_kib": 14424,
+        "cpu_ms": 237.666,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 164000
+      },
+      "samples": [
+        {
+          "native_ms": 5.16533999890089,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.344354,
+          "cpu_ms": 7.297000000000001
+        },
+        {
+          "native_ms": 5.492253998294473,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 8.059653,
+          "cpu_ms": 8.036000000000001
+        },
+        {
+          "native_ms": 5.106634000316262,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.363643,
+          "cpu_ms": 7.344000000000001
+        },
+        {
+          "native_ms": 5.576347999274731,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.583158,
+          "cpu_ms": 7.582999999999998
+        },
+        {
+          "native_ms": 5.1634479984641075,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.345917,
+          "cpu_ms": 7.295000000000002
+        },
+        {
+          "native_ms": 5.353560000658035,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.285447,
+          "cpu_ms": 7.2620000000000005
+        },
+        {
+          "native_ms": 5.185810999944806,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.182786,
+          "cpu_ms": 7.160000000000004
+        },
+        {
+          "native_ms": 5.086454000324011,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.027806,
+          "cpu_ms": 6.942000000000007
+        },
+        {
+          "native_ms": 5.699541999027133,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.749103,
+          "cpu_ms": 7.713999999999999
+        },
+        {
+          "native_ms": 5.471434000879526,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.534105,
+          "cpu_ms": 7.5049999999999955
+        },
+        {
+          "native_ms": 5.052752999588847,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.153882,
+          "cpu_ms": 7.131
+        },
+        {
+          "native_ms": 5.453286999836564,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.35848,
+          "cpu_ms": 7.346000000000004
+        },
+        {
+          "native_ms": 5.029149999842048,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.474967,
+          "cpu_ms": 7.390000000000001
+        },
+        {
+          "native_ms": 5.009060001000762,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.135259,
+          "cpu_ms": 7.091999999999999
+        },
+        {
+          "native_ms": 4.9301330000162125,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.078862,
+          "cpu_ms": 7.051000000000002
+        },
+        {
+          "native_ms": 5.05638900026679,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.056128,
+          "cpu_ms": 7.029000000000025
+        },
+        {
+          "native_ms": 5.950592000037432,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 8.238412,
+          "cpu_ms": 8.204000000000008
+        },
+        {
+          "native_ms": 5.393837999552488,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.627453,
+          "cpu_ms": 7.643000000000001
+        },
+        {
+          "native_ms": 4.860600000247359,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 6.972845,
+          "cpu_ms": 6.899999999999977
+        },
+        {
+          "native_ms": 5.402491999790072,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.525873,
+          "cpu_ms": 7.509999999999991
+        },
+        {
+          "native_ms": 4.834560999646783,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 6.944512,
+          "cpu_ms": 6.865000000000009
+        },
+        {
+          "native_ms": 5.389743000268936,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.850713,
+          "cpu_ms": 7.6440000000000055
+        },
+        {
+          "native_ms": 5.0208769999444485,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.396516,
+          "cpu_ms": 7.340000000000003
+        },
+        {
+          "native_ms": 5.032464001327753,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.042638,
+          "cpu_ms": 7.033999999999992
+        },
+        {
+          "native_ms": 4.861761000007391,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 6.877548,
+          "cpu_ms": 6.838999999999999
+        },
+        {
+          "native_ms": 5.022578999400139,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.449981,
+          "cpu_ms": 7.411000000000001
+        },
+        {
+          "native_ms": 5.177157999947667,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.187642,
+          "cpu_ms": 7.164000000000016
+        },
+        {
+          "native_ms": 5.282754000276327,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.367708,
+          "cpu_ms": 7.335999999999984
+        },
+        {
+          "native_ms": 5.007198000326753,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.094125,
+          "cpu_ms": 7.064999999999998
+        },
+        {
+          "native_ms": 5.056350000202656,
+          "observable_sum": 112.3853159308054,
+          "transport_ms": 7.074796,
+          "cpu_ms": 7.056999999999988
+        }
+      ]
+    },
+    {
+      "binary": "xi_session-long",
+      "binary_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+      "block_width": 5,
+      "blocks": 200,
+      "qubits": 1000,
+      "median_native_ms": 5.550090499222279,
+      "median_cpu_ms": 7.673500000000004,
+      "median_transport_ms": 7.7155275,
+      "observable_sum": 67.61460717351144,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 800,
+        "preparations": 200,
+        "max_prepared_block": 5,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 200,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 6400,
+        "T_instructions": 0,
+        "payload_bytes": 204800,
+        "norm": 0.9999999999999742
+      },
+      "usage": {
+        "peak_rss_kib": 14552,
+        "cpu_ms": 248.723,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 204800
+      },
+      "samples": [
+        {
+          "native_ms": 5.556719999760389,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.665509,
+          "cpu_ms": 7.654
+        },
+        {
+          "native_ms": 5.480146000161767,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.592341,
+          "cpu_ms": 7.579000000000001
+        },
+        {
+          "native_ms": 5.798607001081109,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 8.263104,
+          "cpu_ms": 8.238999999999997
+        },
+        {
+          "native_ms": 5.543460998684168,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.809562,
+          "cpu_ms": 7.726999999999997
+        },
+        {
+          "native_ms": 5.36345399916172,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.726077,
+          "cpu_ms": 7.684999999999995
+        },
+        {
+          "native_ms": 5.437603998929262,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.811275,
+          "cpu_ms": 7.791000000000004
+        },
+        {
+          "native_ms": 5.647934999316931,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.724887,
+          "cpu_ms": 7.709000000000003
+        },
+        {
+          "native_ms": 5.759759999811649,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.898303,
+          "cpu_ms": 7.843999999999994
+        },
+        {
+          "native_ms": 5.272148998454213,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.364704,
+          "cpu_ms": 7.338000000000008
+        },
+        {
+          "native_ms": 5.6509970016777515,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.893815,
+          "cpu_ms": 7.8729999999999905
+        },
+        {
+          "native_ms": 5.727546999230981,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.811905,
+          "cpu_ms": 7.7679999999999865
+        },
+        {
+          "native_ms": 5.659806998446584,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.802632,
+          "cpu_ms": 7.784999999999997
+        },
+        {
+          "native_ms": 5.326455000787973,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.399867,
+          "cpu_ms": 7.391999999999996
+        },
+        {
+          "native_ms": 5.202821999788284,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.21927,
+          "cpu_ms": 7.231999999999999
+        },
+        {
+          "native_ms": 5.480312999337912,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.670176,
+          "cpu_ms": 7.640999999999991
+        },
+        {
+          "native_ms": 5.456737000495195,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.691718,
+          "cpu_ms": 7.6650000000000205
+        },
+        {
+          "native_ms": 5.559259001165628,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.721321,
+          "cpu_ms": 7.681999999999988
+        },
+        {
+          "native_ms": 5.325874000787735,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.24635,
+          "cpu_ms": 7.23599999999999
+        },
+        {
+          "native_ms": 6.059477999806404,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 8.155653,
+          "cpu_ms": 8.120000000000005
+        },
+        {
+          "native_ms": 6.180817000567913,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 8.277973,
+          "cpu_ms": 8.259000000000015
+        },
+        {
+          "native_ms": 6.438466999679804,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 8.58026,
+          "cpu_ms": 8.411000000000001
+        },
+        {
+          "native_ms": 5.693216999992728,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.709734,
+          "cpu_ms": 7.661000000000001
+        },
+        {
+          "native_ms": 5.934333000332117,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.978651,
+          "cpu_ms": 7.957999999999998
+        },
+        {
+          "native_ms": 5.586660999804735,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.601416,
+          "cpu_ms": 7.5870000000000175
+        },
+        {
+          "native_ms": 5.395987998694181,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.539243,
+          "cpu_ms": 7.499000000000024
+        },
+        {
+          "native_ms": 5.221170000731945,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.192101,
+          "cpu_ms": 7.182999999999993
+        },
+        {
+          "native_ms": 5.24070000089705,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.235757,
+          "cpu_ms": 7.199999999999989
+        },
+        {
+          "native_ms": 5.697844000533223,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.734402,
+          "cpu_ms": 7.725999999999999
+        },
+        {
+          "native_ms": 5.246377000585198,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.294922,
+          "cpu_ms": 7.281000000000006
+        },
+        {
+          "native_ms": 5.4785110000520945,
+          "observable_sum": 67.61460717351144,
+          "transport_ms": 7.520266,
+          "cpu_ms": 7.496999999999986
+        }
+      ]
+    },
+    {
+      "binary": "xi_session-long",
+      "binary_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+      "block_width": 8,
+      "blocks": 125,
+      "qubits": 1000,
+      "median_native_ms": 8.905215500853956,
+      "median_cpu_ms": 11.084500000000006,
+      "median_transport_ms": 11.0905925,
+      "observable_sum": -17.79174985840801,
+      "trace": {
+        "type": "quantum_trace",
+        "active_qubits": 1000,
+        "rotations": 2000,
+        "observations": 1000,
+        "gates": 875,
+        "preparations": 125,
+        "max_prepared_block": 8,
+        "distinct_rotated_qubits": 1000,
+        "distinct_observed_qubits": 1000
+      },
+      "quantum_stats": {
+        "type": "quantum_stats",
+        "clifford_components": 0,
+        "adaptive_components": 125,
+        "reduced_components": 0,
+        "coefficients": 0,
+        "factor_amplitudes": 32000,
+        "T_instructions": 0,
+        "payload_bytes": 618000,
+        "norm": 0.999999999999986
+      },
+      "usage": {
+        "peak_rss_kib": 14552,
+        "cpu_ms": 359.425,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 618000
+      },
+      "samples": [
+        {
+          "native_ms": 8.408997999504209,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.482249,
+          "cpu_ms": 10.501000000000001
+        },
+        {
+          "native_ms": 8.98467900045216,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.21294,
+          "cpu_ms": 11.195999999999998
+        },
+        {
+          "native_ms": 8.463027000427246,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.799117,
+          "cpu_ms": 10.782999999999994
+        },
+        {
+          "native_ms": 8.895677000284195,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.951823,
+          "cpu_ms": 10.946999999999996
+        },
+        {
+          "native_ms": 8.914754001423717,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.056136,
+          "cpu_ms": 11.015
+        },
+        {
+          "native_ms": 8.680638998746872,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.006915,
+          "cpu_ms": 11.037000000000006
+        },
+        {
+          "native_ms": 8.968714999035,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.066411,
+          "cpu_ms": 11.048000000000002
+        },
+        {
+          "native_ms": 9.023686001077294,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.348119,
+          "cpu_ms": 11.319000000000003
+        },
+        {
+          "native_ms": 8.636042999103665,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.717637,
+          "cpu_ms": 10.730000000000004
+        },
+        {
+          "native_ms": 8.998398000374436,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.164598,
+          "cpu_ms": 11.144999999999996
+        },
+        {
+          "native_ms": 9.072477001696825,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 12.011968,
+          "cpu_ms": 11.987000000000023
+        },
+        {
+          "native_ms": 8.218116000294685,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.358067,
+          "cpu_ms": 10.335000000000008
+        },
+        {
+          "native_ms": 8.42773599922657,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.457833,
+          "cpu_ms": 10.423000000000002
+        },
+        {
+          "native_ms": 8.746507000178099,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.197456,
+          "cpu_ms": 11.163999999999987
+        },
+        {
+          "native_ms": 8.601671999320388,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.876482,
+          "cpu_ms": 10.890000000000015
+        },
+        {
+          "native_ms": 9.042203998193145,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.374958,
+          "cpu_ms": 11.369
+        },
+        {
+          "native_ms": 9.087279001250863,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.364941,
+          "cpu_ms": 11.389999999999986
+        },
+        {
+          "native_ms": 8.41716100089252,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.520337,
+          "cpu_ms": 10.495999999999981
+        },
+        {
+          "native_ms": 8.365542998537421,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.478815,
+          "cpu_ms": 10.518
+        },
+        {
+          "native_ms": 8.944008998572826,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.114774,
+          "cpu_ms": 11.12100000000001
+        },
+        {
+          "native_ms": 11.300907999277115,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 13.980415,
+          "cpu_ms": 13.946999999999974
+        },
+        {
+          "native_ms": 9.617603000253439,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.904361,
+          "cpu_ms": 11.896999999999991
+        },
+        {
+          "native_ms": 8.731813998892903,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.160691,
+          "cpu_ms": 11.188999999999965
+        },
+        {
+          "native_ms": 9.134880999103189,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.325786,
+          "cpu_ms": 11.302000000000021
+        },
+        {
+          "native_ms": 8.981142001226544,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.121913,
+          "cpu_ms": 11.12299999999999
+        },
+        {
+          "native_ms": 9.064325999468565,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.494345,
+          "cpu_ms": 11.470000000000027
+        },
+        {
+          "native_ms": 8.619418000802398,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.932573,
+          "cpu_ms": 10.942999999999984
+        },
+        {
+          "native_ms": 8.55158899910748,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.663217,
+          "cpu_ms": 10.66500000000002
+        },
+        {
+          "native_ms": 9.811369000002742,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 11.841587,
+          "cpu_ms": 11.821000000000026
+        },
+        {
+          "native_ms": 8.270774001255631,
+          "observable_sum": -17.79174985840801,
+          "transport_ms": 10.236067,
+          "cpu_ms": 10.231999999999971
+        }
+      ]
+    }
+  ]
+}

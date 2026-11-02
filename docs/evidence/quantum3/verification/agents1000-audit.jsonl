@@ -1,0 +1,7 @@
+{"type":"expectation","value":1}
+{"type":"expectation","value":1}
+{"type":"probz","address":"100","probability_one":0.5}
+{"type":"probz","address":"1200","probability_one":0.5}
+{"type":"stats","background":"zero","domain":"nonnegative_decimal_addresses","active_qubits":2000,"components":2,"largest_component":1000,"tableau_bytes":514000,"address_bytes":7100,"ether_rules":0,"revision":2000,"limits":{"max_active_qubits":4096,"max_component_qubits":1024,"max_state_bytes":67108864,"max_address_digits":4096,"max_query_terms":4096,"max_ether_rules":4096,"max_ether_query_sites":4096}}
+{"type":"register","register":"r0","value":800}
+{"type":"register","register":"r0","value":800}

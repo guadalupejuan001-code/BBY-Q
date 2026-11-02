@@ -1,0 +1,95 @@
+{
+  "no_parameter_updates": true,
+  "vqc_trained_task": "linear",
+  "vqc_checkpoint_sha256": "edd2fef030dc97afa638f88a7a6269acfac26ac48c7b0982155ecdf78373167d",
+  "vqc_transfer": {
+    "linear": {
+      "accuracy": 0.9453125,
+      "correct": 121,
+      "brier": 0.04862187734733074,
+      "cross_entropy": 0.1662995871851211,
+      "examples": 128,
+      "wilson95": [
+        0.8914150997002529,
+        0.9732597986186536
+      ],
+      "elapsed_ms": 7173.570480000001,
+      "peak_rss_kib": 16320,
+      "cpu_ms": 7153.756
+    },
+    "parity": {
+      "accuracy": 0.4296875,
+      "correct": 55,
+      "brier": 0.48566213725826946,
+      "cross_entropy": 2.326208374948762,
+      "examples": 128,
+      "wilson95": [
+        0.3472117133263662,
+        0.516260671149596
+      ],
+      "elapsed_ms": 7225.406842000002,
+      "peak_rss_kib": 16228,
+      "cpu_ms": 7207.583
+    },
+    "radial": {
+      "accuracy": 0.4609375,
+      "correct": 59,
+      "brier": 0.48794962412406434,
+      "cross_entropy": 3.0359140034451517,
+      "examples": 128,
+      "wilson95": [
+        0.3769811559809195,
+        0.5471701687279483
+      ],
+      "elapsed_ms": 7311.030398999998,
+      "peak_rss_kib": 16328,
+      "cpu_ms": 7302.946
+    },
+    "dense": {
+      "accuracy": 0.53125,
+      "correct": 68,
+      "brier": 0.2635843774312651,
+      "cross_entropy": 0.7225009149565356,
+      "examples": 128,
+      "wilson95": [
+        0.44515370795994524,
+        0.6155252322729605
+      ],
+      "elapsed_ms": 7605.856664000002,
+      "peak_rss_kib": 16212,
+      "cpu_ms": 7573.063
+    }
+  },
+  "qrl_trained_task": "line_easy",
+  "qrl_checkpoint_sha256": "d0fca7f13f3516be2c7fea963b18ba342074cebcd308456297aa8204c8bf8e74",
+  "qrl_transfer": {
+    "line_easy": {
+      "success_rate": 0.9375,
+      "successes": 60,
+      "mean_reward": 0.875625,
+      "mean_decisions": 3.09375,
+      "examples": 64,
+      "wilson95": [
+        0.8500251490779133,
+        0.9754287986033819
+      ],
+      "elapsed_ms": 8717.177685000002,
+      "peak_rss_kib": 17416,
+      "cpu_ms": 8712.882
+    },
+    "line_slip": {
+      "success_rate": 0.890625,
+      "successes": 57,
+      "mean_reward": 0.8049999999999999,
+      "mean_decisions": 4.28125,
+      "examples": 64,
+      "wilson95": [
+        0.7910135867310387,
+        0.945998866555832
+      ],
+      "elapsed_ms": 12237.667182000001,
+      "peak_rss_kib": 17424,
+      "cpu_ms": 12230.702
+    }
+  }
+}

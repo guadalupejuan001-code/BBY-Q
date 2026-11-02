@@ -1,0 +1,14 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "cpu_quota": "800000 100000",
+  "ether_pin": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "reverse_code_pin": "59ac79386bc427620a10227489eb7f7be12c55c7",
+  "reverse_merged": "b3c943733473ea663e5d67194c6f0a7dbb942745",
+  "bby_code_pin": "5016be4e68806300fe91f956b1d66673cab22448",
+  "bby_merged": "5f741e3b7bd3a85d24d7fe43f08d42c5b95aaa8e",
+  "matplotlib": "3.10.8",
+  "numpy": "2.3.5",
+  "physical_quantum_hardware": false
+}

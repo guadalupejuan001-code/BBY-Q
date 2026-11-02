@@ -1,0 +1,22 @@
+{
+  "update_ms": 11.570622999221087,
+  "episode_ms": 39.39223999902606,
+  "probability": 0.004862632977694555,
+  "brier": 2.3645199475762617e-05,
+  "cross_entropy": 0.004874494043727786,
+  "elapsed_ms": 106.773635,
+  "qubits_used_by_agent": 1000,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 2064,
+    "observations": 1032,
+    "gates": 774,
+    "preparations": 258,
+    "max_prepared_block": 4,
+    "distinct_rotated_qubits": 1000,
+    "distinct_observed_qubits": 1000
+  },
+  "checkpoint": "/workspace/scratch/0796f6e416b2/evidence/cli-class-next.rvp",
+  "checkpoint_sha256": "b4511c58b381fea380fc1a79f41a81b4aa4d4f01a932c7f15e6b7085aae21063"
+}

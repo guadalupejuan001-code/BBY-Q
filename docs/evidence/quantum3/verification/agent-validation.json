@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "checks": 24,
+  "parameter_shift_max_absolute_error": 2.192783281340649e-12,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 4000,
+    "observations": 2000,
+    "gates": 1500,
+    "preparations": 500,
+    "max_prepared_block": 4,
+    "distinct_rotated_qubits": 2000,
+    "distinct_observed_qubits": 2000
+  },
+  "resume_parameter_sha256": "f0e0ed09b53142bfc647eb1fb99e2a727d4a464bbf579fe706ab88b1109ced2f",
+  "qrl_test": {
+    "parameter_sha256": "7c3465af0020976230c90e0d72e283d51c83567b2187fc710ecf33d5c56df9f9",
+    "rotation_parameters_updated": 316,
+    "rotation_parameters_changed": 316,
+    "readout_parameters_changed": 1000,
+    "minimum_rotation_updates": 0,
+    "maximum_rotation_updates": 1,
+    "training_episodes_in_checkpoint": 12,
+    "training_decisions_in_checkpoint": 87
+  },
+  "legacy": {
+    "input_sha256": "0d517085ef9b44c5ba41282748b3ed20676d7c908aeed445fbb1254f3aaf72f5",
+    "combined_sha256": "333e8a79ebdabd6d5f879dc6b69fe7cfae5039ccddf3908f432848d4987c9e00",
+    "active_qubits": 4000
+  }
+}

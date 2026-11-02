@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "source_checkpoints": {
+    "legacy": {
+      "name": "BBYQ-VQC1000-QRL1000-Entrenados-800.rvp",
+      "sha256": "0d517085ef9b44c5ba41282748b3ed20676d7c908aeed445fbb1254f3aaf72f5"
+    },
+    "vqc": {
+      "name": "checkpoint-10000.rvp",
+      "sha256": "edd2fef030dc97afa638f88a7a6269acfac26ac48c7b0982155ecdf78373167d"
+    },
+    "qrl": {
+      "name": "checkpoint-10000.rvp",
+      "sha256": "4e5fbfe59980b91ed650cf69bd3ce3a2efa74db611ad23316f025a58f38f53bd"
+    }
+  },
+  "models": {
+    "vqc": {
+      "parameter_sha256": "978aaf0c6598bcb5f68a7d81972a62a6330bb8cf174e0579f41534bd85389bbf",
+      "rotation_parameters_updated": 1000,
+      "rotation_parameters_changed": 1000,
+      "readout_parameters_changed": 1000,
+      "minimum_rotation_updates": 39,
+      "maximum_rotation_updates": 40,
+      "training_episodes_in_checkpoint": 10000,
+      "training_decisions_in_checkpoint": 0
+    },
+    "qrl": {
+      "parameter_sha256": "da367b65ca358af5c5082d5216457623f2996b6d42d340e765c15391ef4fd96e",
+      "rotation_parameters_updated": 1000,
+      "rotation_parameters_changed": 1000,
+      "readout_parameters_changed": 1000,
+      "minimum_rotation_updates": 183,
+      "maximum_rotation_updates": 185,
+      "training_episodes_in_checkpoint": 10000,
+      "training_decisions_in_checkpoint": 46131
+    }
+  },
+  "legacy_training_preserved": [
+    800,
+    800
+  ],
+  "qubits_per_v3_agent": 1000,
+  "legacy_qubits": 2000,
+  "total_active_qubits": 4000,
+  "merged_checkpoint": "BBYQ-VQC3-QRL3-1000x2-ENTRENADOS.rvp",
+  "merged_checkpoint_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "usage": {
+    "peak_rss_kib": 21628,
+    "cpu_ms": 183.075,
+    "active_qubits": 4000,
+    "quantum_payload_bytes": 548000
+  }
+}

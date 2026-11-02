@@ -1,0 +1,22 @@
+{
+  "episode_ms": 348.67363600060344,
+  "update_ms": 99.2174299992621,
+  "reward": 0.9,
+  "success": 1,
+  "decisions": 5,
+  "elapsed_ms": 429.545393,
+  "qubits_used_by_agent": 1000,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 10320,
+    "observations": 5160,
+    "gates": 3870,
+    "preparations": 1290,
+    "max_prepared_block": 4,
+    "distinct_rotated_qubits": 1000,
+    "distinct_observed_qubits": 1000
+  },
+  "checkpoint": "/workspace/scratch/0796f6e416b2/evidence/cli-qrl-next.rvp",
+  "checkpoint_sha256": "a75494f2a72e5ac991df4efad97d5ecc40f8d4ed14418e5c8e21294dfbbfdd5a"
+}
