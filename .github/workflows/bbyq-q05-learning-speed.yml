@@ -1,0 +1,88 @@
+name: BBY Q Q05 learning speed of actual XI VQC1000 and QRL1000 agents
+on:
+  pull_request:
+    paths:
+      - 'integration/qml_qrl/tests/agents1000-learning-speed.mjs'
+      - 'docs/BBYQ_Q05_1000_LEARNING_SPEED.md'
+      - '.github/workflows/bbyq-q05-learning-speed.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'integration/qml_qrl/tests/agents1000-learning-speed.mjs'
+      - '.github/workflows/bbyq-q05-learning-speed.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  benchmark-two-1000-qubit-agents:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        episodes: [128, 800]
+    timeout-minutes: 58
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Verify XI benchmark harness and two real 1000-qubit processors
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check integration/qml_qrl/tests/agents1000-learning-speed.mjs
+          node --test integration/qml_qrl/tests/agents1000-contract.test.mjs
+          test -f ai/xi/qml_qrl/agents1000-infer.xi
+          test -f ai/xi/qml_qrl/agents1000-reward.xi
+          test -f ai/xi/qml_qrl/agents1000-update.xi
+      - name: Build pinned original REVERSE-PC native XI/Ether runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Run quantum native learning benchmark with fresh labels and deferred blind features
+        timeout-minutes: 49
+        shell: bash
+        env:
+          EPISODES: ${{ matrix.episodes }}
+        run: |
+          set -euo pipefail
+          case "$EPISODES" in 32|64|128|256|512|800|1000) ;; *) echo "Invalid sample count" >&2; exit 1;; esac
+          node integration/qml_qrl/tests/agents1000-learning-speed.mjs \
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" "build/q05-learning-speed-$EPISODES" "$EPISODES"
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os
+          s=json.loads(Path('build/q05-learning-speed-'+os.environ['EPISODES']+'/summary.json').read_text())
+          assert s['ok'] and s['conditions']['qubits_per_agent']==1000
+          assert s['conditions']['active_qubits']==2000
+          for agent in ('vqc','qrl'):
+              r=s['agents'][agent]
+              assert r['episodes']==s['conditions']['train_episodes_per_agent']
+              assert r['first_pass_accuracy']==.5
+              assert r['final_train_probe_accuracy']==1.
+              assert r['unseen_parity_compositions']=='24/24'
+              assert r['median_update_ms']>0
+              print('XI_AGENT_LEARNING',agent,json.dumps(r,ensure_ascii=False))
+          print('Q05_TWO_1000_QUBIT_LEARNING_SPEED_VALIDATED',s['checks'])
+          PY
+      - name: Publish model RVPC2 and full measured learning curves
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-Q05-two-1000qubit-XI-learning-speed-${{ matrix.episodes }}
+          path: |
+            build/q05-learning-speed-${{ matrix.episodes }}/summary.json
+            build/q05-learning-speed-${{ matrix.episodes }}/results.json
+            build/q05-learning-speed-${{ matrix.episodes }}/agents/memory.rvp
+          if-no-files-found: warn
+          retention-days: 30
