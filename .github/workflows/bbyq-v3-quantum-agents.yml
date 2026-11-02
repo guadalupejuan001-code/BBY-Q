@@ -1,0 +1,78 @@
+name: VQC3 QRL3 actual XI learning
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/quantum3/**'
+      - 'integration/quantum3/**'
+      - 'docs/BBYQ_V3*'
+      - '.github/workflows/bbyq-v3-quantum-agents.yml'
+  push:
+    branches: [main]
+    paths: ['ai/xi/quantum3/**','integration/quantum3/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  train-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {agent: vqc, task: parity, variant: quantum, extra: ''}
+          - {agent: qrl, task: line_easy, variant: quantum, extra: ''}
+          - {agent: vqc, task: parity, variant: classical, extra: '--classical'}
+          - {agent: qrl, task: line_easy, variant: classical, extra: '--classical'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 59ac79386bc427620a10227489eb7f7be12c55c7
+          path: deps/reverse
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Compile native XI and pinned Ether
+        run: bash deps/reverse/scripts/build-xi-session.sh "$GITHUB_WORKSPACE/deps/mundo-x" "$GITHUB_WORKSPACE/deps/reverse/build"
+      - name: Quantum gradients, full width, terminal rewards and identical resume
+        run: python integration/quantum3/validate.py --runtime deps/reverse --output build/validation
+      - name: Execute 1000 real training episodes, with 100-episode checkpoint
+        run: >-
+          python integration/quantum3/campaign.py --runtime deps/reverse
+          --step-budget 10000000 --agent ${{ matrix.agent }} --task ${{ matrix.task }}
+          --episodes 1000 --eval-size 32 --seed 173 ${{ matrix.extra }}
+          --output build/campaign
+      - name: Verify actual participation and persist training results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('build/campaign/manifest.json').read_text())
+          assert s['completed_episodes']==1000
+          assert any(x['episodes']==100 for x in s['milestones'])
+          final=s['milestones'][-1]
+          assert final['model']['training_episodes_in_checkpoint']==1000
+          assert final['model']['rotation_parameters_updated']==1000
+          assert final['model']['readout_parameters_changed']==1000
+          assert final['usage']['active_qubits']==2000
+          assert s['native_episode_total_ms']>s['native_update_total_ms']>0
+          print(json.dumps(final,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-V3-${{ matrix.agent }}-${{ matrix.variant }}-1000
+          path: |
+            build/campaign/
+            build/validation/
+          if-no-files-found: warn
+          retention-days: 90
