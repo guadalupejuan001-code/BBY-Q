@@ -182,19 +182,16 @@ export function quantumAgents1000({root,runtime,state,command,values}){
   // DOES NOT generate the reward, train weights or choose the action.
   const observed=path.join(job,'observed.rvp');
   runXi(runtime,frame(job,[[4,readout.measured_action]]),staged,observed);
-  let input=observed,rewardFromXi=null;
-  if(role===1){
-   const rewardFile=path.join(job,'reward.rvp');
-   const e=call('agents1000-reward',observed,rewardFile);
-   rewardFromXi=e.filter(x=>x.type==='register')[0]?.value;
-   if(![0,100].includes(rewardFromXi))fail('Recompensa nativa de entorno incorrecta.');
-   input=rewardFile;
-  }
+  const rewardFile=path.join(job,'reward.rvp');
+  const e=call('agents1000-reward',observed,rewardFile);
+  const rewardFromXi=e.filter(x=>x.type==='register')[0]?.value;
+  if(![0,100].includes(rewardFromXi))fail('Recompensa nativa de entorno incorrecta.');
+  const input=rewardFile;
   const trained=path.join(job,'trained.rvp');
   const rows=call('agents1000-update',input,trained).filter(x=>x.type==='register').map(x=>x.value);
   if(rows.length!==7||rows[0]!==role||rows[1]!==indices[0]||
     ![0,1].includes(rows[2])||rows[3]<1||rows[4]<1||rows[5]!==readout.measured_action||
-    ![0,100].includes(rows[6])||(role===1&&rows[6]!==rewardFromXi))
+    ![0,100].includes(rows[6])||rows[6]!==rewardFromXi)
    fail('Aprendizaje XI no coincide con la acción realmente medida.');
   fs.renameSync(trained,memory);
   return {...base,trained_parameter_index:indices[0],new_weight:rows[2],
