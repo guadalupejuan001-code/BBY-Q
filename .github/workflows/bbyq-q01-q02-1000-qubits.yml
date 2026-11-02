@@ -1,0 +1,80 @@
+name: BBY Q Q01-Q02 native 1000-qubit Ether and preserved VQC2/QRL2
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/qml_qrl/q1000-*.xi'
+      - 'integration/qml_qrl/cli.mjs'
+      - 'integration/qml_qrl/tests/qubits-1000.mjs'
+      - 'docs/BBYQ_Q01_Q02_1000_QUBITS.md'
+      - '.github/workflows/bbyq-q01-q02-1000-qubits.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/qml_qrl/q1000-*.xi'
+      - 'integration/qml_qrl/cli.mjs'
+      - 'integration/qml_qrl/tests/qubits-1000.mjs'
+      - '.github/workflows/bbyq-q01-q02-1000-qubits.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-1000:
+    runs-on: ubuntu-latest
+    timeout-minutes: 38
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Native XI source and transport syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check integration/qml_qrl/cli.mjs
+          node --check integration/qml_qrl/tests/qubits-1000.mjs
+          node --test integration/qml_qrl/tests/q1000-contract.test.mjs
+      - name: Build original verified REVERSE-PC and Mundo X XI interpreter
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Q01-Q02 real 1000-qubit GHZ, original trained XI QML/QRL, persistence and rollback
+        timeout-minutes: 22
+        shell: bash
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/qubits-1000.mjs \
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/q01-q02-1000
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          r=json.loads(Path('build/q01-q02-1000/results.json').read_text())
+          assert r['ok'] and r['checks']>=35
+          assert r['configuration']['ghz_component_qubits']==1000
+          assert r['configuration']['two_qubit_variational_training_expanded_to_1000'] is False
+          assert r['measured']['ghz_zz_endpoints']==1
+          assert r['measured']['p_one_first']==0.5
+          assert r['reversible_clifford'] and r['rollback_tested'] and r['training_preserved']
+          print('BBYQ_Q1000_VALIDATED',json.dumps({'checks':r['checks'],
+                'width':r['configuration']['ghz_component_qubits'],
+                'time_ms':r['measured']['ghz_enable_elapsed_ms'],
+                'state_bytes':r['measured']['core_state_bytes']}))
+          PY
+      - name: Publish Q01-Q02 1000-qubit test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-Q01-Q02-1000-qubit-Ether-GHZ-evidence
+          path: |
+            build/q01-q02-1000/results.json
+          if-no-files-found: warn
+          retention-days: 30
