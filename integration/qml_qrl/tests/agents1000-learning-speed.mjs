@@ -123,7 +123,9 @@ for(const role of ['vqc','qrl']){
  eq(fullProbe.filter(x=>x.expected===0).length,paired,'balanced trained evaluation probe: class 0');
  eq(fullProbe.filter(x=>x.expected===1).length,paired,'balanced trained evaluation probe: class 1');
  const fullMeasured=fullProbe.map(x=>({...x,observed:measured(x.index)}));
- const unseenAll=heldout.map(x=>({...x,observed:measured(x.index)}));
+ const unseenAll=heldout.map(x=>({index:x.index,expected:x.label,observed:measured(x.index)}));
+ eq(unseenAll.filter(x=>x.expected===0).length,heldout.length/2,'independent holdout class zero balanced');
+ eq(unseenAll.filter(x=>x.expected===1).length,heldout.length/2,'independent holdout class one balanced');
  const compositional=[];
  for(let k=0;k<24;k++){
   const count=2+(k%4); // new 2..5 feature combinations never taught as such
