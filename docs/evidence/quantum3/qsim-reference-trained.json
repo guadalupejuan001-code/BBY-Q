@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "verified_utc": "2026-11-02T23:27:09.508305+00:00",
+  "comparison": "Identical frozen 1000-wire local circuit inference; not complete RL training",
+  "qsim_adapter_is_new_reference_not_historical_rl_agent": true,
+  "qsim_backend": "SimulatorBasic<SequentialFor,double>; explicit 250 independent four-wire states per agent",
+  "simultaneous_allocated_qubits": 2000,
+  "samples_per_agent": 8,
+  "repetitions_per_case_per_round": 20,
+  "rounds": 2,
+  "order": "qsim,XI,XI,qsim",
+  "cpu_affinity": 0,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "memory_measurement": "Linux /proc/self/status VmHWM after exec for both native workers; measurement-only XI wrapper",
+  "qsim_commit": "50cac4b3fa331450b70387735479a00e223b8d25",
+  "reverse_commit": "59ac79386bc427620a10227489eb7f7be12c55c7",
+  "ether_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "fixture_sha256": "c78802dc6856942bc633ae672a7fd1b14167f7d464822968a414598626987c6e",
+  "delivered_model_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "instrumented_xi_session_sha256": "e67f52a87eb8a4ddcdeea677b08bf6f7d9816db72e0c3401763699f49e6ecd0e",
+  "original_xi_session_sha256": "ebd36da1fe00404bb2f5ea82e99b2eb5c4be2ac5b612ee4dabb2a3978e0f2678",
+  "xi_instrumentation": "Only RSS reporting uses Linux VmHWM; original XI translation unit included unchanged",
+  "qsim_reference_sha256": "e0c041a13faa99d3d14cf78173e477377b528b7c80faf642f43bea5f308b17b6",
+  "numerical_max_absolute_errors": {
+    "observations": 8.881784197001252e-16,
+    "score": 1.7763568394002505e-15,
+    "probability": 3.3306690738754696e-16,
+    "gradients": 1.3877787807814457e-17,
+    "sgd_parameters": 2.220446049250313e-16
+  },
+  "observations_compared": 32000,
+  "sgd_parameter_comparisons": 32016,
+  "comparisons": [
+    {
+      "agent": "vqc",
+      "qubits_evaluated_per_forward": 1000,
+      "xi_median_native_ms": 25.14512199908495,
+      "qsim_median_native_ms": 0.177823,
+      "xi_median_transport_ms": 25.9588985,
+      "xi_over_qsim_native_time": 141.40534126116953,
+      "xi_peak_native_rss_mib": 12.87109375,
+      "qsim_peak_native_rss_mib": 2.078125
+    },
+    {
+      "agent": "qrl",
+      "qubits_evaluated_per_forward": 1000,
+      "xi_median_native_ms": 26.424779998138547,
+      "qsim_median_native_ms": 0.176486,
+      "xi_median_transport_ms": 27.2481765,
+      "xi_over_qsim_native_time": 149.72734380142643,
+      "xi_peak_native_rss_mib": 14.79296875,
+      "qsim_peak_native_rss_mib": 2.078125
+    }
+  ],
+  "limits": [
+    "Measures native worker RSS, excludes Python orchestration for both backends",
+    "XI timings include VM instructions, generic storage and exact quantum execution; qsim adapter is compiled C++",
+    "Does not reproduce the different circuits, data or reported hardware of the QCNN or Quantum Mario papers",
+    "No claim of a global speed, memory, qubit-count or historical-priority record"
+  ]
+}

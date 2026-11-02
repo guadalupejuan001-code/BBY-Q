@@ -1,0 +1,160 @@
+{
+  "review_date": "2026-11-02",
+  "question": "Historical priority and resource efficiency of a trainable 1000-functional-qubit simulated RL policy in XI/Ether",
+  "scope": "Targeted literature and public-source review, not an exhaustive priority certification",
+  "definition": {
+    "qualifying_agent": "The trainable policy or value model evaluates 1000 distinct simulated circuit wires in its decisions; circuit observables influence learned outputs and parameters",
+    "not_sufficient": ["Nominal chip capacity", "Classical RL controlling a 1000-qubit target", "Number of shots, episodes, parameters or state-space dimension", "A hypothetical scalable architecture without a reported 1000-wire experiment"],
+    "bbyq_topology": "250 independent entangled blocks of four wires per agent; all 1000 observations feed a common readout",
+    "priority_date_of_audited_v3_delivery": "2026-11-02"
+  },
+  "search_methods": ["Two web search engines", "Full-text arXiv literature discovery", "Primary paper abstracts, full texts and appendices", "Public qsim source pinned by commit"],
+  "representative_queries": [
+    "\"quantum reinforcement learning\" \"1000\" qubits",
+    "\"quantum reinforcement learning\" \"1024\" qubits",
+    "\"quantum reinforcement learning\" \"thousand\" qubits",
+    "\"quantum reinforcement learning\" \"1000-qubit\"",
+    "\"quantum reinforcement learning\" \"1024-qubit\"",
+    "\"quantum reinforcement learning\" \"thousand-qubit\"",
+    "\"quantum reinforcement learning\" \"2000\" \"qubits\"",
+    "\"quantum policy\" \"1000\" qubits",
+    "\"quantum reinforcement learning\" \"512\" qubits",
+    "\"quantum reinforcement learning\" \"256\" qubits",
+    "\"quantum reinforcement learning\" \"partitioned\"",
+    "\"quantum reinforcement learning\" \"ensemble\" \"1000\"",
+    "\"quantum reinforcement learning\" \"memory\" \"MiB\"",
+    "\"Reinforcement Learning Using Quantum Boltzmann Machines\" qubits",
+    "\"It's-A-Me, Quantum Mario\" arxiv github",
+    "\"2408.12739\" hardware laptop memory consumption"
+  ],
+  "claims": {
+    "first_1000_qubit_simulated_qml_model": {
+      "status": "Earlier related QML implementations exist",
+      "evidence": ["bermejo-qcnn"],
+      "qualification": "The earlier QCNN surrogate and BBY Q use different restricted representations; this does not establish identical algorithms"
+    },
+    "first_1000_functional_qubit_simulated_qrl_policy": {
+      "status": "Unresolved",
+      "finding": "No explicit earlier trained 1000-wire RL-policy experiment satisfying the working definition was identified in the sources reviewed",
+      "closest_modular_predecessor": "quantum-mario",
+      "qualification": "Absence from a targeted search is not proof of worldwide priority. Modular independent-circuit RL architectures already existed. The 800-to-1000 width difference alone does not establish a new algorithm or capability."
+    },
+    "world_memory_or_speed_record": {
+      "status": "Not demonstrated",
+      "qualification": "Most cited papers do not report comparable peak worker RSS. Installed machine memory is not consumed memory. The new qsim experiment compares identical frozen circuits, not historical full RL campaigns."
+    },
+    "trained_on_user_phone": {
+      "status": "Not established by these runs",
+      "recorded_environment": "Linux x86_64 cloud environment with quota 8 vCPU; CI also ran separate jobs"
+    }
+  },
+  "reviewed_sources": [
+    {
+      "id": "bermejo-qcnn",
+      "title": "Quantum Convolutional Neural Networks are Effectively Classically Simulable",
+      "first_preprint": "2024-08-22",
+      "published": "2026-04-06",
+      "url": "https://arxiv.org/html/2408.12739v2",
+      "publisher_url": "https://journals.aps.org/prxquantum/abstract/10.1103/8qt9-72ts",
+      "location": "Section IV.1.1 and Appendix B",
+      "reported_model_width": 1024,
+      "type": "Supervised QML classification; low-bodyness Pauli-shadow surrogate",
+      "hardware_statement": "Resources available on a modern laptop",
+      "peak_worker_ram_mib": null,
+      "comparison": "Earlier broad QML scale, not an RL policy or the same exact block circuit"
+    },
+    {
+      "id": "quantum-mario",
+      "title": "It's-A-Me, Quantum Mario: Scalable Quantum Reinforcement Learning with Multi-Chip Ensembles",
+      "first_preprint": "2025-08-31",
+      "url": "https://arxiv.org/html/2509.00713v1",
+      "location": "Sections III.C, IV.B-IV.C and V",
+      "actual_subcircuits": [2, 10, 50, 100],
+      "wires_per_subcircuit": 8,
+      "maximum_reported_total_wires": 800,
+      "unexecuted_scaling_example": "200 circuits of ten wires, 2000 input dimensions; not reported as an experimental configuration",
+      "type": "DDQN with independent QCNNs and classical aggregation; Super Mario observations",
+      "hardware_installed": {"cpu_cores": 128, "cpu_threads": 256, "ram_gb": 503, "gpu": "NVIDIA A100-PCIE", "gpu_memory_gb": 40},
+      "peak_worker_ram_mib": null,
+      "comparison": "Direct precedent for modular QRL. Same-task learning and resource equivalence have not been measured against BBY Q. Simulated chips do not mean physical machines."
+    },
+    {
+      "id": "cern-actor-critic",
+      "title": "Hybrid actor-critic algorithm for quantum reinforcement learning at CERN beam lines",
+      "first_preprint": "2022-09-22",
+      "published": "2024-02-21",
+      "url": "https://arxiv.org/pdf/2209.11044",
+      "publisher_url": "https://doi.org/10.1088/2058-9565/ad261b",
+      "location": "Sections 3.3.2 and 3.4; AWAKE QBM description",
+      "reported_qbm_sizes": [16, 128],
+      "type": "Free-energy RL; classical actor with QBM critic, simulated and quantum annealing",
+      "peak_worker_ram_mib": null,
+      "comparison": "Earlier trained quantum RL models; hardware capacity is not the number of model qubits"
+    },
+    {
+      "id": "qrl-benchmark",
+      "title": "Benchmarking Quantum Reinforcement Learning",
+      "first_preprint": "2025-02-07",
+      "url": "https://arxiv.org/html/2502.04909v2",
+      "location": "Sections 3-4; comparison of binary and one-hot encoding",
+      "explicit_pqc_example_widths": [4, 9],
+      "qualification": "These widths describe the stated 3x3 example, not a claimed maximum over every model in the paper",
+      "type": "PQC policy gradient and DQN, free-energy and amplitude-amplification QRL on gridworlds",
+      "peak_worker_ram_mib": null,
+      "comparison": "Provides matched-task methodology and distinguishes sample efficiency from circuit cost; no 1000-wire policy experiment identified"
+    },
+    {
+      "id": "qbm-original",
+      "title": "Reinforcement Learning Using Quantum Boltzmann Machines",
+      "first_preprint": "2016-12-17",
+      "published_year": 2018,
+      "url": "https://arxiv.org/pdf/1612.05695",
+      "location": "Figures 3-4",
+      "hidden_nodes_in_described_experiments": [16, 20],
+      "type": "Simulated quantum annealing and QBM-based RL",
+      "peak_worker_ram_mib": null,
+      "comparison": "Earlier QRL learning, with a different representation; no matching 1000-wire experiment identified"
+    },
+    {
+      "id": "minor-embedding",
+      "title": "Minor embedding for quantum annealing with reinforcement learning",
+      "institution_record_year": 2026,
+      "url": "https://re.public.polimi.it/handle/11311/1312686",
+      "type": "PPO constructs minor embeddings for annealing hardware topologies",
+      "mentioned_scale": "Embeddings spanning more than a thousand qubits",
+      "comparison": "Excluded as a direct policy-width precedent: the scale concerns the target embedding, not a demonstrated 1000-wire quantum policy"
+    },
+    {
+      "id": "quafu",
+      "title": "Quafu-RL: The cloud quantum computers based quantum reinforcement learning",
+      "accepted_online": "2024-03-06",
+      "url": "https://cpb.cpsjournals.org/EN/10.1088/1674-1056/ad3061",
+      "platform_qubit_capacity_in_abstract": 136,
+      "effective_policy_width_from_abstract": null,
+      "comparison": "Do not count the platform's advertised capacity as all qubits functionally used by a trained policy"
+    },
+    {
+      "id": "qrl-review",
+      "title": "Trends in quantum reinforcement learning: State-of-the-arts and the road ahead",
+      "year": 2024,
+      "url": "https://onlinelibrary.wiley.com/doi/10.4218/etrij.2024-0153",
+      "location": "Section 3.3.2",
+      "comparison": "The reference to over 1000 fault-tolerant qubits is prospective, not a reported 1000-wire simulated-policy experiment"
+    },
+    {
+      "id": "qsim",
+      "title": "qsim public C++ simulator",
+      "url": "https://github.com/quantumlib/qsim",
+      "commit": "50cac4b3fa331450b70387735479a00e223b8d25",
+      "license": "Apache-2.0",
+      "comparison": "Public external numerical backend used for new same-circuit measurements, not a historical 1000-wire RL-agent claim"
+    }
+  ],
+  "benchmark_evidence": "qsim-reference-trained.json",
+  "remaining_unknowns": [
+    "Exhaustive worldwide priority of the precisely defined 1000-wire RL-policy experiment",
+    "Comparable process RSS for the reviewed QCNN and Quantum Mario papers",
+    "A same-environment, same-optimizer full RL comparison with the Quantum Mario implementation",
+    "Phone execution and physical-device measurements"
+  ]
+}
