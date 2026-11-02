@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const xi=name=>fs.readFileSync(path.join(root,'ai/xi/qml_qrl',name+'.xi'),'utf8');
 test('1000-qubit GHZ uses the original native XI instruction grammar',()=>{
- for(const name of ['q1000-birth','q1000-audit','q1000-uncompute','q1000-stats','q1000-bad-marker']){
+ for(const name of ['q1000-birth','q1000-audit','q1000-uncompute','q1000-stats','q1000-bad-marker','q1000-overflow']){
   const code=xi(name),lines=code.split('\n');
   assert.ok(code.startsWith('#!reverse-pc-machine-v1\n'),name);
   assert.doesNotMatch(code,/\bpython\b|\bqiskit\b|\bpytorch\b|\bnumpy\b/i);
@@ -42,6 +42,9 @@ test('scratch inverse and invalid-marker paths are separate from durable checkpo
  assert.match(inverse,/set r1 1099/);
  assert.match(inverse,/h 100/);
  assert.match(inverse,/probz 600/);
+ const overflow=xi('q1000-overflow');
+ assert.match(overflow,/cmp r1 1125/);
+ assert.match(overflow,/cx \$r0 \$r1/);
  const invalid=xi('q1000-bad-marker');
  assert.match(invalid,/store8 8100000000000006000 255/);
  const audit=xi('q1000-audit');
