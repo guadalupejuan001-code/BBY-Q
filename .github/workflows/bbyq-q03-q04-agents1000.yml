@@ -1,0 +1,89 @@
+name: BBY Q Q03-Q04 two real XI 1000-qubit trainable agents
+on:
+  pull_request:
+    paths:
+      - 'ai/xi/qml_qrl/agents1000-*.xi'
+      - 'integration/qml_qrl/agents1000.mjs'
+      - 'integration/qml_qrl/cli.mjs'
+      - 'integration/qml_qrl/tests/agents1000-*'
+      - 'docs/BBYQ_Q03_Q04_AGENTS_1000.md'
+      - '.github/workflows/bbyq-q03-q04-agents1000.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ai/xi/qml_qrl/agents1000-*.xi'
+      - 'integration/qml_qrl/agents1000.mjs'
+      - 'integration/qml_qrl/cli.mjs'
+      - 'integration/qml_qrl/tests/agents1000-*'
+      - '.github/workflows/bbyq-q03-q04-agents1000.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  train-in-original-xi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 38
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24.22.1'}
+      - name: Ensure both agents are native XI, readouts physical, CLI transport valid
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check integration/qml_qrl/agents1000.mjs
+          node --check integration/qml_qrl/cli.mjs
+          node --check integration/qml_qrl/tests/agents1000-native.mjs
+          node --test integration/qml_qrl/tests/agents1000-contract.test.mjs
+      - name: Build pinned REVERSE-PC with original XI and Mundo X Ether
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --no-checkout https://github.com/guadalupejuan001-code/REVERSE-PC.git "$RUNNER_TEMP/reverse-pc"
+          git -C "$RUNNER_TEMP/reverse-pc" checkout --detach a1b935ae0adf38615996bac92727e95289ad7cc1
+          test "$(git -C "$RUNNER_TEMP/reverse-pc" rev-parse HEAD)" = a1b935ae0adf38615996bac92727e95289ad7cc1
+          bash "$RUNNER_TEMP/reverse-pc/scripts/setup-ether.sh"
+          cd "$RUNNER_TEMP/reverse-pc"
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc \
+            src/reverse_pc.cpp -o build/reverse_pc
+      - name: Real quantum 2x1000-qubit circuits for VQC/QRL predictions, XI reward training and ablation
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          node integration/qml_qrl/tests/agents1000-native.mjs \
+            "$RUNNER_TEMP/reverse-pc/build/reverse_pc" build/agents1000-native
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          d=json.loads(Path('build/agents1000-native/results.json').read_text())
+          assert d['ok'] and d['checks'] >= 65
+          assert d['model']['vqc1000_qubits']==1000
+          assert d['model']['qrl1000_qubits']==1000
+          assert d['model']['initial_active_qubits']==2000
+          assert d['ablation']['physical_remote_qubits_are_causally_active']
+          assert d['training']['readout_from_real_born_probability']
+          assert d['training']['rewards_calculated_in_xi']
+          assert d['model']['old_vqc2_qrl2_preserved']
+          print('TWO_GENUINE_QUANTUM_AGENT_PROCESSORS',json.dumps({
+            'checks':d['checks'],
+            'qubits_per_agent':1000,'active':2000,
+            'vqc_training_samples':d['training']['vqc_supervised_samples'],
+            'qrl_reward_samples':d['training']['qrl_environment_reward_samples']
+          }))
+          PY
+      - name: Publish VQC1000 and QRL1000 trained RVPC2 checkpoints and full evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BBYQ-VQC1000-QRL1000-native-XI-trained-agents
+          path: |
+            build/agents1000-native/results.json
+            build/agents1000-native/agents/memory.rvp
+            build/agents1000-native/existing-2q/memory.rvp
+          if-no-files-found: warn
+          retention-days: 30
