@@ -95,6 +95,11 @@ const rejected=raw(path.join(root,'ai/xi/qml_qrl/q1000-audit.xi'),bad,path.join(
 ok(rejected.status!==0,'native XI rejects corrupt GHZ marker');
 ok(!fs.existsSync(path.join(out,'should-not-exist.rvp')),'failed XI audit creates no output state');
 eq(hash(memory),saved,'rejection never changes original trained model');
+const exceeded=raw(path.join(root,'ai/xi/qml_qrl/q1000-overflow.xi'),memory,
+ path.join(out,'should-reject-1025.rvp'));
+ok(exceeded.status!==0,'core rejects 1025 qubits within one entangled component');
+ok(!fs.existsSync(path.join(out,'should-reject-1025.rvp')),'component budget breach produces no output checkpoint');
+eq(hash(memory),saved,'1025-qubit rejection does not change the existing 1000-qubit model');
 let duplicate=false;
 try{Q(stateDir,'enable-1000');}catch{duplicate=true;}
 ok(duplicate,'cannot mount a second 1000-qubit register on the same memory');
@@ -130,6 +135,7 @@ const report={ok:true,cycle:'Q01-Q02',checks,engine:'original REVERSE-PC native 
   p_one_last:enabled.result.p_one_last,
   core_state_bytes:fs.statSync(memory).size},
  reversible_clifford:true,rollback_tested:true,training_preserved:true,
+  over_limit_1025_rejected:true,
  interpreted_1000_qubits:'A 1000-qubit Clifford/stabilizer GHZ register plus local 2-qubit VQC/QRL experiments, not a general 1000-qubit VQC/QRL policy.',
  claims_not_made:['arbitrary 2^1000 statevector','1000 trained variational quantum parameters','quantum speedup','1000-qubit quantum hardware']};
 fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2)+'\n');
