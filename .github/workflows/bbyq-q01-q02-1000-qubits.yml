@@ -63,7 +63,7 @@ jobs:
           assert r['configuration']['two_qubit_variational_training_expanded_to_1000'] is False
           assert r['measured']['ghz_zz_endpoints']==1
           assert r['measured']['p_one_first']==0.5
-          assert r['reversible_clifford'] and r['rollback_tested'] and r['training_preserved']
+          assert r['reversible_clifford'] and r['rollback_tested'] and r['training_preserved'] and r['over_limit_1025_rejected']
           print('BBYQ_Q1000_VALIDATED',json.dumps({'checks':r['checks'],
                 'width':r['configuration']['ghz_component_qubits'],
                 'time_ms':r['measured']['ghz_enable_elapsed_ms'],
@@ -76,5 +76,7 @@ jobs:
           name: BBYQ-Q01-Q02-1000-qubit-Ether-GHZ-evidence
           path: |
             build/q01-q02-1000/results.json
+            build/q01-q02-1000/existing-agent/memory.rvp
+            build/q01-q02-1000/fresh-1000/memory.rvp
           if-no-files-found: warn
           retention-days: 30
