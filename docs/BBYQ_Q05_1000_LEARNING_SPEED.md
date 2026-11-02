@@ -33,6 +33,10 @@ node integration/qml_qrl/tests/agents1000-learning-speed.mjs /ruta/reverse_pc /r
 
 Se producen `summary.json`, `results.json` con series de épocas y muestras, y una copia del checkpoint `agents/memory.rvp`.
 
-Desde GitHub Actions se puede elegir 32, 64, 128, 256, 512 o 1000 episodios **por agente**. El máximo teórico de 1.000 parámetros por agente no obliga a entrenarlos todos; en pruebas con características no vistas se mantiene una muestra separada hasta completar todo el espacio.
+GitHub Actions ejecuta dos pruebas independientes, con **128 y 800 episodios por agente**; el ejecutor local permite escoger un número par entre 16 y 1.000. El máximo teórico de 1.000 parámetros por agente no obliga a entrenarlos todos; en pruebas con características no vistas se mantiene una muestra separada hasta completar todo el espacio.
 
 El diseño experimental preserva modelos previos VQC2/QRL2 y solo modifica la nueva sesión de laboratorio.
+
+## Interpretación de los dos tamaños de entrenamiento
+
+El ensayo corto mide la velocidad del aprendizaje inicial. El ensayo de 800 episodios entrena el 80 % de los 1.000 parámetros binarios de cada motor y reserva 200 dimensiones sin entrenamiento. Se publican mediciones de rendimiento individuales para ambos tamaños, sin extrapolar linealmente un resultado al otro. La CI no entrena una política variacional continua de 1.000 cúbits.
