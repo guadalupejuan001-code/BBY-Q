@@ -1,0 +1,18 @@
+[
+  {
+    "original": "classical-dense-s173",
+    "original_rows": 97,
+    "model_training_episodes": 10000,
+    "replay": "classical-dense-s173-replay",
+    "replay_rows": 10000,
+    "all_model_parameters_and_counters_identical": true
+  },
+  {
+    "original": "vqc-dense-s173",
+    "original_rows": 293,
+    "model_training_episodes": 10000,
+    "replay": "vqc-dense-s173-replay",
+    "replay_rows": 10000,
+    "all_model_parameters_and_counters_identical": true
+  }
+]

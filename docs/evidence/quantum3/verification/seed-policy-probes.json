@@ -1,0 +1,44 @@
+[
+  {
+    "seed": 173,
+    "position": 3,
+    "goal": 0,
+    "probability_right": 0.03724490967945208,
+    "checkpoint_sha256": "d0fca7f13f3516be2c7fea963b18ba342074cebcd308456297aa8204c8bf8e74"
+  },
+  {
+    "seed": 173,
+    "position": 3,
+    "goal": 6,
+    "probability_right": 0.9488698277132808,
+    "checkpoint_sha256": "d0fca7f13f3516be2c7fea963b18ba342074cebcd308456297aa8204c8bf8e74"
+  },
+  {
+    "seed": 397,
+    "position": 3,
+    "goal": 0,
+    "probability_right": 0.01320644950419175,
+    "checkpoint_sha256": "3cc991f4b4537de7ade402fc6bba3ee220bd030ece5b10c554d7f7f7bd56daa7"
+  },
+  {
+    "seed": 397,
+    "position": 3,
+    "goal": 6,
+    "probability_right": 0.01349841905837928,
+    "checkpoint_sha256": "3cc991f4b4537de7ade402fc6bba3ee220bd030ece5b10c554d7f7f7bd56daa7"
+  },
+  {
+    "seed": 911,
+    "position": 3,
+    "goal": 0,
+    "probability_right": 0.01290646199944641,
+    "checkpoint_sha256": "d51c1cf3a5b55afcce3669725d435679eca528689ed3d2b6b3eeb2d827592c8a"
+  },
+  {
+    "seed": 911,
+    "position": 3,
+    "goal": 6,
+    "probability_right": 0.015727327052138085,
+    "checkpoint_sha256": "d51c1cf3a5b55afcce3669725d435679eca528689ed3d2b6b3eeb2d827592c8a"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "vqc": {
+    "parameter_sha256": "978aaf0c6598bcb5f68a7d81972a62a6330bb8cf174e0579f41534bd85389bbf",
+    "rotation_parameters_updated": 1000,
+    "rotation_parameters_changed": 1000,
+    "readout_parameters_changed": 1000,
+    "minimum_rotation_updates": 39,
+    "maximum_rotation_updates": 40,
+    "training_episodes_in_checkpoint": 10000,
+    "training_decisions_in_checkpoint": 0
+  },
+  "qrl": {
+    "parameter_sha256": "da367b65ca358af5c5082d5216457623f2996b6d42d340e765c15391ef4fd96e",
+    "rotation_parameters_updated": 1000,
+    "rotation_parameters_changed": 1000,
+    "readout_parameters_changed": 1000,
+    "minimum_rotation_updates": 183,
+    "maximum_rotation_updates": 185,
+    "training_episodes_in_checkpoint": 10000,
+    "training_decisions_in_checkpoint": 46131
+  },
+  "runtime": {
+    "peak_rss_kib": 15872,
+    "cpu_ms": 74.552,
+    "active_qubits": 4000,
+    "quantum_payload_bytes": 548000
+  }
+}

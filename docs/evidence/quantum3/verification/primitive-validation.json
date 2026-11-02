@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "checks": 2127,
+  "dense_oracle_max_absolute_error": 3.3306690738754696e-16,
+  "effective_qubits_per_agent": 1000,
+  "causal_nonzero_derivatives": 2000,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 10000,
+    "observations": 6000,
+    "gates": 1500,
+    "preparations": 500,
+    "max_prepared_block": 4,
+    "distinct_rotated_qubits": 2000,
+    "distinct_observed_qubits": 2000
+  },
+  "usage": {
+    "peak_rss_kib": 22652,
+    "cpu_ms": 668.202,
+    "active_qubits": 2000,
+    "quantum_payload_bytes": 316000
+  },
+  "checkpoint_sha256": "dac2fa9ceb03d9c13963accfa6e61a007ceb1e7d539ed3a71066c05ba050e91c"
+}
