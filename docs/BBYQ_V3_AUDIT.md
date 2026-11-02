@@ -72,10 +72,11 @@ Anchura funcional no implica 1000 unidades independientes de información útil.
 
 El intérprete pasó 2127 comprobaciones: oráculo denso aleatorio de 1/2/4/6
 cúbits, derivadas no nulas en 2000 cables, restauración y rollback; error máximo
-3.34e-16. Los agentes pasaron otras 23 comprobaciones reales: parameter shift
+3.34e-16. Los agentes pasaron otras 24 comprobaciones reales: parameter shift
 frente a diferencia finita del score completo (error máximo 2.20e-12),
 reanudación idéntica de parámetros y coexistencia con el modelo anterior.
 Se demostraron 4000 cúbits activos al combinar los antiguos y los nuevos.
+La inferencia permanece idéntica al cambiar una etiqueta oculta.
 
 No hay prueba de ventaja cuántica, razonamiento abierto, transferencia universal
 ni simulación densa general de 1000 cúbits. El coste crece con el entrelazamiento

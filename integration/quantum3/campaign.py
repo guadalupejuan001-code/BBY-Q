@@ -10,6 +10,7 @@ import gzip
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import platform
 import shutil
@@ -26,6 +27,14 @@ TASKS = {'linear':0, 'parity':1, 'radial':2, 'dense':3}
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+def publish_text(path, content):
+    """Publish a complete evidence file; never expose a truncated rewrite."""
+    path=Path(path)
+    pending=path.with_name(path.name+'.pending')
+    with pending.open('w') as file:
+        file.write(content);file.flush();os.fsync(file.fileno())
+    pending.replace(path)
 
 def sample_seed(seed, split, index):
     data = hashlib.sha256(f'BBYQ-V3:{seed}:{split}:{index}'.encode()).digest()
@@ -90,6 +99,8 @@ class Experiment:
                       'call vqc_sample', f'store64 {A} 0']
             if training:
                 lines += ['call supervised_update']
+            elif random:
+                lines += ['call random_prediction','femit probability f21']
             else:
                 lines += ['call select_agent', 'call forward', 'femit probability f21']
             lines += [f'fload f0 {A+128}', 'femit label f0']
@@ -106,7 +117,10 @@ class Experiment:
         elapsed = 0.
         with self.Session(self.binary, checkpoint) as evaluator:
             for i in range(self.args.eval_size):
-                result, ms = evaluator.execute(self.source(self.stage(split, i, ablate=ablate, random=random, greedy=greedy)))
+                source=self.source(self.stage(split, i, ablate=ablate, random=random, greedy=greedy))
+                if random and self.args.agent=='vqc':
+                    source+='\n'+(XI/'baselines.xi').read_text()
+                result, ms = evaluator.execute(source)
                 values.append(metrics(result)); elapsed += ms
             usage = evaluator.metrics()
         if self.args.agent == 'vqc':
@@ -182,8 +196,10 @@ class Experiment:
             start = 0
         selected = sorted({0,10,30,100,300,1000,3000,10000,args.episodes})
         selected = [e for e in selected if e<=args.episodes and e>=start]
-        init_metadata = {'identity':identity, 'simulated_quantum_hardware':False,
+        init_metadata = {'identity':identity, 'physical_quantum_hardware':False,
+                         'classical_circuit_simulation':not args.classical,
                          'qubits_per_agent':1000,'total_active_qubits':2000,'entangled_block_width':4,
+                         'effective_quantum_qubits_per_decision':0 if args.classical else 1000 if self.joint_mode=='independent' else 2000,
                          'independent_latent_channels':1000 if args.task=='dense' else 4,
                          'measurement_mode':'analytic Born expectations, not sampled shots',
                          'circuit_parameters_per_agent':1000,'readout_parameters_per_agent':1000,
@@ -192,8 +208,11 @@ class Experiment:
                          'seed_overlap_checked':True, 'evaluation_size_per_split':args.eval_size,
                          'started_utc':datetime.now(timezone.utc).isoformat(),
                          'platform':platform.platform(),'python':platform.python_version()}
-        (self.out/'conditions.json').write_text(json.dumps(init_metadata,indent=2)+'\n')
-        with self.Session(self.binary,state) as learner, (self.out/'training.jsonl').open('a' if args.resume else 'w') as log:
+        publish_text(self.out/'conditions.json',json.dumps(init_metadata,indent=2)+'\n')
+        log_path=self.out/'training.jsonl'
+        if not args.resume:
+            publish_text(log_path,'')
+        with self.Session(self.binary,state) as learner:
             for ep in range(start, args.episodes+1):
                 if ep in selected and not any(r['episodes']==ep for r in records):
                     checkpoint = self.out/f'checkpoint-{ep:05d}.rvp'
@@ -231,17 +250,26 @@ class Experiment:
                                    training_experiences=sum(x.get('decisions',1) for x in training),
                                    last100_mean_reward=statistics.mean(x['reward'] for x in window) if window and args.agent=='qrl' else None,
                                    last100_success_rate=statistics.mean(x['success'] for x in window) if window and args.agent=='qrl' else None)
-                    manifest.write_text(json.dumps(summary,indent=2)+'\n')
+                    # Reopen append handles per episode. At a checkpoint publish
+                    # the complete in-memory journal before its manifest, so
+                    # long-lived descriptors cannot diverge from a replaced file.
+                    publish_text(log_path,''.join(json.dumps(row)+'\n' for row in training))
+                    publish_text(manifest,json.dumps(summary,indent=2)+'\n')
                     print(json.dumps({'milestone':ep,'agent':args.agent,'task':args.task,'classical':args.classical,
                                       'iid':item['iid'],'ood':item['ood'],'model':item['model']}),flush=True)
                 if ep == args.episodes:
                     break
                 events, elapsed = learner.execute(self.source(self.stage('train', ep, training=True)))
                 row = dict(metrics(events),episode=ep+1,transport_ms=elapsed)
-                training.append(row);log.write(json.dumps(row)+'\n');log.flush()
+                training.append(row)
+                with log_path.open('a') as log:
+                    log.write(json.dumps(row)+'\n')
                 if (ep+1)%100 == 0:
                     print(json.dumps({'progress':ep+1,'agent':args.agent,'task':args.task,
                                       'recent_episode_ms':statistics.median(x['episode_ms'] for x in training[-100:])}),flush=True)
+        persisted=[json.loads(line) for line in log_path.read_text().splitlines()]
+        if len(persisted)!=args.episodes or [r['episode'] for r in persisted]!=list(range(1,args.episodes+1)):
+            raise RuntimeError('training journal did not persist every completed episode; checkpoints retained for audit')
         return json.loads(manifest.read_text())
 
 

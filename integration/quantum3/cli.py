@@ -12,7 +12,7 @@ parser=argparse.ArgumentParser(description='VQC3/QRL3 native XI models, 1000 fun
 parser.add_argument('--runtime',required=True)
 parser.add_argument('--session-binary')
 parser.add_argument('--state',required=True)
-parser.add_argument('--seed',type=int,default=173)
+parser.add_argument('--seed',type=int,help='Override the stored XI RNG seed; default preserves it')
 commands=parser.add_subparsers(dest='command',required=True)
 commands.add_parser('info')
 classify=commands.add_parser('classify')
@@ -30,7 +30,7 @@ episode.add_argument('--slip',type=float,default=.15)
 episode.add_argument('--horizon',type=int,default=12)
 episode.add_argument('--output',required=True)
 args=parser.parse_args()
-if not 0<=args.seed<2147483648:
+if args.seed is not None and not 0<=args.seed<2147483648:
     parser.error('seed must be 0..2147483647')
 if args.command=='learn-episode' and (not math.isfinite(args.slip) or not 0<=args.slip<=1 or args.horizon<1):
     parser.error('slip must be a probability and horizon must be positive')
@@ -38,7 +38,7 @@ if getattr(args,'output',None) and Path(args.output).exists():
     parser.error('output already exists; previous checkpoints are preserved')
 state=Path(args.state).resolve();original=sha(state)
 options=SimpleNamespace(runtime=args.runtime,session_binary=args.session_binary,step_budget=100000000,
-                        agent='vqc',task='linear',seed=args.seed,episodes=1,eval_size=1,classical=False,
+                        agent='vqc',task='linear',seed=args.seed if args.seed is not None else 173,episodes=1,eval_size=1,classical=False,
                         analytic=False,joint_mode='independent',initial_checkpoint=None,
                         output=str(state.parent/'cli-transport'),resume=False)
 e=Experiment(options)
@@ -48,9 +48,10 @@ cmp r0 173
 je valid_v3_checkpoint
 div r0 0
 label valid_v3_checkpoint
-store64 {A+256} {args.seed}
 store64 {A+280} 0
 '''
+if args.seed is not None:
+    prefix+=f'store64 {A+256} {args.seed}\n'
 with e.Session(e.binary,state) as session:
     if args.command=='info':
         session.execute(e.source(prefix))
@@ -59,6 +60,7 @@ with e.Session(e.binary,state) as session:
             e.args.agent=agent;data[agent]=e.model_state(session)
         data['runtime']=session.metrics()
     else:
+        prefix+='qtrace reset\n'
         if args.command in ['classify','learn-class']:
             raw=sys.stdin.read() if args.inputs=='-' else Path(args.inputs).read_text()
             values=json.loads(raw)
@@ -86,8 +88,14 @@ store64 {A+320} 0
 store64 {A+328} 0
 store64 {A+336} 0
 call qrl_episode'''
+        if '\nhalt\n' in body:
+            body=body.replace('\nhalt\n','\nqtrace report\nhalt\n')
+        else:
+            body+='\nqtrace report'
         events,elapsed=session.execute(e.source(prefix+'\n'+body))
-        data=dict(metrics(events),elapsed_ms=elapsed,qubits_used_by_agent=1000)
+        trace=next(x for x in events if x['type']=='quantum_trace')
+        assert trace['distinct_observed_qubits']==1000,'agent did not use its full circuit'
+        data=dict(metrics(events),elapsed_ms=elapsed,qubits_used_by_agent=trace['distinct_observed_qubits'],trace=trace)
         if getattr(args,'output',None):
             session.save(args.output)
             data.update(checkpoint=str(Path(args.output).resolve()),checkpoint_sha256=sha(args.output))

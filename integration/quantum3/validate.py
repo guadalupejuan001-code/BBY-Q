@@ -60,6 +60,11 @@ with experiment.Session(experiment.binary,empty) as session:
     events,_=session.execute(experiment.source(f'qtrace reset\nstore64 {A} 0\ncall select_agent\ncall forward\nstore64 {A} 1\ncall select_agent\ncall forward\nqtrace report'))
     trace=next(x for x in events if x['type']=='quantum_trace')
     require(trace['distinct_observed_qubits']==trace['distinct_rotated_qubits']==trace['active_qubits']==2000,'all wires participate')
+    probabilities=[]
+    for hidden_label in [0,1]:
+        events,_=session.execute(experiment.source(f'store64 {A} 0\nfstore {A+128} {hidden_label}\ncall select_agent\ncall forward\nfemit p f21'))
+        probabilities.append(metrics(events)['p'])
+    require(probabilities[0]==probabilities[1],'changing a hidden label cannot affect inference')
     before=experiment.model_state(session)
     try:
         session.execute(experiment.source(f'fstore {A+110000} 99\ndiv r0 0'))
