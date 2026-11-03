@@ -1,0 +1,131 @@
+[
+  {
+    "name": "models/quantum1000/connected-vqc-linear-1000/checkpoint-00100.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cnot",
+    "task": "linear",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "e4ba9b549eec2347e7b4546fc6b57f0d03ece9fce3d4ab2d435019b84e00b23f",
+    "gzip_sha256": "fa6e19ba749ab77a0c7ca6e3ba2744492f019d3c285aaa2eeb9cd369d6c26087",
+    "gzip_bytes": 234228
+  },
+  {
+    "name": "models/quantum1000/connected-vqc-linear-1000/checkpoint-01000.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cnot",
+    "task": "linear",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "af8f0288f4aa12d1d38c0f98d3c5f63c6da0209f68fb2dd30dcc720703d3d434",
+    "gzip_sha256": "88f7837fb6a2e19ccc1569de4e0537741b09bba67337bc7791d4d0271ee522ef",
+    "gzip_bytes": 237119
+  },
+  {
+    "name": "models/quantum1000/connected-vqc-dense-1000/checkpoint-00100.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cnot",
+    "task": "dense",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "53da1537fcb2d2822eade74cf0c79c6c1f4a9c74fd13bdee4b3d785dc1771ca0",
+    "gzip_sha256": "d583423232f4fc27b1ea411601e4c9c050f17d1658f61cebc0796129dafa6673",
+    "gzip_bytes": 233770
+  },
+  {
+    "name": "models/quantum1000/connected-vqc-dense-1000/checkpoint-01000.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cnot",
+    "task": "dense",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "0a26151857e2258faee049222e5ca552e36d51bd703fa368f848d6b3b3a2e812",
+    "gzip_sha256": "75b9025891372e0ece881e1abd4442989f8364e03de86011da3a41bdc07d864b",
+    "gzip_bytes": 237619
+  },
+  {
+    "name": "models/quantum1000/connected-qrl-easy-1000/checkpoint-00100.rvp.gz",
+    "agent": "qrl",
+    "entangler": "cnot",
+    "task": "line_easy",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "0e9a4e5f72e50c7facba966c4b2383a406c16f1e52a1c21f5b09c063f3d1823b",
+    "gzip_sha256": "c591b511a1154a9c3fd63f5cb40634f3be2fd85df98c7070e86e43fd42da9899",
+    "gzip_bytes": 258272
+  },
+  {
+    "name": "models/quantum1000/connected-qrl-easy-1000/checkpoint-01000.rvp.gz",
+    "agent": "qrl",
+    "entangler": "cnot",
+    "task": "line_easy",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "f47acf355751cec6891ace663bb1a24440b1376e25865c0149caac90548f2d55",
+    "gzip_sha256": "2c18bb4cd1e307f1f37a3443bf3061f506028af83e2f818967c80821f84df77d",
+    "gzip_bytes": 260181
+  },
+  {
+    "name": "models/quantum1000/connected-cz-vqc-linear-1000/checkpoint-00100.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cz",
+    "task": "linear",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "2507bd55c6792e257ab1759f0f9e3b219a7db7c704cf2b951f69dd3d9304aec6",
+    "gzip_sha256": "7791b7df22c0bc089ea67a67b83526337e924b40746db604a869525e02dc0585",
+    "gzip_bytes": 229990
+  },
+  {
+    "name": "models/quantum1000/connected-cz-vqc-linear-1000/checkpoint-01000.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cz",
+    "task": "linear",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "5c696fb3d9eccc0d323b7add209500e851c9c61d3491407502c07e6ea3992c0b",
+    "gzip_sha256": "2037f0a72d594ec89ab2c6a58cfde1725ffdf2d17ad60954a28e69cf0d9b50c6",
+    "gzip_bytes": 232774
+  },
+  {
+    "name": "models/quantum1000/connected-cz-vqc-dense-1000/checkpoint-00100.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cz",
+    "task": "dense",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "42d8bdbb87a7aeacc007d01e30c2c8787566ecbfc18b86dce42658ecae567d7b",
+    "gzip_sha256": "ce350ab355c906559c24f050afeea549d7080e7871b2dafb6a36334d60dc55f5",
+    "gzip_bytes": 230331
+  },
+  {
+    "name": "models/quantum1000/connected-cz-vqc-dense-1000/checkpoint-01000.rvp.gz",
+    "agent": "vqc",
+    "entangler": "cz",
+    "task": "dense",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "c4055ae5f381af10d20936b5d1bce08e938009bac80ce8f014d83fde56bd678a",
+    "gzip_sha256": "9c7435c6428656985232a80156fea2bcfb67f8ccd7dc1429c4c9801c04ee2b54",
+    "gzip_bytes": 233801
+  },
+  {
+    "name": "models/quantum1000/connected-cz-qrl-easy-1000/checkpoint-00100.rvp.gz",
+    "agent": "qrl",
+    "entangler": "cz",
+    "task": "line_easy",
+    "new_training_episodes": 100,
+    "checkpoint_sha256": "ef238517747f5a9f4b3757d4919914e0bcf2b488c1c570d7d65c44ea8fbeb0bf",
+    "gzip_sha256": "b39aa1111e957588937add7019a3e2a5a3fa3a22a2e8ff5d8dafa5ba2e3acceb",
+    "gzip_bytes": 255357
+  },
+  {
+    "name": "models/quantum1000/connected-cz-qrl-easy-1000/checkpoint-01000.rvp.gz",
+    "agent": "qrl",
+    "entangler": "cz",
+    "task": "line_easy",
+    "new_training_episodes": 1000,
+    "checkpoint_sha256": "5804ea862095c4686a8866054a058f357f16a64586e0ec48b8bfc12709cd754d",
+    "gzip_sha256": "8659237ca49569937d05f6d2ea2e3d6b0c2c7d61d340eb32252c9d59f03d4e0d",
+    "gzip_bytes": 259551
+  },
+  {
+    "name": "models/quantum1000/BBYQ-VQC3-QRL3-1000x2-CONECTADOS-CZ.rvp.gz",
+    "agent": "vqc+qrl",
+    "entangler": "cz",
+    "new_training_episodes_per_agent": 1000,
+    "checkpoint_sha256": "4bb424ac6a179f2763f0793de65f8db7e5a8fa42d4375853cea079ae4e616e91",
+    "gzip_sha256": "29e3a5705de16f9448585c0b8f50e6bc59e73f8822ca52ff45dfe6becdc91ab0",
+    "gzip_bytes": 315889
+  }
+]

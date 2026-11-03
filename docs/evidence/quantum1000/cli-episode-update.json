@@ -1,0 +1,23 @@
+{
+  "episode_ms": 1012.1301129981875,
+  "update_ms": 183.49843799322844,
+  "reward": 0.8200000000000001,
+  "success": 1,
+  "decisions": 9,
+  "elapsed_ms": 1097.211476,
+  "qubits_used_by_agent": 1000,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 18000,
+    "observations": 18000,
+    "gates": 8991,
+    "preparations": 9,
+    "max_prepared_block": 1000,
+    "distinct_rotated_qubits": 1000,
+    "distinct_observed_qubits": 1000,
+    "distinct_two_qubit_edges": 999
+  },
+  "checkpoint": "/workspace/scratch/e484a347d7c3/BBY-Q/build/connected-cz-cli-episode-update.rvp",
+  "checkpoint_sha256": "30459712762902b5b009eba2924011370a861f720350baab65642acbdf7e5733"
+}

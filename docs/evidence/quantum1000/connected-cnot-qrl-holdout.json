@@ -1,0 +1,170 @@
+{
+  "agent": "qrl",
+  "task": "line_easy",
+  "samples_per_split": 64,
+  "entangler": "cnot",
+  "evaluation_seed": 20261103,
+  "training_seed": 173,
+  "training_seed_overlap": false,
+  "model_update": false,
+  "source_checkpoints": {
+    "trained": {
+      "name": "checkpoint-01000.rvp",
+      "sha256": "f47acf355751cec6891ace663bb1a24440b1376e25865c0149caac90548f2d55"
+    },
+    "initial": {
+      "name": "checkpoint-00000.rvp",
+      "sha256": "4c97d85d59f388bfd4e9f8dc76422da4c360098981b5a08ee03fa09e536a6a9e"
+    }
+  },
+  "trained": {
+    "iid": {
+      "success_rate": 0.5625,
+      "successes": 36,
+      "mean_reward": 0.45499999999999996,
+      "mean_decisions": 5.375,
+      "examples": 64,
+      "wilson95": [
+        0.4408620895699301,
+        0.6770599029559693
+      ],
+      "elapsed_ms": 30570.212471000013,
+      "peak_rss_kib": 18176,
+      "cpu_ms": 30561.19
+    },
+    "ood": {
+      "success_rate": 0.703125,
+      "successes": 45,
+      "mean_reward": 0.6128125,
+      "mean_decisions": 4.515625,
+      "examples": 64,
+      "wilson95": [
+        0.5822979889645707,
+        0.8009484867446022
+      ],
+      "elapsed_ms": 26570.196404,
+      "peak_rss_kib": 18172,
+      "cpu_ms": 26560.503
+    }
+  },
+  "initial": {
+    "iid": {
+      "success_rate": 0.25,
+      "successes": 16,
+      "mean_reward": 0.10874999999999999,
+      "mean_decisions": 7.0625,
+      "examples": 64,
+      "wilson95": [
+        0.16014926530970577,
+        0.36816276458669694
+      ],
+      "elapsed_ms": 39470.824919,
+      "peak_rss_kib": 11700,
+      "cpu_ms": 39445.923
+    },
+    "ood": {
+      "success_rate": 0.546875,
+      "successes": 35,
+      "mean_reward": 0.4459375,
+      "mean_decisions": 5.046875,
+      "examples": 64,
+      "wilson95": [
+        0.4257359722005412,
+        0.6627055221938833
+      ],
+      "elapsed_ms": 28304.534516999985,
+      "peak_rss_kib": 11704,
+      "cpu_ms": 28299.81
+    }
+  },
+  "observations_zeroed": {
+    "iid": {
+      "success_rate": 0.5625,
+      "successes": 36,
+      "mean_reward": 0.45499999999999996,
+      "mean_decisions": 5.375,
+      "examples": 64,
+      "wilson95": [
+        0.4408620895699301,
+        0.6770599029559693
+      ],
+      "elapsed_ms": 29775.973844,
+      "peak_rss_kib": 18168,
+      "cpu_ms": 29767.033
+    },
+    "ood": {
+      "success_rate": 0.703125,
+      "successes": 45,
+      "mean_reward": 0.6128125,
+      "mean_decisions": 4.515625,
+      "examples": 64,
+      "wilson95": [
+        0.5822979889645707,
+        0.8009484867446022
+      ],
+      "elapsed_ms": 25146.842962,
+      "peak_rss_kib": 18164,
+      "cpu_ms": 25126.533
+    }
+  },
+  "random_policy": {
+    "iid": {
+      "success_rate": 0.25,
+      "successes": 16,
+      "mean_reward": 0.10874999999999999,
+      "mean_decisions": 7.0625,
+      "examples": 64,
+      "wilson95": [
+        0.16014926530970577,
+        0.36816276458669694
+      ],
+      "elapsed_ms": 3467.9651009999984,
+      "peak_rss_kib": 8704,
+      "cpu_ms": 3459.326
+    },
+    "ood": {
+      "success_rate": 0.546875,
+      "successes": 35,
+      "mean_reward": 0.4459375,
+      "mean_decisions": 5.046875,
+      "examples": 64,
+      "wilson95": [
+        0.4257359722005412,
+        0.6627055221938833
+      ],
+      "elapsed_ms": 2605.8480310000004,
+      "peak_rss_kib": 8708,
+      "cpu_ms": 2598.849
+    }
+  },
+  "greedy_policy": {
+    "iid": {
+      "success_rate": 0.578125,
+      "successes": 37,
+      "mean_reward": 0.47593749999999996,
+      "mean_decisions": 5.109375,
+      "examples": 64,
+      "wilson95": [
+        0.456100315400829,
+        0.6913021752565451
+      ],
+      "elapsed_ms": 29217.77388400001,
+      "peak_rss_kib": 18172,
+      "cpu_ms": 29209.646
+    },
+    "ood": {
+      "success_rate": 0.625,
+      "successes": 40,
+      "mean_reward": 0.533125,
+      "mean_decisions": 4.59375,
+      "examples": 64,
+      "wilson95": [
+        0.502503786840045,
+        0.7333401982117536
+      ],
+      "elapsed_ms": 26596.086085,
+      "peak_rss_kib": 18172,
+      "cpu_ms": 26591.746
+    }
+  }
+}

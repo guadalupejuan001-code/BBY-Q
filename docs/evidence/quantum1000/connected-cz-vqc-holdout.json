@@ -1,0 +1,109 @@
+{
+  "agent": "vqc",
+  "task": "linear",
+  "samples_per_split": 64,
+  "evaluation_seed": 20261103,
+  "training_seed": 173,
+  "training_seed_overlap": false,
+  "model_update": false,
+  "source_checkpoints": {
+    "trained": {
+      "name": "checkpoint-01000.rvp",
+      "sha256": "5c696fb3d9eccc0d323b7add209500e851c9c61d3491407502c07e6ea3992c0b"
+    },
+    "initial": {
+      "name": "checkpoint-00000.rvp",
+      "sha256": "1bac6946dd878f941b295b9585a86f30d907749c0a84f0dff1624d6376848da1"
+    }
+  },
+  "trained": {
+    "iid": {
+      "accuracy": 0.921875,
+      "correct": 59,
+      "brier": 0.06339131923417447,
+      "cross_entropy": 0.22778503077784173,
+      "examples": 64,
+      "wilson95": [
+        0.8298046264583709,
+        0.9661688230914496
+      ],
+      "elapsed_ms": 6511.074867,
+      "peak_rss_kib": 15224,
+      "cpu_ms": 6490.7029999999995
+    },
+    "ood": {
+      "accuracy": 0.84375,
+      "correct": 54,
+      "brier": 0.0837710265876692,
+      "cross_entropy": 0.2775575231868041,
+      "examples": 64,
+      "wilson95": [
+        0.7357193822745122,
+        0.912851576617934
+      ],
+      "elapsed_ms": 6704.397305000002,
+      "peak_rss_kib": 15208,
+      "cpu_ms": 6648.18
+    }
+  },
+  "initial": {
+    "iid": {
+      "accuracy": 0.453125,
+      "correct": 29,
+      "brier": 0.25,
+      "cross_entropy": 0.6931471805599453,
+      "examples": 64,
+      "wilson95": [
+        0.3372944778061167,
+        0.5742640277994588
+      ],
+      "elapsed_ms": 6507.400204999998,
+      "peak_rss_kib": 11520,
+      "cpu_ms": 6503.918
+    },
+    "ood": {
+      "accuracy": 0.421875,
+      "correct": 27,
+      "brier": 0.25,
+      "cross_entropy": 0.6931471805599453,
+      "examples": 64,
+      "wilson95": [
+        0.30869782474345486,
+        0.5438996845991709
+      ],
+      "elapsed_ms": 6199.298709,
+      "peak_rss_kib": 11500,
+      "cpu_ms": 6194.204
+    }
+  },
+  "observations_zeroed": {
+    "iid": {
+      "accuracy": 0.453125,
+      "correct": 29,
+      "brier": 0.3696360052125666,
+      "cross_entropy": 0.9860145665908193,
+      "examples": 64,
+      "wilson95": [
+        0.3372944778061167,
+        0.5742640277994588
+      ],
+      "elapsed_ms": 6368.753135,
+      "peak_rss_kib": 15120,
+      "cpu_ms": 6361.799
+    },
+    "ood": {
+      "accuracy": 0.421875,
+      "correct": 27,
+      "brier": 0.388521707101923,
+      "cross_entropy": 1.0297620738315918,
+      "examples": 64,
+      "wilson95": [
+        0.30869782474345486,
+        0.5438996845991709
+      ],
+      "elapsed_ms": 6454.639146000003,
+      "peak_rss_kib": 15144,
+      "cpu_ms": 6448.38
+    }
+  }
+}

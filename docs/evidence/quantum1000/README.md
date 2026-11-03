@@ -1,5 +1,8 @@
 # VQC3 / QRL3: 1.000 cúbits conectados por agente
 
+[Resultados, curvas y tiempos reales](RESULTS.md) · [Checkpoints y hashes](CHECKPOINTS.json).
+El modelo combinado utiliza CZ y conserva 1.000 episodios nuevos por agente.
+
 Esta revisión elimina la separación fija de los agentes anteriores en grupos
 de cuatro. Cada agente prepara **un registro de 1.000 cúbits** y aplica CZ
 a los 999 pares de vecinos de una cadena. Los cruces 3→4, 7→8, 499→500 y todos
@@ -75,6 +78,11 @@ python BBY-Q/integration/quantum1000/campaign.py --runtime REVERSE-PC --agent vq
 python BBY-Q/integration/quantum1000/campaign.py --runtime REVERSE-PC --agent qrl --task line_easy --episodes 1000 --eval-size 32 --seed 173 --step-budget 10000000 --output qrl-connected
 python BBY-Q/integration/quantum1000/cli.py --runtime REVERSE-PC --state modelo-conectado.rvp info
 ```
+
+La evaluación final usa una semilla nueva después de seleccionar la
+arquitectura, con 64 casos IID y 64 OOD. Se reproduce mediante
+`integration/quantum1000/evaluate.py --runtime REVERSE-PC --trained FINAL.rvp --initial INICIAL.rvp --agent qrl --task line_easy --samples 64 --seed 20261103 --output evaluacion-nueva.json`.
+Para el clasificador, cambiar a `--agent vqc --task linear`.
 
 Para conservar los coeficientes de un modelo histórico en una copia conectada:
 

@@ -1,0 +1,56 @@
+{
+  "vqc": {
+    "parameter_sha256": "0872508a6394dec09694a6437a81a47dcfca7096622156711349136b8800e0dd",
+    "rotation_parameters_updated": 1000,
+    "rotation_parameters_changed": 1000,
+    "readout_parameters_changed": 1000,
+    "minimum_rotation_updates": 997,
+    "maximum_rotation_updates": 999,
+    "training_episodes_in_checkpoint": 1000,
+    "training_decisions_in_checkpoint": 0
+  },
+  "qrl": {
+    "parameter_sha256": "a8cfe2cd23be5d7ed1eb46676478a867d00f9377bc15cc1748f68317ea256d0a",
+    "rotation_parameters_updated": 1000,
+    "rotation_parameters_changed": 1000,
+    "readout_parameters_changed": 1000,
+    "minimum_rotation_updates": 984,
+    "maximum_rotation_updates": 999,
+    "training_episodes_in_checkpoint": 1000,
+    "training_decisions_in_checkpoint": 3594
+  },
+  "runtime": {
+    "peak_rss_kib": 15420,
+    "rusage_peak_rss_kib": 15616,
+    "rss_measurement": "Linux VmHWM after exec",
+    "cpu_ms": 83.58,
+    "active_qubits": 2000,
+    "quantum_payload_bytes": 255744
+  },
+  "architecture": "one connected 1000-qubit register per agent",
+  "entangler": "cz",
+  "registers": [
+    {
+      "type": "mps_register",
+      "qubits": 1000,
+      "max_bond_dimension": 2,
+      "bipartitions": 999,
+      "nonproduct_bipartitions": 999,
+      "minimum_purity": 0.5993012257261227,
+      "maximum_purity": 0.8264478801572079,
+      "norm": 1.000000000000001,
+      "state_payload_bytes": 127872
+    },
+    {
+      "type": "mps_register",
+      "qubits": 1000,
+      "max_bond_dimension": 2,
+      "bipartitions": 999,
+      "nonproduct_bipartitions": 999,
+      "minimum_purity": 0.599301225726129,
+      "maximum_purity": 0.82644788015721,
+      "norm": 1.0000000000000135,
+      "state_payload_bytes": 127872
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "action": 1,
+  "probability_right": 0.9705748245307435,
+  "elapsed_ms": 219.12872,
+  "qubits_used_by_agent": 1000,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 2000,
+    "observations": 2000,
+    "gates": 999,
+    "preparations": 1,
+    "max_prepared_block": 1000,
+    "distinct_rotated_qubits": 1000,
+    "distinct_observed_qubits": 1000,
+    "distinct_two_qubit_edges": 999
+  }
+}
