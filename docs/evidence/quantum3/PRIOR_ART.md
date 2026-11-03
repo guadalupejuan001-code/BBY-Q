@@ -11,6 +11,12 @@ según la definición siguiente. Eso deja la prioridad específica sin resolver;
 no constituye una demostración de ser el primero del mundo. La medición nueva
 frente a qsim tampoco establece un récord de velocidad o memoria.
 
+**Estado de la comparación entre agentes completos: pendiente.** qsim no
+ejecutó el entrenamiento, los episodios, la planificación ni la persistencia
+de QRL3. Por tanto, esta prueba no responde a una comparación de los sistemas
+completos y no determina un ganador entre qsim y BBY Q. Los tiempos parciales
+se conservan como evidencia de una comprobación auxiliar del cálculo.
+
 ## Qué se investigó
 
 La definición de trabajo exige que la política o el modelo de valor evalúe
@@ -47,7 +53,19 @@ La comparación anterior de BBY Q con el artículo de QCNN no resolvía por sí
 misma la prioridad de **QRL**, porque una tarea de clasificación y una política
 de refuerzo son categorías distintas. La revisión actual hace esa distinción.
 
-## Comparación nueva del mismo circuito
+## Comprobación auxiliar del circuito con qsim
+
+| Operación | Cobertura de la referencia qsim |
+| --- | --- |
+| Evaluación del circuito con parámetros congelados | Ejecutada y cronometrada. |
+| Gradientes seleccionados y una actualización SGD de VQC | Comprobación numérica fuera del cronómetro principal. |
+| Episodios QRL, recompensas y actualización de la política | No ejecutados. |
+| Campañas de 100, 1.000 y 10.000 episodios | No ejecutadas. |
+| Generalización y comparación de curvas de aprendizaje | No ejecutadas. |
+| Planificación, integración VQC3/QRL3 y persistencia recuperable | No ejecutadas. |
+
+Esta cobertura corresponde al adaptador qsim. Las campañas originales de
+BBY Q sí están documentadas en [REPORT.md](REPORT.md).
 
 Se creó una referencia independiente con el núcleo público
 [qsim](https://github.com/quantumlib/qsim), fijado en
@@ -73,10 +91,11 @@ de XI solo adapta esa medición y conserva su fuente y lógica originales.
 | VQC3, 1.000 cables | 25,145 ms | 0,178 ms | 12,87 MiB | 2,08 MiB |
 | QRL3, 1.000 cables | 26,425 ms | 0,176 ms | 14,79 MiB | 2,08 MiB |
 
-En esta carga, qsim fue aproximadamente 141-150 veces más rápido. XI incluye
-el coste de sus instrucciones y del almacenamiento genérico Ether; el adaptador
-qsim ejecuta un recorrido compilado en C++. Los resultados no acreditan una
-ventaja universal del backend ni predicen el rendimiento en otras topologías.
+La razón de tiempos de este cálculo congelado fue aproximadamente 141-150.
+XI incluye el coste de sus instrucciones y del almacenamiento genérico Ether;
+el adaptador qsim ejecuta un recorrido compilado en C++. Esa razón no es una
+medición del tiempo de entrenamiento de dos agentes completos. No permite
+afirmar que qsim aprende más rápido o que supera al sistema BBY Q.
 
 La verificación comparó **32.000 observables** y **32.016 valores de parámetros
 tras una actualización SGD de VQC**. El error absoluto máximo fue 8,89e-16
@@ -94,6 +113,31 @@ La [CI dedicada](https://github.com/guadalupejuan001-code/BBY-Q/actions/workflow
 repite la comparación numérica con parámetros de prueba reproducibles; el
 ensayo local anterior utilizó los parámetros del modelo entregado.
 
+## Código público de agentes completos revisado posteriormente
+
+Se inspeccionó [nicomeyer96/qrl-benchmark](https://github.com/nicomeyer96/qrl-benchmark),
+código de Meyer et al., ICML 2025, en el commit
+`c20b9efb056b840225e23a1192c2d5fc5d70986d`. Es un trabajo distinto del artículo
+de Kruse et al. con el mismo título que aparece en la tabla anterior.
+
+Su código incluye políticas DDQN/PPO, interacción con un entorno de selección
+de antenas, actualizaciones de parámetros y evaluación. `train.sh` especifica
+configuraciones cuánticas de 6, 8, 10, 12 y 14 cúbits. El entrenamiento DDQN
+devuelve los parámetros del modelo y del optimizador junto con métricas;
+eso no implica que se haya verificado una reanudación completa, ya que el
+logger publica `save_data` sin implementación.
+
+Esta revisión fue **de código, sin ejecutar una campaña externa**. El entorno,
+la arquitectura y las anchuras difieren de QRL3. No se ha portado el entorno
+a XI ni adaptado el agente publicado a la tarea de BBY Q. Por tanto, encontrar
+este repositorio no completa una comparación experimental y no proporciona
+un antecedente comprobado de una política de 1.000 cúbits.
+
+Para completar la comparación pendiente hacen falta ejecuciones completas
+en una tarea común, presupuestos de experiencias y evaluación acordes,
+varias semillas y mediciones con la misma cobertura. El estado seguirá siendo
+pendiente hasta disponer de esos resultados, sus comandos y checkpoints.
+
 ## Afirmaciones que sostienen los resultados
 
 | Afirmación | Estado |
@@ -103,7 +147,7 @@ ensayo local anterior utilizó los parámetros del modelo entregado.
 | Es el primer QRL entrenado con exactamente estos criterios de 1.000 cables. | No se encontró una coincidencia previa entre las fuentes revisadas; prioridad mundial aún no establecida. |
 | Es el primero en combinar circuitos pequeños dentro de una política QRL. | Existe el antecedente modular de 2025. |
 | Usa menos RAM que aquel estudio de QCNN o que Mario. | No determinado: faltan mediciones comparables de consumo y las tareas son diferentes. |
-| Supera a un simulador externo en velocidad o RAM para su mismo forward actual. | No en la comparación nueva con el adaptador qsim. |
+| qsim supera a VQC3/QRL3 como agentes completos. | No evaluado. La prueba auxiliar no ejecutó agentes completos en qsim. |
 
 La contribución comprobada es la implementación y validación de los agentes
 en XI/Ether. Una declaración de prioridad más amplia requiere comparar nuevas
