@@ -1,0 +1,23 @@
+{
+  "quantum_runtime_commit": "4e201ec515da268612ab9e06eba090988814fda6",
+  "merge_commit": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "pull_request": "https://github.com/guadalupejuan001-code/REVERSE-PC/pull/172",
+  "passed": [
+    "numeric-quantum-and-rollback",
+    "universal-gates",
+    "executable-space",
+    "apk"
+  ],
+  "known_baseline_failure": {
+    "job": "desktop",
+    "file": "reverse-os-android/tests/bbyq-app-smoke.py",
+    "line": 39,
+    "assertion": "BBY Q response: hola; expected Hola. Soy BBY Q.; actual No se pudo completar o guardar el turno. Memoria anterior conservada.",
+    "base_commit": "b3c943733473ea663e5d67194c6f0a7dbb942745",
+    "base_run": "https://github.com/guadalupejuan001-code/REVERSE-PC/actions/runs/41393696996",
+    "candidate_run": "https://github.com/guadalupejuan001-code/REVERSE-PC/actions/runs/41556918921",
+    "same_failure_before_quantum_changes": true,
+    "fixed": false,
+    "classical_agent_sources_modified": false
+  }
+}
