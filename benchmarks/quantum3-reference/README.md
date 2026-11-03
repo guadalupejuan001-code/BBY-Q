@@ -1,4 +1,11 @@
-# Referencia externa para los circuitos VQC3/QRL3
+# Comprobación numérica auxiliar de los circuitos VQC3/QRL3
+
+**La comparación entre agentes completos está pendiente.** Este adaptador
+qsim no ejecuta episodios QRL, actualizaciones de política, campañas de
+entrenamiento, planificación ni persistencia recuperable. Los tiempos de
+este experimento no miden aprendizaje y no determinan qué sistema completo
+es más rápido. Su cobertura se detalla en
+[PRIOR_ART.md](../../docs/evidence/quantum3/PRIOR_ART.md).
 
 Este experimento compara el mismo circuito de 1.000 cables, las mismas entradas,
 ángulos y pesos, en una CPU con afinidad a un núcleo. Compara XI/REVERSE-PC con

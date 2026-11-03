@@ -2,6 +2,20 @@
   "review_date": "2026-11-02",
   "question": "Historical priority and resource efficiency of a trainable 1000-functional-qubit simulated RL policy in XI/Ether",
   "scope": "Targeted literature and public-source review, not an exhaustive priority certification",
+  "complete_agent_comparison": {
+    "status": "Not performed; pending",
+    "qsim_executed_complete_agent": false,
+    "winner": null,
+    "auxiliary_evidence": "qsim-reference-trained.json",
+    "auxiliary_evidence_scope": "Frozen circuit timings and numerical checks of selected derivatives and one VQC SGD update",
+    "not_executed_in_qsim": [
+      "QRL episodes, rewards and policy training",
+      "100, 1000 and 10000 episode campaigns",
+      "Held-out learning and generalization curves",
+      "Planning, joint-agent integration and recoverable persistence"
+    ],
+    "conclusion": "The partial timing ratio does not establish faster learning or superiority of a complete system"
+  },
   "definition": {
     "qualifying_agent": "The trainable policy or value model evaluates 1000 distinct simulated circuit wires in its decisions; circuit observables influence learned outputs and parameters",
     "not_sufficient": ["Nominal chip capacity", "Classical RL controlling a 1000-qubit target", "Number of shots, episodes, parameters or state-space dimension", "A hypothetical scalable architecture without a reported 1000-wire experiment"],
@@ -46,6 +60,10 @@
     "trained_on_user_phone": {
       "status": "Not established by these runs",
       "recorded_environment": "Linux x86_64 cloud environment with quota 8 vCPU; CI also ran separate jobs"
+    },
+    "qsim_beats_complete_bbyq_agents": {
+      "status": "Not evaluated",
+      "qualification": "No complete qsim-based agent campaign was executed; auxiliary frozen-circuit measurements cannot answer this claim"
     }
   },
   "reviewed_sources": [
@@ -150,6 +168,32 @@
       "comparison": "Public external numerical backend used for new same-circuit measurements, not a historical 1000-wire RL-agent claim"
     }
   ],
+  "public_agent_code_followup": {
+    "repository": "https://github.com/nicomeyer96/qrl-benchmark",
+    "commit": "c20b9efb056b840225e23a1192c2d5fc5d70986d",
+    "paper": "Benchmarking Quantum Reinforcement Learning, Nico Meyer et al., ICML 2025",
+    "paper_url": "https://proceedings.mlr.press/v267/meyer25b.html",
+    "distinct_from_reviewed_source": "qrl-benchmark (Georg Kruse et al., arXiv:2502.04909)",
+    "reviewed_files": [
+      "README.md",
+      "networks/hybrid_nn.py",
+      "train.sh",
+      "trainers/trainer.py",
+      "trainers/dqn.py",
+      "trainers/logger.py"
+    ],
+    "review_method": "Source inspection only; no external training run",
+    "environment": "BeamManagement6G antenna selection; differs from BBY Q navigation",
+    "quantum_widths_in_train_script": [6, 8, 10, 12, 14],
+    "available_components": [
+      "DDQN and PPO training routines",
+      "Environment interaction and held-out evaluation",
+      "DDQN result includes model and optimizer state dictionaries"
+    ],
+    "checkpoint_limit": "The published logger save_data method is a no-op; complete resumability was not verified",
+    "matched_bbyq_experiment_executed": false,
+    "historical_1000_qubit_policy_established": false
+  },
   "benchmark_evidence": "qsim-reference-trained.json",
   "remaining_unknowns": [
     "Exhaustive worldwide priority of the precisely defined 1000-wire RL-policy experiment",
