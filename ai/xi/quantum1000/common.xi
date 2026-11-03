@@ -53,12 +53,19 @@ add r2 1
 cmp r2 1000
 jlt encode_loop
 set r2 0
+load64 r11 8140000000000001008
 label chain_entanglers
 mov r4 r15
 add r4 r2
 mov r5 r4
 add r5 1
+cmp r11 1
+je controlled_phase_edge
 cx $r4 $r5
+jmp edge_complete
+label controlled_phase_edge
+cz $r4 $r5
+label edge_complete
 add r2 1
 cmp r2 999
 jlt chain_entanglers

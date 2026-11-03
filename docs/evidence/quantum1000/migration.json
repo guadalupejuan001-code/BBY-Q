@@ -1,8 +1,9 @@
 {
   "input": "BBYQ-VQC3-QRL3-1000x2-ENTRENADOS.rvp",
   "input_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
-  "output": "connected-preserved-coefficients.rvp",
-  "output_sha256": "2f55c8b60952939d65e388a12135fe1a1a29d39553b8a0e24949bab004402d45",
+  "output": "connected-cz-preserved-coefficients.rvp",
+  "entangler": "cz",
+  "output_sha256": "79b6f7c6267445382cade8b5f77ae1b9c6f4da24e984af09bf3a2110c6a9f6f9",
   "before": {
     "vqc": {
       "model": {

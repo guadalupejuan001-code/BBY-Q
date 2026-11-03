@@ -162,6 +162,7 @@ class Experiment:
             raise RuntimeError('campaign exists; choose a new output or use --resume')
         sources = {p:sha(XI/p) for p in self.source_names}
         identity = {'agent':args.agent,'task':args.task,'seed':args.seed,'classical':args.classical,
+                    'entangler':getattr(args,'entangler','cz'),
                     'joint_mode':getattr(args,'joint_mode','independent'),
                     'analytic_classical_equivalent':getattr(args,'analytic',False),
                     'runtime_sha256':sha(self.binary),'xi_source_sha256':sources,
@@ -188,8 +189,11 @@ class Experiment:
             with self.Session(self.binary,state) as initializer:
                 if not initial:
                     initializer.execute((XI/'birth.xi').read_text()+'\n'+self.lib)
+                    initializer.execute(self.source(f'store64 {A+1008} {int(getattr(args,"entangler","cz")=="cz")}'))
                 else:
                     initializer.execute(self.source(f'load8 r0 {A+1000}\ncmp r0 174\nje connected_model\ndiv r0 0\nlabel connected_model\nqmpsinfo 5000\nqmpsinfo 7000'))
+                    expected=int(getattr(args,'entangler','cz')=='cz')
+                    initializer.execute(self.source(f'load64 r0 {A+1008}\ncmp r0 {expected}\nje matching_entangler\ndiv r0 0\nlabel matching_entangler'))
                 state = self.out/'checkpoint-00000.rvp'
                 initializer.save(state)
             start = 0
@@ -199,6 +203,7 @@ class Experiment:
                          'classical_circuit_simulation':not args.classical,
                          'qubits_per_agent':1000,'total_active_qubits':2000,'register_structure':'one connected 1000-wire MPS per agent','quantum_components_per_agent':1,'nearest_neighbour_connections':999,
                          'effective_quantum_qubits_per_decision':0 if args.classical else 1000 if self.joint_mode=='independent' else 2000,
+                         'entangler':getattr(args,'entangler','cz'),
                          'independent_latent_channels':1000 if args.task=='dense' else 4,
                          'measurement_mode':'analytic Born expectations, not sampled shots',
                          'circuit_parameters_per_agent':1000,'readout_parameters_per_agent':1000,
@@ -286,6 +291,7 @@ def main():
     parser.add_argument('--seed',type=int,default=173)
     parser.add_argument('--eval-size',type=int,default=64)
     parser.add_argument('--classical',action='store_true')
+    parser.add_argument('--entangler',choices=['cz','cnot'],default='cz')
     parser.add_argument('--initial-checkpoint')
     parser.add_argument('--resume',action='store_true')
     parser.add_argument('--output',required=True)

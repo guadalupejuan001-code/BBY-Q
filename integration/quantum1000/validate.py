@@ -48,12 +48,15 @@ with e.Session(e.binary,empty) as s:
         s.execute(e.source(f'fstore {A+100000+8*q} .31'))
         error=abs((values[0]-values[1])/2e-5-gradients[q]);errors.append(error)
         require(error<1e-7,f'full-score finite-difference gradient at wire {q}')
-    # A feature at the first wire changes a measurement at the last wire.
+    # The CNOT sweep propagates from the first to the last site. The default
+    # CZ layer has local observation cones but one entangled 1000-site state.
+    s.execute(e.source(f'store64 {A+1008} 0'))
     remote=[]
     for value in [.008,.108]:
         events,_=s.execute(e.source(f'fstore {A+300000} {value}\n'+code+'\nfexpect f0 Z:5999\nfemit remote f0'))
         remote.append(metrics(events)['remote'])
     require(abs(remote[0]-remote[1])>1e-4,'causal influence from wire 0 to wire 999')
+    s.execute(e.source(f'store64 {A+1008} 1'))
     clipped=materialize(s,A+130000,1000,f'fstore {A+4016} 100\n'+code)
     require(all(g==0 for g in clipped),'saturated logit clamp has zero angle derivatives')
     s.execute(e.source(f'fstore {A+4016} 0'))
@@ -109,6 +112,7 @@ for agent,task in [('vqc','linear'),('qrl','line_easy')]:
 
 report={'ok':True,'checks':checks,'max_finite_difference_error':max(errors),
     'first_to_last_observation_change':abs(remote[0]-remote[1]),'trace':trace,
+    'trained_default_entangler':'cz','first_to_last_influence_entangler':'cnot',
     'registers':registers,'trained':trained,'runtime_sha256':sha(e.binary),
     'classical_simulation':True,'truncation':False}
 (out/'validation.json').write_text(json.dumps(report,indent=2)+'\n')

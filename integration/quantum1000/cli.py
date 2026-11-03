@@ -60,6 +60,8 @@ with e.Session(e.binary,state) as session:
             e.args.agent=agent;data[agent]=e.model_state(session)
         data['runtime']=session.metrics()
         data['architecture']='one connected 1000-qubit register per agent'
+        flag,_=session.execute(e.source(f'load64 r0 {A+1008}\nprint r0'))
+        data['entangler']='cz' if next(x['value'] for x in flag if x['type']=='register')==1 else 'cnot'
         events,_=session.execute(e.source('qmpsinfo 5000\nqmpsinfo 7000'))
         data['registers']=[x for x in events if x['type']=='mps_register']
     else:
