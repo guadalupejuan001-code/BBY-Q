@@ -1,0 +1,63 @@
+{
+  "input": "BBYQ-VQC3-QRL3-1000x2-ENTRENADOS.rvp",
+  "input_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "output": "connected-preserved-coefficients.rvp",
+  "output_sha256": "2f55c8b60952939d65e388a12135fe1a1a29d39553b8a0e24949bab004402d45",
+  "before": {
+    "vqc": {
+      "model": {
+        "parameter_sha256": "978aaf0c6598bcb5f68a7d81972a62a6330bb8cf174e0579f41534bd85389bbf",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 39,
+        "maximum_rotation_updates": 40,
+        "training_episodes_in_checkpoint": 10000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "coefficient_sha256": "86a986cb7611327aa3d7f2290b7bf9041c3f9a8b05123c5b0383498a939f177f"
+    },
+    "qrl": {
+      "model": {
+        "parameter_sha256": "da367b65ca358af5c5082d5216457623f2996b6d42d340e765c15391ef4fd96e",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 183,
+        "maximum_rotation_updates": 185,
+        "training_episodes_in_checkpoint": 10000,
+        "training_decisions_in_checkpoint": 46131
+      },
+      "coefficient_sha256": "31b1c4a32b82f51d775c62a53c110a3f902a12d89e7e6e3c56f7bde8ce79366a"
+    }
+  },
+  "after": {
+    "vqc": {
+      "model": {
+        "parameter_sha256": "b305da7659217500329c3ec10d5fa03d4989d5e2a1667561f5237e360c1d66d2",
+        "rotation_parameters_updated": 0,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 0,
+        "training_episodes_in_checkpoint": 0,
+        "training_decisions_in_checkpoint": 0
+      },
+      "coefficient_sha256": "86a986cb7611327aa3d7f2290b7bf9041c3f9a8b05123c5b0383498a939f177f"
+    },
+    "qrl": {
+      "model": {
+        "parameter_sha256": "a0a6e7a10a944289b16988e3e8c66b06f05495e6db7d27a7cc4939aaf99bb8a5",
+        "rotation_parameters_updated": 0,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 0,
+        "training_episodes_in_checkpoint": 0,
+        "training_decisions_in_checkpoint": 0
+      },
+      "coefficient_sha256": "31b1c4a32b82f51d775c62a53c110a3f902a12d89e7e6e3c56f7bde8ce79366a"
+    }
+  },
+  "note": "Coefficients preserved; initial quantum states re-prepared. Learning on the new connected topology is not yet established by migration."
+}
