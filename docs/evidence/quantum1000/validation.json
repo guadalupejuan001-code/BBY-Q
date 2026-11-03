@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "checks": [
+    "all 1000 angle derivatives affect the learned score",
+    "full-score finite-difference gradient at wire 0",
+    "full-score finite-difference gradient at wire 3",
+    "full-score finite-difference gradient at wire 4",
+    "full-score finite-difference gradient at wire 7",
+    "full-score finite-difference gradient at wire 8",
+    "full-score finite-difference gradient at wire 127",
+    "full-score finite-difference gradient at wire 499",
+    "full-score finite-difference gradient at wire 500",
+    "full-score finite-difference gradient at wire 998",
+    "full-score finite-difference gradient at wire 999",
+    "causal influence from wire 0 to wire 999",
+    "saturated logit clamp has zero angle derivatives",
+    "two complete register preparations, with no 4-wire resets",
+    "all 1000 wires in each agent rotate and are observed",
+    "999 distinct neighbour connections per agent",
+    "one quantum component per agent",
+    "both registers entangled across all 999 cuts",
+    "failed update or partial reset cannot change learned parameters",
+    "failed update or partial reset cannot change learned parameters",
+    "hidden labels do not influence inference",
+    "entangled MPS states round-trip exactly through Ether checkpoint",
+    "vqc uninterrupted and resumed learning have identical parameters",
+    "vqc executed twelve real training episodes",
+    "vqc trained all 1000 angles and all 1000 readout weights",
+    "qrl uninterrupted and resumed learning have identical parameters",
+    "qrl executed twelve real training episodes",
+    "qrl trained all 1000 angles and all 1000 readout weights",
+    "QRL uses sequential decisions with terminal rewards",
+    "QRL rewards agree with actual trajectories"
+  ],
+  "max_finite_difference_error": 1.9894612780096965e-10,
+  "first_to_last_observation_change": 0.005342378005324111,
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 4000,
+    "observations": 4000,
+    "gates": 1998,
+    "preparations": 2,
+    "max_prepared_block": 1000,
+    "distinct_rotated_qubits": 2000,
+    "distinct_observed_qubits": 2000,
+    "distinct_two_qubit_edges": 1998
+  },
+  "trained_default_entangler": "cz",
+  "first_to_last_influence_entangler": "cnot",
+  "registers": [
+    {
+      "type": "mps_register",
+      "qubits": 1000,
+      "max_bond_dimension": 2,
+      "bipartitions": 999,
+      "nonproduct_bipartitions": 999,
+      "minimum_purity": 0.9999996272788348,
+      "maximum_purity": 0.9999999979469736,
+      "norm": 1.0000000000000002,
+      "state_payload_bytes": 127872
+    },
+    {
+      "type": "mps_register",
+      "qubits": 1000,
+      "max_bond_dimension": 2,
+      "bipartitions": 999,
+      "nonproduct_bipartitions": 999,
+      "minimum_purity": 0.9999996272788348,
+      "maximum_purity": 0.9999999979469736,
+      "norm": 1.0000000000000002,
+      "state_payload_bytes": 127872
+    }
+  ],
+  "trained": {
+    "vqc": {
+      "parameter_sha256": "3704ad8302fd6618cf102fadd2c7a5145bca7c0457cf2a085da30430a6c2806d",
+      "rotation_parameters_updated": 1000,
+      "rotation_parameters_changed": 1000,
+      "readout_parameters_changed": 1000,
+      "minimum_rotation_updates": 11,
+      "maximum_rotation_updates": 11,
+      "training_episodes_in_checkpoint": 12,
+      "training_decisions_in_checkpoint": 0
+    },
+    "qrl": {
+      "parameter_sha256": "20a7d4fe1df1698dbaa828005efada6c59774bad00b72d353af38105f0fd4a5e",
+      "rotation_parameters_updated": 1000,
+      "rotation_parameters_changed": 1000,
+      "readout_parameters_changed": 1000,
+      "minimum_rotation_updates": 11,
+      "maximum_rotation_updates": 11,
+      "training_episodes_in_checkpoint": 12,
+      "training_decisions_in_checkpoint": 86
+    }
+  },
+  "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+  "classical_simulation": true,
+  "truncation": false
+}

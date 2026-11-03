@@ -1,0 +1,41 @@
+{
+  "identity": {
+    "agent": "qrl",
+    "task": "line_easy",
+    "seed": 173,
+    "classical": false,
+    "entangler": "cz",
+    "joint_mode": "independent",
+    "analytic_classical_equivalent": false,
+    "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+    "xi_source_sha256": {
+      "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+      "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+      "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+      "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+    },
+    "step_budget": 10000000,
+    "initial_checkpoint_sha256": null
+  },
+  "physical_quantum_hardware": false,
+  "classical_circuit_simulation": true,
+  "qubits_per_agent": 1000,
+  "total_active_qubits": 2000,
+  "register_structure": "one connected 1000-wire MPS per agent",
+  "quantum_components_per_agent": 1,
+  "nearest_neighbour_connections": 999,
+  "effective_quantum_qubits_per_decision": 1000,
+  "entangler": "cz",
+  "independent_latent_channels": 4,
+  "measurement_mode": "analytic Born expectations, not sampled shots",
+  "circuit_parameters_per_agent": 1000,
+  "readout_parameters_per_agent": 1000,
+  "theta_gradient_coordinates_per_decision": 1000,
+  "gradient_method": "exact commutator, dZ/dtheta=-X",
+  "optimizer": "XI episodic REINFORCE, EMA baseline, gamma=1",
+  "seed_overlap_checked": true,
+  "evaluation_size_per_split": 16,
+  "started_utc": "2026-11-03T01:17:32.406578+00:00",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14"
+}

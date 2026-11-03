@@ -1,0 +1,461 @@
+{
+  "identity": {
+    "agent": "vqc",
+    "task": "linear",
+    "seed": 173,
+    "classical": false,
+    "entangler": "cz",
+    "joint_mode": "independent",
+    "analytic_classical_equivalent": false,
+    "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+    "xi_source_sha256": {
+      "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+      "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+      "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+      "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+    },
+    "step_budget": 10000000,
+    "initial_checkpoint_sha256": null
+  },
+  "physical_quantum_hardware": false,
+  "classical_circuit_simulation": true,
+  "qubits_per_agent": 1000,
+  "total_active_qubits": 2000,
+  "register_structure": "one connected 1000-wire MPS per agent",
+  "quantum_components_per_agent": 1,
+  "nearest_neighbour_connections": 999,
+  "effective_quantum_qubits_per_decision": 1000,
+  "entangler": "cz",
+  "independent_latent_channels": 4,
+  "measurement_mode": "analytic Born expectations, not sampled shots",
+  "circuit_parameters_per_agent": 1000,
+  "readout_parameters_per_agent": 1000,
+  "theta_gradient_coordinates_per_decision": 1000,
+  "gradient_method": "exact commutator, dZ/dtheta=-X",
+  "optimizer": "XI SGD",
+  "seed_overlap_checked": true,
+  "evaluation_size_per_split": 32,
+  "started_utc": "2026-11-03T01:17:31.115263+00:00",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "milestones": [
+    {
+      "episodes": 0,
+      "checkpoint": "checkpoint-00000.rvp",
+      "checkpoint_sha256": "1bac6946dd878f941b295b9585a86f30d907749c0a84f0dff1624d6376848da1",
+      "model": {
+        "parameter_sha256": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+        "rotation_parameters_updated": 0,
+        "rotation_parameters_changed": 0,
+        "readout_parameters_changed": 0,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 0,
+        "training_episodes_in_checkpoint": 0,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 6272,
+        "rusage_peak_rss_kib": 15360,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 18.443,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 64000
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 1,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 0,
+        "minimum_purity": 1,
+        "maximum_purity": 1,
+        "norm": 1,
+        "state_payload_bytes": 32000
+      },
+      "iid": {
+        "accuracy": 0.5,
+        "correct": 16,
+        "brier": 0.25,
+        "cross_entropy": 0.6931471805599453,
+        "examples": 32,
+        "wilson95": [
+          0.33630882869327483,
+          0.6636911713067252
+        ],
+        "elapsed_ms": 3312.779319,
+        "peak_rss_kib": 11524,
+        "cpu_ms": 3308.543
+      },
+      "ood": {
+        "accuracy": 0.34375,
+        "correct": 11,
+        "brier": 0.25,
+        "cross_entropy": 0.6931471805599453,
+        "examples": 32,
+        "wilson95": [
+          0.20410437924433172,
+          0.5168891202103778
+        ],
+        "elapsed_ms": 3423.59659,
+        "peak_rss_kib": 11520,
+        "cpu_ms": 3417.661
+      },
+      "observations_zeroed": {
+        "accuracy": 0.5,
+        "correct": 16,
+        "brier": 0.25,
+        "cross_entropy": 0.6931471805599453,
+        "examples": 32,
+        "wilson95": [
+          0.33630882869327483,
+          0.6636911713067252
+        ],
+        "elapsed_ms": 3274.1476610000004,
+        "peak_rss_kib": 9792,
+        "cpu_ms": 3271.515
+      },
+      "evaluation_seconds": 10.052461294999375
+    },
+    {
+      "episodes": 10,
+      "checkpoint": "checkpoint-00010.rvp",
+      "checkpoint_sha256": "2d411d6867becbd2aea80702ff59eaa6c651ef398dad1d389342d9af23f3e620",
+      "model": {
+        "parameter_sha256": "19505d4853a45d85750be404a394097fc4c5e58294ac2eb70dd25ddd4ce89463",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 9,
+        "maximum_rotation_updates": 9,
+        "training_episodes_in_checkpoint": 10,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18044,
+        "rusage_peak_rss_kib": 18044,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1359.417,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5113031398635793,
+        "maximum_purity": 0.9734701509140266,
+        "norm": 1,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "accuracy": 0.5,
+        "correct": 16,
+        "brier": 0.24477611304560684,
+        "cross_entropy": 0.681646154297348,
+        "examples": 32,
+        "wilson95": [
+          0.33630882869327483,
+          0.6636911713067252
+        ],
+        "elapsed_ms": 3303.0288980000005,
+        "peak_rss_kib": 15024,
+        "cpu_ms": 3300.15
+      },
+      "ood": {
+        "accuracy": 0.65625,
+        "correct": 21,
+        "brier": 0.21154231191422287,
+        "cross_entropy": 0.6140418604723871,
+        "examples": 32,
+        "wilson95": [
+          0.4831108797896222,
+          0.7958956207556682
+        ],
+        "elapsed_ms": 3319.7397940000005,
+        "peak_rss_kib": 15012,
+        "cpu_ms": 3318.085
+      },
+      "evaluation_seconds": 6.653786686001695
+    },
+    {
+      "episodes": 30,
+      "checkpoint": "checkpoint-00030.rvp",
+      "checkpoint_sha256": "ccd5d447d695821e098f8c4b19066e973cc2d56527eafd8d52094a350b67349c",
+      "model": {
+        "parameter_sha256": "07e13b3e87183d565c2492d3fbe4b31d3eed24d3b8831c74f2dcb267199736af",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 29,
+        "maximum_rotation_updates": 29,
+        "training_episodes_in_checkpoint": 30,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18232,
+        "rusage_peak_rss_kib": 18232,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 4064.435,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5544395666419969,
+        "maximum_purity": 0.9984859267126581,
+        "norm": 0.9999999999999977,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "accuracy": 0.875,
+        "correct": 28,
+        "brier": 0.20521985664836692,
+        "cross_entropy": 0.6027547717758003,
+        "examples": 32,
+        "wilson95": [
+          0.7193169451834978,
+          0.9502986561251991
+        ],
+        "elapsed_ms": 3368.4238019999993,
+        "peak_rss_kib": 15032,
+        "cpu_ms": 3361.537
+      },
+      "ood": {
+        "accuracy": 0.71875,
+        "correct": 23,
+        "brier": 0.22258459953006793,
+        "cross_entropy": 0.6376609984396868,
+        "examples": 32,
+        "wilson95": [
+          0.5462549057408342,
+          0.8443541950225723
+        ],
+        "elapsed_ms": 3218.8516569999997,
+        "peak_rss_kib": 14984,
+        "cpu_ms": 3217.024
+      },
+      "evaluation_seconds": 6.62504263899973
+    },
+    {
+      "episodes": 100,
+      "checkpoint": "checkpoint-00100.rvp",
+      "checkpoint_sha256": "2507bd55c6792e257ab1759f0f9e3b219a7db7c704cf2b951f69dd3d9304aec6",
+      "model": {
+        "parameter_sha256": "3427f1f4c58a02fb14b9ee2e3da262a53957e982a24ca6593d509ffceca98ea8",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 98,
+        "maximum_rotation_updates": 99,
+        "training_episodes_in_checkpoint": 100,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18312,
+        "rusage_peak_rss_kib": 18312,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 13633.749,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.6624236637300649,
+        "maximum_purity": 0.9948480972938528,
+        "norm": 0.9999999999999977,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "accuracy": 0.875,
+        "correct": 28,
+        "brier": 0.146708123467959,
+        "cross_entropy": 0.4772402607027571,
+        "examples": 32,
+        "wilson95": [
+          0.7193169451834978,
+          0.9502986561251991
+        ],
+        "elapsed_ms": 3542.5126029999997,
+        "peak_rss_kib": 15032,
+        "cpu_ms": 3538.735
+      },
+      "ood": {
+        "accuracy": 0.9375,
+        "correct": 30,
+        "brier": 0.16065385190262527,
+        "cross_entropy": 0.5080290979397731,
+        "examples": 32,
+        "wilson95": [
+          0.7985287685584542,
+          0.982689432968359
+        ],
+        "elapsed_ms": 3439.2813800000004,
+        "peak_rss_kib": 15012,
+        "cpu_ms": 3434.713
+      },
+      "evaluation_seconds": 7.021517668999877
+    },
+    {
+      "episodes": 300,
+      "checkpoint": "checkpoint-00300.rvp",
+      "checkpoint_sha256": "6239d66146c76e5ee465d8edd6c08d9370db47b44aa453e054a0581a49847082",
+      "model": {
+        "parameter_sha256": "032de650e860813996e734df0d42a6375cb841797be7d6b540f16c7f1dfd0dc5",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 298,
+        "maximum_rotation_updates": 299,
+        "training_episodes_in_checkpoint": 300,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18460,
+        "rusage_peak_rss_kib": 18460,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 40112.783,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5000057354727536,
+        "maximum_purity": 0.8351935681240806,
+        "norm": 1.000000000000003,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "accuracy": 0.875,
+        "correct": 28,
+        "brier": 0.08903364882952634,
+        "cross_entropy": 0.3208240573239023,
+        "examples": 32,
+        "wilson95": [
+          0.7193169451834978,
+          0.9502986561251991
+        ],
+        "elapsed_ms": 3458.171294,
+        "peak_rss_kib": 15244,
+        "cpu_ms": 3453.816
+      },
+      "ood": {
+        "accuracy": 0.875,
+        "correct": 28,
+        "brier": 0.12719160852183653,
+        "cross_entropy": 0.4175816568514755,
+        "examples": 32,
+        "wilson95": [
+          0.7193169451834978,
+          0.9502986561251991
+        ],
+        "elapsed_ms": 3344.1156890000007,
+        "peak_rss_kib": 15228,
+        "cpu_ms": 3342.535
+      },
+      "evaluation_seconds": 6.834590783000749
+    },
+    {
+      "episodes": 1000,
+      "checkpoint": "checkpoint-01000.rvp",
+      "checkpoint_sha256": "5c696fb3d9eccc0d323b7add209500e851c9c61d3491407502c07e6ea3992c0b",
+      "model": {
+        "parameter_sha256": "0872508a6394dec09694a6437a81a47dcfca7096622156711349136b8800e0dd",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 997,
+        "maximum_rotation_updates": 999,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18588,
+        "rusage_peak_rss_kib": 18588,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 132218.371,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5536695602538997,
+        "maximum_purity": 0.8380374701544818,
+        "norm": 0.9999999999999956,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "accuracy": 0.9375,
+        "correct": 30,
+        "brier": 0.05046983817062015,
+        "cross_entropy": 0.19465664780216885,
+        "examples": 32,
+        "wilson95": [
+          0.7985287685584542,
+          0.982689432968359
+        ],
+        "elapsed_ms": 3417.479531,
+        "peak_rss_kib": 15252,
+        "cpu_ms": 3412.642
+      },
+      "ood": {
+        "accuracy": 0.96875,
+        "correct": 31,
+        "brier": 0.04603047289469207,
+        "cross_entropy": 0.1975646888563467,
+        "examples": 32,
+        "wilson95": [
+          0.8425573617998744,
+          0.9944621398359969
+        ],
+        "elapsed_ms": 3277.109555,
+        "peak_rss_kib": 15228,
+        "cpu_ms": 3274.9700000000003
+      },
+      "observations_zeroed": {
+        "accuracy": 0.5,
+        "correct": 16,
+        "brier": 0.341307452378532,
+        "cross_entropy": 0.9203933057296608,
+        "examples": 32,
+        "wilson95": [
+          0.33630882869327483,
+          0.6636911713067252
+        ],
+        "elapsed_ms": 3108.0233829999993,
+        "peak_rss_kib": 15148,
+        "cpu_ms": 3105.947
+      },
+      "evaluation_seconds": 9.849274484000489
+    }
+  ],
+  "completed_episodes": 1000,
+  "latest_checkpoint": "checkpoint-01000.rvp",
+  "latest_checkpoint_sha256": "5c696fb3d9eccc0d323b7add209500e851c9c61d3491407502c07e6ea3992c0b",
+  "training_total_ms": 132152.420217,
+  "native_episode_total_ms": 110432.25142405182,
+  "native_update_total_ms": 27241.646043073386,
+  "median_episode_ms": 107.94729199819267,
+  "p95_episode_ms": 128.05438800156116,
+  "median_update_ms": 26.51384250074625,
+  "training_experiences": 1000,
+  "last100_mean_reward": null,
+  "last100_success_rate": null
+}

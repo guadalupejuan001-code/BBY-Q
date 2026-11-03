@@ -1,0 +1,69 @@
+name: Connected 1000-qubit XI agents
+on:
+  pull_request:
+    paths: ['ai/xi/quantum1000/**', 'integration/quantum1000/**', '.github/workflows/connected-quantum-agents.yml']
+  push:
+    branches: [main]
+    paths: ['ai/xi/quantum1000/**', 'integration/quantum1000/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  learn-connected:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {agent: vqc, task: linear}
+          - {agent: qrl, task: line_easy}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 4e201ec515da268612ab9e06eba090988814fda6
+          path: deps/reverse
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Compile XI and connected state authority
+        run: bash deps/reverse/scripts/build-xi-session.sh "$GITHUB_WORKSPACE/deps/mundo-x" "$GITHUB_WORKSPACE/deps/reverse/build"
+      - name: Full-width gradients, 999 entangled cuts, rollback and resume
+        run: python integration/quantum1000/validate.py --runtime deps/reverse --output build/connected-validation
+      - name: Train all 1000 parameters in real episodes
+        run: >-
+          python integration/quantum1000/campaign.py --runtime deps/reverse
+          --agent ${{ matrix.agent }} --task ${{ matrix.task }} --episodes 100
+          --eval-size 8 --seed 173 --step-budget 10000000 --output build/campaign
+      - name: Check actual learning and connected register
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('build/campaign/manifest.json').read_text())
+          m=d['milestones'][-1]
+          assert d['completed_episodes']==100
+          assert m['model']['rotation_parameters_updated']==1000
+          assert m['model']['readout_parameters_changed']==1000
+          assert m['connected_register']['qubits']==1000
+          assert m['connected_register']['nonproduct_bipartitions']==999
+          assert d['theta_gradient_coordinates_per_decision']==1000
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Connected-1000-${{ matrix.agent }}
+          path: |
+            build/campaign/
+            build/connected-validation/
+          if-no-files-found: warn
+          retention-days: 90

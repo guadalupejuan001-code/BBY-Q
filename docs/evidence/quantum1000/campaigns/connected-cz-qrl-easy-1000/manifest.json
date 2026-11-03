@@ -1,0 +1,657 @@
+{
+  "identity": {
+    "agent": "qrl",
+    "task": "line_easy",
+    "seed": 173,
+    "classical": false,
+    "entangler": "cz",
+    "joint_mode": "independent",
+    "analytic_classical_equivalent": false,
+    "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+    "xi_source_sha256": {
+      "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+      "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+      "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+      "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+    },
+    "step_budget": 10000000,
+    "initial_checkpoint_sha256": null
+  },
+  "physical_quantum_hardware": false,
+  "classical_circuit_simulation": true,
+  "qubits_per_agent": 1000,
+  "total_active_qubits": 2000,
+  "register_structure": "one connected 1000-wire MPS per agent",
+  "quantum_components_per_agent": 1,
+  "nearest_neighbour_connections": 999,
+  "effective_quantum_qubits_per_decision": 1000,
+  "entangler": "cz",
+  "independent_latent_channels": 4,
+  "measurement_mode": "analytic Born expectations, not sampled shots",
+  "circuit_parameters_per_agent": 1000,
+  "readout_parameters_per_agent": 1000,
+  "theta_gradient_coordinates_per_decision": 1000,
+  "gradient_method": "exact commutator, dZ/dtheta=-X",
+  "optimizer": "XI episodic REINFORCE, EMA baseline, gamma=1",
+  "seed_overlap_checked": true,
+  "evaluation_size_per_split": 16,
+  "started_utc": "2026-11-03T01:17:32.406578+00:00",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "milestones": [
+    {
+      "episodes": 0,
+      "checkpoint": "checkpoint-00000.rvp",
+      "checkpoint_sha256": "1bac6946dd878f941b295b9585a86f30d907749c0a84f0dff1624d6376848da1",
+      "model": {
+        "parameter_sha256": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+        "rotation_parameters_updated": 0,
+        "rotation_parameters_changed": 0,
+        "readout_parameters_changed": 0,
+        "minimum_rotation_updates": 0,
+        "maximum_rotation_updates": 0,
+        "training_episodes_in_checkpoint": 0,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 6312,
+        "rusage_peak_rss_kib": 15360,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 17.585,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 64000
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 1,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 0,
+        "minimum_purity": 1,
+        "maximum_purity": 1,
+        "norm": 1,
+        "state_payload_bytes": 32000
+      },
+      "iid": {
+        "success_rate": 0.5,
+        "successes": 8,
+        "mean_reward": 0.37,
+        "mean_decisions": 6.5,
+        "examples": 16,
+        "wilson95": [
+          0.27999563610326017,
+          0.7200043638967398
+        ],
+        "elapsed_ms": 9870.837898,
+        "peak_rss_kib": 11692,
+        "cpu_ms": 9861.404
+      },
+      "ood": {
+        "success_rate": 0.5625,
+        "successes": 9,
+        "mean_reward": 0.45875,
+        "mean_decisions": 5.1875,
+        "examples": 16,
+        "wilson95": [
+          0.331785563988119,
+          0.7690134759450765
+        ],
+        "elapsed_ms": 7388.678628999999,
+        "peak_rss_kib": 11700,
+        "cpu_ms": 7386.308
+      },
+      "greedy_iid": {
+        "success_rate": 0.5625,
+        "successes": 9,
+        "mean_reward": 0.45875,
+        "mean_decisions": 5.1875,
+        "examples": 16,
+        "wilson95": [
+          0.331785563988119,
+          0.7690134759450765
+        ],
+        "elapsed_ms": 7398.654548999999,
+        "peak_rss_kib": 11668,
+        "cpu_ms": 7394.395
+      },
+      "greedy_ood": {
+        "success_rate": 0.4375,
+        "successes": 7,
+        "mean_reward": 0.31875,
+        "mean_decisions": 5.9375,
+        "examples": 16,
+        "wilson95": [
+          0.23098652405492354,
+          0.6682144360118811
+        ],
+        "elapsed_ms": 8494.640905,
+        "peak_rss_kib": 11676,
+        "cpu_ms": 8490.599
+      },
+      "observations_zeroed": {
+        "success_rate": 0.5,
+        "successes": 8,
+        "mean_reward": 0.37,
+        "mean_decisions": 6.5,
+        "examples": 16,
+        "wilson95": [
+          0.27999563610326017,
+          0.7200043638967398
+        ],
+        "elapsed_ms": 9460.377464,
+        "peak_rss_kib": 9952,
+        "cpu_ms": 9452.515
+      },
+      "random_policy": {
+        "success_rate": 0.5,
+        "successes": 8,
+        "mean_reward": 0.37,
+        "mean_decisions": 6.5,
+        "examples": 16,
+        "wilson95": [
+          0.27999563610326017,
+          0.7200043638967398
+        ],
+        "elapsed_ms": 894.6974960000001,
+        "peak_rss_kib": 8700,
+        "cpu_ms": 893.885
+      },
+      "evaluation_seconds": 43.571504665997054
+    },
+    {
+      "episodes": 10,
+      "checkpoint": "checkpoint-00010.rvp",
+      "checkpoint_sha256": "cf4de05ba60f413b23c262c5782d4553cae3be45d6bd807d7fc5566b0e69201e",
+      "model": {
+        "parameter_sha256": "53057be1980f60e26375620333662b62aebf4a5dddb1ee20f566f1907ff6c2bc",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 9,
+        "maximum_rotation_updates": 9,
+        "training_episodes_in_checkpoint": 10,
+        "training_decisions_in_checkpoint": 70
+      },
+      "usage": {
+        "peak_rss_kib": 22728,
+        "rusage_peak_rss_kib": 22728,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 8097.078,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5557711172571709,
+        "maximum_purity": 0.8021426072030146,
+        "norm": 1.0000000000000417,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "success_rate": 0.5625,
+        "successes": 9,
+        "mean_reward": 0.44375,
+        "mean_decisions": 5.9375,
+        "examples": 16,
+        "wilson95": [
+          0.331785563988119,
+          0.7690134759450765
+        ],
+        "elapsed_ms": 9095.568421,
+        "peak_rss_kib": 17928,
+        "cpu_ms": 9090.601
+      },
+      "ood": {
+        "success_rate": 0.8125,
+        "successes": 13,
+        "mean_reward": 0.73125,
+        "mean_decisions": 4.0625,
+        "examples": 16,
+        "wilson95": [
+          0.5699111903802586,
+          0.9340840092857187
+        ],
+        "elapsed_ms": 6123.849793,
+        "peak_rss_kib": 17932,
+        "cpu_ms": 6122.847
+      },
+      "greedy_iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.9175,
+        "mean_decisions": 4.125,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 6256.805877,
+        "peak_rss_kib": 17928,
+        "cpu_ms": 6255.112
+      },
+      "greedy_ood": {
+        "success_rate": 0.5625,
+        "successes": 9,
+        "mean_reward": 0.46875,
+        "mean_decisions": 4.6875,
+        "examples": 16,
+        "wilson95": [
+          0.331785563988119,
+          0.7690134759450765
+        ],
+        "elapsed_ms": 6968.759209,
+        "peak_rss_kib": 17932,
+        "cpu_ms": 6967.852
+      },
+      "evaluation_seconds": 28.50265684400074
+    },
+    {
+      "episodes": 30,
+      "checkpoint": "checkpoint-00030.rvp",
+      "checkpoint_sha256": "81ae2b5a4e491d3ee3dd579cf531dbfe1e08e9d5abc2e1bdc3d5814e977ba3c0",
+      "model": {
+        "parameter_sha256": "6ee79817cc6ef8c993ca55ac57fafb4493622f20d937f3701b0cf486db7c90d0",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 29,
+        "maximum_rotation_updates": 29,
+        "training_episodes_in_checkpoint": 30,
+        "training_decisions_in_checkpoint": 203
+      },
+      "usage": {
+        "peak_rss_kib": 23696,
+        "rusage_peak_rss_kib": 23696,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 23783.629,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.530972710794811,
+        "maximum_purity": 0.7857459241805222,
+        "norm": 1.0000000000000282,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "success_rate": 0.5625,
+        "successes": 9,
+        "mean_reward": 0.44625,
+        "mean_decisions": 5.8125,
+        "examples": 16,
+        "wilson95": [
+          0.331785563988119,
+          0.7690134759450765
+        ],
+        "elapsed_ms": 8539.393183,
+        "peak_rss_kib": 17964,
+        "cpu_ms": 8535.192
+      },
+      "ood": {
+        "success_rate": 0.8125,
+        "successes": 13,
+        "mean_reward": 0.73375,
+        "mean_decisions": 3.9375,
+        "examples": 16,
+        "wilson95": [
+          0.5699111903802586,
+          0.9340840092857187
+        ],
+        "elapsed_ms": 5888.949501000002,
+        "peak_rss_kib": 17972,
+        "cpu_ms": 5871.742
+      },
+      "greedy_iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.94,
+        "mean_decisions": 3,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 4460.759264,
+        "peak_rss_kib": 17968,
+        "cpu_ms": 4458.91
+      },
+      "greedy_ood": {
+        "success_rate": 0.6875,
+        "successes": 11,
+        "mean_reward": 0.5912499999999999,
+        "mean_decisions": 4.8125,
+        "examples": 16,
+        "wilson95": [
+          0.44404355834740666,
+          0.8583535614521796
+        ],
+        "elapsed_ms": 6949.581798,
+        "peak_rss_kib": 17968,
+        "cpu_ms": 6944.983
+      },
+      "evaluation_seconds": 25.906483678001678
+    },
+    {
+      "episodes": 100,
+      "checkpoint": "checkpoint-00100.rvp",
+      "checkpoint_sha256": "ef238517747f5a9f4b3757d4919914e0bcf2b488c1c570d7d65c44ea8fbeb0bf",
+      "model": {
+        "parameter_sha256": "c448ccc4d49975f1e2c342008962dc307249eb2275a3f1c36d4ca14d110b0ddf",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 99,
+        "maximum_rotation_updates": 99,
+        "training_episodes_in_checkpoint": 100,
+        "training_decisions_in_checkpoint": 535
+      },
+      "usage": {
+        "peak_rss_kib": 23752,
+        "rusage_peak_rss_kib": 23752,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 63508.159,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.6347926426590931,
+        "maximum_purity": 0.9997055246446739,
+        "norm": 0.9999999999999988,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "success_rate": 0.9375,
+        "successes": 15,
+        "mean_reward": 0.85625,
+        "mean_decisions": 4.0625,
+        "examples": 16,
+        "wilson95": [
+          0.7167126242970107,
+          0.9888806552353576
+        ],
+        "elapsed_ms": 5962.764134999999,
+        "peak_rss_kib": 17988,
+        "cpu_ms": 5959.867
+      },
+      "ood": {
+        "success_rate": 0.8125,
+        "successes": 13,
+        "mean_reward": 0.74,
+        "mean_decisions": 3.625,
+        "examples": 16,
+        "wilson95": [
+          0.5699111903802586,
+          0.9340840092857187
+        ],
+        "elapsed_ms": 5422.889965000001,
+        "peak_rss_kib": 17988,
+        "cpu_ms": 5421.799
+      },
+      "greedy_iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.94,
+        "mean_decisions": 3,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 4475.6161489999995,
+        "peak_rss_kib": 17984,
+        "cpu_ms": 4474.723
+      },
+      "greedy_ood": {
+        "success_rate": 0.6875,
+        "successes": 11,
+        "mean_reward": 0.5912499999999999,
+        "mean_decisions": 4.8125,
+        "examples": 16,
+        "wilson95": [
+          0.44404355834740666,
+          0.8583535614521796
+        ],
+        "elapsed_ms": 7206.202587999999,
+        "peak_rss_kib": 17984,
+        "cpu_ms": 7203.84
+      },
+      "evaluation_seconds": 23.12568232400008
+    },
+    {
+      "episodes": 300,
+      "checkpoint": "checkpoint-00300.rvp",
+      "checkpoint_sha256": "d039d57b960434d2c99ed6b441a16fcbd4761e4e75c7f2377cda75798c849900",
+      "model": {
+        "parameter_sha256": "a02342efa4edbeeed1fcffb6b93b22d852d49b9a166c111f0ef5d84a09c0a6b5",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 299,
+        "maximum_rotation_updates": 299,
+        "training_episodes_in_checkpoint": 300,
+        "training_decisions_in_checkpoint": 1278
+      },
+      "usage": {
+        "peak_rss_kib": 24128,
+        "rusage_peak_rss_kib": 24128,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 154335.693,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5109144783000727,
+        "maximum_purity": 0.7857459241805202,
+        "norm": 1.0000000000000009,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "success_rate": 0.9375,
+        "successes": 15,
+        "mean_reward": 0.86125,
+        "mean_decisions": 3.8125,
+        "examples": 16,
+        "wilson95": [
+          0.7167126242970107,
+          0.9888806552353576
+        ],
+        "elapsed_ms": 5722.063496000001,
+        "peak_rss_kib": 18196,
+        "cpu_ms": 5719.055
+      },
+      "ood": {
+        "success_rate": 0.875,
+        "successes": 14,
+        "mean_reward": 0.7949999999999999,
+        "mean_decisions": 4,
+        "examples": 16,
+        "wilson95": [
+          0.639771727342413,
+          0.9650225122567595
+        ],
+        "elapsed_ms": 6363.8741789999995,
+        "peak_rss_kib": 18204,
+        "cpu_ms": 6362.4220000000005
+      },
+      "greedy_iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.94,
+        "mean_decisions": 3,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 4657.1285849999995,
+        "peak_rss_kib": 18200,
+        "cpu_ms": 4651.817
+      },
+      "greedy_ood": {
+        "success_rate": 0.6875,
+        "successes": 11,
+        "mean_reward": 0.5912499999999999,
+        "mean_decisions": 4.8125,
+        "examples": 16,
+        "wilson95": [
+          0.44404355834740666,
+          0.8583535614521796
+        ],
+        "elapsed_ms": 7049.970996,
+        "peak_rss_kib": 18204,
+        "cpu_ms": 7048.67
+      },
+      "evaluation_seconds": 23.860015284000838
+    },
+    {
+      "episodes": 1000,
+      "checkpoint": "checkpoint-01000.rvp",
+      "checkpoint_sha256": "5804ea862095c4686a8866054a058f357f16a64586e0ec48b8bfc12709cd754d",
+      "model": {
+        "parameter_sha256": "a8cfe2cd23be5d7ed1eb46676478a867d00f9377bc15cc1748f68317ea256d0a",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 984,
+        "maximum_rotation_updates": 999,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 3594
+      },
+      "usage": {
+        "peak_rss_kib": 24252,
+        "rusage_peak_rss_kib": 24252,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 445468.9,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      },
+      "connected_register": {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.5109144783000744,
+        "maximum_purity": 0.7857459241805256,
+        "norm": 0.9999999999999973,
+        "state_payload_bytes": 127872
+      },
+      "iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.9349999999999999,
+        "mean_decisions": 3.25,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 4814.864543,
+        "peak_rss_kib": 18204,
+        "cpu_ms": 4814.021
+      },
+      "ood": {
+        "success_rate": 0.8125,
+        "successes": 13,
+        "mean_reward": 0.725,
+        "mean_decisions": 4.375,
+        "examples": 16,
+        "wilson95": [
+          0.5699111903802586,
+          0.9340840092857187
+        ],
+        "elapsed_ms": 6532.6558540000005,
+        "peak_rss_kib": 18208,
+        "cpu_ms": 6531.478
+      },
+      "greedy_iid": {
+        "success_rate": 1.0,
+        "successes": 16,
+        "mean_reward": 0.94,
+        "mean_decisions": 3,
+        "examples": 16,
+        "wilson95": [
+          0.8063923194655637,
+          1.0000000000000002
+        ],
+        "elapsed_ms": 4430.2559280000005,
+        "peak_rss_kib": 18208,
+        "cpu_ms": 4415.649
+      },
+      "greedy_ood": {
+        "success_rate": 0.6875,
+        "successes": 11,
+        "mean_reward": 0.5912499999999999,
+        "mean_decisions": 4.8125,
+        "examples": 16,
+        "wilson95": [
+          0.44404355834740666,
+          0.8583535614521796
+        ],
+        "elapsed_ms": 6856.69938,
+        "peak_rss_kib": 18204,
+        "cpu_ms": 6852.209
+      },
+      "observations_zeroed": {
+        "success_rate": 0.4375,
+        "successes": 7,
+        "mean_reward": 0.30624999999999997,
+        "mean_decisions": 6.5625,
+        "examples": 16,
+        "wilson95": [
+          0.23098652405492354,
+          0.6682144360118811
+        ],
+        "elapsed_ms": 9243.363775000002,
+        "peak_rss_kib": 18196,
+        "cpu_ms": 9235.501
+      },
+      "random_policy": {
+        "success_rate": 0.5,
+        "successes": 8,
+        "mean_reward": 0.37,
+        "mean_decisions": 6.5,
+        "examples": 16,
+        "wilson95": [
+          0.27999563610326017,
+          0.7200043638967398
+        ],
+        "elapsed_ms": 953.1712450000001,
+        "peak_rss_kib": 17904,
+        "cpu_ms": 951.207
+      },
+      "evaluation_seconds": 32.90814117400441
+    }
+  ],
+  "completed_episodes": 1000,
+  "latest_checkpoint": "checkpoint-01000.rvp",
+  "latest_checkpoint_sha256": "5804ea862095c4686a8866054a058f357f16a64586e0ec48b8bfc12709cd754d",
+  "training_total_ms": 445402.435044,
+  "native_episode_total_ms": 435762.07658700645,
+  "native_update_total_ms": 95018.69808195531,
+  "median_episode_ms": 371.3012800011784,
+  "p95_episode_ms": 806.5877059996128,
+  "median_update_ms": 84.19449900463223,
+  "training_experiences": 3594,
+  "last100_mean_reward": 0.9331999999999999,
+  "last100_success_rate": 1
+}

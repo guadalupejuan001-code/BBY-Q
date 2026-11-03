@@ -1,5 +1,11 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
+**Agentes cuánticos conectados:** VQC3 y QRL3 disponen de un registro de 1.000
+cúbits por agente, con 999 conexiones entre vecinos y entrenamiento de todos
+los ángulos en XI. Esta revisión sustituye la división fija en grupos de cuatro
+en la nueva implementación; conserva las versiones y modelos anteriores.
+[Arquitectura, comandos, validación y límites](docs/evidence/quantum1000/README.md).
+
 **Entrega nativa X08 (30 octubre 2026):** currículo reconciliado de 480 conceptos/960 relaciones y libro completo, operaciones de lenguaje en XI y sesiones con publicación atómica. Modelo y base incluidos, con restauración verificada y entrada nativa para REVERSE. [Alcance, uso y pruebas](docs/integration/BBYQ_X08.md). P13/P14 están excluidos; esta revisión no actualiza la APK. Las entregas Android descritas debajo son históricas.
 
 **Entrega actual: E025-Chain-1 + W4u 0.1**, integrada en REVERSE 2.5.1.
