@@ -1,0 +1,11 @@
+{"progress": 100, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 61.6691825017333}
+{"progress": 200, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 61.43531499803066}
+{"progress": 300, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 63.81850149855018}
+{"progress": 400, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 63.54738449677825}
+{"progress": 500, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 65.79297250136733}
+{"progress": 600, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 65.50942450016737}
+{"progress": 700, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 63.76870400086045}
+{"progress": 800, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 63.00948300212622}
+{"progress": 900, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 61.754452005028725}
+{"progress": 1000, "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "recent_episode_ms": 62.39833050221205}
+{"completed": "/workspace/scratch/f585d68010d1/BBY-Q-comparison/build/topology-comparison-20261102/vqc-dense-seed941-blocked4", "variant": "blocked4", "agent": "vqc", "task": "dense", "seed": 941, "iid": 0.5078125, "ood": 0.5, "training_cpu_ms": 93880.187}

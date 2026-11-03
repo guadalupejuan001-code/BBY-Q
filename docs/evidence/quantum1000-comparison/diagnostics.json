@@ -1,0 +1,436 @@
+{
+  "posthoc": true,
+  "used_for_tuning": false,
+  "model_updates": false,
+  "scope": "Saved dense holdout predictions and six explicitly staged QRL states per frozen checkpoint; not additional training or a new test-set success rate.",
+  "dense_classification": [
+    {
+      "seed": 173,
+      "variant": "historical4",
+      "predicted_classes": [
+        0,
+        1
+      ],
+      "probability_minimum": 0.4771853370982512,
+      "probability_maximum": 0.5231424890739174,
+      "samples": 128
+    },
+    {
+      "seed": 173,
+      "variant": "blocked4",
+      "predicted_classes": [
+        0,
+        1
+      ],
+      "probability_minimum": 0.4700046345596893,
+      "probability_maximum": 0.5338202054449968,
+      "samples": 128
+    },
+    {
+      "seed": 173,
+      "variant": "connected1000",
+      "predicted_classes": [
+        0,
+        1
+      ],
+      "probability_minimum": 0.47215746844087486,
+      "probability_maximum": 0.5324394255291354,
+      "samples": 128
+    },
+    {
+      "seed": 941,
+      "variant": "historical4",
+      "predicted_classes": [
+        0
+      ],
+      "probability_minimum": 0.42492920359426267,
+      "probability_maximum": 0.46480469843607153,
+      "samples": 128
+    },
+    {
+      "seed": 941,
+      "variant": "blocked4",
+      "predicted_classes": [
+        0
+      ],
+      "probability_minimum": 0.4106539691791933,
+      "probability_maximum": 0.47273984109679584,
+      "samples": 128
+    },
+    {
+      "seed": 941,
+      "variant": "connected1000",
+      "predicted_classes": [
+        0
+      ],
+      "probability_minimum": 0.4112208615547089,
+      "probability_maximum": 0.4689991495400391,
+      "samples": 128
+    },
+    {
+      "seed": 2026,
+      "variant": "historical4",
+      "predicted_classes": [
+        1
+      ],
+      "probability_minimum": 0.6113421410489932,
+      "probability_maximum": 0.6527647330984314,
+      "samples": 128
+    },
+    {
+      "seed": 2026,
+      "variant": "blocked4",
+      "predicted_classes": [
+        1
+      ],
+      "probability_minimum": 0.5978828403727973,
+      "probability_maximum": 0.6685590658738677,
+      "samples": 128
+    },
+    {
+      "seed": 2026,
+      "variant": "connected1000",
+      "predicted_classes": [
+        1
+      ],
+      "probability_minimum": 0.6010061962196838,
+      "probability_maximum": 0.6665741197653485,
+      "samples": 128
+    }
+  ],
+  "qrl_policy_probes": [
+    {
+      "seed": 173,
+      "variant": "historical4",
+      "checkpoint_sha256": "523192c22e0d27a69b2c1b86d89872241bb8339fd481ff4a2abb0ea0133ee58f",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.03724490967945208
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9488698277132808
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.12600712671572417
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9212662567271566
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.03459626590021459
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.8327297430619948
+        }
+      ]
+    },
+    {
+      "seed": 173,
+      "variant": "blocked4",
+      "checkpoint_sha256": "20065bb633470dee853f79bbe629df81c4acf03a31d5c4e80d7649adeb0f1713",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.04774859161496512
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.978712704313616
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.0772654705273358
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9278050605453179
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.04950086658086548
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9684631807948717
+        }
+      ]
+    },
+    {
+      "seed": 173,
+      "variant": "connected1000",
+      "checkpoint_sha256": "e24173189e8d1644e30b25e66bf0b1e2bb48db62b1e5409681f4b30153314865",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.03536601258225469
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9705748245307435
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.0595542469527847
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.905036438427318
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.04144203825369323
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9532613065120463
+        }
+      ]
+    },
+    {
+      "seed": 941,
+      "variant": "historical4",
+      "checkpoint_sha256": "f97d41fa2db75f6a98a56ef92e21f3da12684676a936c1f777a8a5897fd3e41d",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.02946158581899534
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.042828332152622835
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.032136337128203005
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.041937582043373514
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.028976703305013462
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.04000656200187281
+        }
+      ]
+    },
+    {
+      "seed": 941,
+      "variant": "blocked4",
+      "checkpoint_sha256": "a43d3894d9ba8d24ded4fbc509eeeaacab0e935c07fc47a55b63512d49d2ce83",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.05883815607433487
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9915282588124498
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.09862638183660173
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9661817976566529
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.058237607173230364
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9876000267194858
+        }
+      ]
+    },
+    {
+      "seed": 941,
+      "variant": "connected1000",
+      "checkpoint_sha256": "c1dd4943b1bc388a4694e100e6369de9cc0299331764f4584364977092b8563d",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.03715660863843002
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9815665869196847
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.06339137626887072
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9330462293270319
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.03547352597576739
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9753306919671428
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "variant": "historical4",
+      "checkpoint_sha256": "1b75a51e1fd7b24285fe1a150404338fb223e5ee62a5e43315a730725e244eda",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.9937497924329911
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9924863686690962
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.9937586796498531
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9930311807492406
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.992769895678698
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9933334211234546
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "variant": "blocked4",
+      "checkpoint_sha256": "acfcbf0f1930cdf568a6aca4d31b1fca8e20a6920e44df673ebdd825510e0cb2",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.9959892192431067
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9909026427456784
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.9955922216705044
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9920582947356287
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.9945817437229407
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9937272689385863
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "variant": "connected1000",
+      "checkpoint_sha256": "0a2d2c8234827b68bb4727a714a991e04de6a73d6c192728d641a24e8e6de6b0",
+      "states": [
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.9957926557583985
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.990991218867317
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.9953763116633239
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.991985633257286
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.994418291627612
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9934241632828075
+        }
+      ]
+    }
+  ]
+}

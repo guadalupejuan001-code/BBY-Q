@@ -1,0 +1,65 @@
+In file included from /workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/pauli_observer.hpp:6,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/infinite_core.hpp:4,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/infinite_program.hpp:3,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/quantum_runtime.hpp:3,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:1:
+/workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/compact_core.hpp: In member function ‘std::array<float, 8> mundo_x::CompactCore::visual_metrics() const’:
+/workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/compact_core.hpp:357:34: warning: suggest parentheses around arithmetic in operand of ‘|’ [-Wparentheses]
+  357 |             ((r + 1ULL) << 2ULL) ^ ((q + 1ULL) << 17ULL);
+      |             ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:2:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp: In function ‘bool reverse_pc::rxe::utf8(const std::string&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:41:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   41 |   if(count>s.size()-i)return false;while(count--){unsigned char next=s[i++];if((next&0xc0)!=0x80)return false;n=(n<<6)|(next&63);}
+      |   ^~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:41:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   41 |   if(count>s.size()-i)return false;while(count--){unsigned char next=s[i++];if((next&0xc0)!=0x80)return false;n=(n<<6)|(next&63);}
+      |                                    ^~~~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp: In function ‘reverse_pc::rxe::Bytes reverse_pc::rxe::compile(const std::string&, const std::string&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:137:3: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+  137 |   for(std::size_t n=1;n<specs().size();n++)if(name==specs()[n].name){id=std::uint16_t(n);break;}require(id!=0,"Instrucción XI no admitida por RXE v1");
+      |   ^~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:137:97: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  137 |   for(std::size_t n=1;n<specs().size();n++)if(name==specs()[n].name){id=std::uint16_t(n);break;}require(id!=0,"Instrucción XI no admitida por RXE v1");
+      |                                                                                                 ^~~~~~~
+In file included from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:4:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp: In function ‘reverse_pc::rxe::Bytes reverse_pc::rxe_graphics::pack(const App&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp:32:2: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+   32 |  for(const auto* s:{&a.id,&a.title,&a.version,&a.source})b.insert(b.end(),s->begin(),s->end());b.insert(b.end(),a.code.begin(),a.code.end());b.insert(b.end(),a.seed.begin(),a.seed.end());
+      |  ^~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp:32:96: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+   32 |  for(const auto* s:{&a.id,&a.title,&a.version,&a.source})b.insert(b.end(),s->begin(),s->end());b.insert(b.end(),a.code.begin(),a.code.end());b.insert(b.end(),a.seed.begin(),a.seed.end());
+      |                                                                                                ^
+In file included from /workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/pauli_observer.hpp:6,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/infinite_core.hpp:4,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/infinite_program.hpp:3,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/build/ether-compat/mundo_x/quantum_runtime.hpp:3,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:1,
+                 from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/xi_session.cpp:4:
+/workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/compact_core.hpp: In member function ‘std::array<float, 8> mundo_x::CompactCore::visual_metrics() const’:
+/workspace/scratch/e484a347d7c3/mundo-X/native/include/mundo_x/compact_core.hpp:357:34: warning: suggest parentheses around arithmetic in operand of ‘|’ [-Wparentheses]
+  357 |             ((r + 1ULL) << 2ULL) ^ ((q + 1ULL) << 17ULL);
+      |             ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:2:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp: In function ‘bool reverse_pc::rxe::utf8(const std::string&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:41:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   41 |   if(count>s.size()-i)return false;while(count--){unsigned char next=s[i++];if((next&0xc0)!=0x80)return false;n=(n<<6)|(next&63);}
+      |   ^~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:41:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   41 |   if(count>s.size()-i)return false;while(count--){unsigned char next=s[i++];if((next&0xc0)!=0x80)return false;n=(n<<6)|(next&63);}
+      |                                    ^~~~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp: In function ‘reverse_pc::rxe::Bytes reverse_pc::rxe::compile(const std::string&, const std::string&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:137:3: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+  137 |   for(std::size_t n=1;n<specs().size();n++)if(name==specs()[n].name){id=std::uint16_t(n);break;}require(id!=0,"Instrucción XI no admitida por RXE v1");
+      |   ^~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe.hpp:137:97: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  137 |   for(std::size_t n=1;n<specs().size();n++)if(name==specs()[n].name){id=std::uint16_t(n);break;}require(id!=0,"Instrucción XI no admitida por RXE v1");
+      |                                                                                                 ^~~~~~~
+In file included from /workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/reverse_pc.cpp:4:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp: In function ‘reverse_pc::rxe::Bytes reverse_pc::rxe_graphics::pack(const App&)’:
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp:32:2: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+   32 |  for(const auto* s:{&a.id,&a.title,&a.version,&a.source})b.insert(b.end(),s->begin(),s->end());b.insert(b.end(),a.code.begin(),a.code.end());b.insert(b.end(),a.seed.begin(),a.seed.end());
+      |  ^~~
+/workspace/scratch/f585d68010d1/REVERSE-PC-comparison/src/rxe_graphics.hpp:32:96: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+   32 |  for(const auto* s:{&a.id,&a.title,&a.version,&a.source})b.insert(b.end(),s->begin(),s->end());b.insert(b.end(),a.code.begin(),a.code.end());b.insert(b.end(),a.seed.begin(),a.seed.end());
+      |                                                                                                ^

@@ -1,0 +1,4121 @@
+{
+  "conditions": {
+    "variant": "blocked4",
+    "agent": "qrl",
+    "task": "line_easy",
+    "training_seed": 2026,
+    "evaluation_seed": 827391,
+    "episodes": 1000,
+    "holdout_samples_per_split": 128,
+    "initial_and_zeroed_samples_per_split": 32,
+    "runtime_binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+    "assembled_xi_library_sha256": "f357b2e00845b1f0c447bcaf026b5fbbbc28851f835ce038cfe574a7fbace96b",
+    "birth_sha256": "802eb7d141775bc968979de9d5308d20ed6092dc0d48b44fab7ec0e5faee5c45",
+    "source_sha256": {
+      "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+      "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+      "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+      "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+    },
+    "cpu_affinity": [
+      2
+    ],
+    "native_algorithms": "XI/Ether",
+    "entangler": "cz",
+    "angle_gradients_per_decision": 1000,
+    "qubits_per_agent": 1000,
+    "classical_simulation": true,
+    "started_utc": "2026-11-03T04:11:29.388298+00:00",
+    "train_holdout_seed_overlap": false
+  },
+  "initial_model": {
+    "parameter_sha256": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+    "rotation_parameters_updated": 0,
+    "rotation_parameters_changed": 0,
+    "readout_parameters_changed": 0,
+    "minimum_rotation_updates": 0,
+    "maximum_rotation_updates": 0,
+    "training_episodes_in_checkpoint": 0,
+    "training_decisions_in_checkpoint": 0
+  },
+  "structure": {
+    "trace": {
+      "type": "quantum_trace",
+      "active_qubits": 2000,
+      "rotations": 4000,
+      "observations": 4000,
+      "gates": 1500,
+      "preparations": 500,
+      "max_prepared_block": 4,
+      "distinct_rotated_qubits": 2000,
+      "distinct_observed_qubits": 2000,
+      "distinct_two_qubit_edges": 1500
+    },
+    "stats": {
+      "type": "stats",
+      "background": "zero",
+      "domain": "nonnegative_decimal_addresses",
+      "active_qubits": 2000,
+      "components": 500,
+      "largest_component": 4,
+      "tableau_bytes": 328000,
+      "address_bytes": 8000,
+      "ether_rules": 0,
+      "revision": 6500,
+      "limits": {
+        "max_active_qubits": 4096,
+        "max_component_qubits": 1024,
+        "max_state_bytes": 67108864,
+        "max_address_digits": 4096,
+        "max_query_terms": 4096,
+        "max_ether_rules": 4096,
+        "max_ether_query_sites": 4096
+      }
+    },
+    "registers": [],
+    "note": "Probe uses a fresh unsaved session; training parameters are not changed."
+  },
+  "initial": {
+    "iid": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 12,
+      "rate": 0.375,
+      "wilson95": [
+        0.22933887309454212,
+        0.5474559264692255
+      ],
+      "brier": null,
+      "mean_reward": 0.2375,
+      "decisions": 220,
+      "native_cpu_ms": 9116.575,
+      "median_transport_ms": 318.221674,
+      "peak_rss_kib": 11388,
+      "correctness": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "observations": [
+        {
+          "episode_ms": 189.11901099979877,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 191.682874,
+          "case": 0
+        },
+        {
+          "episode_ms": 279.02701399475336,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 283.18668,
+          "case": 1
+        },
+        {
+          "episode_ms": 192.18694300204515,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 196.18814,
+          "case": 2
+        },
+        {
+          "episode_ms": 135.02899599820375,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.179095,
+          "case": 3
+        },
+        {
+          "episode_ms": 380.28808599710464,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 384.378668,
+          "case": 4
+        },
+        {
+          "episode_ms": 193.96387400478125,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 198.595731,
+          "case": 5
+        },
+        {
+          "episode_ms": 272.7640700042248,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 277.030687,
+          "case": 6
+        },
+        {
+          "episode_ms": 313.30559699982405,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 317.445433,
+          "case": 7
+        },
+        {
+          "episode_ms": 313.52622900158167,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.151348,
+          "case": 8
+        },
+        {
+          "episode_ms": 312.61056999862194,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 316.958189,
+          "case": 9
+        },
+        {
+          "episode_ms": 317.14191500097513,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 321.096091,
+          "case": 10
+        },
+        {
+          "episode_ms": 349.3458440005779,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 353.817078,
+          "case": 11
+        },
+        {
+          "episode_ms": 336.36420899629593,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.895575,
+          "case": 12
+        },
+        {
+          "episode_ms": 342.19911800324917,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.215945,
+          "case": 13
+        },
+        {
+          "episode_ms": 281.6474010050297,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 287.260706,
+          "case": 14
+        },
+        {
+          "episode_ms": 324.29418900609016,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 329.644598,
+          "case": 15
+        },
+        {
+          "episode_ms": 332.83500999957323,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.384292,
+          "case": 16
+        },
+        {
+          "episode_ms": 388.2610009983182,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 392.761762,
+          "case": 17
+        },
+        {
+          "episode_ms": 312.0945330038667,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 316.317265,
+          "case": 18
+        },
+        {
+          "episode_ms": 120.8637439981103,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 124.844731,
+          "case": 19
+        },
+        {
+          "episode_ms": 123.64176999777555,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 128.060857,
+          "case": 20
+        },
+        {
+          "episode_ms": 316.9677750021219,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 321.485792,
+          "case": 21
+        },
+        {
+          "episode_ms": 314.3317629992962,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 318.344389,
+          "case": 22
+        },
+        {
+          "episode_ms": 316.37977900356054,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.600699,
+          "case": 23
+        },
+        {
+          "episode_ms": 314.64013800024986,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 318.098959,
+          "case": 24
+        },
+        {
+          "episode_ms": 121.39933099597692,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 125.046286,
+          "case": 25
+        },
+        {
+          "episode_ms": 333.64531099796295,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.628342,
+          "case": 26
+        },
+        {
+          "episode_ms": 195.2439350038767,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 199.390893,
+          "case": 27
+        },
+        {
+          "episode_ms": 282.61771799623966,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 287.463899,
+          "case": 28
+        },
+        {
+          "episode_ms": 328.12470899522305,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.106384,
+          "case": 29
+        },
+        {
+          "episode_ms": 317.92207200080156,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.582402,
+          "case": 30
+        },
+        {
+          "episode_ms": 323.21956299990416,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 328.508138,
+          "case": 31
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 15,
+      "rate": 0.46875,
+      "wilson95": [
+        0.30869387108068835,
+        0.6355048288102536
+      ],
+      "brier": null,
+      "mean_reward": 0.355,
+      "decisions": 182,
+      "native_cpu_ms": 7683.924000000001,
+      "median_transport_ms": 308.426324,
+      "peak_rss_kib": 11352,
+      "correctness": [
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false
+      ],
+      "observations": [
+        {
+          "episode_ms": 44.529164999723434,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 46.896702,
+          "case": 0
+        },
+        {
+          "episode_ms": 310.99175299704075,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 314.897637,
+          "case": 1
+        },
+        {
+          "episode_ms": 306.27678099274635,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 309.56868,
+          "case": 2
+        },
+        {
+          "episode_ms": 197.3494120016694,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 201.102595,
+          "case": 3
+        },
+        {
+          "episode_ms": 202.23500999808311,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 206.040513,
+          "case": 4
+        },
+        {
+          "episode_ms": 117.4183090031147,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 120.775677,
+          "case": 5
+        },
+        {
+          "episode_ms": 314.6904049962759,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 317.666197,
+          "case": 6
+        },
+        {
+          "episode_ms": 317.6424009948969,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.903684,
+          "case": 7
+        },
+        {
+          "episode_ms": 286.32570900022984,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 290.090199,
+          "case": 8
+        },
+        {
+          "episode_ms": 118.96349800378084,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 123.091125,
+          "case": 9
+        },
+        {
+          "episode_ms": 327.7292099967599,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 332.71424,
+          "case": 10
+        },
+        {
+          "episode_ms": 302.85922399908304,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 307.283968,
+          "case": 11
+        },
+        {
+          "episode_ms": 309.66233000159264,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 313.051666,
+          "case": 12
+        },
+        {
+          "episode_ms": 316.9605649933219,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.394167,
+          "case": 13
+        },
+        {
+          "episode_ms": 319.3958830013871,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.941104,
+          "case": 14
+        },
+        {
+          "episode_ms": 44.35251600295305,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 47.799849,
+          "case": 15
+        },
+        {
+          "episode_ms": 323.8448809981346,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 327.484985,
+          "case": 16
+        },
+        {
+          "episode_ms": 204.45141999423504,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 208.917017,
+          "case": 17
+        },
+        {
+          "episode_ms": 320.27210000157356,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 324.357215,
+          "case": 18
+        },
+        {
+          "episode_ms": 44.10963900387287,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 47.456432,
+          "case": 19
+        },
+        {
+          "episode_ms": 318.86488100141287,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.571995,
+          "case": 20
+        },
+        {
+          "episode_ms": 83.81518500298262,
+          "update_ms": 0,
+          "reward": 0.96,
+          "success": 1,
+          "decisions": 2,
+          "elapsed_ms": 88.738902,
+          "case": 21
+        },
+        {
+          "episode_ms": 85.3842040002346,
+          "update_ms": 0,
+          "reward": 0.96,
+          "success": 1,
+          "decisions": 2,
+          "elapsed_ms": 91.006774,
+          "case": 22
+        },
+        {
+          "episode_ms": 387.52750899642706,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 392.612199,
+          "case": 23
+        },
+        {
+          "episode_ms": 60.635857000947,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 67.946159,
+          "case": 24
+        },
+        {
+          "episode_ms": 413.5280169993639,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 423.154438,
+          "case": 25
+        },
+        {
+          "episode_ms": 350.70360900461674,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 358.130108,
+          "case": 26
+        },
+        {
+          "episode_ms": 126.58295299857855,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 130.476318,
+          "case": 27
+        },
+        {
+          "episode_ms": 160.27882499992847,
+          "update_ms": 0,
+          "reward": 0.92,
+          "success": 1,
+          "decisions": 4,
+          "elapsed_ms": 167.218173,
+          "case": 28
+        },
+        {
+          "episode_ms": 320.06888999789953,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 323.504846,
+          "case": 29
+        },
+        {
+          "episode_ms": 122.64752499759197,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 126.294187,
+          "case": 30
+        },
+        {
+          "episode_ms": 386.5877780020237,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 391.266857,
+          "case": 31
+        }
+      ]
+    }
+  },
+  "trained": {
+    "iid": {
+      "seed": 827391,
+      "samples": 128,
+      "successes": 57,
+      "rate": 0.4453125,
+      "wilson95": [
+        0.36205524949299805,
+        0.5317566050994169
+      ],
+      "brier": null,
+      "mean_reward": 0.32953125,
+      "decisions": 741,
+      "native_cpu_ms": 32575.263,
+      "median_transport_ms": 332.4308045,
+      "peak_rss_kib": 17724,
+      "correctness": [
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      "observations": [
+        {
+          "episode_ms": 329.8559910058975,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 336.852484,
+          "case": 0
+        },
+        {
+          "episode_ms": 317.698020003736,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 323.129585,
+          "case": 1
+        },
+        {
+          "episode_ms": 125.46981300413609,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 129.088285,
+          "case": 2
+        },
+        {
+          "episode_ms": 319.1370830014348,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 323.17761,
+          "case": 3
+        },
+        {
+          "episode_ms": 126.88523600250483,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 131.224042,
+          "case": 4
+        },
+        {
+          "episode_ms": 330.2736190035939,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 334.384732,
+          "case": 5
+        },
+        {
+          "episode_ms": 126.79597199708223,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 131.338404,
+          "case": 6
+        },
+        {
+          "episode_ms": 324.13502299785614,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 329.996282,
+          "case": 7
+        },
+        {
+          "episode_ms": 324.2154660001397,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 330.330298,
+          "case": 8
+        },
+        {
+          "episode_ms": 316.82960499823093,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.421512,
+          "case": 9
+        },
+        {
+          "episode_ms": 342.4861969947815,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.741617,
+          "case": 10
+        },
+        {
+          "episode_ms": 125.08601399511099,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 131.32124,
+          "case": 11
+        },
+        {
+          "episode_ms": 329.56319300085306,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 336.025101,
+          "case": 12
+        },
+        {
+          "episode_ms": 127.79252200573683,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.981589,
+          "case": 13
+        },
+        {
+          "episode_ms": 211.00279300659895,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 216.520238,
+          "case": 14
+        },
+        {
+          "episode_ms": 131.23457900434732,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.934556,
+          "case": 15
+        },
+        {
+          "episode_ms": 325.07861499488354,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 331.371017,
+          "case": 16
+        },
+        {
+          "episode_ms": 321.0159529969096,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 327.571932,
+          "case": 17
+        },
+        {
+          "episode_ms": 129.2301490008831,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 135.410251,
+          "case": 18
+        },
+        {
+          "episode_ms": 330.8962820023298,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.090656,
+          "case": 19
+        },
+        {
+          "episode_ms": 333.6771119982004,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.635442,
+          "case": 20
+        },
+        {
+          "episode_ms": 341.099417001009,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 346.029677,
+          "case": 21
+        },
+        {
+          "episode_ms": 145.2183710038662,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 151.088167,
+          "case": 22
+        },
+        {
+          "episode_ms": 131.61597400158644,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 136.344359,
+          "case": 23
+        },
+        {
+          "episode_ms": 332.9228250011802,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.377035,
+          "case": 24
+        },
+        {
+          "episode_ms": 332.0385940000415,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.521482,
+          "case": 25
+        },
+        {
+          "episode_ms": 348.329401999712,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 355.496392,
+          "case": 26
+        },
+        {
+          "episode_ms": 335.72591000050306,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 342.376502,
+          "case": 27
+        },
+        {
+          "episode_ms": 127.88284800201654,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.593727,
+          "case": 28
+        },
+        {
+          "episode_ms": 128.4593569934368,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.656829,
+          "case": 29
+        },
+        {
+          "episode_ms": 327.6938759982586,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.490592,
+          "case": 30
+        },
+        {
+          "episode_ms": 124.67558500170708,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 130.57182,
+          "case": 31
+        },
+        {
+          "episode_ms": 358.06126199662685,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 365.630669,
+          "case": 32
+        },
+        {
+          "episode_ms": 140.39026599377394,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 149.95571,
+          "case": 33
+        },
+        {
+          "episode_ms": 368.198875002563,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 375.891917,
+          "case": 34
+        },
+        {
+          "episode_ms": 343.6704119965434,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 352.936566,
+          "case": 35
+        },
+        {
+          "episode_ms": 127.38122199475765,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.959579,
+          "case": 36
+        },
+        {
+          "episode_ms": 328.8019960001111,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 335.992592,
+          "case": 37
+        },
+        {
+          "episode_ms": 131.23661199957132,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.13404,
+          "case": 38
+        },
+        {
+          "episode_ms": 327.200392998755,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.8606,
+          "case": 39
+        },
+        {
+          "episode_ms": 341.49385200440884,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.436958,
+          "case": 40
+        },
+        {
+          "episode_ms": 342.90980599820614,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 349.321648,
+          "case": 41
+        },
+        {
+          "episode_ms": 337.91646199673414,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 344.413692,
+          "case": 42
+        },
+        {
+          "episode_ms": 341.0401980057359,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.711662,
+          "case": 43
+        },
+        {
+          "episode_ms": 336.857857003808,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 342.93228,
+          "case": 44
+        },
+        {
+          "episode_ms": 340.73399199545383,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.260727,
+          "case": 45
+        },
+        {
+          "episode_ms": 129.49005100131035,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 135.463051,
+          "case": 46
+        },
+        {
+          "episode_ms": 132.34490200132132,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.20947,
+          "case": 47
+        },
+        {
+          "episode_ms": 129.16695400327444,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 135.46878,
+          "case": 48
+        },
+        {
+          "episode_ms": 337.62066600471735,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 343.756282,
+          "case": 49
+        },
+        {
+          "episode_ms": 132.597903996706,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.604866,
+          "case": 50
+        },
+        {
+          "episode_ms": 134.73499500006437,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.44564,
+          "case": 51
+        },
+        {
+          "episode_ms": 333.21168199926615,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.3419,
+          "case": 52
+        },
+        {
+          "episode_ms": 335.81598600000143,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.198317,
+          "case": 53
+        },
+        {
+          "episode_ms": 132.06356800347567,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.564465,
+          "case": 54
+        },
+        {
+          "episode_ms": 132.40112699568272,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.575471,
+          "case": 55
+        },
+        {
+          "episode_ms": 334.9975429996848,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.894637,
+          "case": 56
+        },
+        {
+          "episode_ms": 131.8696660026908,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.161878,
+          "case": 57
+        },
+        {
+          "episode_ms": 334.0650469958782,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.019567,
+          "case": 58
+        },
+        {
+          "episode_ms": 130.3458999991417,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.533982,
+          "case": 59
+        },
+        {
+          "episode_ms": 340.7297809943557,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 348.621183,
+          "case": 60
+        },
+        {
+          "episode_ms": 342.45280800014734,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 349.544815,
+          "case": 61
+        },
+        {
+          "episode_ms": 137.4298750013113,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 144.833802,
+          "case": 62
+        },
+        {
+          "episode_ms": 352.43319799751043,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 359.432454,
+          "case": 63
+        },
+        {
+          "episode_ms": 335.9663430005312,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 342.641754,
+          "case": 64
+        },
+        {
+          "episode_ms": 136.0941069945693,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 145.038298,
+          "case": 65
+        },
+        {
+          "episode_ms": 336.90953800082207,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.608242,
+          "case": 66
+        },
+        {
+          "episode_ms": 332.6227569952607,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.713606,
+          "case": 67
+        },
+        {
+          "episode_ms": 132.1869599968195,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.315156,
+          "case": 68
+        },
+        {
+          "episode_ms": 130.43443799763918,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.024931,
+          "case": 69
+        },
+        {
+          "episode_ms": 132.22947400063276,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.62998,
+          "case": 70
+        },
+        {
+          "episode_ms": 134.38994999974966,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 141.135385,
+          "case": 71
+        },
+        {
+          "episode_ms": 339.9422690048814,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.271474,
+          "case": 72
+        },
+        {
+          "episode_ms": 138.4282660037279,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 145.620194,
+          "case": 73
+        },
+        {
+          "episode_ms": 362.6023190021515,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 370.070715,
+          "case": 74
+        },
+        {
+          "episode_ms": 137.90706999599934,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 145.762649,
+          "case": 75
+        },
+        {
+          "episode_ms": 356.30417700111866,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 363.5851,
+          "case": 76
+        },
+        {
+          "episode_ms": 344.5387360006571,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 351.704515,
+          "case": 77
+        },
+        {
+          "episode_ms": 139.76651299744844,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 146.790218,
+          "case": 78
+        },
+        {
+          "episode_ms": 334.0688270032406,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.171254,
+          "case": 79
+        },
+        {
+          "episode_ms": 335.32541999965906,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.342388,
+          "case": 80
+        },
+        {
+          "episode_ms": 134.36971899867058,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.277262,
+          "case": 81
+        },
+        {
+          "episode_ms": 340.1531970053911,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.750446,
+          "case": 82
+        },
+        {
+          "episode_ms": 132.86375999450684,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 136.508663,
+          "case": 83
+        },
+        {
+          "episode_ms": 351.92164900153875,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 357.533667,
+          "case": 84
+        },
+        {
+          "episode_ms": 134.99216199666262,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.979023,
+          "case": 85
+        },
+        {
+          "episode_ms": 342.80379700660706,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 348.671049,
+          "case": 86
+        },
+        {
+          "episode_ms": 339.04225800186396,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 345.70587,
+          "case": 87
+        },
+        {
+          "episode_ms": 344.37880999594927,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 350.175506,
+          "case": 88
+        },
+        {
+          "episode_ms": 344.5391319990158,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 350.396909,
+          "case": 89
+        },
+        {
+          "episode_ms": 133.67122100293636,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 139.385603,
+          "case": 90
+        },
+        {
+          "episode_ms": 345.8443889990449,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 351.657088,
+          "case": 91
+        },
+        {
+          "episode_ms": 348.20892199873924,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 353.886888,
+          "case": 92
+        },
+        {
+          "episode_ms": 132.10390400141478,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.525952,
+          "case": 93
+        },
+        {
+          "episode_ms": 332.65819799900055,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.390217,
+          "case": 94
+        },
+        {
+          "episode_ms": 131.96874599903822,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.426808,
+          "case": 95
+        },
+        {
+          "episode_ms": 130.9602290019393,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.069664,
+          "case": 96
+        },
+        {
+          "episode_ms": 130.33849199861288,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 136.26282,
+          "case": 97
+        },
+        {
+          "episode_ms": 129.20644499361515,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 134.884553,
+          "case": 98
+        },
+        {
+          "episode_ms": 333.06466699391603,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.127344,
+          "case": 99
+        },
+        {
+          "episode_ms": 132.04879000037909,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 139.876767,
+          "case": 100
+        },
+        {
+          "episode_ms": 335.7105149999261,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 342.193677,
+          "case": 101
+        },
+        {
+          "episode_ms": 132.08592499792576,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.340872,
+          "case": 102
+        },
+        {
+          "episode_ms": 331.09874399751425,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.088462,
+          "case": 103
+        },
+        {
+          "episode_ms": 130.40423100441694,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.117679,
+          "case": 104
+        },
+        {
+          "episode_ms": 134.31452300399542,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 140.917795,
+          "case": 105
+        },
+        {
+          "episode_ms": 332.78666900098324,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.958794,
+          "case": 106
+        },
+        {
+          "episode_ms": 330.55850100517273,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.525679,
+          "case": 107
+        },
+        {
+          "episode_ms": 331.02378199994564,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 335.206375,
+          "case": 108
+        },
+        {
+          "episode_ms": 341.0972130000591,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 348.684017,
+          "case": 109
+        },
+        {
+          "episode_ms": 140.08355800062418,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 146.313568,
+          "case": 110
+        },
+        {
+          "episode_ms": 131.97912400215864,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.877644,
+          "case": 111
+        },
+        {
+          "episode_ms": 339.7691120058298,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 345.552558,
+          "case": 112
+        },
+        {
+          "episode_ms": 139.96651700139046,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 145.690513,
+          "case": 113
+        },
+        {
+          "episode_ms": 344.93210300058126,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 350.930373,
+          "case": 114
+        },
+        {
+          "episode_ms": 136.42784900218248,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 142.504557,
+          "case": 115
+        },
+        {
+          "episode_ms": 135.59569499641657,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 141.234964,
+          "case": 116
+        },
+        {
+          "episode_ms": 133.27483700215816,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 139.256111,
+          "case": 117
+        },
+        {
+          "episode_ms": 348.4103759974241,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 354.795018,
+          "case": 118
+        },
+        {
+          "episode_ms": 371.11174599826336,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 380.27839,
+          "case": 119
+        },
+        {
+          "episode_ms": 365.7276759967208,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 370.515321,
+          "case": 120
+        },
+        {
+          "episode_ms": 384.868869997561,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 394.81641,
+          "case": 121
+        },
+        {
+          "episode_ms": 369.7228059992194,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 376.767202,
+          "case": 122
+        },
+        {
+          "episode_ms": 357.4975730031729,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 363.730005,
+          "case": 123
+        },
+        {
+          "episode_ms": 137.43966200202703,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 144.239199,
+          "case": 124
+        },
+        {
+          "episode_ms": 131.11929699778557,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.012675,
+          "case": 125
+        },
+        {
+          "episode_ms": 136.9170639961958,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 143.45758,
+          "case": 126
+        },
+        {
+          "episode_ms": 137.73539799451828,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 144.790529,
+          "case": 127
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 128,
+      "successes": 69,
+      "rate": 0.5390625,
+      "wilson95": [
+        0.4528298312720518,
+        0.6230188440190805
+      ],
+      "brier": null,
+      "mean_reward": 0.4359375,
+      "decisions": 660,
+      "native_cpu_ms": 28943.723,
+      "median_transport_ms": 228.16544199999998,
+      "peak_rss_kib": 17724,
+      "correctness": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false
+      ],
+      "observations": [
+        {
+          "episode_ms": 386.32492399960756,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 395.294312,
+          "case": 0
+        },
+        {
+          "episode_ms": 322.85895500332117,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 328.511314,
+          "case": 1
+        },
+        {
+          "episode_ms": 46.86319900304079,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 50.138145,
+          "case": 2
+        },
+        {
+          "episode_ms": 128.77111300081015,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.302525,
+          "case": 3
+        },
+        {
+          "episode_ms": 45.59340400248766,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 49.326961,
+          "case": 4
+        },
+        {
+          "episode_ms": 307.15588999539614,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 311.387768,
+          "case": 5
+        },
+        {
+          "episode_ms": 385.3556749969721,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 392.702488,
+          "case": 6
+        },
+        {
+          "episode_ms": 66.66732500493526,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 76.082084,
+          "case": 7
+        },
+        {
+          "episode_ms": 218.97382800281048,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 229.502857,
+          "case": 8
+        },
+        {
+          "episode_ms": 53.79584600031376,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 64.179075,
+          "case": 9
+        },
+        {
+          "episode_ms": 328.9622640013695,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 334.763807,
+          "case": 10
+        },
+        {
+          "episode_ms": 212.33029100298882,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 218.708364,
+          "case": 11
+        },
+        {
+          "episode_ms": 323.7503089979291,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 327.999574,
+          "case": 12
+        },
+        {
+          "episode_ms": 211.2273439988494,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 217.046925,
+          "case": 13
+        },
+        {
+          "episode_ms": 227.1703620031476,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 233.096934,
+          "case": 14
+        },
+        {
+          "episode_ms": 45.456978000700474,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 51.008575,
+          "case": 15
+        },
+        {
+          "episode_ms": 331.73088700324297,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.271507,
+          "case": 16
+        },
+        {
+          "episode_ms": 131.16249699890614,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.830467,
+          "case": 17
+        },
+        {
+          "episode_ms": 129.8935739994049,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 135.421585,
+          "case": 18
+        },
+        {
+          "episode_ms": 335.0375549942255,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.183879,
+          "case": 19
+        },
+        {
+          "episode_ms": 330.8980109989643,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.08381,
+          "case": 20
+        },
+        {
+          "episode_ms": 47.942804999649525,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 53.527943,
+          "case": 21
+        },
+        {
+          "episode_ms": 336.1448090001941,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.948545,
+          "case": 22
+        },
+        {
+          "episode_ms": 322.31696899980307,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 328.383862,
+          "case": 23
+        },
+        {
+          "episode_ms": 48.26729500293732,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.731142,
+          "case": 24
+        },
+        {
+          "episode_ms": 335.4757599979639,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.106749,
+          "case": 25
+        },
+        {
+          "episode_ms": 336.5806540027261,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 343.421002,
+          "case": 26
+        },
+        {
+          "episode_ms": 49.60683500021696,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 56.07342,
+          "case": 27
+        },
+        {
+          "episode_ms": 338.9290729984641,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 345.352223,
+          "case": 28
+        },
+        {
+          "episode_ms": 136.24850099533796,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 142.963721,
+          "case": 29
+        },
+        {
+          "episode_ms": 47.54882400482893,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 53.777741,
+          "case": 30
+        },
+        {
+          "episode_ms": 128.3335539996624,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 134.39664,
+          "case": 31
+        },
+        {
+          "episode_ms": 332.8220309987664,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.488269,
+          "case": 32
+        },
+        {
+          "episode_ms": 327.6253789961338,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.629467,
+          "case": 33
+        },
+        {
+          "episode_ms": 364.911968998611,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 370.831869,
+          "case": 34
+        },
+        {
+          "episode_ms": 368.5081700012088,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 375.279268,
+          "case": 35
+        },
+        {
+          "episode_ms": 349.9316960051656,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 357.202463,
+          "case": 36
+        },
+        {
+          "episode_ms": 218.72200399637222,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 225.087144,
+          "case": 37
+        },
+        {
+          "episode_ms": 332.661347001791,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 340.003972,
+          "case": 38
+        },
+        {
+          "episode_ms": 131.97029100358486,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 139.810165,
+          "case": 39
+        },
+        {
+          "episode_ms": 48.40194799751043,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 55.456049,
+          "case": 40
+        },
+        {
+          "episode_ms": 47.28042700141668,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.139215,
+          "case": 41
+        },
+        {
+          "episode_ms": 326.4263429939747,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 330.189739,
+          "case": 42
+        },
+        {
+          "episode_ms": 127.56462399661541,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.986223,
+          "case": 43
+        },
+        {
+          "episode_ms": 207.87257800251245,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 214.86772,
+          "case": 44
+        },
+        {
+          "episode_ms": 333.43579000234604,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.763154,
+          "case": 45
+        },
+        {
+          "episode_ms": 48.998098000884056,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 55.885957,
+          "case": 46
+        },
+        {
+          "episode_ms": 130.72006399929523,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.293959,
+          "case": 47
+        },
+        {
+          "episode_ms": 335.68697000294924,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.133826,
+          "case": 48
+        },
+        {
+          "episode_ms": 132.41353899985552,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 137.443646,
+          "case": 49
+        },
+        {
+          "episode_ms": 362.42374899983406,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 368.876028,
+          "case": 50
+        },
+        {
+          "episode_ms": 369.82320300489664,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 376.444451,
+          "case": 51
+        },
+        {
+          "episode_ms": 50.28725399821997,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 57.098449,
+          "case": 52
+        },
+        {
+          "episode_ms": 49.52490500360727,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 55.913222,
+          "case": 53
+        },
+        {
+          "episode_ms": 132.90638200193644,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 138.684018,
+          "case": 54
+        },
+        {
+          "episode_ms": 139.1613680049777,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 146.036669,
+          "case": 55
+        },
+        {
+          "episode_ms": 348.0215929970145,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 355.648918,
+          "case": 56
+        },
+        {
+          "episode_ms": 337.51178999990225,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 345.603124,
+          "case": 57
+        },
+        {
+          "episode_ms": 219.5416129976511,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 226.828027,
+          "case": 58
+        },
+        {
+          "episode_ms": 218.2071110010147,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 224.756351,
+          "case": 59
+        },
+        {
+          "episode_ms": 339.17849700152874,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 344.686507,
+          "case": 60
+        },
+        {
+          "episode_ms": 327.35795299708843,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.641241,
+          "case": 61
+        },
+        {
+          "episode_ms": 239.17374899983406,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 245.507814,
+          "case": 62
+        },
+        {
+          "episode_ms": 48.0733780041337,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 54.029544,
+          "case": 63
+        },
+        {
+          "episode_ms": 321.088275000453,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 325.939085,
+          "case": 64
+        },
+        {
+          "episode_ms": 206.00614399462938,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 211.864433,
+          "case": 65
+        },
+        {
+          "episode_ms": 46.4198449999094,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 51.606111,
+          "case": 66
+        },
+        {
+          "episode_ms": 330.56869100034237,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 336.383875,
+          "case": 67
+        },
+        {
+          "episode_ms": 209.13665200024843,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 215.669457,
+          "case": 68
+        },
+        {
+          "episode_ms": 47.337838999927044,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.078683,
+          "case": 69
+        },
+        {
+          "episode_ms": 204.75044199824333,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 209.603095,
+          "case": 70
+        },
+        {
+          "episode_ms": 127.6652429997921,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.458627,
+          "case": 71
+        },
+        {
+          "episode_ms": 127.85787300020456,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.907443,
+          "case": 72
+        },
+        {
+          "episode_ms": 128.45875300467014,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.872142,
+          "case": 73
+        },
+        {
+          "episode_ms": 335.4388270005584,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 343.045804,
+          "case": 74
+        },
+        {
+          "episode_ms": 259.1749200001359,
+          "update_ms": 0,
+          "reward": 0.88,
+          "success": 1,
+          "decisions": 6,
+          "elapsed_ms": 264.356131,
+          "case": 75
+        },
+        {
+          "episode_ms": 335.24899000674486,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 341.153872,
+          "case": 76
+        },
+        {
+          "episode_ms": 47.24685399979353,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.76375,
+          "case": 77
+        },
+        {
+          "episode_ms": 330.22336400300264,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 336.930786,
+          "case": 78
+        },
+        {
+          "episode_ms": 335.8357050046325,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 342.142362,
+          "case": 79
+        },
+        {
+          "episode_ms": 341.90149899572134,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 347.780461,
+          "case": 80
+        },
+        {
+          "episode_ms": 339.75581499934196,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 345.170106,
+          "case": 81
+        },
+        {
+          "episode_ms": 215.01077400147915,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 220.659339,
+          "case": 82
+        },
+        {
+          "episode_ms": 350.317827001214,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 356.725556,
+          "case": 83
+        },
+        {
+          "episode_ms": 350.7205139994621,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 357.403407,
+          "case": 84
+        },
+        {
+          "episode_ms": 49.591587997972965,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 55.653546,
+          "case": 85
+        },
+        {
+          "episode_ms": 47.82738799601793,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 53.378276,
+          "case": 86
+        },
+        {
+          "episode_ms": 134.16764499992132,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 139.937052,
+          "case": 87
+        },
+        {
+          "episode_ms": 337.12886499613523,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 343.289021,
+          "case": 88
+        },
+        {
+          "episode_ms": 333.03245900571346,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.490164,
+          "case": 89
+        },
+        {
+          "episode_ms": 327.8146029934287,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 333.451861,
+          "case": 90
+        },
+        {
+          "episode_ms": 331.3484200015664,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 337.293703,
+          "case": 91
+        },
+        {
+          "episode_ms": 51.78267099708319,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 57.85152,
+          "case": 92
+        },
+        {
+          "episode_ms": 45.1027420014143,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 49.130243,
+          "case": 93
+        },
+        {
+          "episode_ms": 335.29199600219727,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 339.612358,
+          "case": 94
+        },
+        {
+          "episode_ms": 344.6722550019622,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 351.056497,
+          "case": 95
+        },
+        {
+          "episode_ms": 332.4812809973955,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 338.378619,
+          "case": 96
+        },
+        {
+          "episode_ms": 129.97745200246572,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 136.202695,
+          "case": 97
+        },
+        {
+          "episode_ms": 330.1162259951234,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 334.845715,
+          "case": 98
+        },
+        {
+          "episode_ms": 326.30125799775124,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 332.609805,
+          "case": 99
+        },
+        {
+          "episode_ms": 55.276447996497154,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 62.466154,
+          "case": 100
+        },
+        {
+          "episode_ms": 54.635492995381355,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 64.788805,
+          "case": 101
+        },
+        {
+          "episode_ms": 210.49368999898434,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 214.03004,
+          "case": 102
+        },
+        {
+          "episode_ms": 316.9319269955158,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 323.133733,
+          "case": 103
+        },
+        {
+          "episode_ms": 325.4994589984417,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 331.22589,
+          "case": 104
+        },
+        {
+          "episode_ms": 209.33189500123262,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 214.866817,
+          "case": 105
+        },
+        {
+          "episode_ms": 45.70624800026417,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 51.981906,
+          "case": 106
+        },
+        {
+          "episode_ms": 318.61172799766064,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 323.92126,
+          "case": 107
+        },
+        {
+          "episode_ms": 45.7043050006032,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 49.870083,
+          "case": 108
+        },
+        {
+          "episode_ms": 126.63346999883652,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 131.115936,
+          "case": 109
+        },
+        {
+          "episode_ms": 321.6512490063906,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 326.348439,
+          "case": 110
+        },
+        {
+          "episode_ms": 47.15966799855232,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 53.929331,
+          "case": 111
+        },
+        {
+          "episode_ms": 126.441420994699,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.774804,
+          "case": 112
+        },
+        {
+          "episode_ms": 207.272799000144,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 213.990033,
+          "case": 113
+        },
+        {
+          "episode_ms": 323.69959600269794,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 329.983136,
+          "case": 114
+        },
+        {
+          "episode_ms": 327.02798200398684,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 331.875719,
+          "case": 115
+        },
+        {
+          "episode_ms": 46.61033000051975,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.621049,
+          "case": 116
+        },
+        {
+          "episode_ms": 208.33308700472116,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 214.39927,
+          "case": 117
+        },
+        {
+          "episode_ms": 321.7464819997549,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 327.384931,
+          "case": 118
+        },
+        {
+          "episode_ms": 325.5851370021701,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 330.143779,
+          "case": 119
+        },
+        {
+          "episode_ms": 320.96453399956226,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 326.645606,
+          "case": 120
+        },
+        {
+          "episode_ms": 324.4206230044365,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 330.12509,
+          "case": 121
+        },
+        {
+          "episode_ms": 47.21434099972248,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 52.837126,
+          "case": 122
+        },
+        {
+          "episode_ms": 127.51532900333405,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.443905,
+          "case": 123
+        },
+        {
+          "episode_ms": 331.1128489971161,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 336.683976,
+          "case": 124
+        },
+        {
+          "episode_ms": 126.62210400402546,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 132.117827,
+          "case": 125
+        },
+        {
+          "episode_ms": 127.42240900546312,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 133.246958,
+          "case": 126
+        },
+        {
+          "episode_ms": 323.78437300026417,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 329.843325,
+          "case": 127
+        }
+      ]
+    }
+  },
+  "observations_zeroed": {
+    "iid": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 13,
+      "rate": 0.40625,
+      "wilson95": [
+        0.2551963484266544,
+        0.5773997512461713
+      ],
+      "brier": null,
+      "mean_reward": 0.28562499999999996,
+      "decisions": 193,
+      "native_cpu_ms": 7715.286,
+      "median_transport_ms": 306.905901,
+      "peak_rss_kib": 17724,
+      "correctness": [
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true
+      ],
+      "observations": [
+        {
+          "episode_ms": 313.1448770016432,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.564685,
+          "case": 0
+        },
+        {
+          "episode_ms": 294.1406050026417,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 300.251686,
+          "case": 1
+        },
+        {
+          "episode_ms": 115.96387899667025,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 119.740311,
+          "case": 2
+        },
+        {
+          "episode_ms": 304.1261750012636,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 307.876568,
+          "case": 3
+        },
+        {
+          "episode_ms": 119.19140399992466,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 123.681771,
+          "case": 4
+        },
+        {
+          "episode_ms": 317.4016640037298,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.149991,
+          "case": 5
+        },
+        {
+          "episode_ms": 124.44822699576616,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 130.238824,
+          "case": 6
+        },
+        {
+          "episode_ms": 313.6057630032301,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 319.202047,
+          "case": 7
+        },
+        {
+          "episode_ms": 317.9560289978981,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 322.671957,
+          "case": 8
+        },
+        {
+          "episode_ms": 319.91020499914885,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 325.139927,
+          "case": 9
+        },
+        {
+          "episode_ms": 314.7793410047889,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 319.517392,
+          "case": 10
+        },
+        {
+          "episode_ms": 123.5378839969635,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 128.339391,
+          "case": 11
+        },
+        {
+          "episode_ms": 316.5212489962578,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 321.052808,
+          "case": 12
+        },
+        {
+          "episode_ms": 121.94795899838209,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 126.411317,
+          "case": 13
+        },
+        {
+          "episode_ms": 194.8965969979763,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 202.25006,
+          "case": 14
+        },
+        {
+          "episode_ms": 118.64925800263882,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 124.353715,
+          "case": 15
+        },
+        {
+          "episode_ms": 317.00044199824333,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.910916,
+          "case": 16
+        },
+        {
+          "episode_ms": 321.2981490045786,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 326.48628,
+          "case": 17
+        },
+        {
+          "episode_ms": 119.92777000367641,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 124.618359,
+          "case": 18
+        },
+        {
+          "episode_ms": 301.98042400181293,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 305.935234,
+          "case": 19
+        },
+        {
+          "episode_ms": 299.61504900455475,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 303.984445,
+          "case": 20
+        },
+        {
+          "episode_ms": 307.8149279952049,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 312.078564,
+          "case": 21
+        },
+        {
+          "episode_ms": 119.10379300266504,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 123.264945,
+          "case": 22
+        },
+        {
+          "episode_ms": 117.88787999749184,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 121.761969,
+          "case": 23
+        },
+        {
+          "episode_ms": 305.9584299996495,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 309.847992,
+          "case": 24
+        },
+        {
+          "episode_ms": 308.9945959970355,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 313.282619,
+          "case": 25
+        },
+        {
+          "episode_ms": 321.14601999521255,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 325.172048,
+          "case": 26
+        },
+        {
+          "episode_ms": 317.419283002615,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 321.164037,
+          "case": 27
+        },
+        {
+          "episode_ms": 126.51114699989557,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 131.284631,
+          "case": 28
+        },
+        {
+          "episode_ms": 122.74203699827194,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 127.883937,
+          "case": 29
+        },
+        {
+          "episode_ms": 308.8651100024581,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 312.54042,
+          "case": 30
+        },
+        {
+          "episode_ms": 117.3441499993205,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 122.006948,
+          "case": 31
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 19,
+      "rate": 0.59375,
+      "wilson95": [
+        0.42260024875382873,
+        0.7448036515733456
+      ],
+      "brier": null,
+      "mean_reward": 0.498125,
+      "decisions": 153,
+      "native_cpu_ms": 5925.673,
+      "median_transport_ms": 188.375514,
+      "peak_rss_kib": 17744,
+      "correctness": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true
+      ],
+      "observations": [
+        {
+          "episode_ms": 312.4947820007801,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 320.678957,
+          "case": 0
+        },
+        {
+          "episode_ms": 307.52677899599075,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 312.893197,
+          "case": 1
+        },
+        {
+          "episode_ms": 44.38611800223589,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 48.077993,
+          "case": 2
+        },
+        {
+          "episode_ms": 120.10461600124836,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 124.089302,
+          "case": 3
+        },
+        {
+          "episode_ms": 42.74527499824762,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 46.902992,
+          "case": 4
+        },
+        {
+          "episode_ms": 261.7888280004263,
+          "update_ms": 0,
+          "reward": 0.86,
+          "success": 1,
+          "decisions": 7,
+          "elapsed_ms": 265.168471,
+          "case": 5
+        },
+        {
+          "episode_ms": 339.0389880016446,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 343.109494,
+          "case": 6
+        },
+        {
+          "episode_ms": 41.46895199269056,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 44.630898,
+          "case": 7
+        },
+        {
+          "episode_ms": 113.98054099828005,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 116.97177,
+          "case": 8
+        },
+        {
+          "episode_ms": 41.47834599763155,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 44.395042,
+          "case": 9
+        },
+        {
+          "episode_ms": 291.15793300420046,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 294.189291,
+          "case": 10
+        },
+        {
+          "episode_ms": 184.24711699783802,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 187.644027,
+          "case": 11
+        },
+        {
+          "episode_ms": 290.36572800576687,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 294.266087,
+          "case": 12
+        },
+        {
+          "episode_ms": 186.85105099529028,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 191.264163,
+          "case": 13
+        },
+        {
+          "episode_ms": 185.43734100461006,
+          "update_ms": 0,
+          "reward": 0.9,
+          "success": 1,
+          "decisions": 5,
+          "elapsed_ms": 189.107001,
+          "case": 14
+        },
+        {
+          "episode_ms": 41.62246400117874,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 45.07106,
+          "case": 15
+        },
+        {
+          "episode_ms": 297.5968169942498,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 301.388041,
+          "case": 16
+        },
+        {
+          "episode_ms": 114.54072500020266,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 118.799564,
+          "case": 17
+        },
+        {
+          "episode_ms": 113.97350099682808,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 117.952939,
+          "case": 18
+        },
+        {
+          "episode_ms": 293.9780320003629,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 297.715234,
+          "case": 19
+        },
+        {
+          "episode_ms": 293.3304670006037,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 297.315221,
+          "case": 20
+        },
+        {
+          "episode_ms": 42.12892200052738,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 45.278899,
+          "case": 21
+        },
+        {
+          "episode_ms": 305.9498419985175,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 309.279981,
+          "case": 22
+        },
+        {
+          "episode_ms": 298.78591699898243,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 302.333703,
+          "case": 23
+        },
+        {
+          "episode_ms": 41.9515650048852,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 45.614474,
+          "case": 24
+        },
+        {
+          "episode_ms": 292.9971239939332,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 296.442897,
+          "case": 25
+        },
+        {
+          "episode_ms": 295.5484289973974,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 299.626805,
+          "case": 26
+        },
+        {
+          "episode_ms": 42.37570399791002,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 46.273277,
+          "case": 27
+        },
+        {
+          "episode_ms": 293.7352559939027,
+          "update_ms": 0,
+          "reward": -0.16,
+          "success": 0,
+          "decisions": 8,
+          "elapsed_ms": 297.249572,
+          "case": 28
+        },
+        {
+          "episode_ms": 115.8659830018878,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 119.767833,
+          "case": 29
+        },
+        {
+          "episode_ms": 42.39649599790573,
+          "update_ms": 0,
+          "reward": 0.98,
+          "success": 1,
+          "decisions": 1,
+          "elapsed_ms": 46.421871,
+          "case": 30
+        },
+        {
+          "episode_ms": 114.31725000590086,
+          "update_ms": 0,
+          "reward": 0.94,
+          "success": 1,
+          "decisions": 3,
+          "elapsed_ms": 117.988782,
+          "case": 31
+        }
+      ]
+    }
+  },
+  "training": {
+    "episodes": 1000,
+    "decisions": 5619,
+    "native_episode_total_ms": 399713.89280801266,
+    "native_update_total_ms": 139035.5683839321,
+    "native_cpu_ms": 411566.48,
+    "transport_total_ms": 411576.641102,
+    "median_episode_ms": 509.21791500225663,
+    "peak_rss_kib": 22736,
+    "wall_seconds_including_checkpoint_io": 411.8341969460016
+  },
+  "milestones": [
+    {
+      "episodes": 100,
+      "checkpoint_sha256": "de3cdabce0c54e807d960f99fac68c8e241099183b8eca386a3decf3ccc1a727",
+      "model": {
+        "parameter_sha256": "ea63516ea0bf6cc08162d565d9fd27d95e90fc4596ca6507be3084c6a23b1382",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 98,
+        "maximum_rotation_updates": 99,
+        "training_episodes_in_checkpoint": 100,
+        "training_decisions_in_checkpoint": 604
+      },
+      "usage": {
+        "peak_rss_kib": 22736,
+        "rusage_peak_rss_kib": 22736,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 42239.65,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 181000
+      }
+    },
+    {
+      "episodes": 1000,
+      "checkpoint_sha256": "acfcbf0f1930cdf568a6aca4d31b1fca8e20a6920e44df673ebdd825510e0cb2",
+      "model": {
+        "parameter_sha256": "db7dae0d77c77d3456a0481b68fa7ec4dd4592c51f4345a9f6c109ca90e3e37d",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 997,
+        "maximum_rotation_updates": 999,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 5619
+      },
+      "usage": {
+        "peak_rss_kib": 22736,
+        "rusage_peak_rss_kib": 22736,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 411577.807,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 181000
+      }
+    }
+  ],
+  "finished_utc": "2026-11-03T04:19:53.686094+00:00",
+  "checkpoints": [
+    {
+      "file": "checkpoint-00000.rvp.gz",
+      "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780",
+      "decompressed_sha256": "69111966ba13775e6171ab3a82e41f079e24659c23a98b93707d8ba6b5058a11"
+    },
+    {
+      "file": "checkpoint-00100.rvp.gz",
+      "sha256": "6c8107b5484e254d7fa2e8afab8b47da61d3430dd7be08f31d847b855899569f",
+      "decompressed_sha256": "de3cdabce0c54e807d960f99fac68c8e241099183b8eca386a3decf3ccc1a727"
+    },
+    {
+      "file": "checkpoint-01000.rvp.gz",
+      "sha256": "9d4b3c767ded6bda27dbcb651fe3642650d31cd24c497fbdada70b62748fac6b",
+      "decompressed_sha256": "acfcbf0f1930cdf568a6aca4d31b1fca8e20a6920e44df673ebdd825510e0cb2"
+    }
+  ],
+  "journal_sha256": "53433b5a29fd710e04ebd622102bc5a9871889bb6683afdbed16d96a7966a25d",
+  "compressed_journal_sha256": "90f6f02175964547bb0ad5eb2e3e6480c4fd250c5258fc699ef263d8842d7104"
+}

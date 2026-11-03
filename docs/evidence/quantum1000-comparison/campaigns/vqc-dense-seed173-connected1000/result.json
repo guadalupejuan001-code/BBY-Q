@@ -1,0 +1,2992 @@
+{
+  "conditions": {
+    "variant": "connected1000",
+    "agent": "vqc",
+    "task": "dense",
+    "training_seed": 173,
+    "evaluation_seed": 827391,
+    "episodes": 1000,
+    "holdout_samples_per_split": 128,
+    "initial_and_zeroed_samples_per_split": 32,
+    "runtime_binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+    "assembled_xi_library_sha256": "5e317b929164c8440e45058aab612381ace8291536fd1f4b9738be4319ba46c3",
+    "birth_sha256": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+    "source_sha256": {
+      "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+      "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+      "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+      "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+    },
+    "cpu_affinity": [
+      3
+    ],
+    "native_algorithms": "XI/Ether",
+    "entangler": "cz",
+    "angle_gradients_per_decision": 1000,
+    "qubits_per_agent": 1000,
+    "classical_simulation": true,
+    "started_utc": "2026-11-03T03:54:24.064194+00:00",
+    "train_holdout_seed_overlap": false
+  },
+  "initial_model": {
+    "parameter_sha256": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+    "rotation_parameters_updated": 0,
+    "rotation_parameters_changed": 0,
+    "readout_parameters_changed": 0,
+    "minimum_rotation_updates": 0,
+    "maximum_rotation_updates": 0,
+    "training_episodes_in_checkpoint": 0,
+    "training_decisions_in_checkpoint": 0
+  },
+  "structure": {
+    "trace": {
+      "type": "quantum_trace",
+      "active_qubits": 2000,
+      "rotations": 4000,
+      "observations": 4000,
+      "gates": 1998,
+      "preparations": 2,
+      "max_prepared_block": 1000,
+      "distinct_rotated_qubits": 2000,
+      "distinct_observed_qubits": 2000,
+      "distinct_two_qubit_edges": 1998
+    },
+    "stats": {
+      "type": "stats",
+      "background": "zero",
+      "domain": "nonnegative_decimal_addresses",
+      "active_qubits": 2000,
+      "components": 2,
+      "largest_component": 1000,
+      "tableau_bytes": 255744,
+      "address_bytes": 8000,
+      "ether_rules": 0,
+      "revision": 6002,
+      "limits": {
+        "max_active_qubits": 4096,
+        "max_component_qubits": 1024,
+        "max_state_bytes": 67108864,
+        "max_address_digits": 4096,
+        "max_query_terms": 4096,
+        "max_ether_rules": 4096,
+        "max_ether_query_sites": 4096
+      }
+    },
+    "registers": [
+      {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.9999999978530707,
+        "maximum_purity": 0.9999999979469736,
+        "norm": 1.0000000000000002,
+        "state_payload_bytes": 127872
+      },
+      {
+        "type": "mps_register",
+        "qubits": 1000,
+        "max_bond_dimension": 2,
+        "bipartitions": 999,
+        "nonproduct_bipartitions": 999,
+        "minimum_purity": 0.9999999978530707,
+        "maximum_purity": 0.9999999979469736,
+        "norm": 1.0000000000000002,
+        "state_payload_bytes": 127872
+      }
+    ],
+    "note": "Probe uses a fresh unsaved session; training parameters are not changed."
+  },
+  "initial": {
+    "iid": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 12,
+      "rate": 0.375,
+      "wilson95": [
+        0.22933887309454212,
+        0.5474559264692255
+      ],
+      "brier": 0.25,
+      "mean_reward": null,
+      "decisions": 32,
+      "native_cpu_ms": 3193.109,
+      "median_transport_ms": 97.552603,
+      "peak_rss_kib": 11428,
+      "correctness": [
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true
+      ],
+      "observations": [
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 102.38782,
+          "case": 0
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 100.491043,
+          "case": 1
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 119.737541,
+          "case": 2
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 96.982449,
+          "case": 3
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 98.571101,
+          "case": 4
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 100.0771,
+          "case": 5
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 101.372741,
+          "case": 6
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 113.795888,
+          "case": 7
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 104.255152,
+          "case": 8
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.931825,
+          "case": 9
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.048739,
+          "case": 10
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.081944,
+          "case": 11
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 95.691645,
+          "case": 12
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 96.592372,
+          "case": 13
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 95.122337,
+          "case": 14
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 96.02746,
+          "case": 15
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 97.607821,
+          "case": 16
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 110.557385,
+          "case": 17
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 104.650583,
+          "case": 18
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 96.089293,
+          "case": 19
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.730762,
+          "case": 20
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.497385,
+          "case": 21
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 97.300828,
+          "case": 22
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 96.831051,
+          "case": 23
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.24849,
+          "case": 24
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 96.090255,
+          "case": 25
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.834062,
+          "case": 26
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.344184,
+          "case": 27
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 102.112255,
+          "case": 28
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 96.677409,
+          "case": 29
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 96.416988,
+          "case": 30
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 96.802748,
+          "case": 31
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 18,
+      "rate": 0.5625,
+      "wilson95": [
+        0.3932559113685198,
+        0.7183466888495963
+      ],
+      "brier": 0.25,
+      "mean_reward": null,
+      "decisions": 32,
+      "native_cpu_ms": 3438.024,
+      "median_transport_ms": 101.5839575,
+      "peak_rss_kib": 11436,
+      "correctness": [
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true
+      ],
+      "observations": [
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 97.537825,
+          "case": 0
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 101.667611,
+          "case": 1
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.971945,
+          "case": 2
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 98.6104,
+          "case": 3
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 99.601894,
+          "case": 4
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 97.374981,
+          "case": 5
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 109.957787,
+          "case": 6
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 110.319346,
+          "case": 7
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 100.400569,
+          "case": 8
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.643931,
+          "case": 9
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 101.805505,
+          "case": 10
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 101.500304,
+          "case": 11
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 123.352682,
+          "case": 12
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 115.495436,
+          "case": 13
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 97.823987,
+          "case": 14
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.750503,
+          "case": 15
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 113.240105,
+          "case": 16
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 97.419988,
+          "case": 17
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 98.547567,
+          "case": 18
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 99.420336,
+          "case": 19
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 100.188179,
+          "case": 20
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 99.524798,
+          "case": 21
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 122.649198,
+          "case": 22
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 122.688271,
+          "case": 23
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 132.674194,
+          "case": 24
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 132.64494,
+          "case": 25
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 127.876677,
+          "case": 26
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 110.55866,
+          "case": 27
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 110.787454,
+          "case": 28
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 119.311565,
+          "case": 29
+        },
+        {
+          "probability": 0.5,
+          "label": 0,
+          "elapsed_ms": 101.810271,
+          "case": 30
+        },
+        {
+          "probability": 0.5,
+          "label": 1,
+          "elapsed_ms": 99.016033,
+          "case": 31
+        }
+      ]
+    }
+  },
+  "trained": {
+    "iid": {
+      "seed": 827391,
+      "samples": 128,
+      "successes": 86,
+      "rate": 0.671875,
+      "wilson95": [
+        0.5865640159976144,
+        0.7471701552833669
+      ],
+      "brier": 0.24502005519348655,
+      "mean_reward": null,
+      "decisions": 128,
+      "native_cpu_ms": 13349.854000000001,
+      "median_transport_ms": 102.1333405,
+      "peak_rss_kib": 15204,
+      "correctness": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "observations": [
+        {
+          "probability": 0.4869939027074014,
+          "label": 0,
+          "elapsed_ms": 108.582118,
+          "case": 0
+        },
+        {
+          "probability": 0.5049310459657641,
+          "label": 1,
+          "elapsed_ms": 127.819841,
+          "case": 1
+        },
+        {
+          "probability": 0.49602165413627325,
+          "label": 0,
+          "elapsed_ms": 116.951707,
+          "case": 2
+        },
+        {
+          "probability": 0.5116399771548041,
+          "label": 0,
+          "elapsed_ms": 102.541848,
+          "case": 3
+        },
+        {
+          "probability": 0.5265938632286574,
+          "label": 1,
+          "elapsed_ms": 102.627136,
+          "case": 4
+        },
+        {
+          "probability": 0.5041538016013036,
+          "label": 0,
+          "elapsed_ms": 102.466264,
+          "case": 5
+        },
+        {
+          "probability": 0.49773786637613615,
+          "label": 0,
+          "elapsed_ms": 117.108293,
+          "case": 6
+        },
+        {
+          "probability": 0.5034821944208138,
+          "label": 1,
+          "elapsed_ms": 115.930859,
+          "case": 7
+        },
+        {
+          "probability": 0.48479685896333297,
+          "label": 0,
+          "elapsed_ms": 104.109485,
+          "case": 8
+        },
+        {
+          "probability": 0.5174021641532873,
+          "label": 0,
+          "elapsed_ms": 134.075697,
+          "case": 9
+        },
+        {
+          "probability": 0.504824226311261,
+          "label": 0,
+          "elapsed_ms": 115.128591,
+          "case": 10
+        },
+        {
+          "probability": 0.5002225108057438,
+          "label": 0,
+          "elapsed_ms": 117.764797,
+          "case": 11
+        },
+        {
+          "probability": 0.5022967711788924,
+          "label": 0,
+          "elapsed_ms": 105.482629,
+          "case": 12
+        },
+        {
+          "probability": 0.5077939879348731,
+          "label": 1,
+          "elapsed_ms": 108.916532,
+          "case": 13
+        },
+        {
+          "probability": 0.49429059949892507,
+          "label": 1,
+          "elapsed_ms": 126.413819,
+          "case": 14
+        },
+        {
+          "probability": 0.4976606674799859,
+          "label": 0,
+          "elapsed_ms": 107.863135,
+          "case": 15
+        },
+        {
+          "probability": 0.5200995091093912,
+          "label": 1,
+          "elapsed_ms": 128.923348,
+          "case": 16
+        },
+        {
+          "probability": 0.5091106666343779,
+          "label": 0,
+          "elapsed_ms": 105.184095,
+          "case": 17
+        },
+        {
+          "probability": 0.5320687091741485,
+          "label": 1,
+          "elapsed_ms": 102.666155,
+          "case": 18
+        },
+        {
+          "probability": 0.5112609151272364,
+          "label": 1,
+          "elapsed_ms": 102.66937,
+          "case": 19
+        },
+        {
+          "probability": 0.4926912086606725,
+          "label": 0,
+          "elapsed_ms": 102.675179,
+          "case": 20
+        },
+        {
+          "probability": 0.49927340082646615,
+          "label": 0,
+          "elapsed_ms": 101.675243,
+          "case": 21
+        },
+        {
+          "probability": 0.5030719581911464,
+          "label": 1,
+          "elapsed_ms": 102.323068,
+          "case": 22
+        },
+        {
+          "probability": 0.526360841353626,
+          "label": 1,
+          "elapsed_ms": 100.978252,
+          "case": 23
+        },
+        {
+          "probability": 0.47215746844087486,
+          "label": 0,
+          "elapsed_ms": 105.486915,
+          "case": 24
+        },
+        {
+          "probability": 0.48245899541557197,
+          "label": 0,
+          "elapsed_ms": 102.467536,
+          "case": 25
+        },
+        {
+          "probability": 0.5021417892913784,
+          "label": 0,
+          "elapsed_ms": 102.173653,
+          "case": 26
+        },
+        {
+          "probability": 0.4916297705865807,
+          "label": 0,
+          "elapsed_ms": 102.864655,
+          "case": 27
+        },
+        {
+          "probability": 0.5149320952196189,
+          "label": 1,
+          "elapsed_ms": 101.0235,
+          "case": 28
+        },
+        {
+          "probability": 0.4950198794185551,
+          "label": 0,
+          "elapsed_ms": 105.279137,
+          "case": 29
+        },
+        {
+          "probability": 0.4973914443839964,
+          "label": 0,
+          "elapsed_ms": 101.782744,
+          "case": 30
+        },
+        {
+          "probability": 0.5081230001970712,
+          "label": 1,
+          "elapsed_ms": 103.308203,
+          "case": 31
+        },
+        {
+          "probability": 0.4945299291554631,
+          "label": 0,
+          "elapsed_ms": 100.370276,
+          "case": 32
+        },
+        {
+          "probability": 0.49415254229976235,
+          "label": 0,
+          "elapsed_ms": 101.159976,
+          "case": 33
+        },
+        {
+          "probability": 0.5294299328096614,
+          "label": 1,
+          "elapsed_ms": 100.708496,
+          "case": 34
+        },
+        {
+          "probability": 0.4920607542613775,
+          "label": 0,
+          "elapsed_ms": 101.244152,
+          "case": 35
+        },
+        {
+          "probability": 0.5127556076396789,
+          "label": 0,
+          "elapsed_ms": 101.154097,
+          "case": 36
+        },
+        {
+          "probability": 0.4988096038852689,
+          "label": 1,
+          "elapsed_ms": 99.607767,
+          "case": 37
+        },
+        {
+          "probability": 0.5180035594152741,
+          "label": 1,
+          "elapsed_ms": 99.47659,
+          "case": 38
+        },
+        {
+          "probability": 0.49999882915939103,
+          "label": 0,
+          "elapsed_ms": 102.578042,
+          "case": 39
+        },
+        {
+          "probability": 0.5150202421992203,
+          "label": 0,
+          "elapsed_ms": 99.763613,
+          "case": 40
+        },
+        {
+          "probability": 0.5167805507355082,
+          "label": 1,
+          "elapsed_ms": 99.526315,
+          "case": 41
+        },
+        {
+          "probability": 0.5164701132002598,
+          "label": 1,
+          "elapsed_ms": 100.106279,
+          "case": 42
+        },
+        {
+          "probability": 0.5038434676792234,
+          "label": 1,
+          "elapsed_ms": 101.430224,
+          "case": 43
+        },
+        {
+          "probability": 0.5307980025231119,
+          "label": 1,
+          "elapsed_ms": 101.995425,
+          "case": 44
+        },
+        {
+          "probability": 0.4911619877960139,
+          "label": 0,
+          "elapsed_ms": 101.458046,
+          "case": 45
+        },
+        {
+          "probability": 0.5203271489574419,
+          "label": 1,
+          "elapsed_ms": 106.383004,
+          "case": 46
+        },
+        {
+          "probability": 0.5180673976159109,
+          "label": 1,
+          "elapsed_ms": 100.766344,
+          "case": 47
+        },
+        {
+          "probability": 0.5102238969669843,
+          "label": 1,
+          "elapsed_ms": 101.125765,
+          "case": 48
+        },
+        {
+          "probability": 0.517440430359751,
+          "label": 1,
+          "elapsed_ms": 100.62515,
+          "case": 49
+        },
+        {
+          "probability": 0.5209201263951534,
+          "label": 1,
+          "elapsed_ms": 100.156545,
+          "case": 50
+        },
+        {
+          "probability": 0.4996414595502655,
+          "label": 1,
+          "elapsed_ms": 100.382887,
+          "case": 51
+        },
+        {
+          "probability": 0.5018184006654137,
+          "label": 0,
+          "elapsed_ms": 99.594839,
+          "case": 52
+        },
+        {
+          "probability": 0.5080672782934845,
+          "label": 1,
+          "elapsed_ms": 102.944665,
+          "case": 53
+        },
+        {
+          "probability": 0.49349887837129935,
+          "label": 0,
+          "elapsed_ms": 103.029103,
+          "case": 54
+        },
+        {
+          "probability": 0.4845240614856193,
+          "label": 1,
+          "elapsed_ms": 106.761604,
+          "case": 55
+        },
+        {
+          "probability": 0.4781228145670688,
+          "label": 0,
+          "elapsed_ms": 103.406901,
+          "case": 56
+        },
+        {
+          "probability": 0.5155123479222373,
+          "label": 1,
+          "elapsed_ms": 103.083004,
+          "case": 57
+        },
+        {
+          "probability": 0.5000296372512653,
+          "label": 1,
+          "elapsed_ms": 100.792302,
+          "case": 58
+        },
+        {
+          "probability": 0.4817488372126084,
+          "label": 0,
+          "elapsed_ms": 103.992313,
+          "case": 59
+        },
+        {
+          "probability": 0.5256439166354214,
+          "label": 1,
+          "elapsed_ms": 100.760995,
+          "case": 60
+        },
+        {
+          "probability": 0.5054875096111104,
+          "label": 1,
+          "elapsed_ms": 101.758609,
+          "case": 61
+        },
+        {
+          "probability": 0.5048809108946037,
+          "label": 1,
+          "elapsed_ms": 101.118694,
+          "case": 62
+        },
+        {
+          "probability": 0.5136597160899211,
+          "label": 1,
+          "elapsed_ms": 118.505015,
+          "case": 63
+        },
+        {
+          "probability": 0.5076541439469333,
+          "label": 0,
+          "elapsed_ms": 100.130866,
+          "case": 64
+        },
+        {
+          "probability": 0.4926002905759465,
+          "label": 0,
+          "elapsed_ms": 101.405827,
+          "case": 65
+        },
+        {
+          "probability": 0.49406862520823014,
+          "label": 1,
+          "elapsed_ms": 100.261123,
+          "case": 66
+        },
+        {
+          "probability": 0.4974094666174719,
+          "label": 1,
+          "elapsed_ms": 100.833054,
+          "case": 67
+        },
+        {
+          "probability": 0.5068477831866953,
+          "label": 0,
+          "elapsed_ms": 100.833851,
+          "case": 68
+        },
+        {
+          "probability": 0.5074000173315423,
+          "label": 1,
+          "elapsed_ms": 104.611913,
+          "case": 69
+        },
+        {
+          "probability": 0.49923665206107576,
+          "label": 0,
+          "elapsed_ms": 103.95952,
+          "case": 70
+        },
+        {
+          "probability": 0.49088483702601515,
+          "label": 1,
+          "elapsed_ms": 100.429041,
+          "case": 71
+        },
+        {
+          "probability": 0.5228579999249444,
+          "label": 0,
+          "elapsed_ms": 101.410559,
+          "case": 72
+        },
+        {
+          "probability": 0.4973916177921792,
+          "label": 0,
+          "elapsed_ms": 100.033485,
+          "case": 73
+        },
+        {
+          "probability": 0.48108321556979317,
+          "label": 0,
+          "elapsed_ms": 99.640814,
+          "case": 74
+        },
+        {
+          "probability": 0.4934373340676337,
+          "label": 0,
+          "elapsed_ms": 115.49305,
+          "case": 75
+        },
+        {
+          "probability": 0.510513005359415,
+          "label": 0,
+          "elapsed_ms": 99.537358,
+          "case": 76
+        },
+        {
+          "probability": 0.49322522007528247,
+          "label": 0,
+          "elapsed_ms": 100.266736,
+          "case": 77
+        },
+        {
+          "probability": 0.502010231467378,
+          "label": 1,
+          "elapsed_ms": 100.957738,
+          "case": 78
+        },
+        {
+          "probability": 0.5090251280519515,
+          "label": 1,
+          "elapsed_ms": 104.100462,
+          "case": 79
+        },
+        {
+          "probability": 0.5063073250688466,
+          "label": 0,
+          "elapsed_ms": 107.767886,
+          "case": 80
+        },
+        {
+          "probability": 0.5187173845682088,
+          "label": 1,
+          "elapsed_ms": 115.791164,
+          "case": 81
+        },
+        {
+          "probability": 0.5121317366979141,
+          "label": 1,
+          "elapsed_ms": 113.139959,
+          "case": 82
+        },
+        {
+          "probability": 0.5116301964083182,
+          "label": 1,
+          "elapsed_ms": 102.535895,
+          "case": 83
+        },
+        {
+          "probability": 0.49804306823609873,
+          "label": 0,
+          "elapsed_ms": 103.020014,
+          "case": 84
+        },
+        {
+          "probability": 0.5167039026836501,
+          "label": 1,
+          "elapsed_ms": 110.167611,
+          "case": 85
+        },
+        {
+          "probability": 0.49507216250643066,
+          "label": 0,
+          "elapsed_ms": 100.989565,
+          "case": 86
+        },
+        {
+          "probability": 0.4913989458466108,
+          "label": 1,
+          "elapsed_ms": 111.501766,
+          "case": 87
+        },
+        {
+          "probability": 0.4928744293979966,
+          "label": 1,
+          "elapsed_ms": 102.439189,
+          "case": 88
+        },
+        {
+          "probability": 0.49365148237928896,
+          "label": 0,
+          "elapsed_ms": 114.356582,
+          "case": 89
+        },
+        {
+          "probability": 0.4988329326558883,
+          "label": 1,
+          "elapsed_ms": 102.997971,
+          "case": 90
+        },
+        {
+          "probability": 0.5026325745817777,
+          "label": 1,
+          "elapsed_ms": 101.061584,
+          "case": 91
+        },
+        {
+          "probability": 0.5222493003361897,
+          "label": 1,
+          "elapsed_ms": 101.220724,
+          "case": 92
+        },
+        {
+          "probability": 0.5147910980235906,
+          "label": 0,
+          "elapsed_ms": 102.223504,
+          "case": 93
+        },
+        {
+          "probability": 0.5089298410632297,
+          "label": 1,
+          "elapsed_ms": 102.470937,
+          "case": 94
+        },
+        {
+          "probability": 0.5041312258718075,
+          "label": 0,
+          "elapsed_ms": 104.532192,
+          "case": 95
+        },
+        {
+          "probability": 0.49069939594146594,
+          "label": 1,
+          "elapsed_ms": 101.219897,
+          "case": 96
+        },
+        {
+          "probability": 0.5102796771571644,
+          "label": 0,
+          "elapsed_ms": 100.051533,
+          "case": 97
+        },
+        {
+          "probability": 0.5219341234785458,
+          "label": 0,
+          "elapsed_ms": 99.795557,
+          "case": 98
+        },
+        {
+          "probability": 0.4906717864155938,
+          "label": 0,
+          "elapsed_ms": 102.093028,
+          "case": 99
+        },
+        {
+          "probability": 0.5136643155471808,
+          "label": 1,
+          "elapsed_ms": 101.542078,
+          "case": 100
+        },
+        {
+          "probability": 0.5086569506704569,
+          "label": 0,
+          "elapsed_ms": 111.109601,
+          "case": 101
+        },
+        {
+          "probability": 0.48073617263278257,
+          "label": 0,
+          "elapsed_ms": 118.266437,
+          "case": 102
+        },
+        {
+          "probability": 0.49446098004617234,
+          "label": 1,
+          "elapsed_ms": 102.375373,
+          "case": 103
+        },
+        {
+          "probability": 0.48016229435302904,
+          "label": 0,
+          "elapsed_ms": 100.842324,
+          "case": 104
+        },
+        {
+          "probability": 0.5118845955032347,
+          "label": 0,
+          "elapsed_ms": 100.005984,
+          "case": 105
+        },
+        {
+          "probability": 0.5000630680940065,
+          "label": 1,
+          "elapsed_ms": 99.35959,
+          "case": 106
+        },
+        {
+          "probability": 0.48889456463559505,
+          "label": 0,
+          "elapsed_ms": 99.403756,
+          "case": 107
+        },
+        {
+          "probability": 0.4908627980999319,
+          "label": 0,
+          "elapsed_ms": 99.891872,
+          "case": 108
+        },
+        {
+          "probability": 0.4857007830008439,
+          "label": 0,
+          "elapsed_ms": 100.952589,
+          "case": 109
+        },
+        {
+          "probability": 0.4986927659820488,
+          "label": 0,
+          "elapsed_ms": 101.757513,
+          "case": 110
+        },
+        {
+          "probability": 0.4974575003131303,
+          "label": 1,
+          "elapsed_ms": 102.421933,
+          "case": 111
+        },
+        {
+          "probability": 0.4980712452685556,
+          "label": 1,
+          "elapsed_ms": 99.689957,
+          "case": 112
+        },
+        {
+          "probability": 0.5324394255291354,
+          "label": 1,
+          "elapsed_ms": 100.06339,
+          "case": 113
+        },
+        {
+          "probability": 0.5115608030391352,
+          "label": 1,
+          "elapsed_ms": 101.425296,
+          "case": 114
+        },
+        {
+          "probability": 0.5231033167804368,
+          "label": 0,
+          "elapsed_ms": 103.187757,
+          "case": 115
+        },
+        {
+          "probability": 0.48395311626334847,
+          "label": 0,
+          "elapsed_ms": 102.226209,
+          "case": 116
+        },
+        {
+          "probability": 0.501999826967463,
+          "label": 1,
+          "elapsed_ms": 101.639595,
+          "case": 117
+        },
+        {
+          "probability": 0.5242473139303808,
+          "label": 1,
+          "elapsed_ms": 100.710865,
+          "case": 118
+        },
+        {
+          "probability": 0.5113976033691459,
+          "label": 1,
+          "elapsed_ms": 100.479798,
+          "case": 119
+        },
+        {
+          "probability": 0.4931973299904258,
+          "label": 1,
+          "elapsed_ms": 100.758848,
+          "case": 120
+        },
+        {
+          "probability": 0.5017226960309235,
+          "label": 1,
+          "elapsed_ms": 102.265422,
+          "case": 121
+        },
+        {
+          "probability": 0.49076465123487917,
+          "label": 0,
+          "elapsed_ms": 98.860649,
+          "case": 122
+        },
+        {
+          "probability": 0.5087139654471259,
+          "label": 0,
+          "elapsed_ms": 118.490079,
+          "case": 123
+        },
+        {
+          "probability": 0.505810193397527,
+          "label": 0,
+          "elapsed_ms": 100.240797,
+          "case": 124
+        },
+        {
+          "probability": 0.5022806447265911,
+          "label": 0,
+          "elapsed_ms": 101.066501,
+          "case": 125
+        },
+        {
+          "probability": 0.5108363822057007,
+          "label": 1,
+          "elapsed_ms": 102.264917,
+          "case": 126
+        },
+        {
+          "probability": 0.5105642564178873,
+          "label": 0,
+          "elapsed_ms": 102.708525,
+          "case": 127
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 128,
+      "successes": 78,
+      "rate": 0.609375,
+      "wilson95": [
+        0.5228464818201277,
+        0.6895298089950423
+      ],
+      "brier": 0.24597642368281408,
+      "mean_reward": null,
+      "decisions": 128,
+      "native_cpu_ms": 13336.669000000002,
+      "median_transport_ms": 102.4019265,
+      "peak_rss_kib": 15204,
+      "correctness": [
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "observations": [
+        {
+          "probability": 0.49472684444684467,
+          "label": 1,
+          "elapsed_ms": 107.190687,
+          "case": 0
+        },
+        {
+          "probability": 0.48880442629058596,
+          "label": 0,
+          "elapsed_ms": 108.215931,
+          "case": 1
+        },
+        {
+          "probability": 0.47462507114293195,
+          "label": 0,
+          "elapsed_ms": 104.439483,
+          "case": 2
+        },
+        {
+          "probability": 0.49661618587757667,
+          "label": 1,
+          "elapsed_ms": 100.132033,
+          "case": 3
+        },
+        {
+          "probability": 0.5177924921701894,
+          "label": 1,
+          "elapsed_ms": 102.239148,
+          "case": 4
+        },
+        {
+          "probability": 0.5103885745656064,
+          "label": 1,
+          "elapsed_ms": 100.273807,
+          "case": 5
+        },
+        {
+          "probability": 0.4893211645299091,
+          "label": 0,
+          "elapsed_ms": 98.854429,
+          "case": 6
+        },
+        {
+          "probability": 0.49439756617609804,
+          "label": 1,
+          "elapsed_ms": 100.008347,
+          "case": 7
+        },
+        {
+          "probability": 0.4846322117377097,
+          "label": 0,
+          "elapsed_ms": 100.928914,
+          "case": 8
+        },
+        {
+          "probability": 0.5083525202046474,
+          "label": 0,
+          "elapsed_ms": 99.992233,
+          "case": 9
+        },
+        {
+          "probability": 0.5257409327827797,
+          "label": 1,
+          "elapsed_ms": 102.631809,
+          "case": 10
+        },
+        {
+          "probability": 0.5016574071744192,
+          "label": 0,
+          "elapsed_ms": 101.849671,
+          "case": 11
+        },
+        {
+          "probability": 0.49846443929179296,
+          "label": 1,
+          "elapsed_ms": 101.159542,
+          "case": 12
+        },
+        {
+          "probability": 0.5077596431742403,
+          "label": 1,
+          "elapsed_ms": 101.987829,
+          "case": 13
+        },
+        {
+          "probability": 0.4976921221461921,
+          "label": 1,
+          "elapsed_ms": 102.400762,
+          "case": 14
+        },
+        {
+          "probability": 0.4986109433921869,
+          "label": 0,
+          "elapsed_ms": 101.282376,
+          "case": 15
+        },
+        {
+          "probability": 0.5184276784662557,
+          "label": 1,
+          "elapsed_ms": 100.884467,
+          "case": 16
+        },
+        {
+          "probability": 0.4981591903770486,
+          "label": 0,
+          "elapsed_ms": 101.351217,
+          "case": 17
+        },
+        {
+          "probability": 0.47004514877286135,
+          "label": 0,
+          "elapsed_ms": 102.035447,
+          "case": 18
+        },
+        {
+          "probability": 0.50323743385451,
+          "label": 1,
+          "elapsed_ms": 101.265527,
+          "case": 19
+        },
+        {
+          "probability": 0.5130411064637566,
+          "label": 1,
+          "elapsed_ms": 101.577507,
+          "case": 20
+        },
+        {
+          "probability": 0.49400773287267047,
+          "label": 1,
+          "elapsed_ms": 101.457848,
+          "case": 21
+        },
+        {
+          "probability": 0.511686952667599,
+          "label": 1,
+          "elapsed_ms": 102.384272,
+          "case": 22
+        },
+        {
+          "probability": 0.512298328702528,
+          "label": 0,
+          "elapsed_ms": 99.677075,
+          "case": 23
+        },
+        {
+          "probability": 0.49939853144684987,
+          "label": 0,
+          "elapsed_ms": 101.262182,
+          "case": 24
+        },
+        {
+          "probability": 0.5210730827151004,
+          "label": 0,
+          "elapsed_ms": 101.372519,
+          "case": 25
+        },
+        {
+          "probability": 0.49995442137614327,
+          "label": 1,
+          "elapsed_ms": 101.106428,
+          "case": 26
+        },
+        {
+          "probability": 0.4983649996771481,
+          "label": 0,
+          "elapsed_ms": 117.47222,
+          "case": 27
+        },
+        {
+          "probability": 0.5207617512520923,
+          "label": 1,
+          "elapsed_ms": 101.433881,
+          "case": 28
+        },
+        {
+          "probability": 0.5020502784620209,
+          "label": 1,
+          "elapsed_ms": 100.779264,
+          "case": 29
+        },
+        {
+          "probability": 0.491907936367249,
+          "label": 0,
+          "elapsed_ms": 99.84667,
+          "case": 30
+        },
+        {
+          "probability": 0.4992416228624113,
+          "label": 1,
+          "elapsed_ms": 112.673488,
+          "case": 31
+        },
+        {
+          "probability": 0.5049138997851079,
+          "label": 1,
+          "elapsed_ms": 127.241529,
+          "case": 32
+        },
+        {
+          "probability": 0.5220508400868449,
+          "label": 1,
+          "elapsed_ms": 116.643923,
+          "case": 33
+        },
+        {
+          "probability": 0.5041322817220443,
+          "label": 1,
+          "elapsed_ms": 104.170073,
+          "case": 34
+        },
+        {
+          "probability": 0.49395176880075503,
+          "label": 0,
+          "elapsed_ms": 104.417656,
+          "case": 35
+        },
+        {
+          "probability": 0.4899136079333193,
+          "label": 0,
+          "elapsed_ms": 102.77451,
+          "case": 36
+        },
+        {
+          "probability": 0.5163143901588433,
+          "label": 1,
+          "elapsed_ms": 103.025499,
+          "case": 37
+        },
+        {
+          "probability": 0.4947999792502873,
+          "label": 0,
+          "elapsed_ms": 104.48022,
+          "case": 38
+        },
+        {
+          "probability": 0.5072674122937851,
+          "label": 1,
+          "elapsed_ms": 105.825205,
+          "case": 39
+        },
+        {
+          "probability": 0.503022333129868,
+          "label": 0,
+          "elapsed_ms": 109.52518,
+          "case": 40
+        },
+        {
+          "probability": 0.49774725159989835,
+          "label": 0,
+          "elapsed_ms": 103.858123,
+          "case": 41
+        },
+        {
+          "probability": 0.521733956418175,
+          "label": 1,
+          "elapsed_ms": 102.616432,
+          "case": 42
+        },
+        {
+          "probability": 0.5102555369512197,
+          "label": 1,
+          "elapsed_ms": 104.182381,
+          "case": 43
+        },
+        {
+          "probability": 0.5048512544712097,
+          "label": 0,
+          "elapsed_ms": 100.075184,
+          "case": 44
+        },
+        {
+          "probability": 0.5163161282156247,
+          "label": 1,
+          "elapsed_ms": 100.906036,
+          "case": 45
+        },
+        {
+          "probability": 0.5103382426201352,
+          "label": 1,
+          "elapsed_ms": 101.600643,
+          "case": 46
+        },
+        {
+          "probability": 0.4923350563654327,
+          "label": 1,
+          "elapsed_ms": 102.174937,
+          "case": 47
+        },
+        {
+          "probability": 0.5185016971249522,
+          "label": 0,
+          "elapsed_ms": 103.450198,
+          "case": 48
+        },
+        {
+          "probability": 0.5114695538905961,
+          "label": 1,
+          "elapsed_ms": 121.725679,
+          "case": 49
+        },
+        {
+          "probability": 0.5018485490571882,
+          "label": 0,
+          "elapsed_ms": 111.145275,
+          "case": 50
+        },
+        {
+          "probability": 0.4945687781931871,
+          "label": 0,
+          "elapsed_ms": 110.818137,
+          "case": 51
+        },
+        {
+          "probability": 0.5108494636567033,
+          "label": 0,
+          "elapsed_ms": 103.891393,
+          "case": 52
+        },
+        {
+          "probability": 0.4886700598789933,
+          "label": 1,
+          "elapsed_ms": 103.822029,
+          "case": 53
+        },
+        {
+          "probability": 0.4826359156320239,
+          "label": 0,
+          "elapsed_ms": 103.163296,
+          "case": 54
+        },
+        {
+          "probability": 0.4953124183285016,
+          "label": 1,
+          "elapsed_ms": 102.403091,
+          "case": 55
+        },
+        {
+          "probability": 0.49427394925883145,
+          "label": 0,
+          "elapsed_ms": 100.788608,
+          "case": 56
+        },
+        {
+          "probability": 0.5056362165914821,
+          "label": 1,
+          "elapsed_ms": 100.963543,
+          "case": 57
+        },
+        {
+          "probability": 0.4899181042916804,
+          "label": 0,
+          "elapsed_ms": 100.96233,
+          "case": 58
+        },
+        {
+          "probability": 0.5045906629781693,
+          "label": 1,
+          "elapsed_ms": 100.084778,
+          "case": 59
+        },
+        {
+          "probability": 0.509778723776498,
+          "label": 1,
+          "elapsed_ms": 98.482595,
+          "case": 60
+        },
+        {
+          "probability": 0.5000285464663354,
+          "label": 1,
+          "elapsed_ms": 100.319463,
+          "case": 61
+        },
+        {
+          "probability": 0.5026896303722113,
+          "label": 0,
+          "elapsed_ms": 99.114658,
+          "case": 62
+        },
+        {
+          "probability": 0.48766273622238143,
+          "label": 0,
+          "elapsed_ms": 98.56568,
+          "case": 63
+        },
+        {
+          "probability": 0.5094112897724282,
+          "label": 1,
+          "elapsed_ms": 99.339836,
+          "case": 64
+        },
+        {
+          "probability": 0.5157950663383563,
+          "label": 1,
+          "elapsed_ms": 114.439112,
+          "case": 65
+        },
+        {
+          "probability": 0.5002809214157625,
+          "label": 0,
+          "elapsed_ms": 122.57629,
+          "case": 66
+        },
+        {
+          "probability": 0.5093199155870289,
+          "label": 0,
+          "elapsed_ms": 101.642675,
+          "case": 67
+        },
+        {
+          "probability": 0.5179367867683221,
+          "label": 0,
+          "elapsed_ms": 101.843839,
+          "case": 68
+        },
+        {
+          "probability": 0.503464837476182,
+          "label": 0,
+          "elapsed_ms": 108.994045,
+          "case": 69
+        },
+        {
+          "probability": 0.508957246280844,
+          "label": 0,
+          "elapsed_ms": 116.832377,
+          "case": 70
+        },
+        {
+          "probability": 0.5033307089839667,
+          "label": 0,
+          "elapsed_ms": 102.675672,
+          "case": 71
+        },
+        {
+          "probability": 0.5202396161162645,
+          "label": 1,
+          "elapsed_ms": 103.230147,
+          "case": 72
+        },
+        {
+          "probability": 0.49977839335991553,
+          "label": 1,
+          "elapsed_ms": 103.363077,
+          "case": 73
+        },
+        {
+          "probability": 0.5150721693896916,
+          "label": 1,
+          "elapsed_ms": 101.990429,
+          "case": 74
+        },
+        {
+          "probability": 0.5146139048424849,
+          "label": 1,
+          "elapsed_ms": 102.679207,
+          "case": 75
+        },
+        {
+          "probability": 0.5257090633329384,
+          "label": 1,
+          "elapsed_ms": 102.85376,
+          "case": 76
+        },
+        {
+          "probability": 0.50218325310574,
+          "label": 0,
+          "elapsed_ms": 100.872174,
+          "case": 77
+        },
+        {
+          "probability": 0.4968132065246827,
+          "label": 1,
+          "elapsed_ms": 103.500444,
+          "case": 78
+        },
+        {
+          "probability": 0.501547683721318,
+          "label": 0,
+          "elapsed_ms": 102.042187,
+          "case": 79
+        },
+        {
+          "probability": 0.5130545836078189,
+          "label": 1,
+          "elapsed_ms": 102.336931,
+          "case": 80
+        },
+        {
+          "probability": 0.4954548036315426,
+          "label": 0,
+          "elapsed_ms": 101.681824,
+          "case": 81
+        },
+        {
+          "probability": 0.5151953955871861,
+          "label": 1,
+          "elapsed_ms": 102.758247,
+          "case": 82
+        },
+        {
+          "probability": 0.4843530682571909,
+          "label": 0,
+          "elapsed_ms": 102.466847,
+          "case": 83
+        },
+        {
+          "probability": 0.5100058099050535,
+          "label": 0,
+          "elapsed_ms": 101.776627,
+          "case": 84
+        },
+        {
+          "probability": 0.5032744882827835,
+          "label": 0,
+          "elapsed_ms": 112.873063,
+          "case": 85
+        },
+        {
+          "probability": 0.4860155984188757,
+          "label": 0,
+          "elapsed_ms": 106.579171,
+          "case": 86
+        },
+        {
+          "probability": 0.5193634397129885,
+          "label": 1,
+          "elapsed_ms": 100.227224,
+          "case": 87
+        },
+        {
+          "probability": 0.5000978765076218,
+          "label": 0,
+          "elapsed_ms": 109.272484,
+          "case": 88
+        },
+        {
+          "probability": 0.4879313768082035,
+          "label": 1,
+          "elapsed_ms": 118.199267,
+          "case": 89
+        },
+        {
+          "probability": 0.5073324278974433,
+          "label": 0,
+          "elapsed_ms": 103.68364,
+          "case": 90
+        },
+        {
+          "probability": 0.5019875017690303,
+          "label": 0,
+          "elapsed_ms": 102.50208,
+          "case": 91
+        },
+        {
+          "probability": 0.5126067583735748,
+          "label": 1,
+          "elapsed_ms": 102.063009,
+          "case": 92
+        },
+        {
+          "probability": 0.5126246477142895,
+          "label": 1,
+          "elapsed_ms": 103.603485,
+          "case": 93
+        },
+        {
+          "probability": 0.5031568726944209,
+          "label": 1,
+          "elapsed_ms": 101.590376,
+          "case": 94
+        },
+        {
+          "probability": 0.47738804153848224,
+          "label": 0,
+          "elapsed_ms": 102.630083,
+          "case": 95
+        },
+        {
+          "probability": 0.5148545350388796,
+          "label": 1,
+          "elapsed_ms": 131.814253,
+          "case": 96
+        },
+        {
+          "probability": 0.5305510236662123,
+          "label": 1,
+          "elapsed_ms": 110.817095,
+          "case": 97
+        },
+        {
+          "probability": 0.5086227112167518,
+          "label": 0,
+          "elapsed_ms": 102.293746,
+          "case": 98
+        },
+        {
+          "probability": 0.4766009632961393,
+          "label": 0,
+          "elapsed_ms": 102.831626,
+          "case": 99
+        },
+        {
+          "probability": 0.5187513400131203,
+          "label": 0,
+          "elapsed_ms": 102.172063,
+          "case": 100
+        },
+        {
+          "probability": 0.5006201331136649,
+          "label": 1,
+          "elapsed_ms": 102.711385,
+          "case": 101
+        },
+        {
+          "probability": 0.48314932830250895,
+          "label": 0,
+          "elapsed_ms": 105.997114,
+          "case": 102
+        },
+        {
+          "probability": 0.472975275018672,
+          "label": 1,
+          "elapsed_ms": 101.619861,
+          "case": 103
+        },
+        {
+          "probability": 0.5172653383966567,
+          "label": 1,
+          "elapsed_ms": 102.09798,
+          "case": 104
+        },
+        {
+          "probability": 0.5091157574311691,
+          "label": 0,
+          "elapsed_ms": 102.759447,
+          "case": 105
+        },
+        {
+          "probability": 0.500738862417745,
+          "label": 0,
+          "elapsed_ms": 102.164782,
+          "case": 106
+        },
+        {
+          "probability": 0.49173539064571314,
+          "label": 0,
+          "elapsed_ms": 103.744291,
+          "case": 107
+        },
+        {
+          "probability": 0.5073652756588665,
+          "label": 1,
+          "elapsed_ms": 105.225392,
+          "case": 108
+        },
+        {
+          "probability": 0.5127102623639505,
+          "label": 0,
+          "elapsed_ms": 102.631245,
+          "case": 109
+        },
+        {
+          "probability": 0.5076713666818352,
+          "label": 0,
+          "elapsed_ms": 101.102221,
+          "case": 110
+        },
+        {
+          "probability": 0.5098424239666076,
+          "label": 0,
+          "elapsed_ms": 100.592133,
+          "case": 111
+        },
+        {
+          "probability": 0.5233992658207591,
+          "label": 1,
+          "elapsed_ms": 100.308005,
+          "case": 112
+        },
+        {
+          "probability": 0.49327849822702374,
+          "label": 1,
+          "elapsed_ms": 100.988268,
+          "case": 113
+        },
+        {
+          "probability": 0.4962366639754615,
+          "label": 0,
+          "elapsed_ms": 100.467585,
+          "case": 114
+        },
+        {
+          "probability": 0.48752847659689064,
+          "label": 0,
+          "elapsed_ms": 101.287861,
+          "case": 115
+        },
+        {
+          "probability": 0.48263999642027844,
+          "label": 1,
+          "elapsed_ms": 100.107322,
+          "case": 116
+        },
+        {
+          "probability": 0.49088595685562686,
+          "label": 0,
+          "elapsed_ms": 117.500396,
+          "case": 117
+        },
+        {
+          "probability": 0.5109039876535618,
+          "label": 1,
+          "elapsed_ms": 110.417713,
+          "case": 118
+        },
+        {
+          "probability": 0.5082574080647245,
+          "label": 0,
+          "elapsed_ms": 102.670564,
+          "case": 119
+        },
+        {
+          "probability": 0.5032113680470358,
+          "label": 1,
+          "elapsed_ms": 105.419263,
+          "case": 120
+        },
+        {
+          "probability": 0.5107067029162794,
+          "label": 1,
+          "elapsed_ms": 103.029724,
+          "case": 121
+        },
+        {
+          "probability": 0.5183214145670735,
+          "label": 0,
+          "elapsed_ms": 102.709182,
+          "case": 122
+        },
+        {
+          "probability": 0.4944172868866755,
+          "label": 0,
+          "elapsed_ms": 103.586933,
+          "case": 123
+        },
+        {
+          "probability": 0.4873436005249986,
+          "label": 0,
+          "elapsed_ms": 102.488129,
+          "case": 124
+        },
+        {
+          "probability": 0.5002093304095042,
+          "label": 1,
+          "elapsed_ms": 102.028947,
+          "case": 125
+        },
+        {
+          "probability": 0.48855941801390795,
+          "label": 1,
+          "elapsed_ms": 101.096832,
+          "case": 126
+        },
+        {
+          "probability": 0.49105315447287107,
+          "label": 0,
+          "elapsed_ms": 113.341627,
+          "case": 127
+        }
+      ]
+    }
+  },
+  "observations_zeroed": {
+    "iid": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 20,
+      "rate": 0.625,
+      "wilson95": [
+        0.4525440735307745,
+        0.7706611269054578
+      ],
+      "brier": 0.24644763711254408,
+      "mean_reward": null,
+      "decisions": 32,
+      "native_cpu_ms": 3187.0769999999998,
+      "median_transport_ms": 97.81380250000001,
+      "peak_rss_kib": 15184,
+      "correctness": [
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false
+      ],
+      "observations": [
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 110.753278,
+          "case": 0
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.798174,
+          "case": 1
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 96.207108,
+          "case": 2
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 96.967061,
+          "case": 3
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.894884,
+          "case": 4
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 96.563875,
+          "case": 5
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.071045,
+          "case": 6
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.441146,
+          "case": 7
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.634183,
+          "case": 8
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.377216,
+          "case": 9
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.461294,
+          "case": 10
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.938964,
+          "case": 11
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 97.729861,
+          "case": 12
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.568081,
+          "case": 13
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.361921,
+          "case": 14
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 97.916342,
+          "case": 15
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.829431,
+          "case": 16
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 114.678697,
+          "case": 17
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 107.146685,
+          "case": 18
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 98.959143,
+          "case": 19
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 99.774942,
+          "case": 20
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 115.705448,
+          "case": 21
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.360128,
+          "case": 22
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.444265,
+          "case": 23
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 97.424521,
+          "case": 24
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.948748,
+          "case": 25
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.532581,
+          "case": 26
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.726123,
+          "case": 27
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 100.273474,
+          "case": 28
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.474383,
+          "case": 29
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.344057,
+          "case": 30
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 109.587774,
+          "case": 31
+        }
+      ]
+    },
+    "ood": {
+      "seed": 827391,
+      "samples": 32,
+      "successes": 14,
+      "rate": 0.4375,
+      "wilson95": [
+        0.2816533111504036,
+        0.6067440886314801
+      ],
+      "brier": 0.2521193047964375,
+      "mean_reward": null,
+      "decisions": 32,
+      "native_cpu_ms": 3185.967,
+      "median_transport_ms": 97.798529,
+      "peak_rss_kib": 15184,
+      "correctness": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false
+      ],
+      "observations": [
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 111.063877,
+          "case": 0
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.726403,
+          "case": 1
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 100.132361,
+          "case": 2
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 100.109496,
+          "case": 3
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 99.097191,
+          "case": 4
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 102.219945,
+          "case": 5
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 101.971872,
+          "case": 6
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.045941,
+          "case": 7
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 99.518346,
+          "case": 8
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 103.885204,
+          "case": 9
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.138481,
+          "case": 10
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 97.267897,
+          "case": 11
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 103.883636,
+          "case": 12
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 99.775957,
+          "case": 13
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 102.212509,
+          "case": 14
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 103.879821,
+          "case": 15
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.061762,
+          "case": 16
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 122.277468,
+          "case": 17
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 96.304118,
+          "case": 18
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 95.60935,
+          "case": 19
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 95.809833,
+          "case": 20
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.564269,
+          "case": 21
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 97.761132,
+          "case": 22
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 98.433816,
+          "case": 23
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 96.68428,
+          "case": 24
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 97.835926,
+          "case": 25
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.224478,
+          "case": 26
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.936123,
+          "case": 27
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 95.937405,
+          "case": 28
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.363907,
+          "case": 29
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 0,
+          "elapsed_ms": 95.902893,
+          "case": 30
+        },
+        {
+          "probability": 0.4848755528429508,
+          "label": 1,
+          "elapsed_ms": 96.191167,
+          "case": 31
+        }
+      ]
+    }
+  },
+  "training": {
+    "episodes": 1000,
+    "decisions": 1000,
+    "native_episode_total_ms": 109679.69877105206,
+    "native_update_total_ms": 26895.015779063106,
+    "native_cpu_ms": 134270.409,
+    "transport_total_ms": 134286.878788,
+    "median_episode_ms": 106.30656199902296,
+    "peak_rss_kib": 18276,
+    "wall_seconds_including_checkpoint_io": 134.50679599300202
+  },
+  "milestones": [
+    {
+      "episodes": 100,
+      "checkpoint_sha256": "42d8bdbb87a7aeacc007d01e30c2c8787566ecbfc18b86dce42658ecae567d7b",
+      "model": {
+        "parameter_sha256": "b504732c46be1db3843f202e69b2d8085dbb6156d439e0de9e354b66a6fdfa39",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 98,
+        "maximum_rotation_updates": 99,
+        "training_episodes_in_checkpoint": 100,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18000,
+        "rusage_peak_rss_kib": 18000,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 13194.124,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      }
+    },
+    {
+      "episodes": 1000,
+      "checkpoint_sha256": "c4055ae5f381af10d20936b5d1bce08e938009bac80ce8f014d83fde56bd678a",
+      "model": {
+        "parameter_sha256": "202e7dc324aa179d05f251ae3f05b42874137d8985bf5b0adeda03ec4d31234f",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 997,
+        "maximum_rotation_updates": 999,
+        "training_episodes_in_checkpoint": 1000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "usage": {
+        "peak_rss_kib": 18276,
+        "rusage_peak_rss_kib": 18184,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 134282.715,
+        "active_qubits": 2000,
+        "quantum_payload_bytes": 159872
+      }
+    }
+  ],
+  "finished_utc": "2026-11-03T03:57:18.797680+00:00",
+  "checkpoints": [
+    {
+      "file": "checkpoint-00000.rvp.gz",
+      "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c",
+      "decompressed_sha256": "1bac6946dd878f941b295b9585a86f30d907749c0a84f0dff1624d6376848da1"
+    },
+    {
+      "file": "checkpoint-00100.rvp.gz",
+      "sha256": "85024c9d7bf9f3dd08389497383b3881a7a14ef1be0aa2fe9adbdcd65ba14e48",
+      "decompressed_sha256": "42d8bdbb87a7aeacc007d01e30c2c8787566ecbfc18b86dce42658ecae567d7b"
+    },
+    {
+      "file": "checkpoint-01000.rvp.gz",
+      "sha256": "6a7510a76aed3da6c8f8fd54173773c7993bbcfb583c6896e3ad4b5229a3ced5",
+      "decompressed_sha256": "c4055ae5f381af10d20936b5d1bce08e938009bac80ce8f014d83fde56bd678a"
+    }
+  ],
+  "journal_sha256": "e2b82cf9d0e0a305138768678928d068f94a4f8c5b9f25457dbced56b61acbba",
+  "compressed_journal_sha256": "8e2ee1225fd8ef60da7702687e0bd55537ce472d4b173feecc780942311256f2"
+}

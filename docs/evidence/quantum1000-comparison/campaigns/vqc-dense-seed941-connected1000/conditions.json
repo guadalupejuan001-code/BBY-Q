@@ -1,0 +1,29 @@
+{
+  "variant": "connected1000",
+  "agent": "vqc",
+  "task": "dense",
+  "training_seed": 941,
+  "evaluation_seed": 827391,
+  "episodes": 1000,
+  "holdout_samples_per_split": 128,
+  "initial_and_zeroed_samples_per_split": 32,
+  "runtime_binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+  "assembled_xi_library_sha256": "5e317b929164c8440e45058aab612381ace8291536fd1f4b9738be4319ba46c3",
+  "birth_sha256": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+  "source_sha256": {
+    "birth.xi": "757a3946d252d9fd43faaa671ac0d19ed6cd9a0a1d5debd3f914629a0da399f1",
+    "common.xi": "2c12dee6ad72c8cf964f087807b77046ac3abe09cf7b46e11356fa5e4eef7886",
+    "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+    "qrl3.xi": "2ed1c54e8cb8d2111709247e002b692f34e194e373153878875b961b360deb18"
+  },
+  "cpu_affinity": [
+    4
+  ],
+  "native_algorithms": "XI/Ether",
+  "entangler": "cz",
+  "angle_gradients_per_decision": 1000,
+  "qubits_per_agent": 1000,
+  "classical_simulation": true,
+  "started_utc": "2026-11-03T03:52:50.833439+00:00",
+  "train_holdout_seed_overlap": false
+}

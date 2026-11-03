@@ -1,0 +1,37 @@
+{
+  "trace": {
+    "type": "quantum_trace",
+    "active_qubits": 2000,
+    "rotations": 4000,
+    "observations": 4000,
+    "gates": 1500,
+    "preparations": 500,
+    "max_prepared_block": 4,
+    "distinct_rotated_qubits": 2000,
+    "distinct_observed_qubits": 2000,
+    "distinct_two_qubit_edges": 1500
+  },
+  "stats": {
+    "type": "stats",
+    "background": "zero",
+    "domain": "nonnegative_decimal_addresses",
+    "active_qubits": 2000,
+    "components": 500,
+    "largest_component": 4,
+    "tableau_bytes": 328000,
+    "address_bytes": 8000,
+    "ether_rules": 0,
+    "revision": 6500,
+    "limits": {
+      "max_active_qubits": 4096,
+      "max_component_qubits": 1024,
+      "max_state_bytes": 67108864,
+      "max_address_digits": 4096,
+      "max_query_terms": 4096,
+      "max_ether_rules": 4096,
+      "max_ether_query_sites": 4096
+    }
+  },
+  "registers": [],
+  "note": "Probe uses a fresh unsaved session; training parameters are not changed."
+}

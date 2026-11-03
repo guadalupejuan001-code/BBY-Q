@@ -1,0 +1,18 @@
+{
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "runtime_commit": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "bby_q_commit": "d21f6b3fa867febf9559dbab0fc0b0ae453d879a",
+  "ether_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+  "worker_cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "cgroup_cpu_max": "800000 100000"
+}

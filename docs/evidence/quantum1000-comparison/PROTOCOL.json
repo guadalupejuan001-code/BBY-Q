@@ -1,0 +1,43 @@
+{
+  "fixed_before_campaigns": true,
+  "training_seeds": [
+    173,
+    941,
+    2026
+  ],
+  "tasks": [
+    [
+      "vqc",
+      "linear"
+    ],
+    [
+      "vqc",
+      "dense"
+    ],
+    [
+      "qrl",
+      "line_easy"
+    ]
+  ],
+  "variants": [
+    "historical4",
+    "blocked4",
+    "connected1000"
+  ],
+  "episodes_per_campaign": 1000,
+  "holdout_samples_per_split": 128,
+  "holdout_seed": 827391,
+  "initial_and_zeroed_samples_per_split": 32,
+  "primary_metric": "held-out accuracy VQC; stochastic success rate QRL",
+  "controls": "blocked4 versus connected1000 keeps CZ, all-angle gradients, data, rates, initialization and episode budgets fixed",
+  "historical_comparison": "historical4 preserves CNOT and four selected angle gradients; differences are not attributable only to connectivity",
+  "measurement": "same single-thread binary; paired variants share CPU affinity; CPU time excludes separate evaluation sessions",
+  "excluded_claims": [
+    "quantum hardware",
+    "universal quantum advantage",
+    "general superiority from synthetic tasks"
+  ],
+  "created_utc": "2026-11-03T03:50:48.200076+00:00",
+  "harness_sha256": "a195b03bd505ca56f8c90d12dee40dcd272295fba57318f686ed565ad573185d",
+  "parallel_lanes": 6
+}
