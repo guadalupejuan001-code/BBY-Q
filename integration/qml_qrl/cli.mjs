@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {quantumAgents1000} from './agents1000.mjs';
 import {quantum3Command} from '../quantum3/launcher.mjs';
+import {exact100Command} from '../exact100/launcher.mjs';
 
 const A=8100000000000000000n;
 const address=n=>String(A+BigInt(n));
@@ -47,6 +48,7 @@ function configFile(directory,pairs){
   return name;
 }
 export function quantumCommand({root,build,argv}){
+  if(argv[0]==='exact100')return exact100Command({root,argv:argv.slice(1)});
   if(argv[0]==='v3')return quantum3Command({root,argv:argv.slice(1)});
   const args=[],flags={};
   for(const arg of argv){
