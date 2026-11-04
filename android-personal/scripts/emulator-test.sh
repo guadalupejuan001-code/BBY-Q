@@ -4,6 +4,18 @@ APK=android-personal/app/build/outputs/apk/debug/app-debug.apk
 TEST=android-personal/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 OUT=build/personal-artifacts
 mkdir -p "$OUT"
+cp "$APK" "$OUT/BBYQ-X-Android-1.0.apk"
+cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" "$OUT/apksigner.jar"
+python3 - "$APK" <<'PY_ASSETS'
+import hashlib,json,sys,zipfile
+with zipfile.ZipFile(sys.argv[1]) as z:
+ m=json.loads(z.read('assets/engine/manifest.json'))
+ for name,expected in m['files'].items():
+  actual=hashlib.sha256(z.read('assets/engine/'+name)).hexdigest()
+  assert actual==expected,('Packaged model hash mismatch',name)
+ assert len(json.loads(z.read('assets/engine/chat-fixtures.json')))==6
+print('All original model assets are present and byte-identical in the APK')
+PY_ASSETS
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 if [[ -e /dev/kvm ]]; then sudo chmod a+rw /dev/kvm; fi
 export ANDROID_AVD_HOME="$(mktemp -d /tmp/bbyq-personal-avd.XXXXXX)"
@@ -41,7 +53,7 @@ import hashlib,json,zipfile
 out=Path('build/personal-artifacts');p=out/'BBYQ-X-Android-1.0.apk'
 with zipfile.ZipFile(p) as z:
  assert z.testzip() is None
- for n in ['lib/arm64-v8a/libreverse_os.so','lib/x86_64/libreverse_os.so','assets/engine/chat-model.rvp.gz','assets/engine/quantum-model.rvp.gz']:assert n in z.namelist()
+ for n in ['lib/arm64-v8a/libreverse_os.so','lib/x86_64/libreverse_os.so','assets/engine/chat-model.rvpbin','assets/engine/quantum-model.rvpbin']:assert n in z.namelist()
  m=json.loads(z.read('assets/engine/manifest.json'))
  assert m['qubits_per_agent']==1000 and m['quantum_training_episodes_per_agent']==10000
  assert m['concepts']==480

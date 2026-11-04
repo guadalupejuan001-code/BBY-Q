@@ -101,7 +101,7 @@ public final class PersonalEngine {
  public synchronized String chat(String message)throws Exception {
   byte[] input=message.getBytes(StandardCharsets.UTF_8);
   if(input.length==0||input.length>16384)throw new IOException("Escribe entre 1 y 16.384 bytes de texto");
-  byte[] state=read(conversation,"chat-model.rvp.gz");
+  byte[] state=read(conversation,"chat-model.rvpbin");
   state=role(state,"guard.xi").state;
   StringBuilder frame=new StringBuilder("#!reverse-pc-machine-v1\n");
   frame.append("store8 ").append(F+2).append(" 1\nstore8 ").append(F+3).append(" 0\nstore8 ").append(F+4).append(" 1\n");
@@ -143,22 +143,22 @@ public final class PersonalEngine {
   return out;
  }
  public synchronized JSONObject quantumStatus()throws Exception{
-  byte[] state=read(quantum,"quantum-model.rvp.gz");
+  byte[] state=read(quantum,"quantum-model.rvpbin");
   StringBuilder body=new StringBuilder("load8 r0 "+(A+1000)+"\ncmp r0 173\nje valid_model\ndiv r0 0\nlabel valid_model\n");
   for(int r=0;r<2;r++)body.append("load64 r0 ").append(A+(r==0?4000:5000)).append("\nitof f0 r0\nfemit ").append(r==0?"vqc_episodes":"qrl_episodes").append(" f0\n");
   JSONObject data=metrics(quantum(state,body.toString()).output);
   data.put("qubits_per_agent",1000);data.put("backend","XI/Ether nativo · sin MPS");return data;
  }
  public synchronized JSONObject quantumAction()throws Exception{
-  byte[] state=read(quantum,"quantum-model.rvp.gz");
+  byte[] state=read(quantum,"quantum-model.rvpbin");
   String body="store64 "+(A+344)+" 3\nstore64 "+(A+352)+" 6\nstore64 "+(A+360)+" 0\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 2\ncall qrl_observe\n";
   body+=new String(asset("v3-qrl3-act.xi"),StandardCharsets.UTF_8).replaceFirst("^#!reverse-pc-machine-v1\\n","");
   return metrics(quantum(state,body.replace("\nhalt\n","\n")).output);
  }
  public synchronized JSONObject trainEpisode()throws Exception {
-  byte[] state=read(quantum,"quantum-model.rvp.gz");
+  byte[] state=read(quantum,"quantum-model.rvpbin");
   ResultPacket result=quantum(state,"fstore "+(A+304)+" .15\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 0\nstore64 "+(A+328)+" 0\nstore64 "+(A+336)+" 0\ncall qrl_episode");
   commit(quantum,result.state);return quantumStatus();
  }
- public synchronized String stateHash()throws Exception{return hash(read(conversation,"chat-model.rvp.gz"));}
+ public synchronized String stateHash()throws Exception{return hash(read(conversation,"chat-model.rvpbin"));}
 }

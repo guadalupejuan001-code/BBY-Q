@@ -3,6 +3,7 @@ android {
  namespace 'com.bbyq.personal'
  compileSdk 35
  ndkVersion '27.2.12479018'
+ androidResources { noCompress += ['rvpbin'] }
  defaultConfig {
   applicationId 'com.bbyq.personalx'
   minSdk 29

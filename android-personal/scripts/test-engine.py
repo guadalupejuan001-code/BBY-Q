@@ -5,7 +5,7 @@ import sys,json,subprocess,gzip,struct,hashlib
 root=Path(__file__).resolve().parents[2];assets=root/'android-personal/app/src/main/assets/engine'
 rt=root/'deps/reverse-pc/build/reverse_pc'
 work=root/'build/personal-host';work.mkdir(parents=True,exist_ok=True)
-state=work/'chat.rvp';state.write_bytes(gzip.decompress((assets/'chat-model.rvp.gz').read_bytes()))
+state=work/'chat.rvp';state.write_bytes(gzip.decompress((assets/'chat-model.rvpbin').read_bytes()))
 original=hashlib.sha256(state.read_bytes()).hexdigest()
 def run(program):return subprocess.run([rt,'run',program,state,state],capture_output=True,text=True,check=True).stdout
 F=9100000000000200000;C=F+256

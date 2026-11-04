@@ -10,19 +10,19 @@ release=json.loads((root/'integration/x08/release/manifest.json').read_text())
 archive=root/'integration/x08/release/native.tar.gz'
 assert sha(archive.read_bytes())==release['archives']['native']['sha256']
 files={}
-selected={'model.rvp.gz':'chat-model.rvp.gz','front.rxe':'front.rxe','code.rxe':'code.rxe','guard.xi':'guard.xi','text-finish.xi':'text-finish.xi'}
+selected={'model.rvp.gz':'chat-model.rvpbin','front.rxe':'front.rxe','code.rxe':'code.rxe','guard.xi':'guard.xi','text-finish.xi':'text-finish.xi'}
 with tarfile.open(archive,'r:gz') as t:
  for source,name in selected.items():
   data=t.extractfile('native/'+source).read()
   assert sha(data)==release['archives']['native']['files'][source],source
   (dest/name).write_bytes(data);files[name]=sha(data)
-assert sha(gzip.decompress((dest/'chat-model.rvp.gz').read_bytes()))==release['model_sha256']
+assert sha(gzip.decompress((dest/'chat-model.rvpbin').read_bytes()))==release['model_sha256']
 q=root/'integration/quantum3/release'
 qm=json.loads((q/'manifest.json').read_text())
 data=(q/qm['file']).read_bytes()
 assert sha(data)==qm['gzip_sha256']
 assert sha(gzip.decompress(data))==qm['checkpoint_sha256']
-(dest/'quantum-model.rvp.gz').write_bytes(data);files['quantum-model.rvp.gz']=sha(data)
+(dest/'quantum-model.rvpbin').write_bytes(data);files['quantum-model.rvpbin']=sha(data)
 for name in ['common','benchmarks','qrl3','qrl3-act']:
  data=(root/'ai/xi/quantum3'/f'{name}.xi').read_bytes()
  (dest/f'v3-{name}.xi').write_bytes(data);files[f'v3-{name}.xi']=sha(data)
