@@ -1,0 +1,48 @@
+name: BBY Q exact 100 qubits
+on:
+  pull_request:
+    paths: ['ai/xi/exact100/**', 'integration/exact100/**', 'integration/qml_qrl/cli.mjs', '.github/workflows/exact100.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact100:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build original native XI core
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Full 100-qubit algebraic verification and persistence
+        run: python3 integration/exact100/validate.py --runtime=deps/reverse-pc/build/reverse_pc --output=build/exact100/validation.json
+      - name: Canonical BBY Q command and checkpoint
+        env:
+          BBYQ_QUANTUM_RUNTIME: ${{ github.workspace }}/deps/reverse-pc
+        run: |
+          node bbyq.mjs quantum exact100 prepare build/exact100/session --runtime=deps/reverse-pc/build/reverse_pc
+          node bbyq.mjs quantum exact100 audit build/exact100/session
+          node bbyq.mjs quantum exact100 export build/exact100/session build/exact100/BBYQ-100-Qubits-Exactos.rvp
+          node --test integration/quantum3/tests/launcher.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-100-Qubits-Exactos
+          path: build/exact100/
+          retention-days: 30
