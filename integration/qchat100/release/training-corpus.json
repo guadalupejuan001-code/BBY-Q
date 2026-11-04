@@ -1,0 +1,1026 @@
+{
+  "schema": 1,
+  "source": "explicit curated Spanish starter conversations and current project facts",
+  "train": [
+    {
+      "input": "que es memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "explica memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "define memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "que significa memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es memoria",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica memoria",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "que es dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "explica dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "define dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "que significa dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es dato",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica dato",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "que es algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "explica algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "define algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "que significa algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es algoritmo",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica algoritmo",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "que es circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "explica circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "define circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "que significa circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es circuito",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica circuito",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "que es cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "explica cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "define cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "que significa cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es cúbit",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica cúbit",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "que es entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "explica entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "define entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "que significa entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "que es medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "explica medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "define medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "que significa medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es medición",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica medición",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "que es interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "explica interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "define interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "que significa interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es interferencia",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica interferencia",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "que es xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "explica xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "define xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "que significa xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es xi",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica xi",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "que es ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "explica ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "define ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "hablame de ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "que significa ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "dime que es ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "explicalo otra vez",
+      "previous": "que es ether",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "dime mas",
+      "previous": "explica ether",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "hola",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "buenas",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "hola bby q",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "hola que tal",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "quien eres",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "como te llamas",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "dime tu nombre",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "cual es tu nombre",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "cuantos cubits tienes",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "cuantos qubits tienes",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "dime tu numero de cubits",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "que cantidad de cubits usas",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "como aprendes",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "como puedes aprender",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "como es tu aprendizaje",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "de que manera aprendes",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "gracias",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "muchas gracias",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "te agradezco",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "gracias bby",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "adios",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "hasta luego",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "nos vemos",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "hasta pronto",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "como te corrijo",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "puedo corregirte",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "como te enseño",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "puedo enseñarte",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "eres perfecto",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "todo es exacto",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "tus cubits son exactos",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "como son tus estados",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "sabes todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    },
+    {
+      "input": "conoces todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    },
+    {
+      "input": "ya sabes de todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    },
+    {
+      "input": "puedes saberlo todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    }
+  ],
+  "heldout": [
+    {
+      "input": "podrias explicarme memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender memoria",
+      "response": "la memoria conserva información .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es memoria",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "podrias explicarme dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender dato",
+      "response": "un dato representa información .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es dato",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "podrias explicarme algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender algoritmo",
+      "response": "un algoritmo es una serie de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es algoritmo",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "podrias explicarme circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender circuito",
+      "response": "un circuito aplica puertas a los cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es circuito",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "podrias explicarme cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender cúbit",
+      "response": "un cúbit es una unidad de información cuántica .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es cúbit",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "podrias explicarme entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "podrias explicarme medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender medición",
+      "response": "medir produce un resultado según el estado .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es medición",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "podrias explicarme interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender interferencia",
+      "response": "la interferencia combina amplitudes .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es interferencia",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "podrias explicarme xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender xi",
+      "response": "xi es nuestro lenguaje de instrucciones .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es xi",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "podrias explicarme ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "quiero entender ether",
+      "response": "ether ejecuta nuestro núcleo cuántico .",
+      "previous": ""
+    },
+    {
+      "input": "podrias repetirlo",
+      "previous": "que es ether",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "saludos bby",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "buenas bby q",
+      "response": "hola x .",
+      "previous": ""
+    },
+    {
+      "input": "podrias decirme quien eres",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "quiero saber tu nombre",
+      "response": "soy bby q .",
+      "previous": ""
+    },
+    {
+      "input": "podrias decir cuantos cubits tienes",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "quiero saber cuantos qubits tienes",
+      "response": "tengo cien cúbits .",
+      "previous": ""
+    },
+    {
+      "input": "podrias explicar como aprendes",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "quiero saber como puedes aprender",
+      "response": "aprendo con ejemplos y correcciones .",
+      "previous": ""
+    },
+    {
+      "input": "muchas gracias bby q",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "gracias por responder",
+      "response": "de nada x .",
+      "previous": ""
+    },
+    {
+      "input": "bueno hasta luego",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "adios bby q",
+      "response": "hasta luego x .",
+      "previous": ""
+    },
+    {
+      "input": "quiero corregirte",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "quiero enseñarte algo",
+      "response": "puedes corregirme para que aprenda .",
+      "previous": ""
+    },
+    {
+      "input": "podrias explicar tu exactitud",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "quiero saber si tus estados son exactos",
+      "response": "mis estados clifford usan álgebra exacta .",
+      "previous": ""
+    },
+    {
+      "input": "dime si sabes todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    },
+    {
+      "input": "entonces conoces todo",
+      "response": "necesito más ejemplos para aprender .",
+      "previous": ""
+    }
+  ],
+  "test_scope": "held-out phrasings of learned topics, not unseen factual knowledge",
+  "fresh_questions": [
+    {
+      "input": "ayudame a entender el concepto de memoria",
+      "previous": "",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "puedes decirme que significa memoria",
+      "previous": "",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define memoria",
+      "response": "la memoria conserva información ."
+    },
+    {
+      "input": "ayudame a entender el concepto de dato",
+      "previous": "",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "puedes decirme que significa dato",
+      "previous": "",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define dato",
+      "response": "un dato representa información ."
+    },
+    {
+      "input": "ayudame a entender el concepto de algoritmo",
+      "previous": "",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "puedes decirme que significa algoritmo",
+      "previous": "",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define algoritmo",
+      "response": "un algoritmo es una serie de instrucciones ."
+    },
+    {
+      "input": "ayudame a entender el concepto de circuito",
+      "previous": "",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "puedes decirme que significa circuito",
+      "previous": "",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define circuito",
+      "response": "un circuito aplica puertas a los cúbits ."
+    },
+    {
+      "input": "ayudame a entender el concepto de cúbit",
+      "previous": "",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "puedes decirme que significa cúbit",
+      "previous": "",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define cúbit",
+      "response": "un cúbit es una unidad de información cuántica ."
+    },
+    {
+      "input": "ayudame a entender el concepto de entrelazamiento",
+      "previous": "",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "puedes decirme que significa entrelazamiento",
+      "previous": "",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define entrelazamiento",
+      "response": "el entrelazamiento crea correlaciones cuánticas ."
+    },
+    {
+      "input": "ayudame a entender el concepto de medición",
+      "previous": "",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "puedes decirme que significa medición",
+      "previous": "",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define medición",
+      "response": "medir produce un resultado según el estado ."
+    },
+    {
+      "input": "ayudame a entender el concepto de interferencia",
+      "previous": "",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "puedes decirme que significa interferencia",
+      "previous": "",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define interferencia",
+      "response": "la interferencia combina amplitudes ."
+    },
+    {
+      "input": "ayudame a entender el concepto de xi",
+      "previous": "",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "puedes decirme que significa xi",
+      "previous": "",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define xi",
+      "response": "xi es nuestro lenguaje de instrucciones ."
+    },
+    {
+      "input": "ayudame a entender el concepto de ether",
+      "previous": "",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "puedes decirme que significa ether",
+      "previous": "",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "explicame eso por favor",
+      "previous": "define ether",
+      "response": "ether ejecuta nuestro núcleo cuántico ."
+    },
+    {
+      "input": "hola como estas",
+      "previous": "",
+      "response": "hola x ."
+    },
+    {
+      "input": "puedes decirme tu nombre",
+      "previous": "",
+      "response": "soy bby q ."
+    },
+    {
+      "input": "dime cuantos qubits usas",
+      "previous": "",
+      "response": "tengo cien cúbits ."
+    },
+    {
+      "input": "explica como puedes aprender",
+      "previous": "",
+      "response": "aprendo con ejemplos y correcciones ."
+    },
+    {
+      "input": "muchas gracias por tu ayuda",
+      "previous": "",
+      "response": "de nada x ."
+    },
+    {
+      "input": "hasta luego nos vemos",
+      "previous": "",
+      "response": "hasta luego x ."
+    },
+    {
+      "input": "como puedo corregirte",
+      "previous": "",
+      "response": "puedes corregirme para que aprenda ."
+    },
+    {
+      "input": "explica si tus estados son exactos",
+      "previous": "",
+      "response": "mis estados clifford usan álgebra exacta ."
+    },
+    {
+      "input": "sabes ya todo",
+      "previous": "",
+      "response": "necesito más ejemplos para aprender ."
+    }
+  ]
+}

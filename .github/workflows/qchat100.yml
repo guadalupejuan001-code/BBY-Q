@@ -1,0 +1,52 @@
+name: BBY Q trained 100-qubit conversation
+on:
+  pull_request:
+    paths: ['ai/xi/qchat100/**', 'integration/qchat100/**', 'integration/qml_qrl/cli.mjs', '.github/workflows/qchat100.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-language:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build original XI core
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Real language checkpoint, exact features and native SGD
+        run: python3 integration/qchat100/validate.py --runtime=deps/reverse-pc --output=build/qchat100-validation.json
+      - name: Canonical command and previous agents
+        env:
+          BBYQ_QUANTUM_RUNTIME: ${{ github.workspace }}/deps/reverse-pc
+        run: |
+          node bbyq.mjs quantum qchat100 prepare build/qchat100-session --runtime=deps/reverse-pc
+          node bbyq.mjs quantum qchat100 turn build/qchat100-session test-hello hola
+          node bbyq.mjs quantum qchat100 ask build/qchat100-session 'quien eres'
+          node --test integration/quantum3/tests/launcher.test.mjs
+          python3 integration/exact100/validate.py --runtime=deps/reverse-pc/build/reverse_pc --output=build/exact100-regression.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: QChat100-native-validation
+          path: |
+            build/qchat100-validation.json
+            build/exact100-regression.json
+            integration/qchat100/release/training-report.json
+          retention-days: 30
