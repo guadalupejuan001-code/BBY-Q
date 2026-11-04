@@ -1,5 +1,11 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
+**Acceso integrado a los agentes ya entrenados:** `node bbyq.mjs quantum v3`
+restaura VQC3/QRL3 con 10.000 episodios por agente, permite inferir y continuar
+el aprendizaje en el núcleo XI/Ether sin MPS y conserva cada checkpoint.
+[Preparación, comandos y alcance](docs/integration/QUANTUM_V3.md).
+Esta integración no crea todavía el nuevo agente conversacional cuántico.
+
 **Agentes cuánticos conectados:** VQC3 y QRL3 disponen de un registro de 1.000
 cúbits por agente, con 999 conexiones entre vecinos y entrenamiento de todos
 los ángulos en XI. Esta revisión sustituye la división fija en grupos de cuatro

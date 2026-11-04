@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "file": "BBYQ-VQC3-QRL3-1000x2-ENTRENADOS.rvp.gz",
+  "checkpoint_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "gzip_sha256": "c2f3493a062833ece30daeeb8a579090bbe0f06fc82193efd6d11327841b9354",
+  "gzip_bytes": 158200,
+  "checkpoint_bytes": 2132076,
+  "model_identifier": 173,
+  "qubits_per_agent": 1000,
+  "training_episodes_per_agent": 10000,
+  "legacy_training_episodes_per_agent": 800,
+  "backend": "original native reduced/factorized; no MPS",
+  "training": "previous completed campaigns; no new training claimed",
+  "upstream_runtime": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "upstream_ether": "e2778d962af22f6f1a0794058dd4685fc2573966"
+}

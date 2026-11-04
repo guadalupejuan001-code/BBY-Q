@@ -1,0 +1,56 @@
+{
+  "scope": "Consolidate existing trained native VQC3/QRL3; no conversational algorithm added",
+  "base_commit": "d21f6b3fa867febf9559dbab0fc0b0ae453d879a",
+  "model_identifier": 173,
+  "qubits_per_agent": 1000,
+  "topology": "250 independent entangled groups of 4 per agent; no MPS",
+  "checkpoint_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "restored_training_episodes": {
+    "vqc": 10000,
+    "qrl": 10000
+  },
+  "preserved_earlier_training": {
+    "vqc": 800,
+    "qrl": 800
+  },
+  "native_runtime_commit": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "ether_commit": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "session_binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+  "local_checks": [
+    {
+      "command": "BBYQ_QUANTUM_RUNTIME=REVERSE_PC BBYQ_TEST_CANONICAL_CLI=1 node --test integration/quantum3/tests/launcher.test.mjs",
+      "tests": 11,
+      "passed": 11
+    },
+    {
+      "command": "node --test integration/qml_qrl/tests/agents1000-contract.test.mjs integration/qml_qrl/tests/q1000-contract.test.mjs",
+      "tests": 6,
+      "passed": 6
+    },
+    {
+      "command": "git diff --check",
+      "passed": true
+    },
+    {
+      "command": "node --check integration/quantum3/launcher.mjs",
+      "passed": true
+    }
+  ],
+  "verified_behaviors": [
+    "canonical BBY Q entry point",
+    "1000 qubits actually observed per decision",
+    "continued existing supervised learning",
+    "continued existing sequential reinforcement learning",
+    "exactly-once request retries",
+    "rejected conflicting retries",
+    "writer exclusion",
+    "failed update rollback",
+    "immutable historical checkpoints",
+    "source and runtime pinning",
+    "export hash",
+    "rejected checkpoint tampering"
+  ],
+  "new_training_campaign": false,
+  "conversational_quantum_agent_added": false,
+  "apk_changed": false
+}
