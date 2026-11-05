@@ -1,0 +1,64 @@
+{
+  "version": "BBYQ-E01-Equilibrio-1",
+  "base_commit": "41c6d785b710f91b1c28972a6264a6dbb4415696",
+  "seed": 610511,
+  "training": {
+    "vqc_cycles": [
+      250,
+      750,
+      1500
+    ],
+    "vqc_readout_lr": 0.03,
+    "qrl_cycles": [
+      252,
+      756,
+      1512
+    ],
+    "qrl_readout_lr": 0.05,
+    "qchat_epochs": [
+      10,
+      25,
+      50
+    ],
+    "qchat_learning_rate": 0.08,
+    "qmemory_cycles": [
+      5,
+      10,
+      20
+    ]
+  },
+  "validation": {
+    "numeric_examples_per_split": 128,
+    "memory_repeats": 2,
+    "seed_namespace": "validation",
+    "qrl_episode_examples_per_split": 32
+  },
+  "test": {
+    "numeric_examples_per_split": 256,
+    "memory_repeats": 4,
+    "seed_namespace": "test",
+    "opened_only_after_model_selection": true,
+    "qrl_episode_examples_per_split": 64
+  },
+  "thresholds": {
+    "vqc_min_accuracy_each_split": 0.9,
+    "vqc_max_brier": 0.08,
+    "vqc_max_paired_accuracy_regression": 0.02,
+    "qrl_min_distinct_pair_correct": 40,
+    "qrl_distinct_pair_total": 42,
+    "qrl_min_original_success": 0.9,
+    "qchat_min_known_accuracy": 0.85,
+    "qchat_min_unknown_refusal": 0.85,
+    "qchat_min_original_training_retention": 0.9,
+    "qmemory_min_accuracy": 0.99,
+    "qmemory_max_mse": 0.01
+  },
+  "selection": "Validation only; retain original if no eligible candidate; test is final reporting, never an optimizer input",
+  "scope": "Numeric synthetic classification, line-navigation, bounded learned Spanish topics and binary quantum memory; no general intelligence score",
+  "mps": false,
+  "original_sha256": {
+    "v3": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+    "qchat": "6e3a793e99e52beb1e6b0d7f93b03f7ecba42cfd87b95c37de80282389765d17",
+    "qmemory": "8e0ccae84597284b95a366683e0522e563e766d07cd40873ebc3215342ead33b"
+  }
+}
