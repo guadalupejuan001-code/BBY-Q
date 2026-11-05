@@ -38,7 +38,7 @@ test_assets=root/'android-personal/app/src/androidTest/assets';test_assets.mkdir
 (test_assets/'migration-model.rvpbin').write_bytes(gzip.compress(state.read_bytes(),mtime=0))
 sys.path.insert(0,str(root/'integration/qchat100'))
 from engine import bits
-inputs=json.loads((root/'integration/qchat100/release/input-vocabulary.json').read_text())
-history=json.loads((root/'integration/qchat100/release/history-vocabulary.json').read_text())
+inputs=json.loads((assets/'qchat-input-vocabulary.json').read_text())
+history=json.loads((assets/'qchat-history-vocabulary.json').read_text())
 cases=[('hola',[],''),('qué es memoria',['la'],'hola'),('explícalo otra vez',[],'qué es memoria'),('¡Árbol, XI! 🎸',['bby','q'],'Ether y memoria')]
 (test_assets/'qchat-codec.json').write_text(json.dumps([{'prompt':p,'prefix':v,'previous':h,'bits':bits(p,v,h,inputs,history)} for p,v,h in cases],ensure_ascii=False)+'\n')

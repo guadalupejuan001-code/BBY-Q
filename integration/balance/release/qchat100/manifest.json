@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "qubits": 100,
+  "file": "QChat100-Entrenado.rvp.gz",
+  "checkpoint_sha256": "f543664c012dfd5ac2862aefe202b043171d5bc01ca5b41bdd1ba978ce93d5b0",
+  "gzip_sha256": "c7ac54aa367f85676b2bb50b933e96a2e94877072613d833bec9940418c1ee60",
+  "checkpoint_bytes": 3807830,
+  "vocabulary_sha256": "3ab069562a66a4eaed7e09e949bd0f510861c4d1855805cc95b50e5a8b2b91a0",
+  "input_vocabulary_sha256": "6b7629fab000cdedc6b45764b8f9575056a840c8a2941a27b02225ee4fbaaca3",
+  "history_vocabulary_sha256": "6b7629fab000cdedc6b45764b8f9575056a840c8a2941a27b02225ee4fbaaca3",
+  "training_report_sha256": "7b86f4d5e80b54d9030749e475a5463b9ba7e97c9cfc01a7928ef1ef646e1cd9",
+  "training_updates": 74660,
+  "output_vocabulary": 75,
+  "quantum_advantage_claimed": false,
+  "state_exactness": "Clifford algebra only",
+  "learning_arithmetic": "binary64 SGD; native XI",
+  "runtime_source": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "ether_source": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "gzip_bytes": 602571,
+  "balanced_release": "E01",
+  "original_checkpoint_sha256": "6e3a793e99e52beb1e6b0d7f93b03f7ecba42cfd87b95c37de80282389765d17"
+}

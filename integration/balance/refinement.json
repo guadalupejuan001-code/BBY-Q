@@ -1,0 +1,25 @@
+{
+  "reason": "First-arm validation at epoch 10 retained unknown refusal but reduced known/context accuracy. Refine the codec using training-only token frequencies.",
+  "input_frequency_limit": 20,
+  "epochs": [
+    5,
+    10,
+    20
+  ],
+  "thresholds": {
+    "vqc_min_accuracy_each_split": 0.9,
+    "vqc_max_brier": 0.08,
+    "vqc_max_paired_accuracy_regression": 0.02,
+    "qrl_min_distinct_pair_correct": 40,
+    "qrl_distinct_pair_total": 42,
+    "qrl_min_original_success": 0.9,
+    "qchat_min_known_accuracy": 0.85,
+    "qchat_min_unknown_refusal": 0.85,
+    "qchat_min_original_training_retention": 0.9,
+    "qmemory_min_accuracy": 0.99,
+    "qmemory_max_mse": 0.01
+  },
+  "test_still_closed": true,
+  "choice_of_frequency_limit": "Training-only collision audit: limit 15 collapsed labels; limit 20 retained all distinct training labels. No test or validation responses chose token membership.",
+  "optimization": "Native XI readout SGD; no host answer selection or lookup at inference"
+}

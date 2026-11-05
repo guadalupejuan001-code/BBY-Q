@@ -63,7 +63,7 @@ public class UnifiedEngineTest {
     }
     @Test public void oneChatRoutesToBothQuantumAgentsAndGenerator()throws Exception {
         try(PersonalEngine e=new PersonalEngine(context)){
-            assertTrue(e.chat("quantum v3 estado").contains("10000"));
+            assertTrue(e.chat("quantum v3 estado").contains(String.valueOf(e.quantumStatus().getLong("qrl_episodes"))));
             JSONObject plan=e.testTurn("plan","quantum v3 planea 3 6",false);
             assertEquals("QRL3-XI",plan.getString("engine"));assertEquals(0,plan.getJSONObject("metrics").getInt("terminal"));
             JSONObject done=e.testTurn("done","quantum v3 planea 6 6",false);
@@ -101,7 +101,7 @@ public class UnifiedEngineTest {
         File old=new File(context.getFilesDir(),"bbyq-personal");assertTrue(old.mkdirs());
         Context tests=InstrumentationRegistry.getInstrumentation().getContext();
         byte[] chat=bytes(new GZIPInputStream(tests.getAssets().open("migration-model.rvpbin")));
-        byte[] quantum=bytes(new GZIPInputStream(context.getAssets().open("engine/quantum-model.rvpbin")));
+        byte[] quantum=bytes(new GZIPInputStream(tests.getAssets().open("old-quantum.rvpbin")));
         try(FileOutputStream out=new FileOutputStream(new File(old,"conversation.rvp"))){out.write(chat);}
         try(FileOutputStream out=new FileOutputStream(new File(old,"quantum-v3.rvp"))){out.write(quantum);}
         try(SQLiteDatabase history=SQLiteDatabase.openOrCreateDatabase(new File(old,"history.sqlite"),null)){
@@ -153,6 +153,68 @@ public class UnifiedEngineTest {
                 int[] actual=QuantumText.bits(c.getString("prompt"),prefix,c.getString("previous"),input,history);
                 for(int j=0;j<100;j++)assertEquals("case "+i+" bit "+j,expected.getInt(j),actual[j]);
             }
+        }
+    }
+    private JSONObject restoreOldModels(PersonalEngine e,boolean personalize)throws Exception {
+        JSONObject before=e.sessionStatus().getJSONObject("banks");
+        Context tests=InstrumentationRegistry.getInstrumentation().getContext();
+        JSONObject identities=new JSONObject(new String(bytes(tests.getAssets().open("old-identities.json")),java.nio.charset.StandardCharsets.UTF_8));
+        for(String bank:new String[]{"quantum","qchat","qmemory"}){
+            byte[] state=bytes(new GZIPInputStream(tests.getAssets().open("old-"+bank+".rvpbin")));
+            try(XiSession s=new XiSession(state)){
+                if(personalize&&bank.equals("quantum"))s.run("#!reverse-pc-machine-v1\nstore64 8140000000000005000 10001\nfstore 8140000000000200000 .1234\nhalt\n");
+                if(bank.equals("qmemory"))s.run("#!reverse-pc-machine-v1\nqprepare 20000 4\nx 20000\nhalt\n");
+                state=s.save();
+            }
+            ByteArrayOutputStream packed=new ByteArrayOutputStream();try(java.util.zip.GZIPOutputStream gzip=new java.util.zip.GZIPOutputStream(packed)){gzip.write(state);}
+            e.db.execSQL("UPDATE states SET data=?,digest=?,identity=? WHERE name=?",new Object[]{packed.toByteArray(),PersonalEngine.hash(state),identities.getString(bank),bank});
+            before.put(bank,PersonalEngine.hash(state));
+        }
+        e.db.execSQL("INSERT INTO memory_slots VALUES('anterior',0)");
+        return before;
+    }
+    @Test public void balancedUpgradePreservesLessonsBinaryStateAndPersonalTraining()throws Exception {
+        JSONObject fresh;
+        try(PersonalEngine e=new PersonalEngine(context)){
+            fresh=e.quantumStatus();e.chat(lesson("aprende: ","una luz"));restoreOldModels(e,true);
+        }
+        try(PersonalEngine e=new PersonalEngine(context)){
+            assertEquals(fresh.getLong("vqc_episodes"),e.quantumStatus().getLong("vqc_episodes"));
+            assertEquals(10001,e.quantumStatus().getLong("qrl_episodes"));
+            assertEquals(3,e.sessionStatus().getInt("archived_models"));
+            assertTrue(e.chat("que es faro").contains("una luz"));
+            assertTrue(e.chat("memoria consulta anterior").contains("anterior = 1"));
+            assertEquals("Hola X.",e.chat("qchat hola"));
+        }
+        try(PersonalEngine e=new PersonalEngine(context)){assertEquals(3,e.sessionStatus().getInt("archived_models"));}
+    }
+    @Test public void failedModelUpgradeRollsBackEveryBank()throws Exception {
+        JSONObject old;
+        try(PersonalEngine e=new PersonalEngine(context)){
+            old=restoreOldModels(e,false);
+            e.db.execSQL("UPDATE states SET data=? WHERE name='qchat'",new Object[]{new byte[]{1,2,3}});
+        }
+        try{new PersonalEngine(context);fail("Corrupted old model must prevent the upgrade");}catch(IOException expected){}
+        File file=new File(context.getFilesDir(),"bbyq-unified/session.sqlite");
+        try(SQLiteDatabase db=SQLiteDatabase.openDatabase(file.getPath(),null,SQLiteDatabase.OPEN_READONLY)){
+            try(android.database.Cursor c=db.rawQuery("SELECT count(*) FROM model_archives",null)){assertTrue(c.moveToFirst());assertEquals(0,c.getInt(0));}
+            try(android.database.Cursor c=db.rawQuery("SELECT name,digest FROM states",null)){while(c.moveToNext())assertEquals(old.getString(c.getString(0)),c.getString(1));}
+        }
+    }
+    @Test public void generatorContextSurvivesCommandsRestartAndRollback()throws Exception {
+        try(PersonalEngine e=new PersonalEngine(context)){
+            assertEquals("La memoria conserva información.",e.chat("qchat que es memoria"));
+            e.chat("memoria guarda faro 1");e.chat("quantum v3 planea 3 6");
+            try{e.testTurn("failed-generator","qchat que es circuito",true);fail("Rollback");}catch(IOException expected){assertEquals("Injected failure before commit",expected.getMessage());}
+        }
+        try(PersonalEngine e=new PersonalEngine(context)){
+            JSONObject follow=e.testTurn("follow-up","qchat dime más",false);
+            assertEquals("La memoria conserva información.",follow.getString("response"));
+            assertTrue(follow.getJSONObject("model_output").getBoolean("context_used"));
+            assertEquals("La memoria conserva información.",e.chat("qchat repítelo"));
+            assertEquals("Hola X.",e.chat("qchat hola"));
+            e.chat("qchat que es memoria");e.chat("@context clear");
+            assertFalse(e.testTurn("cleared","qchat dime más",false).getJSONObject("model_output").getBoolean("context_used"));
         }
     }
 }
