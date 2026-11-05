@@ -125,7 +125,10 @@ public class UnifiedEngineTest {
     @Test public void nativeSessionRejectsClosedHandlesAndPreservesFailedCandidate()throws Exception {
         XiSession xi=new XiSession(null);xi.run("#!reverse-pc-machine-v1\nstore8 123 7\nhalt\n");
         try{xi.run("#!reverse-pc-machine-v1\nstore8 123 9\ndiv r0 0\nhalt\n");fail("Native failure");}catch(IllegalStateException expected){}
-        assertEquals(7,xi.number(123,1));xi.close();xi.close();try{xi.number(123,1);fail("Closed session");}catch(IllegalStateException expected){}
+        assertEquals(7,xi.number(123,1));
+        xi.run("#!reverse-pc-machine-v1\nstore8 99999999999999999999999999999999999999999999999999999 1\nhalt\n");
+        assertEquals(7,PersonalEngine.memory(xi.save(),123,1)[0]);
+        xi.close();xi.close();try{xi.number(123,1);fail("Closed session");}catch(IllegalStateException expected){}
     }
     @Test public void nativeReasoningCompositionAndParaphraseShareTheSession()throws Exception {
         try(PersonalEngine e=new PersonalEngine(context)){

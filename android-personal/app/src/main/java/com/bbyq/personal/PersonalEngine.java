@@ -101,21 +101,30 @@ public final class PersonalEngine implements AutoCloseable {
         }
         putMeta("schema","X10-Android-2");putMeta("migrated",old.exists());
     }
-    // Scan the serialized sparse overrides once; do not expand the logical address space.
-    static byte[] memory(byte[] state,long base,int length)throws IOException {
+    private interface CellVisitor {void visit(long address,int value)throws IOException;}
+    // Iterate only stored exceptions. No reserved slot range is materialized.
+    private static void cells(byte[] state,CellVisitor visitor)throws IOException {
         if(state.length<29)throw new IOException("Estado incompleto");ByteBuffer header=ByteBuffer.wrap(state).order(ByteOrder.LITTLE_ENDIAN);
         long core=header.getLong(5),mem=header.getLong(13);if(core<0||mem<0||core+mem!=state.length-29)throw new IOException("Longitudes RVPC2 inválidas");
-        byte[] out=new byte[length];int p=29+(int)core;
+        int p=29+(int)core;
         while(p<state.length){int end=p;while(end<state.length&&state[end]!=10)end++;
-            if(end>p+4&&state[p]=='O'&&state[p+1]==' '){long address=0;int j=p+2;
-                while(j<end&&state[j]>='0'&&state[j]<='9'){int v=state[j++]-'0';if(address>(Long.MAX_VALUE-v)/10)throw new IOException("Dirección inválida");address=address*10+v;}
-                if(address>=base&&address-base<length&&j<end&&state[j++]==' '){int v=0;while(j<end&&state[j]>='0'&&state[j]<='9')v=v*10+state[j++]-'0';if(v>255)throw new IOException("Byte inválido");out[(int)(address-base)]=(byte)v;}
+            if(end>p+4&&state[p]=='O'&&state[p+1]==' '){long address=0;int j=p+2;boolean outside=false;
+                while(j<end&&state[j]>='0'&&state[j]<='9'){int v=state[j++]-'0';if(outside||address>(Long.MAX_VALUE-v)/10)outside=true;else address=address*10+v;}
+                if(j<end&&state[j++]==' '){int v=0;while(j<end&&state[j]>='0'&&state[j]<='9'){v=v*10+state[j++]-'0';if(v>255)throw new IOException("Byte inválido");}if(!outside)visitor.visit(address,v);}
             }p=end+1;
-        }return out;
+        }
+    }
+    static byte[] memory(byte[] state,long base,int length)throws IOException {
+        if(length<0||length>65536)throw new IOException("Límite de página superado");byte[] out=new byte[length];
+        cells(state,(address,value)->{if(address>=base&&address-base<length)out[(int)(address-base)]=(byte)value;});return out;
     }
     private void refreshLessons(byte[] state)throws Exception {
-        byte[] rows=memory(state,ROWS,4096*640),meta=memory(state,LEGACY,12);int total=0;
-        for(int slot=0;slot<4096;slot++){int start=slot*640;if(rows[start]!=1)continue;byte[] record=Arrays.copyOfRange(rows,start,start+640);int n=record[1]&255;if(n<1||n>64)throw new IOException("Clave de lección inválida");
+        byte[] meta=new byte[12];Map<Integer,byte[]> rows=new TreeMap<>();
+        cells(state,(address,value)->{
+            if(address>=LEGACY&&address-LEGACY<meta.length)meta[(int)(address-LEGACY)]=(byte)value;
+            if(address>=ROWS&&address-ROWS<4096*640L){int offset=(int)(address-ROWS),slot=offset/640;byte[] record=rows.get(slot);if(record==null){record=new byte[640];rows.put(slot,record);}record[offset%640]=(byte)value;}
+        });int total=0;
+        for(Map.Entry<Integer,byte[]> entry:rows.entrySet()){int slot=entry.getKey();byte[] record=entry.getValue();if(record[0]!=1)continue;int n=record[1]&255;if(n<1||n>64)throw new IOException("Clave de lección inválida");
             String key=XiPages.text(Arrays.copyOfRange(record,16,16+n));
             db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});total++;
         }
