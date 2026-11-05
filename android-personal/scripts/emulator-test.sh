@@ -4,7 +4,7 @@ APK=android-personal/app/build/outputs/apk/debug/app-debug.apk
 TEST=android-personal/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 OUT=build/personal-artifacts
 mkdir -p "$OUT"
-cp "$APK" "$OUT/BBYQ-X10-Android-2.2-E02-candidate.apk"
+cp "$APK" "$OUT/BBYQ-0-Android-3.0-candidate.apk"
 cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" "$OUT/apksigner.jar"
 python3 - "$APK" <<'PY_ASSETS'
 import hashlib,json,sys,zipfile
@@ -42,7 +42,7 @@ from pathlib import Path
 import re
 text=Path('build/personal-artifacts/android-tests.txt').read_text()
 match=re.search(r'OK \((\d+) tests?\)',text)
-assert match and int(match.group(1))>=21,text
+assert match and int(match.group(1))>=30,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg',text),text
 PY_TESTS
 adb shell am start -n com.bbyq.personalx/com.bbyq.personal.MainActivity
@@ -50,24 +50,24 @@ sleep 5
 adb exec-out screencap -p > "$OUT/BBYQ-X-Android.png"
 adb shell uiautomator dump /sdcard/bbyq-ui.xml >/dev/null
 adb exec-out cat /sdcard/bbyq-ui.xml > "$OUT/android-ui.xml"
-cp "$APK" "$OUT/BBYQ-X10-Android-2.2-E02.apk"
+cp "$APK" "$OUT/BBYQ-0-Android-3.0.apk"
 cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" "$OUT/apksigner.jar"
 "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" > "$OUT/signature.txt"
 "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" > "$OUT/package.txt"
 python3 - <<'PY'
 from pathlib import Path
 import hashlib,json,zipfile,re
-out=Path('build/personal-artifacts');p=out/'BBYQ-X10-Android-2.2-E02.apk'
+out=Path('build/personal-artifacts');p=out/'BBYQ-0-Android-3.0.apk'
 with zipfile.ZipFile(p) as z:
  assert z.testzip() is None
  for n in ['lib/arm64-v8a/libreverse_os.so','lib/x86_64/libreverse_os.so','assets/engine/chat-model.rvpbin','assets/engine/quantum-model.rvpbin']:assert n in z.namelist()
  m=json.loads(z.read('assets/engine/manifest.json'))
- assert m['qubits_per_agent']==1000 and m['entity_version']=='E02'
+ assert m['qubits_per_agent']==1000 and m['zero_version']=='0'
  assert m['training_episodes']['vqc']>=10000 and m['training_episodes']['qrl']>=10000
  assert m['concepts']==480
 xml=(out/'android-ui.xml').read_text()
 assert 'BBY Q' in xml
 assert 'com.bbyq.personalx' in (out/'package.txt').read_text()
-e={'ok':True,'package':'com.bbyq.personalx','version':'2.2.0-E02','android_api_tested':35,'arm64_compiled':True,'x86_64_native_tested':True,'instrumentation_tests':int(re.search(r'OK \((\d+) tests?\)',(out/'android-tests.txt').read_text()).group(1)),'host_conversation_cases':6,'chat_engine':'X10 Android with preserved X08 XI','quantum_model':'E02 cooperative native XI task; E01 preserved; no MPS','qchat100':'E01 retained language model and E02 learned action voice','qmemory':'keyed binary recall in the shared transaction','new_quantum_conversation_algorithm':False,'apk_bytes':p.stat().st_size,'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'permissions_requested':[]}
+e={'ok':True,'package':'com.bbyq.personalx','version':'3.0.0-Q0','android_api_tested':35,'arm64_compiled':True,'x86_64_native_tested':True,'instrumentation_tests':int(re.search(r'OK \((\d+) tests?\)',(out/'android-tests.txt').read_text()).group(1)),'host_conversation_cases':6,'general_workspace':'BBY Q 0 native symbolic workspace','general_intelligence_claimed':False,'chat_engine':'X10 Android with preserved X08 XI','quantum_model':'E02 cooperative native XI task; E01 preserved; no MPS','qchat100':'E01 retained language model and E02 learned action voice','qmemory':'keyed binary recall in the shared transaction','new_quantum_conversation_algorithm':False,'apk_bytes':p.stat().st_size,'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'permissions_requested':[]}
 (out/'validation.json').write_text(json.dumps(e,indent=2)+'\n');print(json.dumps(e))
 PY

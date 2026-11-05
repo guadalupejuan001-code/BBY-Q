@@ -1,4 +1,11 @@
-# BBY Q · X10 Android 2.2 E02
+# BBY Q 0 · Android 3.0
+
+La conversación incorpora conocimiento persistente, reglas con variables,
+pruebas con evidencia, grafos de nodos arbitrarios, cálculo compuesto, contexto
+y herramientas. Las lecciones y los agentes E02 siguen disponibles en el mismo
+ciclo de trabajo. El menú «Ejemplos» muestra las formas de uso. Véase
+`integration/zero/README.md` para alcance, pruebas y sintaxis. Esta edición no
+se presenta como una demostración de inteligencia artificial general.
 
 E02 añade un ciclo de trabajo compartido con evidencia y aprendizaje evaluable.
 La misión une QMemory, VQC3, inferencia de reglas XI, QRL3 y una cabeza de voz

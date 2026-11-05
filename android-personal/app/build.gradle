@@ -8,8 +8,8 @@ android {
   applicationId 'com.bbyq.personalx'
   minSdk 29
   targetSdk 35
-  versionCode 4
-  versionName '2.2.0-E02'
+  versionCode 5
+  versionName '3.0.0-Q0'
   testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   ndk { abiFilters 'arm64-v8a','x86_64' }
   externalNativeBuild { cmake { cppFlags '-std=c++17 -fexceptions -frtti' } }

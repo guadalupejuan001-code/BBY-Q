@@ -57,6 +57,7 @@ public final class PersonalEngine implements AutoCloseable {
                     try(Cursor row=db.rawQuery("SELECT name FROM states WHERE name=?",new String[]{bank})){if(!row.moveToFirst())save(bank,seed(bank+"-model.rvpbin"));}
                     checkIdentity(bank);
                 }
+                if(manifest.has("zero_version"))ZeroEngine.initialize(this);
                 db.setTransactionSuccessful();ready=true;
             } finally {db.endTransaction();}
         } finally {if(!ready)db.close();}
@@ -208,9 +209,12 @@ public final class PersonalEngine implements AutoCloseable {
         }finally{db.endTransaction();}
     }
     private static JSONObject reply(String text,String engine)throws Exception{return new JSONObject().put("response",text).put("engine",engine);}
-    private JSONObject dispatch(XiPages p,byte[] raw,String text)throws Exception {
+    private JSONObject dispatch(XiPages p,byte[] raw,String text)throws Exception{return dispatch(p,raw,text,true);}
+    JSONObject dispatchExisting(XiPages p,String text)throws Exception{return dispatch(p,XiPages.utf8(text),text,false);}
+    private JSONObject dispatch(XiPages p,byte[] raw,String text,boolean general)throws Exception {
         int[] v3=p.quantumRoute(raw);if(v3[3]==1)return quantumTurn(v3,raw);
         int mobile=p.mobileRoute(raw);if(mobile>=1&&mobile<=4)return memoryTurn(p,mobile);
+        if(mobile==8){int offset=(int)p.number(XiPages.B+513,1);JSONObject payload=new JSONObject(XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)));int rating=payload.getInt("resultado");if(payload.getDouble("resultado")!=rating||rating<0||rating>1)throw new IOException("Resultado inválido");return new ZeroEngine(this).feedbackId(payload.getString("tarea"),rating);}
         if(mobile==6||mobile==7){
             if(!manifest.has("entity_version"))throw new IOException("Esta edición no contiene el ciclo compartido");
             int offset=(int)p.number(XiPages.B+513,1);JSONObject payload=new JSONObject(XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)));
@@ -219,6 +223,7 @@ public final class PersonalEngine implements AutoCloseable {
             return entity.solve(UUID.randomUUID().toString(),payload);
         }
         if(mobile==5){int offset=(int)p.number(XiPages.B+513,1);return generated(p,XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)),true);}
+        if(general&&manifest.has("zero_version")){JSONObject result=new ZeroEngine(this).solve(p,text);if(result!=null)return result;}
         JSONArray rows=contextRows();JSONObject recalled=contextTurn(p,raw,rows);if(recalled!=null)return recalled;
         int[] route=p.route(raw);int intent=p.intent(raw);
         if(route[0]==2||route[0]==3)return reply(p.stream(raw,route[0]),"X10-stream-XI");
@@ -367,11 +372,16 @@ public final class PersonalEngine implements AutoCloseable {
     void saveBank(String name,byte[] bytes)throws Exception{save(name,bytes);}
     int memorySlot(String key){try(Cursor c=db.rawQuery("SELECT slot FROM memory_slots WHERE key=?",new String[]{key})){return c.moveToFirst()?c.getInt(0):-1;}}
     public synchronized String lastEntityTask(){try(Cursor c=db.rawQuery("SELECT id FROM entity_tasks WHERE feedback IS NULL ORDER BY created DESC,rowid DESC LIMIT 1",null)){return c.moveToFirst()?c.getString(0):null;}}
+    public synchronized JSONObject latestPendingTask()throws Exception {
+        String query=manifest.has("zero_version")?"SELECT id,kind FROM (SELECT id,'zero' AS kind,created FROM zero_tasks WHERE feedback IS NULL UNION ALL SELECT id,'entity' AS kind,created FROM entity_tasks WHERE feedback IS NULL) ORDER BY created DESC LIMIT 1":"SELECT id,'entity' AS kind FROM entity_tasks WHERE feedback IS NULL ORDER BY created DESC LIMIT 1";
+        try(Cursor c=db.rawQuery(query,null)){return c.moveToFirst()?new JSONObject().put("id",c.getString(0)).put("kind",c.getString(1)):null;}
+    }
     public synchronized JSONObject sessionStatus()throws Exception {
         JSONObject banks=new JSONObject();for(String name:BANKS){checkIdentity(name);try(Cursor c=db.rawQuery("SELECT digest FROM states WHERE name=?",new String[]{name})){c.moveToFirst();banks.put(name,c.getString(0));}}
         String integrity;try(Cursor c=db.rawQuery("PRAGMA integrity_check",null)){c.moveToFirst();integrity=c.getString(0);}
         long learned=0;if(manifest.has("entity_version")){for(String name:new String[]{"entity","entity-voice"}){byte[] bytes=state(name);banks.put(name,hash(bytes));}try(XiSession s=new XiSession(state("entity"))){learned=s.number(EntityCycle.E+128,8);}}
-        return new JSONObject().put("engine","X10-Android-2").put("release",manifest.optString("entity_version",manifest.optString("balanced_version","2.0"))).put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots")).put("archived_models",dbCount("model_archives")).put("entity_tasks",dbCount("entity_tasks")).put("shared_updates",learned);
+        if(manifest.has("zero_version"))banks.put("zero",hash(state("zero")));
+        return new JSONObject().put("engine","X10-Android-2").put("release",manifest.optString("zero_version",manifest.optString("entity_version",manifest.optString("balanced_version","2.0")))).put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots")).put("archived_models",dbCount("model_archives")).put("entity_tasks",dbCount("entity_tasks")).put("shared_updates",learned).put("general_facts",manifest.has("zero_version")?dbCount("zero_facts"):0).put("general_rules",manifest.has("zero_version")?dbCount("zero_rules"):0);
     }
     @Override public synchronized void close(){db.close();synchronized(PersonalEngine.class){if(instance==this)instance=null;}}
 }

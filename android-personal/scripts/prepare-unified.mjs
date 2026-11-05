@@ -8,9 +8,12 @@ import {reasonSource} from '../../ai/personal/p03/reason.mjs';
 import {composeSource} from '../../ai/personal/p04/compose.mjs';
 import {contextSource} from '../../ai/personal/p05/context.mjs';
 import {paraphraseSource} from '../../ai/personal/p06/paraphrase.mjs';
+import {zeroSource,schema as zeroSchema} from '../../ai/personal/zero/model.mjs';
 const root=path.resolve(import.meta.dirname,'../..'),dest=path.join(root,'android-personal/app/src/main/assets/engine');
 const runtime=path.join(root,'deps/reverse-pc/build/reverse_pc');
 fs.mkdirSync(dest,{recursive:true});
+fs.writeFileSync(path.join(dest,'zero.xi'),zeroSource());
+fs.writeFileSync(path.join(dest,'zero-schema.json'),JSON.stringify(zeroSchema,null,2)+'\n');
 const B=9190000000000000000n,I=B+4096n,R=B+512n;
 function qchatContextSource(){
  // Inputs use the same lowercase/accent-folded byte codec as QChat100.
@@ -30,7 +33,7 @@ function qchatContextSource(){
 function mobileRouteSource(){
  const lines=['#!reverse-pc-machine-v1',`store8 ${R} 0`];let id=0;
  const w=(...x)=>lines.push(...x),L=x=>w('label '+x);
- const routes=[['memoria guarda ',1],['memoria corrige ',2],['memoria consulta ',3],['memoria estado',4],['qchat ',5],['mision ',6],['evaluar ',7]];
+ const routes=[['memoria guarda ',1],['memoria corrige ',2],['memoria consulta ',3],['memoria estado',4],['qchat ',5],['mision ',6],['evaluar ',7],['evaluar0 ',8]];
  for(const [prefix,op]of routes){const bytes=Buffer.from(prefix),miss='miss_'+id++;
   for(const[i,b]of bytes.entries()){const fold='fold_'+id++;w(`load8 r0 ${I+BigInt(i)}`,'cmp r0 65','jlt '+fold,'cmp r0 90','jgt '+fold,'add r0 32');L(fold);w('cmp r0 '+b,'jne '+miss);}
   w(`store8 ${R} ${op}`,`store8 ${R+1n} ${bytes.length}`,'jmp '+(op>=6?'entity':op===4?'exact':op===5?'qchat':'key'));L(miss);

@@ -10,6 +10,11 @@ balanced=root/'integration/balance/release'
 active=json.loads((balanced/'active.json').read_text()) if (balanced/'active.json').exists() else None
 entity_dir=root/'integration/entity/release'
 entity=json.loads((entity_dir/'manifest.json').read_text()) if (entity_dir/'manifest.json').exists() else None
+zero_dir=root/'integration/zero/release'
+if (zero_dir/'manifest.json').exists():
+ zero=json.loads((zero_dir/'manifest.json').read_text());assert zero['passed'] and not zero['general_intelligence_claimed']
+ assert sha((zero_dir/'evaluation.json').read_bytes())==zero['evaluation_sha256']
+ for path,digest in zero['sources'].items():assert sha((root/path).read_bytes())==digest
 if entity:
  assert entity['schema']==1 and entity['passed'] is True and active
  assert sha((entity_dir/'evaluation.json').read_bytes())==entity['evaluation_sha256']
@@ -89,6 +94,7 @@ if entity:
 subprocess.run(['node',str(root/'android-personal/scripts/prepare-unified.mjs')],check=True)
 for p in dest.iterdir():
  if p.name not in ['manifest.json','chat-fixtures.json']:files[p.name]=sha(p.read_bytes())
+if 'zero.xi' in files:identities['zero']=sha((files['zero.xi']+files['zero-schema.json']).encode())
 manifest={'version':'BBY Q X10 Android 2.0','chat':'X10-Android-2','chat_seed':'X08-Training-Language-1','chat_model_sha256':release['model_sha256'],'concepts':release['concepts'],'relations':release['relations'],'quantum_model_sha256':qm['checkpoint_sha256'],'quantum_model_identifier':173,'qubits_per_agent':1000,'quantum_training_episodes_per_agent':10000,'quantum_backend':'native reduced/factorized; no MPS','files':files,'identities':identities,'external_services':False,'new_conversational_quantum_model':False,'session_storage':'one SQLite transaction: states, lessons, context, history, receipts','scope':{'x10_native_roles':['intent','lessons','stream','reason','compose','context','paraphrase'],'qchat100':'preserved small word generator, fixed Clifford encoder','qmemory':'250 keyed binary associations; trained write gate, replacement and readout','v3':'preserved numeric classifier and line-navigation policy','desktop_modules_preserved':True}}
 if active:
  manifest.update({'version':'BBY Q X10 Android 2.1 E01','balanced_version':'E01','training_episodes':qm['training_episodes'],'previous_identities':json.loads((root/'integration/balance/android-2.0.json').read_text())['identities']})
@@ -105,5 +111,6 @@ if active:
   old=root/'integration'/folder/'release';old_manifest=json.loads((old/'manifest.json').read_text())
   (tests/('old-'+label+'.rvpbin')).write_bytes((old/old_manifest['file']).read_bytes())
  (tests/'old-identities.json').write_text(json.dumps(manifest['previous_identities']))
+if 'zero.xi' in files:manifest.update({'zero_version':'0','version':'BBY Q 0 Android 3.0','general_intelligence_claimed':False})
 (dest/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({'ok':True,'files':len(files),'assets_bytes':sum(p.stat().st_size for p in dest.iterdir()),'chat_model_sha256':release['model_sha256'],'quantum_model_sha256':qm['checkpoint_sha256']}))

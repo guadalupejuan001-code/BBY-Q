@@ -1,0 +1,1389 @@
+#!reverse-pc-machine-v1
+budget 100000000
+# Native shared symbolic workspace. Host only encodes words and transports rows.
+load64 r0 @Z+24
+cmp r0 0
+je zero_parse
+cmp r0 1
+je zero_solve
+cmp r0 2
+je zero_plan
+cmp r0 3
+je zero_calculate
+cmp r0 4
+je zero_feedback
+cmp r0 5
+je zero_project_observation
+cmp r0 6
+je zero_accumulate
+store64 @Z+16 4
+halt
+
+# Native lexical atom: r4=start token, r5=end, r6=output, r7=allow variables.
+# Three named terms or 'subject no relation object'. Output is four int64s.
+label zero_atom
+mov r0 r5
+sub r0 r4
+cmp r0 3
+je zero_atom_positive
+cmp r0 4
+jne zero_atom_bad
+mov r0 r4
+add r0 1
+mul r0 8
+add r0 @T
+load64 r1 $r0
+cmp r1 %NO%
+jne zero_atom_bad
+set r2 -1
+jmp zero_atom_terms
+label zero_atom_positive
+set r2 1
+label zero_atom_terms
+mov r0 r6
+add r0 24
+store64 $r0 r2
+set r3 0
+label zero_atom_term
+mov r0 r4
+add r0 r3
+cmp r3 0
+je zero_atom_load
+cmp r2 -1
+jne zero_atom_load
+add r0 1
+label zero_atom_load
+mul r0 8
+add r0 @T
+load64 r1 $r0
+cmp r1 1
+jlt zero_atom_bad
+cmp r1 3
+jgt zero_atom_constant
+cmp r7 1
+jne zero_atom_bad
+mul r1 -1
+label zero_atom_constant
+mov r0 r3
+mul r0 8
+add r0 r6
+store64 $r0 r1
+add r3 1
+cmp r3 3
+jlt zero_atom_term
+set r0 1
+ret
+label zero_atom_bad
+set r0 0
+ret
+
+label zero_parse
+store64 @Z 0
+store64 @Z+8 0
+store64 @Z+16 0
+store64 @Z+40 0
+load64 r12 @Z+32
+cmp r12 0
+jle zero_done
+cmp r12 128
+jgt zero_long_input
+label zero_trim
+cmp r12 0
+jle zero_done
+mov r0 r12
+sub r0 1
+mul r0 8
+add r0 @T
+load64 r1 $r0
+cmp r1 %QUESTION%
+je zero_question_mark
+cmp r1 %DOT%
+je zero_trim_one
+cmp r1 %BANG%
+jne zero_parse_start
+jmp zero_trim_one
+label zero_question_mark
+store64 @Z+40 1
+label zero_trim_one
+sub r12 1
+jmp zero_trim
+label zero_parse_start
+store64 @Z+48 r12
+load64 r8 @T
+cmp r8 %CALCULA%
+je zero_parse_math
+cmp r8 %RUTA%
+je zero_parse_route
+cmp r8 %PLAN%
+je zero_parse_route
+cmp r8 %PLANEA%
+je zero_parse_route
+cmp r8 %CORRECTO%
+je zero_parse_good
+cmp r8 %INCORRECTO%
+je zero_parse_bad_rating
+cmp r8 %RESUELVE%
+je zero_parse_batch
+cmp r8 %RECUPERA%
+je zero_parse_recall
+cmp r8 %OBSERVA%
+je zero_parse_observe
+cmp r8 %CONSULTA%
+je zero_parse_delegate
+cmp r8 %POR%
+je zero_parse_why
+cmp r8 %QUIEN%
+je zero_parse_who
+cmp r8 %QUE%
+je zero_parse_about
+cmp r8 %PREGUNTA%
+je zero_parse_query_prefix
+cmp r8 %HECHO%
+je zero_parse_fact_prefix
+cmp r8 %REGLA%
+je zero_parse_rule_prefix
+cmp r8 %SI%
+je zero_parse_temporary_rule
+cmp r8 %SUPONE%
+je zero_parse_temporary_fact
+cmp r8 %RECUERDA%
+je zero_parse_teach
+cmp r8 %APRENDE%
+je zero_parse_teach
+cmp r8 %CORRIGE%
+je zero_parse_correct
+cmp r8 %OLVIDA%
+je zero_parse_forget
+load64 r0 @Z+40
+cmp r0 1
+je zero_parse_bare_query
+load64 r0 @Z+136
+cmp r0 1
+je zero_parse_bare_fact
+jmp zero_done
+label zero_long_input
+load64 r0 @T
+cmp r0 %CONSULTA%
+je zero_parse_delegate
+jmp zero_done
+label zero_parse_math
+store64 @Z 5
+jmp zero_recognized
+label zero_parse_recall
+store64 @Z 14
+cmp r12 2
+jne zero_bad
+load64 r0 @T+8
+store64 @ARG r0
+jmp zero_recognized
+label zero_parse_observe
+store64 @Z 15
+cmp r12 4
+jne zero_bad
+load64 r0 @T+16
+cmp r0 %MUESTRA%
+jne zero_bad
+load64 r0 @NF+24
+cmp r0 1
+jne zero_bad
+fload f0 @NV+24
+fcmp f0 0
+jlt zero_bad
+fcmp f0 2147483647
+jgt zero_bad
+ftoi r0 f0
+itof f1 r0
+fcmp f0 f1
+jne zero_bad
+store64 @Z+56 r0
+load64 r0 @T+8
+store64 @ARG r0
+jmp zero_recognized
+label zero_parse_delegate
+store64 @Z 16
+cmp r12 2
+jlt zero_bad
+jmp zero_recognized
+label zero_parse_good
+cmp r12 1
+jne zero_done
+store64 @Z+56 1
+jmp zero_parse_rating
+label zero_parse_bad_rating
+cmp r12 1
+jne zero_done
+store64 @Z+56 0
+label zero_parse_rating
+store64 @Z 6
+jmp zero_recognized
+label zero_parse_batch
+cmp r12 1
+je zero_batch_valid
+cmp r12 2
+jne zero_done
+load64 r0 @T+8
+cmp r0 %COLON%
+jne zero_done
+label zero_batch_valid
+store64 @Z 11
+jmp zero_recognized
+label zero_parse_route
+store64 @Z 4
+cmp r12 5
+jne zero_bad
+load64 r0 @T+8
+cmp r0 %DESDE%
+jne zero_bad
+load64 r0 @T+24
+cmp r0 %HASTA%
+jne zero_bad
+load64 r0 @T+16
+store64 @ARG r0
+store64 @ARG+8 %CONECTA%
+load64 r0 @T+32
+store64 @ARG+16 r0
+store64 @ARG+24 1
+jmp zero_recognized
+label zero_parse_why
+load64 r0 @T+8
+cmp r0 %QUE%
+jne zero_done
+set r4 2
+jmp zero_query_atom
+label zero_parse_query_prefix
+set r4 1
+jmp zero_query_atom
+label zero_parse_bare_query
+set r4 0
+label zero_query_atom
+store64 @Z 3
+mov r5 r12
+set r6 @ARG
+set r7 1
+call zero_atom
+cmp r0 1
+jne zero_parse_unsupported
+load64 r0 @ARG
+cmp r0 %ELLA%
+je zero_resolve_subject
+cmp r0 %EL%
+je zero_resolve_subject
+cmp r0 %ESO%
+jne zero_recognized
+label zero_resolve_subject
+load64 r0 @Z+920
+load64 r1 @Z+928
+cmp r0 0
+jle zero_context_unknown
+cmp r1 0
+jne zero_context_unknown
+store64 @ARG r0
+jmp zero_recognized
+label zero_context_unknown
+store64 @Z+16 5
+jmp zero_recognized
+label zero_parse_who
+cmp r12 3
+jne zero_done
+store64 @Z 3
+store64 @ARG -1
+load64 r0 @T+8
+store64 @ARG+8 r0
+load64 r0 @T+16
+store64 @ARG+16 r0
+store64 @ARG+24 1
+jmp zero_recognized
+label zero_parse_about
+cmp r12 4
+jne zero_done
+load64 r0 @T+8
+cmp r0 %SABES%
+jne zero_done
+load64 r0 @T+16
+cmp r0 %DE%
+jne zero_done
+store64 @Z 3
+load64 r0 @T+24
+store64 @ARG r0
+store64 @ARG+8 -2
+store64 @ARG+16 -3
+store64 @ARG+24 1
+jmp zero_recognized
+label zero_parse_teach
+load64 r0 @T+8
+cmp r0 %REGLA%
+je zero_parse_teach_rule
+cmp r0 %QUE%
+jne zero_done
+store64 @Z 1
+set r4 2
+jmp zero_ground_atom
+label zero_parse_correct
+load64 r0 @T+8
+cmp r0 %QUE%
+jne zero_done
+store64 @Z 8
+set r4 2
+jmp zero_ground_atom
+label zero_parse_forget
+load64 r0 @T+8
+cmp r0 %REGLA%
+je zero_parse_forget_rule
+cmp r0 %QUE%
+jne zero_done
+store64 @Z 9
+set r4 2
+jmp zero_ground_atom
+label zero_parse_fact_prefix
+load64 r0 @T+8
+cmp r0 %COLON%
+jne zero_done
+store64 @Z 1
+set r4 2
+jmp zero_ground_atom
+label zero_parse_temporary_fact
+load64 r0 @T+8
+cmp r0 %QUE%
+jne zero_done
+set r4 2
+jmp zero_temp_atom
+label zero_parse_bare_fact
+set r4 0
+label zero_temp_atom
+store64 @Z 10
+label zero_ground_atom
+mov r5 r12
+set r6 @ARG
+set r7 0
+call zero_atom
+cmp r0 1
+jne zero_parse_unsupported
+jmp zero_recognized
+label zero_parse_rule_prefix
+load64 r0 @T+8
+cmp r0 %COLON%
+jne zero_done
+set r11 2
+store64 @Z 2
+jmp zero_parse_rule
+label zero_parse_teach_rule
+load64 r0 @T+16
+cmp r0 %COLON%
+jne zero_done
+set r11 3
+store64 @Z 2
+jmp zero_parse_rule
+label zero_parse_forget_rule
+load64 r0 @T+16
+cmp r0 %COLON%
+jne zero_done
+set r11 3
+store64 @Z 12
+jmp zero_parse_rule
+label zero_parse_temporary_rule
+set r11 0
+store64 @Z 7
+label zero_parse_rule
+set r0 0
+label zero_clear_rule
+mov r1 r0
+mul r1 8
+add r1 @RT
+store64 $r1 0
+add r0 1
+cmp r0 16
+jlt zero_clear_rule
+mov r0 r11
+mul r0 8
+add r0 @T
+load64 r0 $r0
+cmp r0 %SI%
+jne zero_bad
+add r11 1
+mov r10 r11
+set r9 -1
+label zero_find_then
+cmp r10 r12
+jge zero_bad
+mov r0 r10
+mul r0 8
+add r0 @T
+load64 r0 $r0
+cmp r0 %ENTONCES%
+je zero_rule_then
+cmp r0 %Y%
+jne zero_rule_scan_next
+mov r9 r10
+label zero_rule_scan_next
+add r10 1
+jmp zero_find_then
+label zero_rule_then
+mov r4 r11
+mov r5 r10
+cmp r9 -1
+je zero_rule_first
+mov r5 r9
+label zero_rule_first
+set r6 @RT
+set r7 1
+call zero_atom
+cmp r0 1
+jne zero_bad
+store64 @RT+96 1
+cmp r9 -1
+je zero_rule_head
+mov r4 r9
+add r4 1
+mov r5 r10
+set r6 @RT+32
+set r7 1
+call zero_atom
+cmp r0 1
+jne zero_bad
+store64 @RT+96 2
+label zero_rule_head
+mov r4 r10
+add r4 1
+mov r5 r12
+set r6 @RT+64
+set r7 1
+call zero_atom
+cmp r0 1
+jne zero_bad
+# Every head variable must occur in a premise (range-restricted rule).
+set r8 0
+label zero_rule_check_head
+mov r0 r8
+mul r0 8
+add r0 @RT+64
+load64 r1 $r0
+cmp r1 0
+jge zero_rule_check_next
+set r2 0
+load64 r3 @RT+96
+mul r3 4
+label zero_rule_find_variable
+cmp r2 r3
+jge zero_bad
+mov r0 r2
+mod r0 4
+cmp r0 3
+je zero_rule_skip_polarity
+mov r0 r2
+mul r0 8
+add r0 @RT
+load64 r0 $r0
+cmp r0 r1
+je zero_rule_check_next
+label zero_rule_skip_polarity
+add r2 1
+jmp zero_rule_find_variable
+label zero_rule_check_next
+add r8 1
+cmp r8 3
+jlt zero_rule_check_head
+store64 @RT+112 1
+jmp zero_recognized
+label zero_parse_unsupported
+store64 @Z 0
+store64 @Z+8 0
+halt
+label zero_recognized
+store64 @Z+8 1
+halt
+label zero_bad
+store64 @Z+8 1
+store64 @Z+16 4
+halt
+label zero_done
+halt
+
+# Generic unification of three terms. r4=pattern, r5=fact, r6=bindings.
+# Preserves r8..r15. Explicit negative evidence uses its own polarity field.
+label zero_unify
+set r3 0
+label zero_unify_term
+mov r0 r3
+mul r0 8
+add r0 r4
+load64 r0 $r0
+mov r1 r3
+mul r1 8
+add r1 r5
+load64 r1 $r1
+cmp r0 0
+jlt zero_unify_variable
+cmp r0 r1
+jne zero_unify_fail
+jmp zero_unify_next
+label zero_unify_variable
+mul r0 -1
+sub r0 1
+cmp r0 3
+jge zero_unify_fail
+mul r0 8
+add r0 r6
+load64 r2 $r0
+cmp r2 0
+je zero_unify_bind
+cmp r2 r1
+jne zero_unify_fail
+jmp zero_unify_next
+label zero_unify_bind
+store64 $r0 r1
+label zero_unify_next
+add r3 1
+cmp r3 3
+jlt zero_unify_term
+set r7 1
+ret
+label zero_unify_fail
+set r7 0
+ret
+
+label zero_closure
+store64 @Z+16 0
+load64 r11 @Z+64
+store64 @Z+80 r11
+load64 r12 @Z+72
+cmp r11 1024
+jgt zero_exhausted
+cmp r12 256
+jgt zero_exhausted
+set r15 0
+label zero_closure_round
+set r13 0
+set r8 0
+label zero_closure_rule
+cmp r8 r12
+jge zero_closure_round_done
+set r9 0
+label zero_closure_first
+cmp r9 r11
+jge zero_closure_next_rule
+add r15 1
+load64 r0 @Z+104
+cmp r15 r0
+jge zero_exhausted
+mov r4 r8
+mul r4 128
+add r4 @R
+mov r5 r9
+mul r5 64
+add r5 @F
+mov r0 r4
+add r0 24
+load64 r0 $r0
+mov r1 r5
+add r1 24
+load64 r1 $r1
+cmp r0 r1
+jne zero_closure_next_first
+store64 @B1 0
+store64 @B1+8 0
+store64 @B1+16 0
+set r6 @B1
+call zero_unify
+cmp r7 1
+jne zero_closure_next_first
+mov r0 r8
+mul r0 128
+add r0 @R+96
+load64 r0 $r0
+cmp r0 2
+je zero_closure_second_setup
+set r10 -1
+set r6 @B1
+call zero_add_head
+jmp zero_closure_next_first
+label zero_closure_second_setup
+set r10 0
+label zero_closure_second
+cmp r10 r11
+jge zero_closure_next_first
+add r15 1
+load64 r0 @Z+104
+cmp r15 r0
+jge zero_exhausted
+load64 r0 @B1
+store64 @B2 r0
+load64 r0 @B1+8
+store64 @B2+8 r0
+load64 r0 @B1+16
+store64 @B2+16 r0
+mov r4 r8
+mul r4 128
+add r4 @R+32
+mov r5 r10
+mul r5 64
+add r5 @F
+mov r0 r4
+add r0 24
+load64 r0 $r0
+mov r1 r5
+add r1 24
+load64 r1 $r1
+cmp r0 r1
+jne zero_closure_next_second
+set r6 @B2
+call zero_unify
+cmp r7 1
+jne zero_closure_next_second
+set r6 @B2
+call zero_add_head
+label zero_closure_next_second
+add r10 1
+jmp zero_closure_second
+label zero_closure_next_first
+load64 r0 @Z+16
+cmp r0 3
+je zero_closure_return
+add r9 1
+jmp zero_closure_first
+label zero_closure_next_rule
+add r8 1
+jmp zero_closure_rule
+label zero_closure_round_done
+cmp r13 1
+je zero_closure_round
+label zero_closure_return
+store64 @Z+80 r11
+store64 @Z+152 r15
+ret
+label zero_exhausted
+store64 @Z+16 3
+jmp zero_closure_return
+
+label zero_add_head
+set r3 0
+label zero_head_term
+mov r0 r8
+mul r0 128
+add r0 @R+64
+mov r1 r3
+mul r1 8
+add r0 r1
+load64 r2 $r0
+cmp r2 0
+jge zero_head_store
+mul r2 -1
+sub r2 1
+mul r2 8
+add r2 r6
+load64 r2 $r2
+cmp r2 0
+jle zero_head_return
+label zero_head_store
+mov r0 r3
+mul r0 8
+add r0 @C
+store64 $r0 r2
+add r3 1
+cmp r3 3
+jlt zero_head_term
+mov r0 r8
+mul r0 128
+add r0 @R+88
+load64 r0 $r0
+store64 @C+24 r0
+set r0 0
+label zero_head_find
+cmp r0 r11
+jge zero_head_append
+mov r5 r0
+mul r5 64
+add r5 @F
+set r3 0
+label zero_head_compare
+mov r1 r3
+mul r1 8
+add r1 @C
+load64 r1 $r1
+mov r2 r3
+mul r2 8
+add r2 r5
+load64 r2 $r2
+cmp r1 r2
+jne zero_head_next
+add r3 1
+cmp r3 4
+jlt zero_head_compare
+ret
+label zero_head_next
+add r0 1
+jmp zero_head_find
+label zero_head_append
+cmp r11 1024
+jge zero_head_full
+mov r5 r11
+mul r5 64
+add r5 @F
+set r3 0
+label zero_head_copy
+mov r0 r3
+mul r0 8
+add r0 @C
+load64 r1 $r0
+mov r0 r3
+mul r0 8
+add r0 r5
+store64 $r0 r1
+add r3 1
+cmp r3 4
+jlt zero_head_copy
+mov r0 r5
+add r0 32
+store64 $r0 0
+add r0 8
+mov r1 r8
+add r1 1
+store64 $r0 r1
+add r0 8
+mov r1 r9
+add r1 1
+store64 $r0 r1
+add r0 8
+mov r1 r10
+add r1 1
+store64 $r0 r1
+add r11 1
+set r13 1
+label zero_head_return
+ret
+label zero_head_full
+store64 @Z+16 3
+ret
+
+# Return r7=1 when the opposite of fact at r5 is present; preserves r8..r15.
+label zero_opposite
+set r0 0
+label zero_opposite_loop
+cmp r0 r11
+jge zero_opposite_no
+mov r6 r0
+mul r6 64
+add r6 @F
+set r3 0
+label zero_opposite_terms
+mov r1 r3
+mul r1 8
+add r1 r5
+load64 r1 $r1
+mov r2 r3
+mul r2 8
+add r2 r6
+load64 r2 $r2
+cmp r1 r2
+jne zero_opposite_next
+add r3 1
+cmp r3 3
+jlt zero_opposite_terms
+mov r1 r5
+add r1 24
+load64 r1 $r1
+mul r1 -1
+mov r2 r6
+add r2 24
+load64 r2 $r2
+cmp r1 r2
+jne zero_opposite_next
+set r7 1
+ret
+label zero_opposite_next
+add r0 1
+jmp zero_opposite_loop
+label zero_opposite_no
+set r7 0
+ret
+
+label zero_solve
+store64 @Z+112 0
+store64 @Z+120 0
+store64 @Z+176 0
+call zero_closure
+load64 r0 @Z+16
+cmp r0 3
+je zero_done
+store64 @Z+112 0
+store64 @Z+120 0
+store64 @Z+160 0
+store64 @Z+168 0
+set r8 0
+label zero_query_loop
+cmp r8 r11
+jge zero_query_result
+mov r5 r8
+mul r5 64
+add r5 @F
+set r4 @ARG
+store64 @B1 0
+store64 @B1+8 0
+store64 @B1+16 0
+set r6 @B1
+call zero_unify
+cmp r7 1
+jne zero_query_next
+mov r0 r5
+add r0 24
+load64 r0 $r0
+load64 r1 @ARG+24
+cmp r0 r1
+je zero_query_match
+load64 r0 @Z+168
+cmp r0 64
+jge zero_query_next
+mov r1 r0
+mul r1 8
+add r1 @OUT+512
+mov r2 r8
+add r2 1
+store64 $r1 r2
+add r0 1
+store64 @Z+168 r0
+jmp zero_query_next
+label zero_query_match
+load64 r9 @Z+112
+cmp r9 64
+jge zero_query_more
+mov r0 r9
+mul r0 8
+add r0 @OUT
+mov r1 r8
+add r1 1
+store64 $r0 r1
+add r9 1
+store64 @Z+112 r9
+jmp zero_query_conflict
+label zero_query_more
+store64 @Z+120 1
+label zero_query_conflict
+call zero_opposite
+cmp r7 1
+jne zero_query_next
+store64 @Z+160 1
+label zero_query_next
+add r8 1
+jmp zero_query_loop
+label zero_query_result
+load64 r0 @Z+112
+cmp r0 0
+je zero_query_no_positive
+store64 @Z+16 1
+load64 r1 @Z+160
+cmp r1 1
+jne zero_query_context
+store64 @Z+16 2
+jmp zero_query_context
+label zero_query_no_positive
+store64 @Z+16 0
+load64 r0 @Z+168
+cmp r0 0
+je zero_done
+load64 r0 @ARG
+load64 r1 @ARG+8
+load64 r2 @ARG+16
+cmp r0 0
+jlt zero_done
+cmp r1 0
+jlt zero_done
+cmp r2 0
+jlt zero_done
+store64 @Z+16 -1
+load64 r0 @OUT+512
+store64 @PROOF r0
+set r9 1
+jmp zero_proof_start
+label zero_query_context
+load64 r0 @ARG
+cmp r0 0
+jle zero_query_ambiguous
+store64 @Z+920 r0
+store64 @Z+928 0
+jmp zero_query_proof
+label zero_query_ambiguous
+store64 @Z+928 1
+label zero_query_proof
+# Evidence extraction follows the already-created acyclic witness graph.
+load64 r0 @OUT
+store64 @PROOF r0
+set r9 1
+load64 r0 @Z+160
+cmp r0 1
+jne zero_proof_start
+load64 r0 @OUT+512
+store64 @PROOF+8 r0
+set r9 2
+label zero_proof_start
+set r8 0
+label zero_proof_queue
+cmp r8 r9
+jge zero_proof_done
+mov r0 r8
+mul r0 8
+add r0 @PROOF
+load64 r10 $r0
+sub r10 1
+cmp r10 0
+jlt zero_proof_done
+cmp r10 r11
+jge zero_proof_done
+set r12 0
+label zero_proof_parent
+mov r0 r10
+mul r0 64
+add r0 @F+48
+mov r1 r12
+mul r1 8
+add r0 r1
+load64 r13 $r0
+cmp r13 0
+je zero_proof_parent_next
+set r2 0
+label zero_proof_seen
+cmp r2 r9
+jge zero_proof_append
+mov r0 r2
+mul r0 8
+add r0 @PROOF
+load64 r0 $r0
+cmp r0 r13
+je zero_proof_parent_next
+add r2 1
+jmp zero_proof_seen
+label zero_proof_append
+cmp r9 1024
+jge zero_proof_done
+mov r0 r9
+mul r0 8
+add r0 @PROOF
+store64 $r0 r13
+add r9 1
+label zero_proof_parent_next
+add r12 1
+cmp r12 2
+jlt zero_proof_parent
+add r8 1
+jmp zero_proof_queue
+label zero_proof_done
+store64 @Z+176 r9
+halt
+
+label zero_plan
+store64 @Z+112 0
+store64 @Z+120 0
+store64 @Z+176 0
+call zero_closure
+load64 r0 @Z+16
+cmp r0 3
+je zero_done
+load64 r0 @ARG
+store64 @QUEUE r0
+store64 @QUEUE+8 0
+store64 @QUEUE+16 0
+set r8 0
+set r9 1
+set r15 0
+store64 @Z+160 0
+label zero_bfs
+cmp r8 r9
+jge zero_bfs_not_found
+mov r0 r8
+mul r0 24
+add r0 @QUEUE
+load64 r10 $r0
+load64 r0 @ARG+16
+cmp r10 r0
+je zero_bfs_found
+set r12 0
+label zero_bfs_edge
+cmp r12 r11
+jge zero_bfs_next
+add r15 1
+load64 r0 @Z+104
+cmp r15 r0
+jge zero_bfs_exhausted
+mov r5 r12
+mul r5 64
+add r5 @F
+load64 r0 $r5
+cmp r0 r10
+jne zero_bfs_next_edge
+mov r0 r5
+add r0 8
+load64 r0 $r0
+cmp r0 %CONECTA%
+jne zero_bfs_next_edge
+mov r0 r5
+add r0 24
+load64 r0 $r0
+cmp r0 1
+jne zero_bfs_next_edge
+call zero_opposite
+cmp r7 1
+jne zero_bfs_neighbor
+store64 @Z+160 1
+jmp zero_bfs_next_edge
+label zero_bfs_neighbor
+mov r0 r5
+add r0 16
+load64 r13 $r0
+set r2 0
+label zero_bfs_seen
+cmp r2 r9
+jge zero_bfs_append
+mov r0 r2
+mul r0 24
+add r0 @QUEUE
+load64 r0 $r0
+cmp r0 r13
+je zero_bfs_next_edge
+add r2 1
+jmp zero_bfs_seen
+label zero_bfs_append
+cmp r9 1024
+jge zero_bfs_exhausted
+mov r0 r9
+mul r0 24
+add r0 @QUEUE
+store64 $r0 r13
+add r0 8
+mov r1 r8
+add r1 1
+store64 $r0 r1
+add r0 8
+mov r1 r12
+add r1 1
+store64 $r0 r1
+add r9 1
+label zero_bfs_next_edge
+add r12 1
+jmp zero_bfs_edge
+label zero_bfs_next
+add r8 1
+jmp zero_bfs
+label zero_bfs_not_found
+store64 @Z+16 0
+load64 r0 @Z+160
+cmp r0 0
+je zero_done
+store64 @Z+16 2
+halt
+label zero_bfs_exhausted
+store64 @Z+16 3
+halt
+label zero_bfs_found
+store64 @Z+16 1
+set r2 0
+label zero_bfs_path
+mov r0 r8
+mul r0 24
+add r0 @QUEUE
+load64 r1 $r0
+mov r3 r2
+mul r3 8
+add r3 @OUT
+store64 $r3 r1
+add r2 1
+add r0 8
+load64 r8 $r0
+sub r8 1
+cmp r8 0
+jge zero_bfs_path
+store64 @Z+112 r2
+halt
+
+# Arithmetic parser: native shunting-yard, numeric transport is binary64.
+label zero_calculate
+store64 @Z+16 0
+load64 r12 @Z+48
+set r8 1
+set r9 0
+set r10 0
+set r11 1
+label zero_math_next
+cmp r8 r12
+jge zero_math_end
+mov r0 r8
+mul r0 8
+add r0 @T
+load64 r13 $r0
+cmp r11 1
+je zero_math_operand
+cmp r13 %RP%
+je zero_math_close
+cmp r13 %PLUS%
+je zero_math_binary
+cmp r13 %MINUS%
+je zero_math_binary
+cmp r13 %MUL%
+je zero_math_binary
+cmp r13 %DIV%
+je zero_math_binary
+jmp zero_math_bad
+label zero_math_operand
+cmp r13 %MINUS%
+je zero_math_negative
+cmp r13 %PLUS%
+je zero_math_advance
+cmp r13 %LP%
+je zero_math_push_op
+mov r0 r8
+mul r0 8
+add r0 @NF
+load64 r0 $r0
+cmp r0 1
+jne zero_math_bad
+mov r0 r8
+mul r0 8
+add r0 @NV
+fload f0 $r0
+mov r0 r9
+mul r0 8
+add r0 @VS
+fstore $r0 f0
+add r9 1
+set r11 0
+jmp zero_math_advance
+label zero_math_negative
+set r13 999
+jmp zero_math_push_op
+label zero_math_binary
+set r14 1
+cmp r13 %MUL%
+je zero_math_high
+cmp r13 %DIV%
+jne zero_math_reduce
+label zero_math_high
+set r14 2
+label zero_math_reduce
+cmp r10 0
+jle zero_math_binary_push
+mov r0 r10
+sub r0 1
+mul r0 8
+add r0 @OS
+load64 r0 $r0
+cmp r0 %LP%
+je zero_math_binary_push
+set r1 1
+cmp r0 %MUL%
+je zero_math_top_high
+cmp r0 %DIV%
+je zero_math_top_high
+cmp r0 999
+jne zero_math_compare_precedence
+set r1 3
+jmp zero_math_compare_precedence
+label zero_math_top_high
+set r1 2
+label zero_math_compare_precedence
+cmp r1 r14
+jlt zero_math_binary_push
+call zero_math_apply
+load64 r0 @Z+16
+cmp r0 4
+je zero_done
+jmp zero_math_reduce
+label zero_math_binary_push
+set r11 1
+label zero_math_push_op
+cmp r10 128
+jge zero_math_bad
+mov r0 r10
+mul r0 8
+add r0 @OS
+store64 $r0 r13
+add r10 1
+jmp zero_math_advance
+label zero_math_close
+cmp r10 0
+jle zero_math_bad
+mov r0 r10
+sub r0 1
+mul r0 8
+add r0 @OS
+load64 r0 $r0
+cmp r0 %LP%
+je zero_math_closed
+call zero_math_apply
+load64 r0 @Z+16
+cmp r0 4
+je zero_done
+jmp zero_math_close
+label zero_math_closed
+sub r10 1
+label zero_math_advance
+add r8 1
+jmp zero_math_next
+label zero_math_end
+cmp r11 1
+je zero_math_bad
+label zero_math_finish
+cmp r10 0
+jle zero_math_result
+mov r0 r10
+sub r0 1
+mul r0 8
+add r0 @OS
+load64 r0 $r0
+cmp r0 %LP%
+je zero_math_bad
+call zero_math_apply
+load64 r0 @Z+16
+cmp r0 4
+je zero_done
+jmp zero_math_finish
+label zero_math_result
+cmp r9 1
+jne zero_math_bad
+fload f0 @VS
+fstore @Z+96 f0
+femit result f0
+store64 @Z+16 1
+halt
+label zero_math_bad
+store64 @Z+16 4
+halt
+label zero_math_apply
+sub r10 1
+mov r0 r10
+mul r0 8
+add r0 @OS
+load64 r2 $r0
+cmp r9 1
+jlt zero_math_apply_bad
+sub r9 1
+mov r0 r9
+mul r0 8
+add r0 @VS
+fload f1 $r0
+cmp r2 999
+je zero_math_apply_neg
+cmp r9 1
+jlt zero_math_apply_bad
+sub r9 1
+mov r0 r9
+mul r0 8
+add r0 @VS
+fload f0 $r0
+cmp r2 %PLUS%
+je zero_math_add
+cmp r2 %MINUS%
+je zero_math_sub
+cmp r2 %MUL%
+je zero_math_mul
+fcmp f1 0
+je zero_math_apply_bad
+fdiv f0 f1
+jmp zero_math_apply_store
+label zero_math_add
+fadd f0 f1
+jmp zero_math_apply_store
+label zero_math_sub
+fsub f0 f1
+jmp zero_math_apply_store
+label zero_math_mul
+fmul f0 f1
+jmp zero_math_apply_store
+label zero_math_apply_neg
+fmov f0 f1
+fmul f0 -1
+label zero_math_apply_store
+mov r0 r9
+mul r0 8
+add r0 @VS
+fstore $r0 f0
+add r9 1
+ret
+label zero_math_apply_bad
+store64 @Z+16 4
+ret
+
+# Explicit human feedback changes shared reliability, not logical truth.
+label zero_feedback
+load64 r0 @Z+192
+cmp r0 1
+jlt zero_bad
+cmp r0 16
+jgt zero_bad
+mul r0 16
+add r0 @Z+1000
+load64 r1 $r0
+load64 r2 @Z+56
+add r1 r2
+store64 $r0 r1
+add r0 8
+load64 r3 $r0
+add r3 1
+store64 $r0 r3
+add r1 1
+add r3 2
+itof f0 r1
+itof f1 r3
+fdiv f0 f1
+fstore @Z+200 f0
+load64 r0 @Z+944
+add r0 1
+store64 @Z+944 r0
+store64 @Z+16 1
+halt
+
+# Typed projection of actual specialist outputs. No supervision is read here.
+label zero_project_observation
+load64 r0 @Z+216
+cmp r0 1
+jne zero_projection_missing
+store64 @ARG+8 %ES%
+store64 @ARG+24 1
+load64 r0 @Z+192
+fload f0 @Z+208
+cmp r0 14
+jne zero_project_class
+set r1 %CERO%
+fcmp f0 0.5
+jlt zero_project_store
+set r1 %UNO%
+jmp zero_project_store
+label zero_project_class
+set r1 %CLASE0%
+fcmp f0 0.5
+jlt zero_project_store
+set r1 %CLASE1%
+label zero_project_store
+store64 @ARG+16 r1
+store64 @Z+16 1
+halt
+label zero_projection_missing
+store64 @Z+16 0
+halt
+
+# A later successful tool must not hide an earlier unresolved goal.
+label zero_accumulate
+load64 r0 @Z+224
+load64 r1 @Z+232
+cmp r0 4
+je zero_done
+cmp r1 4
+je zero_summary_set
+cmp r0 3
+je zero_done
+cmp r1 3
+je zero_summary_set
+cmp r0 5
+je zero_done
+cmp r1 5
+je zero_summary_set
+cmp r0 2
+je zero_done
+cmp r1 2
+je zero_summary_set
+cmp r0 0
+je zero_done
+cmp r1 0
+je zero_summary_set
+cmp r1 -1
+je zero_summary_set
+jmp zero_done
+label zero_summary_set
+store64 @Z+224 r1
+halt

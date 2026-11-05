@@ -46,4 +46,7 @@ check('native generator context is restricted to follow-up requests',()=>{
   const raw=Buffer.from(text);pages.stage({data:raw,total:raw.length});pages.role('qchat-context.rxe');assert.equal(readNumber(pages.map(),B+516n,1),expected,text);
  }
 });
+check('shared feedback command keeps its native type',()=>{
+ const raw=Buffer.from('evaluar0 {"tarea":"id","resultado":1}');pages.stage({data:raw,total:raw.length});pages.role('mobile-route.rxe');assert.equal(readNumber(pages.map(),B+512n,1),8);
+});
 const result={ok:true,native_checks:checks.length,checks};fs.writeFileSync(path.join(root,'build/unified-native-checks.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

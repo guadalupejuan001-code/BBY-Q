@@ -1,0 +1,7 @@
+{
+  "version": "zero-common-outcomes-1",
+  "reason": "Native aggregation keeps an unresolved goal visible after a later successful tool; positive evaluated parent tasks can credit their verified E02 child tasks atomically",
+  "previous_reserved_result": "120/120 before this orchestration extension; retained as evidence",
+  "new_reserved_namespace": "zero-reserved-common-outcomes-v2",
+  "selection": "No model selection or parameter tuning; independent new names and graph instances recheck the extended implementation"
+}
