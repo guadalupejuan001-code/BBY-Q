@@ -62,9 +62,9 @@ public final class MainActivity extends Activity {
   input=new EditText(this);input.setId(R.id.message_input);input.setHint("Habla con BBY Q…");input.setHintTextColor(MUTED);input.setTextColor(INK);input.setTextSize(16);input.setBackgroundColor(Color.TRANSPARENT);input.setMinLines(1);input.setMaxLines(6);input.setPadding(dp(6),dp(10),dp(6),dp(10));input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
   composer.addView(input,new LinearLayout.LayoutParams(0,-2,1));
   send=button("↑");send.setId(R.id.send_button);send.setContentDescription("Enviar mensaje");send.setTextSize(25);send.setTextColor(BG);send.setBackgroundTintList(android.content.res.ColorStateList.valueOf(ACCENT));composer.addView(send,new LinearLayout.LayoutParams(dp(52),dp(52)));send.setOnClickListener(v->sendMessage());
-  root.addView(composer);setContentView(root);
+  root.addView(composer);setContentView(root);send.setEnabled(false);
   if(saved!=null)input.setText(saved.getString("draft",""));
-  WORK.execute(()->{try{engine=PersonalEngine.get(this);JSONArray history=engine.messages();runOnUiThread(()->{if(isDestroyed())return;messages.removeAllViews();if(history.length()==0)addBubble("BBY Q","Hola, X. Este es tu espacio personal. Puedes consultar lo aprendido, enseñarme una lección o hacer una operación.");else for(int i=0;i<history.length();i++){JSONObject m=history.optJSONObject(i);addBubble(m.optString("role").equals("user")?"X":"BBY Q",m.optString("text"));}status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);});}catch(Exception e){showError(e);}});
+  WORK.execute(()->{try{engine=PersonalEngine.get(this);JSONArray history=engine.messages();runOnUiThread(()->{if(isDestroyed())return;messages.removeAllViews();if(history.length()==0)addBubble("BBY Q","Hola, X. Tu conversación, lecciones y agentes comparten esta sesión. Puedes consultar lo aprendido, enseñar una lección o guardar una asociación binaria.");else for(int i=0;i<history.length();i++){JSONObject m=history.optJSONObject(i);addBubble(m.optString("role").equals("user")?"X":"BBY Q",m.optString("text"));}send.setEnabled(!BUSY.get());status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);});}catch(Exception e){showError(e);}});
  }
  private void addBubble(String role,String message){
   LinearLayout bubble=vertical();bubble.setPadding(dp(14),dp(12),dp(14),dp(12));boolean user=role.equals("X");bubble.setBackground(shape(user?0xff213c3b:PANEL,18));
@@ -74,18 +74,19 @@ public final class MainActivity extends Activity {
   scroll.post(()->scroll.fullScroll(View.FOCUS_DOWN));
  }
  private void sendMessage(){
-  String message=input.getText().toString().trim();if(message.isEmpty()||engine==null||!BUSY.compareAndSet(false,true))return;
+  String message=input.getText().toString();if(message.trim().isEmpty()||engine==null||!BUSY.compareAndSet(false,true))return;
   input.setText("");send.setEnabled(false);addBubble("X",message);status.setText("Pensando…");status.setTextColor(MUTED);
-  WORK.execute(()->{try{String reply=engine.chat(message);runOnUiThread(()->{if(!isDestroyed())addBubble("BBY Q",reply);});}catch(Exception e){showError(e);}finally{BUSY.set(false);runOnUiThread(()->{if(!isDestroyed()){send.setEnabled(true);status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);}});}});
+  WORK.execute(()->{try{String reply=engine.chat(message);runOnUiThread(()->{if(!isDestroyed())addBubble("BBY Q",reply);});}catch(Exception e){runOnUiThread(()->{if(!isDestroyed()){if(messages.getChildCount()>0)messages.removeViewAt(messages.getChildCount()-1);input.setText(message);}});showError(e);}finally{BUSY.set(false);runOnUiThread(()->{if(!isDestroyed()){send.setEnabled(true);status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);}});}});
  }
  private void showError(Exception e){runOnUiThread(()->{if(!isDestroyed()){status.setText("No se completó la operación");new AlertDialog.Builder(this).setTitle("BBY Q").setMessage(e.getMessage()).setPositiveButton("Entendido",null).show();}});}
  private void showMenu(View anchor){
-  PopupMenu menu=new PopupMenu(this,anchor);for(String s:new String[]{"Qué puedo hacer","Mis agentes","Exportar conversación","Acerca de"})menu.getMenu().add(s);
+  PopupMenu menu=new PopupMenu(this,anchor);for(String s:new String[]{"Qué puedo hacer","Mis agentes","Mi sesión","Exportar conversación","Acerca de"})menu.getMenu().add(s);
   menu.setOnMenuItemClickListener(item->{String s=item.getTitle().toString();
    if(s.equals("Mis agentes"))showAgents();
+   else if(s.equals("Mi sesión"))WORK.execute(()->{try{if(engine==null)return;JSONObject state=engine.sessionStatus();runOnUiThread(()->{if(!isDestroyed())new AlertDialog.Builder(this).setTitle("Tu sesión").setMessage("Lecciones: "+state.optInt("lessons")+"\nTurnos confirmados: "+state.optLong("generation")+"\nAsociaciones binarias: "+state.optInt("binary_memories")+"\nIntegridad: "+state.optString("integrity")).setPositiveButton("Cerrar",null).show();});}catch(Exception e){showError(e);}});
    else if(s.equals("Exportar conversación")){Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.setType("text/plain");i.addCategory(Intent.CATEGORY_OPENABLE);i.putExtra(Intent.EXTRA_TITLE,"BBYQ-X-conversacion.txt");startActivityForResult(i,71);}
-   else if(s.equals("Acerca de"))new AlertDialog.Builder(this).setTitle("BBY Q · X").setMessage("Edición personal 1.0\nChat y memoria locales.\nMotor XI/Ether propio.\nBase de conversación X08 y agentes VQC3/QRL3 conservados.").setPositiveButton("Cerrar",null).show();
-   else new AlertDialog.Builder(this).setTitle("Qué puedes decirle").setMessage("que es ingreso y que requiere?\n\ncalcula 17 + 25\n\nrepite exactamente:\nUn texto que quieras conservar\n\nPara enseñar un dato, usa el botón Enseñar y completa la lección.").setPositiveButton("Cerrar",null).show();return true;});menu.show();
+   else if(s.equals("Acerca de"))new AlertDialog.Builder(this).setTitle("BBY Q · X").setMessage("Edición X10 · 2.0\nUna sesión local para conversación, lecciones, QChat100, memoria binaria y VQC3/QRL3.\nMotor XI/Ether propio. Los modelos entrenados se conservan.").setPositiveButton("Cerrar",null).show();
+   else new AlertDialog.Builder(this).setTitle("Qué puedes decirle").setMessage("que es ingreso y que requiere?\n\ncalcula 17 + 25\n\n¿qué dije antes?\n\nmemoria guarda faro 1\nmemoria consulta faro\nmemoria corrige faro 0\n\nquantum v3 estado\nquantum v3 planea 3 6\n\nqchat hola\n\nPara enseñar una lección, usa Enseñar y completa sus campos.").setPositiveButton("Cerrar",null).show();return true;});menu.show();
  }
  private void showAgents(){
   if(engine==null||!BUSY.compareAndSet(false,true))return;status.setText("Leyendo los agentes…");

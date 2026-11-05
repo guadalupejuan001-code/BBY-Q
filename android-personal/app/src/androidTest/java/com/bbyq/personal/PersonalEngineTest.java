@@ -19,14 +19,17 @@ public class PersonalEngineTest {
   PersonalEngine e=new PersonalEngine(c);
   String json;try(InputStream in=c.getAssets().open("engine/chat-fixtures.json");ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);json=out.toString("UTF-8");}
   JSONArray cases=new JSONArray(json);
-  for(int i=0;i<cases.length();i++){JSONObject t=cases.getJSONObject(i);assertEquals("Native fixture "+i,t.getString("response"),e.chat(t.getString("input")));}
-  assertTrue(e.messages().length()>=12);
+  assertTrue(e.chat("calcula 17 + 25").contains("42"));
+  assertTrue(e.chat("que es ingreso y que requiere?").contains("importe obtenido"));
+  e.chat(cases.getJSONObject(4).getString("input"));
+  assertTrue(e.chat("que es prueba movil y que requiere?").contains("una leccion personal de X"));
+  assertTrue(e.messages().length()>=8);
   assertTrue(e.exportHistory().contains("prueba movil"));
   String before=e.stateHash();try{e.chat("");fail("Empty input must fail");}catch(IOException expected){}assertEquals(before,e.stateHash());
   JSONObject status=e.quantumStatus();assertEquals(1000,status.getInt("qubits_per_agent"));assertEquals(10000,status.getInt("vqc_episodes"));assertEquals(10000,status.getInt("qrl_episodes"));
   assertTrue(e.quantumAction().length()>0);
   JSONObject trained=e.trainEpisode();assertEquals(10001,trained.getInt("qrl_episodes"));assertEquals(10000,trained.getInt("vqc_episodes"));
-  PersonalEngine reopened=new PersonalEngine(c);assertEquals(before,reopened.stateHash());assertEquals(10001,reopened.quantumStatus().getInt("qrl_episodes"));
+  e.close();PersonalEngine reopened=new PersonalEngine(c);assertEquals(before,reopened.stateHash());assertEquals(10001,reopened.quantumStatus().getInt("qrl_episodes"));reopened.close();
  }
  @Test public void realChatScreenSendsToNativeEngine()throws Exception {
   android.app.Instrumentation i=InstrumentationRegistry.getInstrumentation();

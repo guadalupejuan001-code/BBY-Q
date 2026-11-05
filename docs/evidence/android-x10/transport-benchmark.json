@@ -1,0 +1,14 @@
+{
+  "operations": 12,
+  "state_bytes": 3393044,
+  "cli_load_execute_save_ms": 2820.3320739994524,
+  "persistent_open_execute_close_ms": 288.1030889984686,
+  "same_final_checkpoint": true,
+  "scope": "Transport of identical byte writes on QChat100 checkpoint; not a learning or quantum speedup comparison",
+  "ratio_cli_to_persistent": 9.789315636301435,
+  "platform": "Linux host of this execution, not an Android device",
+  "runtime_source": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "ether_source": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "jni_transport_sha256": "92c73f84f81b711b17a05eab3070624e6a28dc9615477114eceb148d1e61f603",
+  "comparison": "12 identical store8 programs, same input model, load/run/save each versus one persistent XI session; compared final state SHA-256"
+}

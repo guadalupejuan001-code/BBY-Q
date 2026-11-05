@@ -1,23 +1,53 @@
-# BBY Q · X — Android personal
+# BBY Q · X10 Android 2.0
 
-Aplicación independiente `com.bbyq.personalx`, para Android 10 o posterior,
-con bibliotecas ARM64 y x86-64. Chat, historial y modelos en almacenamiento
-privado; sin permiso de Internet y sin servidor externo.
+`com.bbyq.personalx`, Android 10+, ARM64 y x86-64. Una transacción SQLite
+publica juntos mensajes, contexto, lecciones, estados y comprobante del turno.
+El reintento con el mismo identificador devuelve el resultado guardado; un
+identificador reutilizado con otro texto se rechaza. Un fallo anterior al commit
+revierte todos los cambios. Los archivos de la versión 1 se conservan tras la
+migración de conversación, agentes y mensajes.
 
-Reutiliza el motor conversacional XI X08 y su estado canónico de 480 conceptos /
-960 relaciones, con el contrato de texto existente. Los agentes VQC3/QRL3
-conservan el checkpoint nativo de 10.000 episodios por agente, sin MPS.
-No implementa un algoritmo conversacional cuántico nuevo ni pretende portar
-toda la capa SQLite/Node X10 del escritorio. Se conserva la aplicación de PC.
+Java administra almacenamiento y bytes. Los programas XI originales ejecutan
+intención, lecciones paginadas, texto por páginas, razonamiento acotado,
+composición, contexto y reformulaciones. La base de 480 conceptos y sus modelos
+originales se conservan. Las consultas ordinarias no reentrenan esa base.
 
-La interfaz ofrece chat, enseñanza mediante las lecciones existentes, consultas,
-aritmética, historial persistente y exportación de la conversación. En el menú
-Mis agentes se consultan sus estados y se ejecuta o continúa la política QRL3.
-La interpretación, las respuestas y el aprendizaje se ejecutan en los programas
-XI originales; Java gestiona la interfaz, el transporte y la publicación local.
+| Motor | Integración móvil | Alcance conservado |
+| --- | --- | --- |
+| X10 | Sesión paginada, P01/P03/P04/P05/P06 | Gramáticas acotadas, no conversación general |
+| VQC3/QRL3 | Mismo chat, consulta y política | 1.000 cúbits simulados por agente, 10.000 episodios de origen |
+| QChat100 | Saludos admitidos y `qchat TEXTO` | Generador de 100 cúbits, 49.680 actualizaciones, 16 tokens máximos |
+| QMemory | Claves binarias persistentes en el chat | 250 asociaciones de cuatro sitios; 1.000 cúbits totales, sin MPS |
 
-La CI verifica los hashes, prueba seis conversaciones con el ejecutor original,
-compila JNI para ambos ABI y ejecuta pruebas nativas e interfaz en Android 15.
-La descarga incluye la APK y la evidencia. No solicita permisos de contactos,
-micrófono, ubicación ni archivos compartidos; la exportación usa el selector
-de documentos de Android.
+El V3 nativo conserva su arquitectura histórica de grupos independientes.
+QChat100 conserva un codificador Clifford fijo y pesos de salida entrenados.
+QMemory usa la puerta de escritura ya aprendida y lectura Z; reemplazar una
+asociación reinicializa ese slot y vuelve a escribir. No se atribuye ese reemplazo
+al entrenamiento de ángulos ni a la corrección recurrente experimental.
+Las variantes, campañas y herramientas de escritorio siguen en sus rutas
+originales; esta app no porta Node, Python, las tareas de escritorio ni sus
+grandes corpus externos. No se afirma una IA general o ventaja cuántica.
+
+Ejemplos desde una misma conversación:
+
+```text
+calcula 17 + 25
+¿qué dije antes?
+memoria guarda faro 1
+memoria consulta faro
+memoria corrige faro 0
+quantum v3 estado
+quantum v3 planea 3 6
+qchat hola
+```
+
+Los programas usan sesiones nativas acotadas: el estado no se serializa después
+de cada byte o token. Solo se materializan las páginas necesarias; la memoria
+lógica compacta y los checkpoints RVPC2 se mantienen. Las sesiones JNI tienen
+identificadores verificados, cierre explícito y un máximo de ocho handles.
+
+La preparación verifica hashes de modelos y fuentes. La CI ejecuta fixtures
+del motor histórico, compila ambos ABI y prueba conversación, memoria real,
+reanudación, rollback, corrupción, migración, reintentos simultáneos e interfaz
+en Android 15. La evidencia pertenece a cada ejecución; una compilación sin
+pruebas aprobadas no constituye una entrega validada. La app funciona sin red.
