@@ -47,9 +47,16 @@ public final class PersonalEngine implements AutoCloseable {
                 db.execSQL("CREATE TABLE IF NOT EXISTS context_turns(generation INTEGER PRIMARY KEY,utterance TEXT NOT NULL,reply TEXT NOT NULL,digest TEXT NOT NULL)");
                 db.execSQL("CREATE TABLE IF NOT EXISTS memory_slots(key TEXT PRIMARY KEY,slot INTEGER UNIQUE NOT NULL CHECK(slot>=0 AND slot<250))");
                 db.execSQL("CREATE TABLE IF NOT EXISTS model_archives(name TEXT NOT NULL,identity TEXT NOT NULL,digest TEXT NOT NULL,data BLOB NOT NULL,created INTEGER NOT NULL,PRIMARY KEY(name,identity,digest))");
+                db.execSQL("CREATE TABLE IF NOT EXISTS entity_tasks(id TEXT PRIMARY KEY,input TEXT NOT NULL,trace TEXT NOT NULL,workspace BLOB NOT NULL,digest TEXT NOT NULL,teacher INTEGER CHECK(teacher IN (0,1)),feedback INTEGER CHECK(feedback IN (0,1)),created INTEGER NOT NULL)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS memory_teachers(key TEXT PRIMARY KEY,value INTEGER NOT NULL CHECK(value IN (0,1)))");
+                db.execSQL("CREATE TABLE IF NOT EXISTS entity_events(id TEXT PRIMARY KEY,engine TEXT NOT NULL,evidence TEXT NOT NULL,created INTEGER NOT NULL)");
                 if(meta("schema",null)==null)initialize();
                 if(!meta("schema","").equals("X10-Android-2"))throw new IOException("Versión de sesión incompatible");
                 for(String bank:BANKS){upgradeModel(bank);checkIdentity(bank);}
+                if(manifest.has("entity_version"))for(String bank:new String[]{"entity","entity-voice"}){
+                    try(Cursor row=db.rawQuery("SELECT name FROM states WHERE name=?",new String[]{bank})){if(!row.moveToFirst())save(bank,seed(bank+"-model.rvpbin"));}
+                    checkIdentity(bank);
+                }
                 db.setTransactionSuccessful();ready=true;
             } finally {db.endTransaction();}
         } finally {if(!ready)db.close();}
@@ -91,7 +98,10 @@ public final class PersonalEngine implements AutoCloseable {
         String old;try(Cursor c=db.rawQuery("SELECT identity FROM states WHERE name=?",new String[]{name})){if(!c.moveToFirst())throw new IOException("Estado ausente: "+name);old=c.getString(0);}
         if(identity(name).equals(old))return;
         JSONObject previous=manifest.optJSONObject("previous_identities");
-        if(previous==null||!old.equals(previous.optString(name)))throw new IOException("Identidad de modelo desconocida; conservé "+name);
+        boolean accepted=previous!=null&&old.equals(previous.optString(name));
+        JSONObject migrations=manifest.optJSONObject("identity_migrations");JSONArray known=migrations==null?null:migrations.optJSONArray(name);
+        if(known!=null)for(int i=0;i<known.length();i++)accepted|=old.equals(known.getString(i));
+        if(!accepted)throw new IOException("Identidad de modelo desconocida; conservé "+name);
         byte[] current=uncheckedState(name);
         db.execSQL("INSERT OR IGNORE INTO model_archives SELECT name,identity,digest,data,? FROM states WHERE name=?",new Object[]{System.currentTimeMillis(),name});
         if(name.equals("qchat")){save(name,seed("qchat-model.rvpbin"));return;}
@@ -101,7 +111,8 @@ public final class PersonalEngine implements AutoCloseable {
                 for(int role=0;role<2;role++){
                     long meta=A+(role==0?4000:5000),theta=A+(role==0?100000:200000);
                     // A phone may contain additional personal training; retain that agent.
-                    if(live.number(meta,8)!=10000){putMeta(role==0?"local_vqc_preserved":"local_qrl_preserved",true);continue;}
+                    long episodes=live.number(meta,8);JSONObject prior=manifest.optJSONObject("previous_training_episodes");
+                    if(episodes!=10000&&(prior==null||episodes!=prior.optLong(role==0?"vqc":"qrl",-1))){putMeta(role==0?"local_vqc_preserved":"local_qrl_preserved",true);continue;}
                     for(long[] span:new long[][]{{theta,8000},{theta+10000,8000},{theta+20000,8000},{meta,48}})XiPages.data(b,span[0],fresh.bytes(span[0],(int)span[1]));
                 }
                 live.run(b.append("halt\n").toString());save(name,live.save());return;
@@ -179,6 +190,9 @@ public final class PersonalEngine implements AutoCloseable {
             long generation=Long.parseLong(meta("generation","0"));if(generation>=1048576)throw new IOException("Capacidad de sesión alcanzada");
             long started=System.nanoTime();JSONObject result;
             try(XiPages pages=new XiPages(this)){pages.validate(raw);result=dispatch(pages,raw,message);}
+            JSONObject evidence=new JSONObject().put("engine",result.optString("engine")).put("entity_task",result.optString("entity_task"));
+            if(result.has("metrics"))evidence.put("metrics",result.getJSONObject("metrics"));
+            db.execSQL("INSERT INTO entity_events VALUES(?,?,?,?)",new Object[]{id,result.optString("engine"),evidence.toString(),System.currentTimeMillis()});
             String response=result.getString("response");if(XiPages.utf8(response).length>1048576)throw new IOException("Límite de respuesta superado");
             result.put("generation",generation+1).put("request_id",id).put("replayed",false).put("elapsed_ms",(System.nanoTime()-started)/1000000.0);
             long now=System.currentTimeMillis();db.execSQL("INSERT INTO messages(request_id,role,text,created) VALUES(?,?,?,?)",new Object[]{id,"user",message,now});
@@ -197,6 +211,13 @@ public final class PersonalEngine implements AutoCloseable {
     private JSONObject dispatch(XiPages p,byte[] raw,String text)throws Exception {
         int[] v3=p.quantumRoute(raw);if(v3[3]==1)return quantumTurn(v3,raw);
         int mobile=p.mobileRoute(raw);if(mobile>=1&&mobile<=4)return memoryTurn(p,mobile);
+        if(mobile==6||mobile==7){
+            if(!manifest.has("entity_version"))throw new IOException("Esta edición no contiene el ciclo compartido");
+            int offset=(int)p.number(XiPages.B+513,1);JSONObject payload=new JSONObject(XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)));
+            EntityCycle entity=new EntityCycle(this);
+            if(mobile==7)return entity.feedback(payload);
+            return entity.solve(UUID.randomUUID().toString(),payload);
+        }
         if(mobile==5){int offset=(int)p.number(XiPages.B+513,1);return generated(p,XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)),true);}
         JSONArray rows=contextRows();JSONObject recalled=contextTurn(p,raw,rows);if(recalled!=null)return recalled;
         int[] route=p.route(raw);int intent=p.intent(raw);
@@ -331,7 +352,7 @@ public final class PersonalEngine implements AutoCloseable {
         if(op==1||op==2){int value=(int)p.number(XiPages.B+515,1);b.append("qprepare ").append(site).append(" 4\n");if(value==1)b.append("x ").append(site+1).append('\n');b.append("set r14 ").append(site).append("\nset r7 ").append(site+1).append("\nfload f5 ").append(M+64).append("\ncall qm_exchange\n");}
         b.append("fexpect f0 Z:").append(site).append("\nfset f1 1\nfsub f1 f0\nfdiv f1 2\nfemit probability_one f1\nhalt\n").append(new String(asset("qmemory-model.xi"),StandardCharsets.UTF_8));
         JSONObject result;
-        try(XiSession s=new XiSession(state("qmemory"))){result=XiPages.metrics(s.run(b.toString()));if(op==1||op==2){save("qmemory",s.save());db.execSQL("INSERT OR REPLACE INTO memory_slots VALUES(?,?)",new Object[]{key,slot});}}
+        try(XiSession s=new XiSession(state("qmemory"))){result=XiPages.metrics(s.run(b.toString()));if(op==1||op==2){save("qmemory",s.save());db.execSQL("INSERT OR REPLACE INTO memory_slots VALUES(?,?)",new Object[]{key,slot});db.execSQL("INSERT OR REPLACE INTO memory_teachers VALUES(?,?)",new Object[]{key,(int)p.number(XiPages.B+515,1)});}}
         int value=result.getDouble("probability_one")>=.5?1:0;
         return reply((op==3?"La memoria cuántica recuperó ":op==2?"Reemplacé la asociación por ":"Guardé la asociación binaria ")+key+" = "+value+".","QMemory-XI").put("metrics",result);
     }
@@ -342,10 +363,15 @@ public final class PersonalEngine implements AutoCloseable {
     }
     public synchronized String exportHistory(){StringBuilder b=new StringBuilder("BBY Q · X\n\n");try(Cursor c=db.rawQuery("SELECT role,text FROM messages ORDER BY id",null)){while(c.moveToNext())b.append(c.getString(0).equals("user")?"X":"BBY Q").append(": ").append(c.getString(1)).append("\n\n");}return b.toString();}
     public synchronized String stateHash()throws Exception{return hash(state("chat"));}
+    byte[] bankState(String name)throws Exception{return state(name);}
+    void saveBank(String name,byte[] bytes)throws Exception{save(name,bytes);}
+    int memorySlot(String key){try(Cursor c=db.rawQuery("SELECT slot FROM memory_slots WHERE key=?",new String[]{key})){return c.moveToFirst()?c.getInt(0):-1;}}
+    public synchronized String lastEntityTask(){try(Cursor c=db.rawQuery("SELECT id FROM entity_tasks WHERE feedback IS NULL ORDER BY created DESC,rowid DESC LIMIT 1",null)){return c.moveToFirst()?c.getString(0):null;}}
     public synchronized JSONObject sessionStatus()throws Exception {
         JSONObject banks=new JSONObject();for(String name:BANKS){checkIdentity(name);try(Cursor c=db.rawQuery("SELECT digest FROM states WHERE name=?",new String[]{name})){c.moveToFirst();banks.put(name,c.getString(0));}}
         String integrity;try(Cursor c=db.rawQuery("PRAGMA integrity_check",null)){c.moveToFirst();integrity=c.getString(0);}
-        return new JSONObject().put("engine","X10-Android-2").put("release",manifest.optString("balanced_version","2.0")).put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots")).put("archived_models",dbCount("model_archives"));
+        long learned=0;if(manifest.has("entity_version")){for(String name:new String[]{"entity","entity-voice"}){byte[] bytes=state(name);banks.put(name,hash(bytes));}try(XiSession s=new XiSession(state("entity"))){learned=s.number(EntityCycle.E+128,8);}}
+        return new JSONObject().put("engine","X10-Android-2").put("release",manifest.optString("entity_version",manifest.optString("balanced_version","2.0"))).put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots")).put("archived_models",dbCount("model_archives")).put("entity_tasks",dbCount("entity_tasks")).put("shared_updates",learned);
     }
     @Override public synchronized void close(){db.close();synchronized(PersonalEngine.class){if(instance==this)instance=null;}}
 }

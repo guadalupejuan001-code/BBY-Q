@@ -1,0 +1,14 @@
+{
+  "version": "E02-Entidad-1",
+  "base": "7a3130aaeebc3b46da97b3010732ca17c6081507",
+  "seed": 620511,
+  "objective": "One persistent task workspace and outcome across memory, perception, rule inference, planning and learned language; native XI learning, no host model or answer generator",
+  "task": "Recall a binary rule from QMemory, classify 1000 sensor values with VQC3, infer goal 0 or 6 from class XOR rule, plan a step with QRL3, verbalize the actual proposed step with QChat100; refuse if a premise is missing",
+  "training": {"cycles": [84, 252, 504], "voice_epochs": [10, 30, 60], "vqc_lr": 0.01, "qrl_lr": 0.015, "voice_lr": 0.10, "memory_continuation_every": 42},
+  "validation": {"episodes": 56, "seed_namespace": "E02-validation"},
+  "test": {"episodes": 112, "seed_namespace": "E02-test", "open_after_selection": true},
+  "gates": {"joint_step_accuracy": 0.85, "voice_exactness": 0.95, "missing_premise_refusal": 1.0, "e01_models_immutable": true},
+  "controls": ["E01 routing cannot solve a composed mission", "erase memory", "ablate VQC observations", "replace QRL with random", "zero voice observables", "freeze common learning"],
+  "selection": "Validation only, retain E01 base weights if a continuation regresses; shared-controller and voice updates reported separately; all failures retained",
+  "limits": "A bounded cooperative task and common evidence/feedback cycle, not open-ended general reasoning, joint differentiation or demonstrated quantum advantage"
+}

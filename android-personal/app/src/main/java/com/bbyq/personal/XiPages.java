@@ -57,7 +57,7 @@ final class XiPages implements AutoCloseable {
     }
     int mobileRoute(byte[] raw) throws Exception {
         frame(Arrays.copyOf(raw,Math.min(raw.length,8192)),0,raw.length,"");role("mobile-route");
-        if(number(B+512,1)==254)throw new IOException("Usa memoria guarda CLAVE 0|1; memoria corrige CLAVE 0|1; memoria consulta CLAVE; memoria estado; qchat TEXTO");
+        if(number(B+512,1)==254)throw new IOException("Usa memoria guarda CLAVE 0|1; memoria consulta CLAVE; qchat TEXTO; mision {memoria, posicion, datos|muestra}; evaluar {tarea, resultado}");
         return (int)number(B+512,1);
     }
     boolean qchatNeedsPrevious(String prompt) throws Exception {

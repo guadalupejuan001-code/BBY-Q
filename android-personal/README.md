@@ -1,4 +1,11 @@
-# BBY Q · X10 Android 2.1 E01
+# BBY Q · X10 Android 2.2 E02
+
+E02 añade un ciclo de trabajo compartido con evidencia y aprendizaje evaluable.
+La misión une QMemory, VQC3, inferencia de reglas XI, QRL3 y una cabeza de voz
+aprendida de QChat100. Se abre en «Resolver una misión» y se evalúa en «Evaluar
+última tarea». Los ejemplos del diálogo son sintéticos; la interfaz también
+admite un array de 1.000 datos externos. Véase `integration/entity/README.md`
+para pruebas, límites, controles y reglas de aprendizaje supervisado.
 
 `com.bbyq.personalx`, Android 10+, ARM64 y x86-64. Una transacción SQLite
 publica juntos mensajes, contexto, lecciones, estados y comprobante del turno.
