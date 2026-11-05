@@ -92,6 +92,10 @@ if entity:
  assert all(any(c['action']==a for c in cases) for a in [0,1,2])
  (tests/'entity-cases.json').write_text(json.dumps(cases,ensure_ascii=False)+'\n')
 subprocess.run(['node',str(root/'android-personal/scripts/prepare-unified.mjs')],check=True)
+subprocess.run([sys.executable,str(root/'integration/sequence1/build.py')],check=True)
+subprocess.run([sys.executable,str(root/'integration/sequence1/android_fixture.py')],check=True)
+for name in ['model.xi','schema.json']:
+ (dest/('sequence1-'+('codec.xi' if name=='model.xi' else name))).write_bytes((root/'build/sequence1'/name).read_bytes())
 for p in dest.iterdir():
  if p.name not in ['manifest.json','chat-fixtures.json']:files[p.name]=sha(p.read_bytes())
 if 'zero.xi' in files:identities['zero']=sha((files['zero.xi']+files['zero-schema.json']).encode())
@@ -112,5 +116,6 @@ if active:
   (tests/('old-'+label+'.rvpbin')).write_bytes((old/old_manifest['file']).read_bytes())
  (tests/'old-identities.json').write_text(json.dumps(manifest['previous_identities']))
 if 'zero.xi' in files:manifest.update({'zero_version':'0','version':'BBY Q 0 Android 3.0','general_intelligence_claimed':False})
+manifest['sequence1']={'codec_version':'C1-Sequence-1','experimental':True,'active_language_model':False,'reason':'Compatible readout must pass validation before promotion'}
 (dest/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({'ok':True,'files':len(files),'assets_bytes':sum(p.stat().st_size for p in dest.iterdir()),'chat_model_sha256':release['model_sha256'],'quantum_model_sha256':qm['checkpoint_sha256']}))

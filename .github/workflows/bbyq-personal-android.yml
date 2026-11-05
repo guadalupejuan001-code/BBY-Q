@@ -1,7 +1,7 @@
 name: BBY Q personal Android APK
 on:
   pull_request:
-    paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', 'ai/xi/balance/**', 'ai/xi/entity/**', 'integration/balance/**', 'integration/entity/**', 'integration/zero/**', '.github/workflows/bbyq-personal-android.yml']
+    paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/sequence1/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', 'ai/xi/balance/**', 'ai/xi/entity/**', 'integration/sequence1/**', 'integration/balance/**', 'integration/entity/**', 'integration/zero/**', '.github/workflows/bbyq-personal-android.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,6 +42,7 @@ jobs:
           python3 integration/balance/verify.py
           python3 integration/entity/verify.py
           python3 integration/zero/verify.py
+          python3 integration/sequence1/verify_codec.py
       - name: Install Android tools
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
@@ -63,6 +64,7 @@ jobs:
             build/balance-release-checks.json
             build/entity-release-checks.json
             build/zero-release-checks.json
+            build/sequence1/codec-checks.json
             android-personal/build.log
           if-no-files-found: warn
           retention-days: 30
