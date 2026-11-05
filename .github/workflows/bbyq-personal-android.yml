@@ -1,7 +1,7 @@
 name: BBY Q personal Android APK
 on:
   pull_request:
-    paths: ['android-personal/**', '.github/workflows/bbyq-personal-android.yml']
+    paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', '.github/workflows/bbyq-personal-android.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -28,6 +28,8 @@ jobs:
         with: {distribution: temurin, java-version: '17'}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
       - uses: gradle/actions/setup-gradle@v4
         with: {gradle-version: '8.9'}
       - name: Restore the real preserved models and test the native chat

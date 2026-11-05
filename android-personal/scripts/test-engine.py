@@ -34,3 +34,5 @@ assert 'Hola X, música y memoria.' in fixtures[3]['response']
 assert 'una leccion personal de X'.lower() in fixtures[5]['response'].lower()
 (assets/'chat-fixtures.json').write_text(json.dumps(fixtures,ensure_ascii=False,indent=2)+'\n')
 (work/'evidence.json').write_text(json.dumps({'ok':True,'cases':len(fixtures),'chat_seed_sha256':original,'source':'existing native XI X08','new_language_model':False},indent=2)+'\n')
+test_assets=root/'android-personal/app/src/androidTest/assets';test_assets.mkdir(parents=True,exist_ok=True)
+(test_assets/'migration-model.rvp.gz').write_bytes(gzip.compress(state.read_bytes(),mtime=0))

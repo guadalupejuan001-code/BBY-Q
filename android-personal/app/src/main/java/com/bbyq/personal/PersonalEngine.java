@@ -5,160 +5,292 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AtomicFile;
 import com.reversepc.os.NativeRuntime;
-import com.reversepc.os.ResultPacket;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 import java.io.*;
 import java.nio.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.*;
-import java.util.zip.GZIPInputStream;
+import java.util.zip.*;
 
-/** Android transport for the existing XI chat and V3 models. No Java language model. */
-public final class PersonalEngine {
- private static PersonalEngine instance;
- public static synchronized PersonalEngine get(Context c)throws Exception {
-  if(instance==null)instance=new PersonalEngine(c.getApplicationContext());
-  return instance;
- }
- private final Context context;
- private final AtomicFile conversation,quantum;
- private final SQLiteDatabase history;
- private final Map<String,byte[]> cache=new HashMap<>();
- private final JSONObject manifest;
- private static final long F=9100000000000200000L,C=F+256,A=8140000000000000000L;
- public PersonalEngine(Context c)throws Exception {
-  context=c;
-  File dir=new File(c.getFilesDir(),"bbyq-personal");if(!dir.exists()&&!dir.mkdirs())throw new IOException("No se pudo abrir tu memoria");
-  conversation=new AtomicFile(new File(dir,"conversation.rvp"));
-  quantum=new AtomicFile(new File(dir,"quantum-v3.rvp"));
-  history=SQLiteDatabase.openOrCreateDatabase(new File(dir,"history.sqlite"),null);
-  history.execSQL("CREATE TABLE IF NOT EXISTS messages(id INTEGER PRIMARY KEY,role TEXT NOT NULL,text TEXT NOT NULL,created INTEGER NOT NULL)");
-  manifest=new JSONObject(new String(raw("engine/manifest.json"),StandardCharsets.UTF_8));
- }
- private byte[] raw(String name)throws IOException {
-  try(InputStream in=context.getAssets().open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){
-   byte[] b=new byte[16384];int n;
-   while((n=in.read(b))!=-1){if(out.size()+n>32*1024*1024)throw new IOException("Activo demasiado grande");out.write(b,0,n);}
-   return out.toByteArray();
-  }
- }
- public static String hash(byte[] b)throws Exception {
-  byte[] d=MessageDigest.getInstance("SHA-256").digest(b);StringBuilder s=new StringBuilder();
-  for(byte v:d)s.append(String.format(Locale.ROOT,"%02x",v&255));return s.toString();
- }
- private byte[] asset(String name)throws Exception {
-  if(!cache.containsKey(name)){
-   byte[] b=raw("engine/"+name);
-   if(!hash(b).equals(manifest.getJSONObject("files").getString(name)))throw new IOException("El archivo del motor no coincide: "+name);
-   cache.put(name,b);
-  }return cache.get(name);
- }
- private byte[] seed(String name)throws Exception {
-  try(GZIPInputStream in=new GZIPInputStream(new ByteArrayInputStream(asset(name)));ByteArrayOutputStream out=new ByteArrayOutputStream()){
-   byte[] b=new byte[16384];int n;while((n=in.read(b))!=-1){if(out.size()+n>32*1024*1024)throw new IOException("Memoria demasiado grande");out.write(b,0,n);}
-   return out.toByteArray();
-  }
- }
- private byte[] read(AtomicFile file,String name)throws Exception {
-  if(!file.getBaseFile().exists()&&!new File(file.getBaseFile().getPath()+".bak").exists()){
-   byte[] state=seed(name);NativeRuntime.inspect(state);commit(file,state);return state;
-  }return file.readFully();
- }
- private void commit(AtomicFile f,byte[] state)throws Exception {
-  NativeRuntime.inspect(state);FileOutputStream out=null;
-  try{out=f.startWrite();out.write(state);f.finishWrite(out);}catch(Exception e){if(out!=null)f.failWrite(out);throw e;}
- }
- private ResultPacket xi(byte[] state,String source){return ResultPacket.parse(NativeRuntime.execute(state,source));}
- private ResultPacket role(byte[] state,String name)throws Exception {
-  byte[] data=asset(name);return name.endsWith(".rxe")?ResultPacket.parse(NativeRuntime.executeRxe(state,data)):xi(state,new String(data,StandardCharsets.UTF_8));
- }
- private static int memoryByte(byte[] state,long address)throws IOException {
-  if(state.length<29)throw new IOException("Memoria incompleta");
-  long n=ByteBuffer.wrap(state).order(ByteOrder.LITTLE_ENDIAN).getLong(5);
-  if(n<0||n>state.length-29)throw new IOException("Memoria inválida");
-  byte[] needle=("O "+address+" ").getBytes(StandardCharsets.US_ASCII);int begin=29+(int)n;
-  outer:for(int i=begin;i+needle.length<state.length;i++){
-   if(i>begin&&state[i-1]!=10)continue;
-   for(int j=0;j<needle.length;j++)if(state[i+j]!=needle[j])continue outer;
-   int value=0,j=i+needle.length;
-   while(j<state.length&&state[j]>=48&&state[j]<=57){value=value*10+state[j++]-48;if(value>255)throw new IOException("Byte inválido");}
-   return value;
-  }return 0;
- }
- private static String speech(String output)throws Exception {
-  ByteArrayOutputStream bytes=new ByteArrayOutputStream();
-  for(String line:output.split("\n")){
-   if(!line.startsWith("{"))continue;JSONObject e=new JSONObject(line);
-   if(e.optString("type").equals("register")&&Arrays.asList("r14","r9").contains(e.optString("register"))){
-    int v=e.getInt("value");if(v<0||v>255||bytes.size()>65536)throw new IOException("Respuesta inválida");bytes.write(v);
-   }
-  }
-  if(bytes.size()==0)throw new IOException("El motor no produjo respuesta");
-  return StandardCharsets.UTF_8.newDecoder().onMalformedInput(java.nio.charset.CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes.toByteArray())).toString();
- }
- public synchronized String chat(String message)throws Exception {
-  byte[] input=message.getBytes(StandardCharsets.UTF_8);
-  if(input.length==0||input.length>16384)throw new IOException("Escribe entre 1 y 16.384 bytes de texto");
-  byte[] state=read(conversation,"chat-model.rvpbin");
-  state=role(state,"guard.xi").state;
-  StringBuilder frame=new StringBuilder("#!reverse-pc-machine-v1\n");
-  frame.append("store8 ").append(F+2).append(" 1\nstore8 ").append(F+3).append(" 0\nstore8 ").append(F+4).append(" 1\n");
-  frame.append("store8 ").append(F+8).append(" ").append(input.length&255).append("\nstore8 ").append(F+9).append(" ").append(input.length>>8).append("\nstore8 ").append(F+10).append(" 0\n");
-  for(int i=0;i<input.length;i++)frame.append("store8 ").append(C+i).append(" ").append(input[i]&255).append("\n");
-  state=xi(state,frame.append("halt\n").toString()).state;
-  ResultPacket result=role(state,"front.rxe");
-  if(memoryByte(result.state,9120000000000000002L)==0)result=role(result.state,"code.rxe");
-  if(memoryByte(result.state,F+3)==3)throw new IOException("Este mensaje no es compatible con el módulo solicitado");
-  if(memoryByte(result.state,F+2)!=0)throw new IOException("El motor no consumió la entrada");
-  String response=speech(result.output);
-  if(memoryByte(result.state,9090000000000000002L)==2)response+="\n\nLa ejecución de tareas de escritorio aún no está disponible en esta versión móvil.";
-  byte[] finished=role(result.state,"text-finish.xi").state;
-  commit(conversation,finished);
-  history.beginTransaction();try{
-   history.execSQL("INSERT INTO messages(role,text,created) VALUES(?,?,?)",new Object[]{"user",message,System.currentTimeMillis()});
-   history.execSQL("INSERT INTO messages(role,text,created) VALUES(?,?,?)",new Object[]{"assistant",response,System.currentTimeMillis()});
-   history.setTransactionSuccessful();
-  }finally{history.endTransaction();}
-  return response;
- }
- public synchronized JSONArray messages(){
-  JSONArray all=new JSONArray();
-  try(Cursor c=history.rawQuery("SELECT role,text FROM (SELECT id,role,text FROM messages ORDER BY id DESC LIMIT 100) ORDER BY id",null)){
-   while(c.moveToNext())try{all.put(new JSONObject().put("role",c.getString(0)).put("text",c.getString(1)));}catch(Exception ignored){}
-  }return all;
- }
- public synchronized String exportHistory(){
-  StringBuilder all=new StringBuilder("BBY Q · X\n\n");
-  try(Cursor c=history.rawQuery("SELECT role,text FROM messages ORDER BY id",null)){
-   while(c.moveToNext())all.append(c.getString(0).equals("user")?"X":"BBY Q").append(": ").append(c.getString(1)).append("\n\n");
-  }return all.toString();
- }
- private String library()throws Exception{return new String(asset("v3-common.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-benchmarks.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-qrl3.xi"),StandardCharsets.UTF_8);}
- private ResultPacket quantum(byte[] state,String body)throws Exception{return xi(state,"#!reverse-pc-machine-v1\nbudget 10000000\n"+body+"\nhalt\n"+library());}
- private static JSONObject metrics(String text)throws Exception{
-  JSONObject out=new JSONObject();
-  for(String line:text.split("\n"))if(line.startsWith("{")){JSONObject e=new JSONObject(line);if(e.optString("type").equals("metric"))out.put(e.getString("name"),e.getDouble("value"));}
-  return out;
- }
- public synchronized JSONObject quantumStatus()throws Exception{
-  byte[] state=read(quantum,"quantum-model.rvpbin");
-  StringBuilder body=new StringBuilder("load8 r0 "+(A+1000)+"\ncmp r0 173\nje valid_model\ndiv r0 0\nlabel valid_model\n");
-  for(int r=0;r<2;r++)body.append("load64 r0 ").append(A+(r==0?4000:5000)).append("\nitof f0 r0\nfemit ").append(r==0?"vqc_episodes":"qrl_episodes").append(" f0\n");
-  JSONObject data=metrics(quantum(state,body.toString()).output);
-  data.put("qubits_per_agent",1000);data.put("backend","XI/Ether nativo · sin MPS");return data;
- }
- public synchronized JSONObject quantumAction()throws Exception{
-  byte[] state=read(quantum,"quantum-model.rvpbin");
-  String body="store64 "+(A+344)+" 3\nstore64 "+(A+352)+" 6\nstore64 "+(A+360)+" 0\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 2\ncall qrl_observe\n";
-  body+=new String(asset("v3-qrl3-act.xi"),StandardCharsets.UTF_8).replaceFirst("^#!reverse-pc-machine-v1\\n","");
-  return metrics(quantum(state,body.replace("\nhalt\n","\n")).output);
- }
- public synchronized JSONObject trainEpisode()throws Exception {
-  byte[] state=read(quantum,"quantum-model.rvpbin");
-  ResultPacket result=quantum(state,"fstore "+(A+304)+" .15\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 0\nstore64 "+(A+328)+" 0\nstore64 "+(A+336)+" 0\ncall qrl_episode");
-  commit(quantum,result.state);return quantumStatus();
- }
- public synchronized String stateHash()throws Exception{return hash(read(conversation,"chat-model.rvpbin"));}
+/** One durable Android session for X10, history, QChat100, QMemory and V3.
+ * Java transports bytes and transactions. XI owns text and circuit decisions. */
+public final class PersonalEngine implements AutoCloseable {
+    private static PersonalEngine instance;
+    public static synchronized PersonalEngine get(Context c)throws Exception {
+        if(instance==null)instance=new PersonalEngine(c.getApplicationContext());return instance;
+    }
+    private final Context context;
+    final SQLiteDatabase db;
+    private final Map<String,byte[]> cache=new HashMap<>();
+    private final JSONObject manifest;
+    private static final long F=9100000000000200000L,C=F+256,LEGACY=9110000000000000000L,ROWS=LEGACY+4096;
+    private static final long A=8140000000000000000L,M=8170000000000000000L;
+    private static final int MAX_STATE=32*1024*1024;
+    private static final String[] BANKS={"chat","quantum","qchat","qmemory"};
+    private static final String[] SEEDS={"chat-model.rvpbin","quantum-model.rvpbin","qchat-model.rvpbin","qmemory-model.rvpbin"};
+    public PersonalEngine(Context c)throws Exception {
+        context=c;File dir=new File(c.getFilesDir(),"bbyq-unified");
+        if(!dir.exists()&&!dir.mkdirs())throw new IOException("No se pudo abrir tu sesión");
+        manifest=new JSONObject(new String(raw("engine/manifest.json"),StandardCharsets.UTF_8));
+        db=SQLiteDatabase.openOrCreateDatabase(new File(dir,"session.sqlite"),null);
+        boolean ready=false;
+        try {
+            db.execSQL("PRAGMA synchronous=FULL");
+            db.beginTransaction();
+            try {
+                db.execSQL("CREATE TABLE IF NOT EXISTS metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS states(name TEXT PRIMARY KEY,data BLOB NOT NULL,digest TEXT NOT NULL,identity TEXT NOT NULL)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS lessons(key TEXT PRIMARY KEY,record BLOB NOT NULL CHECK(length(record)=640),digest TEXT NOT NULL,slot INTEGER UNIQUE)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS messages(id INTEGER PRIMARY KEY,request_id TEXT,role TEXT NOT NULL,text TEXT NOT NULL,created INTEGER NOT NULL,UNIQUE(request_id,role))");
+                db.execSQL("CREATE TABLE IF NOT EXISTS receipts(id TEXT PRIMARY KEY,digest TEXT NOT NULL,generation INTEGER NOT NULL,result TEXT NOT NULL)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS context_turns(generation INTEGER PRIMARY KEY,utterance TEXT NOT NULL,reply TEXT NOT NULL,digest TEXT NOT NULL)");
+                db.execSQL("CREATE TABLE IF NOT EXISTS memory_slots(key TEXT PRIMARY KEY,slot INTEGER UNIQUE NOT NULL CHECK(slot>=0 AND slot<250))");
+                if(meta("schema",null)==null)initialize();
+                if(!meta("schema","").equals("X10-Android-2"))throw new IOException("Versión de sesión incompatible");
+                for(String bank:BANKS)checkIdentity(bank);
+                db.setTransactionSuccessful();ready=true;
+            } finally {db.endTransaction();}
+        } finally {if(!ready)db.close();}
+    }
+    private byte[] raw(String name)throws IOException {
+        try(InputStream in=context.getAssets().open(name)){return bounded(in);}
+    }
+    private static byte[] bounded(InputStream in)throws IOException {
+        try(ByteArrayOutputStream out=new ByteArrayOutputStream()){
+            byte[] b=new byte[16384];int n;while((n=in.read(b))!=-1){if(out.size()+n>MAX_STATE)throw new IOException("Límite de estado superado");out.write(b,0,n);}return out.toByteArray();
+        }
+    }
+    public static String hash(byte[] b)throws Exception {
+        byte[] d=MessageDigest.getInstance("SHA-256").digest(b);StringBuilder s=new StringBuilder();for(byte v:d)s.append(String.format(Locale.ROOT,"%02x",v&255));return s.toString();
+    }
+    byte[] asset(String name)throws Exception {
+        if(!cache.containsKey(name)){
+            byte[] b=raw("engine/"+name);if(!hash(b).equals(manifest.getJSONObject("files").getString(name)))throw new IOException("Activo del motor alterado: "+name);cache.put(name,b);
+        }return cache.get(name);
+    }
+    private byte[] seed(String name)throws Exception {try(GZIPInputStream in=new GZIPInputStream(new ByteArrayInputStream(asset(name)))){return bounded(in);}}
+    private static byte[] pack(byte[] data)throws IOException {ByteArrayOutputStream b=new ByteArrayOutputStream();try(GZIPOutputStream out=new GZIPOutputStream(b)){out.write(data);}return b.toByteArray();}
+    private static byte[] unpack(byte[] data)throws IOException {try(GZIPInputStream in=new GZIPInputStream(new ByteArrayInputStream(data))){return bounded(in);}}
+    private String identity(String bank)throws Exception{return manifest.getJSONObject("identities").getString(bank);}
+    private void putMeta(String key,Object value){db.execSQL("INSERT OR REPLACE INTO metadata VALUES(?,?)",new Object[]{key,String.valueOf(value)});}
+    private String meta(String key,String fallback){try(Cursor c=db.rawQuery("SELECT value FROM metadata WHERE key=?",new String[]{key})){return c.moveToFirst()?c.getString(0):fallback;}}
+    private int count(){return Integer.parseInt(meta("count","0"));}
+    private void checkIdentity(String name)throws Exception {try(Cursor c=db.rawQuery("SELECT identity FROM states WHERE name=?",new String[]{name})){if(!c.moveToFirst()||!identity(name).equals(c.getString(0)))throw new IOException("El motor cambió; conservé el estado de "+name);}}
+    private byte[] state(String name)throws Exception {
+        checkIdentity(name);try(Cursor c=db.rawQuery("SELECT data,digest FROM states WHERE name=?",new String[]{name})){
+            if(!c.moveToFirst())throw new IOException("Estado ausente: "+name);byte[] b=unpack(c.getBlob(0));if(!hash(b).equals(c.getString(1)))throw new IOException("Checkpoint alterado: "+name);return b;
+        }
+    }
+    private void save(String name,byte[] b)throws Exception {db.execSQL("INSERT OR REPLACE INTO states VALUES(?,?,?,?)",new Object[]{name,pack(b),hash(b),identity(name)});}
+    private void initialize()throws Exception {
+        File old=new File(context.getFilesDir(),"bbyq-personal");
+        for(int i=0;i<BANKS.length;i++){
+            AtomicFile prior=new AtomicFile(new File(old,i==0?"conversation.rvp":"quantum-v3.rvp"));
+            boolean migrate=i<2&&(prior.getBaseFile().exists()||new File(prior.getBaseFile()+".bak").exists());
+            byte[] b=migrate?prior.readFully():seed(SEEDS[i]);NativeRuntime.inspect(b);save(BANKS[i],b);
+        }
+        putMeta("generation",0);refreshLessons(state("chat"));
+        File history=new File(old,"history.sqlite");
+        if(history.exists())try(SQLiteDatabase source=SQLiteDatabase.openDatabase(history.getPath(),null,SQLiteDatabase.OPEN_READONLY);
+             Cursor rows=source.rawQuery("SELECT role,text,created FROM messages ORDER BY id",null)){
+            while(rows.moveToNext())db.execSQL("INSERT INTO messages(role,text,created) VALUES(?,?,?)",new Object[]{rows.getString(0),rows.getString(1),rows.getLong(2)});
+        }
+        putMeta("schema","X10-Android-2");putMeta("migrated",old.exists());
+    }
+    // Scan the serialized sparse overrides once; do not expand the logical address space.
+    static byte[] memory(byte[] state,long base,int length)throws IOException {
+        if(state.length<29)throw new IOException("Estado incompleto");ByteBuffer header=ByteBuffer.wrap(state).order(ByteOrder.LITTLE_ENDIAN);
+        long core=header.getLong(5),mem=header.getLong(13);if(core<0||mem<0||core+mem!=state.length-29)throw new IOException("Longitudes RVPC2 inválidas");
+        byte[] out=new byte[length];int p=29+(int)core;
+        while(p<state.length){int end=p;while(end<state.length&&state[end]!=10)end++;
+            if(end>p+4&&state[p]=='O'&&state[p+1]==' '){long address=0;int j=p+2;
+                while(j<end&&state[j]>='0'&&state[j]<='9'){int v=state[j++]-'0';if(address>(Long.MAX_VALUE-v)/10)throw new IOException("Dirección inválida");address=address*10+v;}
+                if(address>=base&&address-base<length&&j<end&&state[j++]==' '){int v=0;while(j<end&&state[j]>='0'&&state[j]<='9')v=v*10+state[j++]-'0';if(v>255)throw new IOException("Byte inválido");out[(int)(address-base)]=(byte)v;}
+            }p=end+1;
+        }return out;
+    }
+    private void refreshLessons(byte[] state)throws Exception {
+        byte[] rows=memory(state,ROWS,4096*640),meta=memory(state,LEGACY,12);int total=0;
+        for(int slot=0;slot<4096;slot++){int start=slot*640;if(rows[start]!=1)continue;byte[] record=Arrays.copyOfRange(rows,start,start+640);int n=record[1]&255;if(n<1||n>64)throw new IOException("Clave de lección inválida");
+            String key=XiPages.text(Arrays.copyOfRange(record,16,16+n));
+            db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});total++;
+        }
+        int expected=(meta[2]&255)|((meta[3]&255)<<8);if(total!=expected)throw new IOException("Recuento de lecciones incompatible");
+        putMeta("count",dbCount("lessons"));long revision=0;for(int i=0;i<4;i++)revision|=(meta[8+i]&255L)<<(8*i);putMeta("revision",revision);
+    }
+    private int dbCount(String table){try(Cursor c=db.rawQuery("SELECT count(*) FROM "+table,null)){c.moveToFirst();return c.getInt(0);}}
+    public synchronized String chat(String message)throws Exception{return chat(UUID.randomUUID().toString(),message);}
+    public synchronized String chat(String requestId,String message)throws Exception{return turn(requestId,message,false).getString("response");}
+    synchronized JSONObject testTurn(String id,String text,boolean failBeforeCommit)throws Exception{return turn(id,text,failBeforeCommit);}
+    private JSONObject turn(String id,String message,boolean failBeforeCommit)throws Exception {
+        if(id==null||!id.matches("[A-Za-z0-9_.-]{1,96}"))throw new IOException("Identificador de operación inválido");
+        byte[] raw=XiPages.utf8(message);if(raw.length==0||raw.length>1048576)throw new IOException("Tamaño de mensaje inválido");String digest=hash(raw);
+        db.beginTransaction();try {
+            try(Cursor c=db.rawQuery("SELECT digest,result FROM receipts WHERE id=?",new String[]{id})){
+                if(c.moveToFirst()){if(!digest.equals(c.getString(0)))throw new IOException("El identificador ya corresponde a otro mensaje");JSONObject replay=new JSONObject(c.getString(1));replay.put("replayed",true);return replay;}
+            }
+            long generation=Long.parseLong(meta("generation","0"));if(generation>=1048576)throw new IOException("Capacidad de sesión alcanzada");
+            long started=System.nanoTime();JSONObject result;
+            try(XiPages pages=new XiPages(this)){pages.validate(raw);result=dispatch(pages,raw,message);}
+            String response=result.getString("response");if(XiPages.utf8(response).length>1048576)throw new IOException("Límite de respuesta superado");
+            result.put("generation",generation+1).put("request_id",id).put("replayed",false).put("elapsed_ms",(System.nanoTime()-started)/1000000.0);
+            long now=System.currentTimeMillis();db.execSQL("INSERT INTO messages(request_id,role,text,created) VALUES(?,?,?,?)",new Object[]{id,"user",message,now});
+            db.execSQL("INSERT INTO messages(request_id,role,text,created) VALUES(?,?,?,?)",new Object[]{id,"assistant",response,now});
+            if(!result.optBoolean("context_skip")){
+                String utterance=raw.length<=384?message:"",reply=XiPages.utf8(response).length<=512?response:"";
+                db.execSQL("INSERT INTO context_turns VALUES(?,?,?,?)",new Object[]{generation+1,utterance,reply,hash(XiPages.utf8(utterance))});
+                db.execSQL("DELETE FROM context_turns WHERE generation NOT IN (SELECT generation FROM context_turns ORDER BY generation DESC LIMIT 32)");
+            }
+            putMeta("generation",generation+1);db.execSQL("INSERT INTO receipts VALUES(?,?,?,?)",new Object[]{id,digest,generation+1,result.toString()});
+            if(failBeforeCommit)throw new IOException("Injected failure before commit");
+            db.setTransactionSuccessful();return result;
+        }finally{db.endTransaction();}
+    }
+    private static JSONObject reply(String text,String engine)throws Exception{return new JSONObject().put("response",text).put("engine",engine);}
+    private JSONObject dispatch(XiPages p,byte[] raw,String text)throws Exception {
+        int[] v3=p.quantumRoute(raw);if(v3[3]==1)return quantumTurn(v3,raw);
+        int mobile=p.mobileRoute(raw);if(mobile>=1&&mobile<=4)return memoryTurn(p,mobile);
+        if(mobile==5){int offset=(int)p.number(XiPages.B+513,1);return generated(XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)),true);}
+        JSONArray rows=contextRows();JSONObject recalled=contextTurn(p,raw,rows);if(recalled!=null)return recalled;
+        int[] route=p.route(raw);int intent=p.intent(raw);
+        if(route[0]==2||route[0]==3)return reply(p.stream(raw,route[0]),"X10-stream-XI");
+        if(route[0]==1){
+            String key=XiPages.text(p.session.bytes(XiPages.B+2048,(int)p.number(XiPages.B+32,1)));byte[] old=null;Integer slot=null;
+            try(Cursor c=db.rawQuery("SELECT record,digest,slot FROM lessons WHERE key=?",new String[]{key})){
+                if(c.moveToFirst()){old=c.getBlob(0);if(!hash(old).equals(c.getString(1)))throw new IOException("Página de lección alterada");if(!c.isNull(2))slot=c.getInt(2);}
+            }
+            if(old!=null||route[1]<4||route[1]>7){
+                int revision=Integer.parseInt(meta("revision","0"));String response=p.record(old,count(),revision);int status=(int)p.number(XiPages.B+29,1);
+                if(status!=0)throw new IOException(response);int next=(int)p.number(XiPages.B+24,4);
+                if(next!=revision){
+                    byte[] record=p.number(XiPages.B+28,1)==1?p.session.bytes(XiPages.RECORD,640):null;
+                    if(record==null)db.execSQL("DELETE FROM lessons WHERE key=?",new Object[]{key});
+                    else db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});
+                    putMeta("count",p.number(XiPages.B+20,4));putMeta("revision",next);
+                    if(slot!=null)syncLesson(slot,record);
+                }
+                return reply(response,"X10-lessons-XI");
+            }
+        }
+        if(intent==3||intent==4){String composed=p.compose(raw);if(composed!=null)return reply(composed,"P04-XI");}
+        String reason=p.reason(raw);if(reason!=null)return reply(reason,"P03-XI");
+        if(intent!=5&&intent!=6){String canonical=p.paraphrase(raw);if(canonical!=null){
+            byte[] b=XiPages.utf8(canonical);int mode=(int)p.number(XiPages.PARAPHRASE+1,1);String answer=null;
+            if(mode==1){JSONObject r=contextTurn(p,b,rows);if(r!=null)return r;}
+            else if(mode>=2&&mode<=4)answer=p.compose(b);else if(mode==5)answer=p.reason(b);
+            if(answer!=null)return reply(answer,"P06-XI");
+        }}
+        if(intent==1){JSONObject candidate=generated(text,false);if(candidate!=null)return candidate;}
+        return legacy(raw,intent==5||intent==6);
+    }
+    private void syncLesson(int slot,byte[] record)throws Exception {
+        StringBuilder b=new StringBuilder("#!reverse-pc-machine-v1\n");XiPages.data(b,ROWS+slot*640L,record==null?new byte[640]:record);
+        try(Cursor c=db.rawQuery("SELECT count(*) FROM lessons WHERE slot IS NOT NULL",null)){c.moveToFirst();XiPages.put(b,LEGACY+2,c.getInt(0),2);}
+        XiPages.put(b,LEGACY+8,Long.parseLong(meta("revision","0")),4);
+        try(XiSession s=new XiSession(state("chat"))){s.run(b.append("halt\n").toString());save("chat",s.save());}
+    }
+    private JSONObject legacy(byte[] raw,boolean learn)throws Exception {
+        if(raw.length>16384)throw new IOException("Para textos de más de 16.384 bytes usa repetición exacta o resumen extractivo");
+        try(XiSession s=new XiSession(state("chat"))){
+            s.run(new String(asset("guard.xi"),StandardCharsets.UTF_8));StringBuilder b=new StringBuilder("#!reverse-pc-machine-v1\n");
+            for(long[] x:new long[][]{{F+2,1},{F+3,0},{F+4,1},{F+8,raw.length&255},{F+9,raw.length>>>8},{F+10,0}})XiPages.put(b,x[0],x[1],1);
+            XiPages.data(b,C,raw);s.run(b.append("halt\n").toString());String events=s.role(asset("front.rxe"));
+            if(s.number(9120000000000000002L,1)==0)events=s.role(asset("code.rxe"));
+            if(s.number(F+3,1)==3||s.number(F+2,1)!=0)throw new IOException("Entrada no consumida por el motor");
+            String response=XiPages.text(XiPages.speech(events,true));if(response.isEmpty())throw new IOException("El motor no emitió respuesta");
+            if(s.number(9090000000000000002L,1)==2)response+="\nLa ejecución de tareas de escritorio sigue disponible en el PC.";
+            s.run(new String(asset("text-finish.xi"),StandardCharsets.UTF_8));
+            if(learn){byte[] next=s.save();save("chat",next);refreshLessons(next);}
+            else if(response.equals("Registré tus datos.")||response.equals("Registré esa afirmación."))response="Recibí la afirmación. Para guardarla como aprendizaje, pide «recuerda que ...».";
+            return reply(response,"X08-preserved-X10").put("knowledge_read_only",!learn);
+        }
+    }
+    private JSONArray contextRows()throws Exception {
+        JSONArray rows=new JSONArray();try(Cursor c=db.rawQuery("SELECT generation,utterance,reply,digest FROM context_turns ORDER BY generation DESC LIMIT 8",null)){
+            while(c.moveToNext()){if(!hash(XiPages.utf8(c.getString(1))).equals(c.getString(3)))throw new IOException("Índice de conversación alterado");rows.put(new JSONObject().put("generation",c.getLong(0)).put("utterance",c.getString(1)).put("reply",c.getString(2)));}
+        }return rows;
+    }
+    private JSONObject contextTurn(XiPages p,byte[] raw,JSONArray rows)throws Exception {
+        int[] decision=p.context(raw,rows);int mode=decision[0];if(mode==0)return null;String response;
+        if(mode==6){int n=dbCount("context_turns");db.execSQL("DELETE FROM context_turns");response="Vacié "+n+" entradas del índice breve. Tu historial y tus lecciones siguen guardados.";}
+        else if(mode==7)response="El índice breve conserva "+dbCount("context_turns")+" turnos, con un máximo de 32; las consultas examinan los 8 más recientes.";
+        else if(mode==8){StringBuilder b=new StringBuilder("Últimos mensajes:\n");for(int i=0;i<Math.min(5,rows.length());i++)b.append(rows.getJSONObject(i).getString("utterance")).append('\n');response=b.toString();}
+        else if(mode==3)response="No encontré una mención verificable de ese tema en los turnos recientes.";
+        else if(mode==4)response="No puedo identificar un antecedente único. Menciona el tema por su nombre.";
+        else {JSONObject row=rows.getJSONObject(decision[1]-1);String value=row.getString(mode==9?"reply":"utterance");response=value.isEmpty()?"No tengo una entrada anterior completa dentro de la ventana conversacional.":"En el turno "+row.getLong("generation")+(mode==9?" respondí: «":" escribiste: «")+value+"».";}
+        return reply(response,"P05-XI").put("context_skip",true);
+    }
+    private JSONObject generated(String prompt,boolean explicit)throws Exception {
+        JSONArray rows=contextRows();String previous=rows.length()==0?"":rows.getJSONObject(0).getString("utterance");
+        JSONObject generated=QuantumText.generate(this,state("qchat"),prompt,previous);
+        if(!generated.getBoolean("terminated")||generated.getString("response").isEmpty()){
+            if(!explicit)return null;return reply("El generador no completó una respuesta dentro de su presupuesto de 16 tokens.","QChat100-XI").put("generation",generated);
+        }
+        if(!explicit&&generated.getDouble("log_probability")<-1)return null;
+        return reply(generated.getString("response"),"QChat100-XI").put("model_output",generated);
+    }
+    private String qLibrary()throws Exception {return new String(asset("v3-common.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-benchmarks.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-qrl3.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-step.xi"),StandardCharsets.UTF_8);}
+    private String quantum(XiSession s,String body)throws Exception{return s.run("#!reverse-pc-machine-v1\nbudget 10000000\n"+body+"\nhalt\n"+qLibrary());}
+    private JSONObject status(XiSession s)throws Exception {
+        if(s.number(A+1000,1)!=173)throw new IOException("Modelo V3 incompatible");
+        return new JSONObject().put("vqc_episodes",s.number(A+4000,8)).put("qrl_episodes",s.number(A+5000,8)).put("qubits_per_agent",1000).put("backend","XI/Ether nativo sin MPS");
+    }
+    public synchronized JSONObject quantumStatus()throws Exception {try(XiSession s=new XiSession(state("quantum"))){return status(s);}}
+    private JSONObject quantumTurn(int[] d,byte[] raw)throws Exception {
+        String help="quantum v3 estado; quantum v3 planea POSICIÓN OBJETIVO (0–6); quantum v3 clasifica [1000 números].";
+        if(d[0]==5||d[0]==254||d[0]==0)return reply(help,"V3-XI");
+        try(XiSession s=new XiSession(state("quantum"))){
+            if(d[0]==1){JSONObject st=status(s);return reply("VQC3: "+st.getLong("vqc_episodes")+" episodios; QRL3: "+st.getLong("qrl_episodes")+" episodios. 1.000 cúbits por agente.","V3-XI").put("metrics",st);}
+            if(d[0]==2)return reply("Los resultados publicados corresponden a tareas sintéticas y a checkpoints concretos. Consulta el informe de evaluación; no son una medida de conversación general.","V3-XI");
+            if(d[0]==4){JSONObject result=action(s,d[1],d[2]);return reply(result.optInt("terminal")==1?"El objetivo ya está alcanzado. No hay movimiento pendiente.":"QRL3 propone moverse a la "+(result.getInt("action")==1?"derecha":"izquierda")+" desde "+d[1]+" hacia "+d[2]+(d[2]==6?".":". Este objetivo no formó parte de su entrenamiento original."),"QRL3-XI").put("metrics",result);}
+            if(d[0]==3){
+                if(d[4]<1||d[4]>=raw.length||raw.length-d[4]>262144)throw new IOException("Entrada VQC3 fuera de límites");
+                JSONArray input=new JSONArray(XiPages.text(Arrays.copyOfRange(raw,d[4],raw.length)));if(input.length()!=1000)throw new IOException("Se requieren exactamente 1.000 números");
+                StringBuilder b=new StringBuilder("store64 "+A+" 0\nstore64 "+(A+280)+" 0\n");
+                for(int i=0;i<1000;i++){Object value=input.get(i);if(!(value instanceof Number)||!Double.isFinite(((Number)value).doubleValue()))throw new IOException("Se requieren números finitos");b.append("fstore ").append(A+300000+i*8L).append(' ').append(Double.toString(((Number)value).doubleValue())).append('\n');}
+                b.append("call select_agent\ncall forward\nfemit probability f21\n");JSONObject result=XiPages.metrics(quantum(s,b.toString()));
+                return reply("VQC3 predijo la clase "+(result.getDouble("probability")>=.5?1:0)+" para las 1.000 entradas numéricas.","VQC3-XI").put("metrics",result);
+            }throw new IOException("Acción V3 inválida");
+        }
+    }
+    private JSONObject action(XiSession s,int position,int goal)throws Exception {
+        if(position<0||position>6||goal<0||goal>6)throw new IOException("Posición u objetivo inválido");
+        return XiPages.metrics(quantum(s,"store64 "+(A+344)+" "+position+"\nstore64 "+(A+352)+" "+goal+"\nstore64 "+(A+360)+" 0\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 2\ncall qrl_step"));
+    }
+    public synchronized JSONObject quantumAction()throws Exception {try(XiSession s=new XiSession(state("quantum"))){return action(s,3,6);}}
+    public synchronized JSONObject trainEpisode()throws Exception {
+        db.beginTransaction();try(XiSession s=new XiSession(state("quantum"))){
+            JSONObject before=status(s);quantum(s,"fstore "+(A+304)+" .15\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 0\nstore64 "+(A+328)+" 0\nstore64 "+(A+336)+" 0\ncall qrl_episode");
+            JSONObject next=status(s);if(next.getLong("qrl_episodes")!=before.getLong("qrl_episodes")+1)throw new IOException("El entrenamiento no avanzó");save("quantum",s.save());db.setTransactionSuccessful();return next;
+        }finally{db.endTransaction();}
+    }
+    private JSONObject memoryTurn(XiPages p,int op)throws Exception {
+        if(op==4)return reply("QMemory: "+dbCount("memory_slots")+" asociaciones binarias guardadas, de 250 disponibles. 1.000 cúbits simulados; consulta y corrección usan las puertas entrenadas.","QMemory-XI");
+        String key=XiPages.text(p.session.bytes(XiPages.B+544,(int)p.number(XiPages.B+514,1)));int slot=-1;
+        try(Cursor c=db.rawQuery("SELECT slot FROM memory_slots WHERE key=?",new String[]{key})){if(c.moveToFirst())slot=c.getInt(0);}
+        if(op==1&&slot>=0)throw new IOException("La asociación ya existe. Usa memoria corrige "+key+" 0|1");
+        if(op!=1&&slot<0)throw new IOException("No encontré esa asociación cuántica");
+        if(slot<0){boolean[] used=new boolean[250];try(Cursor c=db.rawQuery("SELECT slot FROM memory_slots",null)){while(c.moveToNext())used[c.getInt(0)]=true;}for(int i=0;i<250;i++)if(!used[i]){slot=i;break;}if(slot<0)throw new IOException("La memoria binaria está completa");}
+        long site=20000+4L*slot;StringBuilder b=new StringBuilder("#!reverse-pc-machine-v1\nbudget 10000000\n");
+        if(op==1||op==2){int value=(int)p.number(XiPages.B+515,1);b.append("qprepare ").append(site).append(" 4\n");if(value==1)b.append("x ").append(site+1).append('\n');b.append("set r14 ").append(site).append("\nset r7 ").append(site+1).append("\nfload f5 ").append(M+64).append("\ncall qm_exchange\n");}
+        b.append("fexpect f0 Z:").append(site).append("\nfset f1 1\nfsub f1 f0\nfdiv f1 2\nfemit probability_one f1\nhalt\n").append(new String(asset("qmemory-model.xi"),StandardCharsets.UTF_8));
+        JSONObject result;
+        try(XiSession s=new XiSession(state("qmemory"))){result=XiPages.metrics(s.run(b.toString()));if(op==1||op==2){save("qmemory",s.save());db.execSQL("INSERT OR REPLACE INTO memory_slots VALUES(?,?)",new Object[]{key,slot});}}
+        int value=result.getDouble("probability_one")>=.5?1:0;
+        return reply((op==3?"La memoria cuántica recuperó ":op==2?"Reemplacé la asociación por ":"Guardé la asociación binaria ")+key+" = "+value+".","QMemory-XI").put("metrics",result);
+    }
+    public synchronized JSONArray messages(){
+        JSONArray all=new JSONArray();try(Cursor c=db.rawQuery("SELECT role,text FROM (SELECT id,role,text FROM messages ORDER BY id DESC LIMIT 100) ORDER BY id",null)){
+            while(c.moveToNext())try{all.put(new JSONObject().put("role",c.getString(0)).put("text",c.getString(1)));}catch(JSONException impossible){throw new IllegalStateException(impossible);}
+        }return all;
+    }
+    public synchronized String exportHistory(){StringBuilder b=new StringBuilder("BBY Q · X\n\n");try(Cursor c=db.rawQuery("SELECT role,text FROM messages ORDER BY id",null)){while(c.moveToNext())b.append(c.getString(0).equals("user")?"X":"BBY Q").append(": ").append(c.getString(1)).append("\n\n");}return b.toString();}
+    public synchronized String stateHash()throws Exception{return hash(state("chat"));}
+    public synchronized JSONObject sessionStatus()throws Exception {
+        JSONObject banks=new JSONObject();for(String name:BANKS){checkIdentity(name);try(Cursor c=db.rawQuery("SELECT digest FROM states WHERE name=?",new String[]{name})){c.moveToFirst();banks.put(name,c.getString(0));}}
+        String integrity;try(Cursor c=db.rawQuery("PRAGMA integrity_check",null)){c.moveToFirst();integrity=c.getString(0);}
+        return new JSONObject().put("engine","X10-Android-2").put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots"));
+    }
+    @Override public synchronized void close(){db.close();synchronized(PersonalEngine.class){if(instance==this)instance=null;}}
 }
