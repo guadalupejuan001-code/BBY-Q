@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "teacher": 0,
+  "correction": 1,
+  "distractors_per_segment": 10,
+  "turns": [
+    {
+      "operation": "teach",
+      "probability_one": 0,
+      "predicted": 0,
+      "state_sha256": "4ac67007893cd061b30e819c903f424bd738e4853be4bfb467585420a0e88cb6",
+      "reload_reproduced": true,
+      "elapsed_ms": 0.364126
+    },
+    {
+      "operation": "distractors",
+      "probability_one": 0.0014732256601450167,
+      "predicted": 0,
+      "state_sha256": "b6ef1672de01614facadc3d2f3df63b664f91257e42366af212fe050e6dc210f",
+      "reload_reproduced": true,
+      "elapsed_ms": 0.495654
+    },
+    {
+      "operation": "correct",
+      "probability_one": 0.9510714498172862,
+      "predicted": 1,
+      "state_sha256": "059090d4b055321dc3676871509710afc78b2d5238f90c0b00adb3630869210f",
+      "reload_reproduced": true,
+      "elapsed_ms": 0.390235
+    },
+    {
+      "operation": "more_distractors",
+      "probability_one": 0.950393658590427,
+      "predicted": 1,
+      "state_sha256": "6044d577d6c3fd1a93c341e6234e8c23ccb6a6b15ae0b75a545c9d0bff510f54",
+      "reload_reproduced": true,
+      "elapsed_ms": 0.517872
+    },
+    {
+      "operation": "query_after_data_erasure",
+      "probability_one": 0.950393658590427,
+      "predicted": 1,
+      "state_sha256": "b47ccdfdf51c650b58f6bc329ef285834d9452fd527a4ff36d68cf3a59b77e74",
+      "reload_reproduced": true,
+      "elapsed_ms": 0.399499
+    }
+  ],
+  "success": true,
+  "parameter_checkpoint_unchanged": true,
+  "scope": "One binary association in one four-qubit slot; no generated language or online weight update."
+}

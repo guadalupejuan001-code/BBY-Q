@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "model_identifier": 181,
+  "file": "QMemory-1000-Experimental.rvp.gz",
+  "checkpoint_sha256": "8e0ccae84597284b95a366683e0522e563e766d07cd40873ebc3215342ead33b",
+  "gzip_sha256": "868b789f5412b588dd856b72d159dda883793a9179a2e6be8aae9eeacca087bb",
+  "checkpoint_bytes": 238936,
+  "native_source_sha256": "eee7e1777e63701709ceb571894f977c1b8516c11c08531accb0fb3e31dbca7f",
+  "training_report_sha256": "2a74e39b5a0656649bb518b1d63a79434045a7f0862e0fb9d1b7b22c9c5d3738",
+  "identity": {
+    "schema": 1,
+    "model": 181,
+    "groups": 250,
+    "qubits": 1000,
+    "base_seed": 181173,
+    "max_cycles": 8,
+    "steps_per_cycle": 10,
+    "native_source_sha256": "eee7e1777e63701709ceb571894f977c1b8516c11c08531accb0fb3e31dbca7f",
+    "controller_sha256": "eb7924fda23b727f70b952c03de600dc4f84bd916a1365b0ee590bf216cbc55d",
+    "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6"
+  },
+  "cycles": 1,
+  "updates_per_model": 10,
+  "runtime_source": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "ether_source": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "quantum_advantage_claimed": false,
+  "scope": "250 binary associations, one optional correction, distractors; analytic expectations; not open-ended language"
+}

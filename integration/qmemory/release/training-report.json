@@ -1,0 +1,879 @@
+{
+  "ok": true,
+  "identity": {
+    "schema": 1,
+    "model": 181,
+    "groups": 250,
+    "qubits": 1000,
+    "base_seed": 181173,
+    "max_cycles": 8,
+    "steps_per_cycle": 10,
+    "native_source_sha256": "eee7e1777e63701709ceb571894f977c1b8516c11c08531accb0fb3e31dbca7f",
+    "controller_sha256": "eb7924fda23b727f70b952c03de600dc4f84bd916a1365b0ee590bf216cbc55d",
+    "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6"
+  },
+  "status": "completed",
+  "budget_exhausted": false,
+  "cycles": 1,
+  "updates_per_model": 10,
+  "checkpoint": "cycle-001.rvp",
+  "checkpoint_sha256": "8e0ccae84597284b95a366683e0522e563e766d07cd40873ebc3215342ead33b",
+  "initial_checkpoint_sha256": "9be0338613000add548aabc1f4525c828dad4472250bd856cff5c21db0b3263d",
+  "protocol": {
+    "readout": "Fixed p=(1-<Z_memory>)/2; zero trained output weights",
+    "measurement": "Analytic Born expectations and threshold classification, not finite-shot physical measurements",
+    "quantum_trainable_parameters": 3,
+    "classical_trainable_parameters": 3,
+    "quantum_memory_bits": 250,
+    "ancillas_per_memory": 3,
+    "component_width": 4,
+    "mps": false,
+    "gradient": "Native XI central finite difference; repeated gates are not treated with an invalid single-use parameter shift",
+    "optimizer": "Native XI SGD; noise learning rate normalized by its reuse count",
+    "training_delays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "test_delays": [
+      2,
+      8,
+      12
+    ],
+    "generated_data_and_labels": "Native XI; query circuit never reads target cells",
+    "seed_splits": [
+      "train",
+      "validation",
+      "test"
+    ],
+    "classical_state": "Two scalar states per association; all the same supplied inputs",
+    "timings": "Exploratory single-host CPU timings, not a quantum speedup benchmark"
+  },
+  "history": [
+    {
+      "cycle": 1,
+      "updates_per_model": 10,
+      "quantum": {
+        "correct": 1000,
+        "examples": 1000,
+        "accuracy": 1.0,
+        "mse": 0.0011936300817520342,
+        "correction_accuracy": 1.0,
+        "episodes": 4,
+        "cases": [
+          {
+            "loss": 0.0010867598964733065,
+            "correct": 250,
+            "correction_cases": 134,
+            "correction_correct": 134,
+            "transport_ms": 139.800013,
+            "seed": 6521968,
+            "delay": 3,
+            "trace": {
+              "type": "quantum_trace",
+              "active_qubits": 1000,
+              "rotations": 3768,
+              "observations": 250,
+              "gates": 8557,
+              "preparations": 250,
+              "max_prepared_block": 4,
+              "distinct_rotated_qubits": 250,
+              "distinct_observed_qubits": 250,
+              "distinct_two_qubit_edges": 634
+            },
+            "backend": {
+              "type": "quantum_stats",
+              "clifford_components": 0,
+              "adaptive_components": 250,
+              "reduced_components": 0,
+              "coefficients": 0,
+              "factor_amplitudes": 2760,
+              "T_instructions": 0,
+              "payload_bytes": 136120,
+              "norm": 1.0000000000000469
+            },
+            "stats": {
+              "type": "stats",
+              "background": "zero",
+              "domain": "nonnegative_decimal_addresses",
+              "active_qubits": 1000,
+              "components": 250,
+              "largest_component": 4,
+              "tableau_bytes": 136120,
+              "address_bytes": 5000,
+              "ether_rules": 0,
+              "revision": 749869,
+              "limits": {
+                "max_active_qubits": 4096,
+                "max_component_qubits": 1024,
+                "max_state_bytes": 67108864,
+                "max_address_digits": 4096,
+                "max_query_terms": 4096,
+                "max_ether_rules": 4096,
+                "max_ether_query_sites": 4096
+              }
+            }
+          },
+          {
+            "loss": 0.0012838365648990006,
+            "correct": 250,
+            "correction_cases": 125,
+            "correction_correct": 125,
+            "transport_ms": 107.4856,
+            "seed": 825776930,
+            "delay": 3
+          },
+          {
+            "loss": 0.0012160550219206625,
+            "correct": 250,
+            "correction_cases": 136,
+            "correction_correct": 136,
+            "transport_ms": 126.045132,
+            "seed": 1288525961,
+            "delay": 7
+          },
+          {
+            "loss": 0.0011878688437151675,
+            "correct": 250,
+            "correction_cases": 129,
+            "correction_correct": 129,
+            "transport_ms": 131.146608,
+            "seed": 1097195702,
+            "delay": 7
+          }
+        ],
+        "usage": {
+          "peak_rss_kib": 4804,
+          "rusage_peak_rss_kib": 14976,
+          "rss_measurement": "Linux VmHWM after exec",
+          "cpu_ms": 442.564,
+          "active_qubits": 1000,
+          "quantum_payload_bytes": 135376
+        }
+      },
+      "parameters": {
+        "quantum_angles": [
+          1.3525745212904299,
+          1.3475863452572892,
+          0.007678410496294209
+        ],
+        "classical_angles": [
+          1.3843221525487597,
+          1.3653092844699473,
+          0.1038857298666211
+        ],
+        "quantum_updates": 10,
+        "classical_updates": 10
+      },
+      "last_training": {
+        "quantum": {
+          "loss": 0.0012090669482376192,
+          "correct": 250,
+          "correction_cases": 120,
+          "correction_correct": 120,
+          "transport_ms": 322.880253,
+          "seed": 1584989004,
+          "delay": 2
+        },
+        "classical": {
+          "loss": 0.0016424703518493925,
+          "correct": 250,
+          "correction_cases": 120,
+          "correction_correct": 120,
+          "transport_ms": 150.611876,
+          "seed": 1584989004,
+          "delay": 2
+        }
+      }
+    }
+  ],
+  "test": {
+    "trained_quantum": {
+      "correct": 3000,
+      "examples": 3000,
+      "accuracy": 1.0,
+      "mse": 0.0012512930086970514,
+      "correction_accuracy": 1.0,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.0010940022464511938,
+          "correct": 250,
+          "correction_cases": 119,
+          "correction_correct": 119,
+          "transport_ms": 94.032993,
+          "seed": 109390431,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2738,
+            "observations": 250,
+            "gates": 6242,
+            "preparations": 250,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 619
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2734,
+            "T_instructions": 0,
+            "payload_bytes": 135576,
+            "norm": 1.000000000000041
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 135576,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 746524,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.0010709511711352246,
+          "correct": 250,
+          "correction_cases": 132,
+          "correction_correct": 132,
+          "transport_ms": 85.925578,
+          "seed": 1065533238,
+          "delay": 2
+        },
+        {
+          "loss": 0.0011181932394440039,
+          "correct": 250,
+          "correction_cases": 136,
+          "correction_correct": 136,
+          "transport_ms": 102.300028,
+          "seed": 740080159,
+          "delay": 2
+        },
+        {
+          "loss": 0.0010476275939222865,
+          "correct": 250,
+          "correction_cases": 114,
+          "correction_correct": 114,
+          "transport_ms": 99.835051,
+          "seed": 1471126769,
+          "delay": 2
+        },
+        {
+          "loss": 0.0012192037180505932,
+          "correct": 250,
+          "correction_cases": 120,
+          "correction_correct": 120,
+          "transport_ms": 149.554897,
+          "seed": 666373433,
+          "delay": 8
+        },
+        {
+          "loss": 0.0013142320639128416,
+          "correct": 250,
+          "correction_cases": 123,
+          "correction_correct": 123,
+          "transport_ms": 157.626729,
+          "seed": 1837292301,
+          "delay": 8
+        },
+        {
+          "loss": 0.0012018976454524076,
+          "correct": 250,
+          "correction_cases": 133,
+          "correction_correct": 133,
+          "transport_ms": 151.214625,
+          "seed": 237475632,
+          "delay": 8
+        },
+        {
+          "loss": 0.0012347443651319738,
+          "correct": 250,
+          "correction_cases": 122,
+          "correction_correct": 122,
+          "transport_ms": 135.953928,
+          "seed": 956026988,
+          "delay": 8
+        },
+        {
+          "loss": 0.0014907151298206719,
+          "correct": 250,
+          "correction_cases": 106,
+          "correction_correct": 106,
+          "transport_ms": 194.366397,
+          "seed": 357013208,
+          "delay": 12
+        },
+        {
+          "loss": 0.0013390663749901224,
+          "correct": 250,
+          "correction_cases": 131,
+          "correction_correct": 131,
+          "transport_ms": 201.087393,
+          "seed": 956559433,
+          "delay": 12
+        },
+        {
+          "loss": 0.0014363732661877456,
+          "correct": 250,
+          "correction_cases": 130,
+          "correction_correct": 130,
+          "transport_ms": 183.554751,
+          "seed": 1786982121,
+          "delay": 12
+        },
+        {
+          "loss": 0.0014485092898655519,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 205.742947,
+          "seed": 404804524,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4796,
+        "rusage_peak_rss_kib": 14976,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1732.722,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 136352
+      }
+    },
+    "frozen_angles": {
+      "correct": 1522,
+      "examples": 3000,
+      "accuracy": 0.5073333333333333,
+      "mse": 0.355587278880935,
+      "correction_accuracy": 0.5374832663989291,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.30418307900332847,
+          "correct": 143,
+          "correction_cases": 119,
+          "correction_correct": 82,
+          "transport_ms": 75.15124,
+          "seed": 109390431,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2738,
+            "observations": 250,
+            "gates": 6242,
+            "preparations": 250,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 619
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2746,
+            "T_instructions": 0,
+            "payload_bytes": 135896,
+            "norm": 0.9999999999997935
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 135896,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 9480,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.28721969286309634,
+          "correct": 148,
+          "correction_cases": 132,
+          "correction_correct": 95,
+          "transport_ms": 98.830261,
+          "seed": 1065533238,
+          "delay": 2
+        },
+        {
+          "loss": 0.30557145538614655,
+          "correct": 145,
+          "correction_cases": 136,
+          "correction_correct": 91,
+          "transport_ms": 89.631649,
+          "seed": 740080159,
+          "delay": 2
+        },
+        {
+          "loss": 0.28920292822828136,
+          "correct": 148,
+          "correction_cases": 114,
+          "correction_correct": 75,
+          "transport_ms": 100.622745,
+          "seed": 1471126769,
+          "delay": 2
+        },
+        {
+          "loss": 0.3581496956361124,
+          "correct": 118,
+          "correction_cases": 120,
+          "correction_correct": 53,
+          "transport_ms": 152.677982,
+          "seed": 666373433,
+          "delay": 8
+        },
+        {
+          "loss": 0.3641309746010119,
+          "correct": 119,
+          "correction_cases": 123,
+          "correction_correct": 56,
+          "transport_ms": 166.508582,
+          "seed": 1837292301,
+          "delay": 8
+        },
+        {
+          "loss": 0.39214309050605284,
+          "correct": 116,
+          "correction_cases": 133,
+          "correction_correct": 56,
+          "transport_ms": 188.220398,
+          "seed": 237475632,
+          "delay": 8
+        },
+        {
+          "loss": 0.3892135570488479,
+          "correct": 111,
+          "correction_cases": 122,
+          "correction_correct": 57,
+          "transport_ms": 156.431152,
+          "seed": 956026988,
+          "delay": 8
+        },
+        {
+          "loss": 0.3645839213886519,
+          "correct": 125,
+          "correction_cases": 106,
+          "correction_correct": 54,
+          "transport_ms": 239.461514,
+          "seed": 357013208,
+          "delay": 12
+        },
+        {
+          "loss": 0.42925601195635826,
+          "correct": 112,
+          "correction_cases": 131,
+          "correction_correct": 59,
+          "transport_ms": 196.127947,
+          "seed": 956559433,
+          "delay": 12
+        },
+        {
+          "loss": 0.39304579491055563,
+          "correct": 115,
+          "correction_cases": 130,
+          "correction_correct": 59,
+          "transport_ms": 205.888252,
+          "seed": 1786982121,
+          "delay": 12
+        },
+        {
+          "loss": 0.3903471450427763,
+          "correct": 122,
+          "correction_cases": 128,
+          "correction_correct": 66,
+          "transport_ms": 213.650668,
+          "seed": 404804524,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4708,
+        "rusage_peak_rss_kib": 14976,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1858.377,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 136352
+      }
+    },
+    "memory_erased": {
+      "correct": 1504,
+      "examples": 3000,
+      "accuracy": 0.5013333333333333,
+      "mse": 0.4986666666666667,
+      "correction_accuracy": 0.5153949129852744,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.508,
+          "correct": 123,
+          "correction_cases": 119,
+          "correction_correct": 54,
+          "transport_ms": 122.16324,
+          "seed": 109390431,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2738,
+            "observations": 250,
+            "gates": 6242,
+            "preparations": 500,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 619
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 250,
+            "adaptive_components": 0,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 0,
+            "T_instructions": 0,
+            "payload_bytes": 17000,
+            "norm": 1
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 17000,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 746774,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.456,
+          "correct": 136,
+          "correction_cases": 132,
+          "correction_correct": 73,
+          "transport_ms": 90.617773,
+          "seed": 1065533238,
+          "delay": 2
+        },
+        {
+          "loss": 0.52,
+          "correct": 120,
+          "correction_cases": 136,
+          "correction_correct": 67,
+          "transport_ms": 85.267262,
+          "seed": 740080159,
+          "delay": 2
+        },
+        {
+          "loss": 0.456,
+          "correct": 136,
+          "correction_cases": 114,
+          "correction_correct": 63,
+          "transport_ms": 104.629478,
+          "seed": 1471126769,
+          "delay": 2
+        },
+        {
+          "loss": 0.456,
+          "correct": 136,
+          "correction_cases": 120,
+          "correction_correct": 67,
+          "transport_ms": 168.621341,
+          "seed": 666373433,
+          "delay": 8
+        },
+        {
+          "loss": 0.532,
+          "correct": 117,
+          "correction_cases": 123,
+          "correction_correct": 59,
+          "transport_ms": 154.946408,
+          "seed": 1837292301,
+          "delay": 8
+        },
+        {
+          "loss": 0.488,
+          "correct": 128,
+          "correction_cases": 133,
+          "correction_correct": 73,
+          "transport_ms": 147.859214,
+          "seed": 237475632,
+          "delay": 8
+        },
+        {
+          "loss": 0.496,
+          "correct": 126,
+          "correction_cases": 122,
+          "correction_correct": 67,
+          "transport_ms": 167.700399,
+          "seed": 956026988,
+          "delay": 8
+        },
+        {
+          "loss": 0.496,
+          "correct": 126,
+          "correction_cases": 106,
+          "correction_correct": 59,
+          "transport_ms": 174.298039,
+          "seed": 357013208,
+          "delay": 12
+        },
+        {
+          "loss": 0.52,
+          "correct": 120,
+          "correction_cases": 131,
+          "correction_correct": 58,
+          "transport_ms": 196.592485,
+          "seed": 956559433,
+          "delay": 12
+        },
+        {
+          "loss": 0.516,
+          "correct": 121,
+          "correction_cases": 130,
+          "correction_correct": 70,
+          "transport_ms": 179.046663,
+          "seed": 1786982121,
+          "delay": 12
+        },
+        {
+          "loss": 0.54,
+          "correct": 115,
+          "correction_cases": 128,
+          "correction_correct": 60,
+          "transport_ms": 186.627151,
+          "seed": 404804524,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4508,
+        "rusage_peak_rss_kib": 14976,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1774.191,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 17000
+      }
+    },
+    "trained_classical": {
+      "correct": 3000,
+      "examples": 3000,
+      "accuracy": 1.0,
+      "mse": 0.006769586754413777,
+      "correction_accuracy": 1.0,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.0015867326782277214,
+          "correct": 250,
+          "correction_cases": 119,
+          "correction_correct": 119,
+          "transport_ms": 84.142098,
+          "seed": 109390431,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 0,
+            "observations": 0,
+            "gates": 0,
+            "preparations": 0,
+            "max_prepared_block": 0,
+            "distinct_rotated_qubits": 0,
+            "distinct_observed_qubits": 0,
+            "distinct_two_qubit_edges": 0
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2746,
+            "T_instructions": 0,
+            "payload_bytes": 135856,
+            "norm": 1.0000000000000415
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 135856,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 737294,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.0015174919338299692,
+          "correct": 250,
+          "correction_cases": 132,
+          "correction_correct": 132,
+          "transport_ms": 76.185268,
+          "seed": 1065533238,
+          "delay": 2
+        },
+        {
+          "loss": 0.001586020098342132,
+          "correct": 250,
+          "correction_cases": 136,
+          "correction_correct": 136,
+          "transport_ms": 75.818823,
+          "seed": 740080159,
+          "delay": 2
+        },
+        {
+          "loss": 0.0015325928031518624,
+          "correct": 250,
+          "correction_cases": 114,
+          "correction_correct": 114,
+          "transport_ms": 71.559905,
+          "seed": 1471126769,
+          "delay": 2
+        },
+        {
+          "loss": 0.006529014280760106,
+          "correct": 250,
+          "correction_cases": 120,
+          "correction_correct": 120,
+          "transport_ms": 92.981553,
+          "seed": 666373433,
+          "delay": 8
+        },
+        {
+          "loss": 0.00722242576756194,
+          "correct": 250,
+          "correction_cases": 123,
+          "correction_correct": 123,
+          "transport_ms": 96.176309,
+          "seed": 1837292301,
+          "delay": 8
+        },
+        {
+          "loss": 0.0065409537096769235,
+          "correct": 250,
+          "correction_cases": 133,
+          "correction_correct": 133,
+          "transport_ms": 89.708369,
+          "seed": 237475632,
+          "delay": 8
+        },
+        {
+          "loss": 0.006753933525026452,
+          "correct": 250,
+          "correction_cases": 122,
+          "correction_correct": 122,
+          "transport_ms": 92.254701,
+          "seed": 956026988,
+          "delay": 8
+        },
+        {
+          "loss": 0.012959873937015635,
+          "correct": 250,
+          "correction_cases": 106,
+          "correction_correct": 106,
+          "transport_ms": 100.188567,
+          "seed": 357013208,
+          "delay": 12
+        },
+        {
+          "loss": 0.011636985322220812,
+          "correct": 250,
+          "correction_cases": 131,
+          "correction_correct": 131,
+          "transport_ms": 106.027096,
+          "seed": 956559433,
+          "delay": 12
+        },
+        {
+          "loss": 0.011534849356024104,
+          "correct": 250,
+          "correction_cases": 130,
+          "correction_correct": 130,
+          "transport_ms": 100.406544,
+          "seed": 1786982121,
+          "delay": 12
+        },
+        {
+          "loss": 0.011834167641127666,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 94.393011,
+          "seed": 404804524,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4304,
+        "rusage_peak_rss_kib": 14976,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1069.712,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 135856
+      }
+    }
+  },
+  "barrier_passed": true,
+  "quantum_advantage_claimed": false,
+  "wall_seconds_this_run": 11.610743765002553
+}
