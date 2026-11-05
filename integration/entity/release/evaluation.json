@@ -186,7 +186,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9741891302748532,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -384,7 +384,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9692793681667956,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -852,7 +852,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9648071351215054,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -978,7 +978,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9712748137154676,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -1193,7 +1193,7 @@
         "voice": "Mover a la izquierda.",
         "confidence": 0.9730172999991081,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 1,
         "action_correct": 0
@@ -1211,7 +1211,7 @@
         "voice": "Mover a la derecha.",
         "confidence": 0.9620422504620121,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 0,
         "action_correct": 0
@@ -1319,7 +1319,7 @@
         "voice": "Mover a la derecha.",
         "confidence": 0.960862956542223,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 0,
         "action_correct": 0
@@ -1589,7 +1589,7 @@
         "voice": "Mover a la izquierda.",
         "confidence": 0.9693004635754393,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 1,
         "action_correct": 0
@@ -2453,7 +2453,7 @@
         "voice": "Mover a la izquierda.",
         "confidence": 0.9604005602355893,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 1,
         "action_correct": 0
@@ -3029,7 +3029,7 @@
         "voice": "Objetivo alcanzado.",
         "confidence": 0.9462437887867892,
         "joint_success": 0,
-        "plan_success": 1,
+        "plan_success": 0,
         "voice_correct": 1,
         "gold_action": 1,
         "action_correct": 0
@@ -3167,7 +3167,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9805105840369573,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -3185,7 +3185,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.980575283012155,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3203,7 +3203,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9800151550149137,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3221,7 +3221,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9730172999991081,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3239,7 +3239,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9620422504620121,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3329,7 +3329,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9773906844073795,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3419,7 +3419,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9767644267931453,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -3455,7 +3455,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9775571318706171,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3473,7 +3473,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.969696366296164,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3545,7 +3545,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9586146357517431,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3563,7 +3563,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9805654543411846,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3599,7 +3599,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9801107687755164,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3689,7 +3689,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9803249011598776,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3725,7 +3725,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9798005015176627,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3743,7 +3743,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9686947767676617,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3761,7 +3761,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9800232288432029,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3779,7 +3779,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9416698327934064,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3833,7 +3833,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9731705607495074,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -3869,7 +3869,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9731886251494505,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3923,7 +3923,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.958614336028973,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -3959,7 +3959,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9742717319307542,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4013,7 +4013,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9797618652260339,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4031,7 +4031,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9695718164490119,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -4049,7 +4049,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9804181250270694,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -4067,7 +4067,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9730585407739688,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4175,7 +4175,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9752922436653451,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -4211,7 +4211,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9795315104822999,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4229,7 +4229,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9806048121048486,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4247,7 +4247,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9795777595944829,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4265,7 +4265,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9791485554323313,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4301,7 +4301,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9568558553004803,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4337,7 +4337,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9805214413386996,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4355,7 +4355,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9782914803524044,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4373,7 +4373,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9618207904395425,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4445,7 +4445,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9764334415279649,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4463,7 +4463,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9804922184100995,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4481,7 +4481,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9604005602355893,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4499,7 +4499,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9805419509763795,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4535,7 +4535,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9491878739161007,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4553,7 +4553,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9466495080787273,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4589,7 +4589,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9768087223092956,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4607,7 +4607,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9800400427709369,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4715,7 +4715,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9804320069863853,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4751,7 +4751,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9805652125127504,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4805,7 +4805,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9742978536273194,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -4859,7 +4859,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9804987554566373,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4877,7 +4877,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9783433326491968,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -4949,7 +4949,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9771342827085373,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -4985,7 +4985,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.979385895769224,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5021,7 +5021,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9804161117765199,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5075,7 +5075,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9805174537471855,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -5093,7 +5093,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9717650674622054,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -5129,7 +5129,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9762891369743097,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -5194,7 +5194,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -5212,7 +5212,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5230,7 +5230,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5248,7 +5248,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5284,7 +5284,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5302,7 +5302,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -5320,7 +5320,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9233071352719917,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5446,7 +5446,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -5464,7 +5464,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5500,7 +5500,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5518,7 +5518,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5536,7 +5536,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5572,7 +5572,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5590,7 +5590,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5626,7 +5626,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5644,7 +5644,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5770,7 +5770,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5788,7 +5788,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5806,7 +5806,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9222936179101784,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -5824,7 +5824,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9233071352719917,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5878,7 +5878,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5896,7 +5896,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5950,7 +5950,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -5986,7 +5986,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6040,7 +6040,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6076,7 +6076,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -6112,7 +6112,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6130,7 +6130,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6148,7 +6148,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6202,7 +6202,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -6220,7 +6220,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6256,7 +6256,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6292,7 +6292,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6310,7 +6310,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -6328,7 +6328,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6400,7 +6400,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6472,7 +6472,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6508,7 +6508,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6526,7 +6526,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6544,7 +6544,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6562,7 +6562,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9222936179101784,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -6580,7 +6580,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6598,7 +6598,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6616,7 +6616,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6634,7 +6634,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6652,7 +6652,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6706,7 +6706,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9233071352719917,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6724,7 +6724,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6760,7 +6760,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6778,7 +6778,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6796,7 +6796,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6814,7 +6814,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -6832,7 +6832,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 2,
           "action_correct": 0
@@ -6886,7 +6886,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6958,7 +6958,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9233071352719917,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6976,7 +6976,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -6994,7 +6994,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7012,7 +7012,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7030,7 +7030,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9330988255528924,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7048,7 +7048,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7084,7 +7084,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9322052067567417,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7347,7 +7347,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.958505697571312,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7365,7 +7365,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9293297406135276,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7401,7 +7401,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9194153931878181,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7419,7 +7419,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9582384613087095,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7527,7 +7527,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.935287330410295,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7545,7 +7545,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9572901564495555,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7563,7 +7563,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585281517732749,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7581,7 +7581,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9584791279379851,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7635,7 +7635,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9586142702587789,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7671,7 +7671,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9354634112587201,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7761,7 +7761,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9399634599428759,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -7797,7 +7797,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9333559090074026,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7851,7 +7851,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9586048949122827,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7905,7 +7905,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.958590907517232,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -7923,7 +7923,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9426221561391088,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8013,7 +8013,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9447529829061169,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8031,7 +8031,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9582304823450025,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8049,7 +8049,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9417477816625106,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8139,7 +8139,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585505661557441,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8157,7 +8157,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.95851775771598,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8175,7 +8175,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9551173269878628,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8247,7 +8247,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9527150220648279,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8301,7 +8301,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9580454221333661,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8373,7 +8373,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9585837975850683,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8571,7 +8571,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585175460592751,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8607,7 +8607,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9459264006822802,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8625,7 +8625,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585929059178231,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8661,7 +8661,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9568534060081455,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8679,7 +8679,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9576769325759835,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8733,7 +8733,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9586096368445736,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8751,7 +8751,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9567082065385024,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8787,7 +8787,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585839403139343,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -8877,7 +8877,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9586108989774984,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8895,7 +8895,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9525396985569038,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -8985,7 +8985,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9585477508521228,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -9003,7 +9003,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9508071633506844,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -9039,7 +9039,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9554738884119716,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -9057,7 +9057,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9573299331263124,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -9093,7 +9093,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9586141317656893,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -9111,7 +9111,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.9462437887867892,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -9147,7 +9147,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9398029488812624,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -9165,7 +9165,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9586080199491281,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -9248,7 +9248,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9578472095143664,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -9266,7 +9266,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803066157130346,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9284,7 +9284,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9796453903165168,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9338,7 +9338,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9502277352089439,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9356,7 +9356,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.943908378004838,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -9374,7 +9374,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9805526754208909,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9392,7 +9392,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9662888406572484,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9410,7 +9410,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9771743668145122,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9446,7 +9446,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803847593132038,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9464,7 +9464,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9070230504248254,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -9482,7 +9482,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9072465944696766,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -9500,7 +9500,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9499671002710978,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -9518,7 +9518,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9805678306252115,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9536,7 +9536,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9773423698685625,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9554,7 +9554,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9688479846494946,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9572,7 +9572,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9789099761287479,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9590,7 +9590,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9759685598234983,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9608,7 +9608,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9798561528996974,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9626,7 +9626,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803324622585581,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9644,7 +9644,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9802966538312526,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9662,7 +9662,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9806080804828644,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9680,7 +9680,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.979547799690153,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9716,7 +9716,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.907274640978346,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -9734,7 +9734,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8585496474783262,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -9752,7 +9752,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9512631718198157,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -9770,7 +9770,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9800443720704604,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9788,7 +9788,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9715750542355831,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9806,7 +9806,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9798011456136408,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9824,7 +9824,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9666694640715446,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9842,7 +9842,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9751986331961285,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9860,7 +9860,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9710459481877618,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9878,7 +9878,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9806002334420326,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9896,7 +9896,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9608425054464581,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9914,7 +9914,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9729149854678937,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -9932,7 +9932,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803203811702446,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9950,7 +9950,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9714454750121087,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -9968,7 +9968,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8703053890420227,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -9986,7 +9986,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9072779850577849,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10004,7 +10004,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.980332316594519,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10022,7 +10022,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803557018550317,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10040,7 +10040,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9737985420643641,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10058,7 +10058,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9804207803846432,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10076,7 +10076,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9723871477154795,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10094,7 +10094,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.974875765796644,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10112,7 +10112,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9371388369358534,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10130,7 +10130,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9576518776584344,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10148,7 +10148,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.972677294916752,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10166,7 +10166,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9804919710469734,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10184,7 +10184,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9802848273528209,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10202,7 +10202,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9778115441487754,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10220,7 +10220,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9071131803697188,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10238,7 +10238,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9071240754612894,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10256,7 +10256,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9468893838884971,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10274,7 +10274,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9777417929279187,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10292,7 +10292,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9793352424638835,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10310,7 +10310,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9800555424619579,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10328,7 +10328,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9802919841013521,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10346,7 +10346,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9741182959273869,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10364,7 +10364,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9585892157586087,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10382,7 +10382,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9794768785432838,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10400,7 +10400,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9805635998029634,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10418,7 +10418,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803344749874398,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10436,7 +10436,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9782921715000691,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10454,7 +10454,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.95936941358502,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10472,7 +10472,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8819711132615421,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10490,7 +10490,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9037727569453307,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10508,7 +10508,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9552687873179078,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10526,7 +10526,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9761088833128475,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10544,7 +10544,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803049771946177,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10580,7 +10580,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.979266694441947,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10598,7 +10598,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9759623023460229,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10616,7 +10616,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9748787755363186,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10634,7 +10634,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9744791206328841,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10652,7 +10652,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9805720983847012,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10670,7 +10670,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9763810611722845,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10688,7 +10688,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9794751136932792,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10706,7 +10706,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9791052387422616,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10724,7 +10724,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8952742381657682,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10742,7 +10742,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9049747710519612,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10760,7 +10760,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9806025067280021,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10778,7 +10778,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9796665909334763,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10796,7 +10796,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9802441994891535,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10814,7 +10814,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9803169949450565,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10832,7 +10832,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9792914483133661,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10850,7 +10850,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9690989153060742,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10868,7 +10868,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9585834965133659,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10886,7 +10886,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9448165688563809,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 2,
           "action_correct": 1
@@ -10904,7 +10904,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9805766097740126,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10922,7 +10922,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9776866037944978,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10940,7 +10940,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9799465437229421,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -10958,7 +10958,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9790998075152473,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -10976,7 +10976,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.894165416235318,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -10994,7 +10994,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9072297077872219,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -11012,7 +11012,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.980572837596095,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11030,7 +11030,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9768191473244197,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11048,7 +11048,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.980234035541336,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11066,7 +11066,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9788028527354208,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11084,7 +11084,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9789300609334644,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11102,7 +11102,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.975684047141545,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 1,
           "action_correct": 1
@@ -11120,7 +11120,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9799231059246125,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -11156,7 +11156,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9802396147479718,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -11174,7 +11174,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9714964956978123,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -11192,7 +11192,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.980601809223238,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -11210,7 +11210,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.9771156872205774,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": 0,
           "action_correct": 1
@@ -11228,7 +11228,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8758495711161561,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -11246,7 +11246,7 @@
           "voice": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
           "confidence": 0.8998464261427433,
           "joint_success": 0,
-          "plan_success": 0,
+          "plan_success": 1,
           "voice_correct": 0,
           "gold_action": -1,
           "action_correct": 1
@@ -11329,7 +11329,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.915589268537077,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -11347,7 +11347,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9003379474248931,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -11455,7 +11455,7 @@
           "voice": "Mover a la derecha.",
           "confidence": 0.9007432106078346,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 0,
           "action_correct": 0
@@ -11725,7 +11725,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9107837360424323,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -12589,7 +12589,7 @@
           "voice": "Mover a la izquierda.",
           "confidence": 0.9009554205222287,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -13165,7 +13165,7 @@
           "voice": "Objetivo alcanzado.",
           "confidence": 0.8419555373540124,
           "joint_success": 0,
-          "plan_success": 1,
+          "plan_success": 0,
           "voice_correct": 1,
           "gold_action": 1,
           "action_correct": 0
@@ -13600,5 +13600,6 @@
       "peak_rss_kib": 20128
     }
   },
-  "mobile_feedback": "Separately validated native online feedback: common learner always updates from explicit rating; specialists require a synthetic verified target plus a user-taught memory rule, or explicit external class/rule labels. Credits skip upstream errors and terminal actors."
+  "mobile_feedback": "Separately validated native online feedback: common learner always updates from explicit rating; specialists require a synthetic verified target plus a user-taught memory rule, or explicit external class/rule labels. Credits skip upstream errors and terminal actors.",
+  "metric_display_correction": "plan_success is the action_correct metric. An earlier display label reused voice_correct; global success, evaluation aggregates, candidates and checkpoint bytes were unchanged."
 }

@@ -162,7 +162,8 @@ itof f1 r0
 fmul f0 f1
 fstore 8184000000000000096 f0
 femit joint_success f0
-femit plan_success f1
+fload f2 8184000000000000304
+femit plan_success f2
 ret
 
 # Shared state -> 64 semantic bits, before the same exact 100-qubit encoder.

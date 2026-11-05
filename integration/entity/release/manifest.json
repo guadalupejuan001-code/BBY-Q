@@ -29,14 +29,14 @@
     }
   },
   "protocol_sha256": "484673494936399d405b8623c423b7698b25602cc9d19cfa9a0ff7df64755045",
-  "evaluation_sha256": "1533dd6b10880f3180f9b1630c6ea9a42e03a596584df5e9d636475b8887551a",
+  "evaluation_sha256": "9a987a0b468c891fa52ff42dbafa8d5fc07fe56a9c642f43a5b87c0de411a6ff",
   "vocabulary_sha256": "6e8786358185ffc051d3a2a879e3f4a14ef8f4b4a25915f43645446dc4c76b4f",
   "runtime": "08c363e6c6855c14026c86046af7183a45f45a98",
   "ether": "e2778d962af22f6f1a0794058dd4685fc2573966",
   "native_source_sha256": {
     "ai/xi/entity/credit.xi": "74654dbd71c5d09635eda659a209154ec27ce948a2716fec1ba3c500bb0425c3",
     "ai/xi/entity/feedback.xi": "5ff6289372baeefe19f460f6901324cc37ab5fa8f361a30eb6ae9c8c1bf09f67",
-    "ai/xi/entity/workspace.xi": "0127770e3e71c95434acc6fe099b5219f520c6839d6404eb8a2883fa10af8a9e"
+    "ai/xi/entity/workspace.xi": "507ada42737f61795174e09dee1bdc1ab4272fac86ef93510edef6fe60dba036"
   },
   "training_counters": {
     "vqc": 11932,

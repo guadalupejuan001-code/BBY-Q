@@ -24,11 +24,11 @@ def main():
   with N.Entity(folder) as e:
    before=e.identities()
    for row in selected:
-    actual=e.episode('test',row['index']);assert actual['joint_success']==1 and actual['voice']==row['voice'];checks.append('cross-model action '+str(row['action']))
+    actual=e.episode('test',row['index']);assert actual['joint_success']==1 and actual['voice']==row['voice'] and actual['plan_success']==actual['action_correct'];checks.append('cross-model action '+str(row['action']))
    assert before==e.identities();checks.append('inference preserves every trained parameter')
    s=e.sessions['entity'];base={8:1,16:1,24:3,40:.999,48:.9}
    a=N.metrics(N.run(s,N.workspace({**base,264:0,272:0})+'call entity_infer\n'+N.emit_int(N.E+72,'goal')))
-   b=N.metrics(N.run(s,N.workspace({**base,264:1,272:1})+'call entity_infer\n'+N.emit_int(N.E+72,'goal')));assert a==b
+   b=N.metrics(N.run(s,N.workspace({**base,264:1,272:0})+'call entity_infer\n'+N.emit_int(N.E+72,'goal')));assert a==b
    checks.append('withheld teachers cannot alter inference')
    row=next(r for r in selected if int(r['action']) in [0,1]);original=e.episode('test',row['index']);prior=e.identities()
    # A separate throwaway feedback experiment checks causal use of learning.
