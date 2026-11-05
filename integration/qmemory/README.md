@@ -21,6 +21,9 @@ se consultan después de detener el entrenamiento. Un fallo conserva el último
 ciclo publicado; `--resume` exige idénticos parámetros, código y runtime. Una
 solicitud ya completada devuelve sus resultados sin repetir el entrenamiento.
 No es un proceso indefinido en segundo plano ni una tarea de calendario.
+El workflow `Autonomous native XI quantum memory` también permite lanzar una
+campaña con `workflow_dispatch`; conserva el informe y los checkpoints como
+artefactos de GitHub Actions. Las PR solo ejecutan las comprobaciones.
 
 Para cargar el modelo experimental aceptado que acompaña al código:
 
