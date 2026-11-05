@@ -1,0 +1,51 @@
+name: BBY Q E026 + E027 combined XI interoperability
+on:
+  pull_request:
+    paths: ['ai/releases/e027/combined-build.mjs', 'ai/releases/e027/interop.mjs', '.github/workflows/bbyq-e026-e027-interop.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  xi-interoperability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: a1b935ae0adf38615996bac92727e95289ad7cc1
+          path: deps/reverse
+          persist-credentials: false
+      - name: Build original XI/Ether runtime
+        run: |
+          set -euo pipefail
+          bash deps/reverse/scripts/setup-ether.sh
+          cd deps/reverse
+          mkdir -p build
+          python3 scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          g++ -std=c++17 -O2 -pthread -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 -Ibuild/ether-compat -Ideps/mundo-x/native/include -Isrc src/reverse_pc.cpp -o build/reverse_pc
+      - name: Rebuild E026+E027 native candidate in one RVPC2
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          node ai/releases/e027/combined-build.mjs deps/reverse/build/reverse_pc evidence/combined | tee evidence/combined-build.log
+      - name: Verify original E027 context archive on combined candidate
+        run: |
+          set -euo pipefail
+          node ai/releases/e027/test.mjs deps/reverse/build/reverse_pc evidence/combined evidence/combined-context | tee evidence/context.log
+      - name: Verify four E026 two-fact composed forms
+        run: |
+          set -euo pipefail
+          python3 ai/releases/e026/test.py deps/reverse/build/reverse_pc evidence/combined evidence/combined-composition | tee evidence/composition.log
+      - name: Verify actual coexistence in one RVPC2
+        run: |
+          set -euo pipefail
+          node ai/releases/e027/interop.mjs deps/reverse/build/reverse_pc evidence/combined evidence/combined-interop | tee evidence/interop.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-E026-E027-interop-evidence
+          path: evidence/
+          retention-days: 30
