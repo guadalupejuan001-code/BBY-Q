@@ -1,0 +1,10 @@
+{
+  "version": "E02-credit-voice-refinement-1",
+  "reason": "First-arm validation failed voice floor; eliminate irrelevant premises from action verbalizer and skip actor credit when an upstream premise was incorrect",
+  "base": "rejected first-arm cycle-0252",
+  "training_episodes": [252, 504],
+  "voice_epochs": [60, 180],
+  "selection": "First eligible refinement by reserved validation; final test remains locked until eligible candidate is frozen",
+  "validation_namespace": "validation",
+  "test_namespace": "test"
+}

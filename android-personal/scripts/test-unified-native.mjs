@@ -33,7 +33,7 @@ check('native named context resolves a prior user turn',()=>{
 check('grounded native syllogism',()=>{const result=pages.reason(Buffer.from('Todos los motores son máquinas. Alpha es un motor. ¿Alpha es máquina?'));assert.equal(result.mode,1);assert.match(result.response,/alpha -> motor -> maquinas/);});
 check('native creative composition',()=>{const result=pages.compose(Buffer.from('Escribe un poema de cuatro versos sobre una guitarra.'));assert.equal(result.mode,1);assert.equal(result.response.split('\n').length,4);});
 check('productive paraphrase preserves the topic',()=>{const result=pages.paraphrase(Buffer.from('hazme un poema sobre una guitarra'));assert.equal(result.handled,true);assert.equal(result.canonical,'escribe un poema sobre una guitarra');});
-for(const [text,operation,key,bit]of [['memoria guarda faro 1',1,'faro',1],['memoria consulta faro',3,'faro',null],['memoria corrige faro 0',2,'faro',0],['memoria estado',4,null,null],['qchat hola',5,null,null],['memoria guarda faro 3',254,null,null]]){
+for(const [text,operation,key,bit]of [['memoria guarda faro 1',1,'faro',1],['memoria consulta faro',3,'faro',null],['memoria corrige faro 0',2,'faro',0],['memoria estado',4,null,null],['qchat hola',5,null,null],['memoria guarda faro 3',254,null,null],['mision {"memoria":"faro","posicion":3}',6,null,null],['evaluar {"tarea":"ejemplo","resultado":1}',7,null,null]]){
  check('mobile XI grammar: '+text,()=>{
   const raw=Buffer.from(text);pages.stage({data:raw,total:raw.length});pages.role('mobile-route.rxe');const m=pages.map();assert.equal(readNumber(m,B+512n,1),operation);
   if(key!==null)assert.equal(readBytes(m,B+544n,readNumber(m,B+514n,1)).toString(),key);

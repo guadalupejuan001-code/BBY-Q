@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "version": "E02",
+  "passed": true,
+  "models": {
+    "v3": {
+      "file": "v3.rvp.gz",
+      "checkpoint_sha256": "95c19feb0f109c171a966b1a1d2271e238c853b069550e75be8a874a80f922b6",
+      "gzip_sha256": "d368c3fe1f7045165ad3ec6f3e944b8f5aa61156096bee33571928235ded360a",
+      "gzip_bytes": 357594
+    },
+    "memory": {
+      "file": "memory.rvp.gz",
+      "checkpoint_sha256": "5d264e6c1b2ab7fd023286ce257b3bf8b21f29fba6ac36f0d2c3ec1831c2fb93",
+      "gzip_sha256": "c44c26a2bdd21c0bac70465782a981a751a8c180211a126489236e9d6b502e4c",
+      "gzip_bytes": 29780
+    },
+    "voice": {
+      "file": "voice.rvp.gz",
+      "checkpoint_sha256": "882f97e1d7d2647e69fd1ea8475b90165642758e11d0dbf937bd2d4f25426e4e",
+      "gzip_sha256": "d783ccf2b2ce46eb8bb3e937537c4ce78a18578f144855747a3ee91dbc65ad76",
+      "gzip_bytes": 611754
+    },
+    "entity": {
+      "file": "entity.rvp.gz",
+      "checkpoint_sha256": "66d0bb45de032dd5c71749dec4413bdecdd558e741a1c5c123cdd98d5d198a0f",
+      "gzip_sha256": "1f520e0cafd465d897d7212355596878abedba116e652eb28132279564d4383c",
+      "gzip_bytes": 3448
+    }
+  },
+  "protocol_sha256": "484673494936399d405b8623c423b7698b25602cc9d19cfa9a0ff7df64755045",
+  "evaluation_sha256": "1533dd6b10880f3180f9b1630c6ea9a42e03a596584df5e9d636475b8887551a",
+  "vocabulary_sha256": "6e8786358185ffc051d3a2a879e3f4a14ef8f4b4a25915f43645446dc4c76b4f",
+  "runtime": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "ether": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "native_source_sha256": {
+    "ai/xi/entity/credit.xi": "74654dbd71c5d09635eda659a209154ec27ce948a2716fec1ba3c500bb0425c3",
+    "ai/xi/entity/feedback.xi": "5ff6289372baeefe19f460f6901324cc37ab5fa8f361a30eb6ae9c8c1bf09f67",
+    "ai/xi/entity/workspace.xi": "0127770e3e71c95434acc6fe099b5219f520c6839d6404eb8a2883fa10af8a9e"
+  },
+  "training_counters": {
+    "vqc": 11932,
+    "qrl": 11885,
+    "voice": 78860,
+    "memory": 42,
+    "shared": 504
+  },
+  "packaging_note": "Training and inference source hashes remain in evaluation.source_hashes. Mobile feedback extends the frozen model with a separately tested native teacher routine; counter metadata was added after training without changing any checkpoint.",
+  "refinement_base": {
+    "file": "refinement-base-252.zip",
+    "sha256": "01124021ab810f6ec6cbee5ada3b40bbefe7e060909f7efa6e8b565a29fc34bf",
+    "episodes": 252
+  }
+}
