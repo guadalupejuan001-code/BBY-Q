@@ -60,6 +60,10 @@ final class XiPages implements AutoCloseable {
         if(number(B+512,1)==254)throw new IOException("Usa memoria guarda CLAVE 0|1; memoria corrige CLAVE 0|1; memoria consulta CLAVE; memoria estado; qchat TEXTO");
         return (int)number(B+512,1);
     }
+    boolean qchatNeedsPrevious(String prompt) throws Exception {
+        byte[] raw=utf8(String.join(" ",QuantumText.words(prompt)));
+        frame(raw,0,raw.length,"");role("qchat-context");return number(B+516,1)==1;
+    }
     String stream(byte[] raw,int mode) throws Exception {
         ByteArrayOutputStream all=new ByteArrayOutputStream();if(mode==3)all.write(utf8("Resumen extractivo: "));
         StringBuilder b=new StringBuilder();put(b,B+76,0,4);put(b,B+80,0,1);put(b,B+83,0,1);frame(new byte[0],0,raw.length,b.toString());

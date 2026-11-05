@@ -197,7 +197,7 @@ public final class PersonalEngine implements AutoCloseable {
     private JSONObject dispatch(XiPages p,byte[] raw,String text)throws Exception {
         int[] v3=p.quantumRoute(raw);if(v3[3]==1)return quantumTurn(v3,raw);
         int mobile=p.mobileRoute(raw);if(mobile>=1&&mobile<=4)return memoryTurn(p,mobile);
-        if(mobile==5){int offset=(int)p.number(XiPages.B+513,1);return generated(XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)),true);}
+        if(mobile==5){int offset=(int)p.number(XiPages.B+513,1);return generated(p,XiPages.text(Arrays.copyOfRange(raw,offset,raw.length)),true);}
         JSONArray rows=contextRows();JSONObject recalled=contextTurn(p,raw,rows);if(recalled!=null)return recalled;
         int[] route=p.route(raw);int intent=p.intent(raw);
         if(route[0]==2||route[0]==3)return reply(p.stream(raw,route[0]),"X10-stream-XI");
@@ -230,7 +230,7 @@ public final class PersonalEngine implements AutoCloseable {
             else if(mode>=2&&mode<=4)answer=p.compose(b);else if(mode==5)answer=p.reason(b);
             if(answer!=null)return reply(answer,"P06-XI");
         }}
-        if(intent==1){JSONObject candidate=generated(text,false);if(candidate!=null)return candidate;}
+        if(intent==1){JSONObject candidate=generated(p,text,false);if(candidate!=null)return candidate;}
         return legacy(raw,intent==5||intent==6);
     }
     private void syncLesson(int slot,byte[] record)throws Exception {
@@ -262,7 +262,7 @@ public final class PersonalEngine implements AutoCloseable {
     }
     private JSONObject contextTurn(XiPages p,byte[] raw,JSONArray rows)throws Exception {
         int[] decision=p.context(raw,rows);int mode=decision[0];if(mode==0)return null;String response;
-        if(mode==6){int n=dbCount("context_turns");db.execSQL("DELETE FROM context_turns");response="Vacié "+n+" entradas del índice breve. Tu historial y tus lecciones siguen guardados.";}
+        if(mode==6){int n=dbCount("context_turns");db.execSQL("DELETE FROM context_turns");db.execSQL("DELETE FROM metadata WHERE key IN ('qchat_previous','qchat_previous_generation')");response="Vacié "+n+" entradas del índice breve. Tu historial y tus lecciones siguen guardados.";}
         else if(mode==7)response="El índice breve conserva "+dbCount("context_turns")+" turnos, con un máximo de 32; las consultas examinan los 8 más recientes.";
         else if(mode==8){StringBuilder b=new StringBuilder("Últimos mensajes:\n");for(int i=0;i<Math.min(5,rows.length());i++)b.append(rows.getJSONObject(i).getString("utterance")).append('\n');response=b.toString();}
         else if(mode==3)response="No encontré una mención verificable de ese tema en los turnos recientes.";
@@ -270,13 +270,18 @@ public final class PersonalEngine implements AutoCloseable {
         else {JSONObject row=rows.getJSONObject(decision[1]-1);String value=row.getString(mode==9?"reply":"utterance");response=value.isEmpty()?"No tengo una entrada anterior completa dentro de la ventana conversacional.":"En el turno "+row.getLong("generation")+(mode==9?" respondí: «":" escribiste: «")+value+"».";}
         return reply(response,"P05-XI").put("context_skip",true);
     }
-    private JSONObject generated(String prompt,boolean explicit)throws Exception {
-        JSONArray rows=contextRows();String previous=rows.length()==0?"":rows.getJSONObject(0).getString("utterance");
+    private JSONObject generated(XiPages pages,String prompt,boolean explicit)throws Exception {
+        boolean followUp=pages.qchatNeedsPrevious(prompt);
+        long generation=Long.parseLong(meta("generation","0")),prior=Long.parseLong(meta("qchat_previous_generation","-33"));
+        String previous=followUp&&generation-prior<=32?meta("qchat_previous",""):"";
         JSONObject generated=QuantumText.generate(this,state("qchat"),prompt,previous);
         if(!generated.getBoolean("terminated")||generated.getString("response").isEmpty()){
             if(!explicit)return null;return reply("El generador no completó una respuesta dentro de su presupuesto de 16 tokens.","QChat100-XI").put("generation",generated);
         }
         if(!explicit&&generated.getDouble("log_probability")<-1)return null;
+        // Transport only: XI selects context use; command turns never become model inputs.
+        putMeta("qchat_previous",followUp&&!previous.isEmpty()?previous:prompt);putMeta("qchat_previous_generation",generation+1);
+        generated.put("context_used",!previous.isEmpty());
         return reply(generated.getString("response"),"QChat100-XI").put("model_output",generated);
     }
     private String qLibrary()throws Exception {return new String(asset("v3-common.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-benchmarks.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-qrl3.xi"),StandardCharsets.UTF_8)+"\n"+new String(asset("v3-step.xi"),StandardCharsets.UTF_8);}

@@ -12,6 +12,21 @@ const root=path.resolve(import.meta.dirname,'../..'),dest=path.join(root,'androi
 const runtime=path.join(root,'deps/reverse-pc/build/reverse_pc');
 fs.mkdirSync(dest,{recursive:true});
 const B=9190000000000000000n,I=B+4096n,R=B+512n;
+function qchatContextSource(){
+ // Inputs use the same lowercase/accent-folded byte codec as QChat100.
+ // Only the curriculum's follow-up forms consume the generator's own context.
+ const lines=['#!reverse-pc-machine-v1',`store8 ${B+516n} 0`];
+ const w=(...x)=>lines.push(...x),L=x=>w('label '+x);
+ for(const [index,cue]of ['explicalo otra vez','dime mas','repitelo','cuentalo otra vez'].entries()){
+  const bytes=Buffer.from(cue),miss='qc_miss_'+index,tail='qc_tail_'+index,ok='qc_ok_'+index;
+  w(`load8 r1 ${B+8n}`,`load8 r2 ${B+9n}`,'mul r2 256','add r1 r2','cmp r1 '+bytes.length,'jlt '+miss);
+  for(const[i,b]of bytes.entries())w(`load8 r0 ${I+BigInt(i)}`,'cmp r0 '+b,'jne '+miss);
+  w('set r2 '+bytes.length);L(tail);w('cmp r2 r1','jge '+ok,`set r7 ${I}`,'add r7 r2','load8 r0 $r7');
+  for(const b of [32,46,33,63])w('cmp r0 '+b,'je '+tail+'_next');
+  w('jmp '+miss);L(tail+'_next');w('add r2 1','jmp '+tail);L(ok);w(`store8 ${B+516n} 1`,'halt');L(miss);
+ }
+ w('halt');return lines.join('\n')+'\n';
+}
 function mobileRouteSource(){
  const lines=['#!reverse-pc-machine-v1',`store8 ${R} 0`];let id=0;
  const w=(...x)=>lines.push(...x),L=x=>w('label '+x);
@@ -26,7 +41,7 @@ function mobileRouteSource(){
  L('key_size');w('sub r0 r2','cmp r0 1','jlt bad','cmp r0 64','jgt bad',`store8 ${R+2n} r0`,'set r3 0');
  L('copy');w('cmp r3 r0','jge done',`set r7 ${I}`,'add r7 r2','add r7 r3','load8 r4 $r7',`set r7 ${R+32n}`,'add r7 r3','store8 $r7 r4','add r3 1','jmp copy');L('done');w('halt');L('bad');w(`store8 ${R} 254`,'halt');return lines.join('\n')+'\n';
 }
-const roles={validate:validatorSource(),route:routerSource(),record:recordSource(),stream:streamSource(),intent:intentSource(),reason:reasonSource(),compose:composeSource(),context:contextSource(),paraphrase:paraphraseSource(),'mobile-route':mobileRouteSource(),'v3-route':fs.readFileSync(path.join(root,'ai/xi/quantum3/conversation-route.xi'),'utf8')};
+const roles={validate:validatorSource(),route:routerSource(),record:recordSource(),stream:streamSource(),intent:intentSource(),reason:reasonSource(),compose:composeSource(),context:contextSource(),paraphrase:paraphraseSource(),'mobile-route':mobileRouteSource(),'qchat-context':qchatContextSource(),'v3-route':fs.readFileSync(path.join(root,'ai/xi/quantum3/conversation-route.xi'),'utf8')};
 for(const [name,source]of Object.entries(roles)){
  const file=path.join(dest,name+'.xi');fs.writeFileSync(file,source);
  execFileSync(runtime,['compile',file,path.join(dest,name+'.rxe'),'BBY Q Android X10 '+name]);

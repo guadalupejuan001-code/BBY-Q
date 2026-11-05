@@ -201,4 +201,20 @@ public class UnifiedEngineTest {
             try(android.database.Cursor c=db.rawQuery("SELECT name,digest FROM states",null)){while(c.moveToNext())assertEquals(old.getString(c.getString(0)),c.getString(1));}
         }
     }
+    @Test public void generatorContextSurvivesCommandsRestartAndRollback()throws Exception {
+        try(PersonalEngine e=new PersonalEngine(context)){
+            assertEquals("La memoria conserva información.",e.chat("qchat que es memoria"));
+            e.chat("memoria guarda faro 1");e.chat("quantum v3 planea 3 6");
+            try{e.testTurn("failed-generator","qchat que es circuito",true);fail("Rollback");}catch(IOException expected){assertEquals("Injected failure before commit",expected.getMessage());}
+        }
+        try(PersonalEngine e=new PersonalEngine(context)){
+            JSONObject follow=e.testTurn("follow-up","qchat dime más",false);
+            assertEquals("La memoria conserva información.",follow.getString("response"));
+            assertTrue(follow.getJSONObject("model_output").getBoolean("context_used"));
+            assertEquals("La memoria conserva información.",e.chat("qchat repítelo"));
+            assertEquals("Hola X.",e.chat("qchat hola"));
+            e.chat("qchat que es memoria");e.chat("@context clear");
+            assertFalse(e.testTurn("cleared","qchat dime más",false).getJSONObject("model_output").getBoolean("context_used"));
+        }
+    }
 }

@@ -41,4 +41,9 @@ for(const [text,operation,key,bit]of [['memoria guarda faro 1',1,'faro',1],['mem
  });
 }
 check('V3 completed-goal command grammar',()=>{const d=pages.quantum3Route(Buffer.from('quantum v3 planea 6 6'));assert.equal(d.action,4);assert.equal(d.first,6);assert.equal(d.second,6);});
+check('native generator context is restricted to follow-up requests',()=>{
+ for(const[text,expected]of [['dime mas',1],['repitelo !',1],['explicalo otra vez',1],['cuentalo otra vez',1],['hola',0],['que es memoria',0],['dime mas sobre circuito',0],['',0]]){
+  const raw=Buffer.from(text);pages.stage({data:raw,total:raw.length});pages.role('qchat-context.rxe');assert.equal(readNumber(pages.map(),B+516n,1),expected,text);
+ }
+});
 const result={ok:true,native_checks:checks.length,checks};fs.writeFileSync(path.join(root,'build/unified-native-checks.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

@@ -1,4 +1,4 @@
-# BBY Q · X10 Android 2.0
+# BBY Q · X10 Android 2.1 E01
 
 `com.bbyq.personalx`, Android 10+, ARM64 y x86-64. Una transacción SQLite
 publica juntos mensajes, contexto, lecciones, estados y comprobante del turno.
@@ -15,8 +15,8 @@ originales se conservan. Las consultas ordinarias no reentrenan esa base.
 | Motor | Integración móvil | Alcance conservado |
 | --- | --- | --- |
 | X10 | Sesión paginada, P01/P03/P04/P05/P06 | Gramáticas acotadas, no conversación general |
-| VQC3/QRL3 | Mismo chat, consulta y política | 1.000 cúbits simulados por agente, 10.000 episodios de origen |
-| QChat100 | Saludos admitidos y `qchat TEXTO` | Generador de 100 cúbits, 49.680 actualizaciones, 16 tokens máximos |
+| VQC3/QRL3 | Mismo chat, consulta y política | 1.000 cúbits simulados por agente; E01: 11.500 y 11.512 episodios |
+| QChat100 | Saludos admitidos y `qchat TEXTO` | Generador de 100 cúbits, 74.660 actualizaciones, 16 tokens máximos |
 | QMemory | Claves binarias persistentes en el chat | 250 asociaciones de cuatro sitios; 1.000 cúbits totales, sin MPS |
 
 El V3 nativo conserva su arquitectura histórica de grupos independientes.
@@ -27,6 +27,16 @@ al entrenamiento de ángulos ni a la corrección recurrente experimental.
 Las variantes, campañas y herramientas de escritorio siguen en sus rutas
 originales; esta app no porta Node, Python, las tareas de escritorio ni sus
 grandes corpus externos. No se afirma una IA general o ventaja cuántica.
+
+La actualización archiva los modelos 2.0 y conserva lecciones, historial y
+asociaciones binarias. Un agente V3 entrenado adicionalmente en el teléfono
+conserva sus parámetros personales. Los modelos E01 y sus resultados se
+documentan en `integration/balance/README.md`.
+
+XI admite el antecedente de QChat para los seguimientos de su currículo, como
+«dime más». Los temas nuevos y saludos reciben contexto vacío. Ese antecedente
+pertenece al generador, sobrevive al reinicio y al paso por órdenes de memoria
+o V3, caduca tras 32 turnos y se elimina con `@context clear`.
 
 Ejemplos desde una misma conversación:
 

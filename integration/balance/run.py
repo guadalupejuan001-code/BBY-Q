@@ -5,8 +5,10 @@ from pathlib import Path
 from data import build,ABSTAIN
 ROOT=Path(__file__).resolve().parents[2]
 RT=ROOT/'deps/reverse-pc'
-sys.path.insert(0,str(RT/'scripts'))
-from xi_session_client import XiSession
+def XiSession(*args,**kwargs):
+    sys.path.insert(0,str(RT/'scripts'))
+    from xi_session_client import XiSession as NativeSession
+    return NativeSession(*args,**kwargs)
 
 def module(name,file):
     spec=importlib.util.spec_from_file_location(name,file);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m

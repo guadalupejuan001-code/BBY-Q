@@ -56,6 +56,11 @@ en el teléfono conserva sus parámetros personales; los contadores muestran
 qué modelo está activo. Las identidades desconocidas y la corrupción detienen
 la migración y revierten toda la transacción.
 
+En Android, XI admite el contexto de QChat solo para las formas de seguimiento
+de su currículo. El generador conserva su propio antecedente durante un máximo
+de 32 turnos; las órdenes de memoria y de V3 no lo sustituyen. Ese antecedente
+se guarda en la misma transacción y se elimina al vaciar el contexto breve.
+
 La siguiente etapa necesita conocimiento y tareas más amplios, transferencia
 a problemas nuevos y mejor comprensión contextual. La base presente permite
 medir esos avances sin confundir pruebas de integración con inteligencia.
