@@ -33,6 +33,7 @@ bash REVERSE-PC/scripts/build-xi-session.sh mundo-X REVERSE-PC/build
 
 node bbyq.mjs quantum v3 prepare MI_SESION --runtime=REVERSE-PC
 node bbyq.mjs quantum v3 status MI_SESION
+node bbyq.mjs quantum v3 results MI_SESION
 node bbyq.mjs quantum v3 classify MI_SESION entradas.json
 node bbyq.mjs quantum v3 act MI_SESION 3 6 --greedy
 ```
@@ -84,7 +85,62 @@ aprendizaje supervisado y por refuerzo, inferencia sin mutación, repetición de
 solicitudes, conflictos, rollback e integridad. La CI también ejecuta el comando
 raíz de BBY Q.
 
-El asistente de conversación existente continúa con su integración anterior.
-El siguiente desarrollo del algoritmo conversacional cuántico requiere un
-diseño y una validación propios. No se ha creado ese agente en esta entrega.
+El generador de conversación existente se conserva. Las tareas numéricas V3
+se conectan al chat como se describe a continuación. Entrenar generación de
+lenguaje dentro de esos agentes requiere un diseño y una validación propios.
 No se empaqueta ni se declara validada otra APK.
+
+## Integración de V3 en las conversaciones de BBY Q
+
+El módulo cuántico de X10 reconocía únicamente los comandos VQC2/QRL2. Ahora
+el prefijo explícito `quantum v3` carga el checkpoint VQC3/QRL3 ya entrenado:
+
+```sh
+export BBYQ_QUANTUM_RUNTIME=/ruta/REVERSE-PC
+node bbyq.mjs --build MI_BUILD_X10 turn MI_CHAT consulta-001 'quantum v3 estado'
+node bbyq.mjs --build MI_BUILD_X10 turn MI_CHAT consulta-002 'quantum v3 resultados'
+node bbyq.mjs --build MI_BUILD_X10 turn MI_CHAT consulta-003 'quantum v3 planea 3 6'
+```
+
+`quantum v3 clasifica [1000 números]` admite el mismo arreglo JSON numérico que
+el comando de consola. También se acepta `--module=quantum` y el prefijo
+`cuántico v3`. XI reconoce los comandos y sus posiciones/objetivos; JSON es
+transporte estructurado de los valores del clasificador. Las respuestas son
+presentaciones de sus resultados numéricos, no lenguaje aprendido por V3.
+
+El modelo vive en una fila separada `quantum3_state` dentro de la misma
+transacción SQLite del turno. Un error o rollback no publica el modelo ni el
+recibo. Los bancos X09, P02 y VQC2/QRL2 se conservan. Las consultas no entrenan;
+el entrenamiento explícito continúa disponible mediante los comandos de
+consola anteriores. Si falta el runtime V3, se devuelve un error y no se elige
+otro agente como sustituto. `status` informa la conexión V3 por separado.
+El reconocedor utiliza las instrucciones de bytes del ejecutor X10 anterior;
+solo la evaluación V3 requiere el runtime numérico con `xi_session`.
+
+La acción QRL ahora verifica en XI si posición y objetivo ya coinciden. En ese
+caso devuelve `terminal=true`, `action=null` y cero cúbits observados. Los
+otros 42 pares conservan las mismas probabilidades y acciones que el modelo
+evaluado. No se añade una regla de dirección para reemplazar su política.
+
+## Errores identificados y límites medidos
+
+| Hallazgo | Cambio o alcance |
+| --- | --- |
+| El chat seguía en VQC2/QRL2 aunque existía la consola V3 | Ruta V3 nativa y persistente en las conversaciones. |
+| Se pedía un movimiento incluso con la meta alcanzada | Estado terminal sin acción. |
+| Las métricas podían atribuirse a cualquier checkpoint | Resultados vinculados al SHA-256 exacto y a las fuentes XI evaluadas; tras cambiar cualquiera, `applicable=false`. |
+| Se confundía el contador de episodios con capacidades generales | El estado publica las tareas y limitaciones medidas. |
+| Cobertura QRL estrecha: entrenamiento con objetivos 0/6 e inicio 3 | Se identifica la meta fuera del entrenamiento; 33/42 direcciones correctas al ampliar objetivos. Requiere una campaña nueva para mejorarla. |
+| VQC lineal no transfiere a paridad/radial/señal densa sin entrenamiento | Resultados entre 46–52 %; no se sustituye su checkpoint por uno destinado a otra tarea. |
+| Los ángulos cambiaron, pero restaurarlos no redujo aciertos en 128 casos | No se atribuye a su ajuste una mejora de precisión demostrada. |
+
+La evidencia reproducida está en
+`docs/evidence/quantum3-evaluation/summary.json`, con semillas, hashes, controles
+y recorridos nativos. VQC3 obtuvo 374/384 y QRL3 376/384 en sus tareas sintéticas.
+Los 1.000 cúbits participan por agente, conservando sus 250 grupos originales
+de cuatro; no es un registro global entrelazado de 1.000. No se demuestra una
+ventaja cuántica ni aprendizaje más rápido que un modelo clásico.
+
+No se reentrena ni se reemplaza el checkpoint con esta integración. Las
+sesiones de consola anteriores conservan sus hashes de fuente originales; las
+sesiones nuevas fijan además las fuentes del paso terminal.

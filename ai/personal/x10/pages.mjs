@@ -70,6 +70,17 @@ export class NativePages{
      ([5,7].includes(action)&&(first>1||second>1)))throw fail('E_QUANTUM_ROUTE','Respuesta XI incompatible.');
   return {action,first,second,prefixed};
  }
+ quantum3Route(raw){
+  this.stage({data:raw.subarray(0,128),total:raw.length});
+  const source=fileURLToPath(new URL('../../xi/quantum3/conversation-route.xi',import.meta.url));
+  run(this.runtime,['run',source,this.state,this.state]);
+  const m=this.map(),address=8183000000000000000n;
+  const action=readNumber(m,address,1),first=readNumber(m,address+1n,1),second=readNumber(m,address+2n,1),
+   prefixed=readNumber(m,address+3n,1)===1,payloadOffset=readNumber(m,address+8n,4);
+  if(![0,1,2,3,4,5,254].includes(action)||(action===4&&(first>6||second>6))||
+    (action===3&&(payloadOffset<1||payloadOffset>=raw.length)))throw fail('E_QUANTUM3_ROUTE','Respuesta V3 XI incompatible.');
+  return {action,first,second,prefixed,payloadOffset};
+ }
  route(raw){this.stage({data:raw.subarray(0,LIMITS.page_bytes),total:raw.length});this.role('route.rxe');const map=this.map();if(readNumber(map,STATUS,1))throw fail('E_FORMAT','Se requiere una lección completa dentro de los límites de sus campos.');return {mode:readNumber(map,MODE,1),operation:readNumber(map,OP,1),key:readBytes(map,KEY,readNumber(map,KEY_LENGTH,1))};}
  intent(raw){
   if(!this.roles['intent.rxe'])throw fail('E_BUILD','El módulo P01 no está presente: reconstruye la entrega X10.');
