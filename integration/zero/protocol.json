@@ -1,0 +1,15 @@
+{
+  "version": "BBY-Q-0-1",
+  "base": "f7402a695413a310109fb39dc4bcaf2c55ccbc4c",
+  "objective": "A shared persistent symbolic workspace for knowledge, multi-step inference, graph planning, arithmetic, context and explicit feedback, integrated with the existing quantum specialists",
+  "families": ["unseen unary rule chains", "two-premise relational joins", "negative evidence and contradictions", "arbitrary named graph routes beyond seven nodes", "nested arithmetic and invalid operations", "mixed tasks, correction and restart"],
+  "seed": 630511,
+  "development_namespace": "zero-development",
+  "reserved_namespace": "zero-reserved",
+  "reserved_examples_per_family": 20,
+  "expected_total_reserved_tasks": 120,
+  "gates": {"exact_reserved_task_accuracy": 0.95, "contradiction_not_silently_resolved": true, "no_premature_unknown_on_budget_exhaustion": true, "prior_android_tests_preserved": true},
+  "learning": "Persistent user-taught facts/rules plus native feedback calibration; E02 model weights and supervised training remain available. Symbolic algorithms are programmed, not presented as a trained foundation model.",
+  "controls": ["remove applicable rules", "remove required facts", "restart with persisted knowledge", "alter task evidence", "unsupported language must not fabricate a proof"],
+  "claim_boundary": "Broader general-purpose agent architecture and measured compositional transfer; this work does not establish artificial general intelligence"
+}
