@@ -42,7 +42,9 @@ jobs:
           python3 integration/balance/verify.py
           python3 integration/entity/verify.py
           python3 integration/zero/verify.py
+          python3 integration/sequence1/verify_curriculum.py
           python3 integration/sequence1/verify_codec.py
+          python3 integration/sequence1/verify_experiment.py
       - name: Install Android tools
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
@@ -65,6 +67,7 @@ jobs:
             build/entity-release-checks.json
             build/zero-release-checks.json
             build/sequence1/codec-checks.json
+            build/sequence1/experiment-checks.json
             android-personal/build.log
           if-no-files-found: warn
           retention-days: 30

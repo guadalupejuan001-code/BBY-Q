@@ -49,7 +49,13 @@ def birth(path,text_vocabulary,intent_classes=11):
  pending.replace(path)
 class Model:
  def __init__(self,path,vocabulary,output):
-  self.s=XiSession(RT/'build/xi_session',path);self.codec=Codec(vocabulary);self.output=output;self.output_ids={w:i for i,w in enumerate(output)};self.library=(ROOT/'build/sequence1/model.xi').read_text();self.prompt_count=0
+  path=Path(path);pinned=path.parent/'model.xi';library=pinned if pinned.exists() else ROOT/'build/sequence1/model.xi'
+  binding=path.parent/'model-binding.json'
+  if binding.exists():
+   identity=json.loads(binding.read_text())
+   actual=lambda rows:hashlib.sha256(json.dumps(rows,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+   if identity['vocabulary_sha256']!=actual(vocabulary) or identity['output_vocabulary_sha256']!=actual(output) or identity['native_source_sha256']!=sha(library):raise ValueError('C1 checkpoint, dictionary and native source identity mismatch')
+  self.s=XiSession(RT/'build/xi_session',path);self.codec=Codec(vocabulary);self.output=output;self.output_ids={w:i for i,w in enumerate(output)};self.library=library.read_text();self.prompt_count=0
  def __enter__(self):return self
  def __exit__(self,*args):self.s.close()
  def run(self,body):return self.s.execute('#!reverse-pc-machine-v1\nbudget 100000000\n'+body+'\nhalt\n'+self.library)[0]

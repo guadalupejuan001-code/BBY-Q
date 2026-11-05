@@ -21,13 +21,16 @@ def corpus():
   pairs=[(a,b) for a in range(10) for b in range(10) if a!=b]
   for index,(a,b) in enumerate(pairs):
    if index%5 != {'train':0,'validation':1,'test':2}[split] and not(split=='train' and index%5 in [3,4]):continue
-   ta,answer=TOPICS[a];tb=TOPICS[b];out[split].append({'input':f'define {ta} no {tb}','response':answer,'kind':'order'})
+   ta,answer=TOPICS[a];tb,_=TOPICS[b];out[split].append({'input':f'define {ta} no {tb}','response':answer,'kind':'order'})
  # Training-only context variety: the same topic must survive new history
  # wrappers. Validation and final-test phrasings are never copied here.
  for topic,answer in TOPICS:
   for previous in ['explícame {}','define el término {}','quiero aprender sobre {}']:
    for followup in ['repítelo','dime mas','cuéntalo otra vez','repite por favor']:
     out['train'].append({'input':followup,'previous':previous.format(topic),'response':answer,'kind':'context'})
+ # Short anchors teach a topic independently of its training wrapper.
+ for topic,answer in TOPICS:
+  out['train'].append({'input':topic,'response':answer,'kind':'topic_anchor'})
  return out
 def intentions(split):
  r=rng(split);forms={
