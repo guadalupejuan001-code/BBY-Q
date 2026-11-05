@@ -86,6 +86,7 @@ public class CapabilityAuditTest {
   check("arithmetic-in-qchat-only","open-language",empty,"qchat calcula 137 por 24","number","3288");
   JSONObject groups=new JSONObject();int passed=0;for(int i=0;i<cases.length();i++){JSONObject r=cases.getJSONObject(i);String g=r.getString("group");JSONObject x=groups.optJSONObject(g);if(x==null){x=new JSONObject().put("passed",0).put("total",0);groups.put(g,x);}x.put("total",x.getInt("total")+1);if(r.getBoolean("passed")){passed++;x.put("passed",x.getInt("passed")+1);}}
   JSONObject report=new JSONObject().put("protocol","BBYQ-0-AUDIT-20261105-1").put("base_commit","6a6a66b301ab6efe1208791f675a18358179e2d6").put("scope","42 descriptive product probes; exact outputs/status and simple completion checks, not an AGI score").put("passed",passed).put("total",cases.length()).put("groups",groups).put("cases",cases);
-  assertEquals(42,cases.length());File output=new File(base().getFilesDir(),"BBYQ-capability-audit.json");try(FileOutputStream stream=new FileOutputStream(output)){stream.write(report.toString(2).getBytes(StandardCharsets.UTF_8));}assertTrue(output.length()>1000);
+  assertEquals(42,cases.length());File output=new File(base().getFilesDir(),"BBYQ-capability-audit.json");byte[] bytes=report.toString(2).getBytes(StandardCharsets.UTF_8);try(FileOutputStream stream=new FileOutputStream(output)){stream.write(bytes);}assertTrue(output.length()>1000);
+  android.os.Bundle bundle=new android.os.Bundle();bundle.putString("stream","\nBBYQ_CAPABILITY_AUDIT_BASE64="+android.util.Base64.encodeToString(bytes,android.util.Base64.NO_WRAP)+"\n");InstrumentationRegistry.getInstrumentation().sendStatus(2,bundle);
  }
 }
