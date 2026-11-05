@@ -1,0 +1,901 @@
+{
+  "version": "BBY-Q-0-1",
+  "namespace": "zero-reserved-projection-fix",
+  "source_hashes": {
+    "ai/personal/zero/core.xi.in": "f278892d3efc05bdf27ac0974c91bd5bf866a4038f654696f26b482725b965e3",
+    "ai/personal/zero/model.mjs": "3ba52298a5f846a7d0d802daf20049e0bf970f67aa11ae24fc6d28ca912642cd",
+    "ai/personal/zero/schema.mjs": "ce4ed6a3dc739db2eb34d60431d601556a4a871e78b470406fce9cb3130b8d99"
+  },
+  "programmed_symbolic_engine": true,
+  "general_intelligence_demonstrated": false,
+  "correct": 120,
+  "tasks": 120,
+  "accuracy": 1.0,
+  "families": {
+    "chains": {
+      "correct": 20,
+      "tasks": 20
+    },
+    "relational": {
+      "correct": 20,
+      "tasks": 20
+    },
+    "contradictions": {
+      "correct": 20,
+      "tasks": 20
+    },
+    "routes": {
+      "correct": 20,
+      "tasks": 20
+    },
+    "arithmetic": {
+      "correct": 20,
+      "tasks": 20
+    },
+    "mixed-restart": {
+      "correct": 20,
+      "tasks": 20
+    }
+  },
+  "checks": [
+    "rule removal invalidates derived conclusions",
+    "unbound variables rejected even with negative premises",
+    "resource exhaustion differs from unknown",
+    "fact removal invalidates derived conclusions",
+    "unsupported text does not create a proof",
+    "implicit malformed arithmetic rejected",
+    "a successful later tool does not hide an unknown earlier goal",
+    "native shared feedback learns without editing facts",
+    "quantum-memory output projects to a grounded symbolic term",
+    "classifier output projects without unresolved numeric placeholders",
+    "a missing observation creates no asserted premise"
+  ],
+  "cases": [
+    {
+      "family": "chains",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 52.639695997640956,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 43.12676399422344,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 62.69607599824667,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 38.99587399791926,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 39.68515500309877,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 43.190900003537536,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 49.127220998343546,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 38.8515520025976,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 47.93246099870885,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 33.22343000036199,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 33.85916999832261,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 50.31978700571926,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 58.10079400544055,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 32.25530999770854,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 34.44580499490257,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 47.017908000270836,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 57.62167499779025,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 52.68457800411852,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 32.632952999847475,
+      "result_status": 0
+    },
+    {
+      "family": "chains",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 29.521139003918506,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 28.419474001566414,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 28.139333000581246,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 30.93371499562636,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 28.072498003893998,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 26.9874779987731,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 29.068017996905837,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 28.481367000495084,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 28.12188200186938,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 27.157839998835698,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 26.605459999700543,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 32.2858509971411,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 29.83441799733555,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 26.210552001430187,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 29.99108899530256,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 27.250613005890045,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 26.88649800256826,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 29.11628499714425,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 34.2002209945349,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 29.250667001178954,
+      "result_status": 0
+    },
+    {
+      "family": "relational",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 25.82452700153226,
+      "result_status": 0
+    },
+    {
+      "family": "contradictions",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 32.25754900631728,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 34.03583899489604,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 30.94980500463862,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 29.60663699923316,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 33.06846600025892,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 30.824205998214893,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 33.36800599936396,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 36.44992099725641,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 34.08242499426706,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 31.533945999399293,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 35.38925800239667,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 30.130634004308376,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 31.359889995655976,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 35.77085000142688,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 32.54142600053456,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 38.83523300464731,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 32.32967700023437,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 30.312031994981226,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 38.950000001932494,
+      "result_status": 2
+    },
+    {
+      "family": "contradictions",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 31.740176003950182,
+      "result_status": 2
+    },
+    {
+      "family": "routes",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 50.67076399427606,
+      "result_status": 0
+    },
+    {
+      "family": "routes",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 86.51493899378693,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 83.26037700317102,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 89.91901700210292,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 112.62472099770093,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 41.59511799662141,
+      "result_status": 0
+    },
+    {
+      "family": "routes",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 126.16851599887013,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 121.02916299772914,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 53.338867001002654,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 64.17121199774556,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 90.52300400071545,
+      "result_status": 0
+    },
+    {
+      "family": "routes",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 52.723633001733106,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 71.12436900206376,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 107.19272199639818,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 47.51708199910354,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 83.9437579998048,
+      "result_status": 0
+    },
+    {
+      "family": "routes",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 73.81834600528236,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 41.03580799710471,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 75.66825400135713,
+      "result_status": 1
+    },
+    {
+      "family": "routes",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 112.47521999757737,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 9.00759399519302,
+      "result_status": 4
+    },
+    {
+      "family": "arithmetic",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 10.043514994322322,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 10.123093998117838,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 9.981401002733037,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 11.53677300317213,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 17.46077500138199,
+      "result_status": 4
+    },
+    {
+      "family": "arithmetic",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 16.916402004426345,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 9.668762002547737,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 10.979334998410195,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 9.547228997689672,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 9.635912996600382,
+      "result_status": 4
+    },
+    {
+      "family": "arithmetic",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 9.010913003294263,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 8.739535995118786,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 10.911232995567843,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 8.828844998788554,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 8.371183001145255,
+      "result_status": 4
+    },
+    {
+      "family": "arithmetic",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 14.112611002929043,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 11.75454899930628,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 12.515603004430886,
+      "result_status": 1
+    },
+    {
+      "family": "arithmetic",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 12.897715998406056,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 0,
+      "correct": true,
+      "elapsed_ms": 47.1731709985761,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 1,
+      "correct": true,
+      "elapsed_ms": 47.27210500277579,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 2,
+      "correct": true,
+      "elapsed_ms": 45.22965200158069,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 3,
+      "correct": true,
+      "elapsed_ms": 42.80555200239178,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 4,
+      "correct": true,
+      "elapsed_ms": 42.68038300506305,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 5,
+      "correct": true,
+      "elapsed_ms": 44.408854002540465,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 6,
+      "correct": true,
+      "elapsed_ms": 45.754965001833625,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 7,
+      "correct": true,
+      "elapsed_ms": 43.00879200309282,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 8,
+      "correct": true,
+      "elapsed_ms": 42.94802399817854,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 9,
+      "correct": true,
+      "elapsed_ms": 46.511817003192846,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 10,
+      "correct": true,
+      "elapsed_ms": 42.96204099955503,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 11,
+      "correct": true,
+      "elapsed_ms": 50.14043700066395,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 12,
+      "correct": true,
+      "elapsed_ms": 42.60874099418288,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 13,
+      "correct": true,
+      "elapsed_ms": 45.949549006763846,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 14,
+      "correct": true,
+      "elapsed_ms": 43.28659299790161,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 15,
+      "correct": true,
+      "elapsed_ms": 51.650535002409015,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 16,
+      "correct": true,
+      "elapsed_ms": 46.21703400334809,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 17,
+      "correct": true,
+      "elapsed_ms": 46.42890799732413,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 18,
+      "correct": true,
+      "elapsed_ms": 42.027442999824416,
+      "result_status": 1
+    },
+    {
+      "family": "mixed-restart",
+      "index": 19,
+      "correct": true,
+      "elapsed_ms": 41.2837199983187,
+      "result_status": 1
+    }
+  ],
+  "limits": [
+    "Controlled grammar, at most two premises and three rule variables.",
+    "Finite native work window and explicit search budget.",
+    "General-purpose symbolic composition and user-taught knowledge, not an open-ended foundation model or an AGI benchmark.",
+    "The existing quantum specialists remain unchanged and are invoked for applicable typed observations."
+  ]
+}

@@ -45,7 +45,7 @@ public final class MainActivity extends Activity {
   LinearLayout head=new LinearLayout(this);head.setGravity(Gravity.CENTER_VERTICAL);head.setPadding(dp(2),dp(4),dp(2),dp(10));
   TextView mark=text("Q",25,BG);mark.setTypeface(Typeface.DEFAULT,Typeface.BOLD);mark.setGravity(Gravity.CENTER);mark.setBackground(shape(ACCENT,14));head.addView(mark,new LinearLayout.LayoutParams(dp(48),dp(48)));
   LinearLayout names=vertical();names.setPadding(dp(12),0,0,0);
-  TextView title=text("BBY Q",24,INK);title.setTypeface(Typeface.DEFAULT,Typeface.BOLD);names.addView(title);names.addView(text("Tu espacio, X",12,MUTED));
+  TextView title=text("BBY Q 0",24,INK);title.setTypeface(Typeface.DEFAULT,Typeface.BOLD);names.addView(title);names.addView(text("Tu espacio, X",12,MUTED));
   head.addView(names,new LinearLayout.LayoutParams(0,-2,1));
   Button menu=button("•••");menu.setContentDescription("Opciones");head.addView(menu,new LinearLayout.LayoutParams(dp(52),dp(48)));menu.setOnClickListener(v->showMenu(menu));
   root.addView(head);
@@ -54,17 +54,17 @@ public final class MainActivity extends Activity {
   messages=vertical();messages.setId(R.id.message_list);messages.setPadding(0,dp(8),0,dp(14));scroll.addView(messages);
   root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
   LinearLayout chips=new LinearLayout(this);
-  for(String label:new String[]{"Ingreso","Calcular","Enseñar"}){
+  for(String label:new String[]{"Razonar","Calcular","Enseñar"}){
    Button b=button(label);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(44),1);p.setMargins(dp(2),0,dp(2),dp(8));chips.addView(b,p);
-   b.setOnClickListener(v->{if(label.equals("Enseñar")){input.setText("aprende: mi proyecto\ndefinición: escribe aquí lo que quieres recordar\nrequiere: memoria\nfuente: X\npáginas: 1");input.requestFocus();((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(input,InputMethodManager.SHOW_IMPLICIT);}else{input.setText(label.equals("Ingreso")?"que es ingreso y que requiere?":"calcula 17 + 25");sendMessage();}});
+   b.setOnClickListener(v->{if(label.equals("Enseñar")){input.setText("aprende: mi proyecto\ndefinición: escribe aquí lo que quieres recordar\nrequiere: memoria\nfuente: X\npáginas: 1");input.requestFocus();((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(input,InputMethodManager.SHOW_IMPLICIT);}else{input.setText(label.equals("Razonar")?"resuelve:\nana es humana\nsi $x es humana entonces $x es mortal\n¿ana es mortal?":"calcula 17 + 25");sendMessage();}});
   }root.addView(chips);
   LinearLayout composer=new LinearLayout(this);composer.setGravity(Gravity.BOTTOM);composer.setPadding(dp(8),dp(4),dp(4),dp(4));composer.setBackground(shape(PANEL,22));
-  input=new EditText(this);input.setId(R.id.message_input);input.setHint("Habla con BBY Q…");input.setHintTextColor(MUTED);input.setTextColor(INK);input.setTextSize(16);input.setBackgroundColor(Color.TRANSPARENT);input.setMinLines(1);input.setMaxLines(6);input.setPadding(dp(6),dp(10),dp(6),dp(10));input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+  input=new EditText(this);input.setId(R.id.message_input);input.setHint("Habla con BBY Q 0…");input.setHintTextColor(MUTED);input.setTextColor(INK);input.setTextSize(16);input.setBackgroundColor(Color.TRANSPARENT);input.setMinLines(1);input.setMaxLines(6);input.setPadding(dp(6),dp(10),dp(6),dp(10));input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
   composer.addView(input,new LinearLayout.LayoutParams(0,-2,1));
   send=button("↑");send.setId(R.id.send_button);send.setContentDescription("Enviar mensaje");send.setTextSize(25);send.setTextColor(BG);send.setBackgroundTintList(android.content.res.ColorStateList.valueOf(ACCENT));composer.addView(send,new LinearLayout.LayoutParams(dp(52),dp(52)));send.setOnClickListener(v->sendMessage());
   root.addView(composer);setContentView(root);send.setEnabled(false);
   if(saved!=null)input.setText(saved.getString("draft",""));
-  WORK.execute(()->{try{engine=PersonalEngine.get(this);JSONArray history=engine.messages();runOnUiThread(()->{if(isDestroyed())return;messages.removeAllViews();if(history.length()==0)addBubble("BBY Q","Hola, X. Tu conversación, lecciones y agentes comparten esta sesión. Puedes consultar lo aprendido, enseñar una lección o guardar una asociación binaria.");else for(int i=0;i<history.length();i++){JSONObject m=history.optJSONObject(i);addBubble(m.optString("role").equals("user")?"X":"BBY Q",m.optString("text"));}send.setEnabled(!BUSY.get());status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);});}catch(Exception e){showError(e);}});
+  WORK.execute(()->{try{engine=PersonalEngine.get(this);JSONArray history=engine.messages();runOnUiThread(()->{if(isDestroyed())return;messages.removeAllViews();if(history.length()==0)addBubble("BBY Q 0","Hola, X. Soy BBY Q 0. Puedo conservar hechos y reglas, mostrar su evidencia, calcular y buscar rutas. En Ejemplos puedes probar varias capacidades juntas. Tus lecciones y agentes anteriores siguen disponibles.");else for(int i=0;i<history.length();i++){JSONObject m=history.optJSONObject(i);addBubble(m.optString("role").equals("user")?"X":"BBY Q 0",m.optString("text"));}send.setEnabled(!BUSY.get());status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);});}catch(Exception e){showError(e);}});
  }
  private void addBubble(String role,String message){
   LinearLayout bubble=vertical();bubble.setPadding(dp(14),dp(12),dp(14),dp(12));boolean user=role.equals("X");bubble.setBackground(shape(user?0xff213c3b:PANEL,18));
@@ -76,25 +76,36 @@ public final class MainActivity extends Activity {
  private void sendMessage(){
   String message=input.getText().toString();if(message.trim().isEmpty()||engine==null||!BUSY.compareAndSet(false,true))return;
   input.setText("");send.setEnabled(false);addBubble("X",message);status.setText("Pensando…");status.setTextColor(MUTED);
-  WORK.execute(()->{try{String reply=engine.chat(message);runOnUiThread(()->{if(!isDestroyed())addBubble("BBY Q",reply);});}catch(Exception e){runOnUiThread(()->{if(!isDestroyed()){if(messages.getChildCount()>0)messages.removeViewAt(messages.getChildCount()-1);input.setText(message);}});showError(e);}finally{BUSY.set(false);runOnUiThread(()->{if(!isDestroyed()){send.setEnabled(true);status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);}});}});
+  WORK.execute(()->{try{String reply=engine.chat(message);runOnUiThread(()->{if(!isDestroyed())addBubble("BBY Q 0",reply);});}catch(Exception e){runOnUiThread(()->{if(!isDestroyed()){if(messages.getChildCount()>0)messages.removeViewAt(messages.getChildCount()-1);input.setText(message);}});showError(e);}finally{BUSY.set(false);runOnUiThread(()->{if(!isDestroyed()){send.setEnabled(true);status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);}});}});
  }
- private void showError(Exception e){runOnUiThread(()->{if(!isDestroyed()){status.setText("No se completó la operación");new AlertDialog.Builder(this).setTitle("BBY Q").setMessage(e.getMessage()).setPositiveButton("Entendido",null).show();}});}
+ private void showError(Exception e){runOnUiThread(()->{if(!isDestroyed()){status.setText("No se completó la operación");new AlertDialog.Builder(this).setTitle("BBY Q 0").setMessage(e.getMessage()).setPositiveButton("Entendido",null).show();}});}
  private void showMenu(View anchor){
-  PopupMenu menu=new PopupMenu(this,anchor);for(String s:new String[]{"Qué puedo hacer","Resolver una misión","Evaluar última tarea","Mis agentes","Mi sesión","Exportar conversación","Acerca de"})menu.getMenu().add(s);
+  PopupMenu menu=new PopupMenu(this,anchor);for(String s:new String[]{"Qué puedo hacer","Ejemplos","Resolver una misión","Evaluar última tarea","Mis agentes","Mi sesión","Exportar conversación","Acerca de"})menu.getMenu().add(s);
   menu.setOnMenuItemClickListener(item->{String s=item.getTitle().toString();
    if(s.equals("Mis agentes"))showAgents();
+   else if(s.equals("Ejemplos")){showExamples();}
    else if(s.equals("Resolver una misión")){
     LinearLayout form=vertical();form.setPadding(dp(20),dp(8),dp(20),0);form.addView(text("Ejemplo: combina una regla binaria guardada con datos sintéticos para decidir un paso. La regla 1 invierte el destino 0/6.",14,INK));
     EditText key=new EditText(this);key.setHint("Clave de memoria");key.setText("faro");form.addView(key);EditText position=new EditText(this);position.setHint("Posición de 0 a 6");position.setInputType(InputType.TYPE_CLASS_NUMBER);position.setText("3");form.addView(position);
     new AlertDialog.Builder(this).setTitle("Misión compartida").setView(form).setPositiveButton("Resolver",(d,w)->{try{JSONObject payload=new JSONObject().put("memoria",key.getText().toString()).put("posicion",Integer.parseInt(position.getText().toString())).put("muestra",620511);input.setText("mision "+payload);sendMessage();}catch(Exception e){showError(e);}}).setNegativeButton("Cancelar",null).show();
    }
-   else if(s.equals("Evaluar última tarea"))WORK.execute(()->{if(engine==null)return;String task=engine.lastEntityTask();runOnUiThread(()->{if(isDestroyed())return;if(task==null){new AlertDialog.Builder(this).setMessage("No hay tareas pendientes de evaluar.").setPositiveButton("Cerrar",null).show();return;}new AlertDialog.Builder(this).setTitle("¿El resultado fue correcto?").setMessage("Tu evaluación actualiza el aprendizaje común. En ejemplos sintéticos con una regla que enseñaste, también entrena a los especialistas con objetivos verificables.").setPositiveButton("Correcto",(d,w)->sendFeedback(task,1)).setNegativeButton("Incorrecto",(d,w)->sendFeedback(task,0)).setNeutralButton("Cancelar",null).show();});});
+   else if(s.equals("Evaluar última tarea"))WORK.execute(()->{if(engine==null)return;JSONObject pending;try{pending=engine.latestPendingTask();}catch(Exception failure){showError(failure);return;}String task=pending==null?null:pending.optString("id");boolean zero=pending!=null&&pending.optString("kind").equals("zero");runOnUiThread(()->{if(isDestroyed())return;if(task==null){new AlertDialog.Builder(this).setMessage("No hay tareas pendientes de evaluar.").setPositiveButton("Cerrar",null).show();return;}new AlertDialog.Builder(this).setTitle("¿El resultado fue correcto?").setMessage("Tu evaluación actualiza el aprendizaje común. En ejemplos sintéticos con una regla que enseñaste, también entrena a los especialistas con objetivos verificables.").setPositiveButton("Correcto",(d,w)->sendFeedback(task,1,zero)).setNegativeButton("Incorrecto",(d,w)->sendFeedback(task,0,zero)).setNeutralButton("Cancelar",null).show();});});
    else if(s.equals("Mi sesión"))WORK.execute(()->{try{if(engine==null)return;JSONObject state=engine.sessionStatus();runOnUiThread(()->{if(!isDestroyed())new AlertDialog.Builder(this).setTitle("Tu sesión").setMessage("Lecciones: "+state.optInt("lessons")+"\nTurnos confirmados: "+state.optLong("generation")+"\nAsociaciones binarias: "+state.optInt("binary_memories")+"\nIntegridad: "+state.optString("integrity")).setPositiveButton("Cerrar",null).show();});}catch(Exception e){showError(e);}});
    else if(s.equals("Exportar conversación")){Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.setType("text/plain");i.addCategory(Intent.CATEGORY_OPENABLE);i.putExtra(Intent.EXTRA_TITLE,"BBYQ-X-conversacion.txt");startActivityForResult(i,71);}
-   else if(s.equals("Acerca de"))new AlertDialog.Builder(this).setTitle("BBY Q · X").setMessage("Edición X10 · 2.2 E02\nMemoria, percepción, reglas, planificación y lenguaje comparten una tarea y su evaluación.\nMotor XI/Ether propio. E01 conservado como referencia. Las misiones actuales usan reglas binarias y un entorno de siete posiciones.").setPositiveButton("Cerrar",null).show();
+   else if(s.equals("Acerca de"))new AlertDialog.Builder(this).setTitle("BBY Q 0 · X").setMessage("BBY Q 0 · 3.0\nConocimiento, reglas, rutas, cálculo, contexto y especialistas comparten sesión y evaluación.\nMotor XI/Ether propio. E01 conservado como referencia. El razonamiento simbólico y la comprensión del lenguaje tienen alcances definidos; esta edición no demuestra IA general.").setPositiveButton("Cerrar",null).show();
    else new AlertDialog.Builder(this).setTitle("Qué puedes decirle").setMessage("que es ingreso y que requiere?\n\ncalcula 17 + 25\n\n¿qué dije antes?\n\nmemoria guarda faro 1\nmemoria consulta faro\nmemoria corrige faro 0\n\nquantum v3 estado\nquantum v3 planea 3 6\n\nqchat hola\n\nPara enseñar una lección, usa Enseñar y completa sus campos.").setPositiveButton("Cerrar",null).show();return true;});menu.show();
  }
- private void sendFeedback(String task,int result){try{input.setText("evaluar "+new JSONObject().put("tarea",task).put("resultado",result));sendMessage();}catch(Exception e){showError(e);}}
+ private void sendFeedback(String task,int result,boolean zero){try{input.setText((zero?"evaluar0 ":"evaluar ")+new JSONObject().put("tarea",task).put("resultado",result));sendMessage();}catch(Exception e){showError(e);}}
+ private void showExamples(){
+  String[] labels={"Aprender y razonar","Ruta entre lugares","Cálculo compuesto","Especialistas y reglas","Retirar una regla"};
+  String[] examples={
+   "recuerda que ana es humana\naprende regla: si $x es humana entonces $x es mortal\n¿ana es mortal?",
+   "resuelve:\ncasa conecta parque\nparque conecta biblioteca\nbiblioteca conecta trabajo\nruta desde casa hasta trabajo",
+   "calcula (17 + 25) * 3 - 6 / 2",
+   "resuelve:\nrecupera faro\nobserva señal muestra 620511\nsi faro es uno y señal es clase1 entonces proyecto es autorizado\n¿proyecto es autorizado?",
+   "olvida regla: si $x es humana entonces $x es mortal\n¿ana es mortal?"};
+  new AlertDialog.Builder(this).setTitle("Ejemplos de BBY Q 0").setItems(labels,(d,index)->{input.setText(examples[index]);input.requestFocus();}).setNegativeButton("Cerrar",null).show();
+ }
  private void showAgents(){
   if(engine==null||!BUSY.compareAndSet(false,true))return;status.setText("Leyendo los agentes…");
   WORK.execute(()->{try{JSONObject s=engine.quantumStatus();runOnUiThread(()->{

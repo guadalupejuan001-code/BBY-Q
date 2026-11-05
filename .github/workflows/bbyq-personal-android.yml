@@ -1,7 +1,7 @@
 name: BBY Q personal Android APK
 on:
   pull_request:
-    paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', 'ai/xi/balance/**', 'ai/xi/entity/**', 'integration/balance/**', 'integration/entity/**', '.github/workflows/bbyq-personal-android.yml']
+    paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', 'ai/xi/balance/**', 'ai/xi/entity/**', 'integration/balance/**', 'integration/entity/**', 'integration/zero/**', '.github/workflows/bbyq-personal-android.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -41,6 +41,7 @@ jobs:
           node android-personal/scripts/test-unified-native.mjs
           python3 integration/balance/verify.py
           python3 integration/entity/verify.py
+          python3 integration/zero/verify.py
       - name: Install Android tools
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
@@ -61,6 +62,7 @@ jobs:
             build/unified-native-checks.json
             build/balance-release-checks.json
             build/entity-release-checks.json
+            build/zero-release-checks.json
             android-personal/build.log
           if-no-files-found: warn
           retention-days: 30

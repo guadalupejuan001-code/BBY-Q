@@ -63,7 +63,7 @@ final class EntityCycle {
             Integer teacher=null;try(android.database.Cursor c=engine.db.rawQuery("SELECT value FROM memory_teachers WHERE key=?",new String[]{key})){if(c.moveToFirst())teacher=c.getInt(0);}
             byte[] frame=shared.bytes(E,352);String inputText=input.toString(),traceText=trace.toString();
             engine.db.execSQL("INSERT INTO entity_tasks(id,input,trace,workspace,digest,teacher,created) VALUES(?,?,?,?,?,?,?)",new Object[]{requestId,inputText,traceText,frame,taskDigest(frame,inputText,traceText,teacher),teacher,System.currentTimeMillis()});
-            return new JSONObject().put("response",response).put("engine","E02-Entity-XI").put("entity_task",requestId).put("trace",trace).put("action",verified?action:-1);
+            return new JSONObject().put("response",response).put("engine","E02-Entity-XI").put("entity_task",requestId).put("trace",trace).put("action",verified?action:-1).put("status",verified&&action!=-1?1:0);
         }
     }
     private JSONObject voice(XiSession shared)throws Exception {
