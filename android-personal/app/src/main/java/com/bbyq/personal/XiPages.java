@@ -47,7 +47,7 @@ final class XiPages implements AutoCloseable {
     int intent(byte[] raw) throws Exception { frame(Arrays.copyOf(raw,Math.min(raw.length,8192)),0,raw.length,"");role("intent");return (int)number(B+128,1); }
     int[] route(byte[] raw) throws Exception {
         frame(Arrays.copyOf(raw,Math.min(raw.length,8192)),0,raw.length,"");role("route");
-        if(number(B+29,1)!=0)throw new IOException("La lección debe incluir todos sus campos dentro de sus límites");
+        if(number(B+29,1)!=0)throw new IOException("La lección está incompleta o supera sus límites. Incluye definición, requiere, fuente y páginas; para corregir, añade revisión: N antes de la definición, usando la revisión de la respuesta anterior.");
         return new int[]{(int)number(B+64,1),(int)number(B+33,1)};
     }
     int[] quantumRoute(byte[] raw) throws Exception {

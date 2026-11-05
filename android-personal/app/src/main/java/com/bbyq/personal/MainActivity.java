@@ -74,7 +74,7 @@ public final class MainActivity extends Activity {
   scroll.post(()->scroll.fullScroll(View.FOCUS_DOWN));
  }
  private void sendMessage(){
-  String message=input.getText().toString().trim();if(message.isEmpty()||engine==null||!BUSY.compareAndSet(false,true))return;
+  String message=input.getText().toString();if(message.trim().isEmpty()||engine==null||!BUSY.compareAndSet(false,true))return;
   input.setText("");send.setEnabled(false);addBubble("X",message);status.setText("Pensando…");status.setTextColor(MUTED);
   WORK.execute(()->{try{String reply=engine.chat(message);runOnUiThread(()->{if(!isDestroyed())addBubble("BBY Q",reply);});}catch(Exception e){runOnUiThread(()->{if(!isDestroyed()){if(messages.getChildCount()>0)messages.removeViewAt(messages.getChildCount()-1);input.setText(message);}});showError(e);}finally{BUSY.set(false);runOnUiThread(()->{if(!isDestroyed()){send.setEnabled(true);status.setText("● Disponible sin conexión");status.setTextColor(ACCENT);}});}});
  }

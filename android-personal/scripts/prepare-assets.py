@@ -34,7 +34,7 @@ assert sha(gzip.decompress(data))==qm['checkpoint_sha256']
 for name in ['common','benchmarks','qrl3','qrl3-act','step']:
  data=(root/'ai/xi/quantum3'/f'{name}.xi').read_bytes()
  (dest/f'v3-{name}.xi').write_bytes(data);files[f'v3-{name}.xi']=sha(data)
-identities={'chat':release['model_sha256'],'quantum':qm['checkpoint_sha256']}
+identities={'chat':sha((release['model_sha256']+files['front.rxe']+files['code.rxe']).encode()),'quantum':sha((qm['checkpoint_sha256']+''.join(files['v3-'+name+'.xi'] for name in ['common','benchmarks','qrl3','step'])).encode())}
 for family,label in [('qchat100','qchat'),('qmemory','qmemory')]:
  folder=root/'integration'/family/'release';m=json.loads((folder/'manifest.json').read_text());data=(folder/m['file']).read_bytes()
  assert sha(data)==m['gzip_sha256']

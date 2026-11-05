@@ -35,4 +35,10 @@ assert 'una leccion personal de X'.lower() in fixtures[5]['response'].lower()
 (assets/'chat-fixtures.json').write_text(json.dumps(fixtures,ensure_ascii=False,indent=2)+'\n')
 (work/'evidence.json').write_text(json.dumps({'ok':True,'cases':len(fixtures),'chat_seed_sha256':original,'source':'existing native XI X08','new_language_model':False},indent=2)+'\n')
 test_assets=root/'android-personal/app/src/androidTest/assets';test_assets.mkdir(parents=True,exist_ok=True)
-(test_assets/'migration-model.rvp.gz').write_bytes(gzip.compress(state.read_bytes(),mtime=0))
+(test_assets/'migration-model.rvpbin').write_bytes(gzip.compress(state.read_bytes(),mtime=0))
+sys.path.insert(0,str(root/'integration/qchat100'))
+from engine import bits
+inputs=json.loads((root/'integration/qchat100/release/input-vocabulary.json').read_text())
+history=json.loads((root/'integration/qchat100/release/history-vocabulary.json').read_text())
+cases=[('hola',[],''),('qué es memoria',['la'],'hola'),('explícalo otra vez',[],'qué es memoria'),('¡Árbol, XI! 🎸',['bby','q'],'Ether y memoria')]
+(test_assets/'qchat-codec.json').write_text(json.dumps([{'prompt':p,'prefix':v,'previous':h,'bits':bits(p,v,h,inputs,history)} for p,v,h in cases],ensure_ascii=False)+'\n')

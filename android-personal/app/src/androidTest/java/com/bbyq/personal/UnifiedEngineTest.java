@@ -26,6 +26,9 @@ public class UnifiedEngineTest {
         try(InputStream source=in;ByteArrayOutputStream b=new ByteArrayOutputStream()){byte[] v=new byte[16384];int n;while((n=source.read(v))!=-1)b.write(v,0,n);return b.toByteArray();}
     }
     private String lesson(String prefix,String definition){return prefix+"faro\ndefinición: "+definition+"\nrequiere: energía\nfuente: X\npáginas: 1";}
+    private String correction(PersonalEngine engine,String definition)throws Exception {
+        return lesson("corrige lección: ",definition).replace("\ndefinición:","\nrevisión: "+engine.sessionStatus().getString("revision")+"\ndefinición:");
+    }
     @Test public void replayAndRollbackSurviveRestart()throws Exception {
         try(PersonalEngine e=new PersonalEngine(context)) {
             String first=e.chat("teach-1",lesson("aprende: ","una luz"));
@@ -34,12 +37,12 @@ public class UnifiedEngineTest {
             assertEquals(before.getLong("generation"),e.sessionStatus().getLong("generation"));
             try{e.chat("teach-1","hola");fail("Replay mismatch");}catch(IOException expected){}
             int messages=e.messages().length();
-            try{e.testTurn("failed-1",lesson("corrige lección: ","una estrella"),true);fail("Injected rollback");}catch(IOException expected){}
+            try{e.testTurn("failed-1",correction(e,"una estrella"),true);fail("Injected rollback");}catch(IOException expected){assertEquals("Injected failure before commit",expected.getMessage());}
             assertEquals(messages,e.messages().length());assertEquals(before.toString(),e.sessionStatus().toString());
         }
         try(PersonalEngine e=new PersonalEngine(context)){
             assertTrue(e.chat("que es faro").contains("una luz"));
-            e.chat(lesson("corrige lección: ","una estrella"));assertTrue(e.chat("que es faro").contains("una estrella"));
+            e.chat(correction(e,"una estrella"));assertTrue(e.chat("que es faro").contains("una estrella"));
             e.chat("olvida lección: faro");assertEquals(480,e.sessionStatus().getInt("lessons"));
         }
     }
@@ -97,7 +100,7 @@ public class UnifiedEngineTest {
     @Test public void originalAndroidSessionAndTrainingAreMigratedOnce()throws Exception {
         File old=new File(context.getFilesDir(),"bbyq-personal");assertTrue(old.mkdirs());
         Context tests=InstrumentationRegistry.getInstrumentation().getContext();
-        byte[] chat=bytes(new GZIPInputStream(tests.getAssets().open("migration-model.rvp.gz")));
+        byte[] chat=bytes(new GZIPInputStream(tests.getAssets().open("migration-model.rvpbin")));
         byte[] quantum=bytes(new GZIPInputStream(context.getAssets().open("engine/quantum-model.rvpbin")));
         try(FileOutputStream out=new FileOutputStream(new File(old,"conversation.rvp"))){out.write(chat);}
         try(FileOutputStream out=new FileOutputStream(new File(old,"quantum-v3.rvp"))){out.write(quantum);}
@@ -123,5 +126,30 @@ public class UnifiedEngineTest {
         XiSession xi=new XiSession(null);xi.run("#!reverse-pc-machine-v1\nstore8 123 7\nhalt\n");
         try{xi.run("#!reverse-pc-machine-v1\nstore8 123 9\ndiv r0 0\nhalt\n");fail("Native failure");}catch(IllegalStateException expected){}
         assertEquals(7,xi.number(123,1));xi.close();xi.close();try{xi.number(123,1);fail("Closed session");}catch(IllegalStateException expected){}
+    }
+    @Test public void nativeReasoningCompositionAndParaphraseShareTheSession()throws Exception {
+        try(PersonalEngine e=new PersonalEngine(context)){
+            String before=e.stateHash();
+            JSONObject reasoning=e.testTurn("reason","Todos los motores son máquinas. Alpha es un motor. ¿Alpha es máquina?",false);
+            assertEquals("P03-XI",reasoning.getString("engine"));assertTrue(reasoning.getString("response").contains("alpha -> motor -> maquinas"));
+            JSONObject poem=e.testTurn("poem","Escribe un poema de cuatro versos sobre una guitarra.",false);
+            assertEquals("P04-XI",poem.getString("engine"));assertEquals(4,poem.getString("response").split("\n").length);
+            JSONObject paraphrase=e.testTurn("paraphrase","hazme un poema sobre una guitarra",false);
+            assertEquals("P06-XI",paraphrase.getString("engine"));assertTrue(paraphrase.getString("response").contains("una guitarra"));
+            assertEquals(before,e.stateHash());
+        }
+    }
+    @Test public void quantumTextCodecMatchesTheIndependentOriginalPythonCodec()throws Exception {
+        Context tests=InstrumentationRegistry.getInstrumentation().getContext();
+        JSONArray cases=new JSONArray(new String(bytes(tests.getAssets().open("qchat-codec.json")),java.nio.charset.StandardCharsets.UTF_8));
+        try(PersonalEngine e=new PersonalEngine(context)){
+            Set<String> input=QuantumText.set(new JSONArray(new String(e.asset("qchat-input-vocabulary.json"),java.nio.charset.StandardCharsets.UTF_8)));
+            Set<String> history=QuantumText.set(new JSONArray(new String(e.asset("qchat-history-vocabulary.json"),java.nio.charset.StandardCharsets.UTF_8)));
+            for(int i=0;i<cases.length();i++){
+                JSONObject c=cases.getJSONObject(i);List<String> prefix=new ArrayList<>();JSONArray p=c.getJSONArray("prefix"),expected=c.getJSONArray("bits");for(int j=0;j<p.length();j++)prefix.add(p.getString(j));
+                int[] actual=QuantumText.bits(c.getString("prompt"),prefix,c.getString("previous"),input,history);
+                for(int j=0;j<100;j++)assertEquals("case "+i+" bit "+j,expected.getInt(j),actual[j]);
+            }
+        }
     }
 }

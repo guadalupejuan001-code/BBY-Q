@@ -88,7 +88,10 @@ public final class PersonalEngine implements AutoCloseable {
         for(int i=0;i<BANKS.length;i++){
             AtomicFile prior=new AtomicFile(new File(old,i==0?"conversation.rvp":"quantum-v3.rvp"));
             boolean migrate=i<2&&(prior.getBaseFile().exists()||new File(prior.getBaseFile()+".bak").exists());
-            byte[] b=migrate?prior.readFully():seed(SEEDS[i]);NativeRuntime.inspect(b);save(BANKS[i],b);
+            byte[] b=migrate?prior.readFully():seed(SEEDS[i]);NativeRuntime.inspect(b);
+            if(i==0){byte[] marker=memory(b,LEGACY,2);if(marker[0]!=87||marker[1]!=2)throw new IOException("La conversación anterior necesita una migración compatible");}
+            if(i==1&&memory(b,A+1000,1)[0]!=(byte)173)throw new IOException("El checkpoint anterior no es V3 nativo");
+            save(BANKS[i],b);
         }
         putMeta("generation",0);refreshLessons(state("chat"));
         File history=new File(old,"history.sqlite");
@@ -117,7 +120,7 @@ public final class PersonalEngine implements AutoCloseable {
             db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});total++;
         }
         int expected=(meta[2]&255)|((meta[3]&255)<<8);if(total!=expected)throw new IOException("Recuento de lecciones incompatible");
-        putMeta("count",dbCount("lessons"));long revision=0;for(int i=0;i<4;i++)revision|=(meta[8+i]&255L)<<(8*i);putMeta("revision",revision);
+        putMeta("count",dbCount("lessons"));long revision=0;for(int i=0;i<4;i++)revision|=(meta[8+i]&255L)<<(8*i);putMeta("revision",Math.max(revision,Long.parseLong(meta("revision","0"))));
     }
     private int dbCount(String table){try(Cursor c=db.rawQuery("SELECT count(*) FROM "+table,null)){c.moveToFirst();return c.getInt(0);}}
     public synchronized String chat(String message)throws Exception{return chat(UUID.randomUUID().toString(),message);}
@@ -166,7 +169,10 @@ public final class PersonalEngine implements AutoCloseable {
                 if(next!=revision){
                     byte[] record=p.number(XiPages.B+28,1)==1?p.session.bytes(XiPages.RECORD,640):null;
                     if(record==null)db.execSQL("DELETE FROM lessons WHERE key=?",new Object[]{key});
-                    else db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});
+                    else {
+                        if(slot==null){boolean[] used=new boolean[4096];try(Cursor c=db.rawQuery("SELECT slot FROM lessons WHERE slot IS NOT NULL",null)){while(c.moveToNext())used[c.getInt(0)]=true;}for(int i=0;i<used.length;i++)if(!used[i]){slot=i;break;}}
+                        db.execSQL("INSERT OR REPLACE INTO lessons VALUES(?,?,?,?)",new Object[]{key,record,hash(record),slot});
+                    }
                     putMeta("count",p.number(XiPages.B+20,4));putMeta("revision",next);
                     if(slot!=null)syncLesson(slot,record);
                 }

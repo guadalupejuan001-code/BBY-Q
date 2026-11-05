@@ -20,8 +20,8 @@ function mobileRouteSource(){
   for(const[i,b]of bytes.entries()){const fold='fold_'+id++;w(`load8 r0 ${I+BigInt(i)}`,'cmp r0 65','jlt '+fold,'cmp r0 90','jgt '+fold,'add r0 32');L(fold);w('cmp r0 '+b,'jne '+miss);}
   w(`store8 ${R} ${op}`,`store8 ${R+1n} ${bytes.length}`,'jmp '+(op===4?'exact':op===5?'qchat':'key'));L(miss);
  }
- w('halt');L('exact');w(`load8 r0 ${B+12n}`,'cmp r0 14','jne bad',`load8 r0 ${B+13n}`,'cmp r0 0','jne bad','halt');
- L('qchat');w(`load8 r0 ${B+12n}`,`load8 r1 ${R+1n}`,'cmp r0 r1','jle bad','halt');
+ w('halt');L('exact');w(`load8 r0 ${B+12n}`,'cmp r0 14','jne bad');for(let i=1;i<4;i++)w(`load8 r0 ${B+12n+BigInt(i)}`,'cmp r0 0','jne bad');w('halt');
+ L('qchat');w(`load8 r0 ${B+12n}`,`load8 r1 ${B+13n}`,'mul r1 256','add r0 r1','cmp r0 518','jgt bad');for(let i=2;i<4;i++)w(`load8 r1 ${B+12n+BigInt(i)}`,'cmp r1 0','jne bad');w(`load8 r1 ${R+1n}`,'cmp r0 r1','jle bad','halt');
  L('key');w(`load8 r0 ${B+8n}`,`load8 r1 ${B+9n}`,'mul r1 256','add r0 r1',`load8 r2 ${R+1n}`,'mov r3 r0','sub r3 r2','cmp r3 1','jlt bad','cmp r3 66','jgt bad',`load8 r1 ${R}`,'cmp r1 3','je key_size','sub r0 1',`set r7 ${I}`,'add r7 r0','load8 r4 $r7','cmp r4 48','jlt bad','cmp r4 49','jgt bad','sub r4 48',`store8 ${R+3n} r4`,'sub r0 1','sub r7 1','load8 r4 $r7','cmp r4 32','jne bad');
  L('key_size');w('sub r0 r2','cmp r0 1','jlt bad','cmp r0 64','jgt bad',`store8 ${R+2n} r0`,'set r3 0');
  L('copy');w('cmp r3 r0','jge done',`set r7 ${I}`,'add r7 r2','add r7 r3','load8 r4 $r7',`set r7 ${R+32n}`,'add r7 r3','store8 $r7 r4','add r3 1','jmp copy');L('done');w('halt');L('bad');w(`store8 ${R} 254`,'halt');return lines.join('\n')+'\n';

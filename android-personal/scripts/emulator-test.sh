@@ -42,7 +42,7 @@ from pathlib import Path
 import re
 text=Path('build/personal-artifacts/android-tests.txt').read_text()
 match=re.search(r'OK \((\d+) tests?\)',text)
-assert match and int(match.group(1))>=10,text
+assert match and int(match.group(1))>=12,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg',text),text
 PY_TESTS
 adb shell am start -n com.bbyq.personalx/com.bbyq.personal.MainActivity
@@ -56,7 +56,7 @@ cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" "$OUT/apksigner.jar"
 "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" > "$OUT/package.txt"
 python3 - <<'PY'
 from pathlib import Path
-import hashlib,json,zipfile
+import hashlib,json,zipfile,re
 out=Path('build/personal-artifacts');p=out/'BBYQ-X10-Android-2.0.apk'
 with zipfile.ZipFile(p) as z:
  assert z.testzip() is None
@@ -67,6 +67,6 @@ with zipfile.ZipFile(p) as z:
 xml=(out/'android-ui.xml').read_text()
 assert 'BBY Q' in xml
 assert 'com.bbyq.personalx' in (out/'package.txt').read_text()
-e={'ok':True,'package':'com.bbyq.personalx','version':'2.0.0-X10','android_api_tested':35,'arm64_compiled':True,'x86_64_native_tested':True,'instrumentation_tests':10,'host_conversation_cases':6,'chat_engine':'X10 Android with preserved X08 XI','quantum_model':'original V3 10000 episodes per agent; no MPS','qchat100':'preserved 49680-update model','qmemory':'keyed binary recall in the shared transaction','new_quantum_conversation_algorithm':False,'apk_bytes':p.stat().st_size,'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'permissions_requested':[]}
+e={'ok':True,'package':'com.bbyq.personalx','version':'2.0.0-X10','android_api_tested':35,'arm64_compiled':True,'x86_64_native_tested':True,'instrumentation_tests':int(re.search(r'OK \((\d+) tests?\)',(out/'android-tests.txt').read_text()).group(1)),'host_conversation_cases':6,'chat_engine':'X10 Android with preserved X08 XI','quantum_model':'original V3 10000 episodes per agent; no MPS','qchat100':'preserved 49680-update model','qmemory':'keyed binary recall in the shared transaction','new_quantum_conversation_algorithm':False,'apk_bytes':p.stat().st_size,'apk_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'permissions_requested':[]}
 (out/'validation.json').write_text(json.dumps(e,indent=2)+'\n');print(json.dumps(e))
 PY

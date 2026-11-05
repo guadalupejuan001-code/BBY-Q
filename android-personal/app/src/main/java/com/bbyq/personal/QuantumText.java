@@ -10,7 +10,7 @@ import org.json.*;
 /** Same byte codec as qchat100/engine.py. Features and generation execute in XI. */
 final class QuantumText {
     static final long A=8160000000000000000L;
-    private static final Pattern WORDS=Pattern.compile("(?U)\\w+|[.!?,]");
+    private static final Pattern WORDS=Pattern.compile("[\\p{L}\\p{N}_]+|[.!?,]");
     static List<String> words(String s) {
         s=Normalizer.normalize(s.toLowerCase(Locale.ROOT),Normalizer.Form.NFD).replaceAll("\\p{M}","");
         List<String> out=new ArrayList<>();Matcher m=WORDS.matcher(s);while(m.find())out.add(m.group());return out;

@@ -38,6 +38,7 @@ jobs:
           python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
           python3 android-personal/scripts/prepare-assets.py
           python3 android-personal/scripts/test-engine.py
+          node android-personal/scripts/test-unified-native.mjs
       - name: Install Android tools
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
@@ -55,6 +56,7 @@ jobs:
           path: |
             build/personal-artifacts/
             build/personal-host/evidence.json
+            build/unified-native-checks.json
             android-personal/build.log
           if-no-files-found: warn
           retention-days: 30
