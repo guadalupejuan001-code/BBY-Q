@@ -1,0 +1,13 @@
+{
+  "version": "BBYQ-0-AUDIT-20261105-1",
+  "base_commit": "6a6a66b301ab6efe1208791f675a18358179e2d6",
+  "namespace": "audit-20261105-next-stage-1",
+  "seed": 2026110502,
+  "purpose": "Evaluate the shipped BBY Q 0 components and end-to-end Android dispatch; plan the next stage without tuning product sources or released weights",
+  "native": {"symbolic_generated_tasks": 120, "vqc_iid": 64, "vqc_ood": 64, "vqc_ablated_iid": 64, "qrl_distinct_pairs": 42, "qrl_episodes_per_environment": 32, "qmemory_binary_cases": 3000, "entity_tasks_per_arm": 84, "entity_arms": ["intact", "memory-erased", "vqc-ablated"], "qchat_topic_paraphrases": 20, "qchat_unknown": 12, "qchat_context": 10},
+  "probes": ["near-threshold specialist projection", "incompatible evidence", "rule and fact withdrawal", "resource budget", "new vocabulary and order-sensitive encoder collisions"],
+  "android": "Independent new conversations scored on actual PersonalEngine responses; existing 31 regression assertions remain required. Report functional failures instead of editing expectations or product behavior to pass.",
+  "evaluation": "Separate scores for each task, exact-match language, abstention and task completion; retain every failure and parameter identities. No aggregate intelligence percentage.",
+  "selection": "No training, checkpoint selection, or bug fixing during the assessment. Throwaway state only. Published tests are already open and are labeled regression checks.",
+  "limits": ["Synthetic tasks and a finite language grammar", "No physical-phone or real sensor measurement", "Classical execution of the project's quantum circuits", "No AGI or quantum-advantage conclusion"]
+}

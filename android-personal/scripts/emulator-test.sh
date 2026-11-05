@@ -42,9 +42,16 @@ from pathlib import Path
 import re
 text=Path('build/personal-artifacts/android-tests.txt').read_text()
 match=re.search(r'OK \((\d+) tests?\)',text)
-assert match and int(match.group(1))>=31,text
+assert match and int(match.group(1))>=32,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg',text),text
 PY_TESTS
+adb exec-out run-as com.bbyq.personalx cat files/BBYQ-capability-audit.json > "$OUT/capability-audit.json"
+python3 - <<'PY_AUDIT'
+import json
+from pathlib import Path
+j=json.loads(Path('build/personal-artifacts/capability-audit.json').read_text());assert j['total']==42 and len(j['cases'])==42
+print(json.dumps({'capability_audit':j['groups']},ensure_ascii=False))
+PY_AUDIT
 adb shell am start -n com.bbyq.personalx/com.bbyq.personal.MainActivity
 sleep 5
 adb exec-out screencap -p > "$OUT/BBYQ-X-Android.png"
