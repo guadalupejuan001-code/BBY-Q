@@ -1,0 +1,134 @@
+{
+  "version": "U01",
+  "passed": true,
+  "prediction_perfect": false,
+  "prediction_errors": 9,
+  "integration_tasks": 200,
+  "prediction_correct": 191,
+  "perception": {
+    "file": "v3.rvp.gz",
+    "sha256": "95c19feb0f109c171a966b1a1d2271e238c853b069550e75be8a874a80f922b6",
+    "gzip_sha256": "d368c3fe1f7045165ad3ec6f3e944b8f5aa61156096bee33571928235ded360a"
+  },
+  "router": {
+    "sha256": "96c4d3555d47723a771db49f17c91cbbf4f6129af21cf96cd75d5a40215bab25",
+    "gzip_sha256": "d924a8fb6a509fbe16724a9839fbf7c4ec798cf49ba472a72af441338cda8175",
+    "parts": [
+      {
+        "file": "router.rvp.gz.001",
+        "sha256": "1d2df01ab13d1d1d2c234406716029af8467ee85fd8b7f9465429c707f5bb051",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.002",
+        "sha256": "2e9683dda34f1c1a057812d645b808414eb348f1b382b7596e65fbd168062d80",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.003",
+        "sha256": "9f34e2260a6781d9abfb8d4e637bb4e9500a7cb50185f6bbbfaa7978c7d7ca75",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.004",
+        "sha256": "45e2b15b6c1ee287c8b2fcebac3283e040aa70f1c6fc9cffe0ecfbb3640befe8",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.005",
+        "sha256": "1ed7650c3e15ad79c8401f7e1e9f578310b1780654a445997886dab4ddee488e",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.006",
+        "sha256": "7a4a3b96163c7253a9fff57637b010c48f0ce2cdf9d3a3fb6327bd7ba9a5aebe",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.007",
+        "sha256": "ac5f7b112774c2bdc9e17a99f88adac7e0dc032c6e7d5cbae023075b03d133e1",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.008",
+        "sha256": "6c05bf6dd0dd390ccc9fba8b02717ad2844aa2856f5d9b1a738c2aad8e39d332",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.009",
+        "sha256": "aae1c03fa3fe5795c53226c8ebea0db839076228d171a271c3cef683da6edab5",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.010",
+        "sha256": "f05d6291de1ef31ade11dbaf774b69aa9b6f86df922758612b93ab7c48016dcb",
+        "bytes": 131072
+      },
+      {
+        "file": "router.rvp.gz.011",
+        "sha256": "7c704fcc08a28965c8af1e786015fdad33692e5c69b5fb9e08aa745409fd68f6",
+        "bytes": 51293
+      }
+    ]
+  },
+  "binding": {
+    "model.xi": "60d44b9542701a7fcf1057d27079011032327e2858dd7bf4544baeb6a7ee0090",
+    "vocabulary.json": "e3ac028260a9681068dfe8780e3d07d56a8b46f54c4a30de4b099ac7ab221655",
+    "output-vocabulary.json": "1919e9e4ba72853e4035586ff6fe834e440292c1e40bd524e69a4cd1839e31b5",
+    "semantic-vocabulary.json": "f208ff5c2fd8527c9db08c9331bc440daf41c69d15b56713930a3dfc7aaa6167"
+  },
+  "sources": {
+    "integration/unified/__init__.py": "e1253a35a71ee6961956880ff0f0a283d5943629263ffd8f99d040dd6b71e65d",
+    "integration/unified/cli.py": "436116efbc052ba7966aca8b95c282eae7dc71027d8bffcc4a9e9ad633ff2378",
+    "integration/unified/common.py": "415d8d21cf21040768a8412720aebfe3ffbeb94901b3a9d3f23f7f17af194f45",
+    "integration/unified/contracts.py": "1107ae151a1f47660fc311b55e15e55884cac964cd1df9e3188162f0cbc6bd6f",
+    "integration/unified/data.py": "93ff0e4390a88f12325beb5cb70ad1b1c899fd95368155d661fc2ffff5789d7b",
+    "integration/unified/evaluate.py": "89f63e61bfe999fe9927aa0c5997f319c2b7c987508a1dd93ea9ebd8bb5d038e",
+    "integration/unified/freeze.py": "84e3a472e80db5f6ab6a82622159a94d526228e29e029cd39028d00ab394d3d3",
+    "integration/unified/quantum.py": "070df2b80c21a26ac278c8ec88215b41d3798431d39507ada59528ba5041554f",
+    "integration/unified/session.py": "4acfe0f81b79b0bf09893bd4a39fc2d504aa964415f1d6cf65fd0e0ed9890910",
+    "integration/unified/train_perception.py": "741d0d42b8257c4b81336f0ca456ef6adf5bd554a20800f8d7de001354c0228b",
+    "integration/unified/train_router.py": "0d1c5b74eb52568ca72be7dde81f1d2c58f95d15b3e887f029dfe739e4c020b4",
+    "integration/unified/verify.py": "38097e3f5b19a7acab2db0e99425568f29d2e4581bae350e40fcd47108fd78aa",
+    "integration/unified/verify_release.py": "1e4af04188784a3bfed5167a2e60e6027b26889d73374bdbc49f9897bcf7ece4",
+    "bbyq": "2963a136726848036394367c7eb54ca3e5231f43003432762175f98ec32e86ed",
+    ".github/workflows/bbyq-unified.yml": "237f7cd312d8840ec4a67ae2cadf19662e36e3d68c75969f8a94c63ce85f87df",
+    "integration/entity/engine.py": "858f97cc5666f85f0cfdb2a7aef199d3a583c0ac1bd8186f2b81073b8014a961",
+    "integration/qchat100/engine.py": "50927e5ec59e083853b18f40a241bf7e012ab5a307bce5b7b50dedce1400827f",
+    "ai/xi/quantum3/common.xi": "34023cc8e22320f4ba83c61d736152985e1e32fc2336cabfeb4e5da0e256daa0",
+    "ai/xi/quantum3/benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+    "ai/xi/balance/qrl3-curriculum.xi": "7b6e92b0d64c2db7613c1a9a3ccc676844b27fb7e8ff7a588dab243d0146d3b8",
+    "ai/xi/quantum3/step.xi": "b3bf3f1df0c92d434756890d5a8091a227e727a79a834bd2fa6af2525993f175",
+    "ai/xi/qchat100/model.xi": "31f2ea5e50a92b6509b508d64872ec6a3ff05ac03b42d545be7df315a28427f2",
+    "ai/xi/qmemory/model.xi": "eee7e1777e63701709ceb571894f977c1b8516c11c08531accb0fb3e31dbca7f",
+    "ai/xi/entity/workspace.xi": "507ada42737f61795174e09dee1bdc1ab4272fac86ef93510edef6fe60dba036",
+    "ai/xi/entity/credit.xi": "74654dbd71c5d09635eda659a209154ec27ce948a2716fec1ba3c500bb0425c3",
+    "ai/xi/entity/feedback.xi": "5ff6289372baeefe19f460f6901324cc37ab5fa8f361a30eb6ae9c8c1bf09f67"
+  },
+  "evidence": {
+    "validation.json": "78e3ff27cf88dd23d01297901ab4c7a0777c0257ef6d99ed9cd0c2d4f10e59a7",
+    "selection.json": "6eddd60e5c23ad606bf630316877d64cbeb1557c9ab505356e9122b8a9e563f4",
+    "training-protocol.json": "984140d2ba7c26f6be86580f49596ef5976df48ec6f77b2abbeb2ec9c7f1f354",
+    "training-source-hashes.json": "f38b93ee9a4f453e1b8f4cebea65b0d4ea80b296f04e3e88fa0ef0db5cd25ea5",
+    "candidates.json": "a3ce4231825f83bcfb21253dddec5453e906bf42e2e3bb386a1b7e58eeffc323",
+    "integration-checks.json": "f6f13fd6e225952555ed449eabab0c6745dddcf70d70d8c0108664d2c6256d09",
+    "reserved-summary.json": "22c9ca2a22640c446583521ea733aa080621cb2ab70ce8f64018babb3596f761",
+    "reserved.json.gz": "bccb92ce9580ef0a47dcb28b01d26b561f01c569f03358896e23c379e6f5d146",
+    "diagnostic-before.json.gz": "a914ba54e2fec9d43f733a79c74d2927f3dc7b6a8bcba3bff7cfeaf98d22431c",
+    "perception-protocol.json": "4a14a9a5c66192d7af36f1f8ae3716a5f818d409b78a3d180d79a356f386f551",
+    "perception-baseline.json": "2fa75c3266fd185cde9441d0037df34988c2f91125ff10a1776053c0ecc60880",
+    "perception-candidates.json": "38bdfbca340c5f39defc51ea1ac3c4f8dc435f09b478074b62bdcad4f817f299",
+    "perception-selected.json": "939d00462a9eee28725640fea3d16b6f74c0a3e4d6a775ee47578a0c6a3a6f6a",
+    "perception-validation.json": "2fa75c3266fd185cde9441d0037df34988c2f91125ff10a1776053c0ecc60880"
+  },
+  "base_models": {
+    "text": "e3eff778831352187605d3974afe8e7d9160098eea26170ae4938de2b241d4dd",
+    "intent": "f7c5448e4ba1c435d3227bfc0821ea1b6e9e289eb71ecbcca879ff3871656d6b"
+  },
+  "runtime_revisions": {
+    "REVERSE-PC": "08c363e6c6855c14026c86046af7183a45f45a98",
+    "mundo-X": "e2778d962af22f6f1a0794058dd4685fc2573966"
+  },
+  "apk_built": false,
+  "limits": "Integration checks pass; predictive accuracy is reported separately with every error retained. Supported contracts and bounded cooperative tasks on the native quantum simulator; no joint end-to-end gradient, general conversation guarantee or demonstrated quantum advantage. Android packaging is not activated."
+}

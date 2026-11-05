@@ -1,0 +1,13 @@
+{
+  "seed": 2026110704,
+  "training_examples": 2048,
+  "checkpoints": [
+    512,
+    2048
+  ],
+  "validation_examples": 256,
+  "selection": "highest independent validation accuracy, then lowest Brier; opened U01 reserved data are never supplied to training",
+  "learning_rate": 0.05,
+  "teacher": "native synthetic environment only",
+  "apk_built": false
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "v3-0512.rvp",
+    "sha256": "8c4508482d5153b0e6f780ca155afd7b1f426bc70863fb91bdbd8ae222a5d5ec",
+    "updates": 512,
+    "correct": 241,
+    "total": 256,
+    "accuracy": 0.94140625,
+    "brier": 0.041620837725697496
+  },
+  {
+    "path": "v3-2048.rvp",
+    "sha256": "18a4d71ef2a5f2d11dcec9f2b93da6732102f5dde58a617b8c9591443ddd49f8",
+    "updates": 2048,
+    "correct": 242,
+    "total": 256,
+    "accuracy": 0.9453125,
+    "brier": 0.04343135196473719
+  }
+]

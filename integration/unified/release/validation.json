@@ -1,0 +1,3794 @@
+{
+  "correct": 488,
+  "total": 490,
+  "groups": {
+    "legacy-2": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-3": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-4": {
+      "correct": 3,
+      "total": 3
+    },
+    "legacy-5": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-6": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-7": {
+      "correct": 12,
+      "total": 12
+    },
+    "legacy-8": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-9": {
+      "correct": 32,
+      "total": 32
+    },
+    "legacy-1": {
+      "correct": 103,
+      "total": 105
+    },
+    "legacy-0": {
+      "correct": 19,
+      "total": 19
+    },
+    "mission": {
+      "correct": 30,
+      "total": 30
+    },
+    "feedback": {
+      "correct": 3,
+      "total": 3
+    },
+    "status": {
+      "correct": 2,
+      "total": 2
+    },
+    "remember": {
+      "correct": 18,
+      "total": 18
+    },
+    "recall": {
+      "correct": 18,
+      "total": 18
+    },
+    "plan": {
+      "correct": 11,
+      "total": 11
+    },
+    "explain": {
+      "correct": 3,
+      "total": 3
+    },
+    "observe": {
+      "correct": 36,
+      "total": 36
+    },
+    "cancel": {
+      "correct": 18,
+      "total": 18
+    }
+  },
+  "cases": [
+    {
+      "input": "Hay 295 cajas de 27 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.15041153386193706,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 386 cajas de 50 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.1468200612588045,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 446 cajas de 59 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.12842441094648027,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 101 cajas de 47 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.1368459571232921,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 87 cajas de 49 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.13583236861047832,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 85 cajas de 48 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.13230323402901728,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 321 cajas de 54 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.14852218698467645,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 248 cajas de 35 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.13250977978752237,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 361 cajas de 41 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.15169539138964336,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 234 cajas de 14 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.16251678325229704,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 269 cajas de 22 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.12597320174820187,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 137 cajas de 39 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.12029630741977633,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 480 y cuesta 24. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.07175392463839378,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 156 y cuesta 52. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08179857858493561,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 240 y cuesta 52. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08162997894361848,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 159 y cuesta 7. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.05311533815796014,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 449 y cuesta 69. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.06971476129925501,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 224 y cuesta 63. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.0680619873729038,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 363 y cuesta 27. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08285854357692969,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 119 y cuesta 64. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08315085370142145,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 180 y cuesta 37. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08518085204961236,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 147 y cuesta 55. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08061036845658145,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 302 y cuesta 51. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.08300071395242838,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Pago 359 y cuesta 59. Dime el cambio.",
+      "intent": 2,
+      "log_probability": -0.058422054502660366,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 182 libros y regalé 17. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05127296051079222,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 349 libros y regalé 19. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05286804659273704,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 154 libros y regalé 43. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.04197304035093636,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 391 libros y regalé 59. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.04676537046261564,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 402 libros y regalé 40. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05886493837353472,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 185 libros y regalé 37. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.0637438796886426,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 476 libros y regalé 3. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05870250484049321,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 267 libros y regalé 15. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05346488400091877,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 409 libros y regalé 60. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.05418042286012949,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 94 libros y regalé 30. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.056910872224531936,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 344 libros y regalé 7. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.04148199287651707,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 291 libros y regalé 18. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.0566154477230369,
+      "expected": 2,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Orenda Verde.",
+      "intent": 3,
+      "log_probability": -0.029340754666068634,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Roca Lunar.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Vela Dorada.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Marea.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Bosque Lejano.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Nube Clara.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Viento.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Cima Azul.",
+      "intent": 3,
+      "log_probability": -0.030644224140493163,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Lucero.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Sol Nuevo.",
+      "intent": 3,
+      "log_probability": -0.021243539196867785,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Costa.",
+      "intent": 3,
+      "log_probability": -0.02140285496567559,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Árbol Vivo.",
+      "intent": 3,
+      "log_probability": -0.02444915922034627,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Orenda Verde.",
+      "intent": 3,
+      "log_probability": -0.06029493751572251,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Roca Lunar.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Vela Dorada.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Marea.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Bosque Lejano.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Nube Clara.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Viento.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Cima Azul.",
+      "intent": 3,
+      "log_probability": -0.03629820330532753,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Lucero.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Sol Nuevo.",
+      "intent": 3,
+      "log_probability": -0.061822538220669715,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Costa.",
+      "intent": 3,
+      "log_probability": -0.06287246288388612,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Árbol Vivo.",
+      "intent": 3,
+      "log_probability": -0.060816323300975084,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Orenda Verde.",
+      "intent": 3,
+      "log_probability": -0.017967159004007565,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Roca Lunar.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Vela Dorada.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Marea.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Bosque Lejano.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Nube Clara.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Viento.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Cima Azul.",
+      "intent": 3,
+      "log_probability": -0.016845908022743043,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Lucero.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Sol Nuevo.",
+      "intent": 3,
+      "log_probability": -0.018255106155608963,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Costa.",
+      "intent": 3,
+      "log_probability": -0.018868484067542268,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Árbol Vivo.",
+      "intent": 3,
+      "log_probability": -0.018474666661904983,
+      "expected": 3,
+      "correct": true
+    },
+    {
+      "input": "¿Cómo se llama mi robot?",
+      "intent": 4,
+      "log_probability": -0.0057535576032332544,
+      "expected": 4,
+      "correct": true
+    },
+    {
+      "input": "Dime cómo se llama mi nave.",
+      "intent": 4,
+      "log_probability": -0.005582447672420336,
+      "expected": 4,
+      "correct": true
+    },
+    {
+      "input": "¿Cuál es el nombre de mi proyecto?",
+      "intent": 4,
+      "log_probability": -0.2893171281409806,
+      "expected": 4,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Orenda Verde es mortal.",
+      "intent": 5,
+      "log_probability": -0.04184521459198377,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Roca Lunar es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338559516027913,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Vela Dorada es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338559516027913,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Marea es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338719604921288,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Bosque Lejano es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338559516027913,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Nube Clara es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338559516027913,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Viento es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338719604921288,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Cima Azul es mortal.",
+      "intent": 5,
+      "log_probability": -0.036942039787078496,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Lucero es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338719604921288,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Sol Nuevo es mortal.",
+      "intent": 5,
+      "log_probability": -0.052171694399910984,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Costa es mortal.",
+      "intent": 5,
+      "log_probability": -0.05338719604921288,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Árbol Vivo es mortal.",
+      "intent": 5,
+      "log_probability": -0.045675070271441236,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Orenda Verde es mortal?",
+      "intent": 5,
+      "log_probability": -0.022476648329412312,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Roca Lunar es mortal?",
+      "intent": 5,
+      "log_probability": -0.029373839047530034,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Vela Dorada es mortal?",
+      "intent": 5,
+      "log_probability": -0.029373839047530034,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Marea es mortal?",
+      "intent": 5,
+      "log_probability": -0.029358178760064312,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Bosque Lejano es mortal?",
+      "intent": 5,
+      "log_probability": -0.029373839047530034,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Nube Clara es mortal?",
+      "intent": 5,
+      "log_probability": -0.029373839047530034,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Viento es mortal?",
+      "intent": 5,
+      "log_probability": -0.029358178760064312,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Cima Azul es mortal?",
+      "intent": 5,
+      "log_probability": -0.020353806727911174,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Lucero es mortal?",
+      "intent": 5,
+      "log_probability": -0.029358178760064312,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Sol Nuevo es mortal?",
+      "intent": 5,
+      "log_probability": -0.028796075925819835,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Costa es mortal?",
+      "intent": 5,
+      "log_probability": -0.029358178760064312,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Árbol Vivo es mortal?",
+      "intent": 5,
+      "log_probability": -0.025039374472960972,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Orenda Verde a los mortales?",
+      "intent": 5,
+      "log_probability": -0.029205198108658133,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Roca Lunar a los mortales?",
+      "intent": 5,
+      "log_probability": -0.03344644343700367,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Vela Dorada a los mortales?",
+      "intent": 5,
+      "log_probability": -0.03344644343700367,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Marea a los mortales?",
+      "intent": 5,
+      "log_probability": -0.033476376971488295,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Bosque Lejano a los mortales?",
+      "intent": 5,
+      "log_probability": -0.03344644343700367,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Nube Clara a los mortales?",
+      "intent": 5,
+      "log_probability": -0.03344644343700367,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Viento a los mortales?",
+      "intent": 5,
+      "log_probability": -0.033476376971488295,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Cima Azul a los mortales?",
+      "intent": 5,
+      "log_probability": -0.025677139706124924,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Lucero a los mortales?",
+      "intent": 5,
+      "log_probability": -0.033476376971488295,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Sol Nuevo a los mortales?",
+      "intent": 5,
+      "log_probability": -0.032152039300982586,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Costa a los mortales?",
+      "intent": 5,
+      "log_probability": -0.033476376971488295,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Árbol Vivo a los mortales?",
+      "intent": 5,
+      "log_probability": -0.029301337290597015,
+      "expected": 5,
+      "correct": true
+    },
+    {
+      "input": "La Orenda Verde está conectada al puente y el puente al taller. Explica cómo llegar de Orenda Verde a taller.",
+      "intent": 6,
+      "log_probability": -0.0470217856711797,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Roca Lunar está conectada al puente y el puente al taller. Explica cómo llegar de Roca Lunar a taller.",
+      "intent": 6,
+      "log_probability": -0.10024483905149072,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Vela Dorada está conectada al puente y el puente al taller. Explica cómo llegar de Vela Dorada a taller.",
+      "intent": 6,
+      "log_probability": -0.10024483905149072,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Marea está conectada al puente y el puente al taller. Explica cómo llegar de Marea a taller.",
+      "intent": 6,
+      "log_probability": -0.10016526246048352,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Bosque Lejano está conectada al puente y el puente al taller. Explica cómo llegar de Bosque Lejano a taller.",
+      "intent": 6,
+      "log_probability": -0.10024483905149072,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Nube Clara está conectada al puente y el puente al taller. Explica cómo llegar de Nube Clara a taller.",
+      "intent": 6,
+      "log_probability": -0.10024483905149072,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Viento está conectada al puente y el puente al taller. Explica cómo llegar de Viento a taller.",
+      "intent": 6,
+      "log_probability": -0.10016526246048352,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Cima Azul está conectada al puente y el puente al taller. Explica cómo llegar de Cima Azul a taller.",
+      "intent": 6,
+      "log_probability": -0.05367999139332213,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Lucero está conectada al puente y el puente al taller. Explica cómo llegar de Lucero a taller.",
+      "intent": 6,
+      "log_probability": -0.10016526246048352,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Sol Nuevo está conectada al puente y el puente al taller. Explica cómo llegar de Sol Nuevo a taller.",
+      "intent": 6,
+      "log_probability": -0.09804335445970651,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Costa está conectada al puente y el puente al taller. Explica cómo llegar de Costa a taller.",
+      "intent": 6,
+      "log_probability": -0.10016526246048352,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "La Árbol Vivo está conectada al puente y el puente al taller. Explica cómo llegar de Árbol Vivo a taller.",
+      "intent": 6,
+      "log_probability": -0.08671990756421569,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Orenda Verde hasta el parque y del parque a la tienda. Dime la ruta de Orenda Verde a tienda.",
+      "intent": 6,
+      "log_probability": -0.008501217283559626,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Roca Lunar hasta el parque y del parque a la tienda. Dime la ruta de Roca Lunar a tienda.",
+      "intent": 6,
+      "log_probability": -0.019074333512715303,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Vela Dorada hasta el parque y del parque a la tienda. Dime la ruta de Vela Dorada a tienda.",
+      "intent": 6,
+      "log_probability": -0.019074333512715303,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Marea hasta el parque y del parque a la tienda. Dime la ruta de Marea a tienda.",
+      "intent": 6,
+      "log_probability": -0.019053273115244376,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Bosque Lejano hasta el parque y del parque a la tienda. Dime la ruta de Bosque Lejano a tienda.",
+      "intent": 6,
+      "log_probability": -0.019074333512715303,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Nube Clara hasta el parque y del parque a la tienda. Dime la ruta de Nube Clara a tienda.",
+      "intent": 6,
+      "log_probability": -0.019074333512715303,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Viento hasta el parque y del parque a la tienda. Dime la ruta de Viento a tienda.",
+      "intent": 6,
+      "log_probability": -0.019053273115244376,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Cima Azul hasta el parque y del parque a la tienda. Dime la ruta de Cima Azul a tienda.",
+      "intent": 6,
+      "log_probability": -0.009044725907350195,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Lucero hasta el parque y del parque a la tienda. Dime la ruta de Lucero a tienda.",
+      "intent": 6,
+      "log_probability": -0.019053273115244376,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Sol Nuevo hasta el parque y del parque a la tienda. Dime la ruta de Sol Nuevo a tienda.",
+      "intent": 6,
+      "log_probability": -0.018699705387169654,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Costa hasta el parque y del parque a la tienda. Dime la ruta de Costa a tienda.",
+      "intent": 6,
+      "log_probability": -0.019053273115244376,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Árbol Vivo hasta el parque y del parque a la tienda. Dime la ruta de Árbol Vivo a tienda.",
+      "intent": 6,
+      "log_probability": -0.014390310124276239,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Orenda Verde puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Orenda Verde a museo?",
+      "intent": 6,
+      "log_probability": -0.006225465606273817,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Roca Lunar puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Roca Lunar a museo?",
+      "intent": 6,
+      "log_probability": -0.012475183030616434,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Vela Dorada puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Vela Dorada a museo?",
+      "intent": 6,
+      "log_probability": -0.012475183030616434,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Marea puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Marea a museo?",
+      "intent": 6,
+      "log_probability": -0.012474998262624293,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Bosque Lejano puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Bosque Lejano a museo?",
+      "intent": 6,
+      "log_probability": -0.012475183030616434,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Nube Clara puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Nube Clara a museo?",
+      "intent": 6,
+      "log_probability": -0.012475183030616434,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Viento puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Viento a museo?",
+      "intent": 6,
+      "log_probability": -0.012474998262624293,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Cima Azul puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Cima Azul a museo?",
+      "intent": 6,
+      "log_probability": -0.008348765795986977,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Lucero puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Lucero a museo?",
+      "intent": 6,
+      "log_probability": -0.012474998262624293,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Sol Nuevo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Sol Nuevo a museo?",
+      "intent": 6,
+      "log_probability": -0.011952875368967456,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Costa puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Costa a museo?",
+      "intent": 6,
+      "log_probability": -0.012474998262624293,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Árbol Vivo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Árbol Vivo a museo?",
+      "intent": 6,
+      "log_probability": -0.0114866490545593,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 298 por 20.",
+      "intent": 7,
+      "log_probability": -0.004009124926979547,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 480 por 39.",
+      "intent": 7,
+      "log_probability": -0.003958166430099873,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 485 por 38.",
+      "intent": 7,
+      "log_probability": -0.0038704921529466828,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 338 por 14.",
+      "intent": 7,
+      "log_probability": -0.0037423870786767177,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 209 por 29.",
+      "intent": 7,
+      "log_probability": -0.0039321960796750415,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 387 por 50.",
+      "intent": 7,
+      "log_probability": -0.0038967876946341936,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 291 por 33.",
+      "intent": 7,
+      "log_probability": -0.003969289619351087,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 174 por 46.",
+      "intent": 7,
+      "log_probability": -0.003898101437451211,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 276 por 32.",
+      "intent": 7,
+      "log_probability": -0.003975803814870154,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 102 por 33.",
+      "intent": 7,
+      "log_probability": -0.003949715156648791,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 174 por 10.",
+      "intent": 7,
+      "log_probability": -0.0037850655618306573,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 437 por 20.",
+      "intent": 7,
+      "log_probability": -0.004006112000075255,
+      "expected": 7,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Orenda Verde no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0031416381714600384,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Roca Lunar no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030787347655650502,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Vela Dorada no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030787347655650502,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Marea no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030817302513748332,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Bosque Lejano no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030787347655650502,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Nube Clara no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030787347655650502,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Viento no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030817302513748332,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Cima Azul no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.002521530926097855,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Lucero no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030817302513748332,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Sol Nuevo no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0029734811551126797,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Costa no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.0030817302513748332,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Árbol Vivo no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.002971162297573988,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Orenda Verde ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006548021756717423,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Roca Lunar ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006282411812367034,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Vela Dorada ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006282411812367034,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Marea ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006276996906610772,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Bosque Lejano ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006282411812367034,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Nube Clara ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006282411812367034,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Viento ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006276996906610772,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Cima Azul ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.005216355351401343,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Lucero ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006276996906610772,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Sol Nuevo ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006115589591835098,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Costa ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006276996906610772,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Árbol Vivo ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.006118279074484404,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Orenda Verde está inactiva.",
+      "intent": 8,
+      "log_probability": -0.016767161474291095,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Roca Lunar está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015772211758902022,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Vela Dorada está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015772211758902022,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Marea está inactiva.",
+      "intent": 8,
+      "log_probability": -0.01577584008014754,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Bosque Lejano está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015772211758902022,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Nube Clara está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015772211758902022,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Viento está inactiva.",
+      "intent": 8,
+      "log_probability": -0.01577584008014754,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Cima Azul está inactiva.",
+      "intent": 8,
+      "log_probability": -0.014515680795829196,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Lucero está inactiva.",
+      "intent": 8,
+      "log_probability": -0.01577584008014754,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Sol Nuevo está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015441088774331783,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Costa está inactiva.",
+      "intent": 8,
+      "log_probability": -0.01577584008014754,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Árbol Vivo está inactiva.",
+      "intent": 8,
+      "log_probability": -0.015545523679843829,
+      "expected": 8,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 243 por 7.",
+      "intent": 9,
+      "log_probability": -0.026969229723908424,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 293 por 17.",
+      "intent": 9,
+      "log_probability": -0.02694317502549909,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 391 por 46.",
+      "intent": 9,
+      "log_probability": -0.02671340306765969,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 475 por 2.",
+      "intent": 9,
+      "log_probability": -0.025876732368156498,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 127 por 61.",
+      "intent": 9,
+      "log_probability": -0.025397402046079532,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 335 por 65.",
+      "intent": 9,
+      "log_probability": -0.026713607487413128,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 424 por 69.",
+      "intent": 9,
+      "log_probability": -0.02685035596480361,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 127 por 40.",
+      "intent": 9,
+      "log_probability": -0.026555233931746424,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 114 por 59.",
+      "intent": 9,
+      "log_probability": -0.02666044680088456,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 339 por 43.",
+      "intent": 9,
+      "log_probability": -0.0267424826769984,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 108 por 15.",
+      "intent": 9,
+      "log_probability": -0.026998317910695353,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 497 por 34.",
+      "intent": 9,
+      "log_probability": -0.02654849391685234,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es memoria?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05114979306900531,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1497275804590576,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.008618008231732454,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05035449819861509,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí memoria",
+      "intent": 1,
+      "log_probability": -0.006419013166880988,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí memoria",
+      "intent": 1,
+      "log_probability": -0.0054434358802418845,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es dato?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05462417652837304,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1724258289842063,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.01079537825473106,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05336115850741986,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí dato",
+      "intent": 1,
+      "log_probability": -0.00629771539728233,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí dato",
+      "intent": 1,
+      "log_probability": -0.005337893547322937,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es algoritmo?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.047876316479490075,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1414417125043837,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.008056287579168502,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.045765426743066856,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí algoritmo",
+      "intent": 1,
+      "log_probability": -0.006386051911709745,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí algoritmo",
+      "intent": 1,
+      "log_probability": -0.0054185620336905625,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es circuito?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0534850002294884,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1604130045179546,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.009231353956743708,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.052078024676959225,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí circuito",
+      "intent": 1,
+      "log_probability": -0.006293709306278396,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí circuito",
+      "intent": 1,
+      "log_probability": -0.005336205573501941,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es cúbit?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05359414027182648,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1542671191493449,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.00886078967547516,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.052114593295580686,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí cúbit",
+      "intent": 1,
+      "log_probability": -0.006370998839769363,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí cúbit",
+      "intent": 1,
+      "log_probability": -0.005402017352215774,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es entrelazamiento?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04873519815595463,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.14607248336620812,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.008407672297966616,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.045533891616043175,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí entrelazamiento",
+      "intent": 1,
+      "log_probability": -0.00656256711558486,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí entrelazamiento",
+      "intent": 1,
+      "log_probability": -0.005567626512052472,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es medición?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05885837867788854,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.16780608254742818,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.009637085919479213,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05212235051598189,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí medición",
+      "intent": 1,
+      "log_probability": -0.006247005865829186,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí medición",
+      "intent": 1,
+      "log_probability": -0.005302292255904419,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es interferencia?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05512968097734381,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.16152431341094284,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.009200357676531119,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05332053648257403,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí interferencia",
+      "intent": 1,
+      "log_probability": -0.0061214644952005525,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí interferencia",
+      "intent": 1,
+      "log_probability": -0.0051834500391960865,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es xi?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05208412752025596,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.157860797236975,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.009037230342422547,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05087832845294544,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí xi",
+      "intent": 1,
+      "log_probability": -0.006171634967986213,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí xi",
+      "intent": 1,
+      "log_probability": -0.005230681089936293,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es ether?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05244337226559816,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "me interesa entender ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.15057141168497662,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.008675828413314464,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.049859511476037476,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí ether",
+      "intent": 1,
+      "log_probability": -0.0062919473724493335,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí ether",
+      "intent": 1,
+      "log_probability": -0.005332757474284857,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "buenas bby",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.07534563973034873,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "hey hola x",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09961288772800782,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "hola qué tal x",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.30203959510372014,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir tu nombre?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.10847648600106208,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cómo debo llamarte",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.039284444326028956,
+      "expected": 1,
+      "correct": false
+    },
+    {
+      "input": "cuál nombre tienes",
+      "previous": "",
+      "intent": 4,
+      "log_probability": -0.010922213856381006,
+      "expected": 1,
+      "correct": false
+    },
+    {
+      "input": "¿puedes decir cuántos cúbits usas?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.07713507296831384,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer tu número de qubits",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.03987784856204582,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "cuántos cúbits utilizas",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1700678541515811,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "puedes explicar tu aprendizaje",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.019355069628101008,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "de qué forma aprendes",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.18057742314910033,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "háblame de tu aprendizaje",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.02716407611121091,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "gracias por la ayuda",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.21662305158278966,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "muchas gracias bby q",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.059249842294302815,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "te agradezco la respuesta",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05672632357732609,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "bueno nos vemos",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.17100049849524512,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "adiós hasta pronto",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.2320430517008949,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "bby q hasta luego",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.3758009799702798,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "¿cómo puedo corregirte?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11907769290227965,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quisiera enseñarte",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.20279559215412024,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero darte una corrección",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05417729700942579,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero saber si tus estados son exactos",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.17556595055668936,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "puedes explicar tus estados clifford",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.02909719388362462,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "tus estados usan álgebra exacta",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.14786722826353635,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "conoces ya todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.07661501553363642,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "entonces puedes saberlo todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09944521478127138,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero saber si sabes todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1424780718255116,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "qué es motor eléctrico",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame motor eléctrico",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es satélite",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame satélite",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es electrón",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame electrón",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es glaciar",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame glaciar",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es órbita",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame órbita",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es antena",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame antena",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es meteoro",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame meteoro",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es cristal",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.2221805949744548,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame cristal",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.07104093362796114,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas memoria",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.0504635735383714,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques memoria",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.8971935438942852,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas dato",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.06139469501697106,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques dato",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.9358956223732127,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas algoritmo",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05332516431385549,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques algoritmo",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.974700245559607,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas circuito",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05163032399249284,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques circuito",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.8812655971437531,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas cúbit",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05203441845581771,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques cúbit",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.9077237590527103,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas entrelazamiento",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05234913136522896,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques entrelazamiento",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.9200880019507693,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas medición",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05203229534731499,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques medición",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.8931081408837678,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas interferencia",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05293441142724398,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques interferencia",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.926709315071746,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas xi",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.0528085765002157,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques xi",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.9069809725347096,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas ether",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.05277307614348052,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques ether",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.9136927992007636,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "define memoria no algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0037840915967328336,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define memoria no interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004305557977501877,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define dato no circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.005946238259700359,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define dato no xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.005769003236821915,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define algoritmo no cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0038423224005820164,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define algoritmo no ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.003779392651145575,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define circuito no entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004072670213945287,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define cúbit no memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004361055490767506,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define cúbit no medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004823964949276494,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define entrelazamiento no dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.005534087853849333,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define entrelazamiento no interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004274543186404668,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define medición no algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004164063980688606,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define medición no xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004663914195808743,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define interferencia no circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004765837389861081,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define interferencia no ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0044836808604906,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define xi no cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.004563530690830853,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define ether no memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0037622099306463368,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "define ether no entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.003680541287321109,
+      "expected": 1,
+      "correct": true
+    },
+    {
+      "input": "zorbax quux",
+      "intent": 0,
+      "log_probability": -0.039284444326028956,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "¿qué pasa en un universo desconocido?",
+      "intent": 0,
+      "log_probability": -0.02741766653618039,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "inventa una habilidad desconocida",
+      "intent": 0,
+      "log_probability": -0.00424276312039161,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Viento Norte con valor 1 observa Órbita Neral con muestra 796871 y resuelve desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0017730658685527045,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Ñandú Verde con valor 0 observa Niña Ámbar con muestra 634830 y resuelve desde 0.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0028023463040224156,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Ébano Lunar con valor 0 observa Viento Norte con muestra 86763 y resuelve desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.002073979237377593,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Brisa Nueva con valor 0 observa Ñandú Verde con muestra 106219 y resuelve desde 6.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.005662177579958717,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Órbita Neral con valor 0 observa Ébano Lunar con muestra 13202 y resuelve desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.001965436187645232,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Niña Ámbar con valor 0 observa Brisa Nueva con muestra 539733 y resuelve desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.001965436187645232,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Órbita Neral con muestra 146404 y resuelve usando la regla Viento Norte desde 0.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006224564259108479,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Niña Ámbar con muestra 783109 y resuelve usando la regla Ñandú Verde desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006849625950663943,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Viento Norte con muestra 843023 y resuelve usando la regla Ébano Lunar desde 6.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006856170633664765,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ñandú Verde con muestra 764370 y resuelve usando la regla Brisa Nueva desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006849625950663943,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ébano Lunar con muestra 83371 y resuelve usando la regla Órbita Neral desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006767878811350659,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Brisa Nueva con muestra 647230 y resuelve usando la regla Niña Ámbar desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.0006767878811350659,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Órbita Neral y la regla Viento Norte para decidir desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.01839629780650808,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Niña Ámbar y la regla Ñandú Verde para decidir desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.009864632441951333,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Viento Norte y la regla Ébano Lunar para decidir desde 0.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.010350080060507175,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Ñandú Verde y la regla Brisa Nueva para decidir desde 3.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.02884388132239485,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Ébano Lunar y la regla Órbita Neral para decidir desde 4.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.023740780581149843,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Usa las observaciones Brisa Nueva y la regla Niña Ámbar para decidir desde 4.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.023740780581149843,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Órbita Neral y la regla Viento Norte desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.010661308912855537,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Niña Ámbar y la regla Ñandú Verde desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.027544651162314398,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Viento Norte y la regla Ébano Lunar desde 4.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.032629956698032356,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Ñandú Verde y la regla Brisa Nueva desde 6.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.03489582923719445,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Ébano Lunar y la regla Órbita Neral desde 0.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.012080082946108158,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve la tarea con observaciones Brisa Nueva y la regla Niña Ámbar desde 5.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.021604673562744543,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Evalúa la última tarea con resultado 0.",
+      "intent": 10,
+      "family": "feedback",
+      "log_probability": -0.039865625398099416,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Evalúa la última tarea con resultado 1.",
+      "intent": 10,
+      "family": "feedback",
+      "log_probability": -0.028435746229951084,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Muestra el estado de la entidad.",
+      "intent": 10,
+      "family": "status",
+      "log_probability": -0.18270617478023965,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Órbita Neral con valor 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.1363689176927701,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Niña Ámbar con valor 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.1363689176927701,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Viento Norte con valor 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.12301851266067984,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Ñandú Verde con valor 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.14607802970819275,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Ébano Lunar con valor 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.1363689176927701,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Guarda la regla Brisa Nueva con valor 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.11415823664870985,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Órbita Neral vale 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.18926255311210594,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Niña Ámbar vale 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.18926255311210594,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Viento Norte vale 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.2034003454958252,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Ñandú Verde vale 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.23972343351319347,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Ébano Lunar vale 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.18926255311210594,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que la regla Brisa Nueva vale 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.15879033725838612,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Órbita Neral.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03489554422290564,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Niña Ámbar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03489554422290564,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Viento Norte.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03756274173931678,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Ñandú Verde.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.04391149921247634,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Ébano Lunar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03489554422290564,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Qué valor tiene la regla Brisa Nueva.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03489554422290564,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Propón un paso desde 4 hacia 6.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.04374521193962987,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Propón un paso desde 4 hacia 4.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.048867555399043326,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Propón un paso desde 5 hacia 4.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.03644803744980949,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Propón un paso desde 6 hacia 3.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.04146290665593759,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Propón un paso desde 4 hacia 0.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.020874739431816332,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Órbita Neral usando la regla Viento Norte desde 0.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.06782364894693775,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Niña Ámbar usando la regla Ñandú Verde desde 2.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.2081448909480852,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Viento Norte usando la regla Ébano Lunar desde 6.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.1543118717509302,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Ñandú Verde usando la regla Brisa Nueva desde 1.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.06734048900222073,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Ébano Lunar usando la regla Órbita Neral desde 2.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.1637377896706794,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Resuelve Brisa Nueva usando la regla Niña Ámbar desde 2.",
+      "intent": 10,
+      "family": "mission",
+      "log_probability": -0.1637377896706794,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Por qué elegiste ese movimiento.",
+      "intent": 10,
+      "family": "explain",
+      "log_probability": -0.32821059634219707,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Aprende de la última tarea.",
+      "intent": 10,
+      "family": "feedback",
+      "log_probability": -0.3120511546455971,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Órbita Neral a 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.22266281244568217,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Niña Ámbar a 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.11635511292627793,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Viento Norte a 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.12200071700651002,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Ñandú Verde a 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.11636049524100119,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Ébano Lunar a 0.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.22266281244568217,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Corrige la regla Brisa Nueva a 1.",
+      "intent": 10,
+      "family": "remember",
+      "log_probability": -0.11635511292627793,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Órbita Neral con la muestra 669969.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012052900072333226,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Niña Ámbar con la muestra 724589.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012052900072333226,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Viento Norte con la muestra 20249.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012908240093790128,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ñandú Verde con la muestra 656487.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.014674229868916498,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ébano Lunar con la muestra 878863.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012052900072333226,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Brisa Nueva con la muestra 84829.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012052900072333226,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 157739 para Órbita Neral.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.05984653720981632,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 547156 para Niña Ámbar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.05984653720981632,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 703056 para Viento Norte.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.06438812782142943,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 875291 para Ñandú Verde.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.07489380251097913,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 507901 para Ébano Lunar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.05984653720981632,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Crea la muestra 489826 para Brisa Nueva.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.05984653720981632,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Explica la última decisión.",
+      "intent": 10,
+      "family": "explain",
+      "log_probability": -0.45900293405658066,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Explica la última tarea.",
+      "intent": 10,
+      "family": "explain",
+      "log_probability": -0.22845523908811374,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Cómo están tus motores.",
+      "intent": 10,
+      "family": "status",
+      "log_probability": -0.41172647035377447,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Órbita Neral.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.00849948905309842,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Niña Ámbar.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.00849948905309842,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Viento Norte.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.009093370729154993,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Ñandú Verde.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.010679146747563008,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Ébano Lunar.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.00849948905309842,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No uses las observaciones Brisa Nueva.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.00849948905309842,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 4 hasta 6.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.0037529877988320293,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 1 hasta 2.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.004690471013863349,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 4 hasta 0.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.0031527938089643904,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 1 hasta 4.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.004691565524095248,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 3 hasta 4.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.0038418907663645145,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No decidas desde 6 hasta 3.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.00383794708039494,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Órbita Neral.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.030483139973964356,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Niña Ámbar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.030483139973964356,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Viento Norte.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.0328269873197187,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Ñandú Verde.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.038498620687239186,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Ébano Lunar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.030483139973964356,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Lee la regla Brisa Nueva.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.030483139973964356,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Órbita Neral.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.02853713861398469,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Niña Ámbar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.02853713861398469,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Viento Norte.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.030715310783310128,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Ñandú Verde.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.03591795975446111,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Ébano Lunar.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.02853713861398469,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Recupera la regla Brisa Nueva.",
+      "intent": 10,
+      "family": "recall",
+      "log_probability": -0.02853713861398469,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Órbita Neral con muestra 685305.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012063761575953968,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Niña Ámbar con muestra 816903.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012063761575953968,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Viento Norte con muestra 214470.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012919962431282322,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ñandú Verde con muestra 85380.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.014688031392512704,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ébano Lunar con muestra 488270.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012063761575953968,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Brisa Nueva con muestra 695161.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.012063761575953968,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Órbita Neral.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.02460314015858197,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Niña Ámbar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.02460314015858197,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Viento Norte.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.026424500680047914,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Ñandú Verde.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.030422190396272832,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Ébano Lunar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.02460314015858197,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica las observaciones Brisa Nueva.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.02460314015858197,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 4 hasta 4.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.050043167437374796,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 6 hasta 5.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.033125309031267966,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 5 hasta 4.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.03696049521991954,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 1 hasta 6.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.014366743053150773,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 4 hasta 1.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.01597364163541761,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Decide desde 1 hasta 0.",
+      "intent": 10,
+      "family": "plan",
+      "log_probability": -0.006896421540540728,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Órbita Neral.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.013915125311739331,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Niña Ámbar.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.013915125311739331,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Viento Norte.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.01497263707466917,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Ñandú Verde.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.01776133109664151,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Ébano Lunar.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.013915125311739331,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "No resuelvas Brisa Nueva.",
+      "intent": 9,
+      "family": "cancel",
+      "log_probability": -0.013915125311739331,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "input": "Observa Órbita Neral.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.03948069542864507,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Niña Ámbar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.03948069542864507,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Viento Norte.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.04251300093213599,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ñandú Verde.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.049710101856164014,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Ébano Lunar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.03948069542864507,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Observa Brisa Nueva.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.03948069542864507,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Órbita Neral.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.0417886472338365,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Niña Ámbar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.0417886472338365,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Viento Norte.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.04496091866527259,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Ñandú Verde.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.052284624678329145,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Ébano Lunar.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.0417886472338365,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "input": "Clasifica Brisa Nueva.",
+      "intent": 10,
+      "family": "observe",
+      "log_probability": -0.0417886472338365,
+      "expected": 10,
+      "correct": true
+    }
+  ]
+}
