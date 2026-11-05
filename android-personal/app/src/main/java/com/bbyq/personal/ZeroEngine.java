@@ -93,6 +93,9 @@ final class ZeroEngine {
         if(p.op==9)engine.db.execSQL("DELETE FROM zero_facts WHERE key=?",new Object[]{key});else engine.db.execSQL("INSERT OR IGNORE INTO zero_facts VALUES(?,?,?,?)",new Object[]{key,p.atom,PersonalEngine.hash(p.atom),p.text});
     }
     JSONObject solve(XiPages pages,String text)throws Exception{return solve(pages,text,30000);}
+    void clearContext()throws Exception {
+        try(XiSession s=new XiSession(engine.bankState("zero"))){if(number(s,920)!=0||number(s,928)!=1){stage(s,920,packed(0,1));engine.saveBank("zero",s.save());}}
+    }
     JSONObject solve(XiPages pages,String text,int budget)throws Exception {
         if(XiPages.utf8(text).length>262144)return null;String[] parts=text.split("[;\\n]+");List<String> lines=new ArrayList<>();for(String v:parts)if(!v.trim().isEmpty())lines.add(v.trim());if(lines.isEmpty()||lines.size()>64)return null;
         try(XiSession s=new XiSession(engine.bankState("zero"))){
@@ -111,7 +114,7 @@ final class ZeroEngine {
                 else if(op==6){JSONObject feedback=feedbackLatest(s,number(s,56));answers.add(feedback.getString("response"));step.put("status",1).put("feedback",feedback);lastKind=6;lastStatus=1;}
                 else if(op==14||op==15){
                     JSONObject evidence=observe(s,p);step.put("evidence",evidence);int status=evidence.getInt("status");lastStatus=status;step.put("status",status);
-                    if(status==1){byte[] atom=s.bytes(Z+16384,32);temporaryFacts.add(atom);step.put("atom",new JSONArray(Arrays.asList(integer(atom,0),integer(atom,1),integer(atom,2),integer(atom,3))));answers.add("Observé: "+fact(atom)+".");}
+                    if(status==1){byte[] atom=s.bytes(Z+16384,32);temporaryFacts.add(atom);step.put("atom",new JSONArray(Arrays.asList(integer(atom,0),integer(atom,1),integer(atom,2),integer(atom,3))));answers.add((op==15?"El clasificador propone: ":"Recuperé de memoria: ")+fact(atom)+".");}
                     else answers.add("Falta la asociación de memoria solicitada. Puedes enseñarla con memoria guarda CLAVE 0|1.");
                 }else if(op==16){
                     Matcher m=TOKENS.matcher(p.text);if(!m.find())throw new IOException("Consulta vacía");String tool=p.text.substring(m.end()).trim();JSONObject result=engine.dispatchExisting(pages,tool);answers.add(result.getString("response"));lastStatus=result.optInt("status",1);step.put("status",lastStatus).put("tool",result);

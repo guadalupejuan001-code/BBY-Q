@@ -113,6 +113,12 @@ una comprobación detectó que se perdía el estado de error aritmético: se cor
 y se reservaron nombres y grafos nuevos en `zero-reserved-common-outcomes-v2`.
 La revisión completa obtuvo 120/120 en seis familias: cadenas, uniones de
 relaciones, contradicciones, rutas, aritmética y tareas mixtas tras reiniciar.
+Android detectó después un marcador con dígitos sin expandir al proyectar la
+salida del clasificador. Se corrigió la expansión, se rechazan marcadores
+pendientes y se añadieron comprobaciones de las dos proyecciones nativas.
+La revisión final obtuvo 120/120 con `zero-reserved-projection-fix`.
+Una prueba adicional evita reutilizar un sujeto anterior después de un turno
+atendido por otro componente. La batería móvil exige las 31 pruebas completas.
 
 Son pruebas generadas de composición dentro de la gramática, no un examen de
 AGI ni una medida de conocimiento del mundo. Los circuitos cuánticos siguen

@@ -4,14 +4,14 @@
   "general_intelligence_claimed": false,
   "passed": true,
   "protocol_sha256": "b53f20f26e30205e859598e0608e27eb8f17bd9615c111ba526a878f699873d0",
-  "evaluation_sha256": "9637d09895529796d43a90d2e7169354944c5392327f149c79810d751a42c4dd",
+  "evaluation_sha256": "50a812b4171b827f201378737b005a4a8f841a058c0e689da03c680abc0198e9",
   "sources": {
     "ai/personal/zero/core.xi.in": "f278892d3efc05bdf27ac0974c91bd5bf866a4038f654696f26b482725b965e3",
-    "ai/personal/zero/model.mjs": "fa55b4377f8f1a4ecfc8ec1a2e5ef432b7dea207f22282550f5652d1db2c823f",
-    "ai/personal/zero/schema.mjs": "e68b6dc3026c83c753852cd49f7a4a957f46fa76a59c91cac703ab3631718e3a"
+    "ai/personal/zero/model.mjs": "3ba52298a5f846a7d0d802daf20049e0bf970f67aa11ae24fc6d28ca912642cd",
+    "ai/personal/zero/schema.mjs": "ce4ed6a3dc739db2eb34d60431d601556a4a871e78b470406fce9cb3130b8d99"
   },
   "preserved_entity": "E02",
   "runtime": "08c363e6c6855c14026c86046af7183a45f45a98",
   "ether": "e2778d962af22f6f1a0794058dd4685fc2573966",
-  "revision": "zero-common-outcomes-1"
+  "revision": "zero-projection-context-fix-1"
 }

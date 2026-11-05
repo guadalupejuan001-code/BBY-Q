@@ -68,6 +68,11 @@ def checks():
   assert e.run('calcula 2 (3)')['status']==4;result.append('implicit malformed arithmetic rejected')
   assert e.run('¿dato es desconocido?\ncalcula 2 + 3')['status']==0;result.append('a successful later tool does not hide an unknown earlier goal')
   e.run('correcto');n=e.integer(944);e.run('incorrecto');assert e.integer(944)==n+1;result.append('native shared feedback learns without editing facts')
+  e.parse('recupera faro');e.stage(192,[14]);e.stage(216,[1])
+  from engine import Z
+  e.raw(f'fstore {Z+208} .9');e.call(5);assert e.numbers(16384,4)[2]==e.schema['words']['uno'];result.append('quantum-memory output projects to a grounded symbolic term')
+  e.parse('observa senal muestra 10');e.stage(192,[15]);e.stage(216,[1]);e.raw(f'fstore {Z+208} .1');e.call(5);assert e.numbers(16384,4)[2]==e.schema['words']['clase0'];result.append('classifier output projects without unresolved numeric placeholders')
+  e.stage(216,[0]);e.call(5);assert e.integer(16)==0;result.append('a missing observation creates no asserted premise')
  return result
 def main():
  p=argparse.ArgumentParser();p.add_argument('--reserved',action='store_true');p.add_argument('--namespace');p.add_argument('--output',type=Path,default=ROOT/'build/zero-development.json');args=p.parse_args();build()

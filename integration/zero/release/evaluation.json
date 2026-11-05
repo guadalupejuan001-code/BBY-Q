@@ -1,10 +1,10 @@
 {
   "version": "BBY-Q-0-1",
-  "namespace": "zero-reserved-common-outcomes-v2",
+  "namespace": "zero-reserved-projection-fix",
   "source_hashes": {
     "ai/personal/zero/core.xi.in": "f278892d3efc05bdf27ac0974c91bd5bf866a4038f654696f26b482725b965e3",
-    "ai/personal/zero/model.mjs": "fa55b4377f8f1a4ecfc8ec1a2e5ef432b7dea207f22282550f5652d1db2c823f",
-    "ai/personal/zero/schema.mjs": "e68b6dc3026c83c753852cd49f7a4a957f46fa76a59c91cac703ab3631718e3a"
+    "ai/personal/zero/model.mjs": "3ba52298a5f846a7d0d802daf20049e0bf970f67aa11ae24fc6d28ca912642cd",
+    "ai/personal/zero/schema.mjs": "ce4ed6a3dc739db2eb34d60431d601556a4a871e78b470406fce9cb3130b8d99"
   },
   "programmed_symbolic_engine": true,
   "general_intelligence_demonstrated": false,
@@ -45,847 +45,850 @@
     "unsupported text does not create a proof",
     "implicit malformed arithmetic rejected",
     "a successful later tool does not hide an unknown earlier goal",
-    "native shared feedback learns without editing facts"
+    "native shared feedback learns without editing facts",
+    "quantum-memory output projects to a grounded symbolic term",
+    "classifier output projects without unresolved numeric placeholders",
+    "a missing observation creates no asserted premise"
   ],
   "cases": [
     {
       "family": "chains",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 30.452088998572435,
+      "elapsed_ms": 52.639695997640956,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 42.13698000239674,
+      "elapsed_ms": 43.12676399422344,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 49.26226499810582,
+      "elapsed_ms": 62.69607599824667,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 45.25002399896039,
+      "elapsed_ms": 38.99587399791926,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 43.463417001476046,
+      "elapsed_ms": 39.68515500309877,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 50.11261700565228,
+      "elapsed_ms": 43.190900003537536,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 50.33578199800104,
+      "elapsed_ms": 49.127220998343546,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 29.20912200352177,
+      "elapsed_ms": 38.8515520025976,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 26.70681499876082,
+      "elapsed_ms": 47.93246099870885,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 48.8238409961923,
+      "elapsed_ms": 33.22343000036199,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 27.463025005999953,
+      "elapsed_ms": 33.85916999832261,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 42.61062099976698,
+      "elapsed_ms": 50.31978700571926,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 57.26343499554787,
+      "elapsed_ms": 58.10079400544055,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 66.27013500110479,
+      "elapsed_ms": 32.25530999770854,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 45.68618499615695,
+      "elapsed_ms": 34.44580499490257,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 41.97848799958592,
+      "elapsed_ms": 47.017908000270836,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 38.50191699893912,
+      "elapsed_ms": 57.62167499779025,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 39.638318005017936,
+      "elapsed_ms": 52.68457800411852,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 60.30276000092272,
+      "elapsed_ms": 32.632952999847475,
       "result_status": 0
     },
     {
       "family": "chains",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 28.080447002139408,
+      "elapsed_ms": 29.521139003918506,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 30.246809998061508,
+      "elapsed_ms": 28.419474001566414,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 24.86066299752565,
+      "elapsed_ms": 28.139333000581246,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 24.060681003902573,
+      "elapsed_ms": 30.93371499562636,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 30.851007999444846,
+      "elapsed_ms": 28.072498003893998,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 27.135008000186644,
+      "elapsed_ms": 26.9874779987731,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 25.414282994461246,
+      "elapsed_ms": 29.068017996905837,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 24.72604999638861,
+      "elapsed_ms": 28.481367000495084,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 29.233162000309676,
+      "elapsed_ms": 28.12188200186938,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 25.867819997074548,
+      "elapsed_ms": 27.157839998835698,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 24.484055997163523,
+      "elapsed_ms": 26.605459999700543,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 26.642648001143243,
+      "elapsed_ms": 32.2858509971411,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 28.63985799922375,
+      "elapsed_ms": 29.83441799733555,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 28.420328002539463,
+      "elapsed_ms": 26.210552001430187,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 24.392359002376907,
+      "elapsed_ms": 29.99108899530256,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 24.975434003863484,
+      "elapsed_ms": 27.250613005890045,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 23.421511003107298,
+      "elapsed_ms": 26.88649800256826,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 25.113711999438237,
+      "elapsed_ms": 29.11628499714425,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 25.861905996862333,
+      "elapsed_ms": 34.2002209945349,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 27.119163998577278,
+      "elapsed_ms": 29.250667001178954,
       "result_status": 0
     },
     {
       "family": "relational",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 25.912511999194976,
+      "elapsed_ms": 25.82452700153226,
       "result_status": 0
     },
     {
       "family": "contradictions",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 33.575478999409825,
+      "elapsed_ms": 32.25754900631728,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 33.042347997252364,
+      "elapsed_ms": 34.03583899489604,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 49.45169399434235,
+      "elapsed_ms": 30.94980500463862,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 64.70069799979683,
+      "elapsed_ms": 29.60663699923316,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 32.35506599594373,
+      "elapsed_ms": 33.06846600025892,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 31.153260999417398,
+      "elapsed_ms": 30.824205998214893,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 33.0213970009936,
+      "elapsed_ms": 33.36800599936396,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 31.87412300030701,
+      "elapsed_ms": 36.44992099725641,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 29.247881000628695,
+      "elapsed_ms": 34.08242499426706,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 31.89210200071102,
+      "elapsed_ms": 31.533945999399293,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 35.093910999421496,
+      "elapsed_ms": 35.38925800239667,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 29.35615299793426,
+      "elapsed_ms": 30.130634004308376,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 29.02937299950281,
+      "elapsed_ms": 31.359889995655976,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 28.516026999568567,
+      "elapsed_ms": 35.77085000142688,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 29.611482998006977,
+      "elapsed_ms": 32.54142600053456,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 33.78762799547985,
+      "elapsed_ms": 38.83523300464731,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 31.020021997392178,
+      "elapsed_ms": 32.32967700023437,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 30.468098004348576,
+      "elapsed_ms": 30.312031994981226,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 27.87370199803263,
+      "elapsed_ms": 38.950000001932494,
       "result_status": 2
     },
     {
       "family": "contradictions",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 32.44211400306085,
+      "elapsed_ms": 31.740176003950182,
       "result_status": 2
     },
     {
       "family": "routes",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 102.74336300062714,
+      "elapsed_ms": 50.67076399427606,
       "result_status": 0
     },
     {
       "family": "routes",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 44.13265900075203,
+      "elapsed_ms": 86.51493899378693,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 61.97492199862609,
+      "elapsed_ms": 83.26037700317102,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 50.52398100087885,
+      "elapsed_ms": 89.91901700210292,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 64.49294299818575,
+      "elapsed_ms": 112.62472099770093,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 60.21275099919876,
+      "elapsed_ms": 41.59511799662141,
       "result_status": 0
     },
     {
       "family": "routes",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 57.98806800157763,
+      "elapsed_ms": 126.16851599887013,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 36.28835100244032,
+      "elapsed_ms": 121.02916299772914,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 35.76292200159514,
+      "elapsed_ms": 53.338867001002654,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 96.03639599663438,
+      "elapsed_ms": 64.17121199774556,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 90.88537199568236,
+      "elapsed_ms": 90.52300400071545,
       "result_status": 0
     },
     {
       "family": "routes",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 89.33202500338666,
+      "elapsed_ms": 52.723633001733106,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 104.66692999762017,
+      "elapsed_ms": 71.12436900206376,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 104.81024999899091,
+      "elapsed_ms": 107.19272199639818,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 90.51247200113721,
+      "elapsed_ms": 47.51708199910354,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 90.08585199626395,
+      "elapsed_ms": 83.9437579998048,
       "result_status": 0
     },
     {
       "family": "routes",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 39.53506599646062,
+      "elapsed_ms": 73.81834600528236,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 154.1232689996832,
+      "elapsed_ms": 41.03580799710471,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 110.8938239995041,
+      "elapsed_ms": 75.66825400135713,
       "result_status": 1
     },
     {
       "family": "routes",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 95.12300499773119,
+      "elapsed_ms": 112.47521999757737,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 11.275450000539422,
+      "elapsed_ms": 9.00759399519302,
       "result_status": 4
     },
     {
       "family": "arithmetic",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 9.266813998692669,
+      "elapsed_ms": 10.043514994322322,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 10.256098998070229,
+      "elapsed_ms": 10.123093998117838,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 10.085903995786794,
+      "elapsed_ms": 9.981401002733037,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 10.369139003159944,
+      "elapsed_ms": 11.53677300317213,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 8.397338002396282,
+      "elapsed_ms": 17.46077500138199,
       "result_status": 4
     },
     {
       "family": "arithmetic",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 9.470049000810832,
+      "elapsed_ms": 16.916402004426345,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 10.515629001019988,
+      "elapsed_ms": 9.668762002547737,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 8.637374005047604,
+      "elapsed_ms": 10.979334998410195,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 10.950001000310294,
+      "elapsed_ms": 9.547228997689672,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 9.156066997093149,
+      "elapsed_ms": 9.635912996600382,
       "result_status": 4
     },
     {
       "family": "arithmetic",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 9.315036004409194,
+      "elapsed_ms": 9.010913003294263,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 9.787390001292806,
+      "elapsed_ms": 8.739535995118786,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 10.312909995263908,
+      "elapsed_ms": 10.911232995567843,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 9.759574000781868,
+      "elapsed_ms": 8.828844998788554,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 9.271299997635651,
+      "elapsed_ms": 8.371183001145255,
       "result_status": 4
     },
     {
       "family": "arithmetic",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 8.631029006210156,
+      "elapsed_ms": 14.112611002929043,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 12.433753996447194,
+      "elapsed_ms": 11.75454899930628,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 9.110443999816198,
+      "elapsed_ms": 12.515603004430886,
       "result_status": 1
     },
     {
       "family": "arithmetic",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 9.269056994526181,
+      "elapsed_ms": 12.897715998406056,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 0,
       "correct": true,
-      "elapsed_ms": 39.48509199835826,
+      "elapsed_ms": 47.1731709985761,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 1,
       "correct": true,
-      "elapsed_ms": 38.8510239936295,
+      "elapsed_ms": 47.27210500277579,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 2,
       "correct": true,
-      "elapsed_ms": 38.428749998274725,
+      "elapsed_ms": 45.22965200158069,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 3,
       "correct": true,
-      "elapsed_ms": 36.47251300571952,
+      "elapsed_ms": 42.80555200239178,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 4,
       "correct": true,
-      "elapsed_ms": 37.14237899839645,
+      "elapsed_ms": 42.68038300506305,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 5,
       "correct": true,
-      "elapsed_ms": 48.99772599310381,
+      "elapsed_ms": 44.408854002540465,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 6,
       "correct": true,
-      "elapsed_ms": 41.09404899645597,
+      "elapsed_ms": 45.754965001833625,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 7,
       "correct": true,
-      "elapsed_ms": 40.72934199939482,
+      "elapsed_ms": 43.00879200309282,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 8,
       "correct": true,
-      "elapsed_ms": 40.28997299610637,
+      "elapsed_ms": 42.94802399817854,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 9,
       "correct": true,
-      "elapsed_ms": 40.7985460042255,
+      "elapsed_ms": 46.511817003192846,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 10,
       "correct": true,
-      "elapsed_ms": 41.07154500525212,
+      "elapsed_ms": 42.96204099955503,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 11,
       "correct": true,
-      "elapsed_ms": 45.73424700356554,
+      "elapsed_ms": 50.14043700066395,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 12,
       "correct": true,
-      "elapsed_ms": 41.536124001140706,
+      "elapsed_ms": 42.60874099418288,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 13,
       "correct": true,
-      "elapsed_ms": 39.008588006254286,
+      "elapsed_ms": 45.949549006763846,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 14,
       "correct": true,
-      "elapsed_ms": 45.53524900256889,
+      "elapsed_ms": 43.28659299790161,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 15,
       "correct": true,
-      "elapsed_ms": 38.41873299825238,
+      "elapsed_ms": 51.650535002409015,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 16,
       "correct": true,
-      "elapsed_ms": 45.24658599984832,
+      "elapsed_ms": 46.21703400334809,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 17,
       "correct": true,
-      "elapsed_ms": 40.611575001094025,
+      "elapsed_ms": 46.42890799732413,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 18,
       "correct": true,
-      "elapsed_ms": 42.2422240008018,
+      "elapsed_ms": 42.027442999824416,
       "result_status": 1
     },
     {
       "family": "mixed-restart",
       "index": 19,
       "correct": true,
-      "elapsed_ms": 43.24012299912283,
+      "elapsed_ms": 41.2837199983187,
       "result_status": 1
     }
   ],

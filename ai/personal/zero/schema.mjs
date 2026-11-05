@@ -7,5 +7,5 @@ export const LIMITS=Object.freeze({tokens:128,facts:1024,rules:256,steps:30000,r
 export function expand(source){
  return source.replace(/@([A-Z0-9]+)(?:\+(\d+))?/g,(_,name,offset)=>{
   if(!(name in ADDR))throw Error('Unknown XI address '+name);return String(ADDR[name]+BigInt(offset||0));
- }).replace(/%([A-Z_]+)%/g,(_,name)=>{const key=name.toLowerCase();if(!(key in ID))throw Error('Unknown XI word '+key);return String(ID[key]);});
+ }).replace(/%([A-Z0-9_]+)%/g,(_,name)=>{const key=name.toLowerCase();if(!(key in ID))throw Error('Unknown XI word '+key);return String(ID[key]);});
 }

@@ -191,6 +191,7 @@ public final class PersonalEngine implements AutoCloseable {
             long generation=Long.parseLong(meta("generation","0"));if(generation>=1048576)throw new IOException("Capacidad de sesión alcanzada");
             long started=System.nanoTime();JSONObject result;
             try(XiPages pages=new XiPages(this)){pages.validate(raw);result=dispatch(pages,raw,message);}
+            if(manifest.has("zero_version")&&!result.optString("engine").startsWith("BBY-Q-0"))new ZeroEngine(this).clearContext();
             JSONObject evidence=new JSONObject().put("engine",result.optString("engine")).put("entity_task",result.optString("entity_task"));
             if(result.has("metrics"))evidence.put("metrics",result.getJSONObject("metrics"));
             db.execSQL("INSERT INTO entity_events VALUES(?,?,?,?)",new Object[]{id,result.optString("engine"),evidence.toString(),System.currentTimeMillis()});

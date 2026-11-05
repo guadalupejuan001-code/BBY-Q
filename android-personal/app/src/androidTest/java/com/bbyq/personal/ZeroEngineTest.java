@@ -81,4 +81,10 @@ public class ZeroEngineTest {
    turn(e,"parent-feedback",command);assertEquals(count+1,e.quantumStatus().getLong("vqc_episodes"));
   }
  }
+ @Test public void anotherComponentCannotLeaveAStaleSubjectForTheReasoner()throws Exception {
+  try(PersonalEngine e=new PersonalEngine(context)){
+   e.chat("recuerda que ana es mortal");assertEquals(1,turn(e,"initial-reference","¿ella es mortal?").getInt("status"));
+   e.chat("Mi proyecto se llama Neral.");assertEquals(5,turn(e,"fresh-reference","¿ella es mortal?").getInt("status"));
+  }
+ }
 }

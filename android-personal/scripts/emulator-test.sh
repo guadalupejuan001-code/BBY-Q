@@ -42,7 +42,7 @@ from pathlib import Path
 import re
 text=Path('build/personal-artifacts/android-tests.txt').read_text()
 match=re.search(r'OK \((\d+) tests?\)',text)
-assert match and int(match.group(1))>=30,text
+assert match and int(match.group(1))>=31,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg',text),text
 PY_TESTS
 adb shell am start -n com.bbyq.personalx/com.bbyq.personal.MainActivity
