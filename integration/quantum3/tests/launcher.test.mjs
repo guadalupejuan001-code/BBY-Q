@@ -60,6 +60,8 @@ test('integrates the existing trained native agents without resetting their lear
   assert.equal(again.checkpoint_sha256,update.checkpoint_sha256);
   assert.throws(()=>call('learn-class',session,'class-001',input,'0'),/different input/);
   assert.equal(call('status',session).model.vqc.training_episodes_in_checkpoint,10001);
+  assert.equal(call('status',session).evaluation.applicable,false);
+  assert.equal(call('results',session).evaluation.applicable,false);
  });
  await t.test('invalid training and writer conflicts leave the published model intact',()=>{
   const before=hash(path.join(session,'HEAD.json')),bad=path.join(temp,'bad.json');

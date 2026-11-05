@@ -1,10 +1,10 @@
 name: Integrated trained quantum V3 agents
 on:
   pull_request:
-    paths: ['integration/quantum3/**', 'integration/qml_qrl/cli.mjs', 'bbyq.mjs', '.github/workflows/quantum-v3-integration.yml']
+    paths: ['integration/quantum3/**', 'ai/xi/quantum3/**', 'ai/personal/x10/pages.mjs', 'ai/personal/x10/session.mjs', 'docs/evidence/quantum3-evaluation/**', 'integration/qml_qrl/cli.mjs', 'bbyq.mjs', '.github/workflows/quantum-v3-integration.yml']
   push:
     branches: [main]
-    paths: ['integration/quantum3/**', 'integration/qml_qrl/cli.mjs']
+    paths: ['integration/quantum3/**', 'ai/xi/quantum3/**', 'ai/personal/x10/pages.mjs', 'ai/personal/x10/session.mjs', 'docs/evidence/quantum3-evaluation/**', 'integration/qml_qrl/cli.mjs']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,11 +33,11 @@ jobs:
         with: {python-version: '3.12'}
       - name: Compile original XI runtime
         run: bash deps/reverse/scripts/build-xi-session.sh deps/mundo-x deps/reverse/build
-      - name: Check real trained models, root CLI and continued native learning
+      - name: Check real trained models, durable chat, terminal states and continued learning
         env:
           BBYQ_QUANTUM_RUNTIME: ${{ github.workspace }}/deps/reverse
           BBYQ_TEST_CANONICAL_CLI: '1'
-        run: node --test integration/quantum3/tests/launcher.test.mjs
+        run: node --test integration/quantum3/tests/*.test.mjs
       - name: Preserve circuit and simulator scope
         run: |
           python - <<'PY'
@@ -50,4 +50,8 @@ jobs:
           assert m['model_identifier']==173
           assert m['training_episodes_per_agent']==10000
           assert m['legacy_training_episodes_per_agent']==800
+          summary=json.loads(Path('docs/evidence/quantum3-evaluation/summary.json').read_text())
+          assert summary['checkpoint_sha256']==m['checkpoint_sha256']
+          for name,digest in summary['xi_source_sha256'].items():
+              assert hashlib.sha256((Path('ai/xi/quantum3')/name).read_bytes()).hexdigest()==digest
           PY

@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "checkpoint_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "repository_at_evaluation": "76cd142ef490773dd93ec6742156638bcad43e1f",
+  "runtime_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6",
+  "xi_source_sha256": {
+    "common.xi": "34023cc8e22320f4ba83c61d736152985e1e32fc2336cabfeb4e5da0e256daa0",
+    "benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+    "qrl3.xi": "063d5d4a81f16fd297b3c960ca00b006c502ffc44a1df4617d80fe721494e6aa",
+    "qrl3-traced.xi": "bb6d5797899aa44779316305b3a8145f44c6b791933bf9d3dd12c6f9b0ec8f2d",
+    "encode-input.xi": "0e220e0243585725cab37bdea34c6266d40583ca32f9b53b011eaec561152f3e"
+  },
+  "evaluation_seed_families": [
+    177011,
+    177023,
+    177037
+  ],
+  "original_training_seed_overlap": false,
+  "qubits_per_agent": 1000,
+  "topology": {
+    "simulated": true,
+    "qubits_per_agent": 1000,
+    "parameterized_circuit": true,
+    "theta_parameters_per_agent": 1000,
+    "readout_parameters_per_agent": 1000,
+    "component_width": 4,
+    "components_per_agent": 250,
+    "mps": false,
+    "adaptive_local_dense_backend_is_not_mps": true,
+    "independent_latent_channels_in_original_tasks": 4,
+    "original_checkpoint_total_qubits_including_legacy": 4000,
+    "learning_math": "Native XI binary64 SGD / episodic REINFORCE; circuit angles and classical readout weights are trained.",
+    "precision": "Continuous rotations and expectations use floating point; perfect algebraic exactness is not claimed."
+  },
+  "results": {
+    "main": {
+      "vqc": {
+        "correct": 374,
+        "examples": 384,
+        "rate": 0.9739583333333334
+      },
+      "qrl": {
+        "correct": 376,
+        "examples": 384,
+        "rate": 0.9791666666666666
+      }
+    },
+    "matched_128_case_controls": {
+      "vqc": {
+        "trained": {
+          "correct": 126,
+          "examples": 128,
+          "rate": 0.984375
+        },
+        "initial_parameters": {
+          "correct": 68,
+          "examples": 128,
+          "rate": 0.53125
+        },
+        "initial_angles_only": {
+          "correct": 126,
+          "examples": 128,
+          "rate": 0.984375
+        },
+        "observations_zeroed": {
+          "correct": 60,
+          "examples": 128,
+          "rate": 0.46875
+        },
+        "changed_correctness_on_angle_reset": 0,
+        "changed_predicted_class_on_angle_reset": 0,
+        "mean_absolute_probability_change_on_angle_reset": 0.002555963051154346
+      },
+      "qrl": {
+        "trained": {
+          "correct": 124,
+          "examples": 128,
+          "rate": 0.96875
+        },
+        "initial_parameters": {
+          "correct": 67,
+          "examples": 128,
+          "rate": 0.5234375
+        },
+        "initial_angles_only": {
+          "correct": 124,
+          "examples": 128,
+          "rate": 0.96875
+        },
+        "observations_zeroed": {
+          "correct": 67,
+          "examples": 128,
+          "rate": 0.5234375
+        },
+        "changed_correctness_on_angle_reset": 0
+      }
+    },
+    "transfer_without_retraining": {
+      "parity": {
+        "correct": 65,
+        "examples": 128,
+        "rate": 0.5078125
+      },
+      "radial": {
+        "correct": 66,
+        "examples": 128,
+        "rate": 0.515625
+      },
+      "dense": {
+        "correct": 59,
+        "examples": 128,
+        "rate": 0.4609375
+      }
+    },
+    "qrl_all_distinct_position_goal_pairs": {
+      "correct": 33,
+      "examples": 42,
+      "cases": [
+        {
+          "position": 0,
+          "goal": 1,
+          "probability_right": 0.4223882133751983,
+          "action": "left",
+          "correct_direction": false
+        },
+        {
+          "position": 0,
+          "goal": 2,
+          "probability_right": 0.9146718179467358,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 0,
+          "goal": 3,
+          "probability_right": 0.990987642696349,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 0,
+          "goal": 4,
+          "probability_right": 0.9984804990477644,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 0,
+          "goal": 5,
+          "probability_right": 0.9995401446720439,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 0,
+          "goal": 6,
+          "probability_right": 0.9997678858833271,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 0,
+          "probability_right": 0.01420960500948296,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 2,
+          "probability_right": 0.7801005147219845,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 3,
+          "probability_right": 0.9769061651682883,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 4,
+          "probability_right": 0.9967588986850872,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 5,
+          "probability_right": 0.9991948757033902,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 1,
+          "goal": 6,
+          "probability_right": 0.9996532139202746,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 0,
+          "probability_right": 0.008525840215399944,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 1,
+          "probability_right": 0.09881135162927449,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 3,
+          "probability_right": 0.9444261165528839,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 4,
+          "probability_right": 0.9922707093417844,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 5,
+          "probability_right": 0.9982689028145092,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 2,
+          "goal": 6,
+          "probability_right": 0.9993473534640283,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 0,
+          "probability_right": 0.010665744950663608,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 1,
+          "probability_right": 0.08816097468234053,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 2,
+          "probability_right": 0.48428631527356236,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 4,
+          "probability_right": 0.9810617005431762,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 5,
+          "probability_right": 0.9955376268834911,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 3,
+          "goal": 6,
+          "probability_right": 0.9984016673086871,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 4,
+          "goal": 0,
+          "probability_right": 0.025329109905176603,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 4,
+          "goal": 1,
+          "probability_right": 0.13000969504760054,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 4,
+          "goal": 2,
+          "probability_right": 0.4689409569724158,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 4,
+          "goal": 3,
+          "probability_right": 0.8264608943132039,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 4,
+          "goal": 5,
+          "probability_right": 0.9866682094847532,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 4,
+          "goal": 6,
+          "probability_right": 0.9948742098954688,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 5,
+          "goal": 0,
+          "probability_right": 0.0861688782380587,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 5,
+          "goal": 1,
+          "probability_right": 0.25247592759866627,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 5,
+          "goal": 2,
+          "probability_right": 0.5293166881959676,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 5,
+          "goal": 3,
+          "probability_right": 0.7711924572452462,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 5,
+          "goal": 4,
+          "probability_right": 0.9003340829030552,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 5,
+          "goal": 6,
+          "probability_right": 0.9792151824087721,
+          "action": "right",
+          "correct_direction": true
+        },
+        {
+          "position": 6,
+          "goal": 0,
+          "probability_right": 0.2703861761850794,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 6,
+          "goal": 1,
+          "probability_right": 0.45829280511309123,
+          "action": "left",
+          "correct_direction": true
+        },
+        {
+          "position": 6,
+          "goal": 2,
+          "probability_right": 0.6143116351005999,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 6,
+          "goal": 3,
+          "probability_right": 0.7200663396488072,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 6,
+          "goal": 4,
+          "probability_right": 0.7942535213892008,
+          "action": "right",
+          "correct_direction": false
+        },
+        {
+          "position": 6,
+          "goal": 5,
+          "probability_right": 0.854177484660765,
+          "action": "right",
+          "correct_direction": false
+        }
+      ]
+    },
+    "parameter_states": {
+      "vqc": {
+        "parameter_sha256": "978aaf0c6598bcb5f68a7d81972a62a6330bb8cf174e0579f41534bd85389bbf",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 39,
+        "maximum_rotation_updates": 40,
+        "training_episodes_in_checkpoint": 10000,
+        "training_decisions_in_checkpoint": 0
+      },
+      "qrl": {
+        "parameter_sha256": "da367b65ca358af5c5082d5216457623f2996b6d42d340e765c15391ef4fd96e",
+        "rotation_parameters_updated": 1000,
+        "rotation_parameters_changed": 1000,
+        "readout_parameters_changed": 1000,
+        "minimum_rotation_updates": 183,
+        "maximum_rotation_updates": 185,
+        "training_episodes_in_checkpoint": 10000,
+        "training_decisions_in_checkpoint": 46131
+      }
+    },
+    "native_trajectories": [
+      {
+        "split": "iid",
+        "index": 0,
+        "seed": 1410430976,
+        "steps": [
+          {
+            "state_position": 3,
+            "state_goal": 6,
+            "chosen_action": 1,
+            "action_probability_right": 0.9984016673086871,
+            "next_position": 4
+          },
+          {
+            "state_position": 4,
+            "state_goal": 6,
+            "chosen_action": 1,
+            "action_probability_right": 0.9950119394264104,
+            "next_position": 5
+          },
+          {
+            "state_position": 5,
+            "state_goal": 6,
+            "chosen_action": 1,
+            "action_probability_right": 0.9800738804516748,
+            "next_position": 6
+          }
+        ],
+        "success": true,
+        "reward": 0.94,
+        "trace": {
+          "type": "quantum_trace",
+          "active_qubits": 4000,
+          "rotations": 6000,
+          "observations": 3000,
+          "gates": 2250,
+          "preparations": 750,
+          "max_prepared_block": 4,
+          "distinct_rotated_qubits": 1000,
+          "distinct_observed_qubits": 1000,
+          "distinct_two_qubit_edges": 750
+        }
+      },
+      {
+        "split": "iid",
+        "index": 1,
+        "seed": 1396204037,
+        "steps": [
+          {
+            "state_position": 3,
+            "state_goal": 0,
+            "chosen_action": 0,
+            "action_probability_right": 0.010665744950663608,
+            "next_position": 2
+          },
+          {
+            "state_position": 2,
+            "state_goal": 0,
+            "chosen_action": 0,
+            "action_probability_right": 0.008584639181614603,
+            "next_position": 1
+          },
+          {
+            "state_position": 1,
+            "state_goal": 0,
+            "chosen_action": 0,
+            "action_probability_right": 0.014383277086745135,
+            "next_position": 0
+          }
+        ],
+        "success": true,
+        "reward": 0.94,
+        "trace": {
+          "type": "quantum_trace",
+          "active_qubits": 4000,
+          "rotations": 6000,
+          "observations": 3000,
+          "gates": 2250,
+          "preparations": 750,
+          "max_prepared_block": 4,
+          "distinct_rotated_qubits": 1000,
+          "distinct_observed_qubits": 1000,
+          "distinct_two_qubit_edges": 750
+        }
+      },
+      {
+        "split": "ood",
+        "index": 0,
+        "seed": 1406345331,
+        "steps": [
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 1,
+            "action_probability_right": 0.854177484660765,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 1,
+            "action_probability_right": 0.8584619335121212,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 1,
+            "action_probability_right": 0.8608288890329583,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 1,
+            "action_probability_right": 0.8613122645049757,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 1,
+            "action_probability_right": 0.8599192364314819,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 5,
+            "chosen_action": 0,
+            "action_probability_right": 0.8566293538778131,
+            "next_position": 5
+          }
+        ],
+        "success": true,
+        "reward": 0.88,
+        "trace": {
+          "type": "quantum_trace",
+          "active_qubits": 4000,
+          "rotations": 12000,
+          "observations": 6000,
+          "gates": 4500,
+          "preparations": 1500,
+          "max_prepared_block": 4,
+          "distinct_rotated_qubits": 1000,
+          "distinct_observed_qubits": 1000,
+          "distinct_two_qubit_edges": 750
+        }
+      },
+      {
+        "split": "ood",
+        "index": 1,
+        "seed": 1746009121,
+        "steps": [
+          {
+            "state_position": 6,
+            "state_goal": 1,
+            "chosen_action": 1,
+            "action_probability_right": 0.45829280511309123,
+            "next_position": 6
+          },
+          {
+            "state_position": 6,
+            "state_goal": 1,
+            "chosen_action": 0,
+            "action_probability_right": 0.4615272034366244,
+            "next_position": 5
+          },
+          {
+            "state_position": 5,
+            "state_goal": 1,
+            "chosen_action": 0,
+            "action_probability_right": 0.2566884108116996,
+            "next_position": 4
+          },
+          {
+            "state_position": 4,
+            "state_goal": 1,
+            "chosen_action": 0,
+            "action_probability_right": 0.13314927615969926,
+            "next_position": 3
+          },
+          {
+            "state_position": 3,
+            "state_goal": 1,
+            "chosen_action": 0,
+            "action_probability_right": 0.09035736117091904,
+            "next_position": 2
+          },
+          {
+            "state_position": 2,
+            "state_goal": 1,
+            "chosen_action": 0,
+            "action_probability_right": 0.10042500948044443,
+            "next_position": 1
+          }
+        ],
+        "success": true,
+        "reward": 0.88,
+        "trace": {
+          "type": "quantum_trace",
+          "active_qubits": 4000,
+          "rotations": 12000,
+          "observations": 6000,
+          "gates": 4500,
+          "preparations": 1500,
+          "max_prepared_block": 4,
+          "distinct_rotated_qubits": 1000,
+          "distinct_observed_qubits": 1000,
+          "distinct_two_qubit_edges": 750
+        }
+      }
+    ]
+  },
+  "limitations": {
+    "VQC3": "Clasificador binario entrenado para una regla lineal sobre datos sintéticos; recibió 1000 entradas con cuatro variables latentes repetidas.",
+    "QRL3": "Política entrenada para moverse en una línea de siete posiciones con un 15% de desvíos; prueba original con objetivos 0/6 y prueba desplazada con 1/5.",
+    "aprendizaje_comprobado": "Los checkpoints conservan 10000 episodios y 1000 ángulos modificados por agente. Reiniciar todos los parámetros reduce los aciertos.",
+    "limite_del_entrenamiento_de_angulos": "En los 128 casos pareados por agente, reiniciar solo los ángulos no redujo el número de aciertos. No se demuestra una ganancia en precisión atribuible al ajuste de los ángulos.",
+    "generalizacion": "VQC3 no resuelve de forma fiable reglas nuevas sin reentrenar. QRL3 elige la dirección correcta en 33 de 42 pares posición/objetivo distintos; no es una prueba de completar esos 42 recorridos.",
+    "conversacion": "Estas tareas no entrenan generación de lenguaje ni conversación.",
+    "ventaja_cuantica": "Esta evaluación no demuestra superioridad ni aprendizaje más rápido que modelos clásicos."
+  },
+  "evidence": {
+    "full_report_sha256": "869af4a01d0d85a536f2657d31f2ec40990b3e4f870f352a3983229e8dc375d3",
+    "full_report_url": "https://chatgpt.com/library?file_id=libfile_f50f2faa9ac0819190c7affa6a60014d&account_id=personal",
+    "inference_only": true,
+    "original_checkpoint_unchanged": true,
+    "test_conditions": 32,
+    "main_examples_per_agent": 384
+  }
+}
