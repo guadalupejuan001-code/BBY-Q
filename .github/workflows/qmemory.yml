@@ -1,0 +1,43 @@
+name: Autonomous native XI quantum memory
+on:
+  pull_request:
+    paths: ['ai/xi/qmemory/**', 'integration/qmemory/**', 'integration/qml_qrl/cli.mjs', '.github/workflows/qmemory.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: bash deps/reverse/scripts/build-xi-session.sh deps/mundo deps/reverse/build
+      - name: Native learning, checkpoint recovery, budget and memory controls
+        run: python integration/qmemory/verify.py --runtime deps/reverse --output build/qmemory-verification.json
+      - name: Restore accepted memory through the BBY Q root command
+        run: |
+          node bbyq.mjs quantum memory prepare build/qmemory-release --runtime=deps/reverse
+          node bbyq.mjs quantum memory demo build/qmemory-release --runtime=deps/reverse
+          node bbyq.mjs quantum memory status build/qmemory-release
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: QMemory-native-verification
+          path: build/qmemory-verification.json
