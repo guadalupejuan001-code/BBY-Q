@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Training orchestration and independent scoring; all model updates run in XI."""
-import argparse,concurrent.futures,gzip,hashlib,importlib.util,json,math,random,statistics,struct,sys,time
+import argparse,collections,concurrent.futures,gzip,hashlib,importlib.util,json,math,random,statistics,struct,sys,time
 from pathlib import Path
 from data import build,ABSTAIN
 ROOT=Path(__file__).resolve().parents[2]
@@ -119,14 +119,18 @@ def chat_eval(path,rows,vocab,lex,history,mode=0):
       if subset:grouped[kind]={'correct':sum(r['correct'] for r in subset),'examples':len(subset),'accuracy':sum(r['correct'] for r in subset)/len(subset)}
     result['groups']=grouped;return result
 def compact_eval(r):return {k:v for k,v in r.items() if k!='cases'}
-def qchat():
+def qchat(input_frequency_limit=None,excluded_tokens=()):
     data=build();atomic(OUT/'qchat-corpus.json',data)
     release=ROOT/'integration/qchat100/release';vocab=json.loads((release/'vocabulary.json').read_text())
     lex=set(json.loads((release/'input-vocabulary.json').read_text()));history=set(json.loads((release/'history-vocabulary.json').read_text()))
     original=OUT/'qchat-original.rvp';baseline=chat_eval(original,data['validation'],vocab,lex,history)
     log('qchat',stage='baseline',validation=compact_eval(baseline))
-    lex|={t for r in data['train'] for s in [r['input'],r.get('previous','')] for t in QE.words(QE.normalize(s))};history=set(lex)
-    rows=QE.examples(data['train'],vocab,lex,history);atomic(OUT/'qchat-codec.json',{'vocabulary':vocab,'input_vocabulary':sorted(lex),'history_vocabulary':sorted(history)})
+    frequency=collections.Counter(t for r in data['train'] for s in [r['input'],r.get('previous','')] for t in QE.words(QE.normalize(s)))
+    lex|=set(frequency)
+    if input_frequency_limit is not None:lex={t for t in lex if frequency[t]<=input_frequency_limit}
+    lex-=set(excluded_tokens)
+    history=set(lex)
+    rows=QE.examples(data['train'],vocab,lex,history);atomic(OUT/'qchat-codec.json',{'vocabulary':vocab,'input_vocabulary':sorted(lex),'history_vocabulary':sorted(history),'excluded_tokens':sorted(excluded_tokens)})
     # Identical encoded prompts with contradictory labels are reported, never hidden.
     signatures={};collisions=[]
     for r in data['train']:
@@ -157,7 +161,7 @@ def qchat():
           candidates.append(item);atomic(OUT/'qchat-candidates.json',candidates);log('qchat',stage='validated',candidate=item)
       usage=learner.s.metrics()
     accepted=[c for c in candidates if c['eligible']];selected=max(accepted,key=lambda c:(c['objective'],c['known_accuracy'])) if accepted else None
-    report={'original':original.name,'baseline_validation':baseline,'candidates':candidates,'selected':selected,'training_conversations':len(data['train']),'token_contexts':len(rows),'native_usage':usage,'encoding_label_collisions':len(collisions)}
+    report={'original':original.name,'baseline_validation':baseline,'candidates':candidates,'selected':selected,'training_conversations':len(data['train']),'token_contexts':len(rows),'native_usage':usage,'encoding_label_collisions':len(collisions),'input_frequency_limit':input_frequency_limit}
     atomic(OUT/'qchat-selection.json',report);log('qchat',stage='selected',candidate=selected['checkpoint'] if selected else 'original');return report
 
 def memory_eval(path,split,repeats):

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "file": "BBYQ-VQC3-QRL3-1000x2-ENTRENADOS.rvp.gz",
+  "checkpoint_sha256": "5c541d9f4ca275a207ed10847d30ad923259b4e1d867a61907e0352553435de7",
+  "gzip_sha256": "4b678c501692256c08c7f8e1e36feeebbe6706df90a754d9220682c07b9667b5",
+  "gzip_bytes": 158645,
+  "checkpoint_bytes": 2132589,
+  "model_identifier": 173,
+  "qubits_per_agent": 1000,
+  "legacy_training_episodes_per_agent": 800,
+  "backend": "original native reduced/factorized; no MPS",
+  "training": "E01 continued native XI SGD and REINFORCE; validation-selected checkpoints",
+  "upstream_runtime": "08c363e6c6855c14026c86046af7183a45f45a98",
+  "upstream_ether": "e2778d962af22f6f1a0794058dd4685fc2573966",
+  "balanced_release": "E01",
+  "original_checkpoint_sha256": "eaba877ad9921e55fb4c191bea31dd2eb85ff3c72ba5261c3568709757926e76",
+  "training_report_sha256": "7f90924b2c7fbbe89bedbb25db5f3a597198ea57be9498cee31bc89cd1b0ce8b",
+  "training_episodes": {
+    "vqc": 11500,
+    "qrl": 11512
+  },
+  "source_sha256": {
+    "ai/xi/quantum3/common.xi": "34023cc8e22320f4ba83c61d736152985e1e32fc2336cabfeb4e5da0e256daa0",
+    "ai/xi/quantum3/benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5",
+    "ai/xi/balance/qrl3-curriculum.xi": "7b6e92b0d64c2db7613c1a9a3ccc676844b27fb7e8ff7a588dab243d0146d3b8",
+    "ai/xi/quantum3/step.xi": "b3bf3f1df0c92d434756890d5a8091a227e727a79a834bd2fa6af2525993f175"
+  }
+}

@@ -1,0 +1,1410 @@
+{
+  "selection": {
+    "original": "qmemory-original.rvp",
+    "baseline_validation": {
+      "correct": 1500,
+      "examples": 1500,
+      "accuracy": 1.0,
+      "mse": 0.001209623134716966,
+      "correction_accuracy": 1.0,
+      "episodes": 6,
+      "cases": [
+        {
+          "loss": 0.0011440559536617966,
+          "correct": 250,
+          "correction_cases": 98,
+          "correction_correct": 98,
+          "transport_ms": 80.16237,
+          "seed": 278276412,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2696,
+            "observations": 250,
+            "gates": 6136,
+            "preparations": 250,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 598
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2624,
+            "T_instructions": 0,
+            "payload_bytes": 133696,
+            "norm": 1.0000000000000353
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 133696,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 746376,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.0009853109414106544,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 95.264,
+          "seed": 1471068331,
+          "delay": 2
+        },
+        {
+          "loss": 0.001331453919492827,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 142.668779,
+          "seed": 1159189965,
+          "delay": 8
+        },
+        {
+          "loss": 0.0011696599305414666,
+          "correct": 250,
+          "correction_cases": 114,
+          "correction_correct": 114,
+          "transport_ms": 124.574018,
+          "seed": 1402892816,
+          "delay": 8
+        },
+        {
+          "loss": 0.0013519263833777432,
+          "correct": 250,
+          "correction_cases": 114,
+          "correction_correct": 114,
+          "transport_ms": 159.566074,
+          "seed": 40779707,
+          "delay": 12
+        },
+        {
+          "loss": 0.0012753316798173081,
+          "correct": 250,
+          "correction_cases": 129,
+          "correction_correct": 129,
+          "transport_ms": 163.511114,
+          "seed": 1837016893,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4784,
+        "rusage_peak_rss_kib": 29132,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 772.8,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 135168
+      }
+    },
+    "candidates": [
+      {
+        "updates": 5,
+        "checkpoint": "qmemory-005.rvp",
+        "sha256": "220985ddb749ee90bff6881d3a0247cd87c771908276fc1989ec2449d97b2d3c",
+        "parameters_before": {
+          "quantum_angles": [
+            1.3525745212904299,
+            1.3475863452572892,
+            0.007678410496294209
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 10,
+          "classical_updates": 10
+        },
+        "parameters_after": {
+          "quantum_angles": [
+            1.3969643288497064,
+            1.392293825780086,
+            0.005971400796660152
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 15,
+          "classical_updates": 10
+        },
+        "validation": {
+          "correct": 1500,
+          "examples": 1500,
+          "accuracy": 1.0,
+          "mse": 0.0004991780680219327,
+          "correction_accuracy": 1.0,
+          "episodes": 6,
+          "cases": [
+            {
+              "loss": 0.0004715328779944721,
+              "correct": 250,
+              "correction_cases": 98,
+              "correction_correct": 98,
+              "transport_ms": 87.276338,
+              "seed": 278276412,
+              "delay": 2,
+              "trace": {
+                "type": "quantum_trace",
+                "active_qubits": 1000,
+                "rotations": 2696,
+                "observations": 250,
+                "gates": 6136,
+                "preparations": 250,
+                "max_prepared_block": 4,
+                "distinct_rotated_qubits": 250,
+                "distinct_observed_qubits": 250,
+                "distinct_two_qubit_edges": 598
+              },
+              "backend": {
+                "type": "quantum_stats",
+                "clifford_components": 0,
+                "adaptive_components": 250,
+                "reduced_components": 0,
+                "coefficients": 0,
+                "factor_amplitudes": 2624,
+                "T_instructions": 0,
+                "payload_bytes": 133696,
+                "norm": 0.9999999999998858
+              },
+              "stats": {
+                "type": "stats",
+                "background": "zero",
+                "domain": "nonnegative_decimal_addresses",
+                "active_qubits": 1000,
+                "components": 250,
+                "largest_component": 4,
+                "tableau_bytes": 133696,
+                "address_bytes": 5000,
+                "ether_rules": 0,
+                "revision": 1070602,
+                "limits": {
+                  "max_active_qubits": 4096,
+                  "max_component_qubits": 1024,
+                  "max_state_bytes": 67108864,
+                  "max_address_digits": 4096,
+                  "max_query_terms": 4096,
+                  "max_ether_rules": 4096,
+                  "max_ether_query_sites": 4096
+                }
+              }
+            },
+            {
+              "loss": 0.00040856979801730416,
+              "correct": 250,
+              "correction_cases": 128,
+              "correction_correct": 128,
+              "transport_ms": 98.292903,
+              "seed": 1471068331,
+              "delay": 2
+            },
+            {
+              "loss": 0.0005500011533227347,
+              "correct": 250,
+              "correction_cases": 127,
+              "correction_correct": 127,
+              "transport_ms": 158.522297,
+              "seed": 1159189965,
+              "delay": 8
+            },
+            {
+              "loss": 0.00048207303302754214,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 147.049133,
+              "seed": 1402892816,
+              "delay": 8
+            },
+            {
+              "loss": 0.0005561168209896524,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 184.093729,
+              "seed": 40779707,
+              "delay": 12
+            },
+            {
+              "loss": 0.0005267747247798909,
+              "correct": 250,
+              "correction_cases": 129,
+              "correction_correct": 129,
+              "transport_ms": 158.349709,
+              "seed": 1837016893,
+              "delay": 12
+            }
+          ],
+          "usage": {
+            "peak_rss_kib": 4764,
+            "rusage_peak_rss_kib": 29132,
+            "rss_measurement": "Linux VmHWM after exec",
+            "cpu_ms": 842.545,
+            "active_qubits": 1000,
+            "quantum_payload_bytes": 135168
+          }
+        },
+        "eligible": true,
+        "objective": 0.9995008219319781
+      },
+      {
+        "updates": 10,
+        "checkpoint": "qmemory-010.rvp",
+        "sha256": "2b9290106b2fd790d44a1fa19bdb4aa0534bfc6c7092db3f138c120969e4c9a5",
+        "parameters_before": {
+          "quantum_angles": [
+            1.3525745212904299,
+            1.3475863452572892,
+            0.007678410496294209
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 10,
+          "classical_updates": 10
+        },
+        "parameters_after": {
+          "quantum_angles": [
+            1.4231637182771504,
+            1.4209166959325277,
+            0.0029062471794565675
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 20,
+          "classical_updates": 10
+        },
+        "validation": {
+          "correct": 1500,
+          "examples": 1500,
+          "accuracy": 1.0,
+          "mse": 0.00023866299980506784,
+          "correction_accuracy": 1.0,
+          "episodes": 6,
+          "cases": [
+            {
+              "loss": 0.00024196903137848,
+              "correct": 250,
+              "correction_cases": 98,
+              "correction_correct": 98,
+              "transport_ms": 77.02169,
+              "seed": 278276412,
+              "delay": 2,
+              "trace": {
+                "type": "quantum_trace",
+                "active_qubits": 1000,
+                "rotations": 2696,
+                "observations": 250,
+                "gates": 6136,
+                "preparations": 250,
+                "max_prepared_block": 4,
+                "distinct_rotated_qubits": 250,
+                "distinct_observed_qubits": 250,
+                "distinct_two_qubit_edges": 598
+              },
+              "backend": {
+                "type": "quantum_stats",
+                "clifford_components": 0,
+                "adaptive_components": 250,
+                "reduced_components": 0,
+                "coefficients": 0,
+                "factor_amplitudes": 2624,
+                "T_instructions": 0,
+                "payload_bytes": 133704,
+                "norm": 0.9999999999999074
+              },
+              "stats": {
+                "type": "stats",
+                "background": "zero",
+                "domain": "nonnegative_decimal_addresses",
+                "active_qubits": 1000,
+                "components": 250,
+                "largest_component": 4,
+                "tableau_bytes": 133704,
+                "address_bytes": 5000,
+                "ether_rules": 0,
+                "revision": 1964187,
+                "limits": {
+                  "max_active_qubits": 4096,
+                  "max_component_qubits": 1024,
+                  "max_state_bytes": 67108864,
+                  "max_address_digits": 4096,
+                  "max_query_terms": 4096,
+                  "max_ether_rules": 4096,
+                  "max_ether_query_sites": 4096
+                }
+              }
+            },
+            {
+              "loss": 0.00020873210611644058,
+              "correct": 250,
+              "correction_cases": 128,
+              "correction_correct": 128,
+              "transport_ms": 85.866632,
+              "seed": 1471068331,
+              "delay": 2
+            },
+            {
+              "loss": 0.00026451136993409284,
+              "correct": 250,
+              "correction_cases": 127,
+              "correction_correct": 127,
+              "transport_ms": 136.690497,
+              "seed": 1159189965,
+              "delay": 8
+            },
+            {
+              "loss": 0.00023254649462845585,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 139.231642,
+              "seed": 1402892816,
+              "delay": 8
+            },
+            {
+              "loss": 0.0002477374915622556,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 158.593025,
+              "seed": 40779707,
+              "delay": 12
+            },
+            {
+              "loss": 0.00023648150521068216,
+              "correct": 250,
+              "correction_cases": 129,
+              "correction_correct": 129,
+              "transport_ms": 188.387235,
+              "seed": 1837016893,
+              "delay": 12
+            }
+          ],
+          "usage": {
+            "peak_rss_kib": 4780,
+            "rusage_peak_rss_kib": 29132,
+            "rss_measurement": "Linux VmHWM after exec",
+            "cpu_ms": 793.448,
+            "active_qubits": 1000,
+            "quantum_payload_bytes": 135168
+          }
+        },
+        "eligible": true,
+        "objective": 0.999761337000195
+      },
+      {
+        "updates": 20,
+        "checkpoint": "qmemory-020.rvp",
+        "sha256": "936895ec50786a7f7673882845028be90513a4d0c3a0c51f7e47a0e9a3f6af49",
+        "parameters_before": {
+          "quantum_angles": [
+            1.3525745212904299,
+            1.3475863452572892,
+            0.007678410496294209
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 10,
+          "classical_updates": 10
+        },
+        "parameters_after": {
+          "quantum_angles": [
+            1.4530764583293534,
+            1.449532264554516,
+            0.001264690128199579
+          ],
+          "classical_angles": [
+            1.3843221525487597,
+            1.3653092844699473,
+            0.1038857298666211
+          ],
+          "quantum_updates": 30,
+          "classical_updates": 10
+        },
+        "validation": {
+          "correct": 1500,
+          "examples": 1500,
+          "accuracy": 1.0,
+          "mse": 9.778027692703353e-05,
+          "correction_accuracy": 1.0,
+          "episodes": 6,
+          "cases": [
+            {
+              "loss": 0.00010061781659579751,
+              "correct": 250,
+              "correction_cases": 98,
+              "correction_correct": 98,
+              "transport_ms": 74.475764,
+              "seed": 278276412,
+              "delay": 2,
+              "trace": {
+                "type": "quantum_trace",
+                "active_qubits": 1000,
+                "rotations": 2696,
+                "observations": 250,
+                "gates": 6136,
+                "preparations": 250,
+                "max_prepared_block": 4,
+                "distinct_rotated_qubits": 250,
+                "distinct_observed_qubits": 250,
+                "distinct_two_qubit_edges": 598
+              },
+              "backend": {
+                "type": "quantum_stats",
+                "clifford_components": 0,
+                "adaptive_components": 250,
+                "reduced_components": 0,
+                "coefficients": 0,
+                "factor_amplitudes": 2624,
+                "T_instructions": 0,
+                "payload_bytes": 133696,
+                "norm": 1.0000000000001519
+              },
+              "stats": {
+                "type": "stats",
+                "background": "zero",
+                "domain": "nonnegative_decimal_addresses",
+                "active_qubits": 1000,
+                "components": 250,
+                "largest_component": 4,
+                "tableau_bytes": 133696,
+                "address_bytes": 5000,
+                "ether_rules": 0,
+                "revision": 3383073,
+                "limits": {
+                  "max_active_qubits": 4096,
+                  "max_component_qubits": 1024,
+                  "max_state_bytes": 67108864,
+                  "max_address_digits": 4096,
+                  "max_query_terms": 4096,
+                  "max_ether_rules": 4096,
+                  "max_ether_query_sites": 4096
+                }
+              }
+            },
+            {
+              "loss": 8.78472596753443e-05,
+              "correct": 250,
+              "correction_cases": 128,
+              "correction_correct": 128,
+              "transport_ms": 73.217103,
+              "seed": 1471068331,
+              "delay": 2
+            },
+            {
+              "loss": 0.00010859364552048319,
+              "correct": 250,
+              "correction_cases": 127,
+              "correction_correct": 127,
+              "transport_ms": 117.179059,
+              "seed": 1159189965,
+              "delay": 8
+            },
+            {
+              "loss": 9.525503167784418e-05,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 131.502357,
+              "seed": 1402892816,
+              "delay": 8
+            },
+            {
+              "loss": 9.897193629255911e-05,
+              "correct": 250,
+              "correction_cases": 114,
+              "correction_correct": 114,
+              "transport_ms": 178.48407,
+              "seed": 40779707,
+              "delay": 12
+            },
+            {
+              "loss": 9.539597180017292e-05,
+              "correct": 250,
+              "correction_cases": 129,
+              "correction_correct": 129,
+              "transport_ms": 174.831154,
+              "seed": 1837016893,
+              "delay": 12
+            }
+          ],
+          "usage": {
+            "peak_rss_kib": 4768,
+            "rusage_peak_rss_kib": 29132,
+            "rss_measurement": "Linux VmHWM after exec",
+            "cpu_ms": 756.486,
+            "active_qubits": 1000,
+            "quantum_payload_bytes": 135168
+          }
+        },
+        "eligible": true,
+        "objective": 0.9999022197230729
+      }
+    ],
+    "selected": {
+      "updates": 20,
+      "checkpoint": "qmemory-020.rvp",
+      "sha256": "936895ec50786a7f7673882845028be90513a4d0c3a0c51f7e47a0e9a3f6af49",
+      "parameters_before": {
+        "quantum_angles": [
+          1.3525745212904299,
+          1.3475863452572892,
+          0.007678410496294209
+        ],
+        "classical_angles": [
+          1.3843221525487597,
+          1.3653092844699473,
+          0.1038857298666211
+        ],
+        "quantum_updates": 10,
+        "classical_updates": 10
+      },
+      "parameters_after": {
+        "quantum_angles": [
+          1.4530764583293534,
+          1.449532264554516,
+          0.001264690128199579
+        ],
+        "classical_angles": [
+          1.3843221525487597,
+          1.3653092844699473,
+          0.1038857298666211
+        ],
+        "quantum_updates": 30,
+        "classical_updates": 10
+      },
+      "validation": {
+        "correct": 1500,
+        "examples": 1500,
+        "accuracy": 1.0,
+        "mse": 9.778027692703353e-05,
+        "correction_accuracy": 1.0,
+        "episodes": 6,
+        "cases": [
+          {
+            "loss": 0.00010061781659579751,
+            "correct": 250,
+            "correction_cases": 98,
+            "correction_correct": 98,
+            "transport_ms": 74.475764,
+            "seed": 278276412,
+            "delay": 2,
+            "trace": {
+              "type": "quantum_trace",
+              "active_qubits": 1000,
+              "rotations": 2696,
+              "observations": 250,
+              "gates": 6136,
+              "preparations": 250,
+              "max_prepared_block": 4,
+              "distinct_rotated_qubits": 250,
+              "distinct_observed_qubits": 250,
+              "distinct_two_qubit_edges": 598
+            },
+            "backend": {
+              "type": "quantum_stats",
+              "clifford_components": 0,
+              "adaptive_components": 250,
+              "reduced_components": 0,
+              "coefficients": 0,
+              "factor_amplitudes": 2624,
+              "T_instructions": 0,
+              "payload_bytes": 133696,
+              "norm": 1.0000000000001519
+            },
+            "stats": {
+              "type": "stats",
+              "background": "zero",
+              "domain": "nonnegative_decimal_addresses",
+              "active_qubits": 1000,
+              "components": 250,
+              "largest_component": 4,
+              "tableau_bytes": 133696,
+              "address_bytes": 5000,
+              "ether_rules": 0,
+              "revision": 3383073,
+              "limits": {
+                "max_active_qubits": 4096,
+                "max_component_qubits": 1024,
+                "max_state_bytes": 67108864,
+                "max_address_digits": 4096,
+                "max_query_terms": 4096,
+                "max_ether_rules": 4096,
+                "max_ether_query_sites": 4096
+              }
+            }
+          },
+          {
+            "loss": 8.78472596753443e-05,
+            "correct": 250,
+            "correction_cases": 128,
+            "correction_correct": 128,
+            "transport_ms": 73.217103,
+            "seed": 1471068331,
+            "delay": 2
+          },
+          {
+            "loss": 0.00010859364552048319,
+            "correct": 250,
+            "correction_cases": 127,
+            "correction_correct": 127,
+            "transport_ms": 117.179059,
+            "seed": 1159189965,
+            "delay": 8
+          },
+          {
+            "loss": 9.525503167784418e-05,
+            "correct": 250,
+            "correction_cases": 114,
+            "correction_correct": 114,
+            "transport_ms": 131.502357,
+            "seed": 1402892816,
+            "delay": 8
+          },
+          {
+            "loss": 9.897193629255911e-05,
+            "correct": 250,
+            "correction_cases": 114,
+            "correction_correct": 114,
+            "transport_ms": 178.48407,
+            "seed": 40779707,
+            "delay": 12
+          },
+          {
+            "loss": 9.539597180017292e-05,
+            "correct": 250,
+            "correction_cases": 129,
+            "correction_correct": 129,
+            "transport_ms": 174.831154,
+            "seed": 1837016893,
+            "delay": 12
+          }
+        ],
+        "usage": {
+          "peak_rss_kib": 4768,
+          "rusage_peak_rss_kib": 29132,
+          "rss_measurement": "Linux VmHWM after exec",
+          "cpu_ms": 756.486,
+          "active_qubits": 1000,
+          "quantum_payload_bytes": 135168
+        }
+      },
+      "eligible": true,
+      "objective": 0.9999022197230729
+    }
+  },
+  "test": {
+    "before": {
+      "correct": 3000,
+      "examples": 3000,
+      "accuracy": 1.0,
+      "mse": 0.001254819220121935,
+      "correction_accuracy": 1.0,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.0010789366704624529,
+          "correct": 250,
+          "correction_cases": 133,
+          "correction_correct": 133,
+          "transport_ms": 85.886642,
+          "seed": 674791061,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2766,
+            "observations": 250,
+            "gates": 6310,
+            "preparations": 250,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 633
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2780,
+            "T_instructions": 0,
+            "payload_bytes": 136440,
+            "norm": 1.000000000000038
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 136440,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 746620,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.0010404480407168932,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 85.696957,
+          "seed": 243356885,
+          "delay": 2
+        },
+        {
+          "loss": 0.0011365936278780499,
+          "correct": 250,
+          "correction_cases": 123,
+          "correction_correct": 123,
+          "transport_ms": 90.503795,
+          "seed": 697137268,
+          "delay": 2
+        },
+        {
+          "loss": 0.0011372701133176405,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 96.105737,
+          "seed": 636714717,
+          "delay": 2
+        },
+        {
+          "loss": 0.001262294292546282,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 169.478739,
+          "seed": 487326763,
+          "delay": 8
+        },
+        {
+          "loss": 0.0012883800481642413,
+          "correct": 250,
+          "correction_cases": 112,
+          "correction_correct": 112,
+          "transport_ms": 162.964095,
+          "seed": 1999139719,
+          "delay": 8
+        },
+        {
+          "loss": 0.0013568342110721046,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 134.215146,
+          "seed": 680565972,
+          "delay": 8
+        },
+        {
+          "loss": 0.0011888192541739194,
+          "correct": 250,
+          "correction_cases": 117,
+          "correction_correct": 117,
+          "transport_ms": 146.409156,
+          "seed": 359041127,
+          "delay": 8
+        },
+        {
+          "loss": 0.001387180296177794,
+          "correct": 250,
+          "correction_cases": 118,
+          "correction_correct": 118,
+          "transport_ms": 194.979331,
+          "seed": 1080168026,
+          "delay": 12
+        },
+        {
+          "loss": 0.0014547668062707118,
+          "correct": 250,
+          "correction_cases": 104,
+          "correction_correct": 104,
+          "transport_ms": 186.817861,
+          "seed": 906251902,
+          "delay": 12
+        },
+        {
+          "loss": 0.0014122684322819864,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 159.852654,
+          "seed": 865397535,
+          "delay": 12
+        },
+        {
+          "loss": 0.0013140388484011432,
+          "correct": 250,
+          "correction_cases": 122,
+          "correction_correct": 122,
+          "transport_ms": 195.741496,
+          "seed": 1541159999,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4796,
+        "rusage_peak_rss_kib": 18076,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1717.9009999999998,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 135392
+      }
+    },
+    "after": {
+      "correct": 3000,
+      "examples": 3000,
+      "accuracy": 1.0,
+      "mse": 0.00010118956266558955,
+      "correction_accuracy": 1.0,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 9.589326165697348e-05,
+          "correct": 250,
+          "correction_cases": 133,
+          "correction_correct": 133,
+          "transport_ms": 99.465809,
+          "seed": 674791061,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2766,
+            "observations": 250,
+            "gates": 6310,
+            "preparations": 250,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 633
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2780,
+            "T_instructions": 0,
+            "payload_bytes": 136440,
+            "norm": 1.0000000000001548
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 136440,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 3383317,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 9.219968566680285e-05,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 86.639978,
+          "seed": 243356885,
+          "delay": 2
+        },
+        {
+          "loss": 0.00010101954502437652,
+          "correct": 250,
+          "correction_cases": 123,
+          "correction_correct": 123,
+          "transport_ms": 97.803433,
+          "seed": 697137268,
+          "delay": 2
+        },
+        {
+          "loss": 0.00010133104927218553,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 76.047587,
+          "seed": 636714717,
+          "delay": 2
+        },
+        {
+          "loss": 0.00010264003459283937,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 134.066422,
+          "seed": 487326763,
+          "delay": 8
+        },
+        {
+          "loss": 0.00010483254896498511,
+          "correct": 250,
+          "correction_cases": 112,
+          "correction_correct": 112,
+          "transport_ms": 127.999241,
+          "seed": 1999139719,
+          "delay": 8
+        },
+        {
+          "loss": 0.00011243469960512892,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 139.942235,
+          "seed": 680565972,
+          "delay": 8
+        },
+        {
+          "loss": 9.753553972786804e-05,
+          "correct": 250,
+          "correction_cases": 117,
+          "correction_correct": 117,
+          "transport_ms": 141.182041,
+          "seed": 359041127,
+          "delay": 8
+        },
+        {
+          "loss": 0.0001013205723827473,
+          "correct": 250,
+          "correction_cases": 118,
+          "correction_correct": 118,
+          "transport_ms": 167.695621,
+          "seed": 1080168026,
+          "delay": 12
+        },
+        {
+          "loss": 0.00010408074346671555,
+          "correct": 250,
+          "correction_cases": 104,
+          "correction_correct": 104,
+          "transport_ms": 171.196048,
+          "seed": 906251902,
+          "delay": 12
+        },
+        {
+          "loss": 0.00010524362846710024,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 184.291011,
+          "seed": 865397535,
+          "delay": 12
+        },
+        {
+          "loss": 9.574344315935166e-05,
+          "correct": 250,
+          "correction_cases": 122,
+          "correction_correct": 122,
+          "transport_ms": 181.75274,
+          "seed": 1541159999,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4780,
+        "rusage_peak_rss_kib": 18076,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1613.972,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 135392
+      }
+    },
+    "memory_erased": {
+      "correct": 1478,
+      "examples": 3000,
+      "accuracy": 0.49266666666666664,
+      "mse": 0.5073333333333333,
+      "correction_accuracy": 0.4941820670773443,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 0.528,
+          "correct": 118,
+          "correction_cases": 133,
+          "correction_correct": 58,
+          "transport_ms": 81.273665,
+          "seed": 674791061,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 2766,
+            "observations": 250,
+            "gates": 6310,
+            "preparations": 500,
+            "max_prepared_block": 4,
+            "distinct_rotated_qubits": 250,
+            "distinct_observed_qubits": 250,
+            "distinct_two_qubit_edges": 633
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 250,
+            "adaptive_components": 0,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 0,
+            "T_instructions": 0,
+            "payload_bytes": 17000,
+            "norm": 1
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 17000,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 3383567,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 0.516,
+          "correct": 121,
+          "correction_cases": 125,
+          "correction_correct": 56,
+          "transport_ms": 77.012156,
+          "seed": 243356885,
+          "delay": 2
+        },
+        {
+          "loss": 0.484,
+          "correct": 129,
+          "correction_cases": 123,
+          "correction_correct": 67,
+          "transport_ms": 77.018676,
+          "seed": 697137268,
+          "delay": 2
+        },
+        {
+          "loss": 0.484,
+          "correct": 129,
+          "correction_cases": 127,
+          "correction_correct": 67,
+          "transport_ms": 78.947091,
+          "seed": 636714717,
+          "delay": 2
+        },
+        {
+          "loss": 0.52,
+          "correct": 120,
+          "correction_cases": 127,
+          "correction_correct": 66,
+          "transport_ms": 132.741242,
+          "seed": 487326763,
+          "delay": 8
+        },
+        {
+          "loss": 0.52,
+          "correct": 120,
+          "correction_cases": 112,
+          "correction_correct": 54,
+          "transport_ms": 160.107541,
+          "seed": 1999139719,
+          "delay": 8
+        },
+        {
+          "loss": 0.512,
+          "correct": 122,
+          "correction_cases": 128,
+          "correction_correct": 62,
+          "transport_ms": 142.856025,
+          "seed": 680565972,
+          "delay": 8
+        },
+        {
+          "loss": 0.492,
+          "correct": 127,
+          "correction_cases": 117,
+          "correction_correct": 61,
+          "transport_ms": 131.950855,
+          "seed": 359041127,
+          "delay": 8
+        },
+        {
+          "loss": 0.492,
+          "correct": 127,
+          "correction_cases": 118,
+          "correction_correct": 60,
+          "transport_ms": 157.604127,
+          "seed": 1080168026,
+          "delay": 12
+        },
+        {
+          "loss": 0.5,
+          "correct": 125,
+          "correction_cases": 104,
+          "correction_correct": 55,
+          "transport_ms": 167.762106,
+          "seed": 906251902,
+          "delay": 12
+        },
+        {
+          "loss": 0.508,
+          "correct": 123,
+          "correction_cases": 125,
+          "correction_correct": 65,
+          "transport_ms": 216.242222,
+          "seed": 865397535,
+          "delay": 12
+        },
+        {
+          "loss": 0.532,
+          "correct": 117,
+          "correction_cases": 122,
+          "correction_correct": 51,
+          "transport_ms": 208.50947,
+          "seed": 1541159999,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4492,
+        "rusage_peak_rss_kib": 18076,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 1639.155,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 17000
+      }
+    },
+    "matched_classical_control": {
+      "correct": 3000,
+      "examples": 3000,
+      "accuracy": 1.0,
+      "mse": 0.0003129694340286866,
+      "correction_accuracy": 1.0,
+      "episodes": 12,
+      "cases": [
+        {
+          "loss": 6.833795809754124e-05,
+          "correct": 250,
+          "correction_cases": 133,
+          "correction_correct": 133,
+          "transport_ms": 61.705706,
+          "seed": 674791061,
+          "delay": 2,
+          "trace": {
+            "type": "quantum_trace",
+            "active_qubits": 1000,
+            "rotations": 0,
+            "observations": 0,
+            "gates": 0,
+            "preparations": 0,
+            "max_prepared_block": 0,
+            "distinct_rotated_qubits": 0,
+            "distinct_observed_qubits": 0,
+            "distinct_two_qubit_edges": 0
+          },
+          "backend": {
+            "type": "quantum_stats",
+            "clifford_components": 0,
+            "adaptive_components": 250,
+            "reduced_components": 0,
+            "coefficients": 0,
+            "factor_amplitudes": 2746,
+            "T_instructions": 0,
+            "payload_bytes": 135856,
+            "norm": 1.0000000000000415
+          },
+          "stats": {
+            "type": "stats",
+            "background": "zero",
+            "domain": "nonnegative_decimal_addresses",
+            "active_qubits": 1000,
+            "components": 250,
+            "largest_component": 4,
+            "tableau_bytes": 135856,
+            "address_bytes": 5000,
+            "ether_rules": 0,
+            "revision": 737294,
+            "limits": {
+              "max_active_qubits": 4096,
+              "max_component_qubits": 1024,
+              "max_state_bytes": 67108864,
+              "max_address_digits": 4096,
+              "max_query_terms": 4096,
+              "max_ether_rules": 4096,
+              "max_ether_query_sites": 4096
+            }
+          }
+        },
+        {
+          "loss": 7.009487426566209e-05,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 72.033681,
+          "seed": 243356885,
+          "delay": 2
+        },
+        {
+          "loss": 7.421781953584329e-05,
+          "correct": 250,
+          "correction_cases": 123,
+          "correction_correct": 123,
+          "transport_ms": 70.591455,
+          "seed": 697137268,
+          "delay": 2
+        },
+        {
+          "loss": 7.427231340931435e-05,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 61.382917,
+          "seed": 636714717,
+          "delay": 2
+        },
+        {
+          "loss": 0.0003020788415474684,
+          "correct": 250,
+          "correction_cases": 127,
+          "correction_correct": 127,
+          "transport_ms": 75.745766,
+          "seed": 487326763,
+          "delay": 8
+        },
+        {
+          "loss": 0.00031599670078196385,
+          "correct": 250,
+          "correction_cases": 112,
+          "correction_correct": 112,
+          "transport_ms": 74.48989,
+          "seed": 1999139719,
+          "delay": 8
+        },
+        {
+          "loss": 0.00031816309045489487,
+          "correct": 250,
+          "correction_cases": 128,
+          "correction_correct": 128,
+          "transport_ms": 82.431761,
+          "seed": 680565972,
+          "delay": 8
+        },
+        {
+          "loss": 0.0002863065113562808,
+          "correct": 250,
+          "correction_cases": 117,
+          "correction_correct": 117,
+          "transport_ms": 79.528647,
+          "seed": 359041127,
+          "delay": 8
+        },
+        {
+          "loss": 0.0005769027600270889,
+          "correct": 250,
+          "correction_cases": 118,
+          "correction_correct": 118,
+          "transport_ms": 98.871927,
+          "seed": 1080168026,
+          "delay": 12
+        },
+        {
+          "loss": 0.0005888447856875695,
+          "correct": 250,
+          "correction_cases": 104,
+          "correction_correct": 104,
+          "transport_ms": 87.93829,
+          "seed": 906251902,
+          "delay": 12
+        },
+        {
+          "loss": 0.0005312033247329368,
+          "correct": 250,
+          "correction_cases": 125,
+          "correction_correct": 125,
+          "transport_ms": 100.177644,
+          "seed": 865397535,
+          "delay": 12
+        },
+        {
+          "loss": 0.0005492142284476751,
+          "correct": 250,
+          "correction_cases": 122,
+          "correction_correct": 122,
+          "transport_ms": 89.130766,
+          "seed": 1541159999,
+          "delay": 12
+        }
+      ],
+      "usage": {
+        "peak_rss_kib": 4296,
+        "rusage_peak_rss_kib": 18076,
+        "rss_measurement": "Linux VmHWM after exec",
+        "cpu_ms": 957.017,
+        "active_qubits": 1000,
+        "quantum_payload_bytes": 135856
+      }
+    },
+    "criterion_passed": true
+  }
+}

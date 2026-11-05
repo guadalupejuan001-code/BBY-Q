@@ -1,0 +1,2243 @@
+{
+  "selection": {
+    "vqc": {
+      "original": "v3-original.rvp",
+      "baseline_validation": {
+        "iid": {
+          "correct": 121,
+          "examples": 128,
+          "accuracy": 0.9453125,
+          "brier": 0.04615067786654554,
+          "wilson95": [
+            0.8914150997002549,
+            0.9732597986186532
+          ],
+          "peak_rss_kib": 16416
+        },
+        "ood": {
+          "correct": 123,
+          "examples": 128,
+          "accuracy": 0.9609375,
+          "brier": 0.03271364305511137,
+          "wilson95": [
+            0.911812979233165,
+            0.9832013892021959
+          ],
+          "peak_rss_kib": 16476
+        }
+      },
+      "candidates": [
+        {
+          "updates": 250,
+          "checkpoint": "vqc-0250.rvp",
+          "sha256": "47547115733a2c4b7f7d9652ea219a50071c7246040d25ee152f2b5967099d80",
+          "parameters": "d45930d0c9f68264d5297ffd873df587dd2c19d4aa49dc6f8bcdaec29be62477",
+          "episodes": 10250,
+          "validation": {
+            "iid": {
+              "correct": 122,
+              "examples": 128,
+              "accuracy": 0.953125,
+              "brier": 0.04424328092148556,
+              "wilson95": [
+                0.9015024775490588,
+                0.9783421558280758
+              ],
+              "peak_rss_kib": 19912
+            },
+            "ood": {
+              "correct": 123,
+              "examples": 128,
+              "accuracy": 0.9609375,
+              "brier": 0.033254954117170575,
+              "wilson95": [
+                0.911812979233165,
+                0.9832013892021959
+              ],
+              "peak_rss_kib": 19976
+            }
+          },
+          "eligible": true,
+          "objective": 0.933750441240336
+        },
+        {
+          "updates": 750,
+          "checkpoint": "vqc-0750.rvp",
+          "sha256": "e48f7cbceef0ad5eda80904f271feb2a972149806248346a725efa465a570da8",
+          "parameters": "c186753a61313899ff85b155531b6c60fe4096a49b561997eed8b50ece0a26e5",
+          "episodes": 10750,
+          "validation": {
+            "iid": {
+              "correct": 122,
+              "examples": 128,
+              "accuracy": 0.953125,
+              "brier": 0.043357402680543944,
+              "wilson95": [
+                0.9015024775490588,
+                0.9783421558280758
+              ],
+              "peak_rss_kib": 19912
+            },
+            "ood": {
+              "correct": 123,
+              "examples": 128,
+              "accuracy": 0.9609375,
+              "brier": 0.03384932334365042,
+              "wilson95": [
+                0.911812979233165,
+                0.9832013892021959
+              ],
+              "peak_rss_kib": 19956
+            }
+          },
+          "eligible": true,
+          "objective": 0.9338233184939514
+        },
+        {
+          "updates": 1500,
+          "checkpoint": "vqc-1500.rvp",
+          "sha256": "50fe0ba58747215dd8596b6819e799402daf34c525b4db6100dbbbe9f03c4bf5",
+          "parameters": "114c76e46854f591cbdc3d018feab2396c511061bdf231c5b8786aa7a28f5ed2",
+          "episodes": 11500,
+          "validation": {
+            "iid": {
+              "correct": 122,
+              "examples": 128,
+              "accuracy": 0.953125,
+              "brier": 0.04340596883875955,
+              "wilson95": [
+                0.9015024775490588,
+                0.9783421558280758
+              ],
+              "peak_rss_kib": 19928
+            },
+            "ood": {
+              "correct": 123,
+              "examples": 128,
+              "accuracy": 0.9609375,
+              "brier": 0.03366084532243651,
+              "wilson95": [
+                0.911812979233165,
+                0.9832013892021959
+              ],
+              "peak_rss_kib": 19944
+            }
+          },
+          "eligible": true,
+          "objective": 0.933858296459701
+        }
+      ],
+      "selected": {
+        "updates": 1500,
+        "checkpoint": "vqc-1500.rvp",
+        "sha256": "50fe0ba58747215dd8596b6819e799402daf34c525b4db6100dbbbe9f03c4bf5",
+        "parameters": "114c76e46854f591cbdc3d018feab2396c511061bdf231c5b8786aa7a28f5ed2",
+        "episodes": 11500,
+        "validation": {
+          "iid": {
+            "correct": 122,
+            "examples": 128,
+            "accuracy": 0.953125,
+            "brier": 0.04340596883875955,
+            "wilson95": [
+              0.9015024775490588,
+              0.9783421558280758
+            ],
+            "peak_rss_kib": 19928
+          },
+          "ood": {
+            "correct": 123,
+            "examples": 128,
+            "accuracy": 0.9609375,
+            "brier": 0.03366084532243651,
+            "wilson95": [
+              0.911812979233165,
+              0.9832013892021959
+            ],
+            "peak_rss_kib": 19944
+          }
+        },
+        "eligible": true,
+        "objective": 0.933858296459701
+      }
+    },
+    "qrl": {
+      "original": "v3-original.rvp",
+      "baseline_validation": {
+        "pairs_correct": 33,
+        "pairs_total": 42,
+        "pairs": [
+          {
+            "position": 0,
+            "goal": 1,
+            "action": 0,
+            "correct": false
+          },
+          {
+            "position": 0,
+            "goal": 2,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 2,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 4,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 2,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 4,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 2,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 4,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 5,
+            "action": 1,
+            "correct": false
+          }
+        ],
+        "original_environments": {
+          "iid": {
+            "successes": 31,
+            "examples": 32,
+            "success_rate": 0.96875,
+            "mean_reward": 0.875625,
+            "wilson95": [
+              0.8425573617998795,
+              0.9944621398359966
+            ]
+          },
+          "ood": {
+            "successes": 30,
+            "examples": 32,
+            "success_rate": 0.9375,
+            "mean_reward": 0.84625,
+            "wilson95": [
+              0.7985287685584593,
+              0.9826894329683585
+            ]
+          }
+        },
+        "peak_rss_kib": 16496
+      },
+      "candidates": [
+        {
+          "updates": 252,
+          "checkpoint": "qrl-0252.rvp",
+          "sha256": "be95c4532e06b49e971a23ded380e13eab3b52e3ec523e3ab9ff1ea0e15502bd",
+          "parameters": "3921eb3e885882c29f6d9429b7b734d196b0ee39f678541abe756ad8963b65f1",
+          "episodes": 10252,
+          "validation": {
+            "pairs_correct": 38,
+            "pairs_total": 42,
+            "pairs": [
+              {
+                "position": 0,
+                "goal": 1,
+                "action": 0,
+                "correct": false
+              },
+              {
+                "position": 0,
+                "goal": 2,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 2,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 3,
+                "action": 1,
+                "correct": false
+              },
+              {
+                "position": 4,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 4,
+                "action": 1,
+                "correct": false
+              },
+              {
+                "position": 5,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 4,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 5,
+                "action": 1,
+                "correct": false
+              }
+            ],
+            "original_environments": {
+              "iid": {
+                "successes": 31,
+                "examples": 32,
+                "success_rate": 0.96875,
+                "mean_reward": 0.875625,
+                "wilson95": [
+                  0.8425573617998795,
+                  0.9944621398359966
+                ]
+              },
+              "ood": {
+                "successes": 30,
+                "examples": 32,
+                "success_rate": 0.9375,
+                "mean_reward": 0.84625,
+                "wilson95": [
+                  0.7985287685584593,
+                  0.9826894329683585
+                ]
+              }
+            },
+            "peak_rss_kib": 21632
+          },
+          "eligible": false,
+          "objective": 0.9908556547619047
+        },
+        {
+          "updates": 756,
+          "checkpoint": "qrl-0756.rvp",
+          "sha256": "e9b4e0adecfed6acd25fbbf2ec7ac69270cce0ce2d34947923ce895aa5db5c92",
+          "parameters": "360983c71ba7cc4491d486988eaba66646ad2b931b719f77f44bb1fd746e5a7c",
+          "episodes": 10756,
+          "validation": {
+            "pairs_correct": 39,
+            "pairs_total": 42,
+            "pairs": [
+              {
+                "position": 0,
+                "goal": 1,
+                "action": 0,
+                "correct": false
+              },
+              {
+                "position": 0,
+                "goal": 2,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 2,
+                "action": 0,
+                "correct": false
+              },
+              {
+                "position": 1,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 4,
+                "action": 1,
+                "correct": false
+              },
+              {
+                "position": 5,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 4,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 5,
+                "action": 0,
+                "correct": true
+              }
+            ],
+            "original_environments": {
+              "iid": {
+                "successes": 31,
+                "examples": 32,
+                "success_rate": 0.96875,
+                "mean_reward": 0.875625,
+                "wilson95": [
+                  0.8425573617998795,
+                  0.9944621398359966
+                ]
+              },
+              "ood": {
+                "successes": 32,
+                "examples": 32,
+                "success_rate": 1.0,
+                "mean_reward": 0.945,
+                "wilson95": [
+                  0.8928208017449346,
+                  1.0
+                ]
+              }
+            },
+            "peak_rss_kib": 21644
+          },
+          "eligible": false,
+          "objective": 1.0196026785714287
+        },
+        {
+          "updates": 1512,
+          "checkpoint": "qrl-1512.rvp",
+          "sha256": "7131e6b753bd59d6f6c26965e9e45fb7eb79504c77fff16f4d80e58cf726c019",
+          "parameters": "099e9c9ca581877db281634402ad152e0126937002217beddd9aaf9ceeab472a",
+          "episodes": 11512,
+          "validation": {
+            "pairs_correct": 40,
+            "pairs_total": 42,
+            "pairs": [
+              {
+                "position": 0,
+                "goal": 1,
+                "action": 0,
+                "correct": false
+              },
+              {
+                "position": 0,
+                "goal": 2,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 0,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 2,
+                "action": 0,
+                "correct": false
+              },
+              {
+                "position": 1,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 1,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 3,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 2,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 4,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 3,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 5,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 4,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 4,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 5,
+                "goal": 6,
+                "action": 1,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 0,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 1,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 2,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 3,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 4,
+                "action": 0,
+                "correct": true
+              },
+              {
+                "position": 6,
+                "goal": 5,
+                "action": 0,
+                "correct": true
+              }
+            ],
+            "original_environments": {
+              "iid": {
+                "successes": 31,
+                "examples": 32,
+                "success_rate": 0.96875,
+                "mean_reward": 0.875625,
+                "wilson95": [
+                  0.8425573617998795,
+                  0.9944621398359966
+                ]
+              },
+              "ood": {
+                "successes": 32,
+                "examples": 32,
+                "success_rate": 1.0,
+                "mean_reward": 0.945,
+                "wilson95": [
+                  0.8928208017449346,
+                  1.0
+                ]
+              }
+            },
+            "peak_rss_kib": 21644
+          },
+          "eligible": true,
+          "objective": 1.0434122023809524
+        }
+      ],
+      "selected": {
+        "updates": 1512,
+        "checkpoint": "qrl-1512.rvp",
+        "sha256": "7131e6b753bd59d6f6c26965e9e45fb7eb79504c77fff16f4d80e58cf726c019",
+        "parameters": "099e9c9ca581877db281634402ad152e0126937002217beddd9aaf9ceeab472a",
+        "episodes": 11512,
+        "validation": {
+          "pairs_correct": 40,
+          "pairs_total": 42,
+          "pairs": [
+            {
+              "position": 0,
+              "goal": 1,
+              "action": 0,
+              "correct": false
+            },
+            {
+              "position": 0,
+              "goal": 2,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 0,
+              "goal": 3,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 0,
+              "goal": 4,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 0,
+              "goal": 5,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 0,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 1,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 1,
+              "goal": 2,
+              "action": 0,
+              "correct": false
+            },
+            {
+              "position": 1,
+              "goal": 3,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 1,
+              "goal": 4,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 1,
+              "goal": 5,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 1,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 1,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 3,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 4,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 5,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 2,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 1,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 2,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 4,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 5,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 3,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 1,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 2,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 3,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 5,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 4,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 1,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 2,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 3,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 4,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 5,
+              "goal": 6,
+              "action": 1,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 0,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 1,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 2,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 3,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 4,
+              "action": 0,
+              "correct": true
+            },
+            {
+              "position": 6,
+              "goal": 5,
+              "action": 0,
+              "correct": true
+            }
+          ],
+          "original_environments": {
+            "iid": {
+              "successes": 31,
+              "examples": 32,
+              "success_rate": 0.96875,
+              "mean_reward": 0.875625,
+              "wilson95": [
+                0.8425573617998795,
+                0.9944621398359966
+              ]
+            },
+            "ood": {
+              "successes": 32,
+              "examples": 32,
+              "success_rate": 1.0,
+              "mean_reward": 0.945,
+              "wilson95": [
+                0.8928208017449346,
+                1.0
+              ]
+            }
+          },
+          "peak_rss_kib": 21644
+        },
+        "eligible": true,
+        "objective": 1.0434122023809524
+      }
+    }
+  },
+  "test": {
+    "vqc": {
+      "before": {
+        "iid": {
+          "correct": 250,
+          "examples": 256,
+          "accuracy": 0.9765625,
+          "brier": 0.02405715376356163,
+          "wilson95": [
+            0.9498190043999499,
+            0.9892151324441423
+          ],
+          "peak_rss_kib": 16468
+        },
+        "ood": {
+          "correct": 250,
+          "examples": 256,
+          "accuracy": 0.9765625,
+          "brier": 0.02753995154591426,
+          "wilson95": [
+            0.9498190043999499,
+            0.9892151324441423
+          ],
+          "peak_rss_kib": 16440
+        }
+      },
+      "after": {
+        "iid": {
+          "correct": 250,
+          "examples": 256,
+          "accuracy": 0.9765625,
+          "brier": 0.02323419042881746,
+          "wilson95": [
+            0.9498190043999499,
+            0.9892151324441423
+          ],
+          "peak_rss_kib": 19928
+        },
+        "ood": {
+          "correct": 247,
+          "examples": 256,
+          "accuracy": 0.96484375,
+          "brier": 0.027144608053700836,
+          "wilson95": [
+            0.9345472295717093,
+            0.9813959039073642
+          ],
+          "peak_rss_kib": 19936
+        }
+      },
+      "criterion_passed": true
+    },
+    "qrl": {
+      "before": {
+        "pairs_correct": 33,
+        "pairs_total": 42,
+        "pairs": [
+          {
+            "position": 0,
+            "goal": 1,
+            "action": 0,
+            "correct": false
+          },
+          {
+            "position": 0,
+            "goal": 2,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 2,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 4,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 2,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 4,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 5,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 2,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 3,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 4,
+            "action": 1,
+            "correct": false
+          },
+          {
+            "position": 6,
+            "goal": 5,
+            "action": 1,
+            "correct": false
+          }
+        ],
+        "original_environments": {
+          "iid": {
+            "successes": 64,
+            "examples": 64,
+            "success_rate": 1.0,
+            "mean_reward": 0.9149999999999999,
+            "wilson95": [
+              0.9433759402071974,
+              0.9999999999999999
+            ]
+          },
+          "ood": {
+            "successes": 62,
+            "examples": 64,
+            "success_rate": 0.96875,
+            "mean_reward": 0.8721875,
+            "wilson95": [
+              0.8930270822904198,
+              0.9913878616538279
+            ]
+          }
+        },
+        "peak_rss_kib": 16484,
+        "varied_goal_rollouts": {
+          "successes": 72,
+          "examples": 84,
+          "success_rate": 0.8571428571428571,
+          "mean_reward": 0.7566666666666667,
+          "scope": "Fresh stochastic trajectories for the 42 practiced position/goal pairs; supplementary evaluation, not unseen states"
+        }
+      },
+      "after": {
+        "pairs_correct": 40,
+        "pairs_total": 42,
+        "pairs": [
+          {
+            "position": 0,
+            "goal": 1,
+            "action": 0,
+            "correct": false
+          },
+          {
+            "position": 0,
+            "goal": 2,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 0,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 2,
+            "action": 0,
+            "correct": false
+          },
+          {
+            "position": 1,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 1,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 3,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 2,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 4,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 3,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 3,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 5,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 4,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 3,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 4,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 5,
+            "goal": 6,
+            "action": 1,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 0,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 1,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 2,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 3,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 4,
+            "action": 0,
+            "correct": true
+          },
+          {
+            "position": 6,
+            "goal": 5,
+            "action": 0,
+            "correct": true
+          }
+        ],
+        "original_environments": {
+          "iid": {
+            "successes": 64,
+            "examples": 64,
+            "success_rate": 1.0,
+            "mean_reward": 0.9149999999999999,
+            "wilson95": [
+              0.9433759402071974,
+              0.9999999999999999
+            ]
+          },
+          "ood": {
+            "successes": 62,
+            "examples": 64,
+            "success_rate": 0.96875,
+            "mean_reward": 0.8846875,
+            "wilson95": [
+              0.8930270822904198,
+              0.9913878616538279
+            ]
+          }
+        },
+        "peak_rss_kib": 21644,
+        "varied_goal_rollouts": {
+          "successes": 81,
+          "examples": 84,
+          "success_rate": 0.9642857142857143,
+          "mean_reward": 0.8833333333333333,
+          "scope": "Fresh stochastic trajectories for the 42 practiced position/goal pairs; supplementary evaluation, not unseen states"
+        }
+      },
+      "criterion_passed": true
+    }
+  }
+}

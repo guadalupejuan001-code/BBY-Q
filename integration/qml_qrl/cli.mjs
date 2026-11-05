@@ -9,6 +9,7 @@ import {quantum3Command} from '../quantum3/launcher.mjs';
 import {exact100Command} from '../exact100/launcher.mjs';
 import {qchat100Command} from '../qchat100/launcher.mjs';
 import {qmemoryCommand} from '../qmemory/launcher.mjs';
+import {balancedCommand} from '../balance/launcher.mjs';
 
 const A=8100000000000000000n;
 const address=n=>String(A+BigInt(n));
@@ -50,6 +51,7 @@ function configFile(directory,pairs){
   return name;
 }
 export function quantumCommand({root,build,argv}){
+  if(argv[0]==='balanced')return balancedCommand({root,argv:argv.slice(1)});
   if(argv[0]==='memory')return qmemoryCommand({root,argv:argv.slice(1)});
   if(argv[0]==='qchat100')return qchat100Command({root,argv:argv.slice(1)});
   if(argv[0]==='exact100')return exact100Command({root,argv:argv.slice(1)});

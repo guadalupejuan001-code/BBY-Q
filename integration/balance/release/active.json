@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "version": "E01",
+  "balanced": true,
+  "protocol_sha256": "8e4491b2ab0ea7a4c30f430b3ad460ca43cc82dc62b08988f4738a5abc232d80",
+  "evaluation_sha256": "a44237560a1c436dbf83f982c436018200000d08864a242ccb6e2f2e05b0ea54",
+  "components": {
+    "v3": {
+      "directory": "v3",
+      "manifest_sha256": "b458db6c1173c5401c66a5c1645668472b6a4e2e14edfb434f5ecdef7d04c7a4"
+    },
+    "qchat100": {
+      "directory": "qchat100",
+      "manifest_sha256": "92093671e25258f3ad3cd2d3932754d32e19186611a70aa76775d1f133e0b4d9"
+    },
+    "qmemory": {
+      "directory": "qmemory",
+      "manifest_sha256": "ae89613c4128d73f89df34e57cc81cbb31f54ba9cad774b95df1b132300e4116"
+    }
+  }
+}

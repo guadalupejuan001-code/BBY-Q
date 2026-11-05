@@ -46,9 +46,10 @@ public final class PersonalEngine implements AutoCloseable {
                 db.execSQL("CREATE TABLE IF NOT EXISTS receipts(id TEXT PRIMARY KEY,digest TEXT NOT NULL,generation INTEGER NOT NULL,result TEXT NOT NULL)");
                 db.execSQL("CREATE TABLE IF NOT EXISTS context_turns(generation INTEGER PRIMARY KEY,utterance TEXT NOT NULL,reply TEXT NOT NULL,digest TEXT NOT NULL)");
                 db.execSQL("CREATE TABLE IF NOT EXISTS memory_slots(key TEXT PRIMARY KEY,slot INTEGER UNIQUE NOT NULL CHECK(slot>=0 AND slot<250))");
+                db.execSQL("CREATE TABLE IF NOT EXISTS model_archives(name TEXT NOT NULL,identity TEXT NOT NULL,digest TEXT NOT NULL,data BLOB NOT NULL,created INTEGER NOT NULL,PRIMARY KEY(name,identity,digest))");
                 if(meta("schema",null)==null)initialize();
                 if(!meta("schema","").equals("X10-Android-2"))throw new IOException("Versión de sesión incompatible");
-                for(String bank:BANKS)checkIdentity(bank);
+                for(String bank:BANKS){upgradeModel(bank);checkIdentity(bank);}
                 db.setTransactionSuccessful();ready=true;
             } finally {db.endTransaction();}
         } finally {if(!ready)db.close();}
@@ -78,11 +79,43 @@ public final class PersonalEngine implements AutoCloseable {
     private int count(){return Integer.parseInt(meta("count","0"));}
     private void checkIdentity(String name)throws Exception {try(Cursor c=db.rawQuery("SELECT identity FROM states WHERE name=?",new String[]{name})){if(!c.moveToFirst()||!identity(name).equals(c.getString(0)))throw new IOException("El motor cambió; conservé el estado de "+name);}}
     private byte[] state(String name)throws Exception {
-        checkIdentity(name);try(Cursor c=db.rawQuery("SELECT data,digest FROM states WHERE name=?",new String[]{name})){
+        checkIdentity(name);return uncheckedState(name);
+    }
+    private byte[] uncheckedState(String name)throws Exception {
+        try(Cursor c=db.rawQuery("SELECT data,digest FROM states WHERE name=?",new String[]{name})){
             if(!c.moveToFirst())throw new IOException("Estado ausente: "+name);byte[] b=unpack(c.getBlob(0));if(!hash(b).equals(c.getString(1)))throw new IOException("Checkpoint alterado: "+name);return b;
         }
     }
     private void save(String name,byte[] b)throws Exception {db.execSQL("INSERT OR REPLACE INTO states VALUES(?,?,?,?)",new Object[]{name,pack(b),hash(b),identity(name)});}
+    private void upgradeModel(String name)throws Exception {
+        String old;try(Cursor c=db.rawQuery("SELECT identity FROM states WHERE name=?",new String[]{name})){if(!c.moveToFirst())throw new IOException("Estado ausente: "+name);old=c.getString(0);}
+        if(identity(name).equals(old))return;
+        JSONObject previous=manifest.optJSONObject("previous_identities");
+        if(previous==null||!old.equals(previous.optString(name)))throw new IOException("Identidad de modelo desconocida; conservé "+name);
+        byte[] current=uncheckedState(name);
+        db.execSQL("INSERT OR IGNORE INTO model_archives SELECT name,identity,digest,data,? FROM states WHERE name=?",new Object[]{System.currentTimeMillis(),name});
+        if(name.equals("qchat")){save(name,seed("qchat-model.rvpbin"));return;}
+        if(name.equals("quantum")){
+            try(XiSession live=new XiSession(current);XiSession fresh=new XiSession(seed("quantum-model.rvpbin"))){
+                StringBuilder b=new StringBuilder("#!reverse-pc-machine-v1\nbudget 100000000\n");
+                for(int role=0;role<2;role++){
+                    long meta=A+(role==0?4000:5000),theta=A+(role==0?100000:200000);
+                    // A phone may contain additional personal training; retain that agent.
+                    if(live.number(meta,8)!=10000){putMeta(role==0?"local_vqc_preserved":"local_qrl_preserved",true);continue;}
+                    for(long[] span:new long[][]{{theta,8000},{theta+10000,8000},{theta+20000,8000},{meta,48}})XiPages.data(b,span[0],fresh.bytes(span[0],(int)span[1]));
+                }
+                live.run(b.append("halt\n").toString());save(name,live.save());return;
+            }
+        }
+        if(name.equals("qmemory")){
+            // Learned angles change future writes; existing quantum associations stay intact.
+            try(XiSession live=new XiSession(current);XiSession fresh=new XiSession(seed("qmemory-model.rvpbin"))){
+                StringBuilder b=new StringBuilder("#!reverse-pc-machine-v1\n");XiPages.data(b,M+64,fresh.bytes(M+64,24));XiPages.data(b,M+24,fresh.bytes(M+24,8));
+                live.run(b.append("halt\n").toString());save(name,live.save());return;
+            }
+        }
+        throw new IOException("Este modelo requiere una migración específica: "+name);
+    }
     private void initialize()throws Exception {
         File old=new File(context.getFilesDir(),"bbyq-personal");
         for(int i=0;i<BANKS.length;i++){
@@ -92,6 +125,7 @@ public final class PersonalEngine implements AutoCloseable {
             if(i==0){byte[] marker=memory(b,LEGACY,2);if(marker[0]!=87||marker[1]!=2)throw new IOException("La conversación anterior necesita una migración compatible");}
             if(i==1&&memory(b,A+1000,1)[0]!=(byte)173)throw new IOException("El checkpoint anterior no es V3 nativo");
             save(BANKS[i],b);
+            if(migrate&&i==1&&manifest.has("previous_identities"))db.execSQL("UPDATE states SET identity=? WHERE name='quantum'",new Object[]{manifest.getJSONObject("previous_identities").getString("quantum")});
         }
         putMeta("generation",0);refreshLessons(state("chat"));
         File history=new File(old,"history.sqlite");
@@ -276,7 +310,8 @@ public final class PersonalEngine implements AutoCloseable {
     public synchronized JSONObject quantumAction()throws Exception {try(XiSession s=new XiSession(state("quantum"))){return action(s,3,6);}}
     public synchronized JSONObject trainEpisode()throws Exception {
         db.beginTransaction();try(XiSession s=new XiSession(state("quantum"))){
-            JSONObject before=status(s);quantum(s,"fstore "+(A+304)+" .15\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 0\nstore64 "+(A+328)+" 0\nstore64 "+(A+336)+" 0\ncall qrl_episode");
+            JSONObject before=status(s);String curriculum=manifest.has("balanced_version")?"store64 "+(A+560)+" 1\nstore64 "+(A+568)+" "+(before.getLong("qrl_episodes")%42)+"\n":"";
+            quantum(s,curriculum+"fstore "+(A+304)+" .15\nstore64 "+(A+312)+" 12\nstore64 "+(A+320)+" 0\nstore64 "+(A+328)+" 0\nstore64 "+(A+336)+" 0\ncall qrl_episode");
             JSONObject next=status(s);if(next.getLong("qrl_episodes")!=before.getLong("qrl_episodes")+1)throw new IOException("El entrenamiento no avanzó");save("quantum",s.save());db.setTransactionSuccessful();return next;
         }finally{db.endTransaction();}
     }
@@ -305,7 +340,7 @@ public final class PersonalEngine implements AutoCloseable {
     public synchronized JSONObject sessionStatus()throws Exception {
         JSONObject banks=new JSONObject();for(String name:BANKS){checkIdentity(name);try(Cursor c=db.rawQuery("SELECT digest FROM states WHERE name=?",new String[]{name})){c.moveToFirst();banks.put(name,c.getString(0));}}
         String integrity;try(Cursor c=db.rawQuery("PRAGMA integrity_check",null)){c.moveToFirst();integrity=c.getString(0);}
-        return new JSONObject().put("engine","X10-Android-2").put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots"));
+        return new JSONObject().put("engine","X10-Android-2").put("release",manifest.optString("balanced_version","2.0")).put("generation",Long.parseLong(meta("generation","0"))).put("lessons",count()).put("revision",meta("revision","0")).put("banks",banks).put("integrity",integrity).put("binary_memories",dbCount("memory_slots")).put("archived_models",dbCount("model_archives"));
     }
     @Override public synchronized void close(){db.close();synchronized(PersonalEngine.class){if(instance==this)instance=null;}}
 }
