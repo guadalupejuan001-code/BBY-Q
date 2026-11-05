@@ -4,7 +4,10 @@ store8 8183000000000000000 0
 store8 8183000000000000001 255
 store8 8183000000000000002 255
 store8 8183000000000000003 0
-store64 8183000000000000008 0
+store8 8183000000000000008 0
+store8 8183000000000000009 0
+store8 8183000000000000010 0
+store8 8183000000000000011 0
 load8 r10 9190000000000000012
 load8 r0 9190000000000000013
 mul r0 256
@@ -165,7 +168,9 @@ store8 8183000000000001159 110
 store8 8183000000000001160 32
 set r6 8183000000000001024
 set r8 16
-call match_literal
+set r14 0
+jmp match_literal
+label literal_return_0
 cmp r9 1
 jne prefix_next_0
 cmp r10 16
@@ -179,7 +184,9 @@ jmp command
 label prefix_next_0
 set r6 8183000000000001040
 set r8 10
-call match_literal
+set r14 1
+jmp match_literal
+label literal_return_1
 cmp r9 1
 jne prefix_next_1
 cmp r10 10
@@ -193,7 +200,9 @@ jmp command
 label prefix_next_1
 set r6 8183000000000001050
 set r8 12
-call match_literal
+set r14 2
+jmp match_literal
+label literal_return_2
 cmp r9 1
 jne prefix_next_2
 cmp r10 12
@@ -207,7 +216,9 @@ jmp command
 label prefix_next_2
 set r6 8183000000000001062
 set r8 11
-call match_literal
+set r14 3
+jmp match_literal
+label literal_return_3
 cmp r9 1
 jne prefix_next_3
 cmp r10 11
@@ -221,7 +232,9 @@ jmp command
 label prefix_next_3
 set r6 8183000000000001073
 set r8 2
-call match_literal
+set r14 4
+jmp match_literal
+label literal_return_4
 cmp r9 1
 jne prefix_next_4
 cmp r10 2
@@ -240,7 +253,9 @@ mov r12 r10
 sub r12 r4
 set r6 8183000000000001075
 set r8 6
-call match_literal
+set r14 5
+jmp match_literal
+label literal_return_5
 cmp r9 1
 jne command_next_0
 cmp r12 6
@@ -250,7 +265,9 @@ halt
 label command_next_0
 set r6 8183000000000001081
 set r8 6
-call match_literal
+set r14 6
+jmp match_literal
+label literal_return_6
 cmp r9 1
 jne command_next_1
 cmp r12 6
@@ -260,7 +277,9 @@ halt
 label command_next_1
 set r6 8183000000000001087
 set r8 10
-call match_literal
+set r14 7
+jmp match_literal
+label literal_return_7
 cmp r9 1
 jne command_next_2
 cmp r12 10
@@ -270,7 +289,9 @@ halt
 label command_next_2
 set r6 8183000000000001097
 set r8 7
-call match_literal
+set r14 8
+jmp match_literal
+label literal_return_8
 cmp r9 1
 jne command_next_3
 cmp r12 7
@@ -280,7 +301,9 @@ halt
 label command_next_3
 set r6 8183000000000001104
 set r8 5
-call match_literal
+set r14 9
+jmp match_literal
+label literal_return_9
 cmp r9 1
 jne command_next_4
 cmp r12 5
@@ -290,7 +313,9 @@ halt
 label command_next_4
 set r6 8183000000000001109
 set r8 4
-call match_literal
+set r14 10
+jmp match_literal
+label literal_return_10
 cmp r9 1
 jne command_next_5
 cmp r12 4
@@ -300,14 +325,16 @@ halt
 label command_next_5
 set r6 8183000000000001113
 set r8 10
-call match_literal
+set r14 11
+jmp match_literal
+label literal_return_11
 cmp r9 1
 jne command_next_6
 mov r0 r4
 add r0 10
 cmp r0 r11
 jge invalid
-store64 8183000000000000008 r0
+store8 8183000000000000008 r0
 add r0 9190000000000004096
 load8 r2 $r0
 cmp r2 91
@@ -317,14 +344,16 @@ halt
 label command_next_6
 set r6 8183000000000001123
 set r8 9
-call match_literal
+set r14 12
+jmp match_literal
+label literal_return_12
 cmp r9 1
 jne command_next_7
 mov r0 r4
 add r0 9
 cmp r0 r11
 jge invalid
-store64 8183000000000000008 r0
+store8 8183000000000000008 r0
 add r0 9190000000000004096
 load8 r2 $r0
 cmp r2 91
@@ -334,7 +363,9 @@ halt
 label command_next_7
 set r6 8183000000000001132
 set r8 6
-call match_literal
+set r14 13
+jmp match_literal
+label literal_return_13
 cmp r9 1
 jne command_next_8
 cmp r12 9
@@ -365,7 +396,9 @@ halt
 label command_next_8
 set r6 8183000000000001138
 set r8 7
-call match_literal
+set r14 14
+jmp match_literal
+label literal_return_14
 cmp r9 1
 jne command_next_9
 cmp r12 10
@@ -396,7 +429,9 @@ halt
 label command_next_9
 set r6 8183000000000001145
 set r8 4
-call match_literal
+set r14 15
+jmp match_literal
+label literal_return_15
 cmp r9 1
 jne command_next_10
 cmp r12 7
@@ -427,7 +462,9 @@ halt
 label command_next_10
 set r6 8183000000000001149
 set r8 7
-call match_literal
+set r14 16
+jmp match_literal
+label literal_return_16
 cmp r9 1
 jne command_next_11
 cmp r12 10
@@ -458,7 +495,9 @@ halt
 label command_next_11
 set r6 8183000000000001156
 set r8 5
-call match_literal
+set r14 17
+jmp match_literal
+label literal_return_17
 cmp r9 1
 jne command_next_12
 cmp r12 8
@@ -532,4 +571,40 @@ cmp r5 r8
 jlt match_loop
 set r9 1
 label match_return
-ret
+cmp r14 0
+je literal_return_0
+cmp r14 1
+je literal_return_1
+cmp r14 2
+je literal_return_2
+cmp r14 3
+je literal_return_3
+cmp r14 4
+je literal_return_4
+cmp r14 5
+je literal_return_5
+cmp r14 6
+je literal_return_6
+cmp r14 7
+je literal_return_7
+cmp r14 8
+je literal_return_8
+cmp r14 9
+je literal_return_9
+cmp r14 10
+je literal_return_10
+cmp r14 11
+je literal_return_11
+cmp r14 12
+je literal_return_12
+cmp r14 13
+je literal_return_13
+cmp r14 14
+je literal_return_14
+cmp r14 15
+je literal_return_15
+cmp r14 16
+je literal_return_16
+cmp r14 17
+je literal_return_17
+div r0 0

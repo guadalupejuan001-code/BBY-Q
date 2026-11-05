@@ -114,6 +114,8 @@ recibo. Los bancos X09, P02 y VQC2/QRL2 se conservan. Las consultas no entrenan;
 el entrenamiento explícito continúa disponible mediante los comandos de
 consola anteriores. Si falta el runtime V3, se devuelve un error y no se elige
 otro agente como sustituto. `status` informa la conexión V3 por separado.
+El reconocedor utiliza las instrucciones de bytes del ejecutor X10 anterior;
+solo la evaluación V3 requiere el runtime numérico con `xi_session`.
 
 La acción QRL ahora verifica en XI si posición y objetivo ya coinciden. En ese
 caso devuelve `terminal=true`, `action=null` y cero cúbits observados. Los
@@ -126,7 +128,7 @@ evaluado. No se añade una regla de dirección para reemplazar su política.
 | --- | --- |
 | El chat seguía en VQC2/QRL2 aunque existía la consola V3 | Ruta V3 nativa y persistente en las conversaciones. |
 | Se pedía un movimiento incluso con la meta alcanzada | Estado terminal sin acción. |
-| Las métricas podían atribuirse a cualquier checkpoint | Resultados vinculados al SHA-256 exacto; tras aprender cambian a `applicable=false`. |
+| Las métricas podían atribuirse a cualquier checkpoint | Resultados vinculados al SHA-256 exacto y a las fuentes XI evaluadas; tras cambiar cualquiera, `applicable=false`. |
 | Se confundía el contador de episodios con capacidades generales | El estado publica las tareas y limitaciones medidas. |
 | Cobertura QRL estrecha: entrenamiento con objetivos 0/6 e inicio 3 | Se identifica la meta fuera del entrenamiento; 33/42 direcciones correctas al ampliar objetivos. Requiere una campaña nueva para mejorarla. |
 | VQC lineal no transfiere a paridad/radial/señal densa sin entrenamiento | Resultados entre 46–52 %; no se sustituye su checkpoint por uno destinado a otra tarea. |

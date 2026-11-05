@@ -12,6 +12,7 @@ import {validatorSource,routerSource,recordSource,streamSource} from '../../../a
 import {LIMITS,VERSION} from '../../../ai/personal/x10/schema.mjs';
 import {transact,inspect} from '../../../ai/personal/x10/session.mjs';
 import {quantum3Command} from '../launcher.mjs';
+import {evaluationEvidence} from '../evidence.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const runtimeRoot=process.env.BBYQ_QUANTUM_RUNTIME;
@@ -160,6 +161,30 @@ test('new step preserves every previously measured nonterminal policy output',()
  const profileFile=path.join(dir,'agent.json'),profile=JSON.parse(fs.readFileSync(profileFile,'utf8'));
  delete profile.extension_source_sha256;fs.writeFileSync(profileFile,JSON.stringify(profile));
  assert.equal(quantum3Command({root,argv:['status',dir]}).checkpoint_sha256,release.checkpoint_sha256);
+});
+
+test('published scores are inapplicable when evaluated XI sources change',()=>{
+ const copy=path.join(temp,'assessment-source-copy');
+ fs.mkdirSync(path.join(copy,'ai/xi/quantum3'),{recursive:true});
+ fs.mkdirSync(path.join(copy,'docs/evidence/quantum3-evaluation'),{recursive:true});
+ fs.copyFileSync(path.join(root,'docs/evidence/quantum3-evaluation/summary.json'),path.join(copy,'docs/evidence/quantum3-evaluation/summary.json'));
+ for(const name of Object.keys(report.xi_source_sha256))
+  fs.copyFileSync(path.join(root,'ai/xi/quantum3',name),path.join(copy,'ai/xi/quantum3',name));
+ assert.equal(evaluationEvidence(copy,release.checkpoint_sha256).applicable,true);
+ fs.appendFileSync(path.join(copy,'ai/xi/quantum3/common.xi'),'\n# Changed source identity\n');
+ const result=evaluationEvidence(copy,release.checkpoint_sha256);
+ assert.equal(result.applicable,false);
+ assert.equal(result.evaluated_sources_match,false);
+ assert.equal(result.results,undefined);
+});
+
+test('conversation routing remains executable by the pinned byte-only X10 runtime',()=>{
+ const supported=new Set(['store8','load8','set','mov','add','sub','mul','div','mod','cmp','jmp','je','jne','jlt','jle','jgt','jge','halt','label']);
+ const source=fs.readFileSync(path.join(root,'ai/xi/quantum3/conversation-route.xi'),'utf8');
+ for(const line of source.split('\n')){
+  const op=line.trim().split(/\s+/)[0];
+  if(op&&!op.startsWith('#'))assert.ok(supported.has(op),'Unsupported byte-only XI instruction: '+op);
+ }
 });
 
 test.after(()=>fs.rmSync(temp,{recursive:true,force:true}));
