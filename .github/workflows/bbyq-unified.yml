@@ -32,6 +32,7 @@ jobs:
         run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
       - name: Verify frozen models, original C1 and unified entity
         run: |
+          mkdir -p build/sequence2 build/unified
           python3 integration/sequence2/verify_release.py
           python3 -m integration.unified.verify_release
           python3 -m integration.unified.verify
