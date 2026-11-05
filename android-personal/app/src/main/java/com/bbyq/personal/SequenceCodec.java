@@ -20,8 +20,8 @@ final class SequenceCodec {
     private static final String WORD="[\\p{L}\\p{N}_]";
     private static final Pattern TOKENS=Pattern.compile(
         "\\p{Nd}+(?:[.,]\\p{Nd}+)?|[\\p{L}\\p{Nl}\\p{No}]"+
-        "[\\p{L}\\p{N}_\\u0300-\\u036f]*|_"+WORD+"*|[^\\s\\u001c-\\u001f]",
-        Pattern.UNICODE_CHARACTER_CLASS);
+        "[\\p{L}\\p{N}_\\u0300-\\u036f]*|_"+WORD+
+        "*|[^\\x09-\\x0d\\x1c-\\x20\\x85\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]");
     private static final Pattern NUMBER=Pattern.compile("[0-9]+(?:[.,][0-9]+)?");
     private final List<String> vocabulary=new ArrayList<>();
     private final Map<String,Integer> ids=new HashMap<>();
