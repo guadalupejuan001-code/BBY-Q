@@ -1,0 +1,33 @@
+{
+  "ready_for_native_review": true,
+  "candidate_manifest_sha256": "63c1257406bdf573b105ac3303853bd393a62170aa73823ba06c6e7c19d40d9a",
+  "reserved_sha256": "fc23ad41f44d7c03f72214a3d348059c5c0c38c2e3d76c9f290d956f7cf989b3",
+  "reserved_opened": true,
+  "reserved_correct": 200,
+  "reserved_tasks": 200,
+  "families": {
+    "arithmetic": {
+      "correct": 40,
+      "total": 40
+    },
+    "names-and-correction": {
+      "correct": 40,
+      "total": 40
+    },
+    "grounded-inference": {
+      "correct": 40,
+      "total": 40
+    },
+    "named-routes": {
+      "correct": 40,
+      "total": 40
+    },
+    "composition-and-negation": {
+      "correct": 40,
+      "total": 40
+    }
+  },
+  "apk_built": false,
+  "active_in_android": false,
+  "scope": "Source/native correction only; the installed Android application is not replaced."
+}

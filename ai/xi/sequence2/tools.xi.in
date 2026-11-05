@@ -1,0 +1,427 @@
+# Backtracking exact-token matcher. Literals are positive dictionary IDs;
+# -1..-6 are numeric captures, -101..-106 spans, -201..-206 references.
+# No labels, expected outputs or facts from an evaluation are read here.
+label c2_match
+set r8 0
+set r9 0
+set r0 0
+label c2_clear_match
+mov r1 r0
+mul r1 8
+add r1 @LENGTH
+store64 $r1 0
+add r0 1
+load64 r1 @K+88
+cmp r0 r1
+jle c2_clear_match
+set r0 0
+label c2_clear_captures
+mov r1 r0
+mul r1 8
+add r1 @CAP
+store64 $r1 0
+add r0 1
+cmp r0 12
+jlt c2_clear_captures
+label c2_match_next
+load64 r0 @K+88
+cmp r8 r0
+jge c2_match_end
+load64 r0 @K+80
+cmp r9 r0
+jge c2_backtrack
+mov r0 r8
+mul r0 8
+add r0 @START
+store64 $r0 r9
+mov r0 r8
+mul r0 8
+add r0 @PAT
+load64 r10 $r0
+cmp r10 0
+jlt c2_special
+mov r0 r9
+mul r0 8
+add r0 @PT
+load64 r1 $r0
+cmp r1 r10
+jne c2_backtrack
+set r11 1
+jmp c2_advance
+label c2_special
+cmp r10 -200
+jlt c2_reference
+cmp r10 -100
+jlt c2_span
+# Numeric fields must be numeric tokens, not a name that contains a digit.
+mov r0 r9
+mul r0 8
+add r0 @PN
+load64 r1 $r0
+cmp r1 1
+jne c2_backtrack
+mov r12 r10
+mul r12 -1
+sub r12 1
+set r11 1
+jmp c2_capture
+label c2_span
+mov r12 r10
+mul r12 -1
+sub r12 101
+mov r0 r8
+mul r0 8
+add r0 @LENGTH
+load64 r11 $r0
+cmp r11 0
+jne c2_capture
+set r11 1
+store64 $r0 r11
+label c2_capture
+mov r0 r12
+mul r0 16
+add r0 @CAP
+store64 $r0 r9
+add r0 8
+store64 $r0 r11
+jmp c2_advance
+label c2_reference
+mov r12 r10
+mul r12 -1
+sub r12 201
+mov r0 r12
+mul r0 16
+add r0 @CAP
+load64 r13 $r0
+add r0 8
+load64 r11 $r0
+mov r0 r9
+add r0 r11
+load64 r1 @K+80
+cmp r0 r1
+jgt c2_backtrack
+set r14 0
+label c2_reference_loop
+cmp r14 r11
+jge c2_advance
+mov r0 r13
+add r0 r14
+mul r0 8
+add r0 @PT
+load64 r1 $r0
+mov r0 r9
+add r0 r14
+mul r0 8
+add r0 @PT
+load64 r2 $r0
+cmp r1 r2
+jne c2_backtrack
+add r14 1
+jmp c2_reference_loop
+label c2_advance
+add r9 r11
+add r8 1
+mov r0 r8
+mul r0 8
+add r0 @LENGTH
+store64 $r0 0
+jmp c2_match_next
+label c2_match_end
+load64 r0 @K+80
+cmp r9 r0
+jne c2_backtrack
+set r0 1
+ret
+label c2_backtrack
+sub r8 1
+cmp r8 0
+jlt c2_no_match
+mov r0 r8
+mul r0 8
+add r0 @PAT
+load64 r10 $r0
+cmp r10 -100
+jge c2_backtrack
+cmp r10 -200
+jle c2_backtrack
+mov r0 r8
+mul r0 8
+add r0 @LENGTH
+load64 r11 $r0
+# Names are bounded at eight tokens. Expressions can use the full 128-token
+# Zero arithmetic window. All accepted spans must still match the full rule.
+set r1 8
+cmp r10 -106
+jne c2_span_limit
+set r1 127
+label c2_span_limit
+cmp r11 r1
+jge c2_backtrack
+add r11 1
+store64 $r0 r11
+mov r0 r8
+mul r0 8
+add r0 @START
+load64 r9 $r0
+mov r0 r9
+add r0 r11
+load64 r1 @K+80
+cmp r0 r1
+jgt c2_backtrack
+jmp c2_match_next
+label c2_no_match
+set r0 0
+ret
+
+# Durable base facts live separately from Zero's derived working facts.
+# Upsert semantics are native. Mode 0 keeps distinct evidence; mode 1 replaces
+# every value of a named relation; mode 2 replaces just a fact's polarity.
+label c2_put
+load64 r8 @K
+set r9 0
+store64 @K+56 1
+label c2_put_scan
+cmp r9 r8
+jge c2_put_append
+mov r10 r9
+mul r10 64
+add r10 @FACTS
+load64 r0 $r10
+load64 r1 @ARG
+cmp r0 r1
+jne c2_put_next
+mov r0 r10
+add r0 8
+load64 r0 $r0
+load64 r1 @ARG+8
+cmp r0 r1
+jne c2_put_next
+load64 r0 @ARG+32
+cmp r0 1
+je c2_put_replace
+mov r0 r10
+add r0 16
+load64 r0 $r0
+load64 r1 @ARG+16
+cmp r0 r1
+jne c2_put_next
+load64 r0 @ARG+32
+cmp r0 2
+je c2_put_replace
+mov r0 r10
+add r0 24
+load64 r0 $r0
+load64 r1 @ARG+24
+cmp r0 r1
+je c2_put_done
+jmp c2_put_next
+label c2_put_replace
+# Remove every superseded row, including contradictory earlier evidence.
+# Moving the last row into this slot keeps storage compact and IDs stable.
+sub r8 1
+store64 @K r8
+mov r12 r8
+mul r12 64
+add r12 @FACTS
+set r11 0
+label c2_remove_fields
+mov r0 r11
+mul r0 8
+add r0 r12
+load64 r1 $r0
+mov r0 r11
+mul r0 8
+add r0 r10
+store64 $r0 r1
+add r11 1
+cmp r11 8
+jlt c2_remove_fields
+jmp c2_put_scan
+label c2_put_next
+add r9 1
+jmp c2_put_scan
+label c2_put_append
+cmp r8 1024
+jge c2_capacity
+mov r10 r8
+mul r10 64
+add r10 @FACTS
+set r11 0
+label c2_append_fields
+mov r0 r11
+mul r0 8
+add r0 @ARG
+load64 r1 $r0
+mov r0 r11
+mul r0 8
+add r0 r10
+store64 $r0 r1
+add r11 1
+cmp r11 4
+jlt c2_append_fields
+add r8 1
+mov r0 r10
+add r0 32
+store64 $r0 r8
+store64 @K r8
+label c2_put_done
+ret
+label c2_capacity
+store64 @K+56 3
+ret
+
+label c2_lookup
+store64 @K+56 0
+store64 @K+104 0
+load64 r8 @K
+set r9 0
+label c2_lookup_loop
+cmp r9 r8
+jge c2_lookup_done
+mov r10 r9
+mul r10 64
+add r10 @FACTS
+load64 r0 $r10
+load64 r1 @ARG
+cmp r0 r1
+jne c2_lookup_next
+mov r0 r10
+add r0 8
+load64 r0 $r0
+load64 r1 @ARG+8
+cmp r0 r1
+jne c2_lookup_next
+mov r0 r10
+add r0 24
+load64 r0 $r0
+cmp r0 1
+jne c2_lookup_next
+load64 r0 @K+56
+cmp r0 1
+je c2_lookup_conflict
+mov r0 r10
+add r0 16
+load64 r0 $r0
+store64 @K+104 r0
+store64 @K+56 1
+jmp c2_lookup_next
+label c2_lookup_conflict
+store64 @K+56 2
+ret
+label c2_lookup_next
+add r9 1
+jmp c2_lookup_loop
+label c2_lookup_done
+ret
+
+label c2_rule_put
+load64 r8 @K+8
+set r9 0
+label c2_rule_scan
+cmp r9 r8
+jge c2_rule_append
+mov r10 r9
+mul r10 128
+add r10 @RULES
+set r11 0
+label c2_rule_compare
+mov r0 r11
+mul r0 8
+add r0 @ARG
+load64 r1 $r0
+mov r0 r11
+mul r0 8
+add r0 r10
+load64 r2 $r0
+cmp r1 r2
+jne c2_rule_next
+add r11 1
+cmp r11 13
+jlt c2_rule_compare
+store64 @K+56 1
+ret
+label c2_rule_next
+add r9 1
+jmp c2_rule_scan
+label c2_rule_append
+cmp r8 256
+jge c2_capacity
+mov r10 r8
+mul r10 128
+add r10 @RULES
+set r11 0
+label c2_rule_fields
+mov r0 r11
+mul r0 8
+add r0 @ARG
+load64 r1 $r0
+mov r0 r11
+mul r0 8
+add r0 r10
+store64 $r0 r1
+add r11 1
+cmp r11 16
+jlt c2_rule_fields
+add r8 1
+store64 @K+8 r8
+mov r0 r10
+add r0 104
+store64 $r0 r8
+store64 @K+56 1
+ret
+
+label c2_knowledge
+load64 r8 @K
+store64 @Z+64 r8
+load64 r9 @K+8
+store64 @Z+72 r9
+store64 @Z+104 30000
+mul r8 8
+set r10 0
+label c2_copy_facts
+cmp r10 r8
+jge c2_copy_rules_begin
+mov r0 r10
+mul r0 8
+add r0 @FACTS
+load64 r1 $r0
+mov r0 r10
+mul r0 8
+add r0 @Z+100000
+store64 $r0 r1
+add r10 1
+jmp c2_copy_facts
+label c2_copy_rules_begin
+# Reindex provenance after compaction. These are indices in this particular
+# proof workspace; the immutable request journal keeps historical evidence.
+load64 r8 @K
+set r10 0
+label c2_fact_provenance
+cmp r10 r8
+jge c2_provenance_done
+mov r0 r10
+mul r0 64
+add r0 @Z+100032
+mov r1 r10
+add r1 1
+store64 $r0 r1
+add r10 1
+jmp c2_fact_provenance
+label c2_provenance_done
+mul r9 16
+set r10 0
+label c2_copy_rules
+cmp r10 r9
+jge c2_knowledge_done
+mov r0 r10
+mul r0 8
+add r0 @RULES
+load64 r1 $r0
+mov r0 r10
+mul r0 8
+add r0 @Z+200000
+store64 $r0 r1
+add r10 1
+jmp c2_copy_rules
+label c2_knowledge_done
+ret

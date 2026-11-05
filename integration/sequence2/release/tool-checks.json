@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "native arithmetic, narrative arguments, invalid division and numeric precision boundary",
+    "exact multiword names, accents, enie and replacement of prior names",
+    "negative evidence, explicit contradiction and correction remove superseded evidence",
+    "existing XI inference supplies a proof and distinguishes missing knowledge",
+    "existing XI route planner and unreachable target",
+    "negative request has no action; unsupported text rejected; composition does not become part of a name",
+    "native facts and rules persist through close and reopen"
+  ],
+  "count": 7,
+  "scope": "Native tools only; not learned-reader or end-to-end accuracy"
+}

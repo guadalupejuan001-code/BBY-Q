@@ -1,0 +1,1763 @@
+{
+  "namespace": "c1-development-complete",
+  "reserved": false,
+  "identity": {
+    "manifest_sha256": "7fc1996bf49ed4ce22b14ae776f39ef6b62ef18eb83de46139135b7ab5ce2c78",
+    "evaluation_source_sha256": "7981b534f53019724af59ba0847d65d5764eb7b14e8e2f3f454caf490239987d"
+  },
+  "correct": 20,
+  "total": 20,
+  "accuracy": 1.0,
+  "families": {
+    "arithmetic": {
+      "correct": 4,
+      "total": 4
+    },
+    "names-and-correction": {
+      "correct": 4,
+      "total": 4
+    },
+    "grounded-inference": {
+      "correct": 4,
+      "total": 4
+    },
+    "named-routes": {
+      "correct": 4,
+      "total": 4
+    },
+    "composition-and-negation": {
+      "correct": 4,
+      "total": 4
+    }
+  },
+  "turns": 53,
+  "cases": [
+    {
+      "family": "arithmetic",
+      "index": 0,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1582.5570819979475,
+      "calls": [
+        {
+          "input": "Tengo 641 paquetes y cada paquete tiene 20 unidades. ¿Cuál es el total?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "math",
+                "status": 1,
+                "value": 12820.0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 13,
+                "action": 0,
+                "operation": "binary",
+                "status": 1
+              }
+            ],
+            "intent": 2,
+            "rule": 13,
+            "reader_log_probability": -0.023943385807175747,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "arithmetic",
+      "index": 1,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1463.6370379994332,
+      "calls": [
+        {
+          "input": "Si cuesta 11 y pago 423, ¿cuánto cambio recibo?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "math",
+                "status": 1,
+                "value": 412.0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 27,
+                "action": 0,
+                "operation": "binary",
+                "status": 1
+              }
+            ],
+            "intent": 2,
+            "rule": 27,
+            "reader_log_probability": -0.19699323027348806,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "arithmetic",
+      "index": 2,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1565.249061997747,
+      "calls": [
+        {
+          "input": "Había 784 objetos y regalé 20. Dime cuántos quedan.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "math",
+                "status": 1,
+                "value": 764.0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 28,
+                "action": 0,
+                "operation": "binary",
+                "status": 1
+              }
+            ],
+            "intent": 2,
+            "rule": 28,
+            "reader_log_probability": -0.08921800389806078,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "arithmetic",
+      "index": 3,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1366.9360210005834,
+      "calls": [
+        {
+          "input": "calcula -(370 + 7) * 3 / 7",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "math",
+                "status": 1,
+                "value": -161.57142857142858
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 102,
+                "action": 0,
+                "operation": "math",
+                "status": 1
+              }
+            ],
+            "intent": 2,
+            "rule": 102,
+            "reader_log_probability": -0.029447003937068873,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "names-and-correction",
+      "index": 0,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4763.001577000978,
+      "calls": [
+        {
+          "input": "Recuerda que mi nave se llama Luciérnaga pjluszaed.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi nave",
+                "value": "Luciérnaga pjluszaed",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 43,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 43,
+            "reader_log_probability": -0.0606011047252385,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "¿Cómo se llama mi nave?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Luciérnaga pjluszaed"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 71,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 71,
+            "reader_log_probability": -0.019397314109386145,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Corrige el nombre de mi nave a Ámbar cfkecffrc.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi nave",
+                "value": "Ámbar cfkecffrc",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 31,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 8,
+            "rule": 31,
+            "reader_log_probability": -0.016879824996267768,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "[reopen]",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Ámbar cfkecffrc"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 46,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 46,
+            "reader_log_probability": -0.07518565474445425,
+            "request_id": "after-reopen",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "names-and-correction",
+      "index": 1,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4833.013744999334,
+      "calls": [
+        {
+          "input": "Recuerda que mi proyecto se llama Cañón xcyuxsmbk.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi proyecto",
+                "value": "Cañón xcyuxsmbk",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 55,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 55,
+            "reader_log_probability": -0.040582274767372334,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "¿Cómo se llama mi proyecto?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Cañón xcyuxsmbk"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 73,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 73,
+            "reader_log_probability": -0.019153242939795628,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Corrige el nombre de mi proyecto a Ámbar jvotvgesk.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi proyecto",
+                "value": "Ámbar jvotvgesk",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 35,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 8,
+            "rule": 35,
+            "reader_log_probability": -0.02086463634175715,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "[reopen]",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Ámbar jvotvgesk"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 58,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 58,
+            "reader_log_probability": -0.09855260051772567,
+            "request_id": "after-reopen",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "names-and-correction",
+      "index": 2,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4769.299842999317,
+      "calls": [
+        {
+          "input": "Recuerda que mi robot se llama Ícaro ccnzflveo.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi robot",
+                "value": "Ícaro ccnzflveo",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 49,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 49,
+            "reader_log_probability": -0.039359279090653516,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "¿Cómo se llama mi robot?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Ícaro ccnzflveo"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 72,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 72,
+            "reader_log_probability": -0.02067378301384445,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Corrige el nombre de mi robot a Luciérnaga toafpxrpz.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi robot",
+                "value": "Luciérnaga toafpxrpz",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 33,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 8,
+            "rule": 33,
+            "reader_log_probability": -0.020253164168925832,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "[reopen]",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Luciérnaga toafpxrpz"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 52,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 52,
+            "reader_log_probability": -0.10863252633582651,
+            "request_id": "after-reopen",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "names-and-correction",
+      "index": 3,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4874.942328999168,
+      "calls": [
+        {
+          "input": "Recuerda que mi estrella se llama Ícaro kggxhuoza.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi estrella",
+                "value": "Ícaro kggxhuoza",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 61,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 61,
+            "reader_log_probability": -0.037697656883243294,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "¿Cómo se llama mi estrella?",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Ícaro kggxhuoza"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 74,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 74,
+            "reader_log_probability": -0.021088908324579134,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Corrige el nombre de mi estrella a Ñandú ovgxcgvja.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "mi estrella",
+                "value": "Ñandú ovgxcgvja",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 37,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 8,
+            "rule": 37,
+            "reader_log_probability": -0.01941054761097175,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "[reopen]",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "lookup",
+                "status": 1,
+                "value": "Ñandú ovgxcgvja"
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 64,
+                "action": 0,
+                "operation": "lookup",
+                "status": 1
+              }
+            ],
+            "intent": 4,
+            "rule": 64,
+            "reader_log_probability": -0.11218670866344459,
+            "request_id": "after-reopen",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "grounded-inference",
+      "index": 0,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4876.171883999632,
+      "calls": [
+        {
+          "input": "Si alguien es clase zudtal entonces es estado tbyufp.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "rule",
+                "status": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 75,
+                "action": 0,
+                "operation": "rule",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 75,
+            "reader_log_probability": -0.22345449265808243,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Ícaro vkzjyrknn es clase zudtal.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ícaro vkzjyrknn",
+                "value": "clase zudtal",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 91,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 91,
+            "reader_log_probability": -0.03552066193025009,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Ícaro vkzjyrknn es estado tbyufp.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "query",
+                "status": 1,
+                "proof": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 1
+              }
+            ],
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Ámbar blgbesbll es estado tbyufp.",
+          "result": {
+            "ok": false,
+            "results": [
+              {
+                "kind": "query",
+                "status": 0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 0
+              }
+            ],
+            "status": 0,
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "3",
+            "committed": false
+          }
+        }
+      ]
+    },
+    {
+      "family": "grounded-inference",
+      "index": 1,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4833.316726002522,
+      "calls": [
+        {
+          "input": "Si alguien es clase hvqztr entonces es estado zlzznc.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "rule",
+                "status": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 75,
+                "action": 0,
+                "operation": "rule",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 75,
+            "reader_log_probability": -0.22345449265808243,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Ámbar ldcshcpmk es clase hvqztr.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ámbar ldcshcpmk",
+                "value": "clase hvqztr",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 91,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 91,
+            "reader_log_probability": -0.03552066193025009,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Ámbar ldcshcpmk es estado zlzznc.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "query",
+                "status": 1,
+                "proof": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 1
+              }
+            ],
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Órbita dpmfagbsb es estado zlzznc.",
+          "result": {
+            "ok": false,
+            "results": [
+              {
+                "kind": "query",
+                "status": 0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 0
+              }
+            ],
+            "status": 0,
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "3",
+            "committed": false
+          }
+        }
+      ]
+    },
+    {
+      "family": "grounded-inference",
+      "index": 2,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4873.011642997881,
+      "calls": [
+        {
+          "input": "Si alguien es clase jbcnhf entonces es estado jczxkp.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "rule",
+                "status": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 75,
+                "action": 0,
+                "operation": "rule",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 75,
+            "reader_log_probability": -0.22345449265808243,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Ámbar nccvjofby es clase jbcnhf.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ámbar nccvjofby",
+                "value": "clase jbcnhf",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 91,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 91,
+            "reader_log_probability": -0.03552066193025009,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Ámbar nccvjofby es estado jczxkp.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "query",
+                "status": 1,
+                "proof": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 1
+              }
+            ],
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Nébula eprnnbvkd es estado jczxkp.",
+          "result": {
+            "ok": false,
+            "results": [
+              {
+                "kind": "query",
+                "status": 0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 0
+              }
+            ],
+            "status": 0,
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "3",
+            "committed": false
+          }
+        }
+      ]
+    },
+    {
+      "family": "grounded-inference",
+      "index": 3,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4802.488350000203,
+      "calls": [
+        {
+          "input": "Si alguien es clase qzqkuq entonces es estado pxxanc.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "rule",
+                "status": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 75,
+                "action": 0,
+                "operation": "rule",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 75,
+            "reader_log_probability": -0.22345449265808243,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Luciérnaga umdkuboer es clase qzqkuq.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Luciérnaga umdkuboer",
+                "value": "clase qzqkuq",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 91,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 91,
+            "reader_log_probability": -0.03552066193025009,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Luciérnaga umdkuboer es estado pxxanc.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "query",
+                "status": 1,
+                "proof": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 1
+              }
+            ],
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime si Órbita hfskrhhnl es estado pxxanc.",
+          "result": {
+            "ok": false,
+            "results": [
+              {
+                "kind": "query",
+                "status": 0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 93,
+                "action": 0,
+                "operation": "query",
+                "status": 0
+              }
+            ],
+            "status": 0,
+            "intent": 5,
+            "rule": 93,
+            "reader_log_probability": -0.2259931179521634,
+            "request_id": "3",
+            "committed": false
+          }
+        }
+      ]
+    },
+    {
+      "family": "named-routes",
+      "index": 0,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1694.5569579984294,
+      "calls": [
+        {
+          "input": "La Cañón spxxlpbjo está conectada al jardín y el jardín al museo. Explícame cómo llegar de Cañón spxxlpbjo a museo.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Cañón spxxlpbjo",
+                "value": "jardín",
+                "polarity": 1
+              },
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "jardín",
+                "value": "museo",
+                "polarity": 1
+              },
+              {
+                "kind": "route",
+                "status": 1,
+                "path": [
+                  "Cañón spxxlpbjo",
+                  "jardín",
+                  "museo"
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 4,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              },
+              {
+                "native_rule": 4,
+                "action": 1,
+                "operation": "put",
+                "status": 1
+              },
+              {
+                "native_rule": 4,
+                "action": 2,
+                "operation": "route",
+                "status": 1
+              }
+            ],
+            "intent": 6,
+            "rule": 4,
+            "reader_log_probability": -0.2363039902480326,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "named-routes",
+      "index": 1,
+      "correct": true,
+      "turns": 7,
+      "elapsed_ms": 8543.634977999318,
+      "calls": [
+        {
+          "input": "Recuerda que Ícaro eofnluetl conecta Nébula sksyatlch.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ícaro eofnluetl",
+                "value": "Nébula sksyatlch",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Nébula sksyatlch conecta Cañón hbgruosxb.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Nébula sksyatlch",
+                "value": "Cañón hbgruosxb",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Cañón hbgruosxb conecta Nébula frmmuxnal.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Cañón hbgruosxb",
+                "value": "Nébula frmmuxnal",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Nébula frmmuxnal conecta Nébula aaetkrgdd.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Nébula frmmuxnal",
+                "value": "Nébula aaetkrgdd",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "3",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Nébula aaetkrgdd conecta Órbita mrjojoaud.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Nébula aaetkrgdd",
+                "value": "Órbita mrjojoaud",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "4",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Órbita mrjojoaud conecta Luciérnaga kopngdvee.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Órbita mrjojoaud",
+                "value": "Luciérnaga kopngdvee",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "5",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime la ruta de Ícaro eofnluetl a Luciérnaga kopngdvee.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "route",
+                "status": 1,
+                "path": [
+                  "Ícaro eofnluetl",
+                  "Nébula sksyatlch",
+                  "Cañón hbgruosxb",
+                  "Nébula frmmuxnal",
+                  "Nébula aaetkrgdd",
+                  "Órbita mrjojoaud",
+                  "Luciérnaga kopngdvee"
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 77,
+                "action": 0,
+                "operation": "route",
+                "status": 1
+              }
+            ],
+            "intent": 6,
+            "rule": 77,
+            "reader_log_probability": -0.20499089752417132,
+            "request_id": "6",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "named-routes",
+      "index": 2,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1712.2109019983327,
+      "calls": [
+        {
+          "input": "La Órbita mcjpublcn está conectada al jardín y el jardín al museo. Explícame cómo llegar de Órbita mcjpublcn a museo.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Órbita mcjpublcn",
+                "value": "jardín",
+                "polarity": 1
+              },
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "jardín",
+                "value": "museo",
+                "polarity": 1
+              },
+              {
+                "kind": "route",
+                "status": 1,
+                "path": [
+                  "Órbita mcjpublcn",
+                  "jardín",
+                  "museo"
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 4,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              },
+              {
+                "native_rule": 4,
+                "action": 1,
+                "operation": "put",
+                "status": 1
+              },
+              {
+                "native_rule": 4,
+                "action": 2,
+                "operation": "route",
+                "status": 1
+              }
+            ],
+            "intent": 6,
+            "rule": 4,
+            "reader_log_probability": -0.2363039902480326,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "named-routes",
+      "index": 3,
+      "correct": true,
+      "turns": 4,
+      "elapsed_ms": 4997.877174999303,
+      "calls": [
+        {
+          "input": "Recuerda que Ícaro dmhrmlmaa conecta Ámbar ckjopajaf.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ícaro dmhrmlmaa",
+                "value": "Ámbar ckjopajaf",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "0",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Ámbar ckjopajaf conecta Ámbar btolekeja.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ámbar ckjopajaf",
+                "value": "Ámbar btolekeja",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "1",
+            "committed": true
+          }
+        },
+        {
+          "input": "Recuerda que Ámbar btolekeja conecta Cañón dseufzfpl.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "put",
+                "status": 1,
+                "subject": "Ámbar btolekeja",
+                "value": "Cañón dseufzfpl",
+                "polarity": 1
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 94,
+                "action": 0,
+                "operation": "put",
+                "status": 1
+              }
+            ],
+            "intent": 3,
+            "rule": 94,
+            "reader_log_probability": -0.07987826284094646,
+            "request_id": "2",
+            "committed": true
+          }
+        },
+        {
+          "input": "Dime la ruta de Ícaro dmhrmlmaa a Cañón dseufzfpl.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "route",
+                "status": 1,
+                "path": [
+                  "Ícaro dmhrmlmaa",
+                  "Ámbar ckjopajaf",
+                  "Ámbar btolekeja",
+                  "Cañón dseufzfpl"
+                ]
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 77,
+                "action": 0,
+                "operation": "route",
+                "status": 1
+              }
+            ],
+            "intent": 6,
+            "rule": 77,
+            "reader_log_probability": -0.20499089752417132,
+            "request_id": "3",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "composition-and-negation",
+      "index": 0,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1051.5752769970277,
+      "calls": [
+        {
+          "input": "Ahora no calcules 896 por 34.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "cancel",
+                "status": 1,
+                "text": "De acuerdo; no ejecutaré esa petición."
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 95,
+                "action": 0,
+                "operation": "cancel",
+                "status": 1
+              }
+            ],
+            "intent": 9,
+            "rule": 95,
+            "reader_log_probability": -0.03512831637300742,
+            "request_id": "0",
+            "committed": false
+          }
+        }
+      ]
+    },
+    {
+      "family": "composition-and-negation",
+      "index": 1,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1325.7300430013856,
+      "calls": [
+        {
+          "input": "Salúdame y después calcula cuánto es 224 por 62.",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "results": [
+              {
+                "kind": "greet",
+                "status": 1,
+                "text": "Hola, X."
+              },
+              {
+                "kind": "math",
+                "status": 1,
+                "value": 13888.0
+              }
+            ],
+            "trace": [
+              {
+                "native_rule": 7,
+                "action": 0,
+                "operation": "greet",
+                "status": 1
+              },
+              {
+                "native_rule": 7,
+                "action": 1,
+                "operation": "math",
+                "status": 1
+              }
+            ],
+            "intent": 7,
+            "rule": 7,
+            "reader_log_probability": -0.0349961322371657,
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "composition-and-negation",
+      "index": 2,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 2143.883560998802,
+      "calls": [
+        {
+          "input": "define memoria no circuito",
+          "result": {
+            "ok": true,
+            "status": 1,
+            "intent": 1,
+            "results": [
+              {
+                "kind": "text",
+                "text": "La memoria conserva información.",
+                "tokens": [
+                  "la",
+                  "memoria",
+                  "conserva",
+                  "información",
+                  "."
+                ],
+                "terminated": true,
+                "log_probability": -0.3127601551865498,
+                "elapsed_ms": 227.9567359983048
+              }
+            ],
+            "request_id": "0",
+            "committed": true
+          }
+        }
+      ]
+    },
+    {
+      "family": "composition-and-negation",
+      "index": 3,
+      "correct": true,
+      "turns": 1,
+      "elapsed_ms": 1092.065137996542,
+      "calls": [
+        {
+          "input": "Inventa una habilidad nueva que todavía no conoces.",
+          "result": {
+            "ok": false,
+            "status": 0,
+            "intent": 0,
+            "reason": "No supported grounded contract",
+            "results": [],
+            "request_id": "0",
+            "committed": false
+          }
+        }
+      ]
+    }
+  ],
+  "apk_built": false,
+  "scope": "Declared bounded language contracts, learned native readers, fixed simulated Clifford transport and existing programmed XI tools. No general intelligence or quantum advantage claim."
+}

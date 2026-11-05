@@ -3,6 +3,11 @@ on:
   pull_request:
     paths: ['android-personal/**', 'ai/personal/**', 'ai/xi/qchat100/**', 'ai/xi/sequence1/**', 'ai/xi/qmemory/**', 'ai/xi/quantum3/**', 'ai/xi/balance/**', 'ai/xi/entity/**', 'integration/sequence1/**', 'integration/balance/**', 'integration/entity/**', 'integration/zero/**', '.github/workflows/bbyq-personal-android.yml']
   workflow_dispatch:
+    inputs:
+      build_android:
+        description: 'Build Android only after the C1 correction campaign is complete'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -25,12 +30,14 @@ jobs:
           path: deps/mundo-x
           persist-credentials: false
       - uses: actions/setup-java@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.build_android
         with: {distribution: temurin, java-version: '17'}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - uses: gradle/actions/setup-gradle@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.build_android
         with: {gradle-version: '8.9'}
       - name: Restore the real preserved models and test the native chat
         run: |
@@ -46,13 +53,16 @@ jobs:
           python3 integration/sequence1/verify_codec.py
           python3 integration/sequence1/verify_experiment.py
       - name: Install Android tools
+        if: github.event_name == 'workflow_dispatch' && inputs.build_android
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'platform-tools' 'emulator' 'system-images;android-35;default;x86_64'
       - name: Build standalone Android APK and native ARM64 library
+        if: github.event_name == 'workflow_dispatch' && inputs.build_android
         run: |
           gradle -p android-personal --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > android-personal/build.log 2>&1 || { tail -160 android-personal/build.log; exit 1; }
       - name: Android 15 native conversations, persistent learning and real chat UI
+        if: github.event_name == 'workflow_dispatch' && inputs.build_android
         timeout-minutes: 18
         run: bash android-personal/scripts/emulator-test.sh
       - uses: actions/upload-artifact@v4

@@ -1,0 +1,38 @@
+{
+  "version": "C1-Sequence-2",
+  "checks": [
+    {
+      "name": "native_frame_roundtrip",
+      "passed": true,
+      "frames": 2048,
+      "bits": 204800
+    },
+    {
+      "name": "native_contrast_discrimination",
+      "passed": true,
+      "pairs": 200
+    },
+    {
+      "name": "frame_boundaries",
+      "passed": true,
+      "cases": 3
+    },
+    {
+      "name": "capacity_rejection",
+      "passed": true,
+      "cases": 3
+    },
+    {
+      "name": "input_cache_identity",
+      "passed": true,
+      "features": 18
+    },
+    {
+      "name": "native_learning_and_reopen",
+      "passed": true,
+      "native_updates": 400,
+      "cases": 4
+    }
+  ],
+  "passed": true
+}

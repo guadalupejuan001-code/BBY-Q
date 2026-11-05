@@ -1,0 +1,221 @@
+{
+  "version": "BBYQ-C1-Sequence-2",
+  "stage": "qualified frozen candidate; reserved test remains unopened",
+  "models": {
+    "text": {
+      "parts": [
+        {
+          "file": "text.rvp.gz.001",
+          "bytes": 131072,
+          "sha256": "1f3c82bc28192b2b4302897a0029fab0d110af22201fbbd4befeeceda397b83a"
+        },
+        {
+          "file": "text.rvp.gz.002",
+          "bytes": 131072,
+          "sha256": "4c79a8e603b271faa85532a4ef7e468275ee36d77f267efff4ba90ab1e441eb6"
+        },
+        {
+          "file": "text.rvp.gz.003",
+          "bytes": 131072,
+          "sha256": "351e2e90e8e85fb4ae0b84cd63b633a3c51bfdcb137863de200df3c113e60633"
+        },
+        {
+          "file": "text.rvp.gz.004",
+          "bytes": 131072,
+          "sha256": "b6974c10cbe81a0318c461d19a14c46ed30e5bbd3f427cbef8e27988da95bfbe"
+        },
+        {
+          "file": "text.rvp.gz.005",
+          "bytes": 131072,
+          "sha256": "1ff2d7a285bf2a73b2767b86e4e8f4b2565dbf4d13a6378f1a50a605e3c4d7a1"
+        },
+        {
+          "file": "text.rvp.gz.006",
+          "bytes": 131072,
+          "sha256": "ea2829a71fb461cda55a66ff9e32c2e08eb7286152a38024dc9c9a8a57d0f65f"
+        },
+        {
+          "file": "text.rvp.gz.007",
+          "bytes": 131072,
+          "sha256": "bb6a3fcd5b4e801b9c6e50ab5380a1c7d7f73bd22b6df32aa384a3dda24c3e3a"
+        },
+        {
+          "file": "text.rvp.gz.008",
+          "bytes": 131072,
+          "sha256": "1dbd4c34050b748a9b09a6657a2b051f1e8756e3e1779b3c02c656cfeb6b3224"
+        },
+        {
+          "file": "text.rvp.gz.009",
+          "bytes": 131072,
+          "sha256": "e65c3b36296404925ef0a2b8bb33e5ff49ef2877f7a8537396fd5e96da7cc066"
+        },
+        {
+          "file": "text.rvp.gz.010",
+          "bytes": 74965,
+          "sha256": "d0c6a6b97830e211d85012482bed8500c4b64b94ac323ae00898fe01788a79db"
+        }
+      ],
+      "gzip_sha256": "25b39ea11bb27af506667c95552796901b0255db53d743620d76b17f26af0d43",
+      "gzip_bytes": 1254613,
+      "checkpoint_sha256": "e3eff778831352187605d3974afe8e7d9160098eea26170ae4938de2b241d4dd",
+      "native_updates": 41700,
+      "epoch": 0
+    },
+    "intent": {
+      "parts": [
+        {
+          "file": "intent.rvp.gz.001",
+          "bytes": 131072,
+          "sha256": "21c5e99df915b61547dfd992f8a30183bfceb26c4d723df7eb6c77ec8f9e689f"
+        },
+        {
+          "file": "intent.rvp.gz.002",
+          "bytes": 131072,
+          "sha256": "97f83a4d02fe8d92f38dc95e6a6dd755cfd09ac2e34eacb54033ae1cc5fb91a4"
+        },
+        {
+          "file": "intent.rvp.gz.003",
+          "bytes": 131072,
+          "sha256": "304387e1039a41e60b918349e96cc39b08f64db13335c5078c4800eb2d840de6"
+        },
+        {
+          "file": "intent.rvp.gz.004",
+          "bytes": 131072,
+          "sha256": "c89ceceac1f75ccbc1766e3dd6514234456e0979607e3935224dc2b7845eb2f5"
+        },
+        {
+          "file": "intent.rvp.gz.005",
+          "bytes": 131072,
+          "sha256": "64b9fde18b81963f452a8d4955ff40e2f29580fcd6d0a9ff6c17a18c1fe22941"
+        },
+        {
+          "file": "intent.rvp.gz.006",
+          "bytes": 131072,
+          "sha256": "e23899c056fd51fb5020f27f633ad06a1440a796e67fc69fbc418191a0deaf5c"
+        },
+        {
+          "file": "intent.rvp.gz.007",
+          "bytes": 131072,
+          "sha256": "c992cd62ecf3f09008b6ef6ad38af0be203b2b2dd838c7ff70cee4f444e3dd77"
+        },
+        {
+          "file": "intent.rvp.gz.008",
+          "bytes": 131072,
+          "sha256": "96616977605e57210f4077959d75d3a578c784c424fa9c2c5b13369e0fa88df4"
+        },
+        {
+          "file": "intent.rvp.gz.009",
+          "bytes": 131072,
+          "sha256": "b6b21ffee818a2414a3f0a2280b3bcd16ae3061d43030cbae1ef0ce94b1827c0"
+        },
+        {
+          "file": "intent.rvp.gz.010",
+          "bytes": 68385,
+          "sha256": "f3241f21865929fe10c6c426b5d1ebbdd6b8b62db34a63c6702d530c8821f2d0"
+        }
+      ],
+      "gzip_sha256": "ae24796e29796a3eaaad380cc66dba26c8377fa2df14d6105e61fe9e30725bb5",
+      "gzip_bytes": 1248033,
+      "checkpoint_sha256": "f7c5448e4ba1c435d3227bfc0821ea1b6e9e289eb71ecbcca879ff3871656d6b",
+      "native_updates": 6900,
+      "epoch": 5
+    }
+  },
+  "binding": {
+    "wire_version": "C1-Sequence-1",
+    "readout_version": "C1-Sequence-2",
+    "vocabulary_sha256": "0ad6313f7c5046d8bb25802cd210b10f07cd5930f3af344d4f513426493db254",
+    "output_vocabulary_sha256": "198f4d51d36ae9a1cbb6fa93b2007375fc8aae81174aa7da2dbea7e220604ad0",
+    "semantic_vocabulary_sha256": "9d24e97894a2f1e5004c9b1215f79aac8d806f5a0c359faf5e6ac0b3cf23ce94",
+    "native_source_sha256": "60d44b9542701a7fcf1057d27079011032327e2858dd7bf4544baeb6a7ee0090"
+  },
+  "sources": {
+    "integration/sequence2/verify_curriculum.py": "8502a706f4a35469e85e16cc5783b84a94cad2ad64f5af4cb1eb24a97c0e670a",
+    "integration/sequence2/build.py": "e96e728223eb28c453af3cd80b4d9bb5c332ba468100bfe7685493f01d82c612",
+    "integration/sequence2/tools.py": "a46033860ed6f8cd26940149493667ccefd4ad0202455f731fc5ec167919cf91",
+    "integration/sequence2/workspace.py": "857a7433988a7aca3579a891780cf5d5dbd0fe3468875d15cac2faaedf32bbb1",
+    "integration/sequence2/cli.py": "5cfc7b2acf0ab15a86af6c5afe74f1f85cabab7729004ba9ce861edc51669d31",
+    "integration/sequence2/verify_release.py": "4cfcf1c7abaa769d59264564841703cd39eefb97d95b1459faacbaff1083f1eb",
+    "integration/sequence2/verify_tools.py": "a8d38e4d4b436ab98a0dd3b24f81d80ce39adef51d74eef07d9d2f8c3d95baa6",
+    "integration/sequence2/verify_workspace.py": "306858a75a8f99c4a049c9d51ce05587c2cd241341c3214280dce42c0d486d26",
+    "integration/sequence2/train.py": "2e4276757850343a7984dba770fc39f89ec9e90fe773807db841bb309628ecaf",
+    "integration/sequence2/data.py": "8f74e98dd1b7fa0c3f4762b38d1bc2a8ac4efa3485e475addcf6575270096e5a",
+    "integration/sequence2/qualify.py": "ea28a8e71c2692b05bdd37585e6eefc4ede7764618ec05bce4645c5a3795bce5",
+    "integration/sequence2/engine.py": "602c191c4b39019a54c5979fb93add58683e680c787f860764115066755f8ade",
+    "integration/sequence2/grammar.py": "a3cc920ee0f33c8e4743a263e21377f66f204f81396e1ea7493298f5bd24480e",
+    "integration/sequence2/freeze.py": "bced1c1517ddfb9deadfbe21d1dd616e52a7b3dd352247b270b8a50e1a070b59",
+    "integration/sequence2/schema.py": "96dfa25bd3ed5158665cc9f15660db6bc47e6df684e3add93be2b357ffd5b3fd",
+    "integration/sequence2/finalize.py": "a8672260f8234da241fba64bfb2fc84f07c5c5f9afda01ca53cd8e598aeeae57",
+    "integration/sequence2/controls.py": "3a0e33e8ef90bf8d82a061401e74d85bbcab17f516e9d1e2ca6956f3d5db92af",
+    "integration/sequence2/verify_codec.py": "fe0f957e4c1063ccc04351b82eed91a9f8e1266063442d640350be4f063cb916",
+    "integration/sequence2/protocol.json": "ca43428d3c8340b2d53764d59950506fa998a1654786281055cf058852706a76",
+    "integration/sequence2/evaluate.py": "7981b534f53019724af59ba0847d65d5764eb7b14e8e2f3f454caf490239987d",
+    "ai/xi/sequence2/tools.xi.in": "6b41e038f663d86d61fe795a5877a7d5fdb2a5ee5333edcc67ee74064a9a5b34",
+    "ai/xi/sequence2/model.xi.in": "91f3bd18740914cdfc956225de3788ae4c52d1c033c348f7ceeb4577676c845c",
+    "ai/xi/sequence2/context.xi.in": "d58f5dbf826f9cbe5f4a9294df99c8c0b0b8eb310bb415dc3ebad82eb6b49d7b",
+    "ai/personal/zero/core.xi.in": "f278892d3efc05bdf27ac0974c91bd5bf866a4038f654696f26b482725b965e3",
+    "ai/personal/zero/model.mjs": "3ba52298a5f846a7d0d802daf20049e0bf970f67aa11ae24fc6d28ca912642cd",
+    "ai/personal/zero/schema.mjs": "ce4ed6a3dc739db2eb34d60431d601556a4a871e78b470406fce9cb3130b8d99",
+    "integration/sequence2/seed/text.rvp.gz.010": "d0c6a6b97830e211d85012482bed8500c4b64b94ac323ae00898fe01788a79db",
+    "integration/sequence2/seed/text.rvp.gz.005": "1ff2d7a285bf2a73b2767b86e4e8f4b2565dbf4d13a6378f1a50a605e3c4d7a1",
+    "integration/sequence2/seed/text.rvp.gz.008": "1dbd4c34050b748a9b09a6657a2b051f1e8756e3e1779b3c02c656cfeb6b3224",
+    "integration/sequence2/seed/text.rvp.gz.003": "351e2e90e8e85fb4ae0b84cd63b633a3c51bfdcb137863de200df3c113e60633",
+    "integration/sequence2/seed/text.rvp.gz.004": "b6974c10cbe81a0318c461d19a14c46ed30e5bbd3f427cbef8e27988da95bfbe",
+    "integration/sequence2/seed/text.rvp.gz.009": "e65c3b36296404925ef0a2b8bb33e5ff49ef2877f7a8537396fd5e96da7cc066",
+    "integration/sequence2/seed/output-vocabulary.json": "1919e9e4ba72853e4035586ff6fe834e440292c1e40bd524e69a4cd1839e31b5",
+    "integration/sequence2/seed/text.rvp.gz.001": "1f3c82bc28192b2b4302897a0029fab0d110af22201fbbd4befeeceda397b83a",
+    "integration/sequence2/seed/model.xi": "66c935c7ddf7707c3cb0b4012b0eccf620d2280ec34c18cac2a09ba83f6b6388",
+    "integration/sequence2/seed/vocabulary.json": "3d3f539412457d44c39800f32601b90185ab07448562e07cd74a782a1131e58a",
+    "integration/sequence2/seed/text.rvp.gz.006": "ea2829a71fb461cda55a66ff9e32c2e08eb7286152a38024dc9c9a8a57d0f65f",
+    "integration/sequence2/seed/text.rvp.gz.002": "4c79a8e603b271faa85532a4ef7e468275ee36d77f267efff4ba90ab1e441eb6",
+    "integration/sequence2/seed/source-hashes.json": "8b1abaedbef64015f91367addb8e932ffedc4c325223bd199e6143eb7f11ef06",
+    "integration/sequence2/seed/text.rvp.gz.007": "bb6a3fcd5b4e801b9c6e50ab5380a1c7d7f73bd22b6df32aa384a3dda24c3e3a",
+    "integration/sequence2/seed/manifest.json": "1f1722374c3654d7cf1f622c1973f0db50c7d0758ed6dc71024077895515271f",
+    "integration/sequence2/intent-seed/intent-validation-010.json": "05d309fe7b9a235e2802389b8c97eec273e4f2778a052d5678a018c60de787b9",
+    "integration/sequence2/intent-seed/intent.rvp.gz.001": "dc9e1da2e681a4d58015ffbccf39779050713c43e0318f5355f5d795b8f03639",
+    "integration/sequence2/intent-seed/model.xi": "3941885b949f3692bbaaab9e2cc7b35904178dd46d5373d9996b1b7511141dd9",
+    "integration/sequence2/intent-seed/vocabulary.json": "529d0394ea21ea59cdeeb0962abf6c45309b24e9013139ba5d9f63e54c6dee3b",
+    "integration/sequence2/intent-seed/intent.rvp.gz.002": "323d7f80dded12c1cc88464a003500c5fa773df91926fa01ec1d064bcf13e4dc",
+    "integration/sequence2/intent-seed/cached-rows.json": "078b2d060f6ba5355d59c0ab3b438766f9c5f80794659f01a8b5a8d44c2c9c77",
+    "integration/sequence2/intent-seed/intent.rvp.gz.003": "5044c2775c1fdd10099f2e390eb4991ec5d07293d1562c3617a0208880d8ac80",
+    "integration/sequence2/intent-seed/source-hashes.json": "0d19773520fe279fb8da03248001622691e07e24e0c8de46e63d4bfb4704732a",
+    "integration/sequence2/intent-seed/manifest.json": "2c60a36bdc1e369bb71ed956bb56a411bfdd938b098e18035f972ddabd229a40",
+    "integration/sequence2/intent-seed/intent.rvp.gz.005": "c0e6c02a69dd5db590ae1d5c879c77cd097e073b92b67d725ea211ad5ee86e57",
+    "integration/sequence2/intent-seed/intent.rvp.gz.004": "cef6d49cfdaa4ba54d2439d7eb61ddda4532212debc0296b433858e9bf3379c3",
+    "bbyq.mjs": "801dd256307ed622077151272fd20748380c3543e58187eaa24045f6bf6f7cd7",
+    ".github/workflows/bbyq-c1-native.yml": "b23396172c9809816f1678b19c8ac074fedb772ecc28f9ebae46f25180c6a6e7",
+    ".github/workflows/bbyq-personal-android.yml": "330adf1f7f87e32fafab400a6a3b94c7d2d8fd69c22169721ebb5400d408e50c"
+  },
+  "validation_sha256": "d4c09f253400f48f99aa9bae639208cb54ac934f0d34c898b0595a92432e1a1a",
+  "protocol_sha256": "ca43428d3c8340b2d53764d59950506fa998a1654786281055cf058852706a76",
+  "validation_gates": {
+    "text_accuracy": true,
+    "every_text_group": true,
+    "intent_accuracy": true,
+    "every_intent_group": true,
+    "codec": true,
+    "native_tools": true,
+    "transactions": true,
+    "complete_tasks": true
+  },
+  "reserved_test": {
+    "namespace": "c1-repaired-reserved-1",
+    "tasks": 200,
+    "opened": false
+  },
+  "active_in_android": false,
+  "apk_built": false,
+  "existing_models_modified": false,
+  "general_intelligence_claimed": false,
+  "quantum_advantage_claimed": false,
+  "dependencies": {
+    "reverse_pc": "08c363e6c6855c14026c86046af7183a45f45a98",
+    "mundo_x": "e2778d962af22f6f1a0794058dd4685fc2573966"
+  },
+  "validation_reports": {
+    "codec-checks.json": "c477d3e6a550ee15c0672164553ea1a1378f4fcc73a9ab2e1a4af64ceb325772",
+    "tool-checks.json": "8aba016b5ce4c3e776cf539fd19ccd53c3e670fd1f072db3768fe7b7426e4697",
+    "workspace-checks.json": "d8fe33d5ae702c56824be08f8767196bc3189e11d618b62065860bb8ba851078",
+    "tasks-validation.json": "235d61275de2da9a07cbe0ee80afb39f7c6a58613ed3b5275eeda2323f0b0b21"
+  }
+}

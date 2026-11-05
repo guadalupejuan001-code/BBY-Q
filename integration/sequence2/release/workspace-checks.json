@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "count": 5,
+  "checks": [
+    "exact replay is idempotent; conflicting request reuse is rejected",
+    "failure after a native write rolls back snapshot, dictionary and request record",
+    "later arithmetic failure and negative request publish no partial changes",
+    "reopen retains the committed name; dictionary and checkpoint corruption fail closed",
+    "two sessions retrying the same task publish exactly one result"
+  ],
+  "learned_routing_used": true,
+  "apk_built": false
+}
