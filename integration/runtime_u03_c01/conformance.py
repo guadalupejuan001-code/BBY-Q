@@ -20,8 +20,8 @@ def sanitize(data):
     return data
 
 
-def session_trial(optimized: bool):
-    with (activate() if optimized else nullcontext()):
+def session_trial(mode: str):
+    with (activate(pool_sessions=(mode == "pooled")) if mode != "baseline" else nullcontext()):
         with tempfile.TemporaryDirectory(prefix="bbyq-c01-identical-") as temporary:
             db = Path(temporary) / "anonymous.sqlite"
             with Session(db) as session:
@@ -71,17 +71,19 @@ def session_trial(optimized: bool):
 
 def run():
     before, apk_before = freeze_assets(), apk_files()
-    reference = session_trial(optimized=False)
-    updated = session_trial(optimized=True)
-    if updated != reference:
-        mismatches = [key for key in reference if reference[key] != updated.get(key)]
-        raise AssertionError("C01 changed original result/state: " + str(mismatches))
+    reference = session_trial("baseline")
+    for mode in ("cached", "pooled"):
+        updated = session_trial(mode)
+        if updated != reference:
+            mismatches = [key for key in reference if reference[key] != updated.get(key)]
+            raise AssertionError("C01 " + mode + " changed original result/state: " + str(mismatches))
     after = freeze_assets()
     if before != after or apk_files() != apk_before:
         raise AssertionError("C01 changed a frozen asset or created an APK")
     return {
         "passed": True,
         "runtime_output_and_checkpoint_equal": True,
+        "modes": ["baseline", "cached", "pooled"],
         "scenarios": ["math", "text", "mission", "replay", "rollback", "feedback", "recall"],
         "checkpoints_unchanged": True,
         "protected_file_count": len(before),
