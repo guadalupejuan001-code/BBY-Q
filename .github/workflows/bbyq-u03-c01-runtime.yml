@@ -49,6 +49,10 @@ jobs:
             -Ideps/reverse-pc/src \
             integration/runtime_u03_c01/xi_cached_session.cpp \
             -o deps/reverse-pc/build/xi_session_c01
+      - name: Validate C01 native RESTORE failure isolation and exact state recovery
+        run: |
+          mkdir -p build/c01
+          python3 -m integration.runtime_u03_c01.verify_native | tee build/c01/native-safety.json
       - name: Validate original C1 and U02 frozen checkpoints and semantics
         run: |
           mkdir -p build/c01 build/sequence2 build/unified
@@ -73,6 +77,8 @@ jobs:
           assert eq['passed'] and eq['runtime_output_and_checkpoint_equal']
           assert report['passed'] and report['checkpoint_and_source_unchanged']
           assert eq['protected_file_count'] == report['frozen_asset_count'] == 159
+          safety = json.loads(Path('build/c01/native-safety.json').read_text())
+          assert safety['passed'] and safety['failed_restore_left_state_unchanged']
           warm = json.loads(Path('build/c01/warm.json').read_text())
           assert warm['passed'] and warm['original_and_pooled_bank_hashes_equal']
           assert not eq['apk_built'] and not report['apk_built'] and not warm['apk_built']
