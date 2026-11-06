@@ -53,7 +53,8 @@ def table_views(db: sqlite3.Connection) -> dict[str, Table]:
         # A key with NULL is legal in SQLite for non-INTEGER rowid PKs;
         # refuse because it could alias another row during a differential commit.
         rows = {}
-        query = "SELECT * FROM " + ident(name) + " ORDER BY " + ",".join(ident(k) for k in keys)
+        ordering = ("rowid" if "WITHOUT ROWID" not in (schema or "").upper()
+                    else ",".join(ident(k) for k in keys))\n        query = "SELECT * FROM " + ident(name) + " ORDER BY " + ordering
         for raw in db.execute(query):
             data = tuple(raw)
             key = tuple(data[i] for i in indices)
