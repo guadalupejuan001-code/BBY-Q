@@ -1,0 +1,5404 @@
+{
+  "text": {
+    "correct": 134,
+    "total": 141,
+    "accuracy": 0.950354609929078,
+    "groups": {
+      "known": {
+        "correct": 61,
+        "total": 67
+      },
+      "context": {
+        "correct": 20,
+        "total": 20
+      },
+      "unknown": {
+        "correct": 16,
+        "total": 16
+      },
+      "negation": {
+        "correct": 20,
+        "total": 20
+      },
+      "order": {
+        "correct": 17,
+        "total": 18
+      }
+    },
+    "usage": {
+      "peak_rss_kib": 65148,
+      "rusage_peak_rss_kib": 64976,
+      "rss_measurement": "Linux VmHWM after exec",
+      "cpu_ms": 32463.272,
+      "active_qubits": 100,
+      "quantum_payload_bytes": 3300
+    },
+    "cases": [
+      {
+        "input": "¿puedes decir qué es memoria?",
+        "response": "la memoria conserva información .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5749720393951768,
+        "elapsed_ms": 231.3808360013354,
+        "correct": false
+      },
+      {
+        "input": "me interesa entender memoria",
+        "response": "la memoria conserva información .",
+        "previous": "",
+        "kind": "known",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4338021493761878,
+        "elapsed_ms": 163.84189899690682,
+        "correct": true
+      },
+      {
+        "input": "define para mí memoria",
+        "response": "la memoria conserva información .",
+        "previous": "",
+        "kind": "known",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3187974021028531,
+        "elapsed_ms": 155.6353499981924,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de memoria",
+        "response": "la memoria conserva información .",
+        "previous": "",
+        "kind": "known",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4754737906011005,
+        "elapsed_ms": 156.6645310012973,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "la memoria conserva información .",
+        "previous": "define para mí memoria",
+        "kind": "context",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3963485756515127,
+        "elapsed_ms": 166.91218599953572,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "la memoria conserva información .",
+        "previous": "define para mí memoria",
+        "kind": "context",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3445898889803175,
+        "elapsed_ms": 164.41214800215675,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es dato?",
+        "response": "un dato representa información .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.9623919515506401,
+        "elapsed_ms": 135.44564399853698,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender dato",
+        "response": "un dato representa información .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.6493706238285714,
+        "elapsed_ms": 115.24924300101702,
+        "correct": true
+      },
+      {
+        "input": "define para mí dato",
+        "response": "un dato representa información .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4372548207468438,
+        "elapsed_ms": 125.115740000183,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de dato",
+        "response": "un dato representa información .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4966747056148376,
+        "elapsed_ms": 146.6486690005695,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "un dato representa información .",
+        "previous": "define para mí dato",
+        "kind": "context",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3103960249301429,
+        "elapsed_ms": 141.42407499821275,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "un dato representa información .",
+        "previous": "define para mí dato",
+        "kind": "context",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.28993108227325265,
+        "elapsed_ms": 137.55861899699084,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es algoritmo?",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.9940510441916445,
+        "elapsed_ms": 202.47164300235454,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender algoritmo",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7269149204990969,
+        "elapsed_ms": 186.36415999935707,
+        "correct": true
+      },
+      {
+        "input": "define para mí algoritmo",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5092556941860309,
+        "elapsed_ms": 178.6824170012551,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de algoritmo",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5744932380554122,
+        "elapsed_ms": 193.94844199996442,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "define para mí algoritmo",
+        "kind": "context",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4035821145841232,
+        "elapsed_ms": 171.46037699785666,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "previous": "define para mí algoritmo",
+        "kind": "context",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3769524090651806,
+        "elapsed_ms": 194.3823900001007,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es circuito?",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8893715624440677,
+        "elapsed_ms": 205.83821699983673,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender circuito",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.6259922096764904,
+        "elapsed_ms": 171.4812729987898,
+        "correct": true
+      },
+      {
+        "input": "define para mí circuito",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4512668297297461,
+        "elapsed_ms": 185.43416399916168,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de circuito",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5097818761796791,
+        "elapsed_ms": 212.3583590000635,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "define para mí circuito",
+        "kind": "context",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3456586751505606,
+        "elapsed_ms": 172.43152800074313,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "previous": "define para mí circuito",
+        "kind": "context",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.33253855689236883,
+        "elapsed_ms": 205.20016999944346,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es cúbit?",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.0854307133711782,
+        "elapsed_ms": 224.32413800197537,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender cúbit",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.6999956440470285,
+        "elapsed_ms": 186.3351469983172,
+        "correct": true
+      },
+      {
+        "input": "define para mí cúbit",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.49894929375064473,
+        "elapsed_ms": 188.90122499942663,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de cúbit",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5844940408134186,
+        "elapsed_ms": 188.75316699995892,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "define para mí cúbit",
+        "kind": "context",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3914190577094636,
+        "elapsed_ms": 183.1011030008085,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "previous": "define para mí cúbit",
+        "kind": "context",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.36487466260891877,
+        "elapsed_ms": 231.7475630006811,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es entrelazamiento?",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "",
+        "kind": "known",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4741351580231842,
+        "elapsed_ms": 153.12965300108772,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender entrelazamiento",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "",
+        "kind": "known",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3463618415186315,
+        "elapsed_ms": 137.3927900021954,
+        "correct": true
+      },
+      {
+        "input": "define para mí entrelazamiento",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "",
+        "kind": "known",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5350571897848406,
+        "elapsed_ms": 135.2050820023578,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de entrelazamiento",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "",
+        "kind": "known",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.35674927992889427,
+        "elapsed_ms": 124.5884890013258,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "define para mí entrelazamiento",
+        "kind": "context",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.27818741916826056,
+        "elapsed_ms": 126.17563999810955,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "previous": "define para mí entrelazamiento",
+        "kind": "context",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.26191136151041144,
+        "elapsed_ms": 144.99729400267825,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es medición?",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "",
+        "kind": "known",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7897687696686133,
+        "elapsed_ms": 166.32587499771034,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender medición",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "",
+        "kind": "known",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4251861471329424,
+        "elapsed_ms": 187.19012099973042,
+        "correct": true
+      },
+      {
+        "input": "define para mí medición",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "",
+        "kind": "known",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.330943492326589,
+        "elapsed_ms": 183.1168409989914,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de medición",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "",
+        "kind": "known",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.44338186816212166,
+        "elapsed_ms": 198.12875999923563,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "define para mí medición",
+        "kind": "context",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2902405998625589,
+        "elapsed_ms": 212.69243599817855,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "medir produce un resultado según el estado .",
+        "previous": "define para mí medición",
+        "kind": "context",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2693775276251603,
+        "elapsed_ms": 215.16001599957235,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es interferencia?",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "",
+        "kind": "known",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4104030709023265,
+        "elapsed_ms": 134.8701950009854,
+        "correct": false
+      },
+      {
+        "input": "me interesa entender interferencia",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "",
+        "kind": "known",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5803453895142677,
+        "elapsed_ms": 133.36267299746396,
+        "correct": true
+      },
+      {
+        "input": "define para mí interferencia",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "",
+        "kind": "known",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3829287580306766,
+        "elapsed_ms": 123.94744599805563,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de interferencia",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "",
+        "kind": "known",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7258923875811736,
+        "elapsed_ms": 135.4996679983742,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "define para mí interferencia",
+        "kind": "context",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4446055262119962,
+        "elapsed_ms": 109.40969600051176,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "la interferencia combina amplitudes .",
+        "previous": "define para mí interferencia",
+        "kind": "context",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.36663285578444477,
+        "elapsed_ms": 146.23943700280506,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es xi?",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.9349351161004167,
+        "elapsed_ms": 178.66637100087246,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender xi",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5197832777871312,
+        "elapsed_ms": 171.47526199914864,
+        "correct": true
+      },
+      {
+        "input": "define para mí xi",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4524318431093527,
+        "elapsed_ms": 144.0832859989314,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de xi",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.36965128360667526,
+        "elapsed_ms": 184.91868999990402,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "define para mí xi",
+        "kind": "context",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.27828982351452586,
+        "elapsed_ms": 182.03742100013187,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "previous": "define para mí xi",
+        "kind": "context",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.26720789196970196,
+        "elapsed_ms": 152.08194799924968,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es ether?",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "",
+        "kind": "known",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.6905035308871416,
+        "elapsed_ms": 162.8571120018023,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender ether",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "",
+        "kind": "known",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.32074028680928607,
+        "elapsed_ms": 137.8753390017664,
+        "correct": true
+      },
+      {
+        "input": "define para mí ether",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "",
+        "kind": "known",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.27923683413980227,
+        "elapsed_ms": 128.55325100099435,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de ether",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "",
+        "kind": "known",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3889691945763594,
+        "elapsed_ms": 164.48798100100248,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "define para mí ether",
+        "kind": "context",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.258076903765495,
+        "elapsed_ms": 155.4264950027573,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "previous": "define para mí ether",
+        "kind": "context",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2164877482345456,
+        "elapsed_ms": 170.0827290005691,
+        "correct": true
+      },
+      {
+        "input": "buenas bby",
+        "response": "hola x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hola X.",
+        "tokens": [
+          "hola",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.445696859907918,
+        "elapsed_ms": 83.78490100221825,
+        "correct": true
+      },
+      {
+        "input": "hey hola x",
+        "response": "hola x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hola X.",
+        "tokens": [
+          "hola",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.297327233546824,
+        "elapsed_ms": 95.08148999884725,
+        "correct": true
+      },
+      {
+        "input": "hola qué tal x",
+        "response": "hola x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hola X.",
+        "tokens": [
+          "hola",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.29999905146746947,
+        "elapsed_ms": 91.4549929984787,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir tu nombre?",
+        "response": "soy bby q .",
+        "previous": "",
+        "kind": "known",
+        "text": "Soy BBY Q.",
+        "tokens": [
+          "soy",
+          "bby",
+          "q",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8365401091252204,
+        "elapsed_ms": 116.22805700244498,
+        "correct": true
+      },
+      {
+        "input": "cómo debo llamarte",
+        "response": "soy bby q .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hola X.",
+        "tokens": [
+          "hola",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -2.0827493232628727,
+        "elapsed_ms": 78.70306000040728,
+        "correct": false
+      },
+      {
+        "input": "cuál nombre tienes",
+        "response": "soy bby q .",
+        "previous": "",
+        "kind": "known",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.733273047271822,
+        "elapsed_ms": 176.283090000652,
+        "correct": false
+      },
+      {
+        "input": "¿puedes decir cuántos cúbits usas?",
+        "response": "tengo cien cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Tengo cien cúbits.",
+        "tokens": [
+          "tengo",
+          "cien",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.0941341499125166,
+        "elapsed_ms": 97.57911500128102,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer tu número de qubits",
+        "response": "tengo cien cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Tengo cien cúbits.",
+        "tokens": [
+          "tengo",
+          "cien",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8559286468324723,
+        "elapsed_ms": 112.35256900181412,
+        "correct": true
+      },
+      {
+        "input": "cuántos cúbits utilizas",
+        "response": "tengo cien cúbits .",
+        "previous": "",
+        "kind": "known",
+        "text": "Tengo cien cúbits.",
+        "tokens": [
+          "tengo",
+          "cien",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.4185236749428,
+        "elapsed_ms": 86.1472960023093,
+        "correct": true
+      },
+      {
+        "input": "puedes explicar tu aprendizaje",
+        "response": "aprendo con ejemplos y correcciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Aprendo con ejemplos y correcciones.",
+        "tokens": [
+          "aprendo",
+          "con",
+          "ejemplos",
+          "y",
+          "correcciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.739858651343367,
+        "elapsed_ms": 149.86268900247524,
+        "correct": true
+      },
+      {
+        "input": "de qué forma aprendes",
+        "response": "aprendo con ejemplos y correcciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Aprendo con ejemplos y correcciones.",
+        "tokens": [
+          "aprendo",
+          "con",
+          "ejemplos",
+          "y",
+          "correcciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.3540700553965186,
+        "elapsed_ms": 129.1665249991638,
+        "correct": true
+      },
+      {
+        "input": "háblame de tu aprendizaje",
+        "response": "aprendo con ejemplos y correcciones .",
+        "previous": "",
+        "kind": "known",
+        "text": "Aprendo con ejemplos y correcciones.",
+        "tokens": [
+          "aprendo",
+          "con",
+          "ejemplos",
+          "y",
+          "correcciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.4241735070853454,
+        "elapsed_ms": 139.2152789994725,
+        "correct": true
+      },
+      {
+        "input": "gracias por la ayuda",
+        "response": "de nada x .",
+        "previous": "",
+        "kind": "known",
+        "text": "De nada X.",
+        "tokens": [
+          "de",
+          "nada",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.2458715154870774,
+        "elapsed_ms": 103.44719999920926,
+        "correct": true
+      },
+      {
+        "input": "muchas gracias bby q",
+        "response": "de nada x .",
+        "previous": "",
+        "kind": "known",
+        "text": "De nada X.",
+        "tokens": [
+          "de",
+          "nada",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5724203273268353,
+        "elapsed_ms": 108.79548200318823,
+        "correct": true
+      },
+      {
+        "input": "te agradezco la respuesta",
+        "response": "de nada x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.3448739521018933,
+        "elapsed_ms": 145.9045129995502,
+        "correct": false
+      },
+      {
+        "input": "bueno nos vemos",
+        "response": "hasta luego x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hasta luego X.",
+        "tokens": [
+          "hasta",
+          "luego",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8444924419995014,
+        "elapsed_ms": 103.00887999983388,
+        "correct": true
+      },
+      {
+        "input": "adiós hasta pronto",
+        "response": "hasta luego x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hasta luego X.",
+        "tokens": [
+          "hasta",
+          "luego",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.4711835179310434,
+        "elapsed_ms": 95.15305999957491,
+        "correct": true
+      },
+      {
+        "input": "bby q hasta luego",
+        "response": "hasta luego x .",
+        "previous": "",
+        "kind": "known",
+        "text": "Hasta luego X.",
+        "tokens": [
+          "hasta",
+          "luego",
+          "x",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8102489051627254,
+        "elapsed_ms": 107.91488599716104,
+        "correct": true
+      },
+      {
+        "input": "¿cómo puedo corregirte?",
+        "response": "puedes corregirme para que aprenda .",
+        "previous": "",
+        "kind": "known",
+        "text": "Puedes corregirme para que aprenda.",
+        "tokens": [
+          "puedes",
+          "corregirme",
+          "para",
+          "que",
+          "aprenda",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7613588527935297,
+        "elapsed_ms": 142.44197699736105,
+        "correct": true
+      },
+      {
+        "input": "quisiera enseñarte",
+        "response": "puedes corregirme para que aprenda .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.3467698601622933,
+        "elapsed_ms": 140.28463500289945,
+        "correct": false
+      },
+      {
+        "input": "quiero darte una corrección",
+        "response": "puedes corregirme para que aprenda .",
+        "previous": "",
+        "kind": "known",
+        "text": "Puedes corregirme para que aprenda.",
+        "tokens": [
+          "puedes",
+          "corregirme",
+          "para",
+          "que",
+          "aprenda",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7672577752531201,
+        "elapsed_ms": 151.7073880022508,
+        "correct": true
+      },
+      {
+        "input": "quiero saber si tus estados son exactos",
+        "response": "mis estados clifford usan álgebra exacta .",
+        "previous": "",
+        "kind": "known",
+        "text": "Mis estados clifford usan álgebra exacta.",
+        "tokens": [
+          "mis",
+          "estados",
+          "clifford",
+          "usan",
+          "álgebra",
+          "exacta",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5803437890633518,
+        "elapsed_ms": 193.59400599932997,
+        "correct": true
+      },
+      {
+        "input": "puedes explicar tus estados clifford",
+        "response": "mis estados clifford usan álgebra exacta .",
+        "previous": "",
+        "kind": "known",
+        "text": "Mis estados clifford usan álgebra exacta.",
+        "tokens": [
+          "mis",
+          "estados",
+          "clifford",
+          "usan",
+          "álgebra",
+          "exacta",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.01325296787318,
+        "elapsed_ms": 164.65001499818754,
+        "correct": true
+      },
+      {
+        "input": "tus estados usan álgebra exacta",
+        "response": "mis estados clifford usan álgebra exacta .",
+        "previous": "",
+        "kind": "known",
+        "text": "Mis estados clifford usan álgebra exacta.",
+        "tokens": [
+          "mis",
+          "estados",
+          "clifford",
+          "usan",
+          "álgebra",
+          "exacta",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -1.023488383496971,
+        "elapsed_ms": 165.05051300191553,
+        "correct": true
+      },
+      {
+        "input": "conoces ya todo",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3298553489936426,
+        "elapsed_ms": 142.5311920029344,
+        "correct": true
+      },
+      {
+        "input": "entonces puedes saberlo todo",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.40226378615357755,
+        "elapsed_ms": 113.64749600033974,
+        "correct": true
+      },
+      {
+        "input": "quiero saber si sabes todo",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "known",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3447931670793862,
+        "elapsed_ms": 146.067892001156,
+        "correct": true
+      },
+      {
+        "input": "qué es motor eléctrico",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 137.6596789996256,
+        "correct": true
+      },
+      {
+        "input": "explícame motor eléctrico",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 141.02645399907487,
+        "correct": true
+      },
+      {
+        "input": "qué es satélite",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 142.15716699982295,
+        "correct": true
+      },
+      {
+        "input": "explícame satélite",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 152.33281499968143,
+        "correct": true
+      },
+      {
+        "input": "qué es electrón",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 147.03528999962145,
+        "correct": true
+      },
+      {
+        "input": "explícame electrón",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 124.890441999014,
+        "correct": true
+      },
+      {
+        "input": "qué es glaciar",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 146.429847998661,
+        "correct": true
+      },
+      {
+        "input": "explícame glaciar",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 143.00201199876028,
+        "correct": true
+      },
+      {
+        "input": "qué es órbita",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 145.03976400010288,
+        "correct": true
+      },
+      {
+        "input": "explícame órbita",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 111.67548400044325,
+        "correct": true
+      },
+      {
+        "input": "qué es antena",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 163.05773699787096,
+        "correct": true
+      },
+      {
+        "input": "explícame antena",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 145.61208699888084,
+        "correct": true
+      },
+      {
+        "input": "qué es meteoro",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 142.75236599860364,
+        "correct": true
+      },
+      {
+        "input": "explícame meteoro",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 144.52447799703805,
+        "correct": true
+      },
+      {
+        "input": "qué es cristal",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.1905633322214464,
+        "elapsed_ms": 145.37399400069262,
+        "correct": true
+      },
+      {
+        "input": "explícame cristal",
+        "response": "necesito más ejemplos para aprender .",
+        "previous": "",
+        "kind": "unknown",
+        "text": "Necesito más ejemplos para aprender.",
+        "tokens": [
+          "necesito",
+          "más",
+          "ejemplos",
+          "para",
+          "aprender",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.5147325573258267,
+        "elapsed_ms": 133.43196799905854,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas memoria",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.27879049371558706,
+        "elapsed_ms": 173.75375799747417,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques memoria",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.24333728434631502,
+        "elapsed_ms": 170.34078000142472,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas dato",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.35175698446132136,
+        "elapsed_ms": 168.15874100211659,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques dato",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.343824690840974,
+        "elapsed_ms": 184.4864660015446,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas algoritmo",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3750607846587326,
+        "elapsed_ms": 190.68162900293828,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques algoritmo",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.37891549095087484,
+        "elapsed_ms": 189.94183800168685,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas circuito",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3821402685124163,
+        "elapsed_ms": 192.2607889973733,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques circuito",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3869727495909717,
+        "elapsed_ms": 193.23574400186772,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas cúbit",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3562363448451421,
+        "elapsed_ms": 192.28173499868717,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques cúbit",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3482666241587339,
+        "elapsed_ms": 184.16626799808,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas entrelazamiento",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.27804555841123224,
+        "elapsed_ms": 176.48413899951265,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques entrelazamiento",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2489140417068519,
+        "elapsed_ms": 203.78146399889374,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas medición",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.26240171382694366,
+        "elapsed_ms": 187.32541399731417,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques medición",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.22909309280509899,
+        "elapsed_ms": 198.44903200282715,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas interferencia",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2409089128739814,
+        "elapsed_ms": 183.68399100290844,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques interferencia",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2146216102748114,
+        "elapsed_ms": 180.96655499903136,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas xi",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3125320859878606,
+        "elapsed_ms": 173.52533899975242,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques xi",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3058094175407968,
+        "elapsed_ms": 189.79477200264228,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas ether",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2497592162009837,
+        "elapsed_ms": 143.30192400302622,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques ether",
+        "response": "de acuerdo . no daré esa definición .",
+        "kind": "negation",
+        "text": "De acuerdo. no daré esa definición.",
+        "tokens": [
+          "de",
+          "acuerdo",
+          ".",
+          "no",
+          "daré",
+          "esa",
+          "definición",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.21983847165174358,
+        "elapsed_ms": 150.5424880015198,
+        "correct": true
+      },
+      {
+        "input": "define memoria no algoritmo",
+        "response": "la memoria conserva información .",
+        "kind": "order",
+        "text": "La memoria conserva información.",
+        "tokens": [
+          "la",
+          "memoria",
+          "conserva",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2642159541233253,
+        "elapsed_ms": 100.20531700138235,
+        "correct": true
+      },
+      {
+        "input": "define memoria no interferencia",
+        "response": "la memoria conserva información .",
+        "kind": "order",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.38649366007261654,
+        "elapsed_ms": 117.4233390011068,
+        "correct": false
+      },
+      {
+        "input": "define dato no circuito",
+        "response": "un dato representa información .",
+        "kind": "order",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3738931398940247,
+        "elapsed_ms": 116.61190599988913,
+        "correct": true
+      },
+      {
+        "input": "define dato no xi",
+        "response": "un dato representa información .",
+        "kind": "order",
+        "text": "Un dato representa información.",
+        "tokens": [
+          "un",
+          "dato",
+          "representa",
+          "información",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.8051383443579042,
+        "elapsed_ms": 92.83297399815638,
+        "correct": true
+      },
+      {
+        "input": "define algoritmo no cúbit",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "kind": "order",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7482498462386439,
+        "elapsed_ms": 161.59170199898654,
+        "correct": true
+      },
+      {
+        "input": "define algoritmo no ether",
+        "response": "un algoritmo es una serie de instrucciones .",
+        "kind": "order",
+        "text": "Un algoritmo es una serie de instrucciones.",
+        "tokens": [
+          "un",
+          "algoritmo",
+          "es",
+          "una",
+          "serie",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2752054868047249,
+        "elapsed_ms": 167.27284499938833,
+        "correct": true
+      },
+      {
+        "input": "define circuito no entrelazamiento",
+        "response": "un circuito aplica puertas a los cúbits .",
+        "kind": "order",
+        "text": "Un circuito aplica puertas a los cúbits.",
+        "tokens": [
+          "un",
+          "circuito",
+          "aplica",
+          "puertas",
+          "a",
+          "los",
+          "cúbits",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.7890540961618454,
+        "elapsed_ms": 161.44193599757273,
+        "correct": true
+      },
+      {
+        "input": "define cúbit no memoria",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "kind": "order",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.46481505759221836,
+        "elapsed_ms": 216.45133100173553,
+        "correct": true
+      },
+      {
+        "input": "define cúbit no medición",
+        "response": "un cúbit es una unidad de información cuántica .",
+        "kind": "order",
+        "text": "Un cúbit es una unidad de información cuántica.",
+        "tokens": [
+          "un",
+          "cúbit",
+          "es",
+          "una",
+          "unidad",
+          "de",
+          "información",
+          "cuántica",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.43031961330060214,
+        "elapsed_ms": 195.4777369974181,
+        "correct": true
+      },
+      {
+        "input": "define entrelazamiento no dato",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "kind": "order",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2100124768660219,
+        "elapsed_ms": 125.37816799886059,
+        "correct": true
+      },
+      {
+        "input": "define entrelazamiento no interferencia",
+        "response": "el entrelazamiento crea correlaciones cuánticas .",
+        "kind": "order",
+        "text": "El entrelazamiento crea correlaciones cuánticas.",
+        "tokens": [
+          "el",
+          "entrelazamiento",
+          "crea",
+          "correlaciones",
+          "cuánticas",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.16023419818464443,
+        "elapsed_ms": 129.03839600039646,
+        "correct": true
+      },
+      {
+        "input": "define medición no algoritmo",
+        "response": "medir produce un resultado según el estado .",
+        "kind": "order",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.24292529984574318,
+        "elapsed_ms": 157.55007099869545,
+        "correct": true
+      },
+      {
+        "input": "define medición no xi",
+        "response": "medir produce un resultado según el estado .",
+        "kind": "order",
+        "text": "Medir produce un resultado según el estado.",
+        "tokens": [
+          "medir",
+          "produce",
+          "un",
+          "resultado",
+          "según",
+          "el",
+          "estado",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.3258892027772301,
+        "elapsed_ms": 152.2585149978113,
+        "correct": true
+      },
+      {
+        "input": "define interferencia no circuito",
+        "response": "la interferencia combina amplitudes .",
+        "kind": "order",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.13419875928434538,
+        "elapsed_ms": 92.62021399990772,
+        "correct": true
+      },
+      {
+        "input": "define interferencia no ether",
+        "response": "la interferencia combina amplitudes .",
+        "kind": "order",
+        "text": "La interferencia combina amplitudes.",
+        "tokens": [
+          "la",
+          "interferencia",
+          "combina",
+          "amplitudes",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.30672479617504284,
+        "elapsed_ms": 108.77046200039331,
+        "correct": true
+      },
+      {
+        "input": "define xi no cúbit",
+        "response": "xi es nuestro lenguaje de instrucciones .",
+        "kind": "order",
+        "text": "XI es nuestro lenguaje de instrucciones.",
+        "tokens": [
+          "xi",
+          "es",
+          "nuestro",
+          "lenguaje",
+          "de",
+          "instrucciones",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.30966737081070583,
+        "elapsed_ms": 126.20235099893762,
+        "correct": true
+      },
+      {
+        "input": "define ether no memoria",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "kind": "order",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.2383857117945184,
+        "elapsed_ms": 120.19498200243106,
+        "correct": true
+      },
+      {
+        "input": "define ether no entrelazamiento",
+        "response": "ether ejecuta nuestro núcleo cuántico .",
+        "kind": "order",
+        "text": "Ether ejecuta nuestro núcleo cuántico.",
+        "tokens": [
+          "ether",
+          "ejecuta",
+          "nuestro",
+          "núcleo",
+          "cuántico",
+          "."
+        ],
+        "terminated": true,
+        "log_probability": -0.6552783716909308,
+        "elapsed_ms": 121.9807130000845,
+        "correct": true
+      }
+    ]
+  },
+  "intent": {
+    "correct": 349,
+    "total": 351,
+    "accuracy": 0.9943019943019943,
+    "groups": {
+      "2": {
+        "correct": 36,
+        "total": 36
+      },
+      "3": {
+        "correct": 36,
+        "total": 36
+      },
+      "4": {
+        "correct": 3,
+        "total": 3
+      },
+      "5": {
+        "correct": 36,
+        "total": 36
+      },
+      "6": {
+        "correct": 36,
+        "total": 36
+      },
+      "7": {
+        "correct": 12,
+        "total": 12
+      },
+      "8": {
+        "correct": 36,
+        "total": 36
+      },
+      "9": {
+        "correct": 32,
+        "total": 32
+      },
+      "1": {
+        "correct": 103,
+        "total": 105
+      },
+      "0": {
+        "correct": 19,
+        "total": 19
+      }
+    },
+    "usage": {
+      "peak_rss_kib": 64648,
+      "rusage_peak_rss_kib": 64456,
+      "rss_measurement": "Linux VmHWM after exec",
+      "cpu_ms": 49450.209,
+      "active_qubits": 100,
+      "quantum_payload_bytes": 3300
+    },
+    "cases": [
+      {
+        "input": "Hay 295 cajas de 27 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2510785351430708,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 386 cajas de 50 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.24763016624803857,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 446 cajas de 59 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2241127062158884,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 101 cajas de 47 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.23525895356064402,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 87 cajas de 49 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2288223715219302,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 85 cajas de 48 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2326879234357305,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 321 cajas de 54 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.24485934124841316,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 248 cajas de 35 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.22930299561622725,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 361 cajas de 41 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2554860510160387,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 234 cajas de 14 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.2565014923087522,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 269 cajas de 22 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.21035883795065677,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Hay 137 cajas de 39 piezas cada una. Calcula el total.",
+        "intent": 2,
+        "log_probability": -0.21743856909913342,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 480 y cuesta 24. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1683236279893757,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 156 y cuesta 52. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.18815513613618912,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 240 y cuesta 52. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1876428751267059,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 159 y cuesta 7. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1333493020350008,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 449 y cuesta 69. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1668975376469651,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 224 y cuesta 63. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.16119097977715285,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 363 y cuesta 27. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1891986396652935,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 119 y cuesta 64. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.19037400789001713,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 180 y cuesta 37. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.19145806615184038,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 147 y cuesta 55. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1851205318143888,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 302 y cuesta 51. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1898053436986835,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Pago 359 y cuesta 59. Dime el cambio.",
+        "intent": 2,
+        "log_probability": -0.1522400961898283,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 182 libros y regalé 17. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.13808688235027775,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 349 libros y regalé 19. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.15153251908101562,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 154 libros y regalé 43. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.12064380447626469,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 391 libros y regalé 59. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.13672160622578486,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 402 libros y regalé 40. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.16403129071715997,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 185 libros y regalé 37. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.16710670102820846,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 476 libros y regalé 3. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.15936097363111318,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 267 libros y regalé 15. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.14389452421360038,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 409 libros y regalé 60. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.15294745107154872,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 94 libros y regalé 30. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.16015176943427806,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 344 libros y regalé 7. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.12046954821418157,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Tenía 291 libros y regalé 18. ¿Cuántos quedan?",
+        "intent": 2,
+        "log_probability": -0.16081416311690355,
+        "expected_intent": 2,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Orenda Verde.",
+        "intent": 3,
+        "log_probability": -0.050149912877875645,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Roca Lunar.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Vela Dorada.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Marea.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Bosque Lejano.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Nube Clara.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Viento.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Cima Azul.",
+        "intent": 3,
+        "log_probability": -0.05642328081846565,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Lucero.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Sol Nuevo.",
+        "intent": 3,
+        "log_probability": -0.04308107962998914,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Costa.",
+        "intent": 3,
+        "log_probability": -0.039359279090653516,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Recuerda que mi robot se llama Árbol Vivo.",
+        "intent": 3,
+        "log_probability": -0.043482116563742075,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Orenda Verde.",
+        "intent": 3,
+        "log_probability": -0.17987149234975572,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Roca Lunar.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Vela Dorada.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Marea.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Bosque Lejano.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Nube Clara.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Viento.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Cima Azul.",
+        "intent": 3,
+        "log_probability": -0.12360923459563188,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Lucero.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Sol Nuevo.",
+        "intent": 3,
+        "log_probability": -0.1832412258973199,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Costa.",
+        "intent": 3,
+        "log_probability": -0.18545528641724832,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Quiero que recuerdes que mi nave se llama Árbol Vivo.",
+        "intent": 3,
+        "log_probability": -0.18027653058179147,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Orenda Verde.",
+        "intent": 3,
+        "log_probability": -0.03890504629359219,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Roca Lunar.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Vela Dorada.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Marea.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Bosque Lejano.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Nube Clara.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Viento.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Cima Azul.",
+        "intent": 3,
+        "log_probability": -0.029153833774488224,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Lucero.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Sol Nuevo.",
+        "intent": 3,
+        "log_probability": -0.03923710861482306,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Costa.",
+        "intent": 3,
+        "log_probability": -0.039416629655343705,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "Guarda el nombre de mi proyecto: Árbol Vivo.",
+        "intent": 3,
+        "log_probability": -0.0387189255502702,
+        "expected_intent": 3,
+        "correct": true
+      },
+      {
+        "input": "¿Cómo se llama mi robot?",
+        "intent": 4,
+        "log_probability": -0.02067378301384445,
+        "expected_intent": 4,
+        "correct": true
+      },
+      {
+        "input": "Dime cómo se llama mi nave.",
+        "intent": 4,
+        "log_probability": -0.019397314109386145,
+        "expected_intent": 4,
+        "correct": true
+      },
+      {
+        "input": "¿Cuál es el nombre de mi proyecto?",
+        "intent": 4,
+        "log_probability": -0.33393201029343694,
+        "expected_intent": 4,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Orenda Verde es mortal.",
+        "intent": 5,
+        "log_probability": -0.14335957305058394,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Roca Lunar es mortal.",
+        "intent": 5,
+        "log_probability": -0.17405082660221904,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Vela Dorada es mortal.",
+        "intent": 5,
+        "log_probability": -0.17405082660221904,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Marea es mortal.",
+        "intent": 5,
+        "log_probability": -0.1740255928726236,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Bosque Lejano es mortal.",
+        "intent": 5,
+        "log_probability": -0.17405082660221904,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Nube Clara es mortal.",
+        "intent": 5,
+        "log_probability": -0.17405082660221904,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Viento es mortal.",
+        "intent": 5,
+        "log_probability": -0.1740255928726236,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Cima Azul es mortal.",
+        "intent": 5,
+        "log_probability": -0.11674263396651548,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Lucero es mortal.",
+        "intent": 5,
+        "log_probability": -0.1740255928726236,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Sol Nuevo es mortal.",
+        "intent": 5,
+        "log_probability": -0.15760196455757813,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Costa es mortal.",
+        "intent": 5,
+        "log_probability": -0.1740255928726236,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Con lo que aprendiste, dime si Árbol Vivo es mortal.",
+        "intent": 5,
+        "log_probability": -0.15518474799090093,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Orenda Verde es mortal?",
+        "intent": 5,
+        "log_probability": -0.06426793077014392,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Roca Lunar es mortal?",
+        "intent": 5,
+        "log_probability": -0.07730737955688614,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Vela Dorada es mortal?",
+        "intent": 5,
+        "log_probability": -0.07730737955688614,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Marea es mortal?",
+        "intent": 5,
+        "log_probability": -0.07729418883551165,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Bosque Lejano es mortal?",
+        "intent": 5,
+        "log_probability": -0.07730737955688614,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Nube Clara es mortal?",
+        "intent": 5,
+        "log_probability": -0.07730737955688614,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Viento es mortal?",
+        "intent": 5,
+        "log_probability": -0.07729418883551165,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Cima Azul es mortal?",
+        "intent": 5,
+        "log_probability": -0.052588874528361265,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Lucero es mortal?",
+        "intent": 5,
+        "log_probability": -0.07729418883551165,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Sol Nuevo es mortal?",
+        "intent": 5,
+        "log_probability": -0.0700100266318316,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Costa es mortal?",
+        "intent": 5,
+        "log_probability": -0.07729418883551165,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "Según lo que sabes, ¿Árbol Vivo es mortal?",
+        "intent": 5,
+        "log_probability": -0.06889734318211797,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Orenda Verde a los mortales?",
+        "intent": 5,
+        "log_probability": -0.0950937170653472,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Roca Lunar a los mortales?",
+        "intent": 5,
+        "log_probability": -0.10605710860972889,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Vela Dorada a los mortales?",
+        "intent": 5,
+        "log_probability": -0.10605710860972889,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Marea a los mortales?",
+        "intent": 5,
+        "log_probability": -0.1061334346731789,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Bosque Lejano a los mortales?",
+        "intent": 5,
+        "log_probability": -0.10605710860972889,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Nube Clara a los mortales?",
+        "intent": 5,
+        "log_probability": -0.10605710860972889,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Viento a los mortales?",
+        "intent": 5,
+        "log_probability": -0.1061334346731789,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Cima Azul a los mortales?",
+        "intent": 5,
+        "log_probability": -0.07678791475797511,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Lucero a los mortales?",
+        "intent": 5,
+        "log_probability": -0.1061334346731789,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Sol Nuevo a los mortales?",
+        "intent": 5,
+        "log_probability": -0.09726829559194516,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Costa a los mortales?",
+        "intent": 5,
+        "log_probability": -0.1061334346731789,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "¿Pertenece Árbol Vivo a los mortales?",
+        "intent": 5,
+        "log_probability": -0.09574521269050579,
+        "expected_intent": 5,
+        "correct": true
+      },
+      {
+        "input": "La Orenda Verde está conectada al puente y el puente al taller. Explica cómo llegar de Orenda Verde a taller.",
+        "intent": 6,
+        "log_probability": -0.15358655549313105,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Roca Lunar está conectada al puente y el puente al taller. Explica cómo llegar de Roca Lunar a taller.",
+        "intent": 6,
+        "log_probability": -0.2717907933827327,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Vela Dorada está conectada al puente y el puente al taller. Explica cómo llegar de Vela Dorada a taller.",
+        "intent": 6,
+        "log_probability": -0.2717907933827327,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Marea está conectada al puente y el puente al taller. Explica cómo llegar de Marea a taller.",
+        "intent": 6,
+        "log_probability": -0.27164867488866207,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Bosque Lejano está conectada al puente y el puente al taller. Explica cómo llegar de Bosque Lejano a taller.",
+        "intent": 6,
+        "log_probability": -0.2717907933827327,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Nube Clara está conectada al puente y el puente al taller. Explica cómo llegar de Nube Clara a taller.",
+        "intent": 6,
+        "log_probability": -0.2717907933827327,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Viento está conectada al puente y el puente al taller. Explica cómo llegar de Viento a taller.",
+        "intent": 6,
+        "log_probability": -0.27164867488866207,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Cima Azul está conectada al puente y el puente al taller. Explica cómo llegar de Cima Azul a taller.",
+        "intent": 6,
+        "log_probability": -0.1348685562610901,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Lucero está conectada al puente y el puente al taller. Explica cómo llegar de Lucero a taller.",
+        "intent": 6,
+        "log_probability": -0.27164867488866207,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Sol Nuevo está conectada al puente y el puente al taller. Explica cómo llegar de Sol Nuevo a taller.",
+        "intent": 6,
+        "log_probability": -0.23435702838835762,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Costa está conectada al puente y el puente al taller. Explica cómo llegar de Costa a taller.",
+        "intent": 6,
+        "log_probability": -0.27164867488866207,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "La Árbol Vivo está conectada al puente y el puente al taller. Explica cómo llegar de Árbol Vivo a taller.",
+        "intent": 6,
+        "log_probability": -0.23762009159436598,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Orenda Verde hasta el parque y del parque a la tienda. Dime la ruta de Orenda Verde a tienda.",
+        "intent": 6,
+        "log_probability": -0.02543237346746303,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Roca Lunar hasta el parque y del parque a la tienda. Dime la ruta de Roca Lunar a tienda.",
+        "intent": 6,
+        "log_probability": -0.046415756369394816,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Vela Dorada hasta el parque y del parque a la tienda. Dime la ruta de Vela Dorada a tienda.",
+        "intent": 6,
+        "log_probability": -0.046415756369394816,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Marea hasta el parque y del parque a la tienda. Dime la ruta de Marea a tienda.",
+        "intent": 6,
+        "log_probability": -0.04637654562204631,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Bosque Lejano hasta el parque y del parque a la tienda. Dime la ruta de Bosque Lejano a tienda.",
+        "intent": 6,
+        "log_probability": -0.046415756369394816,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Nube Clara hasta el parque y del parque a la tienda. Dime la ruta de Nube Clara a tienda.",
+        "intent": 6,
+        "log_probability": -0.046415756369394816,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Viento hasta el parque y del parque a la tienda. Dime la ruta de Viento a tienda.",
+        "intent": 6,
+        "log_probability": -0.04637654562204631,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Cima Azul hasta el parque y del parque a la tienda. Dime la ruta de Cima Azul a tienda.",
+        "intent": 6,
+        "log_probability": -0.02021952278218759,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Lucero hasta el parque y del parque a la tienda. Dime la ruta de Lucero a tienda.",
+        "intent": 6,
+        "log_probability": -0.04637654562204631,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Sol Nuevo hasta el parque y del parque a la tienda. Dime la ruta de Sol Nuevo a tienda.",
+        "intent": 6,
+        "log_probability": -0.03819729786704133,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Costa hasta el parque y del parque a la tienda. Dime la ruta de Costa a tienda.",
+        "intent": 6,
+        "log_probability": -0.04637654562204631,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Hay un camino desde Árbol Vivo hasta el parque y del parque a la tienda. Dime la ruta de Árbol Vivo a tienda.",
+        "intent": 6,
+        "log_probability": -0.03795211389516211,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Orenda Verde puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Orenda Verde a museo?",
+        "intent": 6,
+        "log_probability": -0.020887717100547303,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Roca Lunar puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Roca Lunar a museo?",
+        "intent": 6,
+        "log_probability": -0.03635879852578376,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Vela Dorada puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Vela Dorada a museo?",
+        "intent": 6,
+        "log_probability": -0.03635879852578376,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Marea puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Marea a museo?",
+        "intent": 6,
+        "log_probability": -0.036362000518259434,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Bosque Lejano puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Bosque Lejano a museo?",
+        "intent": 6,
+        "log_probability": -0.03635879852578376,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Nube Clara puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Nube Clara a museo?",
+        "intent": 6,
+        "log_probability": -0.03635879852578376,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Viento puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Viento a museo?",
+        "intent": 6,
+        "log_probability": -0.036362000518259434,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Cima Azul puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Cima Azul a museo?",
+        "intent": 6,
+        "log_probability": -0.02003767620502355,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Lucero puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Lucero a museo?",
+        "intent": 6,
+        "log_probability": -0.036362000518259434,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Sol Nuevo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Sol Nuevo a museo?",
+        "intent": 6,
+        "log_probability": -0.03214704490613253,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Costa puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Costa a museo?",
+        "intent": 6,
+        "log_probability": -0.036362000518259434,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Desde Árbol Vivo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Árbol Vivo a museo?",
+        "intent": 6,
+        "log_probability": -0.03308408622993024,
+        "expected_intent": 6,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 298 por 20.",
+        "intent": 7,
+        "log_probability": -0.011852814972670312,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 480 por 39.",
+        "intent": 7,
+        "log_probability": -0.011730959225426793,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 485 por 38.",
+        "intent": 7,
+        "log_probability": -0.011540960045799225,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 338 por 14.",
+        "intent": 7,
+        "log_probability": -0.011175488523091272,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 209 por 29.",
+        "intent": 7,
+        "log_probability": -0.011724328741590656,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 387 por 50.",
+        "intent": 7,
+        "log_probability": -0.01160824622978679,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 291 por 33.",
+        "intent": 7,
+        "log_probability": -0.011736722155398921,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 174 por 46.",
+        "intent": 7,
+        "log_probability": -0.011625086418916698,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 276 por 32.",
+        "intent": 7,
+        "log_probability": -0.01176040949502776,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 102 por 33.",
+        "intent": 7,
+        "log_probability": -0.011689901242811659,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 174 por 10.",
+        "intent": 7,
+        "log_probability": -0.011322969844719526,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Salúdame y luego calcula 437 por 20.",
+        "intent": 7,
+        "log_probability": -0.011835439477040919,
+        "expected_intent": 7,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Orenda Verde no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.008116440341906193,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Roca Lunar no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.00810895823225168,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Vela Dorada no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.00810895823225168,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Marea no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.008115320720018733,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Bosque Lejano no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.00810895823225168,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Nube Clara no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.00810895823225168,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Viento no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.008115320720018733,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Cima Azul no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.006901834217504852,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Lucero no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.008115320720018733,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Sol Nuevo no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.007867822278547501,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Costa no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.008115320720018733,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Me equivoqué: Árbol Vivo no está activa. Corrige ese dato.",
+        "intent": 8,
+        "log_probability": -0.007857592397141079,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Orenda Verde ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.01212262966329637,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Roca Lunar ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012108880408150668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Vela Dorada ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012108880408150668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Marea ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012099902894356668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Bosque Lejano ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012108880408150668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Nube Clara ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012108880408150668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Viento ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012099902894356668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Cima Azul ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.01027374710974379,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Lucero ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012099902894356668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Sol Nuevo ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.011745152614594075,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Costa ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.012099902894356668,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Corrige lo anterior: Árbol Vivo ya no es activa.",
+        "intent": 8,
+        "log_probability": -0.011728608314444982,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Orenda Verde está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03428589452839667,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Roca Lunar está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03327212634216821,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Vela Dorada está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03327212634216821,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Marea está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03326690489665099,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Bosque Lejano está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03327212634216821,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Nube Clara está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03327212634216821,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Viento está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03326690489665099,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Cima Azul está inactiva.",
+        "intent": 8,
+        "log_probability": -0.027992976807020842,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Lucero está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03326690489665099,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Sol Nuevo está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03345310635033315,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Costa está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03326690489665099,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Actualiza el dato: Árbol Vivo está inactiva.",
+        "intent": 8,
+        "log_probability": -0.03332290459265342,
+        "expected_intent": 8,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 243 por 7.",
+        "intent": 9,
+        "log_probability": -0.037322052146617275,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 293 por 17.",
+        "intent": 9,
+        "log_probability": -0.03647575082198675,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 391 por 46.",
+        "intent": 9,
+        "log_probability": -0.03577471245376473,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 475 por 2.",
+        "intent": 9,
+        "log_probability": -0.03401564690188086,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 127 por 61.",
+        "intent": 9,
+        "log_probability": -0.03390366372505529,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 335 por 65.",
+        "intent": 9,
+        "log_probability": -0.035909963330988226,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 424 por 69.",
+        "intent": 9,
+        "log_probability": -0.03631262741492921,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 127 por 40.",
+        "intent": 9,
+        "log_probability": -0.03521386418492768,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 114 por 59.",
+        "intent": 9,
+        "log_probability": -0.035605713832288804,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 339 por 43.",
+        "intent": 9,
+        "log_probability": -0.035941740124794536,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 108 por 15.",
+        "intent": 9,
+        "log_probability": -0.03640529214792638,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "Por favor no calcules 497 por 34.",
+        "intent": 9,
+        "log_probability": -0.03545176006352341,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es memoria?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.09736202743927883,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender memoria",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1761633058229201,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí memoria",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.014724356110076145,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de memoria",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08034029166992535,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí memoria",
+        "intent": 1,
+        "log_probability": -0.010358725531669511,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí memoria",
+        "intent": 1,
+        "log_probability": -0.010184296078387016,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es dato?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1058286818376654,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender dato",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.18543558867341078,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí dato",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.016295303278624655,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de dato",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0826120846082662,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí dato",
+        "intent": 1,
+        "log_probability": -0.010077107009522333,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí dato",
+        "intent": 1,
+        "log_probability": -0.009914743267709143,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es algoritmo?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0919942467567215,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender algoritmo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.16755465456673477,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí algoritmo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.013923884499818764,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de algoritmo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.07330867803607845,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí algoritmo",
+        "intent": 1,
+        "log_probability": -0.010352028888267566,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí algoritmo",
+        "intent": 1,
+        "log_probability": -0.010182442659915044,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es circuito?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.11102206133911453,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender circuito",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1954668551658603,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí circuito",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.016307867032308014,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de circuito",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08604044224744715,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí circuito",
+        "intent": 1,
+        "log_probability": -0.010106489611520466,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí circuito",
+        "intent": 1,
+        "log_probability": -0.009950052282105194,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es cúbit?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.10935591774463704,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender cúbit",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.18881474719436575,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí cúbit",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.01573804109454536,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de cúbit",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08565814537926184,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí cúbit",
+        "intent": 1,
+        "log_probability": -0.010272940015988039,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí cúbit",
+        "intent": 1,
+        "log_probability": -0.010098424701185271,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es entrelazamiento?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.09416578183098412,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender entrelazamiento",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1724777867379975,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí entrelazamiento",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.014410565644288336,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de entrelazamiento",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.07278804265781653,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí entrelazamiento",
+        "intent": 1,
+        "log_probability": -0.01055010763046852,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí entrelazamiento",
+        "intent": 1,
+        "log_probability": -0.01038255924328276,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es medición?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.11267697038587146,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender medición",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.19828741831014451,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí medición",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.016482791670884935,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de medición",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08300284311937076,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí medición",
+        "intent": 1,
+        "log_probability": -0.010029042183059724,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí medición",
+        "intent": 1,
+        "log_probability": -0.00989370496533064,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es interferencia?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.11226586794372757,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender interferencia",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1975360230164722,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí interferencia",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.016424396677124968,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de interferencia",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08711961062564058,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí interferencia",
+        "intent": 1,
+        "log_probability": -0.009773744254761818,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí interferencia",
+        "intent": 1,
+        "log_probability": -0.009614528743820516,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es xi?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0996062851869208,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender xi",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.18468687254969288,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí xi",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.015363426999033121,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de xi",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08089470544156589,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí xi",
+        "intent": 1,
+        "log_probability": -0.009924550882837998,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí xi",
+        "intent": 1,
+        "log_probability": -0.009767148626125639,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir qué es ether?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.10148632366829716,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "me interesa entender ether",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.17751500370169707,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define para mí ether",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.01478010708766744,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer el significado de ether",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.07950008604354097,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "repítelo",
+        "previous": "define para mí ether",
+        "intent": 1,
+        "log_probability": -0.010062523720611184,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuéntalo otra vez",
+        "previous": "define para mí ether",
+        "intent": 1,
+        "log_probability": -0.009907945535870382,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "buenas bby",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.14162309797061534,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "hey hola x",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.12923505873946314,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "hola qué tal x",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.36161295209371724,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿puedes decir tu nombre?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1627052075186872,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cómo debo llamarte",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.0925791534100934,
+        "expected_intent": 1,
+        "correct": false
+      },
+      {
+        "input": "cuál nombre tienes",
+        "previous": "",
+        "intent": 4,
+        "log_probability": -0.02966957432397903,
+        "expected_intent": 1,
+        "correct": false
+      },
+      {
+        "input": "¿puedes decir cuántos cúbits usas?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.10613734448480498,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero conocer tu número de qubits",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.07416702992224222,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "cuántos cúbits utilizas",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.20599000823473823,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "puedes explicar tu aprendizaje",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0348266944168149,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "de qué forma aprendes",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.20899259906942397,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "háblame de tu aprendizaje",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.05638926815631183,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "gracias por la ayuda",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.19579769612893685,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "muchas gracias bby q",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.11399012299031014,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "te agradezco la respuesta",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.08322804898885314,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "bueno nos vemos",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.2130033787170033,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "adiós hasta pronto",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.26456096436672816,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "bby q hasta luego",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.3148029904355138,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "¿cómo puedo corregirte?",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.17443230813024851,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quisiera enseñarte",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.2347158652642768,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero darte una corrección",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0902219766964695,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero saber si tus estados son exactos",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1971508106689195,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "puedes explicar tus estados clifford",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.04763797362663608,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "tus estados usan álgebra exacta",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1896850452363638,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "conoces ya todo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.1008310492703828,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "entonces puedes saberlo todo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.13981374074574943,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "quiero saber si sabes todo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.15330847447199814,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "qué es motor eléctrico",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame motor eléctrico",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es satélite",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame satélite",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es electrón",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame electrón",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es glaciar",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame glaciar",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es órbita",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame órbita",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es antena",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame antena",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es meteoro",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame meteoro",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "qué es cristal",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.24868195975895627,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "explícame cristal",
+        "previous": "",
+        "intent": 0,
+        "log_probability": -0.09145973368694074,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas memoria",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08159725526040863,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques memoria",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.8921058001841986,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas dato",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.10714559410969879,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques dato",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9329424229268697,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas algoritmo",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08857608907588037,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques algoritmo",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9558169348453257,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas circuito",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08227717975188947,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques circuito",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.8919788127598185,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas cúbit",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08361756124290734,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques cúbit",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9074834151338341,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas entrelazamiento",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08294775093903356,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques entrelazamiento",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.8991470289235917,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas medición",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08371220313284611,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques medición",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9081853074221432,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas interferencia",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08579668274562574,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques interferencia",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9253972192408335,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas xi",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08605515865837612,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques xi",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.9298835020440366,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "por favor no definas ether",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.08586426515173654,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "prefiero que no expliques ether",
+        "previous": "",
+        "intent": 9,
+        "log_probability": -0.92917788815096,
+        "expected_intent": 9,
+        "correct": true
+      },
+      {
+        "input": "define memoria no algoritmo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.009487725429592943,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define memoria no interferencia",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0109436691753578,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define dato no circuito",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.015114251187901393,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define dato no xi",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.0139827733076975,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define algoritmo no cúbit",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.009761095343221502,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define algoritmo no ether",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.009221472476288906,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define circuito no entrelazamiento",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.010582159805936318,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define cúbit no memoria",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.010788990117934199,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define cúbit no medición",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.012007862656837925,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define entrelazamiento no dato",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.013636982017236052,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define entrelazamiento no interferencia",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.010927148005866217,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define medición no algoritmo",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.010078256064021797,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define medición no xi",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.010910584774592773,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define interferencia no circuito",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.012537737577737762,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define interferencia no ether",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.011402686115806913,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define xi no cúbit",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.011123799223263793,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define ether no memoria",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.008976684098084942,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "define ether no entrelazamiento",
+        "previous": "",
+        "intent": 1,
+        "log_probability": -0.008969942588174483,
+        "expected_intent": 1,
+        "correct": true
+      },
+      {
+        "input": "zorbax quux",
+        "intent": 0,
+        "log_probability": -0.0925791534100934,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "¿qué pasa en un universo desconocido?",
+        "intent": 0,
+        "log_probability": -0.06891228629964907,
+        "expected_intent": 0,
+        "correct": true
+      },
+      {
+        "input": "inventa una habilidad desconocida",
+        "intent": 0,
+        "log_probability": -0.009713714414109625,
+        "expected_intent": 0,
+        "correct": true
+      }
+    ]
+  }
+}

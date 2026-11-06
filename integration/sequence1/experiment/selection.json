@@ -1,0 +1,82 @@
+{
+  "text": {
+    "epoch": 10,
+    "path": "text-epoch-010.rvp",
+    "sha256": "fe869b755fd643a3e5498068e02fad9bfb3e23d21cc37d45fdc0a18a4482371a",
+    "accuracy": 0.8652482269503546,
+    "minimum_group_accuracy": 0.4444444444444444,
+    "groups": {
+      "known": {
+        "correct": 60,
+        "total": 67
+      },
+      "context": {
+        "correct": 20,
+        "total": 20
+      },
+      "unknown": {
+        "correct": 16,
+        "total": 16
+      },
+      "negation": {
+        "correct": 18,
+        "total": 20
+      },
+      "order": {
+        "correct": 8,
+        "total": 18
+      }
+    },
+    "updates": 41700
+  },
+  "intent": {
+    "epoch": 10,
+    "path": "intent-epoch-010.rvp",
+    "sha256": "2d95fff19253ddbdbd2fb2e81a7d567be447fbdb98dbc510f510e88a4f3f45af",
+    "accuracy": 0.9230769230769231,
+    "minimum_group_accuracy": 0.0,
+    "groups": {
+      "2": {
+        "correct": 4,
+        "total": 12
+      },
+      "3": {
+        "correct": 1,
+        "total": 1
+      },
+      "4": {
+        "correct": 0,
+        "total": 1
+      },
+      "5": {
+        "correct": 1,
+        "total": 1
+      },
+      "6": {
+        "correct": 0,
+        "total": 1
+      },
+      "7": {
+        "correct": 4,
+        "total": 4
+      },
+      "8": {
+        "correct": 1,
+        "total": 1
+      },
+      "9": {
+        "correct": 24,
+        "total": 24
+      },
+      "1": {
+        "correct": 105,
+        "total": 105
+      },
+      "0": {
+        "correct": 16,
+        "total": 19
+      }
+    },
+    "updates": 6570
+  }
+}

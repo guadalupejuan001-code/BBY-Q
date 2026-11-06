@@ -1,0 +1,88 @@
+{
+  "version": "BBYQ-C1-Sequence-1-cycle2",
+  "base_commit": "489473f311b6beaee4678d4e395f4f371f898745",
+  "product_base": "6a6a66b301ab6efe1208791f675a18358179e2d6",
+  "seed": 2026110504,
+  "objective": "Replace QChat's lossy word-presence codec with exact ordered token frames and a compatible native learned readout, then connect verified natural-language requests to existing tools",
+  "representation": {
+    "raw_text": "Original UTF-8 retained; NFC lower-case dictionary keys preserve accents and enie. Unknown words receive distinct IDs instead of being removed.",
+    "token_frame_bits": {
+      "word_id": 20,
+      "previous_word_id": 20,
+      "position": 16,
+      "section": 2,
+      "last_output_id": 7,
+      "previous_output_id": 7,
+      "output_position": 6,
+      "token_byte_length": 16,
+      "reserved": 6
+    },
+    "quantum_register": "100 reusable Clifford qubits for each exact frame; VQC3 and QRL3 remain at their existing 1000 qubits each",
+    "features": "Exact measured word IDs, ordered ID pairs, position/word pairs, history sections and exact output IDs/position. Sparse integer feature keys have disjoint ranges and no lossy hash.",
+    "limits": {
+      "dictionary_ids": 1048576,
+      "input_tokens": 256,
+      "history_tokens": 64,
+      "output_tokens": 64,
+      "raw_input_bytes": 16384
+    },
+    "limit_behavior": "Explicit unsupported/capacity result; no silent truncation of an accepted frame"
+  },
+  "learning": {
+    "optimizer": "Native XI binary-tree SGD",
+    "text_epochs": [
+      10,
+      20
+    ],
+    "intent_epochs": [
+      10,
+      20
+    ],
+    "learning_rate": 0.2,
+    "text_source": "Original curriculum plus training-only history wrappers; validation/test phrases unchanged",
+    "intent_source": "Declared synthetic task families with separate paraphrases, names and numeric values",
+    "readout_coefficients": {
+      "word": 1.0,
+      "pair": 0.15,
+      "position_word": 0.15,
+      "output_ids_and_pair": 2.0,
+      "output_position": 0.5
+    }
+  },
+  "validation": {
+    "selection": "Validation only, minimum of text, refusal, contrast and intent capability before opening the reserved test",
+    "minimum_text_accuracy": 0.9,
+    "minimum_intent_accuracy": 0.9,
+    "minimum_unknown_refusal": 0.9
+  },
+  "final_test": {
+    "namespace": "c1-reserved-1",
+    "tasks": 200,
+    "families": [
+      "arithmetic descriptions",
+      "named memory and correction",
+      "grounded inference",
+      "named routes",
+      "combined goals and negative requests"
+    ],
+    "target_accuracy": 0.9,
+    "opened_after_freeze": true,
+    "status": "reserved; only open after all validation gates pass"
+  },
+  "codec_gates": {
+    "exact_frames": 2048,
+    "contrast_pairs": 200,
+    "required_roundtrip_accuracy": 1.0,
+    "required_pair_discrimination": 1.0
+  },
+  "controls": [
+    "E01 retained generator",
+    "drop ordered features",
+    "erase measured features",
+    "released checkpoint identity checks",
+    "explicit unsupported-language and negative controls"
+  ],
+  "compatibility": "Original E01/E02/Zero models and user storage retained. New vocabulary, model and codec share a separate versioned identity.",
+  "claims": "A measured C1 engineering step in specified task families, not a demonstration of general intelligence or quantum advantage",
+  "revises": "protocol.json; unsuccessful initial validation, reserved test unopened"
+}

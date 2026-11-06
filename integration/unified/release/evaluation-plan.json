@@ -1,0 +1,34 @@
+{
+  "regression": "U01 reserved seed 2026110705: all 200 tasks, including nine known failures; not used as training",
+  "final_test": {
+    "namespace": 2026110603,
+    "count": 200,
+    "opened_only_after_selection": true
+  },
+  "additional_classification_holdout": {
+    "split": "final-test",
+    "count": 1024,
+    "noise": 0.1
+  },
+  "apk_built": false,
+  "release_qualification": {
+    "known_errors_corrected": 9,
+    "regression_correct": 200,
+    "new_cooperative_tasks_correct": 200,
+    "iid_validation_errors": 0,
+    "ood_validation_accuracy_minimum": 0.99,
+    "independent_typed_classification_accuracy_minimum": 0.995,
+    "native_checks_required": true,
+    "upgrade_checks_required": true
+  },
+  "refinement": {
+    "reason": "first-eligible early stopping left a nearly 50/50 boundary error in 200 new tasks and one error in the 1024 classification holdout",
+    "method": "complete 30 native Newton iterations on the same original training set; select minimum validation Brier among eligible checkpoints",
+    "opened_tests_not_used_for_training": [
+      "first-reserved.json",
+      "first-classification-test.json"
+    ],
+    "new_closed_final_seed": 2026110603,
+    "require_opened_200_task_regression": true
+  }
+}

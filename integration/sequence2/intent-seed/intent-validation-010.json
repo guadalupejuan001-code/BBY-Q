@@ -1,0 +1,2655 @@
+{
+  "correct": 283,
+  "total": 351,
+  "accuracy": 0.8062678062678063,
+  "groups": {
+    "2": {
+      "correct": 16,
+      "total": 36
+    },
+    "3": {
+      "correct": 24,
+      "total": 36
+    },
+    "4": {
+      "correct": 3,
+      "total": 3
+    },
+    "5": {
+      "correct": 24,
+      "total": 36
+    },
+    "6": {
+      "correct": 24,
+      "total": 36
+    },
+    "7": {
+      "correct": 12,
+      "total": 12
+    },
+    "8": {
+      "correct": 36,
+      "total": 36
+    },
+    "9": {
+      "correct": 32,
+      "total": 32
+    },
+    "1": {
+      "correct": 94,
+      "total": 105
+    },
+    "0": {
+      "correct": 18,
+      "total": 19
+    }
+  },
+  "usage": {
+    "peak_rss_kib": 35644,
+    "rusage_peak_rss_kib": 35356,
+    "rss_measurement": "Linux VmHWM after exec",
+    "cpu_ms": 42531.033,
+    "active_qubits": 100,
+    "quantum_payload_bytes": 3300
+  },
+  "cases": [
+    {
+      "input": "Hay 295 cajas de 27 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.7683399732838921,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 386 cajas de 50 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.3962350190187747,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 446 cajas de 59 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.3401956941026407,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 101 cajas de 47 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.3711751732939803,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 87 cajas de 49 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.340794794809218,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 85 cajas de 48 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.4134406132176764,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 321 cajas de 54 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.3281326086236072,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 248 cajas de 35 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.4032459879475472,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Hay 361 cajas de 41 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.7404674283730238,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 234 cajas de 14 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.7581090034958018,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 269 cajas de 22 piezas cada una. Calcula el total.",
+      "intent": 2,
+      "log_probability": -0.7383411241747462,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Hay 137 cajas de 39 piezas cada una. Calcula el total.",
+      "intent": 7,
+      "log_probability": -1.3304750117869621,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 480 y cuesta 24. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9878204436502498,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 156 y cuesta 52. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9776778040976598,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 240 y cuesta 52. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9724420599051515,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 159 y cuesta 7. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.989186450336312,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 449 y cuesta 69. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9864964641382333,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 224 y cuesta 63. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9840755938200937,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 363 y cuesta 27. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9638307422031543,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 119 y cuesta 64. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9638307422031543,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 180 y cuesta 37. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.969965498621707,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 147 y cuesta 55. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9738444305209328,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 302 y cuesta 51. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9677671766969673,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Pago 359 y cuesta 59. Dime el cambio.",
+      "intent": 4,
+      "log_probability": -0.9677842961233377,
+      "expected_intent": 2,
+      "correct": false
+    },
+    {
+      "input": "Tenía 182 libros y regalé 17. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.2621447954577127,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 349 libros y regalé 19. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3877385227754803,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 154 libros y regalé 43. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.31257181333714,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 391 libros y regalé 59. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3647994142908152,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 402 libros y regalé 40. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.37385650466410497,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 185 libros y regalé 37. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3642632681400584,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 476 libros y regalé 3. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.34143220769432686,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 267 libros y regalé 15. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3121885443742738,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 409 libros y regalé 60. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3195769302444624,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 94 libros y regalé 30. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.31950443180976534,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 344 libros y regalé 7. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.3068662832986081,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Tenía 291 libros y regalé 18. ¿Cuántos quedan?",
+      "intent": 2,
+      "log_probability": -0.33805973279393287,
+      "expected_intent": 2,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Orenda Verde.",
+      "intent": 3,
+      "log_probability": -0.018100642954269885,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Roca Lunar.",
+      "intent": 3,
+      "log_probability": -0.018100642954269885,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Vela Dorada.",
+      "intent": 3,
+      "log_probability": -0.018100642954269885,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Marea.",
+      "intent": 3,
+      "log_probability": -0.018146191702306982,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Bosque Lejano.",
+      "intent": 3,
+      "log_probability": -0.018100642954269885,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Nube Clara.",
+      "intent": 3,
+      "log_probability": -0.018100642954269885,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Viento.",
+      "intent": 3,
+      "log_probability": -0.018146191702306982,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Cima Azul.",
+      "intent": 3,
+      "log_probability": -0.016775006491409276,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Lucero.",
+      "intent": 3,
+      "log_probability": -0.018146191702306982,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Sol Nuevo.",
+      "intent": 3,
+      "log_probability": -0.017011416999689465,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Costa.",
+      "intent": 3,
+      "log_probability": -0.018146191702306982,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Recuerda que mi robot se llama Árbol Vivo.",
+      "intent": 3,
+      "log_probability": -0.0169304298222548,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Orenda Verde.",
+      "intent": 3,
+      "log_probability": -0.005532285024793995,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Roca Lunar.",
+      "intent": 3,
+      "log_probability": -0.005532285024793995,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Vela Dorada.",
+      "intent": 3,
+      "log_probability": -0.005532285024793995,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Marea.",
+      "intent": 3,
+      "log_probability": -0.005526201698406026,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Bosque Lejano.",
+      "intent": 3,
+      "log_probability": -0.005532285024793995,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Nube Clara.",
+      "intent": 3,
+      "log_probability": -0.005532285024793995,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Viento.",
+      "intent": 3,
+      "log_probability": -0.005526201698406026,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Cima Azul.",
+      "intent": 3,
+      "log_probability": -0.005170570488254252,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Lucero.",
+      "intent": 3,
+      "log_probability": -0.005526201698406026,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Sol Nuevo.",
+      "intent": 3,
+      "log_probability": -0.005235152565748599,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Costa.",
+      "intent": 3,
+      "log_probability": -0.005526201698406026,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Quiero que recuerdes que mi nave se llama Árbol Vivo.",
+      "intent": 3,
+      "log_probability": -0.005205498624782157,
+      "expected_intent": 3,
+      "correct": true
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Orenda Verde.",
+      "intent": 4,
+      "log_probability": -0.5350776852596407,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Roca Lunar.",
+      "intent": 4,
+      "log_probability": -0.5350776852596407,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Vela Dorada.",
+      "intent": 4,
+      "log_probability": -0.5350776852596407,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Marea.",
+      "intent": 4,
+      "log_probability": -0.5360367605091534,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Bosque Lejano.",
+      "intent": 4,
+      "log_probability": -0.5350776852596407,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Nube Clara.",
+      "intent": 4,
+      "log_probability": -0.5350776852596407,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Viento.",
+      "intent": 4,
+      "log_probability": -0.5360367605091534,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Cima Azul.",
+      "intent": 4,
+      "log_probability": -0.5516900132224971,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Lucero.",
+      "intent": 4,
+      "log_probability": -0.5360367605091534,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Sol Nuevo.",
+      "intent": 4,
+      "log_probability": -0.5684138295789393,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Costa.",
+      "intent": 4,
+      "log_probability": -0.5360367605091534,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "Guarda el nombre de mi proyecto: Árbol Vivo.",
+      "intent": 4,
+      "log_probability": -0.5493860360760492,
+      "expected_intent": 3,
+      "correct": false
+    },
+    {
+      "input": "¿Cómo se llama mi robot?",
+      "intent": 4,
+      "log_probability": -0.08509315250739927,
+      "expected_intent": 4,
+      "correct": true
+    },
+    {
+      "input": "Dime cómo se llama mi nave.",
+      "intent": 4,
+      "log_probability": -0.02615210975371225,
+      "expected_intent": 4,
+      "correct": true
+    },
+    {
+      "input": "¿Cuál es el nombre de mi proyecto?",
+      "intent": 4,
+      "log_probability": -0.01972313801631267,
+      "expected_intent": 4,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Orenda Verde es mortal.",
+      "intent": 5,
+      "log_probability": -0.05155400081754062,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Roca Lunar es mortal.",
+      "intent": 5,
+      "log_probability": -0.05155400081754062,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Vela Dorada es mortal.",
+      "intent": 5,
+      "log_probability": -0.05155400081754062,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Marea es mortal.",
+      "intent": 5,
+      "log_probability": -0.05156297522939774,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Bosque Lejano es mortal.",
+      "intent": 5,
+      "log_probability": -0.05155400081754062,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Nube Clara es mortal.",
+      "intent": 5,
+      "log_probability": -0.05155400081754062,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Viento es mortal.",
+      "intent": 5,
+      "log_probability": -0.05156297522939774,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Cima Azul es mortal.",
+      "intent": 5,
+      "log_probability": -0.05161012991594731,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Lucero es mortal.",
+      "intent": 5,
+      "log_probability": -0.05156297522939774,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Sol Nuevo es mortal.",
+      "intent": 5,
+      "log_probability": -0.05460560257825326,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Costa es mortal.",
+      "intent": 5,
+      "log_probability": -0.05156297522939774,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Con lo que aprendiste, dime si Árbol Vivo es mortal.",
+      "intent": 5,
+      "log_probability": -0.051753895963531305,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "Según lo que sabes, ¿Orenda Verde es mortal?",
+      "intent": 2,
+      "log_probability": -1.338180677107399,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Roca Lunar es mortal?",
+      "intent": 2,
+      "log_probability": -1.338180677107399,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Vela Dorada es mortal?",
+      "intent": 2,
+      "log_probability": -1.338180677107399,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Marea es mortal?",
+      "intent": 2,
+      "log_probability": -1.3377703759864277,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Bosque Lejano es mortal?",
+      "intent": 2,
+      "log_probability": -1.338180677107399,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Nube Clara es mortal?",
+      "intent": 2,
+      "log_probability": -1.338180677107399,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Viento es mortal?",
+      "intent": 2,
+      "log_probability": -1.3377703759864277,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Cima Azul es mortal?",
+      "intent": 2,
+      "log_probability": -1.3539947131818035,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Lucero es mortal?",
+      "intent": 2,
+      "log_probability": -1.3377703759864277,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Sol Nuevo es mortal?",
+      "intent": 2,
+      "log_probability": -1.3224480196272823,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Costa es mortal?",
+      "intent": 2,
+      "log_probability": -1.3377703759864277,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "Según lo que sabes, ¿Árbol Vivo es mortal?",
+      "intent": 2,
+      "log_probability": -1.347005214320602,
+      "expected_intent": 5,
+      "correct": false
+    },
+    {
+      "input": "¿Pertenece Orenda Verde a los mortales?",
+      "intent": 5,
+      "log_probability": -0.028037004534598654,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Roca Lunar a los mortales?",
+      "intent": 5,
+      "log_probability": -0.028037004534598654,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Vela Dorada a los mortales?",
+      "intent": 5,
+      "log_probability": -0.028037004534598654,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Marea a los mortales?",
+      "intent": 5,
+      "log_probability": -0.0280357911019471,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Bosque Lejano a los mortales?",
+      "intent": 5,
+      "log_probability": -0.028037004534598654,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Nube Clara a los mortales?",
+      "intent": 5,
+      "log_probability": -0.028037004534598654,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Viento a los mortales?",
+      "intent": 5,
+      "log_probability": -0.0280357911019471,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Cima Azul a los mortales?",
+      "intent": 5,
+      "log_probability": -0.026949230122448223,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Lucero a los mortales?",
+      "intent": 5,
+      "log_probability": -0.0280357911019471,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Sol Nuevo a los mortales?",
+      "intent": 5,
+      "log_probability": -0.027511875640412367,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Costa a los mortales?",
+      "intent": 5,
+      "log_probability": -0.0280357911019471,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "¿Pertenece Árbol Vivo a los mortales?",
+      "intent": 5,
+      "log_probability": -0.0268542552335993,
+      "expected_intent": 5,
+      "correct": true
+    },
+    {
+      "input": "La Orenda Verde está conectada al puente y el puente al taller. Explica cómo llegar de Orenda Verde a taller.",
+      "intent": 6,
+      "log_probability": -0.35628220841834324,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Roca Lunar está conectada al puente y el puente al taller. Explica cómo llegar de Roca Lunar a taller.",
+      "intent": 6,
+      "log_probability": -0.35628220841834324,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Vela Dorada está conectada al puente y el puente al taller. Explica cómo llegar de Vela Dorada a taller.",
+      "intent": 6,
+      "log_probability": -0.35628220841834324,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Marea está conectada al puente y el puente al taller. Explica cómo llegar de Marea a taller.",
+      "intent": 6,
+      "log_probability": -0.3567371748422805,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Bosque Lejano está conectada al puente y el puente al taller. Explica cómo llegar de Bosque Lejano a taller.",
+      "intent": 6,
+      "log_probability": -0.35628220841834324,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Nube Clara está conectada al puente y el puente al taller. Explica cómo llegar de Nube Clara a taller.",
+      "intent": 6,
+      "log_probability": -0.35628220841834324,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Viento está conectada al puente y el puente al taller. Explica cómo llegar de Viento a taller.",
+      "intent": 6,
+      "log_probability": -0.3567371748422805,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Cima Azul está conectada al puente y el puente al taller. Explica cómo llegar de Cima Azul a taller.",
+      "intent": 6,
+      "log_probability": -0.34178890817657737,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Lucero está conectada al puente y el puente al taller. Explica cómo llegar de Lucero a taller.",
+      "intent": 6,
+      "log_probability": -0.3567371748422805,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Sol Nuevo está conectada al puente y el puente al taller. Explica cómo llegar de Sol Nuevo a taller.",
+      "intent": 6,
+      "log_probability": -0.35164426795780024,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Costa está conectada al puente y el puente al taller. Explica cómo llegar de Costa a taller.",
+      "intent": 6,
+      "log_probability": -0.3567371748422805,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "La Árbol Vivo está conectada al puente y el puente al taller. Explica cómo llegar de Árbol Vivo a taller.",
+      "intent": 6,
+      "log_probability": -0.34816913242960223,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Orenda Verde hasta el parque y del parque a la tienda. Dime la ruta de Orenda Verde a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010622862005371433,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Roca Lunar hasta el parque y del parque a la tienda. Dime la ruta de Roca Lunar a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010622862005371433,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Vela Dorada hasta el parque y del parque a la tienda. Dime la ruta de Vela Dorada a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010622862005371433,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Marea hasta el parque y del parque a la tienda. Dime la ruta de Marea a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010608997186606884,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Bosque Lejano hasta el parque y del parque a la tienda. Dime la ruta de Bosque Lejano a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010622862005371433,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Nube Clara hasta el parque y del parque a la tienda. Dime la ruta de Nube Clara a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010622862005371433,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Viento hasta el parque y del parque a la tienda. Dime la ruta de Viento a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010608997186606884,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Cima Azul hasta el parque y del parque a la tienda. Dime la ruta de Cima Azul a tienda.",
+      "intent": 6,
+      "log_probability": -0.001112529330551326,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Lucero hasta el parque y del parque a la tienda. Dime la ruta de Lucero a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010608997186606884,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Sol Nuevo hasta el parque y del parque a la tienda. Dime la ruta de Sol Nuevo a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010664938799413428,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Costa hasta el parque y del parque a la tienda. Dime la ruta de Costa a tienda.",
+      "intent": 6,
+      "log_probability": -0.0010608997186606884,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Hay un camino desde Árbol Vivo hasta el parque y del parque a la tienda. Dime la ruta de Árbol Vivo a tienda.",
+      "intent": 6,
+      "log_probability": -0.001092397269064513,
+      "expected_intent": 6,
+      "correct": true
+    },
+    {
+      "input": "Desde Orenda Verde puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Orenda Verde a museo?",
+      "intent": 4,
+      "log_probability": -0.488530275477001,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Roca Lunar puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Roca Lunar a museo?",
+      "intent": 4,
+      "log_probability": -0.488530275477001,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Vela Dorada puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Vela Dorada a museo?",
+      "intent": 4,
+      "log_probability": -0.488530275477001,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Marea puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Marea a museo?",
+      "intent": 4,
+      "log_probability": -0.48744907780314256,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Bosque Lejano puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Bosque Lejano a museo?",
+      "intent": 4,
+      "log_probability": -0.488530275477001,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Nube Clara puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Nube Clara a museo?",
+      "intent": 4,
+      "log_probability": -0.488530275477001,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Viento puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Viento a museo?",
+      "intent": 4,
+      "log_probability": -0.48744907780314256,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Cima Azul puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Cima Azul a museo?",
+      "intent": 4,
+      "log_probability": -0.49174517900617704,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Lucero puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Lucero a museo?",
+      "intent": 4,
+      "log_probability": -0.48744907780314256,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Sol Nuevo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Sol Nuevo a museo?",
+      "intent": 4,
+      "log_probability": -0.48788387196868255,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Costa puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Costa a museo?",
+      "intent": 4,
+      "log_probability": -0.48744907780314256,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Desde Árbol Vivo puedo ir al jardín y desde el jardín al museo. ¿Cómo llego de Árbol Vivo a museo?",
+      "intent": 4,
+      "log_probability": -0.49861993941402627,
+      "expected_intent": 6,
+      "correct": false
+    },
+    {
+      "input": "Salúdame y luego calcula 298 por 20.",
+      "intent": 7,
+      "log_probability": -0.05215722806252114,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 480 por 39.",
+      "intent": 7,
+      "log_probability": -0.04502267017586896,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 485 por 38.",
+      "intent": 7,
+      "log_probability": -0.04964554373895286,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 338 por 14.",
+      "intent": 7,
+      "log_probability": -0.05161998624229003,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 209 por 29.",
+      "intent": 7,
+      "log_probability": -0.056805855930443,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 387 por 50.",
+      "intent": 7,
+      "log_probability": -0.049575250594713245,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 291 por 33.",
+      "intent": 7,
+      "log_probability": -0.049769466702870524,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 174 por 46.",
+      "intent": 7,
+      "log_probability": -0.04913276797609896,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 276 por 32.",
+      "intent": 7,
+      "log_probability": -0.04919480422958375,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 102 por 33.",
+      "intent": 7,
+      "log_probability": -0.049185058763913464,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 174 por 10.",
+      "intent": 7,
+      "log_probability": -0.05197602104500788,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Salúdame y luego calcula 437 por 20.",
+      "intent": 7,
+      "log_probability": -0.05138259556262377,
+      "expected_intent": 7,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Orenda Verde no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004765039990067998,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Roca Lunar no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004765039990067998,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Vela Dorada no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004765039990067998,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Marea no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004780789258218311,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Bosque Lejano no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004765039990067998,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Nube Clara no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004765039990067998,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Viento no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004780789258218311,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Cima Azul no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004162716532021963,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Lucero no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004780789258218311,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Sol Nuevo no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004275900931641927,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Costa no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004780789258218311,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Me equivoqué: Árbol Vivo no está activa. Corrige ese dato.",
+      "intent": 8,
+      "log_probability": -0.004216171428659671,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Orenda Verde ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15226594007553634,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Roca Lunar ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15226594007553634,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Vela Dorada ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15226594007553634,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Marea ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15177221384580714,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Bosque Lejano ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15226594007553634,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Nube Clara ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15226594007553634,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Viento ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15177221384580714,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Cima Azul ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.1336860981147658,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Lucero ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15177221384580714,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Sol Nuevo ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.13717480867930856,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Costa ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.15177221384580714,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Corrige lo anterior: Árbol Vivo ya no es activa.",
+      "intent": 8,
+      "log_probability": -0.13527587256758355,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Orenda Verde está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07355965177971438,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Roca Lunar está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07355965177971438,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Vela Dorada está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07355965177971438,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Marea está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07377924720210079,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Bosque Lejano está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07355965177971438,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Nube Clara está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07355965177971438,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Viento está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07377924720210079,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Cima Azul está inactiva.",
+      "intent": 8,
+      "log_probability": -0.06817104668842777,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Lucero está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07377924720210079,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Sol Nuevo está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07213505806230266,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Costa está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07377924720210079,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Actualiza el dato: Árbol Vivo está inactiva.",
+      "intent": 8,
+      "log_probability": -0.07011055864393975,
+      "expected_intent": 8,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 243 por 7.",
+      "intent": 9,
+      "log_probability": -0.023631562232176516,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 293 por 17.",
+      "intent": 9,
+      "log_probability": -0.02343326031921199,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 391 por 46.",
+      "intent": 9,
+      "log_probability": -0.022696842447947584,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 475 por 2.",
+      "intent": 9,
+      "log_probability": -0.0240822645568837,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 127 por 61.",
+      "intent": 9,
+      "log_probability": -0.022696842447947584,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 335 por 65.",
+      "intent": 9,
+      "log_probability": -0.02275306612358702,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 424 por 69.",
+      "intent": 9,
+      "log_probability": -0.023152691992931563,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 127 por 40.",
+      "intent": 9,
+      "log_probability": -0.02024963448403296,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 114 por 59.",
+      "intent": 9,
+      "log_probability": -0.021642348307594962,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 339 por 43.",
+      "intent": 9,
+      "log_probability": -0.023019926756032764,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 108 por 15.",
+      "intent": 9,
+      "log_probability": -0.023076800446673068,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "Por favor no calcules 497 por 34.",
+      "intent": 9,
+      "log_probability": -0.021423267365328902,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es memoria?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.4506178959833459,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09884239031712719,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04009788624174762,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11490952539736134,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí memoria",
+      "intent": 1,
+      "log_probability": -0.05751701632657263,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí memoria",
+      "intent": 1,
+      "log_probability": -0.027516045505670588,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es dato?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.4469474321226207,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11310242095217816,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04526808819171844,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.22118837544131695,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí dato",
+      "intent": 1,
+      "log_probability": -0.05925972824263141,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí dato",
+      "intent": 1,
+      "log_probability": -0.028322645051916964,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es algoritmo?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.5723104270006782,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0729962597128352,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.030152910314250166,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.10565992842399156,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí algoritmo",
+      "intent": 1,
+      "log_probability": -0.057763847536189,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí algoritmo",
+      "intent": 1,
+      "log_probability": -0.027641926122424183,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es circuito?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.4823375693590485,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09002181541180218,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.03660110779675732,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11099119809026861,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí circuito",
+      "intent": 1,
+      "log_probability": -0.05471174981693752,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí circuito",
+      "intent": 1,
+      "log_probability": -0.026159282365056262,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es cúbit?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.43075049012164146,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.10469850983845619,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04227197251842173,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11989927234839545,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí cúbit",
+      "intent": 1,
+      "log_probability": -0.06358803828514079,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí cúbit",
+      "intent": 1,
+      "log_probability": -0.03027519705404541,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es entrelazamiento?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.4600705157906547,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0963839366023023,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.03918931722983086,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11378055996229867,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí entrelazamiento",
+      "intent": 1,
+      "log_probability": -0.06132122552328017,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí entrelazamiento",
+      "intent": 1,
+      "log_probability": -0.029183052643525307,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es medición?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.48697985435490243,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.08769483959340034,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.03565090103577084,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.10268003494368866,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí medición",
+      "intent": 1,
+      "log_probability": -0.05511205142746864,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí medición",
+      "intent": 1,
+      "log_probability": -0.026372980976314804,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es interferencia?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.5758211313761632,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.07295366354025892,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.030294202668176805,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1047401477242615,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí interferencia",
+      "intent": 1,
+      "log_probability": -0.056275761201118706,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí interferencia",
+      "intent": 1,
+      "log_probability": -0.0269660814218586,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es xi?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.45818077228242127,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09566313008960123,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.038676186155005954,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11342733702341565,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí xi",
+      "intent": 1,
+      "log_probability": -0.05884618374022689,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí xi",
+      "intent": 1,
+      "log_probability": -0.02813067986127227,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir qué es ether?",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.39019104037354957,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "me interesa entender ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.12056329004562745,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define para mí ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04856392499318139,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer el significado de ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.12657012186785058,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "repítelo",
+      "previous": "define para mí ether",
+      "intent": 1,
+      "log_probability": -0.05835436510423174,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuéntalo otra vez",
+      "previous": "define para mí ether",
+      "intent": 1,
+      "log_probability": -0.027906516583033114,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "buenas bby",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.11844289411738113,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "hey hola x",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.17561954238623714,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "hola qué tal x",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.4218449461052156,
+      "expected_intent": 1,
+      "correct": false
+    },
+    {
+      "input": "¿puedes decir tu nombre?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.3502627616245255,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cómo debo llamarte",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.20023098844359327,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuál nombre tienes",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.16142592327242325,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿puedes decir cuántos cúbits usas?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.2606604164818521,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero conocer tu número de qubits",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04693715506857592,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "cuántos cúbits utilizas",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.20847875688413775,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "puedes explicar tu aprendizaje",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.05032721486218576,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "de qué forma aprendes",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.6057874588886025,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "háblame de tu aprendizaje",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04112075253093732,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "gracias por la ayuda",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.28253592898777624,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "muchas gracias bby q",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.07346023110532782,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "te agradezco la respuesta",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.13494713009682097,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "bueno nos vemos",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.21486095157008525,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "adiós hasta pronto",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.21311217410454725,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "bby q hasta luego",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.09402292449135527,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "¿cómo puedo corregirte?",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.694192826440853,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quisiera enseñarte",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.2289960816311714,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero darte una corrección",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.18649148641940116,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero saber si tus estados son exactos",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.13697892754235155,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "puedes explicar tus estados clifford",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.06924064490512527,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "tus estados usan álgebra exacta",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.12784008532723978,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "conoces ya todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.14403456107146784,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "entonces puedes saberlo todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.10685211495566496,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "quiero saber si sabes todo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.1985398633892328,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "qué es motor eléctrico",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame motor eléctrico",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es satélite",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame satélite",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es electrón",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame electrón",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es glaciar",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame glaciar",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es órbita",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame órbita",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es antena",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame antena",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es meteoro",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame meteoro",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "qué es cristal",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.06040181700757039,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "explícame cristal",
+      "previous": "",
+      "intent": 0,
+      "log_probability": -0.10126406857254353,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas memoria",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.022871079129047144,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques memoria",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.16066904109144578,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas dato",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.013037078979959411,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques dato",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.052034813317566694,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas algoritmo",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.02452882247353541,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques algoritmo",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.17232995303143786,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas circuito",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.02243173768170219,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques circuito",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.15788130845650414,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas cúbit",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.022475605385684716,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques cúbit",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.15777362897777328,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas entrelazamiento",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.023380487689779378,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques entrelazamiento",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.16372962079489817,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas medición",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.02622586526185086,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques medición",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.18388291798221107,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas interferencia",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.02584555760407748,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques interferencia",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.1809404076316241,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas xi",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.023261398668437995,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques xi",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.16315691943258323,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "por favor no definas ether",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.02197997648020595,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "prefiero que no expliques ether",
+      "previous": "",
+      "intent": 9,
+      "log_probability": -0.1542141548109316,
+      "expected_intent": 9,
+      "correct": true
+    },
+    {
+      "input": "define memoria no algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.016579997096989738,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define memoria no interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.01634349205547586,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define dato no circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.034879249144460056,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define dato no xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.034777782817431206,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define algoritmo no cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.017682317506218605,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define algoritmo no ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.01947294434782961,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define circuito no entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.01596506572122359,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define cúbit no memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.0246506162419549,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define cúbit no medición",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.021725539668860983,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define entrelazamiento no dato",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.04037924431284332,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define entrelazamiento no interferencia",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.016349643835366592,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define medición no algoritmo",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.012315902613421765,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define medición no xi",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.014525755190183169,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define interferencia no circuito",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.014430570501889896,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define interferencia no ether",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.017352191216849347,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define xi no cúbit",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.022342924522986533,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define ether no memoria",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.024585121617618423,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "define ether no entrelazamiento",
+      "previous": "",
+      "intent": 1,
+      "log_probability": -0.024055653934113096,
+      "expected_intent": 1,
+      "correct": true
+    },
+    {
+      "input": "zorbax quux",
+      "intent": 1,
+      "log_probability": -0.27197605318437634,
+      "expected_intent": 0,
+      "correct": false
+    },
+    {
+      "input": "¿qué pasa en un universo desconocido?",
+      "intent": 0,
+      "log_probability": -0.17968064136573741,
+      "expected_intent": 0,
+      "correct": true
+    },
+    {
+      "input": "inventa una habilidad desconocida",
+      "intent": 0,
+      "log_probability": -0.1571124684815005,
+      "expected_intent": 0,
+      "correct": true
+    }
+  ]
+}

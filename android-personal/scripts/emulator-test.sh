@@ -42,9 +42,17 @@ from pathlib import Path
 import re
 text=Path('build/personal-artifacts/android-tests.txt').read_text()
 match=re.search(r'OK \((\d+) tests?\)',text)
-assert match and int(match.group(1))>=31,text
+assert match and int(match.group(1))>=32,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg',text),text
 PY_TESTS
+python3 - <<'PY_AUDIT'
+import base64,json,re
+from pathlib import Path
+p=Path('build/personal-artifacts');text=(p/'android-tests.txt').read_text();match=re.search(r'BBYQ_CAPABILITY_AUDIT_BASE64=([A-Za-z0-9+/=]+)',text);assert match,'Missing instrumentation report'
+raw=base64.b64decode(match.group(1),validate=True);j=json.loads(raw);assert j['total']==42 and len(j['cases'])==42
+(p/'capability-audit.json').write_bytes(raw)
+print(json.dumps({'capability_audit':j['groups']},ensure_ascii=False))
+PY_AUDIT
 adb shell am start -n com.bbyq.personalx/com.bbyq.personal.MainActivity
 sleep 5
 adb exec-out screencap -p > "$OUT/BBYQ-X-Android.png"

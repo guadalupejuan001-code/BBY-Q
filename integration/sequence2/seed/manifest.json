@@ -1,0 +1,87 @@
+{
+  "sha256": "e3eff778831352187605d3974afe8e7d9160098eea26170ae4938de2b241d4dd",
+  "parts": [
+    {
+      "file": "text.rvp.gz.001",
+      "sha256": "1f3c82bc28192b2b4302897a0029fab0d110af22201fbbd4befeeceda397b83a",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.002",
+      "sha256": "4c79a8e603b271faa85532a4ef7e468275ee36d77f267efff4ba90ab1e441eb6",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.003",
+      "sha256": "351e2e90e8e85fb4ae0b84cd63b633a3c51bfdcb137863de200df3c113e60633",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.004",
+      "sha256": "b6974c10cbe81a0318c461d19a14c46ed30e5bbd3f427cbef8e27988da95bfbe",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.005",
+      "sha256": "1ff2d7a285bf2a73b2767b86e4e8f4b2565dbf4d13a6378f1a50a605e3c4d7a1",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.006",
+      "sha256": "ea2829a71fb461cda55a66ff9e32c2e08eb7286152a38024dc9c9a8a57d0f65f",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.007",
+      "sha256": "bb6a3fcd5b4e801b9c6e50ab5380a1c7d7f73bd22b6df32aa384a3dda24c3e3a",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.008",
+      "sha256": "1dbd4c34050b748a9b09a6657a2b051f1e8756e3e1779b3c02c656cfeb6b3224",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.009",
+      "sha256": "e65c3b36296404925ef0a2b8bb33e5ff49ef2877f7a8537396fd5e96da7cc066",
+      "bytes": 131072
+    },
+    {
+      "file": "text.rvp.gz.010",
+      "sha256": "d0c6a6b97830e211d85012482bed8500c4b64b94ac323ae00898fe01788a79db",
+      "bytes": 74965
+    }
+  ],
+  "native_updates": 41700,
+  "validation": {
+    "epoch": 10,
+    "path": "text-epoch-010.rvp",
+    "sha256": "e3eff778831352187605d3974afe8e7d9160098eea26170ae4938de2b241d4dd",
+    "accuracy": 0.950354609929078,
+    "minimum_group_accuracy": 0.9104477611940298,
+    "groups": {
+      "known": {
+        "correct": 61,
+        "total": 67
+      },
+      "context": {
+        "correct": 20,
+        "total": 20
+      },
+      "unknown": {
+        "correct": 16,
+        "total": 16
+      },
+      "negation": {
+        "correct": 20,
+        "total": 20
+      },
+      "order": {
+        "correct": 17,
+        "total": 18
+      }
+    },
+    "updates": 41700
+  },
+  "scope": "Warm-start text reader from campaign 2; validation only, no reserved tasks opened."
+}

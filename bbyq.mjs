@@ -2,6 +2,7 @@
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import {prepare} from './integration/x10/prepare.mjs';
 import {initialize,transact} from './ai/personal/x09/session.mjs';
 import {initialize as initializeX10,transact as transactX10,upgradeSession,inspect} from './ai/personal/x10/session.mjs';
@@ -18,6 +19,13 @@ try{
  let result;
  if(command==='quantum'){
   result=quantumCommand({root,build,argv:rest});
+ }else if(command==='language'){
+  const [database,id,...words]=rest;
+  if(!database||!id||!words.length)throw Error('Usage: node bbyq.mjs language DATABASE REQUEST_ID MESSAGE');
+  const execution=spawnSync('python3',[path.join(root,'integration/sequence2/cli.py'),database,id,words.join(' ')],{encoding:'utf8',maxBuffer:4*1024*1024});
+  if(execution.error)throw execution.error;
+  if(execution.status!==0)throw Error(execution.stderr.trim()||'Native language workspace failed');
+  result=JSON.parse(execution.stdout);
  }else if(command==='prepare'){
   let archive;const at=rest.indexOf('--archive');
   if(at>=0){if(!rest[at+1])throw Error('--archive requires a ZIP file');archive=rest[at+1];rest.splice(at,2);}
@@ -65,6 +73,6 @@ try{
  }else if(command==='migrate-state'){
   if(rest.length!==2)throw Error('Usage: node bbyq.mjs migrate-state X08_INPUT.rvp NEW_OUTPUT.rvp');
   result=migrateState(runtime,base,...rest);
- }else throw Error('Commands: quantum, prepare, install-e034, init, turn, status, upgrade-session, migrate-session, migrate-state. Linux x86-64 and Node 24+. Optional prefix: --build DIRECTORY.');
+ }else throw Error('Commands: language, quantum, prepare, install-e034, init, turn, status, upgrade-session, migrate-session, migrate-state. Linux x86-64 and Node 24+. Optional prefix: --build DIRECTORY.');
  console.log(JSON.stringify(result,null,2));if(!result.ok)process.exitCode=1;
 }catch(error){console.error(JSON.stringify({ok:false,error:{code:error.code||'E_X09',message:error.message}}));process.exitCode=1;}

@@ -1,0 +1,134 @@
+{
+  "version": "BBYQ-C1-Sequence-1-cycle3",
+  "stage": "codec and compatible learned readout experiment",
+  "active": false,
+  "passed_for_promotion": false,
+  "gates": {
+    "codec": true,
+    "text_accuracy": false,
+    "all_text_groups": false,
+    "intent_accuracy": true,
+    "all_intent_groups": false,
+    "unknown_refusal": true,
+    "natural_tool_adapter": false,
+    "reserved_200_tasks": false
+  },
+  "models": {
+    "text": {
+      "file": "text.rvp.gz",
+      "checkpoint_sha256": "fe869b755fd643a3e5498068e02fad9bfb3e23d21cc37d45fdc0a18a4482371a",
+      "gzip_sha256": "cee93ccd753c9ba0647f4a2a4c2964b1384c5236e32e2b2151d48d45b96c40c6",
+      "gzip_bytes": 1240360,
+      "native_updates": 41700,
+      "epoch": 10,
+      "parts": [
+        {
+          "file": "text.rvp.gz.001",
+          "bytes": 131072,
+          "sha256": "f132840c4401eaafd762553426de77f484858278095286ba289cb8e9054c021b"
+        },
+        {
+          "file": "text.rvp.gz.002",
+          "bytes": 131072,
+          "sha256": "5be467d841fbabbc8c093f4b61de637cac5f478efdef9f5ead2f684a591fa756"
+        },
+        {
+          "file": "text.rvp.gz.003",
+          "bytes": 131072,
+          "sha256": "1d620e7b261bbff92ef6e64ac920366dd9e08bc8299b39249bd31e96d9a834d4"
+        },
+        {
+          "file": "text.rvp.gz.004",
+          "bytes": 131072,
+          "sha256": "4e2a140d520499b3873c587e91c35d195b7327cdc7d6c66d1c64f967a99c0d94"
+        },
+        {
+          "file": "text.rvp.gz.005",
+          "bytes": 131072,
+          "sha256": "a502754191e75cebe65e7114b2a4dacde2a130a25512e9a6fa215943136f8756"
+        },
+        {
+          "file": "text.rvp.gz.006",
+          "bytes": 131072,
+          "sha256": "a4257836a2bf85070b8e48d13148be1f45fa6466f5b421f097b0ee2cbd0b775e"
+        },
+        {
+          "file": "text.rvp.gz.007",
+          "bytes": 131072,
+          "sha256": "15aeb35c414968182f80501f345860224eaa41ebf951f4751c1f22d6a40037e6"
+        },
+        {
+          "file": "text.rvp.gz.008",
+          "bytes": 131072,
+          "sha256": "035d8c8cfc260c7ea188143121232bd79d74af2cea21f54d3aec18d54281664e"
+        },
+        {
+          "file": "text.rvp.gz.009",
+          "bytes": 131072,
+          "sha256": "b7620a45b3132dc3ebd336c9757abe81d566625f1c409ba6caeb12caad40ca4c"
+        },
+        {
+          "file": "text.rvp.gz.010",
+          "bytes": 60712,
+          "sha256": "5ce6f7b14a85f6abab41bd12de902e2da9e3dcc40f09e518b5719f968aa7dca7"
+        }
+      ]
+    },
+    "intent": {
+      "file": "intent.rvp.gz",
+      "checkpoint_sha256": "2d95fff19253ddbdbd2fb2e81a7d567be447fbdb98dbc510f510e88a4f3f45af",
+      "gzip_sha256": "4036305c73b54f19a78c2d66520f2a28fefc0159361b133f2450c65c642d58dc",
+      "gzip_bytes": 373803,
+      "native_updates": 6570,
+      "epoch": 10,
+      "parts": [
+        {
+          "file": "intent.rvp.gz.001",
+          "bytes": 131072,
+          "sha256": "53aa77efae08608c7c63e69e95287a2d9258eee416cd88ef9e9f22b44cc93c94"
+        },
+        {
+          "file": "intent.rvp.gz.002",
+          "bytes": 131072,
+          "sha256": "d0b13d910c0c855a9f061aab671575f21ee88ac7f1b93fded78a10fee3ff25b6"
+        },
+        {
+          "file": "intent.rvp.gz.003",
+          "bytes": 111659,
+          "sha256": "5bc6211171e64cb65aca8fea7b9e4785af124bb86fc4f61a6947662223b28590"
+        }
+      ]
+    }
+  },
+  "binding": {
+    "wire_version": "C1-Sequence-1",
+    "vocabulary_sha256": "4772af26393aff18c72c5fe5ee3ffc47f7cb77283647e83d6a27737e7ed9d598",
+    "output_vocabulary_sha256": "198f4d51d36ae9a1cbb6fa93b2007375fc8aae81174aa7da2dbea7e220604ad0",
+    "native_source_sha256": "b400ae4cbc19d947085bcd1df3c66c2ec44e6cb4f6157d1678cf394dc6ce8a8a"
+  },
+  "sources": {
+    "ai/xi/sequence1/model.xi.in": "5e4ae47d0e6e2971993de1529a9cb2ff8dd29564636122648fbb39d57384c237",
+    "ai/xi/qchat100/model.xi": "31f2ea5e50a92b6509b508d64872ec6a3ff05ac03b42d545be7df315a28427f2",
+    "integration/sequence1/build.py": "aa81c906c8ef7f51d20322a35e19ed2e3692df8c7efb30848d3d65df088d9595",
+    "integration/sequence1/schema.py": "f43b79fc1375d323bc31490d41d25c0c9f0c3fa2738968b32273e2d4440cb71e",
+    "integration/sequence1/engine.py": "053ac9665489c97d8ddd905f295f1f30ec84a51d95122a0053f6c495c178e222",
+    "integration/sequence1/data.py": "d0fa5fcfe53a0a48fbbc539769f69a3eb8156194253a405d5e9e9a0f8e9588be",
+    "integration/sequence1/train.py": "8789d64d7856c3f29492c539ec72689b8351e19b668f57c1bbd6294865d4ec2a"
+  },
+  "validation_sha256": "703861372b949894b86d33ba26d7bc669e01a393566d63802b4d042d811ee977",
+  "protocol_sha256": "d9f22b17258b0bdcad65ef0f94bac2520ea5bd6d1673e667d9811646279251a7",
+  "reserved_test": {
+    "namespace": "c1-reserved-1",
+    "tasks": 200,
+    "opened": false
+  },
+  "dependencies": {
+    "reverse_pc": "08c363e6c6855c14026c86046af7183a45f45a98",
+    "mundo_x": "e2778d962af22f6f1a0794058dd4685fc2573966",
+    "host_xi_session_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6"
+  },
+  "existing_models_modified": false,
+  "general_intelligence_claimed": false,
+  "quantum_advantage_claimed": false,
+  "controls_sha256": "15fcdae53e320f7aba8223c363d70d5a9afeda6b973025854b92008cb442e4d2"
+}

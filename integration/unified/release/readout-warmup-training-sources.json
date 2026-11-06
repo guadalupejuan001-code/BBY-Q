@@ -1,0 +1,10 @@
+{
+  "integration/unified/train_head.py": "c6e27a2145250260329fe3a60ba41073552b80595b4572ba1b80e62c175c5087",
+  "integration/unified/perception.py": "4fb9371ec1c50e78da6a1440ff19b75c012a671f5faffa00cee153dc26021dff",
+  "integration/unified/decoder_source.py": "0689b3d4df5af6eeff317a0e6d70ebf883d8b832a19c6a1328f90a42a2c52a23",
+  "ai/xi/unified/perception-decoder.xi.in": "1b87399e15c114a078f1defb3080b86d8263464ded1415ae9d0b0dd0a435d329",
+  "ai/xi/unified/perception-head.xi.in": "605c7dfe2d1552e1415c975edce0957018b54e600a0666cde318fad0d7b76b04",
+  "integration/unified/common.py": "415d8d21cf21040768a8412720aebfe3ffbeb94901b3a9d3f23f7f17af194f45",
+  "ai/xi/quantum3/common.xi": "34023cc8e22320f4ba83c61d736152985e1e32fc2336cabfeb4e5da0e256daa0",
+  "ai/xi/quantum3/benchmarks.xi": "32ce284d49ef3dcb93eeef273ee10ad5600cafe3422be3d456013ce5289f5fa5"
+}

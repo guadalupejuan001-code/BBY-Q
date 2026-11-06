@@ -1,0 +1,40 @@
+{
+  "projection": "exact Pauli conjugation of the existing encoder, angle round-trip and per-channel midrange, residual mean, standard deviation and half-range; no raw sensor, label or generator seed is read",
+  "observables": 11500,
+  "projection_sha256": "669b916e9e14133e70c0348b7fdf89c9c9572a2a032ad05edf8396113cbe6dde",
+  "features": 17,
+  "hidden": 0,
+  "trainable_parameters": 19,
+  "input": "actual native Pauli expectations and original logit",
+  "optimizer": "native XI mini-batch Adam",
+  "native_source_sha256": "1b87399e15c114a078f1defb3080b86d8263464ded1415ae9d0b0dd0a435d329",
+  "training_feature_selection": {
+    "method": "native training-only normalized covariance with the binary teacher",
+    "minimum_absolute_covariance": 0.08,
+    "covariance": [
+      0.4148082663249026,
+      0.40134592849330075,
+      -0.00022888597862718262,
+      -0.0026830537177362427,
+      -0.00295692974256503,
+      0.1324459715954019,
+      0.00011920714267587049,
+      -0.002245675618840168,
+      -0.002897786694231412,
+      0.002543826212475377,
+      0.008573562994715898,
+      -0.002581325822318604,
+      -0.002932453196400777,
+      -0.002576128097997017,
+      6.768581187390578e-05,
+      -0.002987309931803445,
+      -0.0029581366867146132
+    ],
+    "selected_features": [
+      1,
+      5
+    ],
+    "original_logit_excluded": true,
+    "validation_labels_used": false
+  }
+}

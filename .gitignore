@@ -6,6 +6,8 @@ app/libs/*.aar
 *.jks
 __pycache__/
 *.pyc
+/deps/
+/build-c1-training.log
 .bbyq-xi-cache/
 
 # Private/reproducible X08 inputs and generated working state

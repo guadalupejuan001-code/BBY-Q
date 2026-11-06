@@ -1,0 +1,30 @@
+{
+  "epoch": 145,
+  "newton_iteration": 30,
+  "minimum_accuracy": 1.0,
+  "mean_brier": 5.917899980975597e-05,
+  "eligible": true,
+  "parameter_sha256": "1366084f54ded54f770514c5a6ca5de44273fcad028291033ca89d7d1c3e23a2",
+  "validation": {
+    "validation-iid": {
+      "correct": 512,
+      "total": 512,
+      "accuracy": 1.0,
+      "brier": 0.00011809482457437473
+    },
+    "validation-ood": {
+      "correct": 512,
+      "total": 512,
+      "accuracy": 1.0,
+      "brier": 2.631750451372028e-07
+    }
+  },
+  "checkpoint": "candidate-145.rvp",
+  "checkpoint_sha256": "376b7c940c35a47ab12db2e88c57faff151896223a04829a73f09af423c5ff3a",
+  "path": "perception.rvp",
+  "sha256": "8b3fe1b3311accc8ab87c4616e81381045c4ed8803988e903210b17a6def2ccd",
+  "preserved_original_parameters": {
+    "vqc": "4ddeb49ee788ef65390b14b3b3d4ce4197d4762bfef8939dba08e7be5aae65ed",
+    "qrl": "be97e1d928ccc4d76a2b9567251f5b6f69cba29a8afaa6be1f5fc6108a710bda"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "seed": 2026110701,
+  "epochs": [
+    1,
+    5,
+    10,
+    20
+  ],
+  "source": "C1 frozen reader plus declared quantum contracts, native XI SGD and class-balanced rehearsal",
+  "selection": "minimum validation capability, no reserved-test feedback",
+  "threshold": 0.9,
+  "quantum_threshold": 0.95,
+  "apk_built": false
+}

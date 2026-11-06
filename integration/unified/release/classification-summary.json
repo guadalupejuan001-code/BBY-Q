@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "correct": 1024,
+  "total": 1024,
+  "accuracy": 1.0,
+  "minimum_accuracy": 0.995,
+  "brier": 4.074537838453671e-05,
+  "base_correct": 976,
+  "base_accuracy": 0.953125,
+  "base_brier": 0.03577046215118741,
+  "x_ablated_correct": 747,
+  "x_ablated_accuracy": 0.7294921875,
+  "ablation": "same state, Z observations and parameters; additional X observations zeroed",
+  "namespace": 2026110603,
+  "tag": "fresh-iid",
+  "noise": 0.1,
+  "input": "all 1000 external numeric observations; no generator seed or teacher passed to the model",
+  "parameter_identity": {
+    "base": {
+      "vqc": "4ddeb49ee788ef65390b14b3b3d4ce4197d4762bfef8939dba08e7be5aae65ed",
+      "qrl": "be97e1d928ccc4d76a2b9567251f5b6f69cba29a8afaa6be1f5fc6108a710bda"
+    },
+    "readout": "1366084f54ded54f770514c5a6ca5de44273fcad028291033ca89d7d1c3e23a2",
+    "updates": 7390,
+    "samples": 296960
+  },
+  "no_test_learning": true,
+  "apk_built": false
+}

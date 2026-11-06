@@ -1,0 +1,23 @@
+{
+  "epoch": 115,
+  "minimum_accuracy": 0.99609375,
+  "mean_brier": 0.0034505876451945356,
+  "eligible": false,
+  "parameter_sha256": "766be8618817eb79353714c58bb38c9ed2fb2a139420af268e2f66cf22142543",
+  "validation": {
+    "validation-iid": {
+      "correct": 510,
+      "total": 512,
+      "accuracy": 0.99609375,
+      "brier": 0.003963210149905658
+    },
+    "validation-ood": {
+      "correct": 511,
+      "total": 512,
+      "accuracy": 0.998046875,
+      "brier": 0.002937965140483413
+    }
+  },
+  "checkpoint": "candidate-115.rvp",
+  "sha256": "5a008b361663c13ed66a82646049734013769a86ad57ea179f995f60f4c3da10"
+}

@@ -1,0 +1,132 @@
+{
+  "version": "BBYQ-C1-Sequence-2",
+  "apk_built": false,
+  "active_in_android": false,
+  "reserved_tasks": {
+    "correct": 200,
+    "total": 200,
+    "turns": 541,
+    "families": {
+      "arithmetic": {
+        "correct": 40,
+        "total": 40
+      },
+      "names-and-correction": {
+        "correct": 40,
+        "total": 40
+      },
+      "grounded-inference": {
+        "correct": 40,
+        "total": 40
+      },
+      "named-routes": {
+        "correct": 40,
+        "total": 40
+      },
+      "composition-and-negation": {
+        "correct": 40,
+        "total": 40
+      }
+    }
+  },
+  "text": {
+    "correct": 134,
+    "total": 141,
+    "accuracy": 0.950354609929078,
+    "groups": {
+      "known": {
+        "correct": 61,
+        "total": 67
+      },
+      "context": {
+        "correct": 20,
+        "total": 20
+      },
+      "unknown": {
+        "correct": 16,
+        "total": 16
+      },
+      "negation": {
+        "correct": 20,
+        "total": 20
+      },
+      "order": {
+        "correct": 17,
+        "total": 18
+      }
+    }
+  },
+  "intent": {
+    "correct": 349,
+    "total": 351,
+    "accuracy": 0.9943019943019943,
+    "groups": {
+      "2": {
+        "correct": 36,
+        "total": 36
+      },
+      "3": {
+        "correct": 36,
+        "total": 36
+      },
+      "4": {
+        "correct": 3,
+        "total": 3
+      },
+      "5": {
+        "correct": 36,
+        "total": 36
+      },
+      "6": {
+        "correct": 36,
+        "total": 36
+      },
+      "7": {
+        "correct": 12,
+        "total": 12
+      },
+      "8": {
+        "correct": 36,
+        "total": 36
+      },
+      "9": {
+        "correct": 32,
+        "total": 32
+      },
+      "1": {
+        "correct": 103,
+        "total": 105
+      },
+      "0": {
+        "correct": 19,
+        "total": 19
+      }
+    }
+  },
+  "order_controls": {
+    "full": {
+      "correct": 17,
+      "total": 18
+    },
+    "drop_order": {
+      "correct": 8,
+      "total": 18
+    },
+    "erase_all": {
+      "correct": 0,
+      "total": 18
+    }
+  },
+  "limits": [
+    "Known native language contracts and independent arguments; not unrestricted language understanding.",
+    "The text reader still missed 7 of 141 open-validation examples; the selector missed 2 of 351.",
+    "No APK was built and the installed application is not replaced."
+  ],
+  "evidence_sha256": {
+    "manifest.json": "63c1257406bdf573b105ac3303853bd393a62170aa73823ba06c6e7c19d40d9a",
+    "validation.json": "d4c09f253400f48f99aa9bae639208cb54ac934f0d34c898b0595a92432e1a1a",
+    "reserved.json": "fc23ad41f44d7c03f72214a3d348059c5c0c38c2e3d76c9f290d956f7cf989b3",
+    "controls.json": "49d0c9acc78042d6d766d604aeffa94704bebc4eee1ebb9fc8efa34e9e2ad2ed",
+    "promotion.json": "02c747751e6480da0cba92db8cc1ba318ad624eeadda948021902801549ef773"
+  }
+}

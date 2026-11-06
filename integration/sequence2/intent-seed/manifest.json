@@ -1,0 +1,38 @@
+{
+  "sha256": "459738833312923b65caccc272c090c7605de64056cdf869f2d8d9232d34f2c9",
+  "parts": [
+    {
+      "file": "intent.rvp.gz.001",
+      "sha256": "dc9e1da2e681a4d58015ffbccf39779050713c43e0318f5355f5d795b8f03639",
+      "bytes": 131072
+    },
+    {
+      "file": "intent.rvp.gz.002",
+      "sha256": "323d7f80dded12c1cc88464a003500c5fa773df91926fa01ec1d064bcf13e4dc",
+      "bytes": 131072
+    },
+    {
+      "file": "intent.rvp.gz.003",
+      "sha256": "5044c2775c1fdd10099f2e390eb4991ec5d07293d1562c3617a0208880d8ac80",
+      "bytes": 131072
+    },
+    {
+      "file": "intent.rvp.gz.004",
+      "sha256": "cef6d49cfdaa4ba54d2439d7eb61ddda4532212debc0296b433858e9bf3379c3",
+      "bytes": 131072
+    },
+    {
+      "file": "intent.rvp.gz.005",
+      "sha256": "c0e6c02a69dd5db590ae1d5c879c77cd097e073b92b67d725ea211ad5ee86e57",
+      "bytes": 124185
+    }
+  ],
+  "native_updates": 10500,
+  "scope": "Validation-only warm start for continued intent training; no reserved tasks opened.",
+  "reusable_caches": {
+    "rows": 1047,
+    "rows_sha256": "44e8dde463f40a8698842d6f2b27809bf731e907bc171c5cce090b87ef7e099e",
+    "native_input_sha256": "1d0797e56a17c5abc682da34b0baba33792c20c4d6fa09961a3ec6ad316aa708",
+    "origin": "Native measured caches in the verified 10-epoch intent checkpoint; fresh circuit parity is checked on reuse."
+  }
+}

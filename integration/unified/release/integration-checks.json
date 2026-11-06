@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "count": 9,
+  "checks": [
+    "one natural-language request executes every quantum component and commits one shared task; exact replay does not execute twice",
+    "failure after quantum memory and VQC mutations rolls back every bank, symbolic projection, dictionary, supervision and receipt",
+    "native C1 reasoning consumes the actual VQC classification and derives a symbolic conclusion with proof",
+    "verified learning updates the learned banks, rolls back all gradients on failure, retains corrected live memory, uses the immutable original task teacher and rejects duplicate learning; a saturated correct readout may retain its coefficients",
+    "reasoning refreshes stale VQC-derived facts after verified learning and reuses current facts without repeating inference",
+    "typed observations preserve all 1000 values; malformed arrays and inference-time teacher labels leave the session unchanged",
+    "restart and compatible legacy writes preserve personal names, quantum memory, shared task history and learned banks in the same database",
+    "a corrupted native bank is rejected before inference and cannot publish a partial result",
+    "simultaneous retries commit one quantum write; a missing premise produces the native learned refusal instead of a fabricated action"
+  ],
+  "apk_built": false
+}

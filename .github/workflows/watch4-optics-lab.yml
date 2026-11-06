@@ -6,10 +6,16 @@ on:
   pull_request:
     paths: ['**', '.github/workflows/watch4-optics-lab.yml']
   workflow_dispatch:
+    inputs:
+      build_android:
+        description: 'Build the Watch4 APK explicitly'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   compile-base:
+    if: github.event_name == 'workflow_dispatch' && inputs.build_android
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

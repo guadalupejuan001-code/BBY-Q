@@ -1,0 +1,58 @@
+name: BBY Q unified native entity
+on:
+  pull_request:
+    paths: ['bbyq', 'integration/unified/**', 'ai/xi/unified/**', '.github/workflows/bbyq-unified.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false, fetch-depth: 0}
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - name: Build XI host runtime
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify frozen models and source identities
+        run: |
+          mkdir -p build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+      - name: Verify native readout, gradients and Newton solver
+        run: python3 -m integration.unified.verify_perception
+      - name: Verify shared state, rollback and learning
+        run: python3 -m integration.unified.verify
+      - name: Verify lossless U01 session upgrade
+        run: python3 -m integration.unified.verify_upgrade
+      - name: Recheck all 200 original tasks and nine failures
+        run: python3 -m integration.unified.evaluate --count 200 --workers 2 --seed 2026110705 --output build/unified/regression.json
+      - name: Recheck all 200 tasks containing the boundary failure
+        run: python3 -m integration.unified.evaluate --count 200 --workers 2 --seed 2026110602 --output build/unified/opened-regression.json
+      - name: Check 200 independently reserved cooperative tasks
+        run: python3 -m integration.unified.evaluate --count 200 --workers 2 --seed 2026110603
+      - name: Check 1024 independently reserved typed observations
+        run: python3 -m integration.unified.evaluate_perception --count 1024 --seed 2026110603 --output build/unified/classification-ci.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-unified-native-evidence
+          path: build/unified/*.json
+          if-no-files-found: warn
+          retention-days: 30

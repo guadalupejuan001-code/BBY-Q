@@ -1,0 +1,86 @@
+{
+  "epoch": 20,
+  "path": "router-020.rvp",
+  "sha256": "96c4d3555d47723a771db49f17c91cbbf4f6129af21cf96cd75d5a40215bab25",
+  "minimum": 0.9809523809523809,
+  "accuracy": 0.9959183673469387,
+  "groups": {
+    "legacy-2": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-3": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-4": {
+      "correct": 3,
+      "total": 3
+    },
+    "legacy-5": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-6": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-7": {
+      "correct": 12,
+      "total": 12
+    },
+    "legacy-8": {
+      "correct": 36,
+      "total": 36
+    },
+    "legacy-9": {
+      "correct": 32,
+      "total": 32
+    },
+    "legacy-1": {
+      "correct": 103,
+      "total": 105
+    },
+    "legacy-0": {
+      "correct": 19,
+      "total": 19
+    },
+    "mission": {
+      "correct": 30,
+      "total": 30
+    },
+    "feedback": {
+      "correct": 3,
+      "total": 3
+    },
+    "status": {
+      "correct": 2,
+      "total": 2
+    },
+    "remember": {
+      "correct": 18,
+      "total": 18
+    },
+    "recall": {
+      "correct": 18,
+      "total": 18
+    },
+    "plan": {
+      "correct": 11,
+      "total": 11
+    },
+    "explain": {
+      "correct": 3,
+      "total": 3
+    },
+    "observe": {
+      "correct": 36,
+      "total": 36
+    },
+    "cancel": {
+      "correct": 18,
+      "total": 18
+    }
+  },
+  "updates": 37260
+}
