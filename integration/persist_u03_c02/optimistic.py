@@ -54,7 +54,8 @@ def table_views(db: sqlite3.Connection) -> dict[str, Table]:
         # refuse because it could alias another row during a differential commit.
         rows = {}
         ordering = ("rowid" if "WITHOUT ROWID" not in (schema or "").upper()
-                    else ",".join(ident(k) for k in keys))\n        query = "SELECT * FROM " + ident(name) + " ORDER BY " + ordering
+                    else ",".join(ident(k) for k in keys))
+        query = "SELECT * FROM " + ident(name) + " ORDER BY " + ordering
         for raw in db.execute(query):
             data = tuple(raw)
             key = tuple(data[i] for i in indices)
