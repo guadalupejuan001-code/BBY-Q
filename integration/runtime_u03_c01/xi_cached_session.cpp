@@ -106,10 +106,11 @@ int main(int argc, char** argv) {
           // runtime. All state, memory revisions and RNG come from the file.
           if (payload.empty() || payload.find('\0') != std::string::npos)
             throw std::invalid_argument("Invalid C01 RESTORE path");
-          const auto replacement = load_state(payload);
-          const auto core = replacement.core_snapshot();
-          const auto memory = replacement.memory_persistent_snapshot();
-          current.restore(core, memory);
+          // load_state checks checksum, exact size and both authorities.
+          // After validation, move the complete owner directly rather than
+          // snapshotting/restoring the already validated state a second time.
+          auto replacement = load_state(payload);
+          current = std::move(replacement);
           respond(true, "{}");
         } else if (command == "EXEC") {
           respond(true, current.execute(payload));
