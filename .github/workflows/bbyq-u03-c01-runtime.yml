@@ -74,8 +74,9 @@ jobs:
           assert not eq['apk_built'] and not report['apk_built']
           print('C01: semantic and checkpoint equality confirmed; no APK')
           for case, data in report['comparisons'].items():
-              print(case, data['wall_ratio_baseline_over_cached'],
-                    data['protocol_payload_reduction_fraction'])
+              print(case, 'cached', data['cached_wall_ratio_baseline_over_variant'],
+                    'pooled', data['pooled_wall_ratio_baseline_over_variant'],
+                    'wire', data['pooled_protocol_payload_reduction_fraction'])
           PY
       - uses: actions/upload-artifact@v4
         if: always()
