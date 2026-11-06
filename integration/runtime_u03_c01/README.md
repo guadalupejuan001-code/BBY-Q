@@ -19,7 +19,7 @@ C01, opt-in:
    HALT. El servidor reconstruye los mismos bytes del programa original.
 4. Se llama al original Runtime::execute, sin sustituir representación,
    circuito, métricas de entrenamiento o control de errores.
-5. La caché se destruye cuando termina la sesión XI.
+5. En modo cached, la caché se destruye al cerrar la sesión. En modo pooled, un conjunto limitado de procesos XI queda residente dentro del alcance de la prueba y cada uso posterior ejecuta RESTORE desde el RVPC2 autenticado, antes de procesar instrucciones. Al salir del alcance se cierran todos los trabajadores.
 
 Compatibilidad: EXEC, SAVE y METRICS están disponibles; CODELIB y EXECREF
 son comandos adicionales del binario experimental. Un identificador inválido
@@ -27,9 +27,10 @@ se rechaza sin ejecutar el programa. Límites: 128 bibliotecas por proceso,
 16 MiB agregados y 16 MiB de fuente reconstruida.
 
 **Importante:** NO se cachean resultados, pesos ni estados cuánticos.
-El intérprete original vuelve a analizar la fuente reconstruida. NO se
-eliminan aún los procesos por turno ni los snapshots completos. Esta mejora
-elimina un volumen de tráfico IPC; NO garantiza aceleración de CPU.
+El intérprete original vuelve a analizar la fuente reconstruida. El modo
+pooled sí evita volver a lanzar procesos ya existentes entre turnos, pero
+RESTORE sigue leyendo y comprobando el snapshot completo. No elimina
+los snapshots completos ni garantiza aceleración de CPU.
 El programa antiguo sigue siendo la ruta por defecto.
 
 ## Reproducción
@@ -74,4 +75,9 @@ payload del protocolo no es RAM liberada ni ancho de banda de Internet.
 - Validar consumo real en Android físico: C16.
 
 **Ruta reversible:** el contexto activate() cambia temporalmente la clase
-XiSession; al salir, restaura todas sus referencias originales.
+XiSession; al salir, restaura todas sus referencias originales y cierra
+los procesos en reposo. El pool tiene un máximo de seis procesos ociosos;
+puede retener más RAM durante un experimento y NO está habilitado en el
+producto. Cada proceso reutilizado acepta exclusivamente un estado RVPC2
+verificado, y un RESTORE fallido destruye el proceso en lugar de continuar
+con estado anterior.
