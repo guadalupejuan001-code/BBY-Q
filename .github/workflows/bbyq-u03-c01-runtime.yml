@@ -61,6 +61,8 @@ jobs:
         run: python3 -m integration.runtime_u03_c01.conformance | tee build/c01/equality.json
       - name: Paired A/B host benchmark against original runtime
         run: python3 -m integration.runtime_u03_c01.benchmark --samples 3 --timeout 180 --out build/c01/comparison.json
+      - name: Measure long-lived XI sessions across repeated turns
+        run: python3 -m integration.runtime_u03_c01.warm --samples 2 --timeout 180 --out build/c01/warm.json
       - name: Verify no model files changed and no Android build occurred
         run: |
           python3 - <<'PY'
@@ -71,8 +73,11 @@ jobs:
           assert eq['passed'] and eq['runtime_output_and_checkpoint_equal']
           assert report['passed'] and report['checkpoint_and_source_unchanged']
           assert eq['protected_file_count'] == report['frozen_asset_count'] == 159
-          assert not eq['apk_built'] and not report['apk_built']
+          warm = json.loads(Path('build/c01/warm.json').read_text())
+          assert warm['passed'] and warm['original_and_pooled_bank_hashes_equal']
+          assert not eq['apk_built'] and not report['apk_built'] and not warm['apk_built']
           print('C01: semantic and checkpoint equality confirmed; no APK')
+          print('Warm process reuse ratio', warm['wall_ratio_baseline_over_pooled'])
           for case, data in report['comparisons'].items():
               print(case, 'cached', data['cached_wall_ratio_baseline_over_variant'],
                     'pooled', data['pooled_wall_ratio_baseline_over_variant'],
