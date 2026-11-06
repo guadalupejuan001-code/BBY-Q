@@ -18,6 +18,7 @@ import time
 from typing import Any, Callable
 
 from integration.unified.session import Session
+from integration.unified.common import encoded, digest
 
 
 class StaleSnapshot(RuntimeError):
@@ -187,10 +188,48 @@ class OptimisticSession:
         with Session(self.database, self.readers) as session:
             return session.history()
 
+    def _replay_if_present(self, request_id: str, prompt: str):
+        """Fast, read-only idempotent replay; no snapshot or XI process required.
+
+        The legacy U02 Session.turn checks the unified receipt namespace first,
+        then the C1 namespace. Their fingerprints are preserved exactly.
+        """
+        fingerprint = digest(encoded({"text": prompt, "payload": None, "control": None}))
+        prior = self.db.execute(
+            "SELECT fingerprint,result FROM unified_requests WHERE id=?", (request_id,)
+        ).fetchone()
+        if prior is not None:
+            if prior[0] != fingerprint:
+                raise ValueError("Request ID was already used for different input")
+            import json
+            return json.loads(prior[1])
+        legacy_fingerprint = digest(encoded({"text": prompt, "ablate_intent": False}))
+        prior = self.db.execute(
+            "SELECT fingerprint,result FROM requests WHERE id=?", (request_id,)
+        ).fetchone()
+        if prior is not None:
+            if prior[0] != legacy_fingerprint:
+                raise ValueError("Request ID was already used by the language client")
+            import json
+            return json.loads(prior[1])
+        return None
+
     def turn(self, request_id: str, prompt: str, payload=None,
              fail_after=None, control=None):
         self._check_open()
         self.last_metrics = {}
+        if not isinstance(prompt, str) or not isinstance(request_id, str) or not request_id:
+            raise ValueError("Text and nonempty request ID are required")
+        if payload is None and control is None:
+            existing = self._replay_if_present(request_id, prompt)
+            if existing is not None:
+                self.last_metrics = {
+                    "fast_replay": True, "attempts": 0, "conflicts": 0,
+                    "snapshot_ms": 0.0, "native_compute_ms": 0.0,
+                    "write_lock_ms": 0.0, "published_row_changes": 0,
+                    "updated_tables": [],
+                }
+                return existing
         conflicts = 0
         for attempt in range(1, self.max_retries + 1):
             with tempfile.TemporaryDirectory(prefix="bbyq-c02-speculative-") as temp:
