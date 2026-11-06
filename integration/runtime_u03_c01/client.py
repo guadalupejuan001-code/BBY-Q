@@ -6,6 +6,7 @@ The old native API remains the default. Instrumentation is isolated by context.
 from __future__ import annotations
 
 from contextlib import contextmanager
+import hashlib
 import json
 import threading
 from pathlib import Path
@@ -32,6 +33,7 @@ class CachedXiSession(BASE_XI):
         "logical_execute_source_bytes": 0,
         "native_processes_started": 0,
         "restores": 0,
+        "exact_snapshot_reuses": 0,
     }
 
     @classmethod
@@ -85,6 +87,16 @@ class CachedXiSession(BASE_XI):
 
 
 
+
+
+def snapshot_hash(path: Path) -> str:
+    """Compare complete RVPC2 bytes, not filenames or modification time."""
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
 class ScopedXiPool:
     """Bounded, single-experiment pool. A failed RESTORE must never be reused."""
 
@@ -104,10 +116,20 @@ class ScopedXiPool:
         try:
             if old.process.poll() is not None:
                 raise RuntimeError("Reused XI process is not alive")
-            # Native RESTORE uses the original RVPC2 loader (checksum, size,
-            # core, inverse memory and RNG) before replacing live state.
+            # Reuse is allowed only after SAVE and before another EXEC.
+            # Check full persisted RVPC2 image SHA-256; a filename, model
+            # label or file timestamp is never treated as state identity.
+            previous = getattr(old, "_c01_exact_hash", None)
+            if previous is not None and not getattr(old, "_c01_dirty", True):
+                if snapshot_hash(Path(state)) == previous:
+                    CachedXiSession.stats["exact_snapshot_reuses"] += 1
+                    return old
+            # Any mismatch/unsaved execution requires original native
+            # authentication of the incoming RVPC2 before processing.
             old._request("RESTORE", str(Path(state).resolve()))
             CachedXiSession.stats["restores"] += 1
+            old._c01_exact_hash = None
+            old._c01_dirty = True
             return old
         except BaseException:
             try:
@@ -147,10 +169,17 @@ def pooled_lease_type(pool):
             self.close()
 
         def execute(self, source):
+            # Even failed executions invalidate the fast path. No assumption
+            # is made about native rollback without a fresh SAVE.
+            self._worker._c01_dirty = True
             return self._worker.execute(source)
 
         def save(self, target):
-            return self._worker.save(target)
+            self._worker._c01_dirty = True
+            result = self._worker.save(target)
+            self._worker._c01_exact_hash = snapshot_hash(Path(target))
+            self._worker._c01_dirty = False
+            return result
 
         def metrics(self):
             return self._worker.metrics()
