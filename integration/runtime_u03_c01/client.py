@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from contextlib import contextmanager
 import json
+import threading
 from pathlib import Path
 
 from integration.unified import common
@@ -29,6 +30,8 @@ class CachedXiSession(BASE_XI):
         "exec_fallback": 0,
         "xi_wire_payload_bytes": 0,
         "logical_execute_source_bytes": 0,
+        "native_processes_started": 0,
+        "restores": 0,
     }
 
     @classmethod
@@ -45,6 +48,7 @@ class CachedXiSession(BASE_XI):
             capabilities, _ = self._request("C01CAP")
             if json.loads(capabilities).get("cached_library_transport") != 1:
                 raise RuntimeError("C01 cached transport capability not available")
+            self.stats["native_processes_started"] += 1
         except BaseException:
             self.close()
             raise
@@ -80,9 +84,90 @@ class CachedXiSession(BASE_XI):
         return [json.loads(row) for row in result.splitlines() if row.startswith("{")], elapsed
 
 
+
+class ScopedXiPool:
+    """Bounded, single-experiment pool. A failed RESTORE must never be reused."""
+
+    def __init__(self, max_idle=6):
+        self.idle = []
+        self.lock = threading.Lock()
+        self.closed = False
+        self.max_idle = max_idle
+
+    def borrow(self, binary, state):
+        with self.lock:
+            if self.closed:
+                raise RuntimeError("XI process pool is closed")
+            old = self.idle.pop() if self.idle else None
+        if old is None:
+            return CachedXiSession(binary, state)
+        try:
+            if old.process.poll() is not None:
+                raise RuntimeError("Reused XI process is not alive")
+            # Native RESTORE uses the original RVPC2 loader (checksum, size,
+            # core, inverse memory and RNG) before replacing live state.
+            old._request("RESTORE", str(Path(state).resolve()))
+            CachedXiSession.stats["restores"] += 1
+            return old
+        except BaseException:
+            try:
+                old.close()
+            finally:
+                raise
+
+    def release(self, instance):
+        with self.lock:
+            if not self.closed and instance.process.poll() is None and len(self.idle) < self.max_idle:
+                self.idle.append(instance)
+                return
+        instance.close()
+
+    def shutdown(self):
+        with self.lock:
+            self.closed = True
+            idle = self.idle
+            self.idle = []
+        for worker in idle:
+            worker.close()
+
+
+def pooled_lease_type(pool):
+    """Create a fresh lease type bound to one audit scope (no global pool)."""
+
+    class XiLease:
+        def __init__(self, binary, state):
+            self._worker = pool.borrow(binary, state)
+            self.process = self._worker.process
+            self._released = False
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            self.close()
+
+        def execute(self, source):
+            return self._worker.execute(source)
+
+        def save(self, target):
+            return self._worker.save(target)
+
+        def metrics(self):
+            return self._worker.metrics()
+
+        def close(self):
+            if not self._released:
+                self._released = True
+                pool.release(self._worker)
+
+    return XiLease
+
+
 @contextmanager
-def activate():
-    """Install C01 only within an experiment and restore every original alias."""
+def activate(pool_sessions=False):
+    """Opt-in. Every alias restored and all idle native children reaped."""
+    pool = ScopedXiPool() if pool_sessions else None
+    selected = pooled_lease_type(pool) if pool is not None else CachedXiSession
     slots = [
         (common.C1, "XiSession"),
         (common, "XiSession"),
@@ -91,8 +176,10 @@ def activate():
     old = [(module, key, getattr(module, key)) for module, key in slots]
     try:
         for module, key, _ in old:
-            setattr(module, key, CachedXiSession)
-        yield CachedXiSession
+            setattr(module, key, selected)
+        yield selected
     finally:
         for module, key, original in reversed(old):
             setattr(module, key, original)
+        if pool is not None:
+            pool.shutdown()
