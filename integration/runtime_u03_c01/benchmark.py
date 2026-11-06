@@ -20,7 +20,7 @@ ROOT = c00.ROOT
 def worker(mode, scenario):
     if mode == "baseline":
         return c00.run_worker(scenario)
-    if mode != "cached":
+    if mode not in ("cached", "pooled"):
         raise ValueError("Unknown runtime experiment")
     # C00 resets its trace after synthetic setup. Reset transport metrics at
     # that exact boundary too, excluding feedback/replay priming.
@@ -33,7 +33,7 @@ def worker(mode, scenario):
     c00.NativeTrace.reset = reset
     try:
         CachedXiSession.reset_counters()
-        with activate():
+        with activate(pool_sessions=(mode == "pooled")):
             report = c00.run_worker(scenario)
         report["c01_transport"] = dict(CachedXiSession.stats)
         return report
@@ -45,10 +45,10 @@ def orchestrate(samples, timeout, output):
     frozen_before, apk_before = c00.freeze_assets(), c00.apk_files()
     pairs = [(scenario, mode, sample) for scenario in c00.SCENARIOS
              for sample in range(samples)
-             for mode in ("baseline", "cached")]
+             for mode in ("baseline", "cached", "pooled")]
     random.Random(2026110601).shuffle(pairs)
-    raw = {"baseline": {s: [] for s in c00.SCENARIOS},
-           "cached": {s: [] for s in c00.SCENARIOS}}
+    raw = {mode: {s: [] for s in c00.SCENARIOS}
+           for mode in ("baseline", "cached", "pooled")}
     for scenario, mode, sample in pairs:
         command = [
             sys.executable, "-m", "integration.runtime_u03_c01.benchmark",
@@ -72,29 +72,37 @@ def orchestrate(samples, timeout, output):
     comparison = {}
     for scenario in c00.SCENARIOS:
         base = raw["baseline"][scenario]
-        opt = raw["cached"][scenario]
         b_wall = c00.stats([v["wall_ms"] for v in base])
-        c_wall = c00.stats([v["wall_ms"] for v in opt])
         b_wire = c00.stats([
             v["native_trace"]["source_bytes_sent_to_xi"] for v in base])
-        c_wire = c00.stats([
-            v["c01_transport"]["xi_wire_payload_bytes"] for v in opt])
-        comparison[scenario] = {
+        entry = {
             "baseline_wall_ms": b_wall,
-            "cached_wall_ms": c_wall,
-            "wall_ratio_baseline_over_cached":
-                round(b_wall["median"] / c_wall["median"], 3)
-                if c_wall["median"] else None,
             "baseline_XI_exec_payload_bytes": b_wire,
-            "cached_XI_exec_and_library_payload_bytes": c_wire,
-            "protocol_payload_reduction_fraction":
-                round(1 - c_wire["median"] / b_wire["median"], 5)
-                if b_wire["median"] else None,
-            "optimized_library_registrations": c00.stats([
-                v["c01_transport"]["libraries_registered"] for v in opt]),
-            "optimized_library_hits": c00.stats([
-                v["c01_transport"]["library_cache_hits"] for v in opt]),
         }
+        for variant in ("cached", "pooled"):
+            records = raw[variant][scenario]
+            wall = c00.stats([v["wall_ms"] for v in records])
+            wire = c00.stats([
+                v["c01_transport"]["xi_wire_payload_bytes"] for v in records])
+            entry.update({
+                variant + "_wall_ms": wall,
+                variant + "_wall_ratio_baseline_over_variant":
+                    round(b_wall["median"] / wall["median"], 3)
+                    if wall["median"] else None,
+                variant + "_XI_exec_and_library_payload_bytes": wire,
+                variant + "_protocol_payload_reduction_fraction":
+                    round(1 - wire["median"] / b_wire["median"], 5)
+                    if b_wire["median"] else None,
+                variant + "_library_registrations": c00.stats([
+                    v["c01_transport"]["libraries_registered"] for v in records]),
+                variant + "_library_hits": c00.stats([
+                    v["c01_transport"]["library_cache_hits"] for v in records]),
+                variant + "_native_processes_started": c00.stats([
+                    v["c01_transport"]["native_processes_started"] for v in records]),
+                variant + "_restores": c00.stats([
+                    v["c01_transport"]["restores"] for v in records]),
+            })
+        comparison[scenario] = entry
     if c00.freeze_assets() != frozen_before:
         raise AssertionError("C01 modified a frozen model, source or archive")
     if c00.apk_files() != apk_before:
@@ -110,9 +118,10 @@ def orchestrate(samples, timeout, output):
         "comparisons": comparison,
         "raw": raw,
         "caveats": [
-            "C01 caches only immutable XI library text inside one runtime process.",
+            "C01 caches immutable XI library text; pooled mode optionally restores RVPC2 into a bounded resident process.",
             "Original native Runtime::execute still parses and executes full source.",
-            "No cache of quantum state, no persistent XI sessions across turns.",
+            "No results or quantum states are cached; pooled processes are restored from fresh authenticated RVPC2 snapshots before reuse.",
+            "The pooled mode retains worker RSS between turns (maximum six idle native processes per audit scope).",
             "Measurements are Linux host, not Android or physical quantum hardware.",
             "Two or three samples are exploratory; do not infer stable speedups.",
             "Compare baseline EXEC source bytes against cached EXECREF+CODELIB payload; framing overhead is omitted.",
@@ -127,7 +136,7 @@ def orchestrate(samples, timeout, output):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--worker", choices=c00.SCENARIOS)
-    p.add_argument("--mode", choices=("baseline", "cached"), default="baseline")
+    p.add_argument("--mode", choices=("baseline", "cached", "pooled"), default="baseline")
     p.add_argument("--samples", type=int, default=2)
     p.add_argument("--timeout", type=int, default=160)
     p.add_argument("--out", type=Path, default=ROOT / "build/c01/comparison.json")
@@ -141,8 +150,10 @@ def main():
         print(json.dumps({
             "passed": True, "checkpoints_unchanged": True,
             "apk_built": False, "comparison": {
-                k: {"wall_ratio": v["wall_ratio_baseline_over_cached"],
-                    "wire_reduction": v["protocol_payload_reduction_fraction"]}
+                k: {"cached_wall_ratio": v["cached_wall_ratio_baseline_over_variant"],
+                    "pooled_wall_ratio": v["pooled_wall_ratio_baseline_over_variant"],
+                    "cached_wire_reduction": v["cached_protocol_payload_reduction_fraction"],
+                    "pooled_wire_reduction": v["pooled_protocol_payload_reduction_fraction"]}
                 for k, v in report["comparisons"].items()},
             "output": str(args.out),
         }, ensure_ascii=False))
