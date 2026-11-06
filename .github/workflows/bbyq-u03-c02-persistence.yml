@@ -1,0 +1,81 @@
+name: BBY Q U03 C02 speculative SQLite persistence
+on:
+  pull_request:
+    paths:
+      - 'integration/persist_u03_c02/**'
+      - '.github/workflows/bbyq-u03-c02-persistence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-persistence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check C02 SQL deltas, history order and crash safety
+        run: python3 -m unittest integration.persist_u03_c02.test_optimistic -v
+      - name: Compile pinned original XI and Ether runtime
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify frozen C1 and U02 identity and native learning
+        run: |
+          mkdir -p build/sequence2 build/unified build/c02
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Verify C02 vs original U02 semantics and genuine competing writers
+        run: python3 -m integration.persist_u03_c02.conformance | tee build/c02/conformance.json
+      - name: A/B measure SQLite writer hold and total task latency
+        run: python3 -m integration.persist_u03_c02.benchmark --samples 3 --timeout 180 --out build/c02/comparison.json
+      - name: Confirm exact state, C00 integrity and no APK
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c = json.loads(Path('build/c02/conformance.json').read_text())
+          b = json.loads(Path('build/c02/comparison.json').read_text())
+          assert c['passed'] and c['semantic_and_checkpoint_equal']
+          assert c['restart_with_original_session_passed']
+          assert c['concurrent_retry']['retried_after_external_commit']
+          assert c['same_request_id_parallel']['deduplicated_same_id']
+          assert c['bounded_conflict_retries']['no_partial_commit']
+          assert b['passed'] and b['protected_assets_unchanged']
+          assert c['frozen_asset_count'] == b['protected_asset_count'] == 159
+          assert not c['apk_built'] and not b['apk_built']
+          for name,row in b['comparisons'].items():
+              print(name,'wall ratio',row['wall_ratio_baseline_over_optimistic'],
+                    'writer lock ratio',row['write_lock_ratio_baseline_over_optimistic'])
+          print('C02 native conformance and immutable bank audit PASSED; no APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C02-native-persistence-evidence
+          path: |
+            build/c02/*.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
