@@ -59,6 +59,60 @@ class CachedXIClientTests(unittest.TestCase):
         self.assertIs(common.C1.XiSession, base)
         self.assertIs(quantum.XiSession, alias)
 
+    def test_bounded_pool_restores_before_reusing_state(self):
+        class FakeProcess:
+            def poll(self):
+                return None
+
+        class FakeWorker:
+            def __init__(self):
+                self.process = FakeProcess()
+                self.commands = []
+                self.closed = False
+
+            def _request(self, command, payload):
+                self.commands.append((command, payload))
+                return "{}", 0.0
+
+            def close(self):
+                self.closed = True
+
+        pool = client.ScopedXiPool(max_idle=1)
+        worker = FakeWorker()
+        pool.idle.append(worker)
+        self.assertIs(pool.borrow("ignored", "/tmp/example.rvp"), worker)
+        self.assertEqual(worker.commands[0][0], "RESTORE")
+        self.assertEqual(client.CachedXiSession.stats["restores"], 1)
+        pool.release(worker)
+        self.assertEqual(len(pool.idle), 1)
+        pool.shutdown()
+        self.assertTrue(worker.closed)
+        self.assertEqual(pool.idle, [])
+
+    def test_failed_restore_is_fail_closed(self):
+        class FakeProcess:
+            def poll(self):
+                return None
+
+        class BrokenWorker:
+            process = FakeProcess()
+            closed = False
+
+            def _request(self, command, payload):
+                raise RuntimeError("corrupt RVPC2")
+
+            def close(self):
+                self.closed = True
+
+        pool = client.ScopedXiPool()
+        worker = BrokenWorker()
+        pool.idle.append(worker)
+        with self.assertRaisesRegex(RuntimeError, "corrupt"):
+            pool.borrow("ignored", "/tmp/corrupt.rvp")
+        self.assertTrue(worker.closed)
+        self.assertEqual(pool.idle, [])
+        pool.shutdown()
+
     def test_c01_is_opt_in(self):
         self.assertIsNot(common.C1.XiSession, client.CachedXiSession)
 
