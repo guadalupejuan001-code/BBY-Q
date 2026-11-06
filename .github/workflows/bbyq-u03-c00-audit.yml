@@ -1,0 +1,76 @@
+name: BBY Q U03 C00 immutable native audit
+on:
+  pull_request:
+    paths:
+      - 'integration/audit_u03_c00/**'
+      - '.github/workflows/bbyq-u03-c00-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test audit instrumentation without using checkpoints
+        run: python3 -m unittest integration.audit_u03_c00.test_profile -v
+      - name: Build original XI runtime (host only)
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Recheck C1 and U02 frozen source, models and evidence
+        run: |
+          mkdir -p build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+      - name: Recheck real native numerical implementation
+        run: python3 -m integration.unified.verify_perception
+      - name: Recheck real native integration, rollback, recovery and upgrade
+        run: |
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Measure CPU, RSS, IO, XI calls, initialization and six task types
+        run: python3 -m integration.audit_u03_c00.profile --samples 2 --timeout 160 --out build/c00/profile.json
+      - name: Summarize audit and confirm no Android artifact
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('build/c00/profile.json').read_text())
+          assert p['all_case_invariants_passed']
+          assert p['checkpoint_and_source_unchanged']
+          assert p['apk_built'] is False and p['new_apks'] == []
+          assert p['scenario_count'] == 6 and p['samples_per_scenario'] == 2
+          for scenario, result in p['aggregates'].items():
+              assert result['wall_ms']['max'] >= 0
+              print(scenario, result['wall_ms'])
+          print('C00: immutable checkpoint audit passed; no APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C00-native-audit
+          path: |
+            build/c00/profile.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
