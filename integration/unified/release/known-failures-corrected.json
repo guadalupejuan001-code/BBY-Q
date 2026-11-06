@@ -1,0 +1,1564 @@
+{
+  "passed": true,
+  "corrected": 9,
+  "total": 9,
+  "cases": [
+    {
+      "index": 7,
+      "seed": 1111914917,
+      "expected_class": 1,
+      "before": {
+        "action": 1,
+        "association": "Estrella Lejana 7",
+        "class": 0,
+        "class_probability": 0.4027922468969441,
+        "confidence": 0.9533463733640059,
+        "goal": 6,
+        "kind": "mission",
+        "memory_probability": 0.9901531076477346,
+        "observation": "Ámbar Naciente 7",
+        "policy": {
+          "action": 1,
+          "goal": 6,
+          "kind": "plan",
+          "position": 5,
+          "probability_right": 0.860037601924225,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 5,
+        "rule_value": 1,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-7:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 1
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "92b338c230dfe67a944f604fc82f0f754e8ad129e856d03443bf53f737e390db",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 6,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 5,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la derecha."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Ámbar Naciente 7",
+        "association": "Estrella Lejana 7",
+        "position": 5,
+        "class": 1,
+        "rule_value": 1,
+        "goal": 0,
+        "action": 0,
+        "confidence": 0.9801413198167054,
+        "class_probability": 0.999999999986112,
+        "memory_probability": 0.9901531076477346,
+        "voice": {
+          "text": "Mover a la izquierda.",
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 1,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "92b338c230dfe67a944f604fc82f0f754e8ad129e856d03443bf53f737e390db",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 5,
+            "goal": 0
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 5,
+          "goal": 0,
+          "action": 0,
+          "probability_right": 0.007723264703025329,
+          "terminal": false
+        },
+        "task_id": "reserved-7:2"
+      }
+    },
+    {
+      "index": 38,
+      "seed": 1345352827,
+      "expected_class": 0,
+      "before": {
+        "action": 1,
+        "association": "Bruma Ébano 38",
+        "class": 1,
+        "class_probability": 0.5134565956114607,
+        "confidence": 0.9550162415794174,
+        "goal": 6,
+        "kind": "mission",
+        "memory_probability": 0.0,
+        "observation": "Ñandú Boreal 38",
+        "policy": {
+          "action": 1,
+          "goal": 6,
+          "kind": "plan",
+          "position": 4,
+          "probability_right": 0.9649664993629157,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 4,
+        "rule_value": 0,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-38:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 9
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "72bc01f6997c7fd0973d3f0bb9ea52db1399020a5c88f4c9d0639bc12cf13f30",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 6,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 4,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la derecha."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Ñandú Boreal 38",
+        "association": "Bruma Ébano 38",
+        "position": 4,
+        "class": 0,
+        "rule_value": 0,
+        "goal": 0,
+        "action": 0,
+        "confidence": 0.9805655071622422,
+        "class_probability": 2.6006829445079112e-11,
+        "memory_probability": 0.0,
+        "voice": {
+          "text": "Mover a la izquierda.",
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 9,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "72bc01f6997c7fd0973d3f0bb9ea52db1399020a5c88f4c9d0639bc12cf13f30",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 4,
+            "goal": 0
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 4,
+          "goal": 0,
+          "action": 0,
+          "probability_right": 0.002742885827063537,
+          "terminal": false
+        },
+        "task_id": "reserved-38:2"
+      }
+    },
+    {
+      "index": 41,
+      "seed": 929109537,
+      "expected_class": 1,
+      "before": {
+        "action": 0,
+        "association": "Bruma Ébano 41",
+        "class": 0,
+        "class_probability": 0.4899608279957208,
+        "confidence": 0.9569958741551966,
+        "goal": 0,
+        "kind": "mission",
+        "memory_probability": 0.0,
+        "observation": "Nube Índigo 41",
+        "policy": {
+          "action": 0,
+          "goal": 0,
+          "kind": "plan",
+          "position": 2,
+          "probability_right": 0.0013080684085500058,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 2,
+        "rule_value": 0,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-41:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 10
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "a85048209c7b915b4c213a563ce0eae9c789600d8efba47c1a9fd7e3fb6f5c87",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 0,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 2,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la izquierda."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Nube Índigo 41",
+        "association": "Bruma Ébano 41",
+        "position": 2,
+        "class": 1,
+        "rule_value": 0,
+        "goal": 6,
+        "action": 1,
+        "confidence": 0.9805228285609566,
+        "class_probability": 0.999999999986112,
+        "memory_probability": 0.0,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 10,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "a85048209c7b915b4c213a563ce0eae9c789600d8efba47c1a9fd7e3fb6f5c87",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 2,
+            "goal": 6
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 2,
+          "goal": 6,
+          "action": 1,
+          "probability_right": 0.995828200234704,
+          "terminal": false
+        },
+        "task_id": "reserved-41:2"
+      }
+    },
+    {
+      "index": 53,
+      "seed": 1816370752,
+      "expected_class": 0,
+      "before": {
+        "action": 1,
+        "association": "Bruma Ébano 53",
+        "class": 1,
+        "class_probability": 0.8670112239555895,
+        "confidence": 0.9757797757776361,
+        "goal": 6,
+        "kind": "mission",
+        "memory_probability": 0.0,
+        "observation": "Nube Índigo 53",
+        "policy": {
+          "action": 1,
+          "goal": 6,
+          "kind": "plan",
+          "position": 2,
+          "probability_right": 0.995828200234704,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 2,
+        "rule_value": 0,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-53:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 13
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "fade2c2b96f4239f12449c3d10d4cccbbd37ba0000d53d5c1d629810f642ab40",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 6,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 2,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la derecha."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Nube Índigo 53",
+        "association": "Bruma Ébano 53",
+        "position": 2,
+        "class": 0,
+        "rule_value": 0,
+        "goal": 0,
+        "action": 0,
+        "confidence": 0.9806082698334727,
+        "class_probability": 5.857601502683795e-10,
+        "memory_probability": 0.0,
+        "voice": {
+          "text": "Mover a la izquierda.",
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 13,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "fade2c2b96f4239f12449c3d10d4cccbbd37ba0000d53d5c1d629810f642ab40",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 2,
+            "goal": 0
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 2,
+          "goal": 0,
+          "action": 0,
+          "probability_right": 0.0013080684085500058,
+          "terminal": false
+        },
+        "task_id": "reserved-53:2"
+      }
+    },
+    {
+      "index": 58,
+      "seed": 1063219101,
+      "expected_class": 1,
+      "before": {
+        "action": 0,
+        "association": "Estrella Lejana 58",
+        "class": 0,
+        "class_probability": 0.48138541372440796,
+        "confidence": 0.9575194857213473,
+        "goal": 0,
+        "kind": "mission",
+        "memory_probability": 0.0,
+        "observation": "Ñandú Boreal 58",
+        "policy": {
+          "action": 0,
+          "goal": 0,
+          "kind": "plan",
+          "position": 1,
+          "probability_right": 0.002310022038009226,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 1,
+        "rule_value": 0,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-58:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 14
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "02b9e41c09d5dd6ffb587ed4b138b899144f6b68a3c6eb14e4e1fa521c6edf93",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 0,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 1,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la izquierda."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Ñandú Boreal 58",
+        "association": "Estrella Lejana 58",
+        "position": 1,
+        "class": 1,
+        "rule_value": 0,
+        "goal": 6,
+        "action": 1,
+        "confidence": 0.9805825417049676,
+        "class_probability": 0.999999999986112,
+        "memory_probability": 0.0,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 14,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "02b9e41c09d5dd6ffb587ed4b138b899144f6b68a3c6eb14e4e1fa521c6edf93",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 1,
+            "goal": 6
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 1,
+          "goal": 6,
+          "action": 1,
+          "probability_right": 0.9978283033452632,
+          "terminal": false
+        },
+        "task_id": "reserved-58:2"
+      }
+    },
+    {
+      "index": 158,
+      "seed": 1308094676,
+      "expected_class": 0,
+      "before": {
+        "action": 0,
+        "association": "Bruma Ébano 158",
+        "class": 1,
+        "class_probability": 0.655982239462079,
+        "confidence": 0.9654838933589295,
+        "goal": 0,
+        "kind": "mission",
+        "memory_probability": 0.9901531076477346,
+        "observation": "Ñandú Boreal 158",
+        "policy": {
+          "action": 0,
+          "goal": 0,
+          "kind": "plan",
+          "position": 1,
+          "probability_right": 0.002310022038009226,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 1,
+        "rule_value": 1,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-158:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 39
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "0602840387be7aa24effdbf46542c55e4931a409c2e1038963ce7a86a722e63a",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 0,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 1,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la izquierda."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Ñandú Boreal 158",
+        "association": "Bruma Ébano 158",
+        "position": 1,
+        "class": 0,
+        "rule_value": 1,
+        "goal": 6,
+        "action": 1,
+        "confidence": 0.9803097929661932,
+        "class_probability": 1.3887943864771144e-11,
+        "memory_probability": 0.9901531076477346,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 39,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "0602840387be7aa24effdbf46542c55e4931a409c2e1038963ce7a86a722e63a",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 1,
+            "goal": 6
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 1,
+          "goal": 6,
+          "action": 1,
+          "probability_right": 0.9978283033452632,
+          "terminal": false
+        },
+        "task_id": "reserved-158:2"
+      }
+    },
+    {
+      "index": 162,
+      "seed": 1485210931,
+      "expected_class": 1,
+      "before": {
+        "action": 1,
+        "association": "Viento Jade 162",
+        "class": 0,
+        "class_probability": 0.35065296859187484,
+        "confidence": 0.9650132578902911,
+        "goal": 6,
+        "kind": "mission",
+        "memory_probability": 0.9901531076477346,
+        "observation": "Ñandú Boreal 162",
+        "policy": {
+          "action": 1,
+          "goal": 6,
+          "kind": "plan",
+          "position": 2,
+          "probability_right": 0.995828200234704,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 2,
+        "rule_value": 1,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-162:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 40
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "8733385b0f0e63d9a8cf1ad2ebb7706caa6609d43103a247611b8960088e9fd3",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 6,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 2,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la derecha."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Ñandú Boreal 162",
+        "association": "Viento Jade 162",
+        "position": 2,
+        "class": 1,
+        "rule_value": 1,
+        "goal": 0,
+        "action": 0,
+        "confidence": 0.9803358752580137,
+        "class_probability": 0.999999999986112,
+        "memory_probability": 0.9901531076477346,
+        "voice": {
+          "text": "Mover a la izquierda.",
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 40,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "8733385b0f0e63d9a8cf1ad2ebb7706caa6609d43103a247611b8960088e9fd3",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 2,
+            "goal": 0
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 2,
+          "goal": 0,
+          "action": 0,
+          "probability_right": 0.0013080684085500058,
+          "terminal": false
+        },
+        "task_id": "reserved-162:2"
+      }
+    },
+    {
+      "index": 173,
+      "seed": 1027325689,
+      "expected_class": 1,
+      "before": {
+        "action": 1,
+        "association": "Bruma Ébano 173",
+        "class": 0,
+        "class_probability": 0.44068005419172257,
+        "confidence": 0.9576305285369755,
+        "goal": 6,
+        "kind": "mission",
+        "memory_probability": 0.9901531076477346,
+        "observation": "Nube Índigo 173",
+        "policy": {
+          "action": 1,
+          "goal": 6,
+          "kind": "plan",
+          "position": 4,
+          "probability_right": 0.9649664993629157,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 4,
+        "rule_value": 1,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-173:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 43
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "db99db109c613627d726f83e755d202c207255c4decb74cdef165777985cce73",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 6,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 4,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la derecha."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Nube Índigo 173",
+        "association": "Bruma Ébano 173",
+        "position": 4,
+        "class": 1,
+        "rule_value": 1,
+        "goal": 0,
+        "action": 0,
+        "confidence": 0.9802925239558395,
+        "class_probability": 0.999999999986112,
+        "memory_probability": 0.9901531076477346,
+        "voice": {
+          "text": "Mover a la izquierda.",
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 43,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "db99db109c613627d726f83e755d202c207255c4decb74cdef165777985cce73",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 4,
+            "goal": 0
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 4,
+          "goal": 0,
+          "action": 0,
+          "probability_right": 0.002742885827063537,
+          "terminal": false
+        },
+        "task_id": "reserved-173:2"
+      }
+    },
+    {
+      "index": 196,
+      "seed": 874262119,
+      "expected_class": 0,
+      "before": {
+        "action": 0,
+        "association": "Estrella Lejana 196",
+        "class": 1,
+        "class_probability": 0.6294105473237526,
+        "confidence": 0.9640237491007779,
+        "goal": 0,
+        "kind": "mission",
+        "memory_probability": 0.9901531076477346,
+        "observation": "Órbita Prisma 196",
+        "policy": {
+          "action": 0,
+          "goal": 0,
+          "kind": "plan",
+          "position": 2,
+          "probability_right": 0.0013080684085500058,
+          "status": 1,
+          "terminal": false
+        },
+        "position": 2,
+        "rule_value": 1,
+        "status": 1,
+        "supported": true,
+        "task_id": "reserved-196:2",
+        "trace": [
+          {
+            "bank": "memory",
+            "native": true,
+            "operation": "qm_read",
+            "qubits": 4,
+            "slot": 49
+          },
+          {
+            "bank": "v3",
+            "input_sha256": "75f6c1bc26d9d88df8c61c6f2963ac0010a94507c09f1ce8c779e277bc518746",
+            "native": true,
+            "operation": "vqc_forward",
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_infer"
+          },
+          {
+            "bank": "v3",
+            "goal": 0,
+            "native": true,
+            "operation": "qrl_step",
+            "position": 2,
+            "qubits": 1000
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_decide"
+          },
+          {
+            "bank": "voice",
+            "native": true,
+            "operation": "qchat_encode/qchat_next",
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "native": true,
+            "operation": "entity_voice_check"
+          }
+        ],
+        "voice": {
+          "faithful": true,
+          "ids": [
+            75,
+            4,
+            43,
+            76,
+            3
+          ],
+          "terminated": true,
+          "text": "Mover a la izquierda."
+        }
+      },
+      "after": {
+        "kind": "mission",
+        "status": 1,
+        "observation": "Órbita Prisma 196",
+        "association": "Estrella Lejana 196",
+        "position": 2,
+        "class": 0,
+        "rule_value": 1,
+        "goal": 6,
+        "action": 1,
+        "confidence": 0.9802492579514417,
+        "class_probability": 1.3887943864771144e-11,
+        "memory_probability": 0.9901531076477346,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        },
+        "trace": [
+          {
+            "bank": "memory",
+            "operation": "qm_read",
+            "native": true,
+            "slot": 49,
+            "qubits": 4
+          },
+          {
+            "bank": "v3",
+            "operation": "vqc_forward",
+            "native": true,
+            "qubits": 1000,
+            "observables": 11500,
+            "input_sha256": "75f6c1bc26d9d88df8c61c6f2963ac0010a94507c09f1ce8c779e277bc518746",
+            "readout": "U02"
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_infer",
+            "native": true
+          },
+          {
+            "bank": "v3",
+            "operation": "qrl_step",
+            "native": true,
+            "qubits": 1000,
+            "position": 2,
+            "goal": 6
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_decide",
+            "native": true
+          },
+          {
+            "bank": "voice",
+            "operation": "qchat_encode/qchat_next",
+            "native": true,
+            "qubits": 100,
+            "tokens": 5
+          },
+          {
+            "bank": "entity",
+            "operation": "entity_voice_check",
+            "native": true
+          }
+        ],
+        "supported": true,
+        "policy": {
+          "kind": "plan",
+          "status": 1,
+          "position": 2,
+          "goal": 6,
+          "action": 1,
+          "probability_right": 0.995828200234704,
+          "terminal": false
+        },
+        "task_id": "reserved-196:2"
+      }
+    }
+  ]
+}

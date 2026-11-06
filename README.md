@@ -1,9 +1,11 @@
 # BBY Q — inteligencia artificial progresiva en tecnología propia
 
-**Núcleo unificado U01:** la entrada principal `./bbyq` conecta C1, QMemory,
+**Núcleo unificado U02:** la entrada principal `./bbyq` conecta C1, QMemory,
 VQC3, QRL3, E02 y QChat100 en una sola sesión, con historial, tareas, feedback
 y publicación atómica de todos los bancos. C1 también puede razonar sobre las
-clasificaciones de VQC3. [Uso, pruebas y alcance](integration/unified/README.md).
+clasificaciones de VQC3. Se corrigen sus nueve fallos anteriores: 600/600 tareas
+cooperativas y 1024/1024 clasificaciones independientes con la lectura nueva.
+[Uso, pruebas y alcance](integration/unified/README.md).
 **No se genera APK; la interfaz Android instalada conserva su versión anterior.**
 Los accesos descritos debajo se conservan como versiones y comandos históricos.
 

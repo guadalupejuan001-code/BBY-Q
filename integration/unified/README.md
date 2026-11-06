@@ -1,4 +1,4 @@
-# U01: una sesión para BBY Q
+# U02: una sesión para BBY Q y corrección de su lectura VQC
 
 La entrada principal nativa es ahora `./bbyq`. C1, las herramientas simbólicas,
 QMemory, VQC3, QRL3, el coordinador E02 y QChat100 participan en la misma
@@ -43,6 +43,9 @@ La premisa `observación Nara es clase cero` procede de VQC3. El resultado
 conserva su probabilidad y la identidad de los datos: es una predicción
 del modelo. La conclusión de C1 depende de esa premisa. Las correcciones de
 una observación retiran su clasificación anterior sin borrar otros hechos.
+Tras actualizar el clasificador o aprender de feedback verificado, las
+consultas recalculan las premisas VQC anteriores antes de razonar. Los recibos
+históricos conservan la decisión que realmente se tomó.
 
 Para datos reales, `turn --payload sensores.json 'observa Brisa Nueva'`
 recibe `{"observations":[...]}` con **exactamente 1000 números finitos**.
@@ -62,7 +65,9 @@ Las muestras con semilla son ejemplos sintéticos declarados, no sensores reales
 | QRL3 | Propuesta de movimiento con su política de 1000 cúbits |
 | QChat100 | Descripción aprendida del movimiento realmente propuesto |
 
-Cada banco conserva su representación nativa. Todos se publican en una sola
+Cada banco conserva su representación nativa. VQC3 y QRL3 mantienen el
+backend original sin MPS: 1000 cúbits por agente en 250 grupos de cuatro;
+esta entrega conserva esa topología. Todos los bancos se publican en una sola
 base SQLite bajo `BEGIN IMMEDIATE`, junto con diccionarios, historial, tareas,
 supervisión y recibos. Un fallo posterior a una escritura o a los gradientes
 revierte la operación completa. Repetir el mismo identificador y entrada
@@ -96,35 +101,80 @@ hubo movimiento. El entrenamiento de memoria usa una copia temporal y
 publica solo ángulos y contador, conservando las asociaciones del usuario.
 El modelo de texto congelado y las versiones anteriores se conservan.
 
+U02 conserva los ángulos y pesos originales de VQC3 y QRL3. La corrección
+añade una lectura de correlaciones Pauli X/Z del estado cuántico real,
+deshace algebraicamente la codificación conocida y obtiene estadísticas de
+los 1000 valores codificados. Una lectura solo de Z perdía información de
+fase. El decodificador no lee los sensores originales, las variables ocultas
+del entorno, su semilla ni la etiqueta. Se conservan 19 posiciones de
+coeficientes. Una selección por covarianza calculada en XI con el conjunto
+de entrenamiento retiene dos estadísticas y su sesgo; el logit anterior
+queda como comparación. El ajuste usa Adam y pasos de Newton con gradientes,
+curvatura y resolución Cholesky nativos, sobre 2048 ejemplos nuevos con ruido
+0,1 y 0,6. Las etiquetas solo entran por el canal de entrenamiento.
+
+Se conservan las fuentes exactas del entrenamiento y la validación, con 512
+ejemplos independientes por nivel de ruido. Las reservas antiguas, los nueve
+errores y las pruebas finales permanecen fuera del entrenamiento. Las pruebas
+numéricas comparan fases y todas las estadísticas con un cálculo independiente,
+comprueban los últimos cúbits y contrastan los gradientes con diferencias
+finitas. También fuerzan etiquetas falsas y borran los sensores originales
+manteniendo el estado cuántico: la inferencia debe permanecer idéntica.
+
+Las sesiones U01 identificadas se actualizan en una transacción: se incorpora
+solo la nueva región de lectura, sin reemplazar el aprendizaje personal de
+los motores, y se archiva el banco VQC anterior. Nombres, asociaciones,
+diccionarios, tareas y recibos se conservan. Una identidad desconocida se
+rechaza; un fallo inyectado después de las escrituras revierte la migración.
+
 ```bash
 python3 -m integration.unified.verify_release
+python3 -m integration.unified.verify_perception
 python3 -m integration.unified.verify
-python3 -m integration.unified.evaluate --count 200 --workers 4
+python3 -m integration.unified.verify_upgrade
+python3 -m integration.unified.evaluate --count 200 --workers 4 --seed 2026110705 --output build/unified/regression.json
+python3 -m integration.unified.evaluate --count 200 --workers 4 --seed 2026110602 --output build/unified/opened-regression.json
+python3 -m integration.unified.evaluate --count 200 --workers 4 --seed 2026110603
+python3 -m integration.unified.evaluate_perception --count 1024 --seed 2026110603
 ```
 
 La evidencia completa se conserva en `release/`: validación del lector,
-comprobaciones de estado y 200 tareas reservadas que atraviesan todos los
-componentes, con nombres, semillas, reglas y posiciones nuevas. Los controles
+comprobaciones de estado, tres series de 200 tareas y una reserva independiente
+de 1024 clasificaciones con datos numéricos externos al modelo. Los controles
 alteran memoria, circuito VQC, parámetros QRL y observables de voz para
 comprobar que esos componentes afectan al resultado. No se aprende con el test.
 
 | Comprobación | Resultado |
 | --- | ---: |
-| Invariantes de integración, persistencia y aprendizaje | 8/8 |
+| Invariantes de integración, persistencia y aprendizaje | 9/9 |
+| Decodificación, aislamiento, gradientes y optimizador nativos | 7/7 |
+| Migración de sesiones U01 reales y rollback | 5/5 |
 | Intenciones del lector completo | 488/490 |
 | Contratos cuánticos y sus negaciones | 139/139 |
-| Tareas finales con todos los componentes ejecutados | 200/200 |
-| Decisiones finales correctas | **191/200** |
+| Validación del clasificador, ruido 0,1 | 512/512 |
+| Validación del clasificador, ruido 0,6 | 512/512 |
+| Regresión original, incluidos los nueve fallos | **200/200** |
+| Regresión de la primera prueba nueva | **200/200** |
+| Reserva final nueva con todos los componentes | **200/200** |
+| Reserva independiente de 1000 entradas por clasificación | **1024/1024** |
+| Misma reserva con el clasificador anterior | 976/1024 |
+| Misma reserva anulando las nuevas observaciones X | 747/1024 |
 
-**Persisten nueve errores de clasificación de VQC3 en la reserva final.**
-No se presentan las 200 ejecuciones como 200 aciertos. Un diagnóstico
-anterior e independiente también dio 191/200; ambos se conservan completos.
-Una continuación con 2048 muestras de entrenamiento nuevas se descartó:
-la validación independiente pasó de 241/256 a 242/256, pero empeoró la
-calibración. Ninguna muestra de las reservas se usó para entrenar. Las ocho
-comprobaciones de integración y el exit code `--integration-only` comprueban
-la conexión y la integridad; la precisión se informa por separado. La prueba
-de predicciones, sin esa opción, devuelve error mientras queden fallos.
+**Corregidos los nueve errores originales de VQC3.** Se conserva la reserva
+U01 de 191/200 en `u01-reserved.json.gz`, junto con cada comparación antes y
+después. La primera selección U02 detenía el ajuste al alcanzar el mínimo de
+validación: dio 199/200 en otra prueba y 1023/1024 en la clasificación tipada.
+Ambas pruebas se conservan completas en `first-reserved.json.gz` y
+`first-classification-test.json.gz`.
+
+El ajuste final completa 115 épocas Adam y 30 pasos Newton sobre los mismos
+2048 ejemplos de entrenamiento, y elige por calibración en la validación.
+Corrige también el fallo adicional de las 200 tareas abiertas; estas pasan a
+ser regresión. La reserva final usa otra semilla, declarada antes de abrirla:
+2026110603. Ninguna etiqueta de esas pruebas se usa para ajustar el modelo.
+Las tres series conservan todos los resultados, sus parámetros identificados
+y controles causales. La CI exige aciertos reales y ejecuta las pruebas sin
+`--integration-only`; no basta con llamar a todos los motores.
 
 El dominio cooperativo sigue siendo acotado: reglas binarias, objetivo 0 o 6
 y una posición entre 0 y 6; la memoria admite 250 asociaciones. Los comandos

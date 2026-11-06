@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "count": 5,
+  "checks": [
+    "unknown predecessor identities are rejected without resetting data",
+    "a failure after the native bank and archive writes rolls back the entire migration",
+    "U01-derived wrong facts are recomputed with U02 before new reasoning; historical receipts remain immutable",
+    "real U01 personal gradients, original quantum parameters, names, memory, task frames, dictionaries and receipts survive U02 unchanged; the old v3 bank remains archived",
+    "replaying prior feedback is exact and does not train twice; reopening does not repeat the upgrade"
+  ],
+  "previous_commit": "d716f487cd01438e1a74b9a52119352bc7bf5d94",
+  "apk_built": false
+}

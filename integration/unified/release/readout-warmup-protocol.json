@@ -1,0 +1,40 @@
+{
+  "version": "U02",
+  "seed": 2026110601,
+  "training_examples": 2048,
+  "training_noise": {
+    "every_fourth": 0.6,
+    "otherwise": 0.1
+  },
+  "native_cache_slots": 256,
+  "native_override_budget_increased": false,
+  "validation_examples_per_split": 512,
+  "validation_splits": [
+    "validation-iid",
+    "validation-ood"
+  ],
+  "training_source": "new native environment samples only",
+  "prohibited_training_sources": [
+    "U01 reserved and diagnostic tasks",
+    "nine known regressions",
+    "U02 final test"
+  ],
+  "model": {
+    "features": 17,
+    "hidden": 0,
+    "parameters": 19,
+    "input": "Pauli correlations of all 1000 qubits and decoded statistical features",
+    "feature_selection": "native training-only absolute normalized covariance at least .08; former logit excluded"
+  },
+  "optimizer": "XI Adam, mini-batches of 32; former-logit coefficients constrained to zero",
+  "learning_rate": 0.03,
+  "epochs": 150,
+  "selection": "no IID validation errors, OOD at least .99 and mean Brier at most .01; independent final test stays closed",
+  "floor": {
+    "iid_accuracy": 1.0,
+    "ood_accuracy": 0.99,
+    "mean_brier": 0.01
+  },
+  "original_quantum_parameters": "preserved",
+  "apk_built": false
+}

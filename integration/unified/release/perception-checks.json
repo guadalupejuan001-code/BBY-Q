@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "count": 7,
+  "checks": [
+    "zero residual reproduces the original native VQC probability exactly",
+    "actual Pauli correlations recover external angles on all 1000 wires with original and independently varied encoder rotations, including zero and both quadratures",
+    "all 17 aggregate features match an independent oracle after first, boundary and final wire perturbations",
+    "trained inference ignores forged labels, seed, withheld latents and erased raw input with quantum state held fixed",
+    "XI gradients match finite differences for feature weights, bias and logit coefficient; optimizer counters advance",
+    "native training-only feature selection keeps a predictive decoded statistic, rejects independent noise and excludes the former logit",
+    "native Newton curvature matches an independent Hessian, the Cholesky solve satisfies its linear system and a training step reduces error"
+  ],
+  "maximum_phase_error": 2.4304618317927407e-09,
+  "maximum_feature_error": 8.285538921626312e-10,
+  "maximum_newton_solve_residual": 0.0,
+  "gradient_checks": [
+    {
+      "index": 0,
+      "analytic": -1.7130944755002024e-05,
+      "finite_difference": -1.713095003444973e-05,
+      "absolute_error": 5.279447706237712e-12
+    },
+    {
+      "index": 1,
+      "analytic": -4.60853898586564e-05,
+      "finite_difference": -4.608538269019546e-05,
+      "absolute_error": 7.168460940674189e-12
+    },
+    {
+      "index": 16,
+      "analytic": -1.0370275267026258e-06,
+      "finite_difference": -1.0370323645495817e-06,
+      "absolute_error": 4.837846955943389e-12
+    },
+    {
+      "index": 17,
+      "analytic": -0.00020952679831320875,
+      "finite_difference": -0.00020952680472667007,
+      "absolute_error": 6.413461314759214e-12
+    },
+    {
+      "index": 18,
+      "analytic": -0.001713094475500202,
+      "finite_difference": -0.0017130944759318268,
+      "absolute_error": 4.3162478799430026e-13
+    }
+  ],
+  "apk_built": false
+}

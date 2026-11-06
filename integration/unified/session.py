@@ -10,6 +10,7 @@ from pathlib import Path
 from .common import ROOT,C1,C1Tools,Legacy,Entity,A,E,encoded,digest,read,key,entity_models,source_identity,integer,floating,run
 from .contracts import Tools,RULES
 from .quantum import Quantum,natural,observations
+from .upgrades import upgrade
 
 def router_model(folder):
     folder=Path(folder)
@@ -53,7 +54,7 @@ class Session:
         self.initial={'router':router,'text':self.legacy.models['text'],**entity_models()}
         perception=perception_model(self.folder)
         if perception is not None:self.initial['v3']=perception
-        self.identity={'version':'U01','c1':self.legacy.identity,'models':{n:digest(v) for n,v in self.initial.items()},'router_words':digest(encoded(self.router_words)),'router_native':digest(self.router_native),'router_semantic':digest(self.router_semantic),'sources':source_identity()}
+        self.identity={'version':'U02','c1':self.legacy.identity,'models':{n:digest(v) for n,v in self.initial.items()},'router_words':digest(encoded(self.router_words)),'router_native':digest(self.router_native),'router_semantic':digest(self.router_semantic),'sources':source_identity()}
         self.db.executescript('''
           CREATE TABLE IF NOT EXISTS unified_state(id INTEGER PRIMARY KEY CHECK(id=1),metadata BLOB NOT NULL,sha TEXT NOT NULL,identity BLOB NOT NULL,revision INTEGER NOT NULL);
           CREATE TABLE IF NOT EXISTS unified_banks(name TEXT PRIMARY KEY,snapshot BLOB NOT NULL,sha TEXT NOT NULL);
@@ -61,6 +62,7 @@ class Session:
           CREATE TABLE IF NOT EXISTS unified_tasks(id TEXT PRIMARY KEY,frame BLOB NOT NULL,sha TEXT NOT NULL,feedback_id TEXT);
           CREATE TABLE IF NOT EXISTS unified_supervision(name TEXT PRIMARY KEY,value INTEGER NOT NULL);
           CREATE TABLE IF NOT EXISTS unified_task_supervision(id TEXT PRIMARY KEY,rule INTEGER NOT NULL);
+          CREATE TABLE IF NOT EXISTS unified_archives(id TEXT PRIMARY KEY,bank TEXT NOT NULL,snapshot BLOB NOT NULL,sha TEXT NOT NULL,identity BLOB NOT NULL,metadata BLOB NOT NULL,metadata_sha TEXT NOT NULL,revision INTEGER NOT NULL);
         ''')
         self.db.execute('BEGIN IMMEDIATE')
         try:
@@ -71,7 +73,7 @@ class Session:
                 meta={'associations':{},'observations':{},'projections':{},'previous':'','language_sync':[sha,metadata_sha]}
                 self.db.execute('INSERT INTO unified_state VALUES(1,?,?,?,0)',(encoded(meta),digest(encoded(meta)),encoded(self.identity)))
                 for name,value in {'language':raw,**self.initial}.items():self.db.execute('INSERT INTO unified_banks VALUES(?,?,?)',(name,value,digest(value)))
-            elif json.loads(row[0])!=self.identity:raise ValueError('Unified source/model identity changed; explicit migration required')
+            elif json.loads(row[0])!=self.identity:upgrade(self,json.loads(row[0]))
             self.db.execute('COMMIT')
         except BaseException:self.db.execute('ROLLBACK');self.close();raise
 
@@ -151,14 +153,16 @@ class Session:
                     label='clase uno' if classification else 'clase cero'
                     language.run(C1.stage64(C1Tools.A['ARG'],[base.entity(subject),es,base.entity(label),1,2])+'call c2_put')
                     if base.integer(56)!=1:raise ValueError('Native projection capacity exceeded')
-                    meta['projections'][canonical]={'class':classification,'probability':probability,'input_sha256':input_sha}
+                    meta['projections'][canonical]={'class':classification,'probability':probability,'input_sha256':input_sha,'readout_magic':quantum.readout_magic,'perception_revision':meta.get('perception_revision',0)}
                     return {'subject':subject,'predicate':'es','value':label,'probability':probability,'input_sha256':input_sha,'source':'VQC3 prediction'}
                 quantum=Quantum(sessions,meta,local,project);results=[];trace=[{'bank':'router','operation':'c1_encode_input/c1_next','native':True,'qubits':100,'intent':predicted['intent']}]
                 if parsed and predicted['intent']==parsed['intent']:
                     if parsed['domain']=='language':
                         if payload:raise ValueError('Typed payload requires a matching quantum contract')
+                        if any(action[0] in ('query','route','lookup') for action in C1Tools.RULES[parsed['rule']-1].actions):
+                            quantum.refresh_projections()
                         result=adapter.base.execute(parsed,fail_after=fail_after)
-                        result['trace']=trace+result['trace']
+                        result['trace']=trace+quantum.trace+result['trace']
                     else:
                         captures=parsed['captures'];actions=RULES[parsed['rule']-1].actions;result={'ok':True,'status':1,'results':results}
                         if payload and 'observations' in payload and sum(a[0]=='observe' for a in actions)!=1:raise ValueError('Observation payload requires one observation action')
@@ -180,7 +184,7 @@ class Session:
                                     meta['last_task']=task_id;value={k:v for k,v in value.items() if k not in ('frame_hex','input')};value['task_id']=task_id
                             elif op=='explain':
                                 task,_=self._task(meta.get('last_task',''));value={k:v for k,v in task.items() if k not in ('frame_hex','input')};value['kind']='explain';value['status']=1
-                            elif op=='status':value={'kind':'status','status':1,'entity':'U01','components':['C1','VQC3','QRL3','QMemory','QChat100','E02'],'associations':len(meta.get('associations',{})),'observations':len(meta.get('observations',{})),'single_transaction':True}
+                            elif op=='status':value={'kind':'status','status':1,'entity':'U02','components':['C1','VQC3','QRL3','QMemory','QChat100','E02'],'associations':len(meta.get('associations',{})),'observations':len(meta.get('observations',{})),'single_transaction':True}
                             elif op=='cancel':value={'kind':'cancel','status':1,'text':'De acuerdo; no ejecutaré esa petición.'}
                             elif op=='feedback':
                                 task_id=meta.get('last_task','');task,feedback=self._task(task_id)
@@ -209,7 +213,7 @@ class Session:
                     text=stack.enter_context(Legacy.ContextText(paths['text'],self.legacy.vocabulary,self.output));generated=text.generate(prompt,meta.get('previous') or language_meta.get('previous',''))
                     refusal=generated['tokens']==C1.output_words('necesito más ejemplos para aprender .')
                     result={'ok':generated['terminated'] and not refusal,'status':0 if refusal else 1,'results':[{'kind':'text',**generated}],'trace':trace+[{'bank':'text','operation':'c1_encode_input/c1_next','native':True,'qubits':100}]}
-                result.update(request_id=request_id,intent=predicted['intent'],reader_log_probability=predicted['log_probability'],entity='U01')
+                result.update(request_id=request_id,intent=predicted['intent'],reader_log_probability=predicted['log_probability'],entity='U02')
                 result['committed']=bool(result['ok'] and not any(v['kind']=='cancel' for v in result['results']))
                 if result['committed']:
                     language_meta['vocabulary']=list(language.codec.words);language_meta['previous']=prompt if len(C1.words(prompt))<=64 else '';language_meta['previous_supported']=len(C1.words(prompt))<=64

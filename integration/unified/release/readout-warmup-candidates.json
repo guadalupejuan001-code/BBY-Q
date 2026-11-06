@@ -1,0 +1,546 @@
+[
+  {
+    "epoch": 1,
+    "minimum_accuracy": 0.990234375,
+    "mean_brier": 0.06659598267751286,
+    "eligible": false,
+    "parameter_sha256": "205795f3764ee9b9ee05cba0bb7b45f8bbc07057844965d82d18369872a1b265",
+    "validation": {
+      "validation-iid": {
+        "correct": 507,
+        "total": 512,
+        "accuracy": 0.990234375,
+        "brier": 0.07189060627021118
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.061301359084814544
+      }
+    },
+    "checkpoint": "candidate-001.rvp",
+    "sha256": "5c71b3aae02948f17cc5b1efe224c5e4a80d5281bc35aa2fa4c0f5bb50997bf7"
+  },
+  {
+    "epoch": 5,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.026906293686716525,
+    "eligible": false,
+    "parameter_sha256": "cbe4f440d03c2d885a1ac98bb29e4e3f1068d7139ebe9a0604a45321755042a2",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.030848197505986493
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.022964389867446557
+      }
+    },
+    "checkpoint": "candidate-005.rvp",
+    "sha256": "63eaac2ca420bb03a317104932906ca72a950193d6ddc07b557a93a6b8467468"
+  },
+  {
+    "epoch": 10,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.01846709540768665,
+    "eligible": false,
+    "parameter_sha256": "06b9b5a7a6e35eb672f6e9aa2b96b29a9e96677af239934ec57539972fd62305",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.02149787718995955
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.01543631362541375
+      }
+    },
+    "checkpoint": "candidate-010.rvp",
+    "sha256": "71de03a7949477746b7074cadf617279e12a14589449ab51c7ba2f0e724add11"
+  },
+  {
+    "epoch": 15,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.014662292004691994,
+    "eligible": false,
+    "parameter_sha256": "2ccfcb50ea594c6b02852c22602cea8d9769af8897682e8c227902e5f55d5939",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.01717424215583102
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.012150341853552965
+      }
+    },
+    "checkpoint": "candidate-015.rvp",
+    "sha256": "460b52dff90370a2bfffc6c3ff00a9d84c0582b4edf40cd8a68e1c5f984ea17e"
+  },
+  {
+    "epoch": 20,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.012364933457810624,
+    "eligible": false,
+    "parameter_sha256": "ac511db539df6c98d0409465d25dfc13fe12bda85d408faf2bb4e59d897b750b",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.014515828376134805
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.010214038539486442
+      }
+    },
+    "checkpoint": "candidate-020.rvp",
+    "sha256": "0eba93b965143789abbfdb7be77a75ea6a6afcf97e50cf0eae9e42ae98d79964"
+  },
+  {
+    "epoch": 25,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.01069368492558843,
+    "eligible": false,
+    "parameter_sha256": "d132931feb761d11b692257554de9d2aa2a30679be41394e8e5d44e5f303b907",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.012566754012579805
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.008820615838597057
+      }
+    },
+    "checkpoint": "candidate-025.rvp",
+    "sha256": "15cc9cb44689c8b86a5e3c812e3b836f93635957f1c2917dc54618b3299bf2c6"
+  },
+  {
+    "epoch": 30,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.009599637102819466,
+    "eligible": false,
+    "parameter_sha256": "439c0a78ff94766fa40b81fb5d91c5a980633b71e96889eee822dd38a978c88e",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.011264013311479745
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.007935260894159185
+      }
+    },
+    "checkpoint": "candidate-030.rvp",
+    "sha256": "102b138d3866d6a6eab06e1e6f7832c3676efda77196e73e5da525135f658abe"
+  },
+  {
+    "epoch": 35,
+    "minimum_accuracy": 0.994140625,
+    "mean_brier": 0.008708715098134978,
+    "eligible": false,
+    "parameter_sha256": "c9e35ae05f346c36bedd6db9601b7b25dd804623638c4697dc5a9b287d459455",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.010086370472776192
+      },
+      "validation-ood": {
+        "correct": 509,
+        "total": 512,
+        "accuracy": 0.994140625,
+        "brier": 0.007331059723493763
+      }
+    }
+  },
+  {
+    "epoch": 40,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.007909317385762466,
+    "eligible": false,
+    "parameter_sha256": "1af99a6b2b34b059aadce4346887247c599222ef45aad03bdc42cdb2fc4ab7f8",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.009211609146512496
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.006607025625012438
+      }
+    },
+    "checkpoint": "candidate-040.rvp",
+    "sha256": "323258f3678c5087478f6af6e613b23dcd8903966ed80986cca248eddd8c14b3"
+  },
+  {
+    "epoch": 45,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.00711315313857757,
+    "eligible": false,
+    "parameter_sha256": "a7f3cae66f8a40196a27dcbaa6368bc892154e3f082559a1972bca2de74b0b2c",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.008286024118329845
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.005940282158825295
+      }
+    },
+    "checkpoint": "candidate-045.rvp",
+    "sha256": "deefba3fb0e413dac35007134b0c8de9b330e70f045159f30632a70450aa4b61"
+  },
+  {
+    "epoch": 50,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.006581442354180087,
+    "eligible": false,
+    "parameter_sha256": "914e5b0e02543726bf704961593094bc37ca7047cc22df2c79df115e93cf0aed",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.007651887237866508
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.005510997470493666
+      }
+    },
+    "checkpoint": "candidate-050.rvp",
+    "sha256": "f9dd0f145942f6539bcbb1f804a098b75d7b49aaefe2ac6811cdaa9ccb9a12e1"
+  },
+  {
+    "epoch": 55,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.005994532489165705,
+    "eligible": false,
+    "parameter_sha256": "059bddaef098cc5c197db6879ad76256e8fa7c6b04ff5f6b774f016813804e46",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.007061784298857919
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.00492728067947349
+      }
+    },
+    "checkpoint": "candidate-055.rvp",
+    "sha256": "82100fafa381577eabb87031a2889c7326ee24ac4c813919a5676341b6f30d37"
+  },
+  {
+    "epoch": 60,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.005765453717173673,
+    "eligible": false,
+    "parameter_sha256": "1d4fd7b1b3d326625c1cd449143bade4719aef66b12036ea9336699363257212",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.00665552330127045
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004875384133076896
+      }
+    },
+    "checkpoint": "candidate-060.rvp",
+    "sha256": "c3abdc268a8b7178ec83d854d883075eb05b2ca03d4e4cdc73d77df809f919c5"
+  },
+  {
+    "epoch": 65,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.005365776214279989,
+    "eligible": false,
+    "parameter_sha256": "991b2b23b2ad1f86208a69eda9db490415f94ed08e3fd9c0ce27bbfc62a3f7e1",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.0062045405462826915
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004527011882277285
+      }
+    },
+    "checkpoint": "candidate-065.rvp",
+    "sha256": "9a04aeafe7136656d3459df17db1ba79816a603110289d605024d4da5dbe1ff2"
+  },
+  {
+    "epoch": 70,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.005042563534855974,
+    "eligible": false,
+    "parameter_sha256": "7005e6175e645dfd08c997d160bbdd72a7fe95c55af01cc6b3e42c312bc1f330",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.005834100923268754
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004251026146443194
+      }
+    },
+    "checkpoint": "candidate-070.rvp",
+    "sha256": "cc91b0d5d0783b8dd99b2e7b944f159e2ccc072f4226d8b75bff2fab2f0f604a"
+  },
+  {
+    "epoch": 75,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.0048012731629667234,
+    "eligible": false,
+    "parameter_sha256": "8cec88a78b2f16768c7a3eeab7f0961850acf624b592a2aaa95436c4267b62b7",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.005501942567564745
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.0041006037583687024
+      }
+    },
+    "checkpoint": "candidate-075.rvp",
+    "sha256": "b4eb5d6b7bface46dda795d61ba1e1d006367ce213d585ad739afa3e0991b97e"
+  },
+  {
+    "epoch": 80,
+    "minimum_accuracy": 0.994140625,
+    "mean_brier": 0.004573070361579681,
+    "eligible": false,
+    "parameter_sha256": "f7292e781c664d445f8f3321348a763b2b199e1deec0c8e6ea12774bd6d47dbb",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.005233015902093935
+      },
+      "validation-ood": {
+        "correct": 509,
+        "total": 512,
+        "accuracy": 0.994140625,
+        "brier": 0.003913124821065429
+      }
+    }
+  },
+  {
+    "epoch": 85,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.0042510577976099615,
+    "eligible": false,
+    "parameter_sha256": "239e8943d8e407b9e3d6872af8b1dcaffd695da184388bd032f40379e6abd623",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004916199285683657
+      },
+      "validation-ood": {
+        "correct": 512,
+        "total": 512,
+        "accuracy": 1.0,
+        "brier": 0.003585916309536266
+      }
+    },
+    "checkpoint": "candidate-085.rvp",
+    "sha256": "5632eef95279501534382bbe9a51c35b9f50c3f985a969051674988b24400bbd"
+  },
+  {
+    "epoch": 90,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.00419533204770348,
+    "eligible": false,
+    "parameter_sha256": "ef0b1cdcd35aa95e1292aa9a8217ec30b3bfede00a370040fe46278a51b696f7",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.00477846681271746
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.0036121972826894987
+      }
+    },
+    "checkpoint": "candidate-090.rvp",
+    "sha256": "428b22fc4de2e33d2b6de8a7796fca5587b2594ec343b402caeffdd7cc1b9221"
+  },
+  {
+    "epoch": 95,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.003916906104415622,
+    "eligible": false,
+    "parameter_sha256": "b3c598b80685c0f039d74bef85cdafdd130362751612765f71ef0903daefeb12",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004528479957764443
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.003305332251066802
+      }
+    },
+    "checkpoint": "candidate-095.rvp",
+    "sha256": "cd91082c072866b8846d1d391d3b74b414db6374e012ffbaffdcc7c7745cb3d2"
+  },
+  {
+    "epoch": 100,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.003923612821758746,
+    "eligible": false,
+    "parameter_sha256": "26680fa4d7c29d4b7552b60948e70d5fb5998d3123fa832964712804396074be",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004440651552997506
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.003406574090519986
+      }
+    }
+  },
+  {
+    "epoch": 105,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.0038437394018292024,
+    "eligible": false,
+    "parameter_sha256": "807417d20c294d2bdcbd6c756d609cf90144c812d3639b73d7ce44cb78349b18",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004326144643990483
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.0033613341596679222
+      }
+    },
+    "checkpoint": "candidate-105.rvp",
+    "sha256": "e5e4086ca6f40f35fc035496a87e03ba8f5dde7e651aed4cac94115c856a4574"
+  },
+  {
+    "epoch": 110,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.003658994706874974,
+    "eligible": false,
+    "parameter_sha256": "262a687be823bcdda66180173c08be084587d21d2dd80712f433bfa8d4b021cc",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.004172122801203858
+      },
+      "validation-ood": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.0031458666125460896
+      }
+    },
+    "checkpoint": "candidate-110.rvp",
+    "sha256": "ec9c8e4e8a372b2d4c8eab14cfed211003efe1b6d2e4165ae7e5fe3b231eb8d8"
+  },
+  {
+    "epoch": 115,
+    "minimum_accuracy": 0.99609375,
+    "mean_brier": 0.0034505876451945356,
+    "eligible": false,
+    "parameter_sha256": "766be8618817eb79353714c58bb38c9ed2fb2a139420af268e2f66cf22142543",
+    "validation": {
+      "validation-iid": {
+        "correct": 510,
+        "total": 512,
+        "accuracy": 0.99609375,
+        "brier": 0.003963210149905658
+      },
+      "validation-ood": {
+        "correct": 511,
+        "total": 512,
+        "accuracy": 0.998046875,
+        "brier": 0.002937965140483413
+      }
+    }
+  }
+]

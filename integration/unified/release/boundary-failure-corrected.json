@@ -1,0 +1,416 @@
+{
+  "passed": true,
+  "corrected": 1,
+  "before": {
+    "index": 149,
+    "seed": 2023144612,
+    "bit": 0,
+    "position": 2,
+    "prompt": "guarda la regla Bruma Ébano 149 con valor 0 observa Nube Índigo 149 con muestra 2023144612 y resuelve desde 2",
+    "name": "Nube Índigo 149",
+    "association": "Bruma Ébano 149",
+    "expected_class": 0,
+    "expected_goal": 0,
+    "expected_action": 0,
+    "correct": false,
+    "all_stages_executed": true,
+    "result": {
+      "ok": true,
+      "status": 1,
+      "results": [
+        {
+          "kind": "remember",
+          "status": 1,
+          "name": "Bruma Ébano 149",
+          "slot": 37
+        },
+        {
+          "kind": "observe",
+          "status": 1,
+          "name": "Nube Índigo 149",
+          "class": 1,
+          "probability": 0.5009268555674876,
+          "base_probability": 0.7509320311128697,
+          "readout": "U02",
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "observations": 1000,
+          "symbolic_projection": {
+            "subject": "observación Nube Índigo 149",
+            "predicate": "es",
+            "value": "clase uno",
+            "probability": 0.5009268555674876,
+            "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+            "source": "VQC3 prediction"
+          }
+        },
+        {
+          "kind": "mission",
+          "status": 1,
+          "observation": "Nube Índigo 149",
+          "association": "Bruma Ébano 149",
+          "position": 2,
+          "class": 1,
+          "rule_value": 0,
+          "goal": 6,
+          "action": 1,
+          "confidence": 0.9561757232649196,
+          "class_probability": 0.5009268555674876,
+          "memory_probability": 0.0,
+          "voice": {
+            "text": "Mover a la derecha.",
+            "ids": [
+              75,
+              4,
+              43,
+              77,
+              3
+            ],
+            "terminated": true,
+            "faithful": true
+          },
+          "trace": [
+            {
+              "bank": "memory",
+              "operation": "qm_read",
+              "native": true,
+              "slot": 37,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+              "readout": "U02"
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_infer",
+              "native": true
+            },
+            {
+              "bank": "v3",
+              "operation": "qrl_step",
+              "native": true,
+              "qubits": 1000,
+              "position": 2,
+              "goal": 6
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_decide",
+              "native": true
+            },
+            {
+              "bank": "voice",
+              "operation": "qchat_encode/qchat_next",
+              "native": true,
+              "qubits": 100,
+              "tokens": 5
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_voice_check",
+              "native": true
+            }
+          ],
+          "supported": true,
+          "policy": {
+            "kind": "plan",
+            "status": 1,
+            "position": 2,
+            "goal": 6,
+            "action": 1,
+            "probability_right": 0.995828200234704,
+            "terminal": false
+          },
+          "task_id": "reserved-149:2"
+        }
+      ],
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 37,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 37,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 2,
+          "goal": 6
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "request_id": "reserved-149",
+      "intent": 10,
+      "reader_log_probability": -0.005197750627277764,
+      "entity": "U02",
+      "committed": true
+    }
+  },
+  "after": {
+    "index": 149,
+    "seed": 2023144612,
+    "bit": 0,
+    "position": 2,
+    "prompt": "guarda la regla Bruma Ébano 149 con valor 0 observa Nube Índigo 149 con muestra 2023144612 y resuelve desde 2",
+    "name": "Nube Índigo 149",
+    "association": "Bruma Ébano 149",
+    "expected_class": 0,
+    "expected_goal": 0,
+    "expected_action": 0,
+    "correct": true,
+    "all_stages_executed": true,
+    "result": {
+      "ok": true,
+      "status": 1,
+      "results": [
+        {
+          "kind": "remember",
+          "status": 1,
+          "name": "Bruma Ébano 149",
+          "slot": 37
+        },
+        {
+          "kind": "observe",
+          "status": 1,
+          "name": "Nube Índigo 149",
+          "class": 0,
+          "probability": 0.4365972815773535,
+          "base_probability": 0.7509320311128697,
+          "readout": "U02",
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "observations": 1000,
+          "symbolic_projection": {
+            "subject": "observación Nube Índigo 149",
+            "predicate": "es",
+            "value": "clase cero",
+            "probability": 0.4365972815773535,
+            "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+            "source": "VQC3 prediction"
+          }
+        },
+        {
+          "kind": "mission",
+          "status": 1,
+          "observation": "Nube Índigo 149",
+          "association": "Bruma Ébano 149",
+          "position": 2,
+          "class": 0,
+          "rule_value": 0,
+          "goal": 0,
+          "action": 0,
+          "confidence": 0.9605283988889326,
+          "class_probability": 0.4365972815773535,
+          "memory_probability": 0.0,
+          "voice": {
+            "text": "Mover a la izquierda.",
+            "ids": [
+              75,
+              4,
+              43,
+              76,
+              3
+            ],
+            "terminated": true,
+            "faithful": true
+          },
+          "trace": [
+            {
+              "bank": "memory",
+              "operation": "qm_read",
+              "native": true,
+              "slot": 37,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+              "readout": "U02"
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_infer",
+              "native": true
+            },
+            {
+              "bank": "v3",
+              "operation": "qrl_step",
+              "native": true,
+              "qubits": 1000,
+              "position": 2,
+              "goal": 0
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_decide",
+              "native": true
+            },
+            {
+              "bank": "voice",
+              "operation": "qchat_encode/qchat_next",
+              "native": true,
+              "qubits": 100,
+              "tokens": 5
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_voice_check",
+              "native": true
+            }
+          ],
+          "supported": true,
+          "policy": {
+            "kind": "plan",
+            "status": 1,
+            "position": 2,
+            "goal": 0,
+            "action": 0,
+            "probability_right": 0.0013080684085500058,
+            "terminal": false
+          },
+          "task_id": "reserved-149:2"
+        }
+      ],
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 37,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 37,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "1342657e3d8ffda9a53d11500c618c24ec008bbf99ff6f73da0a98675932d9eb",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 2,
+          "goal": 0
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "request_id": "reserved-149",
+      "intent": 10,
+      "reader_log_probability": -0.005197750627277764,
+      "entity": "U02",
+      "committed": true
+    }
+  }
+}

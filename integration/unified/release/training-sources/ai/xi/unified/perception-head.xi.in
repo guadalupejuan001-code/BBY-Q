@@ -1,0 +1,403 @@
+# U02: learned residual readout of the actual VQC measurements.
+# Inputs are quantum expectations and the old logit. No seed, teacher,
+# environment latent or raw sensor is read by projection or inference.
+label u2_apply
+load64 r0 @B
+cmp r0 @MAGIC
+jne u2_apply_done
+load64 r0 8140000000000000280
+cmp r0 2
+je u2_apply_done
+call u2_project
+call u2_forward
+label u2_apply_done
+ret
+
+label u2_project
+fstore @B+64 f20
+fmov f0 f20
+fdiv f0 10
+fstore @IN f0
+set r2 0
+label u2_project_clear
+mov r0 r2
+add r0 1
+mul r0 8
+add r0 @IN
+fstore $r0 0
+add r2 1
+cmp r2 @NR
+jlt u2_project_clear
+set r2 0
+label u2_project_column
+mov r0 r2
+mul r0 8
+add r0 8140000000000310000
+fload f0 $r0
+# Complementary X observations restore information lost by Z-only readout.
+# Rotate the measured Bloch coordinates into a common learned phase basis.
+# No gate is reversed and no raw input angle or teacher is read here.
+fmov f4 f0
+mov r4 r2
+add r4 5000
+fexpect f5 X:$r4
+load64 r0 8140000000000000280
+cmp r0 1
+jne u2_x_observation_ready
+fset f5 0
+label u2_x_observation_ready
+mov r0 r2
+mul r0 8
+add r0 8140000000000100000
+fload f3 $r0
+fcos f1 f3
+fsin f2 f3
+fmov f6 f1
+fmul f6 f4
+fmov f7 f2
+fmul f7 f5
+fadd f6 f7
+fmov f7 f1
+fmul f7 f5
+fmul f2 f4
+fsub f7 f2
+fmul f6 @ALIGNGAIN
+fmul f7 @ALIGNGAIN
+mov r3 r2
+mod r3 4
+mul r3 2
+mov r0 r3
+add r0 1
+mul r0 8
+add r0 @IN
+fload f3 $r0
+fadd f3 f6
+fstore $r0 f3
+add r0 8
+fload f3 $r0
+fadd f3 f7
+fstore $r0 f3
+fmov f0 f4
+fadd f0 f5
+fmul f0 0.7071067811865476
+fmul f0 @GAIN
+mov r0 r2
+mul r0 8
+add r0 @PROJ
+load64 r3 $r0
+mov r1 r3
+mod r3 @HASHNR
+cmp r1 @HASHNR
+jlt u2_project_positive
+fmul f0 -1
+label u2_project_positive
+mov r0 r3
+add r0 9
+mul r0 8
+add r0 @IN
+fload f1 $r0
+fadd f1 f0
+fstore $r0 f1
+add r2 1
+cmp r2 1000
+jlt u2_project_column
+ret
+
+label u2_normalize
+set r2 0
+label u2_normalize_loop
+mov r0 r2
+mul r0 8
+add r0 @IN
+fload f0 $r0
+mov r0 r2
+mul r0 8
+add r0 @MEAN
+fload f1 $r0
+fsub f0 f1
+mov r0 r2
+mul r0 8
+add r0 @SCALE
+fload f1 $r0
+fmul f0 f1
+fmax f0 -10
+fmin f0 10
+mov r0 r2
+mul r0 8
+add r0 @NORMAL
+fstore $r0 f0
+add r2 1
+cmp r2 @NF
+jlt u2_normalize_loop
+ret
+
+label u2_forward
+call u2_normalize
+set r2 0
+label u2_hidden_row
+fset f20 0
+set r3 0
+label u2_hidden_column
+mov r0 r2
+mul r0 @NF
+add r0 r3
+mul r0 8
+add r0 @P
+fload f0 $r0
+mov r0 r3
+mul r0 8
+add r0 @NORMAL
+fload f1 $r0
+fmul f0 f1
+fadd f20 f0
+add r3 1
+cmp r3 @NF
+jlt u2_hidden_column
+mov r0 r2
+add r0 @W1
+mul r0 8
+add r0 @P
+fload f0 $r0
+fadd f20 f0
+# tanh(z)=2/(1+exp(-2z))-1, with a finite arithmetic bound.
+fmax f20 -15
+fmin f20 15
+fmul f20 -2
+fexp f20 f20
+fadd f20 1
+fset f0 2
+fdiv f0 f20
+fsub f0 1
+mov r0 r2
+mul r0 8
+add r0 @HID
+fstore $r0 f0
+add r2 1
+cmp r2 @NH
+jlt u2_hidden_row
+fload f20 @B+64
+set r2 0
+label u2_output_loop
+mov r0 r2
+add r0 @W2
+mul r0 8
+add r0 @P
+fload f0 $r0
+mov r0 r2
+mul r0 8
+add r0 @HID
+fload f1 $r0
+fmul f0 f1
+fadd f20 f0
+add r2 1
+cmp r2 @NH
+jlt u2_output_loop
+fload f0 @OUTBIAS
+fadd f20 f0
+fset f0 1
+fcmp f20 -25
+jle u2_saturated
+fcmp f20 25
+jlt u2_clip_ready
+label u2_saturated
+fset f0 0
+label u2_clip_ready
+fstore @B+88 f0
+fmax f20 -25
+fmin f20 25
+fstore @B+80 f20
+fmov f21 f20
+fmul f21 -1
+fexp f21 f21
+fadd f21 1
+fset f0 1
+fdiv f0 f21
+fmov f21 f0
+fstore @B+72 f21
+ret
+
+# Read only the input view of a cached case. Teacher at +200 is excluded.
+label u2_load_features
+set r2 0
+label u2_load_feature_loop
+load64 r0 @B+112
+mov r1 r2
+mul r1 8
+add r0 r1
+fload f0 $r0
+add r1 @IN
+fstore $r1 f0
+add r2 1
+cmp r2 @NF
+jlt u2_load_feature_loop
+load64 r0 @B+112
+add r0 192
+fload f0 $r0
+fstore @B+64 f0
+ret
+
+label u2_clear_gradients
+set r2 0
+label u2_clear_gradient_loop
+mov r0 r2
+mul r0 8
+add r0 @G
+fstore $r0 0
+add r2 1
+cmp r2 @NP
+jlt u2_clear_gradient_loop
+store64 @B+104 0
+ret
+
+# BCE derivatives, accumulated over a mini-batch; no host optimizer.
+label u2_accumulate
+fload f22 @B+72
+fload f0 @B+96
+fsub f22 f0
+fload f0 @B+88
+fmul f22 f0
+fload f0 @GOUTBIAS
+fadd f0 f22
+fstore @GOUTBIAS f0
+set r2 0
+label u2_output_gradient
+mov r0 r2
+mul r0 8
+add r0 @HID
+fload f1 $r0
+fmov f0 f1
+fmul f0 f22
+mov r0 r2
+add r0 @W2
+mul r0 8
+add r0 @G
+fload f2 $r0
+fadd f2 f0
+fstore $r0 f2
+mov r0 r2
+add r0 @W2
+mul r0 8
+add r0 @P
+fload f0 $r0
+fmul f0 f22
+fmul f1 f1
+fset f2 1
+fsub f2 f1
+fmul f0 f2
+mov r0 r2
+mul r0 8
+add r0 @DH
+fstore $r0 f0
+mov r0 r2
+add r0 @W1
+mul r0 8
+add r0 @G
+fload f1 $r0
+fadd f1 f0
+fstore $r0 f1
+set r3 0
+label u2_input_gradient
+mov r0 r3
+mul r0 8
+add r0 @NORMAL
+fload f1 $r0
+fmul f1 f0
+mov r0 r2
+mul r0 @NF
+add r0 r3
+mul r0 8
+add r0 @G
+fload f2 $r0
+fadd f2 f1
+fstore $r0 f2
+add r3 1
+cmp r3 @NF
+jlt u2_input_gradient
+add r2 1
+cmp r2 @NH
+jlt u2_output_gradient
+load64 r0 @B+32
+add r0 1
+store64 @B+32 r0
+load64 r0 @B+104
+add r0 1
+store64 @B+104 r0
+ret
+
+label u2_train_cached
+call u2_load_features
+call u2_forward
+load64 r0 @B+112
+add r0 200
+fload f0 $r0
+fstore @B+96 f0
+call u2_accumulate
+ret
+
+label u2_adam
+load64 r0 @B+104
+cmp r0 0
+jle u2_adam_done
+itof f15 r0
+fload f13 @B+48
+fmul f13 0.9
+fstore @B+48 f13
+fset f11 1
+fsub f11 f13
+fload f14 @B+56
+fmul f14 0.999
+fstore @B+56 f14
+fset f12 1
+fsub f12 f14
+set r2 0
+label u2_adam_parameter
+mov r0 r2
+mul r0 8
+add r0 @G
+fload f0 $r0
+fdiv f0 f15
+mov r0 r2
+mul r0 8
+add r0 @P
+fload f8 $r0
+fmov f1 f8
+fmul f1 0.000001
+fadd f0 f1
+mov r0 r2
+mul r0 8
+add r0 @MOM
+fload f1 $r0
+fmul f1 0.9
+fmov f2 f0
+fmul f2 0.1
+fadd f1 f2
+fstore $r0 f1
+fdiv f1 f11
+mov r0 r2
+mul r0 8
+add r0 @VAR
+fload f2 $r0
+fmul f2 0.999
+fmul f0 f0
+fmul f0 0.001
+fadd f2 f0
+fstore $r0 f2
+fdiv f2 f12
+fsqrt f2 f2
+fadd f2 0.00000001
+fdiv f1 f2
+fload f0 @B+40
+fmul f1 f0
+fsub f8 f1
+mov r0 r2
+mul r0 8
+add r0 @P
+fstore $r0 f8
+add r2 1
+cmp r2 @NP
+jlt u2_adam_parameter
+load64 r0 @B+24
+add r0 1
+store64 @B+24 r0
+label u2_adam_done
+ret

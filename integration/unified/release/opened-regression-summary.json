@@ -1,0 +1,779 @@
+{
+  "passed": true,
+  "integration_passed": true,
+  "tasks": 200,
+  "correct": 200,
+  "accuracy": 1.0,
+  "all_stages_executed": 200,
+  "reserved_seed": 2026110602,
+  "perception_parameter_sha256": "1366084f54ded54f770514c5a6ca5de44273fcad028291033ca89d7d1c3e23a2",
+  "test_kind": "new names, seeds, binary rules and nonterminal positions; declared native environment and supported grammar",
+  "source": "every task enters Session.turn as one natural-language request; no test feedback",
+  "controls": [
+    {
+      "control": "intact",
+      "sample": 88113,
+      "action": 1,
+      "goal": 6,
+      "voice": {
+        "text": "Mover a la derecha.",
+        "ids": [
+          75,
+          4,
+          43,
+          77,
+          3
+        ],
+        "terminated": true,
+        "faithful": true
+      },
+      "ok": true,
+      "committed": true,
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 3,
+          "goal": 6
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "baseline": {
+        "action": 1,
+        "goal": 6,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        }
+      }
+    },
+    {
+      "control": "memory-erased",
+      "sample": 88113,
+      "action": 0,
+      "goal": 0,
+      "voice": {
+        "text": "Mover a la izquierda.",
+        "ids": [
+          75,
+          4,
+          43,
+          76,
+          3
+        ],
+        "terminated": true,
+        "faithful": true
+      },
+      "ok": true,
+      "committed": true,
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 3,
+          "goal": 0
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "baseline": {
+        "action": 1,
+        "goal": 6,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        }
+      },
+      "causal_effect": true
+    },
+    {
+      "control": "vqc-ablated",
+      "sample": 88114,
+      "action": 0,
+      "goal": 0,
+      "voice": {
+        "text": "Mover a la izquierda.",
+        "ids": [
+          75,
+          4,
+          43,
+          76,
+          3
+        ],
+        "terminated": true,
+        "faithful": true
+      },
+      "ok": true,
+      "committed": true,
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "7090a50c4f1537508a16ad189801417ea8e5aabf565b9f1e38b1c2a3b91d6461",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "7090a50c4f1537508a16ad189801417ea8e5aabf565b9f1e38b1c2a3b91d6461",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 3,
+          "goal": 0
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "baseline": {
+        "action": 1,
+        "goal": 6,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        }
+      },
+      "causal_effect": true,
+      "probes": [
+        {
+          "control": "vqc-ablated",
+          "sample": 88113,
+          "action": 1,
+          "goal": 6,
+          "voice": {
+            "text": "Mover a la derecha.",
+            "ids": [
+              75,
+              4,
+              43,
+              77,
+              3
+            ],
+            "terminated": true,
+            "faithful": true
+          },
+          "ok": true,
+          "committed": true,
+          "trace": [
+            {
+              "bank": "router",
+              "operation": "c1_encode_input/c1_next",
+              "native": true,
+              "qubits": 100,
+              "intent": 10
+            },
+            {
+              "bank": "memory",
+              "operation": "qm_exchange",
+              "native": true,
+              "slot": 0,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+              "readout": "U02"
+            },
+            {
+              "bank": "memory",
+              "operation": "qm_read",
+              "native": true,
+              "slot": 0,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+              "readout": "U02"
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_infer",
+              "native": true
+            },
+            {
+              "bank": "v3",
+              "operation": "qrl_step",
+              "native": true,
+              "qubits": 1000,
+              "position": 3,
+              "goal": 6
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_decide",
+              "native": true
+            },
+            {
+              "bank": "voice",
+              "operation": "qchat_encode/qchat_next",
+              "native": true,
+              "qubits": 100,
+              "tokens": 5
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_voice_check",
+              "native": true
+            }
+          ],
+          "baseline": {
+            "action": 1,
+            "goal": 6,
+            "voice": {
+              "text": "Mover a la derecha.",
+              "ids": [
+                75,
+                4,
+                43,
+                77,
+                3
+              ],
+              "terminated": true,
+              "faithful": true
+            }
+          },
+          "causal_effect": false
+        },
+        {
+          "control": "vqc-ablated",
+          "sample": 88114,
+          "action": 0,
+          "goal": 0,
+          "voice": {
+            "text": "Mover a la izquierda.",
+            "ids": [
+              75,
+              4,
+              43,
+              76,
+              3
+            ],
+            "terminated": true,
+            "faithful": true
+          },
+          "ok": true,
+          "committed": true,
+          "trace": [
+            {
+              "bank": "router",
+              "operation": "c1_encode_input/c1_next",
+              "native": true,
+              "qubits": 100,
+              "intent": 10
+            },
+            {
+              "bank": "memory",
+              "operation": "qm_exchange",
+              "native": true,
+              "slot": 0,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "7090a50c4f1537508a16ad189801417ea8e5aabf565b9f1e38b1c2a3b91d6461",
+              "readout": "U02"
+            },
+            {
+              "bank": "memory",
+              "operation": "qm_read",
+              "native": true,
+              "slot": 0,
+              "qubits": 4
+            },
+            {
+              "bank": "v3",
+              "operation": "vqc_forward",
+              "native": true,
+              "qubits": 1000,
+              "observables": 11500,
+              "input_sha256": "7090a50c4f1537508a16ad189801417ea8e5aabf565b9f1e38b1c2a3b91d6461",
+              "readout": "U02"
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_infer",
+              "native": true
+            },
+            {
+              "bank": "v3",
+              "operation": "qrl_step",
+              "native": true,
+              "qubits": 1000,
+              "position": 3,
+              "goal": 0
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_decide",
+              "native": true
+            },
+            {
+              "bank": "voice",
+              "operation": "qchat_encode/qchat_next",
+              "native": true,
+              "qubits": 100,
+              "tokens": 5
+            },
+            {
+              "bank": "entity",
+              "operation": "entity_voice_check",
+              "native": true
+            }
+          ],
+          "baseline": {
+            "action": 1,
+            "goal": 6,
+            "voice": {
+              "text": "Mover a la derecha.",
+              "ids": [
+                75,
+                4,
+                43,
+                77,
+                3
+              ],
+              "terminated": true,
+              "faithful": true
+            }
+          },
+          "causal_effect": true
+        }
+      ]
+    },
+    {
+      "control": "qrl-ablated",
+      "sample": 88113,
+      "action": 0,
+      "goal": 6,
+      "voice": {
+        "text": "Mover a la izquierda.",
+        "ids": [
+          75,
+          4,
+          43,
+          76,
+          3
+        ],
+        "terminated": true,
+        "faithful": true
+      },
+      "ok": true,
+      "committed": true,
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 3,
+          "goal": 6
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 5
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "baseline": {
+        "action": 1,
+        "goal": 6,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        }
+      },
+      "causal_effect": true
+    },
+    {
+      "control": "voice-ablated",
+      "sample": 88113,
+      "action": 1,
+      "goal": 6,
+      "voice": {
+        "text": "Cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas cuánticas",
+        "ids": [
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23,
+          23
+        ],
+        "terminated": false,
+        "faithful": false
+      },
+      "ok": false,
+      "committed": false,
+      "trace": [
+        {
+          "bank": "router",
+          "operation": "c1_encode_input/c1_next",
+          "native": true,
+          "qubits": 100,
+          "intent": 10
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_exchange",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "memory",
+          "operation": "qm_read",
+          "native": true,
+          "slot": 0,
+          "qubits": 4
+        },
+        {
+          "bank": "v3",
+          "operation": "vqc_forward",
+          "native": true,
+          "qubits": 1000,
+          "observables": 11500,
+          "input_sha256": "dc2b082654d70b60f4c663df74f8c68e2367649de7272b30a688515aa060b7da",
+          "readout": "U02"
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_infer",
+          "native": true
+        },
+        {
+          "bank": "v3",
+          "operation": "qrl_step",
+          "native": true,
+          "qubits": 1000,
+          "position": 3,
+          "goal": 6
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_decide",
+          "native": true
+        },
+        {
+          "bank": "voice",
+          "operation": "qchat_encode/qchat_next",
+          "native": true,
+          "qubits": 100,
+          "tokens": 12
+        },
+        {
+          "bank": "entity",
+          "operation": "entity_voice_check",
+          "native": true
+        }
+      ],
+      "baseline": {
+        "action": 1,
+        "goal": 6,
+        "voice": {
+          "text": "Mover a la derecha.",
+          "ids": [
+            75,
+            4,
+            43,
+            77,
+            3
+          ],
+          "terminated": true,
+          "faithful": true
+        }
+      },
+      "causal_effect": true
+    }
+  ],
+  "apk_built": false
+}

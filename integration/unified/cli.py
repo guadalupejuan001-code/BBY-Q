@@ -16,7 +16,7 @@ def main():
         with Session(args.database,args.readers) as session:
             if args.command=='turn':result=session.turn(args.id,args.text,json.loads(args.payload.read_text()) if args.payload else None)
             elif args.command=='history':result=session.history()
-            else:result={'entity':'U01','components':['C1','VQC3','QRL3','QMemory','QChat100','E02'],'snapshot':session.snapshot(),'apk_built':False}
+            else:result={'entity':'U02','components':['C1','VQC3','QRL3','QMemory','QChat100','E02'],'snapshot':session.snapshot(),'apk_built':False}
         print(json.dumps(result,ensure_ascii=False,indent=2))
         if isinstance(result,dict) and result.get('ok') is False:sys.exit(2)
     except (ValueError,RuntimeError) as error:

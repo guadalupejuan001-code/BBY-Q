@@ -5,6 +5,7 @@ classification, association, goal, policy, confidence, words and gradients.
 """
 import math,struct
 from .common import ROOT,C1,Entity,XiSession,A,Q,M,E,encoded,digest,key,run,metrics,integer,floating,material,stage_bytes
+from . import perception as P
 
 def natural(value,maximum):
     text=str(value)
@@ -22,9 +23,11 @@ def observations(values):
 class Quantum:
     def __init__(self,sessions,metadata,directory,project):
         self.sessions=sessions;self.meta=metadata;self.directory=directory;self.project=project;self.trace=[]
+        self.readout_magic=integer(sessions['v3'],P.B)
+        self.perception_active=self.readout_magic==P.MAGIC
 
     def stage(self,bank,body,operation,**details):
-        events=run(self.sessions[bank],body)
+        events=(P.run if bank=='v3' else run)(self.sessions[bank],body)
         self.trace.append({'bank':bank,'operation':operation,'native':True,**details})
         return events
 
@@ -56,7 +59,16 @@ class Quantum:
             spec=self.meta.get('observations',{}).get(key(name))
             if spec is None:return {'kind':'observe','status':0,'name':name,'reason':'No observations supplied'}
         self.meta.setdefault('observations',{})[key(name)]=spec
+        self.meta.setdefault('observation_names',{})[key(name)]=name
         return self.classify(name,spec)
+
+    def refresh_projections(self):
+        """Recompute derived facts after a readout upgrade or verified learning."""
+        revision=self.meta.get('perception_revision',0)
+        for name,spec in self.meta.get('observations',{}).items():
+            previous=self.meta.get('projections',{}).get(key('observación '+name),{})
+            if previous.get('readout_magic')!=self.readout_magic or previous.get('perception_revision')!=revision:
+                self.classify(self.meta.get('observation_names',{}).get(name,name),spec)
 
     def input_body(self,spec):
         if spec['kind']=='synthetic':return f'store64 {A+256} {spec["seed"]}\nstore64 {A+272} 0\nfstore {A+296} {spec["noise"]}\ncall vqc_sample\n'
@@ -64,10 +76,11 @@ class Quantum:
 
     def classify(self,name,spec,ablated=False):
         sha=digest(encoded(spec))
-        body=self.input_body(spec)+f'store64 {A} 0\nstore64 {A+280} {int(ablated)}\ncall select_agent\ncall forward\nfemit probability f21'
-        p=float(metrics(self.stage('v3',body,'vqc_forward',qubits=1000,input_sha256=sha))['probability'])
+        body=self.input_body(spec)+f'store64 {A} 0\nstore64 {A+280} {int(ablated)}\ncall select_agent\ncall forward\nfemit base_probability f21\ncall u2_apply\nfemit probability f21'
+        measured=metrics(self.stage('v3',body,'vqc_forward',qubits=1000,observables=11500 if self.perception_active else 1000,input_sha256=sha,readout='U02' if self.perception_active else 'legacy'))
+        p=float(measured['probability'])
         projection=self.project(name,int(p>=.5),p,sha)
-        return {'kind':'observe','status':1,'name':name,'class':int(p>=.5),'probability':p,'input_sha256':sha,'observations':1000,'symbolic_projection':projection}
+        return {'kind':'observe','status':1,'name':name,'class':int(p>=.5),'probability':p,'base_probability':float(measured['base_probability']),'readout':'U02' if self.perception_active else 'legacy','input_sha256':sha,'observations':1000,'symbolic_projection':projection}
 
     def policy(self,position,goal,ablated=False):
         position=natural(position,6);goal=natural(goal,6)
@@ -113,7 +126,10 @@ class Quantum:
         plan['status']=1 if voice['faithful'] and voice['terminated'] else 4
         return plan
 
-    def identities(self):return Entity.Entity.identities(self)
+    def identities(self):
+        result=Entity.Entity.identities(self)
+        if self.perception_active:result['perception_readout']=P.parameter_identity(self.sessions['v3'])
+        return result
 
     def feedback(self,task,success=None,teacher=None):
         before=self.identities();frame=bytes.fromhex(task['frame_hex']);v=self.sessions['v3'];e=self.sessions['entity'];c=self.sessions['voice'];m=self.sessions['memory']
@@ -134,7 +150,12 @@ class Quantum:
             body=restored+Entity.workspace({264:goldclass,272:goldrule})+'call entity_score\n'+f'store64 {A+344} {task["position"]}\nstore64 {A+352} {task["goal"]}\nstore64 {A+360} 0\nstore64 {A+312} 12\nstore64 {A+320} 2\ncall entity_qrl_feedback'
             self.stage('v3',body,'entity_qrl_feedback')
             self.stage('v3',self.input_body(spec)+f'fstore {A+128} {float(goldclass)}\nstore64 {A} 0\nstore64 {A+280} 0\nfstore {A+4024} .01\ncall supervised_update','supervised_update')
+            if self.perception_active:
+                body=self.input_body(spec)+f'store64 {A} 0\nstore64 {A+280} 0\ncall select_agent\ncall forward\ncall u2_project\ncall u2_clear_gradients\ncall u2_forward\nfstore {P.B+96} {float(goldclass)}\ncall u2_accumulate\nfstore {P.ADDR["GSKIP"]} 0\nfstore {P.B+40} .0003\ncall u2_adam'
+                self.stage('v3',body,'u2_adam',supervision='verified-label')
+                updates['perception_readout']=1
             updates['vqc']=1;updates['qrl']=int(task['class']==goldclass and task['rule_value']==goldrule and task['action'] in (0,1))
+            self.meta['perception_revision']=self.meta.get('perception_revision',0)+1
             # Rehearsal uses a disposable memory bank. Only learned angles and
             # its counter return; live user associations are never reset.
             rehearsal=self.directory/'memory-rehearsal.rvp';m.save(rehearsal)

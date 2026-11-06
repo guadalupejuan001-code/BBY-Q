@@ -2,7 +2,7 @@
 """Integration checks against native banks, persistence and failure paths."""
 import argparse,concurrent.futures,json,tempfile
 from pathlib import Path
-from .common import ROOT,C1,Legacy,Entity,encoded,digest,read,write
+from .common import ROOT,C1,Legacy,Entity,encoded,digest,read,write,key
 from .session import Session
 
 def good(session,identifier,text,payload=None):
@@ -48,8 +48,10 @@ def main():
             assert session.snapshot()==original
             assert session.db.execute('SELECT feedback_id FROM unified_tasks WHERE id=?',(mission['task_id'],)).fetchone()[0] is None
             feedback=good(session,'feedback','aprende de la última tarea');learned=feedback['results'][-1]
-            assert learned['success'] and all(learned['changed'].values()),learned
-            assert set(learned['updates'])=={'entity','vqc','qrl','memory','voice','router'}
+            assert learned['success'] and all(changed for name,changed in learned['changed'].items() if name!='perception_readout'),learned
+            expected={'entity','vqc','qrl','memory','voice','router'}
+            if 'perception_readout' in learned['changed']:expected.add('perception_readout')
+            assert set(learned['updates'])==expected
             assert session.snapshot()['banks']['router']!=original['banks']['router']
             assert session.snapshot()['banks']['text']==original['banks']['text']
             current=good(session,'retained','lee la regla Faro Azul')['results'][-1];assert current['value']==0,current
@@ -58,7 +60,18 @@ def main():
             except ValueError:pass
             else:raise AssertionError('Duplicate feedback trained twice')
             assert session.snapshot()==snapshot
-            checks.append('verified learning changes every learned bank, rolls back all gradients on failure, retains corrected live memory, uses the immutable original task teacher and rejects duplicate learning')
+            checks.append('verified learning updates the learned banks, rolls back all gradients on failure, retains corrected live memory, uses the immutable original task teacher and rejects duplicate learning; a saturated correct readout may retain its coefficients')
+            query=good(session,'refresh-after-feedback','dime si observación Nara es alerta')
+            assert any(t['operation']=='vqc_forward' for t in query['trace'])
+            meta=json.loads(session.db.execute('SELECT metadata FROM unified_state').fetchone()[0])
+            assert meta['projections'][key('observación Nara')]['perception_revision']==meta['perception_revision']==1
+            query=good(session,'already-refreshed','dime si observación Nara es alerta')
+            assert not any(t['operation']=='vqc_forward' for t in query['trace'])
+            good(session,'boundary-task','guarda la regla Faro Claro con valor 1 observa Umbral con muestra 2023144612 y resuelve desde 3')
+            boundary=good(session,'boundary-feedback','aprende de la última tarea')['results'][-1]
+            assert boundary['changed']['perception_readout'] and boundary['updates']['perception_readout']==1,boundary
+            snapshot=session.snapshot()
+            checks.append('reasoning refreshes stale VQC-derived facts after verified learning and reuses current facts without repeating inference')
             negative=good(session,'cancel','no resuelvas Nara');assert not negative['committed'] and session.snapshot()==snapshot
             data=[(i%23-11)/100 for i in range(1000)];payload={'observations':data}
             observed=good(session,'external','observa Brisa Nueva',payload)['results'][-1]

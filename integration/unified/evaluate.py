@@ -8,8 +8,9 @@ import argparse,concurrent.futures,hashlib,json,random,tempfile
 from contextlib import ExitStack
 from types import SimpleNamespace
 from pathlib import Path
-from .common import ROOT,C1,Entity,A,encoded,digest,read,write,run,metrics,entity_models
-from .session import Session
+from .common import ROOT,C1,Entity,A,encoded,digest,read,write,run,metrics,entity_models,integer
+from .session import Session,perception_model
+from . import perception as P
 
 def reserved(count,namespace=2026110705):
     rng=random.Random(namespace);rows=[]
@@ -33,7 +34,9 @@ def worker(rows,readers):
                     states={}
                     for name in ('v3','memory','voice','entity'):
                         path=directory/(name+'-'+suffix+'.rvp');path.write_bytes(banks[name]);states[name]=stack.enter_context(C1.XiSession(C1.RT/'build/xi_session',path))
-                    return Entity.Entity.identities(SimpleNamespace(sessions=states))
+                    result=Entity.Entity.identities(SimpleNamespace(sessions=states))
+                    if integer(states['v3'],P.B)==P.MAGIC:result['perception_readout']=P.parameter_identity(states['v3'])
+                    return result
             initial=parameters('before')
             for index,row in enumerate(rows):
                 value=session.turn('reserved-'+str(row['index']),row['prompt'])
@@ -48,16 +51,23 @@ def worker(rows,readers):
     return result
 
 def controls(readers):
-    rows=[]
-    # Each control has its own matched intact input. The VQC control uses a
-    # class-1 sample, so zero observations can change the inferred premise.
-    for control in (None,'memory-erased','vqc-ablated','qrl-ablated','voice-ablated'):
+    def probe(control,sample,bit):
         with tempfile.TemporaryDirectory(prefix='bbyq-unified-ablation-') as temporary,Session(Path(temporary)/'entity.sqlite',readers) as session:
-            sample,bit=(88114,0) if control=='vqc-ablated' else (88113,1)
             prompt=f'guarda la regla Faro Azul con valor {bit} observa Nara con muestra {sample} y resuelve desde 3'
             baseline=session.turn('baseline',prompt)['results'][-1]
             value=session.turn('control',prompt,control=control);task=value['results'][-1]
-            rows.append({'control':control or 'intact','action':task.get('action'),'goal':task.get('goal'),'voice':task.get('voice'),'ok':value['ok'],'committed':value['committed'],'trace':value['trace'],'baseline':{'action':baseline['action'],'goal':baseline['goal'],'voice':baseline['voice']}})
+            return {'control':control or 'intact','sample':sample,'action':task.get('action'),'goal':task.get('goal'),'voice':task.get('voice'),'ok':value['ok'],'committed':value['committed'],'trace':value['trace'],'baseline':{'action':baseline['action'],'goal':baseline['goal'],'voice':baseline['voice']}}
+    rows=[]
+    for control in (None,'memory-erased','vqc-ablated','qrl-ablated','voice-ablated'):
+        if control=='vqc-ablated':
+            # Erasing all observables produces one constant input. Probe both
+            # fixed opposite classes, retaining both outcomes, so a learned
+            # readout's constant response cannot invalidate the control.
+            probes=[probe(control,88113,1),probe(control,88114,0)]
+            for value in probes:value['causal_effect']=value['goal']!=value['baseline']['goal']
+            assert any(value['causal_effect'] for value in probes),'VQC ablation did not affect either shared premise'
+            value=dict(next(value for value in probes if value['causal_effect']));value['probes']=probes;rows.append(value)
+        else:rows.append(probe(control,88113,1))
     for row in rows[1:]:
         intact=row['baseline'];row['causal_effect']=row['action']!=intact['action'] or row['voice']!=intact['voice'] or not row['ok']
         if row['control']=='vqc-ablated':assert row['goal']!=intact['goal'],'VQC control did not change the shared premise'
@@ -68,10 +78,14 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--readers',type=Path,default=ROOT/'integration/unified/release');parser.add_argument('--count',type=int,default=200);parser.add_argument('--workers',type=int,default=4);parser.add_argument('--seed',type=int,default=2026110705);parser.add_argument('--integration-only',action='store_true',help='Still report every prediction error; use native integration execution as the exit criterion');parser.add_argument('--output',type=Path,default=ROOT/'build/unified/reserved.json');args=parser.parse_args()
     if args.count<1 or args.workers<1:raise ValueError('Positive task and worker counts required')
     rows=reserved(args.count,args.seed);groups=[rows[i::args.workers] for i in range(args.workers)]
+    with tempfile.TemporaryDirectory(prefix='bbyq-u02-evaluation-binding-') as temporary:
+        path=Path(temporary)/'v3.rvp';path.write_bytes(perception_model(args.readers) or entity_models()['v3'])
+        with C1.XiSession(C1.RT/'build/xi_session',path) as native:
+            readout_identity=P.parameter_identity(native) if integer(native,P.B)==P.MAGIC else None
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         batches=list(pool.map(lambda group:worker(group,args.readers),groups))
     cases=sorted([row for batch in batches for row in batch],key=lambda r:r['index']);correct=sum(row['correct'] for row in cases);all_stages=sum(row['all_stages_executed'] for row in cases)
-    report={'passed':correct==len(cases) and all_stages==len(cases),'integration_passed':all_stages==len(cases),'tasks':len(cases),'correct':correct,'accuracy':correct/len(cases),'all_stages_executed':all_stages,'reserved_seed':args.seed,'test_kind':'new names, seeds, binary rules and nonterminal positions; declared native environment and supported grammar','source':'every task enters Session.turn as one natural-language request; no test feedback','controls':controls(args.readers),'cases':cases,'apk_built':False}
+    report={'passed':correct==len(cases) and all_stages==len(cases),'integration_passed':all_stages==len(cases),'tasks':len(cases),'correct':correct,'accuracy':correct/len(cases),'all_stages_executed':all_stages,'reserved_seed':args.seed,'perception_parameter_sha256':readout_identity,'test_kind':'new names, seeds, binary rules and nonterminal positions; declared native environment and supported grammar','source':'every task enters Session.turn as one natural-language request; no test feedback','controls':controls(args.readers),'cases':cases,'apk_built':False}
     args.output.parent.mkdir(parents=True,exist_ok=True);write(args.output,report);print(json.dumps({k:v for k,v in report.items() if k!='cases'},ensure_ascii=False))
     if not (report['integration_passed'] if args.integration_only else report['passed']):raise SystemExit(1)
 
