@@ -49,14 +49,15 @@ def identical_trial(klass):
             explanation = session.turn("explain", "explica la última tarea")
             feedback = session.turn("feedback", "aprende de la última tarea")
             recall = session.turn("recall", "lee la regla Faro Azul")
+            rule = session.turn("rule", "si alguien es clase cero entonces es alerta")
             query = session.turn("query", "dime si observación Nara es alerta")
             if not (corrected["ok"] and explanation["ok"] and feedback["ok"] and
-                    recall["ok"] and query["ok"]):
+                    recall["ok"] and rule["ok"] and query["ok"]):
                 raise AssertionError("C02 did not preserve original knowledge/feedback contracts")
             result = {
                 "initial": start, "math": math, "text": text, "mission": mission,
                 "replay": replay, "corrected": corrected, "explanation": explanation,
-                "feedback": feedback, "recall": recall, "query": query,
+                "feedback": feedback, "recall": recall, "rule": rule, "query": query,
                 "snapshot": session.snapshot(), "history": session.history(),
             }
         # A completely new original U02 process must see the same durable state.
