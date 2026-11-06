@@ -1,0 +1,11 @@
+{"progress": 100, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 369.33559450134635}
+{"progress": 200, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 375.8611214980483}
+{"progress": 300, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 380.49425500258803}
+{"progress": 400, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 377.3048710003495}
+{"progress": 500, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 181.01403700187802}
+{"progress": 600, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 227.18451399728656}
+{"progress": 700, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 378.16605300083756}
+{"progress": 800, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 385.41780500486493}
+{"progress": 900, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 382.6491380035877}
+{"progress": 1000, "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "recent_episode_ms": 182.68914500251412}
+{"completed": "/workspace/scratch/f585d68010d1/BBY-Q-comparison/build/topology-comparison-20261102/qrl-line_easy-seed2026-historical4", "variant": "historical4", "agent": "qrl", "task": "line_easy", "seed": 2026, "iid": 0.4453125, "ood": 0.5390625, "training_cpu_ms": 297387.507}

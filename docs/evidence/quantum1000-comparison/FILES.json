@@ -1,0 +1,1132 @@
+[
+  {
+    "path": "docs/evidence/quantum1000-comparison/RESULTS.md",
+    "bytes": 8128,
+    "sha256": "10ca558dae706ed535eae9aa233bd242b338da312b1d0cb3ef1cc8164ed45231"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/PROTOCOL.json",
+    "bytes": 1230,
+    "sha256": "fccb1cc2c52a9dfa07260c8e07accf1832ff8c4813106947c668fcbc7dbdb4d1"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/summary.json",
+    "bytes": 22875,
+    "sha256": "469b82f306b1d255fdf3cbd28d8984b9e8e4b2367c615807376a4341cfe2f803"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/validation.json",
+    "bytes": 1309,
+    "sha256": "afc609a4b5d0611cd01a9cb78b5ef20b11a4a4af50d46832d21176764f7e622a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/forward-benchmark.json",
+    "bytes": 17041,
+    "sha256": "6071b8a08f0a5c530b1d75cb1881ddcd6e110eba9ec4a7af41c93639d24b4ddc"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/diagnostics.json",
+    "bytes": 10407,
+    "sha256": "d60b5243bb925db943ee57b89bdc27a7dfa217806a0189a8920f09706e7b8f31"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/hardware.json",
+    "bytes": 523,
+    "sha256": "aa71b6d21ca7000b88f85a623f5c3dfe490ab2fa6ed3d7be8ce8772a1ff0ddc3"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/runtime-build.log",
+    "bytes": 8126,
+    "sha256": "4886364feb355431c95f6608955261a21e61f02c6d7da3cf23d028654660397a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/results.csv",
+    "bytes": 2264,
+    "sha256": "d87b2d2c2fa71de28b14481119ec6c713c48f06b905acf0094a10f4f1490cf29"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/CHECKPOINTS.json",
+    "bytes": 22251,
+    "sha256": "df441e839b8276363169f816e1050da859e02a8d7b381c00ec4d62155eee3199"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-blocked4/conditions.json",
+    "bytes": 1151,
+    "sha256": "e56f05f888b76b93a441ddc089967167e59fe70cbfa460b0900f90a9c5c3f21c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-blocked4/result.json",
+    "bytes": 99598,
+    "sha256": "7f4a7e1fe9e8efe6b1769e91bc6730e22c5ca0537d9235ae511a2801379acf54"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-blocked4/training.jsonl.gz",
+    "bytes": 29786,
+    "sha256": "2d3ce772c6c262cf59dda2e18a2970ea706c7c7741c2d811bcbcb8782b9537d4"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-blocked4/worker.log",
+    "bytes": 1589,
+    "sha256": "18a7b906ee37883026ab7f44990d98ac2744358a53fa407712c41b0ad031921a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-connected1000/conditions.json",
+    "bytes": 1156,
+    "sha256": "5bcb00b444a606b2e043640038b743d01b95bb4c8b08d7a0932ee69c106e483e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-connected1000/result.json",
+    "bytes": 100183,
+    "sha256": "599c0a0c5c62f848f6e8761604bbb5ea7885a19173643059070cdffa90a72a0f"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-connected1000/training.jsonl.gz",
+    "bytes": 29748,
+    "sha256": "acf4c53ea7e399a101ad2d50868e98ab378a8406f62723476b1e72827302aec6"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-connected1000/worker.log",
+    "bytes": 1655,
+    "sha256": "cee2c0aaecedc79fc795a3fd9ff3acada1a8b272b654cd25ad6ece517e2f5840"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-historical4/conditions.json",
+    "bytes": 1153,
+    "sha256": "5a57f353b8ff0f0baf9ec857b53f219b2a739b6c2f3b64a91d91a89934571f18"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-historical4/result.json",
+    "bytes": 99600,
+    "sha256": "8dc26bb8b1dbeddad4df2d121d987fa38d069f88428aea10c9998a7edade710a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-historical4/training.jsonl.gz",
+    "bytes": 30352,
+    "sha256": "02d2f686271166eddf2691be35b21b1023e9ede8efb15abe7b530cb5a8d30a0f"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed173-historical4/worker.log",
+    "bytes": 1622,
+    "sha256": "c4d4716d7354a08b1f880ad2bc7b344ad85e8a6458bb655becfd182be649cf77"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-blocked4/conditions.json",
+    "bytes": 1152,
+    "sha256": "e08723ee5c181486f9caee3d32230f6fbb60b53131edb09c56c63fd9d9dd19fb"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-blocked4/result.json",
+    "bytes": 99831,
+    "sha256": "2ffd24b491d08692fc7f93eb3ed1e4a19b89afc6f7a1ad02eae473764419ac91"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-blocked4/training.jsonl.gz",
+    "bytes": 29870,
+    "sha256": "90f6f02175964547bb0ad5eb2e3e6480c4fd250c5258fc699ef263d8842d7104"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-blocked4/worker.log",
+    "bytes": 1594,
+    "sha256": "df2c12dd78a1e9a4404e06f219e6f6a832496da493efa3397699bda289032f97"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-connected1000/conditions.json",
+    "bytes": 1157,
+    "sha256": "771c4ca980ff51b50ed32020c99ee54dea66814d67188b9acc03545245087816"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-connected1000/result.json",
+    "bytes": 100411,
+    "sha256": "910973fedecdfe4abd0f0f4c16b6d1856ffdd49aad790df8085a75449690b717"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-connected1000/training.jsonl.gz",
+    "bytes": 30356,
+    "sha256": "d751a8584458b5a5167c6bc9e35640af20010956faf1e94161f94896897b3a11"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-connected1000/worker.log",
+    "bytes": 1662,
+    "sha256": "105224993c2ea17ac4de77f50e6cf738240f0b329a207196b37ecddcef391e17"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-historical4/conditions.json",
+    "bytes": 1154,
+    "sha256": "4dc9ae4c65ea85359aea957d2c37024def0a387d9e56878803d345590f1ea7a5"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-historical4/result.json",
+    "bytes": 99867,
+    "sha256": "16e0a257c8c3f6f6349429b4ffc93f08160f761ad9602beff9df32558ea3c44e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-historical4/training.jsonl.gz",
+    "bytes": 29723,
+    "sha256": "cfd16dcd857c5d435052ad7c053001b9d1f5a5663f7b48a6daed8ec19ada073b"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed2026-historical4/worker.log",
+    "bytes": 1638,
+    "sha256": "5d4c93d7449718cff176957c814351b3f96117128ce56756fe7097fb95ee4b51"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-blocked4/conditions.json",
+    "bytes": 1151,
+    "sha256": "ec06c393fd5a2d780f5722c156575179d78990055691534e4d83a460db5003c2"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-blocked4/result.json",
+    "bytes": 99560,
+    "sha256": "a2251d31fd439f4b8acda70bf287ed4b5da4028f7b1f79c6fa8ab83d5fb3976f"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-blocked4/training.jsonl.gz",
+    "bytes": 30213,
+    "sha256": "5fe64d683e617d0a3fad39f2fedfe5da6e006d4e90a8a3161da49b07fec52ea4"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-blocked4/worker.log",
+    "bytes": 1583,
+    "sha256": "5db1a23eace100c4a14c39d4e1816b8fce01071147aa3ff13758cf3b89973d84"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-connected1000/conditions.json",
+    "bytes": 1156,
+    "sha256": "aa6f8059a49d2cc068823eb9d9df6704be69aaf07016b00013604233f7f317de"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-connected1000/result.json",
+    "bytes": 100186,
+    "sha256": "ebf9640e6fe5584f487cb5f235db6e9b74b008def1cb2e522913c7d8a3536453"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-connected1000/training.jsonl.gz",
+    "bytes": 29888,
+    "sha256": "6a5eac11f7b313c641238c5bc0ad41629a1d5dfcec6e8baabcc4a6855b9885b1"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-connected1000/worker.log",
+    "bytes": 1635,
+    "sha256": "1588b9f153628cce97f7444cf389efa23494a5824ef4476a2ebc41d8ebb8106e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-historical4/conditions.json",
+    "bytes": 1153,
+    "sha256": "ba80acb4c30867bf894f1ff8ca594fe97e91ff9588cbb240edb3b44b818c61d4"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-historical4/result.json",
+    "bytes": 99837,
+    "sha256": "74e09bf8bc12090ba1ccb79869ed73cc52ea38c0fb1320ce5157ad1932d2f64f"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-historical4/training.jsonl.gz",
+    "bytes": 29841,
+    "sha256": "8dafb85f43e874a0cae40e336118dc51094551244bb6b7277901135445d653d8"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/qrl-line_easy-seed941-historical4/worker.log",
+    "bytes": 1630,
+    "sha256": "2e96336db7de3b82809f95e1f9e00896f474fb2c54c8f2a8f03f086d80a1c6c7"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-blocked4/conditions.json",
+    "bytes": 1147,
+    "sha256": "55eb490ab2a67c39e8bb725606dce79f3ceb9560a82df89979380ba2518ec0c9"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-blocked4/result.json",
+    "bytes": 68274,
+    "sha256": "c37f451cc3dc4aa04d206812617ab42886b21e99e5e66e085a1927ae60a70447"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-blocked4/training.jsonl.gz",
+    "bytes": 59722,
+    "sha256": "7828b02f16f91266440d6196c6c392196a3021aff04fc292d29b30c6a5393e57"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-blocked4/worker.log",
+    "bytes": 1528,
+    "sha256": "50b8720469f187e4bde32ff833e8a9c5ca16e3e3c2e9514171be9fe0773364d8"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-connected1000/conditions.json",
+    "bytes": 1152,
+    "sha256": "f3e8ec82cfa801c6af64e72c82c274de73349a0070c6eb5d4bc92a8edf68e142"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-connected1000/result.json",
+    "bytes": 69218,
+    "sha256": "5f2f1a1decce5ba1494f84e0399e5a500a90786dc7ad2db9ddf3c0d92168d185"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-connected1000/training.jsonl.gz",
+    "bytes": 59261,
+    "sha256": "8e2ee1225fd8ef60da7702687e0bd55537ce472d4b173feecc780942311256f2"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-connected1000/worker.log",
+    "bytes": 1602,
+    "sha256": "3404fe51c7773dd997fac2c7654fe5b6c4ae9ceb5d0211094029e992d0277092"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-historical4/conditions.json",
+    "bytes": 1149,
+    "sha256": "01c977903e0a35c0e06a7a5a8cd49aa83d1364f20cfd0965688a65be4e2b7160"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-historical4/result.json",
+    "bytes": 68245,
+    "sha256": "0c169c9b4172ce313b345439f5138d082effd8eb1bcb2fcbaddc8f3c47eeeda8"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-historical4/training.jsonl.gz",
+    "bytes": 59065,
+    "sha256": "4d664de5729587d201af8969e352e956d1e9df14ffa5cafbdfc5049301697490"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed173-historical4/worker.log",
+    "bytes": 1572,
+    "sha256": "cb2f466a5fb061a229ed30feed99365a777f5ebbe28c48512806c0b8cf942f62"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-blocked4/conditions.json",
+    "bytes": 1148,
+    "sha256": "3e30f609f441f768e57ef4380ee59ee56831dcdc0b077e03d4b6c27133fdd22c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-blocked4/result.json",
+    "bytes": 68197,
+    "sha256": "f50b7241b71f5b66a116c910930218cf8ec6b94b11b4cd5007568d1a623c7e7d"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-blocked4/training.jsonl.gz",
+    "bytes": 59227,
+    "sha256": "58e5bbbd0ff16be9eed3c1d67bdf7513c7c4a7b1d92326a5b2b349cd9f7893db"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-blocked4/worker.log",
+    "bytes": 1548,
+    "sha256": "9ddad8e328118ab5450d437ca805b73400ec777d034a4a4dea9baa764210d863"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-connected1000/conditions.json",
+    "bytes": 1153,
+    "sha256": "c41a00bd25e92d0b3b8abad8c1963aa3e381fef25e307655f0f83372982a5bd9"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-connected1000/result.json",
+    "bytes": 69173,
+    "sha256": "7497eec2861512b59283c9f232089a641ebe35c4678b9fad2efcc325246ec352"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-connected1000/training.jsonl.gz",
+    "bytes": 59921,
+    "sha256": "72cdbce2f9982bc1c8106c96bba85be3a7b079578442ffb220d8d4725e0e83e0"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-connected1000/worker.log",
+    "bytes": 1610,
+    "sha256": "b604192684bb08fc8e4098586fa0ccf3a36b9ad0b63652dccac64bcf06dd325e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-historical4/conditions.json",
+    "bytes": 1150,
+    "sha256": "cab450a419327d5d680a9f28b2bc12aa612d2f3cc07346ac58a4ec89fce6b475"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-historical4/result.json",
+    "bytes": 68182,
+    "sha256": "d26042f6e88d9d4617632b1801bc9c6a867d1a266185824e914568ccd5101629"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-historical4/training.jsonl.gz",
+    "bytes": 58777,
+    "sha256": "a5bf61072c306243ce8b9a6917bfd84215ba57c4f5bc954faf216076f8703f6e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed2026-historical4/worker.log",
+    "bytes": 1584,
+    "sha256": "8d5b3abb4acf783cf4795be5aa8a6c178cca48a0007ef28ae6ead41c945a0b5a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-blocked4/conditions.json",
+    "bytes": 1147,
+    "sha256": "ff4a97105989e4f9d9a395074952be70652cf708715ba82a9f33f6bb5513dca4"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-blocked4/result.json",
+    "bytes": 68377,
+    "sha256": "651ac6ead82a890169d31dc94b8e763e390f18d3731d036c062665984b19ed28"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-blocked4/training.jsonl.gz",
+    "bytes": 59356,
+    "sha256": "7b54e105e2ac15b92ddc90c355706da9703789bd700099fc53fad079a5fc870b"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-blocked4/worker.log",
+    "bytes": 1528,
+    "sha256": "b7259f3b53e441bda30e022fceb471901911a8dd6bd1f21214dce1b00ccabc9e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-connected1000/conditions.json",
+    "bytes": 1152,
+    "sha256": "fa74c5b18fe62b4a7ad3f4f50cd6a7ef381e87b6bfad4a577bc83ddef3a4960e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-connected1000/result.json",
+    "bytes": 69310,
+    "sha256": "bcd360e77836d358987ce08866eae24297426f61d2710f0720b9dcd9ce07e1f6"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-connected1000/training.jsonl.gz",
+    "bytes": 59558,
+    "sha256": "b57f59b1e00fa69c302de483cf410a84c3ebad2addf3242e7162039ed917ceb0"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-connected1000/worker.log",
+    "bytes": 1605,
+    "sha256": "17277493cb5851948f434acd8c10b09e3604dced24122bf57e1f7ed84303d104"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-historical4/conditions.json",
+    "bytes": 1149,
+    "sha256": "7a7b3344d1455d96747ca2f9dc8d6f938d5db8e3842056c781cd0806dd7e3e0c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-historical4/result.json",
+    "bytes": 68362,
+    "sha256": "6c0d6a784ea52d3c763a9986d95869238ae364a53b93569c403b5c58a9771548"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-historical4/training.jsonl.gz",
+    "bytes": 58984,
+    "sha256": "e174467775b6dee24d061b990341480d73e60fc1540303545bba378b3f7c70e8"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-dense-seed941-historical4/worker.log",
+    "bytes": 1568,
+    "sha256": "45e773b7433ada4f64314dff7553f138b3820d7c8b514dcf652405d2a8770c99"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-blocked4/conditions.json",
+    "bytes": 1148,
+    "sha256": "aaea15fb951d301ad8eb9cba85329443e05c7f4c0c353030e80da4d6063b712e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-blocked4/result.json",
+    "bytes": 68245,
+    "sha256": "d6e61734f2a4632fd608646daed9eb92b6eaf2b3f977225dd5a0da2e50f6ba79"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-blocked4/training.jsonl.gz",
+    "bytes": 59858,
+    "sha256": "41fa4bd72bd6d7b17129e4e7d04d7ded92f695f7c188730cb57a02605b00dfdd"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-blocked4/worker.log",
+    "bytes": 1546,
+    "sha256": "4e6cfc1890eb49420b58a12d6a49714ebfc34761ed1a54123354d6f7365731af"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-connected1000/conditions.json",
+    "bytes": 1153,
+    "sha256": "c95d27c2d5015c851492a45cfef727d52e78da2405b0fcbba97256d1ae25f0a6"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-connected1000/result.json",
+    "bytes": 69062,
+    "sha256": "1ce0fa48507d4e6ca53346122af0b37230448130fb98eafcbab926ef0264cd6d"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-connected1000/training.jsonl.gz",
+    "bytes": 60084,
+    "sha256": "c497d4ee64246f52068057f22c4a562c50e15e52f93e14ae11c34fbc1c7242e1"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-connected1000/worker.log",
+    "bytes": 1615,
+    "sha256": "c63c69d7c276abc3bb051ff96d705f00f870490a8616a093506d2c5c3a0a4884"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-historical4/conditions.json",
+    "bytes": 1150,
+    "sha256": "b2a54441be82520e10653ddf801bdc5c502edeaf097a72665982e992f70d495c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-historical4/result.json",
+    "bytes": 68292,
+    "sha256": "d7d43ae50ee3a74c82cc0f4b7bd3100a8edc16bc9f56f04da557e4318badbe9c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-historical4/training.jsonl.gz",
+    "bytes": 59716,
+    "sha256": "4bed2661305736cd62e82a231f8ef3ffa71c1bc973730b0c4fc05eb137dd098a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed173-historical4/worker.log",
+    "bytes": 1584,
+    "sha256": "71daf8741fe82a61fad9a25baf58297f8204859c95ecfe720fa68be98ba1f9ea"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-blocked4/conditions.json",
+    "bytes": 1149,
+    "sha256": "71b7ee6b669aa5b6a58b3cc7ca272fa74814c9adc52f6bda71225c9e45999c7c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-blocked4/result.json",
+    "bytes": 68195,
+    "sha256": "12fded917415aac619d5ddb5a54315c66f8348c319a6c2dde4740a943075f324"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-blocked4/training.jsonl.gz",
+    "bytes": 60169,
+    "sha256": "471292f36ca6990fe72158868e7e0fe438d687b5b4c9f156391d32a267496629"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-blocked4/worker.log",
+    "bytes": 1561,
+    "sha256": "7e25173f5bee7af7b150865557714a9c8fcf7af42235908ca2ee74deb802ed39"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-connected1000/conditions.json",
+    "bytes": 1154,
+    "sha256": "1f47a28bf6288b442c2a551ca61a52d58bf659e182683e608bb20a1d23830304"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-connected1000/result.json",
+    "bytes": 69042,
+    "sha256": "fdb4be47418cdc8d314d65b436b78b17eb912f343a1a1e9d1f43eb386de00926"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-connected1000/training.jsonl.gz",
+    "bytes": 60079,
+    "sha256": "57199d725250bf8670e74bb4e7db3c53548a01074f785b779ab49361203a6e42"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-connected1000/worker.log",
+    "bytes": 1636,
+    "sha256": "710008ec7246d3a5771233586426bff241cba3cd985269f31c87cdc8f40d480e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-historical4/conditions.json",
+    "bytes": 1151,
+    "sha256": "eec92235b184e6da3258dfbd97e28a5684a3bfa7160c48d082ece91146bfbbcb"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-historical4/result.json",
+    "bytes": 68222,
+    "sha256": "f20016c9d8f6a613b343140f698a4cde4dc8d70c4f7475508ec6031095fb732b"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-historical4/training.jsonl.gz",
+    "bytes": 59792,
+    "sha256": "07aed65387d0c9ca74c191fedd0672cafa4b672b21b037153383d2c9f28a9e81"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed2026-historical4/worker.log",
+    "bytes": 1594,
+    "sha256": "b6ee4c61ba43b8977c4ecb7f68152e04d0cabcd825f1180673d700087e238603"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-blocked4/conditions.json",
+    "bytes": 1148,
+    "sha256": "d0e63ea03e4a095ae0afcb99e644324c05c30e37487ac8b94c50dadf73d858b0"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-blocked4/result.json",
+    "bytes": 68200,
+    "sha256": "382cf01eabad8f959eb20c564f24183e70795752bebcebd62b2f429cc569bdc9"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-blocked4/structure.json",
+    "bytes": 964,
+    "sha256": "954389165a82664135aa5566adde9b40aea8eba179a60a61f82cbe5d9fe53f2e"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-blocked4/training.jsonl.gz",
+    "bytes": 59984,
+    "sha256": "0e3cf50e98d8d53dc1d52a6297c467e1efd10af94a61e45326d8fea8cf46c8c6"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-blocked4/worker.log",
+    "bytes": 1542,
+    "sha256": "a8c5aaf46e83837cac6acd3c50786e21eae0831afacaaba38fc059bd2aa87fbe"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-connected1000/conditions.json",
+    "bytes": 1153,
+    "sha256": "0b86b06ac0ba10b5c3f4943c887f25f11bad549ecbe7614ada8f63a43e4ccbc8"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-connected1000/result.json",
+    "bytes": 68973,
+    "sha256": "dad81a20f31f6d2b97f1bd7d83edba015018bd77623038b04cd694c001b2df3c"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-connected1000/structure.json",
+    "bytes": 1606,
+    "sha256": "bc6c6207e27a650c6a3fbd8b4597222e401adcb6be6ac5ec259c75e25e0a3ada"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-connected1000/training.jsonl.gz",
+    "bytes": 60049,
+    "sha256": "e6ca955dd4559bbce239b55cf5623d24bec99da02c7ca61ca74a0ad036bf60e6"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-connected1000/worker.log",
+    "bytes": 1615,
+    "sha256": "4ab4ff5905ae3cbed4ebd89caa75678c9d2665d77155ebdf7ed592dcc7502f82"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-historical4/conditions.json",
+    "bytes": 1150,
+    "sha256": "b086e76e1564190db77da360ec69de1e04b7c8053fe7297c4fe7835598e6d157"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-historical4/result.json",
+    "bytes": 68253,
+    "sha256": "687efcd5aa28c2e12342299e926525beb7b71a68038ab510ee6287bce7e6bbca"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-historical4/structure.json",
+    "bytes": 964,
+    "sha256": "f9aaebff25a72fecd17f6b4e68e4be686161ebb1638e7aea74d9b69c48c7f39a"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-historical4/training.jsonl.gz",
+    "bytes": 59701,
+    "sha256": "b273c14f2daae86c2889368b7150de0485770afab103a0c509529a238e37ffb3"
+  },
+  {
+    "path": "docs/evidence/quantum1000-comparison/campaigns/vqc-linear-seed941-historical4/worker.log",
+    "bytes": 1592,
+    "sha256": "1a5da82342a1fa5fc75c4de725bd0862856f77543cc681224a70f4d8e618d57c"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 255754,
+    "sha256": "eddd0b804de83a631f782aaa6bb47b3ead2baa6b265970781ee9ee817ab3fd4d"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 259835,
+    "sha256": "87c4f6410bde661b04a3864b9a2ffdb58d78f79bfa64b5f3aeac3c56727254d0"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 255352,
+    "sha256": "6ef5b4293784a623290c3e47bea1163620e34d94daba8e1eb0afd04fd4e2fd42"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 259541,
+    "sha256": "d1029431337e9b66c5c70df1be9058caf7599a5f1214c8e29d57917c4dc7190d"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 288951,
+    "sha256": "ed0b521681ce644fef5b4f66e3b877402d7c9fd06c7ea89c092281aa1e125988"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed173-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 291708,
+    "sha256": "2a534142123780db91a8db2390ddb702034346b456a62cea21c1161b4c310677"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 254078,
+    "sha256": "6c8107b5484e254d7fa2e8afab8b47da61d3430dd7be08f31d847b855899569f"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 258555,
+    "sha256": "9d4b3c767ded6bda27dbcb651fe3642650d31cd24c497fbdada70b62748fac6b"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 253601,
+    "sha256": "400bcef5e0010f705331adea549ab612a5f5ababe54fd05a97cb4de3fb1fa48f"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 258756,
+    "sha256": "8b0c00b4b708f67a157a459fefacc429d4b5892bafb43bb336d344c24de60804"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 288158,
+    "sha256": "6edca0acaa485b2da4022cb7dc85f3640fb954e678510994cd29912bf6ff0739"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed2026-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 288955,
+    "sha256": "f80439979ee80c7d6661e416e3fe0fb58863b56b0f0f68c32acdf79745b0c302"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 255671,
+    "sha256": "2bc821698e3c1b4b6b209004b31ea8a8c85f30b91674be6ecfb3454388ec1174"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 258852,
+    "sha256": "3783d49d89d33195bb084bf3c5128c5152bd0caaaf27bae46ce4aacdb88c6ead"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 255586,
+    "sha256": "f773d2ab9ccc57e0e730e07dbba0f4897127a5d1a00b875920d8acf31a24fd67"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 259737,
+    "sha256": "7d66abb0350ca4cb241dc978f95ff5a34aec9add036a6be72c492db2a2a3521e"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 289193,
+    "sha256": "124fad29d6c973eca13c475d4f0cf8b8283affb5c10fcf0e84e7ee1e832a3333"
+  },
+  {
+    "path": "models/quantum1000-comparison/qrl-line_easy-seed941-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 289064,
+    "sha256": "94054a2f49b88931e26bec709aeeb4fe82de64433be49732ff5455943e69d41e"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 229316,
+    "sha256": "e0d70630fa242be671ce6690400e8a57906386b2b92ee818920d987f2037cb8f"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 232665,
+    "sha256": "195f35b33ed07ba53c81b07138876e8564ddb39d461b1bd27d45b8bd2b326526"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 230331,
+    "sha256": "85024c9d7bf9f3dd08389497383b3881a7a14ef1be0aa2fe9adbdcd65ba14e48"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 233801,
+    "sha256": "6a7510a76aed3da6c8f8fd54173773c7993bbcfb583c6896e3ad4b5229a3ced5"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 216010,
+    "sha256": "bf4fef3980526f2ac9d7cfaa3fb0c804c892cbbabbaf7731593905246b854407"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed173-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 262619,
+    "sha256": "1bc49d2f0df8bccb931cdb949b5d49a25b60986a1aacc39c75a24a617b2d2878"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 229721,
+    "sha256": "712ee4fd43708e2b10436d227fa2d96af8b44bcfe018aec3debd4ed1874ef691"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 232441,
+    "sha256": "e87a9817eed2755191a3a2c8b1a651b2247880b6c959b485cb0009b145f4fe53"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 230710,
+    "sha256": "4c6586117de78319deec4284e490e02b48f824d45c6712a083da8f52bc5f9b44"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 233466,
+    "sha256": "1fd173a3bd3a273ff90875505bdd25ce76e19090fad1659eb3b55195eaf0b94b"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 216377,
+    "sha256": "63bfcb1c3e57549f33cd733e99445f5fc2e057045511bbd10ab2efc4ebcb6b8b"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed2026-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 261975,
+    "sha256": "271a661e405c6ede1f93765ca225e6f2eddf3c3ad6f20aea1aea15bad4b68f17"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 229143,
+    "sha256": "4ac9badb6d2802f592f6667824e06fe30f7ef1cddc002e338aedc78fb31d8e93"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 232585,
+    "sha256": "c746706391184620fe81d798056f474d80c2d6388744f72b531e8fb125a2069a"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 230255,
+    "sha256": "b2c6293f54001e32bbfcca4b7daac2c6595fa6bb5263f4f01fb7cc34002ac96a"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 233455,
+    "sha256": "ab6aa43a71a05577a3db7fb1ae805993ba50681eb3533ac1753ed9e87e2456a7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 216031,
+    "sha256": "cea0fc883c3756427b3a0f28d1fd5eaebfd935d58235825a72bdf535007c2e4a"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-dense-seed941-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 261804,
+    "sha256": "3f50d75c0e98cfe5233f251af1a4e93fcfc4ed0d1cd8dd7c594b984dcf1801e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 228870,
+    "sha256": "eab98980822eb053796c27f8cef358b41deff63e5abc6cdf9fb696218b210f56"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 230987,
+    "sha256": "bc256404822c72c80993d1c1e7da1c727963dff509fc19f55c41bb99e27244a0"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 229990,
+    "sha256": "fa24d31aacc47741eab947c50f7957f449ef649c2fb04c2fb6108148efbf0ac6"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 232774,
+    "sha256": "1655f04ef87c76b32554cd53373210531b874bc7bc256872cdaf5a2264b37b6e"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 215837,
+    "sha256": "d28e5a7bf302c9add92af3471964715b3863358117373508033367f856b92a6f"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed173-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 260448,
+    "sha256": "7c89945d820f35cec3720e20a8606a8c2718cebb11361c7c47ea1e4714f7d765"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 227859,
+    "sha256": "4641d2f1da22e4e74d4cf55cfaf626e263917e233e7fb6926d825464d92aeddf"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 229684,
+    "sha256": "dd96cb30c8900f7eff06ee5f880d7b7c0713ee2f31b5c0d3d72a90e1f615cb6c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 229471,
+    "sha256": "1a8f28c0e81a9541ca4f1f90db0323e5b4b187b11b3558ec51da4d6f9f05a759"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 231279,
+    "sha256": "41ece4cd7ce42d925f8d185f496c6cfebf7e7436e44da013cdf8d3bbcb8b08fe"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 215249,
+    "sha256": "eb4015ebcc18eed40a50c96e6de7e58919471dc2f318da20b8aa48eb754d1028"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed2026-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 259324,
+    "sha256": "0a5dcc71e7108042d745952bf30586316313161615274406e9be0cdf9ea6e082"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-blocked4/checkpoint-00000.rvp.gz",
+    "bytes": 51702,
+    "sha256": "5a95bcae6efa77b1ea37e7ca74b927506de9a4405e3b0318acef0214f89cd780"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-blocked4/checkpoint-00100.rvp.gz",
+    "bytes": 228195,
+    "sha256": "48563c56270f2723ef00751f82fbb5d5299e7c6ee9d7a89aeb8973e8d0851b6c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-blocked4/checkpoint-01000.rvp.gz",
+    "bytes": 231502,
+    "sha256": "3685f1233656f2c6cb8a1d1c5770dc5c5fa04662bfdcf6a506c9f0bcbc571c74"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-connected1000/checkpoint-00000.rvp.gz",
+    "bytes": 51475,
+    "sha256": "4e7ca101039f5be9a5c414bb4ebb64f569af17df36eba678740ed1d3d4dfe55c"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-connected1000/checkpoint-00100.rvp.gz",
+    "bytes": 229343,
+    "sha256": "ff07596bb2bce159781417478fb7db81682477e7288d77c322d08a52df962447"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-connected1000/checkpoint-01000.rvp.gz",
+    "bytes": 232763,
+    "sha256": "cb952b8452fa5c5cf312a04c847d92d54f46db422600a40775c554aa19eceb1f"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-historical4/checkpoint-00000.rvp.gz",
+    "bytes": 51701,
+    "sha256": "11b05005c8f09d9fbf4bf96099c0de71cd16959e7373ee35da685d99e69656e7"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-historical4/checkpoint-00100.rvp.gz",
+    "bytes": 214924,
+    "sha256": "5b62e6bd0e9788301c30546a02b46527fab9aa68705a34407a5385b158ad68d5"
+  },
+  {
+    "path": "models/quantum1000-comparison/vqc-linear-seed941-historical4/checkpoint-01000.rvp.gz",
+    "bytes": 260914,
+    "sha256": "0f8aa12f30ed775c51b34a7b75965235567380bc9dc4833b00e161a972fd0d84"
+  }
+]

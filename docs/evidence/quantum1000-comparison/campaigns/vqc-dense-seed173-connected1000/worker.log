@@ -1,0 +1,11 @@
+{"progress": 100, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 105.15888299793005}
+{"progress": 200, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 107.11376700177789}
+{"progress": 300, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 108.33626049757004}
+{"progress": 400, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 105.60595750063658}
+{"progress": 500, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 106.45354449748993}
+{"progress": 600, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 106.5268844999373}
+{"progress": 700, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 105.77386800199747}
+{"progress": 800, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 107.62381550297141}
+{"progress": 900, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 106.85324450209737}
+{"progress": 1000, "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "recent_episode_ms": 105.38818449899554}
+{"completed": "/workspace/scratch/f585d68010d1/BBY-Q-comparison/build/topology-comparison-20261102/vqc-dense-seed173-connected1000", "variant": "connected1000", "agent": "vqc", "task": "dense", "seed": 173, "iid": 0.671875, "ood": 0.609375, "training_cpu_ms": 134270.409}

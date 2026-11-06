@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "checks": [
+    "historical4: all 2,000 wires, component counts and edge counts verified",
+    "blocked4: all 2,000 wires, component counts and edge counts verified",
+    "blocked4: all 1,000 score gradients nonzero; boundary/interior finite differences agree",
+    "blocked4: uninterrupted and resumed native learning have identical parameters",
+    "connected1000: all 2,000 wires, component counts and edge counts verified",
+    "connected1000: all 1,000 score gradients nonzero; boundary/interior finite differences agree",
+    "all three variants have identical initial learned parameters and optimizer metadata",
+    "blocked4/CNOT reproduces the historical 1,000 observables and score"
+  ],
+  "maximum_gradient_errors": {
+    "blocked4": 1.1943366001049283e-11,
+    "connected1000": 7.720068117764156e-11
+  },
+  "historical_cnot_observation_error": 0.0,
+  "historical_cnot_score_error": 0.0,
+  "initial_parameter_hashes": {
+    "historical4": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+    "blocked4": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826",
+    "connected1000": "8b1dfce580593f974db18147ab561f07d468fa97f583b48834a3888618d18826"
+  },
+  "runtime_binary_sha256": "6c840f2a440523f2ce65bfdb7e19dc56855135f5a44e14bfa64db795f8de1ff6"
+}
