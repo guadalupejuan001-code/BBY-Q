@@ -82,7 +82,7 @@ def differences(before: dict[str, Table], after: dict[str, Table]) -> list[Actio
         start, end = before[name], after[name]
         if (start.schema, start.columns, start.primary_key) != (
                 end.schema, end.columns, end.primary_key):
-            raise ValueError("C02 refuses to apply schema migrations: " + name)
+            raise ValueError("C02 schema changed; migration refused: " + name)
         # Deletions then updates then inserts, in deterministic key order.
         for key in start.rows.keys() - end.rows.keys():
             out.append(Action(name, "delete", key))
