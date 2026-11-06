@@ -1,0 +1,88 @@
+name: BBY Q U03 C01 native runtime transport
+on:
+  pull_request:
+    paths:
+      - 'integration/runtime_u03_c01/**'
+      - '.github/workflows/bbyq-u03-c01-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c01-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Audit cached transport invariants without running a simulator
+        run: |
+          python3 -m unittest integration.runtime_u03_c01.test_client -v
+          python3 -m unittest integration.audit_u03_c00.test_profile -v
+      - name: Build pinned original REVERSE-PC XI runtime
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Build optional C01 cached-transport host from original runtime implementation
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -pthread \
+            -DREVERSE_PC_HAVE_BOUNDED_PRODUCT_IMPORT=1 \
+            -Ideps/reverse-pc/build/ether-compat \
+            -Ideps/mundo-x/native/include \
+            -Ideps/reverse-pc/src \
+            integration/runtime_u03_c01/xi_cached_session.cpp \
+            -o deps/reverse-pc/build/xi_session_c01
+      - name: Validate original C1 and U02 frozen checkpoints and semantics
+        run: |
+          mkdir -p build/c01 build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Differential check full native results, checkpoints and rollback
+        run: python3 -m integration.runtime_u03_c01.conformance | tee build/c01/equality.json
+      - name: Paired A/B host benchmark against original runtime
+        run: python3 -m integration.runtime_u03_c01.benchmark --samples 3 --timeout 180 --out build/c01/comparison.json
+      - name: Verify no model files changed and no Android build occurred
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          eq = json.loads(Path('build/c01/equality.json').read_text())
+          report = json.loads(Path('build/c01/comparison.json').read_text())
+          assert eq['passed'] and eq['runtime_output_and_checkpoint_equal']
+          assert report['passed'] and report['checkpoint_and_source_unchanged']
+          assert eq['protected_file_count'] == report['frozen_asset_count'] == 159
+          assert not eq['apk_built'] and not report['apk_built']
+          print('C01: semantic and checkpoint equality confirmed; no APK')
+          for case, data in report['comparisons'].items():
+              print(case, data['wall_ratio_baseline_over_cached'],
+                    data['protocol_payload_reduction_fraction'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C01-native-runtime-evidence
+          path: |
+            build/c01/*.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
