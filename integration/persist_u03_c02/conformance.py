@@ -37,6 +37,14 @@ def identical_trial(klass):
             if replay != mission or session.snapshot() != before_replay:
                 raise AssertionError("C02 repeated an already committed request")
             try:
+                session.turn("mission", MISSION + " otra")
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("C02 allowed an existing ID with a different prompt")
+            if session.snapshot() != before_replay:
+                raise AssertionError("C02 collision changed saved state")
+            try:
                 session.turn("crash", "guarda la regla Otra con valor 0 observa Brisa con muestra 122121 y resuelve desde 3",
                              fail_after=2)
             except RuntimeError:
