@@ -42,7 +42,11 @@ conducta después de aplicar esa regla.
 ## Diseño experimental y anticontaminación
 
 - **540** ejemplos de entrenamiento, **135** de validación y **180** de
-  prueba reservada, balanceados entre las tres clases.
+  prueba reservada inicial, balanceados entre las tres clases.
+  Tras detectar una limitación de calibración en la primera campaña se
+  añadió un **desafío nuevo de 180 casos**, con nuevas entidades, fuentes
+  y evidencia firmada irrelevante. La selección sigue usando exclusivamente
+  los 135 ejemplos de validación.
 - Entidades y procedencias completamente disjuntas entre particiones.
 - Etiquetas generadas por situaciones declaradas de forma independiente
   del vector de características y comprobadas por un oráculo de referencia.
