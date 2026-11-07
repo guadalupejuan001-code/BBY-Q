@@ -99,3 +99,17 @@ ingeniería probada **sin actualización de pesos ni mejora demostrada**.
 
 **C09 no genera APK. C10 es la siguiente etapa de razonamiento y
 planificación; no se inicia hasta verificar C09.**
+
+## Cierre de C09: evidencia final
+
+[RESULTS.md](RESULTS.md) documenta las pruebas de GitHub, la comparación exacta de
+U02 y C09 y los límites. La CI nativa [#42391026706](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706)
+aprobó la auditoría de **siete bancos nativos**, 159 archivos protegidos,
+WAL concurrente, contradicciones y proyecciones VQC obsoletas, sin APK.
+
+El coste medio de una vista SHA completa fue **50,995 ms**, frente a
+**10,474 ms** del snapshot U02 simple, en tres muestras sintéticas.
+La vista C09 agrega verificación, **no acelera la inferencia XI**.
+
+[Panel de secuencias actualizado](../../docs/BBY_Q_U03_PANEL.md):
+C09 validado, **C10 siguiente**, sin modificación de la rama principal.
