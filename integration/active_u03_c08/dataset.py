@@ -171,6 +171,34 @@ def synthetic_teacher_confirm(case: Unlabeled) -> dict:
     }
 
 
+def verify_teacher_receipt(case: Unlabeled, receipt: dict) -> bool:
+    """Independent synthetic feedback gate, not real issuer authentication.
+
+    The teacher reply is not allowed to choose an arbitrary class. The
+    source evidence must meet the predeclared closed-world rule, and
+    receipt digest/identity must match the selected sample EXACTLY.
+    For real evidence, this sandbox policy is insufficient by design.
+    """
+    if not isinstance(case, Unlabeled) or case.partition != "pool":
+        raise ValueError("C08 cannot learn from unselected or evaluation data")
+    if not isinstance(receipt, dict):
+        raise ValueError("C08 missing verification receipt")
+    if receipt.get("uid") != case.uid:
+        raise ValueError("C08 receipt belongs to another selected candidate")
+    expected_digest = sha256(json.dumps(case.as_dict(),ensure_ascii=False,
+                                       sort_keys=True).encode()).hexdigest()
+    if receipt.get("verified_scenario_sha256") != expected_digest:
+        raise ValueError("C08 teacher receipt content SHA mismatch")
+    if receipt.get("verifier") != "synthetic closed-world C07 evidence policy":
+        raise ValueError("C08 unknown synthetic teacher identity")
+    if receipt.get("real_signature_checked") is not False:
+        raise ValueError("C08 must not claim real issuer signature checks")
+    expected = independent_target(case.query,case.evidence)
+    if type(receipt.get("label")) is not int or receipt["label"] != expected:
+        raise ValueError("C08 teacher supplied unsupported label")
+    return True
+
+
 def check_separation(pool: list[Unlabeled], val: list[Labeled],
                      test: list[Labeled]) -> dict:
     groups = {"pool": pool, "validation": val, "test": test}
