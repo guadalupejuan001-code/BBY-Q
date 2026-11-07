@@ -151,3 +151,25 @@ La reserva v2 se ejecuta **una sola vez**; si también hay empate
 o regresión, se informará y el modelo original seguirá como
 referencia estable. El conjunto CHALLENGE anterior de C07 sigue
 excluido de entrenamiento y elección de pesos.
+
+
+## Resultado final C08 — criterio de no promoción
+
+Leer el [informe auditado RESULTS.md](RESULTS.md) y
+[GitHub Actions #42389307671](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42389307671).
+
+**Los dos tests C08 empataron:** C07 congelado, activo y control
+aleatorio alcanzaron **180/180** en cada reserva. La auditoría de
+los 30 coeficientes XI confirmó que, aunque hubo llamadas de
+entrenamiento, **ningún peso cambió** (cero correcciones nativas).
+El nuevo hash RVPC2 refleja contadores, no nuevo aprendizaje.
+
+Por tanto, la implementación de selección/verificación está probada,
+pero **la mejora de aprendizaje activo no está demostrada** y C08
+no se promociona. Los 12 rechazos injustificados del test C07
+anterior permanecen como un problema por resolver con evidencia
+independiente en una campaña posterior.
+
+La ingeniería de C08 cumple el aislamiento, las pruebas y la
+integridad, no el objetivo de mejorar cobertura; no se envía
+ninguna APK.
