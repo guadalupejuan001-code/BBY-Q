@@ -65,3 +65,20 @@ La CI compara U02 y C10 en tareas XI reales con el mismo checkpoint de partida. 
 - **Sin APK ni fusión automática a main.**
 
 [Panel completo de secuencias C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado](../../docs/BBY_Q_U03_ESTADO.json) · [Siguiente ciclo](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+
+## Cierre verificado
+
+[RESULTS.md](RESULTS.md) documenta dos campañas reales de GitHub. La
+[CI #42396799193](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193)
+aprobó con tres pruebas de concurrencia, dos IDs de prueba nativa C1/Zero,
+ocho operaciones del plan QMemory/VQC/QRL, misma respuesta y checkpoints U02,
+159 archivos originales intactos y **sin APK**.
+
+La auditoría completa cuesta más que un turno XI directo: en la última
+campaña aproximadamente **362 ms** adicionales para la prueba simbólica y
+**348 ms** adicionales para una misión simulada, sin medir en Android.
+C10 mejora la verificabilidad de planes, no entrena razonamiento general.
+
+[Panel permanente C00–C17](../../docs/BBY_Q_U03_PANEL.md)
+actualizado: C10 validado experimentalmente y C11 siguiente.
