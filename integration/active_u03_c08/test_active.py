@@ -73,6 +73,17 @@ class ActiveLearningContracts(unittest.TestCase):
         with self.assertRaises(ValueError):
             _stage_sample(replace(example,partition="test"))
 
+    def test_stress_v2_contains_two_additional_signed_but_irrelevant_records(self):
+        candidates=acquire_pool()
+        for case in candidates:
+            external=[x for x in case.evidence if "-external" in x["source"]]
+            attribute=[x for x in case.evidence if "-attribute" in x["source"]]
+            self.assertEqual(len(external),1)
+            self.assertEqual(len(attribute),1)
+            self.assertFalse(trusted(external[0],case.query))
+            self.assertFalse(trusted(attribute[0],case.query))
+            self.assertTrue(external[0]["attested"] and attribute[0]["attested"])
+
     def test_signed_irrelevant_is_not_a_supported_fact(self):
         query={"subject":"Prisma","predicate":"activo"}
         other=evidence("Otra","activo",1,"laboratorio:unrelated")
