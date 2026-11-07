@@ -117,3 +117,37 @@ de pruebas son asuntos abiertos de arquitectura.
 
 **Sin APK, sin cambios al runtime XI/Ether original ni a los checkpoints
 anteriores. El modelo nuevo solo existe en la rama y artefactos CI.**
+
+
+## Auditoría del primer test y protocolo más exigente
+
+La [CI piloto #42388230030](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42388230030)
+aprobó seguridad, entrenamiento y estado congelado, pero los tres modelos
+—C07 original, C08 activo y control aleatorio— tuvieron **180/180 aciertos**
+en el primer test C08. Ninguna mejora de C08 pudo demostrarse: la
+validación también dio empate y el candidato **no fue promovido**.
+
+No se usa ninguna etiqueta de ese primer test para entrenar, seleccionar
+nuevas épocas o recalibrar. Se conserva como evidencia de que el
+conjunto inicial era demasiado fácil.
+
+Para evaluar el fallo específico ya documentado en C07, se registró
+una familia **nueva**: `C08-dual-irrelevant-signed-stress-v2`,
+con semillas distintas, nuevas entidades y fuentes. Cada escenario
+contiene **dos registros adicionales con procedencia aceptable pero
+no pertinentes**: uno habla de otra entidad y el otro de otra
+propiedad. Estos registros no deben modificar la conclusión sobre
+la consulta realmente solicitada.
+
+- Adquisición: nueva reserva no etiquetada de 360 candidatos.
+- Validación: 135 ejemplos distintos para ronda, temperatura y umbral.
+- Test reservado nuevo: 180 casos jamás vistos, abierto tras la
+  selección completa del modelo.
+- Se conservan exactamente los mismos 96 ejemplos adquiridos por
+  candidato, reglas de verificación sintética y comparación de
+  actualizaciones nativas contra la política aleatoria.
+
+La reserva v2 se ejecuta **una sola vez**; si también hay empate
+o regresión, se informará y el modelo original seguirá como
+referencia estable. El conjunto CHALLENGE anterior de C07 sigue
+excluido de entrenamiento y elección de pesos.
