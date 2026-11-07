@@ -4,7 +4,7 @@
   "branch": "codex/bbyq-u03-c09-unified-memory-20261107",
   "base_commit": "747036aa33b3496e7db9b77af2c4121c0b3d55c3",
   "current_cycle": "C09",
-  "latest_verified_cycle": "C08",
+  "latest_verified_cycle": "C09",
   "last_stable_route": "U02 original; C01-C09 experimental opt-in",
   "history_constraints": {
     "frozen_sources_expected": 159,
@@ -81,9 +81,9 @@
     {
       "id": "C09",
       "work": "Memoria unificada",
-      "state": "en implementación",
-      "pr": null,
-      "pr_url": null
+      "state": "validado experimental; 7 bancos, 159 archivos, sin APK",
+      "pr": 95,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/95"
     },
     {
       "id": "C10",
@@ -143,10 +143,32 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C09 read-only unified U02 SQLite/XI memory index: SHA, causality, stale VQC, conflicting evidence and provenance",
-  "current_ci": null,
+  "current_plan": "C09 concluido: vista única SQLite y XI de solo lectura verificada; C10 razonamiento y planificación pendiente.",
+  "current_ci": {
+    "run_id": 42391026706,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706/artifacts/13581347382"
+  },
   "blockers": [
-    "No known blocker yet; native CI and conformance pending"
+    "La vista verificadora C09 añade costo: mediana 50,995 ms frente a 10,474 ms del snapshot U02 básico; no hay nuevos bancos, ni APK.",
+    "C08 permanece sin aprendizaje de pesos demostrado ni promoción a C1."
   ],
-  "next_cycle": "C10"
+  "next_cycle": "C10",
+  "c09_results": {
+    "original_U02_equal": true,
+    "native_banks_verified": 7,
+    "source_records_observed": 6,
+    "protected_assets": 159,
+    "consistent_WAL": true,
+    "conflict_detected": true,
+    "stale_VQC_detected": true,
+    "median_ms": {
+      "u02": 10.474,
+      "c09_full": 50.995,
+      "c09_filtered": 50.855
+    },
+    "no_new_primary_memory": true,
+    "apk_built": false
+  }
 }
