@@ -77,6 +77,8 @@ jobs:
           assert x['models']['joint-verified']['feedback']['supervision']=='independent-labels'
           assert x['models']['joint-verified']['feedback']['updates']['router']==1
           assert x['models']['outcome-only']['feedback']['supervision']=='explicit-user-result'
+          assert x['models']['outcome-only']['synthetic_teacher_link_removed_in_experimental_arm_only'] is True
+          assert x['models']['joint-verified']['synthetic_teacher_link_removed_in_experimental_arm_only'] is False
           assert not any(x['models']['outcome-only']['native_weights_changed'][k]
                          for k in ('vqc_weights','qrl_weights','qmemory_angles','vqc_readout'))
           assert not any(x['models']['frozen']['native_weights_changed'].values())
