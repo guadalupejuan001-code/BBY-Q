@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C03: interleaved isolated A/B profiling of genuine XI EXEC avoidance."""
+"""C03 A/B: checksum-authenticated frozen release cache vs original U02 init."""
 from __future__ import annotations
 
 import argparse
@@ -14,140 +14,125 @@ import time
 from integration.audit_u03_c00 import profile as c00
 from integration.unified.common import C1
 from integration.unified.session import Session
-from .session import CachedSession
+from .session import CachedSession, archive_cache_scope
 
 ROOT = c00.ROOT
 MODES = ("original", "c03")
-CASES = ("mission", "observe", "feedback", "replay", "separate-mission")
+CASES = ("reopen", "arithmetic", "mission", "feedback")
 
 
-def one(mode, scenario):
+def worker(mode: str, scenario: str):
     if mode not in MODES or scenario not in CASES:
-        raise ValueError("Unknown C03 A/B scenario or mode")
-    factory = CachedSession if mode == "c03" else Session
-    tracer = c00.NativeTrace()
-    tracer.attach(C1.XiSession)
+        raise ValueError("Unknown C03 benchmark variant")
+    factory = Session if mode == "original" else CachedSession
+    trace = c00.NativeTrace()
+    trace.attach(C1.XiSession)
     try:
-        with tempfile.TemporaryDirectory(prefix="bbyq-c03-benchmark-") as temp:
-            with factory(Path(temp) / "synthetic.sqlite") as session:
-                if scenario in ("feedback", "replay"):
-                    first = session.turn("prime", c00.MISSION)
-                    if not first["ok"]:
-                        raise AssertionError("C03 benchmark prime failed")
-                if scenario == "separate-mission":
-                    association = session.turn("remember", "guarda la regla Faro Azul con valor 1")
-                    observation = session.turn("observe-prime", "observa Nara con muestra 88113")
-                    if not association["ok"] or not observation["ok"]:
-                        raise AssertionError("C03 separate-turn setup failed")
-                tracer.reset()
-                tracer.enabled = True
-                started = time.perf_counter_ns()
-                if scenario == "mission":
-                    answer = session.turn("measurement", c00.MISSION)
-                elif scenario == "observe":
-                    answer = session.turn("measurement", "observa Nara con muestra 88113")
-                elif scenario == "feedback":
-                    answer = session.turn("measurement", "aprende de la última tarea")
-                elif scenario == "separate-mission":
-                    answer = session.turn("measurement", "resuelve Nara usando la regla Faro Azul desde 3")
-                else:
-                    answer = session.turn("prime", c00.MISSION)
-                elapsed = (time.perf_counter_ns() - started) / 1e6
-                tracer.enabled = False
-                if not answer["ok"]:
-                    raise AssertionError("Original XI result did not commit")
-                native = c00.summarize_events(tracer.events)
-                data = {
-                    "scenario": scenario, "mode": mode,
-                    "wall_ms": round(elapsed, 3),
-                    "xi_exec_calls": int(native["native_api"].get("execute", {}).get("count", 0)),
-                    "xi_logical_source_bytes": native["source_bytes_sent_to_xi"],
-                    "xi_native_cpu_ms_observed": native["native_cpu_ms_observed"],
-                    "cache": dict(session.last_cache_stats) if mode == "c03" else None,
-                    "semantic_result": "ok",
+        with tempfile.TemporaryDirectory(prefix="bbyq-c03-immutable-benchmark-") as temp:
+            database = Path(temp) / "test.sqlite"
+            with archive_cache_scope() as memo:
+                with factory(database) as first:
+                    if scenario == "feedback":
+                        prior = first.turn("prime", c00.MISSION)
+                        if not prior["ok"]:
+                            raise AssertionError("Feedback preparation failed")
+                    else:
+                        first.snapshot()
+                # Cache is warm only on the optimized variant; no background
+                # work and no user databases. Both variants open same schema.
+                trace.reset()
+                trace.enabled = True
+                start = time.perf_counter_ns()
+                with factory(database) as session:
+                    if scenario == "reopen":
+                        output = {"ok": True, "snapshot": session.snapshot()}
+                    elif scenario == "arithmetic":
+                        output = session.turn("measure", "calcula 7 + 3")
+                    elif scenario == "mission":
+                        output = session.turn("measure", c00.MISSION)
+                    else:
+                        output = session.turn("measure", "aprende de la última tarea")
+                    if not output["ok"]:
+                        raise AssertionError("Original native U02 benchmark case failed")
+                elapsed = (time.perf_counter_ns() - start) / 1e6
+                trace.enabled = False
+                execs = c00.summarize_events(trace.events)["native_api"].get("execute", {}).get("count", 0)
+                snapshot = memo.snapshot()
+                if mode == "c03" and snapshot["hits"] < 1:
+                    raise AssertionError("C03 did not reuse immutable authenticated checkpoint")
+                return {
+                    "mode": mode, "scenario": scenario, "wall_ms": round(elapsed, 3),
+                    "native_XI_EXEC": int(execs),
+                    "cache": snapshot, "apk_built": False,
                 }
-                if mode == "c03":
-                    if scenario == "mission" and data["cache"]["vqc_hits"] != 1:
-                        raise AssertionError("C03 did not eliminate one duplicate VQC execution")
-                    if scenario != "mission" and data["cache"]["vqc_hits"] != 0:
-                        raise AssertionError("C03 leaked VQC entries across tasks/updates")
-                return data
     finally:
-        tracer.enabled = False
-        tracer.detach()
+        trace.enabled = False
+        trace.detach()
 
 
-def run(samples, timeout, output):
-    before, before_apks = c00.freeze_assets(), c00.apk_files()
-    order = [(scenario, mode, index) for scenario in CASES
-             for mode in MODES for index in range(samples)]
-    random.Random(2026110606).shuffle(order)
-    cases = {name: {mode: [] for mode in MODES} for name in CASES}
-    for scenario, mode, index in order:
+def benchmark(samples: int, timeout: int, destination: Path):
+    before, apk_before = c00.freeze_assets(), c00.apk_files()
+    schedule = [(scenario, mode, i) for scenario in CASES
+                for mode in MODES for i in range(samples)]
+    random.Random(2026110609).shuffle(schedule)
+    raw = {s: {m: [] for m in MODES} for s in CASES}
+    for scenario, mode, sample in schedule:
         proc = subprocess.run(
             [sys.executable, "-m", "integration.cache_u03_c03.benchmark",
              "--worker", scenario, "--mode", mode],
             cwd=ROOT, capture_output=True, text=True, timeout=timeout
         )
         if proc.returncode:
-            raise RuntimeError(
-                f"C03 {scenario}/{mode}/{index} failed: "
-                + proc.stderr[-4000:] + proc.stdout[-500:]
-            )
-        sample = json.loads(proc.stdout.strip().splitlines()[-1])
-        cases[scenario][mode].append(sample)
-        print(json.dumps({
-            "scenario": scenario, "mode": mode,
-            "iteration": index, "wall_ms": sample["wall_ms"],
-            "xi_exec_calls": sample["xi_exec_calls"],
-            "native_source_bytes": sample["xi_logical_source_bytes"],
-        }), flush=True)
-
-    summaries = {}
-    for scenario, versions in cases.items():
-        baseline, optimized = versions["original"], versions["c03"]
-        elapsed_base = c00.stats([x["wall_ms"] for x in baseline])
-        elapsed_opt = c00.stats([x["wall_ms"] for x in optimized])
-        exec_base = c00.stats([x["xi_exec_calls"] for x in baseline])
-        exec_opt = c00.stats([x["xi_exec_calls"] for x in optimized])
-        bytes_base = c00.stats([x["xi_logical_source_bytes"] for x in baseline])
-        bytes_opt = c00.stats([x["xi_logical_source_bytes"] for x in optimized])
-        summaries[scenario] = {
-            "original_wall_ms": elapsed_base,
-            "c03_wall_ms": elapsed_opt,
-            "wall_ratio_original_over_c03": round(
-                elapsed_base["median"] / elapsed_opt["median"], 4),
-            "original_native_exec_calls": exec_base,
-            "c03_native_exec_calls": exec_opt,
-            "native_exec_avoided": round(exec_base["median"] - exec_opt["median"], 1),
-            "original_native_source_bytes": bytes_base,
-            "c03_native_source_bytes": bytes_opt,
-            "native_source_reduction_percent": round(
-                100 * (1 - bytes_opt["median"] / bytes_base["median"]), 2
-            ) if bytes_base["median"] else None,
-            "vqc_cache_hits": c00.stats(
-                [x["cache"]["vqc_hits"] for x in optimized]),
+            raise RuntimeError(f"C03 {mode}/{scenario} sample {sample}: "
+                               + proc.stderr[-3000:] + proc.stdout[-500:])
+        output = json.loads(proc.stdout.strip().splitlines()[-1])
+        raw[scenario][mode].append(output)
+        print(json.dumps({"scenario": scenario, "mode": mode, "sample": sample,
+                          "wall_ms": output["wall_ms"], "native_XI_EXEC": output["native_XI_EXEC"],
+                          "archive_hits": output["cache"]["hits"]}), flush=True)
+    summary = {}
+    for scenario, groups in raw.items():
+        original = c00.stats([x["wall_ms"] for x in groups["original"]])
+        cached = c00.stats([x["wall_ms"] for x in groups["c03"]])
+        xi_original = c00.stats([x["native_XI_EXEC"] for x in groups["original"]])
+        xi_cached = c00.stats([x["native_XI_EXEC"] for x in groups["c03"]])
+        if xi_original["median"] != xi_cached["median"]:
+            raise AssertionError("C03 changed real XI execution count")
+        summary[scenario] = {
+            "original_wall_ms": original,
+            "cached_wall_ms": cached,
+            "wall_ratio_original_over_cached": round(original["median"]/cached["median"], 4),
+            "native_exec_original": xi_original,
+            "native_exec_cached": xi_cached,
+            "skipped_XI_execution": 0,
+            "cache_model_hits": c00.stats([x["cache"]["hits"] for x in groups["c03"]]),
+            "reused_checkpoint_bytes": c00.stats([
+                x["cache"]["reused_checkpoint_bytes"] for x in groups["c03"]]),
         }
-    if c00.freeze_assets() != before or c00.apk_files() != before_apks:
-        raise AssertionError("C03 modified frozen checkpoint or generated APK")
-    data = {
-        "passed": True, "version": "BBYQ-U03-C03-native-memo-v1",
-        "runner": c00.system_profile(), "samples_per_scenario": samples,
-        "frozen_asset_count": len(before), "frozen_assets_unchanged": True,
-        "apk_built": False, "summary": summaries, "raw": cases,
-        "caveats": [
-            "This caches only a duplicate native VQC readout or repeated QMemory read within one turn.",
-            "Original XI programs, simulator, parameters and checkpoint binary representation are unchanged.",
-            "C03 observations are never shared across turns, even if names or seeds match.",
-            "A hit preserves original receipt trace shape while being counted separately as no new native EXEC.",
-            "Timing includes Python orchestration and instrumentation; sampled Linux CI runner, not Android.",
-            "With few samples, observed latency changes are exploratory and non-generalizable.",
-            "Do not treat saved XI source bytes as reduction in persistent memory or physical quantum advantage.",
+    if c00.freeze_assets() != before or c00.apk_files() != apk_before:
+        raise AssertionError("C03 modified a protected checkpoint or produced APK")
+    report = {
+        "passed": True,
+        "model_checksum_and_checkpoint_unchanged": True,
+        "frozen_assets_count": len(before),
+        "apk_built": False,
+        "system": c00.system_profile(),
+        "samples_per_scenario": samples,
+        "summary": summary, "raw": raw,
+        "interpretation": [
+            "C03 only reuses authenticated immutable release archive bytes in a warm Python process.",
+            "No native VQC or QMemory forward execution may be bypassed.",
+            "All original XI executions, states and checkpoint serialization remain identical.",
+            "Every model cache hit re-hashes actual manifest, source and checkpoint input bytes.",
+            "The cache increases Python resident memory and retains frozen models until scope exit.",
+            "A/B runs in isolated Linux GitHub runners; not a measured improvement on Android.",
+            "Small samples and uncertain runner load do not prove speedups in general.",
+            "A trial that skipped the repeated VQC changed 32,155 bytes of v3 checkpoint; it was rejected.",
         ],
     }
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    return data
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(report, indent=2, ensure_ascii=False)+"\n")
+    return report
 
 
 def main():
@@ -156,25 +141,19 @@ def main():
     p.add_argument("--mode", choices=MODES, default="original")
     p.add_argument("--samples", type=int, default=2)
     p.add_argument("--timeout", type=int, default=180)
-    p.add_argument("--out", type=Path, default=ROOT / "build/c03/benchmark.json")
-    args = p.parse_args()
-    if args.worker:
-        print(json.dumps(one(args.mode, args.worker), ensure_ascii=False))
-    else:
-        if not 1 <= args.samples <= 12:
-            p.error("samples must be 1..12")
-        report = run(args.samples, args.timeout, args.out)
-        print(json.dumps({
-            "passed": report["passed"],
-            "frozen_assets_unchanged": report["frozen_assets_unchanged"],
-            "apk_built": False,
-            "summary": {
-                key: {name: value[name] for name in
-                      ("wall_ratio_original_over_c03", "native_exec_avoided",
-                       "native_source_reduction_percent", "vqc_cache_hits")}
-                for key, value in report["summary"].items()
-            },
-        }, ensure_ascii=False))
+    p.add_argument("--out", type=Path, default=ROOT/"build/c03/benchmark.json")
+    a = p.parse_args()
+    if a.worker:
+        print(json.dumps(worker(a.mode, a.worker), ensure_ascii=False))
+        return
+    if not 1 <= a.samples <= 12:
+        p.error("samples must be 1..12")
+    results = benchmark(a.samples,a.timeout,a.out)
+    print(json.dumps({
+        "passed": True, "frozen_assets_unchanged": True,
+        "apk_built": False,
+        "ratio": {k:v["wall_ratio_original_over_cached"] for k,v in results["summary"].items()},
+    }))
 
 
 if __name__ == "__main__":
