@@ -45,7 +45,7 @@ class PlannerContractTests(unittest.TestCase):
                                 for node in graph))
             self.assertEqual(sum(node["runs_native_XI"] for node in graph),1)
             self.assertTrue(all(node["execution"]=="serial" for node in graph))
-            self.assertIn("original",graph[-3]["id"] if False else "original")
+            self.assertEqual(graph[-3]["bank"],"original-XI")
         self.assertEqual(original_native_prompt(Goal("prove_alert","Nara")),
                          "dime si observación Nara es alerta")
         self.assertEqual(original_native_prompt(Goal("plan_mission","Nara","Faro Azul",3)),
