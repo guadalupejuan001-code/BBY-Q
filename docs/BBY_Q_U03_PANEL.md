@@ -14,7 +14,7 @@
 | **C07** | Metacognición | validado experimental | [PR #93](https://github.com/guadalupejuan001-code/BBY-Q/pull/93) |
 | **C08** | Aprendizaje activo | validado sin mejora de pesos | [PR #94](https://github.com/guadalupejuan001-code/BBY-Q/pull/94) |
 | **C09** | Memoria unificada | validado experimental; 7 bancos y 159 archivos intactos | [PR #95](https://github.com/guadalupejuan001-code/BBY-Q/pull/95) |
-| **C10** | Razonamiento y planificación | pendiente | — |
+| **C10** | Razonamiento y planificación | en implementación, pruebas XI pendientes | PR en preparación |
 | **C11** | Aprendizaje conjunto | pendiente | — |
 | **C12** | Experimentos cuánticos entre bloques | pendiente | — |
 | **C13** | Optimización global | pendiente | — |
@@ -23,11 +23,11 @@
 | **C16** | Integración Android y REVERSE-PC | pendiente sin APK | — |
 | **C17** | Integración final y decisión de APK | pendiente | — |
 
-**C09 validado:** vista de la memoria principal SQLite U02, con verificación SHA-256, detección de conflictos y proyecciones VQC caducadas. [CI aprobada](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706). **C10 es el siguiente ciclo.**
+**C10 en ejecución:** grafo de dependencias para pruebas nativas C1/Zero y misiones QMemory/VQC/QRL, con copia desechable de SQLite, controles de procedencia C09 y sin nuevos bancos. **C11 será el siguiente ciclo solo tras verificar C10.**
 
 **Hito anterior C08:** verificación y adquisición funcionan, pero no se demostraron nuevos pesos aprendidos ni mejora frente a C07. Se conserva C07 como referencia.
 
-**Cadena de responsabilidad inmutable:** BBY Q → w4U → QdU. Este ciclo no introduce otro agente ni coordinador.
+**Cadena de responsabilidad inmutable:** BBY Q → w4U → QdU. C10 no introduce otro agente ni coordinador. El plan solo simula un resultado XI; no ejecuta órdenes externas.
 
 **Checkpoints protegidos:** 159 archivos congelados bajo auditoría SHA-256; **sin APK** hasta los ciclos finales y autorización. C09 cuesta 50,995 ms por vista completa frente a 10,474 ms por consulta básica U02 (audita más información).
 
