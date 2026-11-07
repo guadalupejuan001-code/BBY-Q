@@ -72,7 +72,10 @@ jobs:
           assert r["frozen_assets_unchanged"] and b["frozen_assets_unchanged"]
           assert not r["apk_built"] and not b["apk_built"]
           panel=json.loads(Path("docs/BBY_Q_U03_ESTADO.json").read_text())
-          assert panel["current_cycle"]=="C09" and panel["next_cycle"]=="C10"
+          current=int(panel["current_cycle"][1:])
+          assert current>=9 and int(panel["next_cycle"][1:])>current
+          assert "validado" in panel["cycles"][9]["state"]
+          assert panel["cycles"][9]["pr"]==95
           assert not panel["history_constraints"]["apk_requested"]
           assert panel["history_constraints"]["new_primary_memory_authorities"]==0
           print("C09 exact U02 native memory parity and no new authority VERIFIED")
