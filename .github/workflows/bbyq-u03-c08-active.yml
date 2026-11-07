@@ -79,6 +79,15 @@ jobs:
           assert r["partition"]["classes_balanced"]
           assert r["teacher_provenance"].startswith("synthetic")
           assert r["promotion_mode"] in ("active","frozen-C07")
+          assert set(r["native_weight_sha256_by_mode"])=={"frozen-C07","active","random"}
+          assert r["native_weight_sha256_by_mode"]["frozen-C07"]!=None
+          assert r["new_XI_weight_learning_demonstrated"] == (
+              r["native_weight_sha256_by_mode"]["active"]!=
+              r["native_weight_sha256_by_mode"]["frozen-C07"])
+          assert r["native_weight_corrections_by_mode"]["frozen-C07"]==0
+          if r["new_XI_weight_learning_demonstrated"] is False:
+              assert r["promotion_mode"]=="frozen-C07"
+              print("C08 native training invoked but weights unchanged: NO LEARNING GAIN CLAIMED")
           models={v["mode"]:v for v in r["comparisons"]}
           assert set(models)=={"frozen-C07","active","random"}
           assert models["active"]["verified_labels"]==models["random"]["verified_labels"]==96
