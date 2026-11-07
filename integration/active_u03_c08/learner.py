@@ -31,7 +31,7 @@ from integration.metacognition_u03_c07.train import (
 )
 from .dataset import (
     Unlabeled, Labeled, acquire_pool, validation, test_reserved,
-    synthetic_teacher_confirm, check_separation, SIZES, PROTOCOL,
+    synthetic_teacher_confirm, verify_teacher_receipt, check_separation, SIZES, PROTOCOL,
 )
 
 BUDGET = 96
@@ -157,8 +157,8 @@ def _verify_selected(selected: list[Unlabeled]) -> tuple[list[Labeled], list[dic
         # This is the ONLY point where the independent synthetic oracle
         # creates a class label, after the selection is immutable.
         receipt = synthetic_teacher_confirm(case)
-        if receipt["real_signature_checked"] is not False:
-            raise AssertionError("C08 falsely claimed a real cryptographic signature")
+        if not verify_teacher_receipt(case,receipt):
+            raise ValueError("C08 unlabeled case was not independently verified")
         verified.append(Labeled(case.uid, case.query, case.evidence,
                                 receipt["label"], "pool"))
         receipts.append(receipt)
