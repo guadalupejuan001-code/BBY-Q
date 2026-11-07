@@ -48,7 +48,7 @@ class ArchiveCacheTests(unittest.TestCase):
                 return hashlib.sha256((folder / "v3.rvp.gz").read_bytes()).digest()
             first = memo.get("perception", folder, verified_loader)
             data = (folder / "v3.rvp.gz")
-            data.write_bytes(b"tampered--checkpoint-1")
+            data.write_bytes(b"tampered---checkpoint-1")
             self.assertEqual(len(data.read_bytes()), len(b"compressed-checkpoint-1"))
             self.assertNotEqual(memo.get("perception", folder, verified_loader), first)
             self.assertEqual(calls, ["verified", "verified"])
