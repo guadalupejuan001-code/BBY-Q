@@ -59,24 +59,26 @@ class UnifiedMemoryView:
         self.session=session
         self.db=session.db
 
-    def _read(self, subject=None, *, fail_after=None):
+    def _read(self, subject=None, *, fail_after=None, after_first_read=None):
         if self.db.in_transaction:
             raise RuntimeError("C09 cannot nest a read in an active writer transaction")
         self.db.execute("BEGIN")
         try:
-            result=self._collect(subject,fail_after=fail_after)
+            result=self._collect(subject,fail_after=fail_after,
+                                 after_first_read=after_first_read)
             self.db.execute("COMMIT")
             return result
         except BaseException:
             self.db.execute("ROLLBACK")
             raise
 
-    def snapshot(self, subject=None, *, fail_after=None):
+    def snapshot(self, subject=None, *, fail_after=None, after_first_read=None):
         if subject is not None and (not isinstance(subject,str) or not subject.strip()):
             raise ValueError("C09 subject must be nonempty text")
-        return self._read(subject,fail_after=fail_after)
+        return self._read(subject,fail_after=fail_after,
+                          after_first_read=after_first_read)
 
-    def _collect(self, subject, *, fail_after=None):
+    def _collect(self, subject, *, fail_after=None, after_first_read=None):
         select=self.db.execute
         state=select(
             "SELECT metadata,sha,identity,revision FROM unified_state WHERE id=1"
@@ -87,6 +89,11 @@ class UnifiedMemoryView:
             raise ValueError("C09 original model/identity mismatch")
         metadata=json.loads(state[0])
         rev=int(state[3])
+        # Test-only injection point after SQLite WAL has pinned a read
+        # snapshot. An external writer may commit; this reader must see
+        # one coherent earlier revision through the remainder of the view.
+        if after_first_read is not None:
+            after_first_read()
         legacy=select(
             "SELECT snapshot,sha,metadata,metadata_sha,identity,revision "
             "FROM state WHERE id=1"
