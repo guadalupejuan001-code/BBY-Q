@@ -189,9 +189,9 @@ class PlannedSession(CachedSession):
         if stats is not None:
             stats["immutable_bank_hashes_verified"] = len(rows)
             stats["hash_worker_count"] = workers
-        for (_, _, expected), actual in zip(rows, hashes):
+        for (name, _, expected), actual in zip(rows, hashes):
             if actual != expected:
-                raise ValueError("Corrupt unified bank: " + rows[hashes.index(actual)][0])
+                raise ValueError("Corrupt unified bank: " + name)
         return {name: raw for name, raw, _ in rows}
 
     def turn(self, request_id, prompt, payload=None, fail_after=None, control=None):
