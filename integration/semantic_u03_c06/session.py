@@ -52,26 +52,38 @@ class ShadowSemanticSession(SemanticSession):
         result = super().turn(request_id, prompt, payload=payload,
                               fail_after=fail_after, control=control)
         if self.last_semantic is not None:
-            body = stage_features(features(prompt, mode="semantic"))
-            events = self._head.run(
-                body + "call c06_predict\n"
-                + f"mem_materialize {B + 16} 8"
-            )
-            frames = [e for e in events if e["type"] == "memory_materialization"]
-            if len(frames) != 1:
-                raise AssertionError("C06 shadow head did not return exactly one prediction")
-            predicted = struct.unpack("<q", bytes.fromhex(frames[0]["hex"]))[0]
-            if predicted not in range(len(LABELS)):
-                raise ValueError("Native C06 prediction not in supported classes")
-            self.last_learned_semantic = {
-                "label_id": predicted,
-                "semantic_class": LABELS[predicted],
-                "model": "XI-native-C06",
-                "authoritative": False,
-                "routed_to_C1": False,
-                "updated_previous_checkpoints": False,
-                "model_manifest_sha256": self._manifest_sha256,
-            }
+            try:
+                body = stage_features(features(prompt, mode="semantic"))
+                events = self._head.run(
+                    body + "call c06_predict\n"
+                    + f"mem_materialize {B + 16} 8"
+                )
+                frames = [e for e in events if e["type"] == "memory_materialization"]
+                if len(frames) != 1:
+                    raise AssertionError("C06 shadow head did not return exactly one prediction")
+                predicted = struct.unpack("<q", bytes.fromhex(frames[0]["hex"]))[0]
+                if predicted not in range(len(LABELS)):
+                    raise ValueError("Native C06 prediction not in supported classes")
+                self.last_learned_semantic = {
+                    "label_id": predicted,
+                    "semantic_class": LABELS[predicted],
+                    "model": "XI-native-C06",
+                    "authoritative": False,
+                    "routed_to_C1": False,
+                    "updated_previous_checkpoints": False,
+                    "model_manifest_sha256": self._manifest_sha256,
+                }
+            except Exception as exc:
+                # The original U02 turn may already be committed. A failure
+                # in an *observational* model must never make a successful
+                # real user turn look failed or trigger it to be retried.
+                self.last_learned_semantic = {
+                    "available": False,
+                    "error_type": type(exc).__name__,
+                    "authoritative": False,
+                    "routed_to_C1": False,
+                    "updated_previous_checkpoints": False,
+                }
         return result
 
     def close(self):
