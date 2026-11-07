@@ -111,8 +111,28 @@ class CacheContractTests(TestCase):
                 body = (f"store64 {A + 280} 0\ncall select_agent\n"
                         f"call forward\nstore64 {A+256} {i}\ncall u2_apply")
                 q.stage("v3", body, "vqc_forward", input_sha256=str(i))
-            self.assertEqual(len(q._c03_caches["v3"]), CACHE_CAPACITY)
-            self.assertEqual(q._c03_stats["evictions"], 3)
+            # Strict latest-readout validity is stronger than the LRU ceiling:
+            # different circuits overwrite native quantum scratch state.
+            self.assertLessEqual(len(q._c03_caches["v3"]), CACHE_CAPACITY)
+            self.assertEqual(len(q._c03_caches["v3"]), 1)
+            self.assertGreater(q._c03_stats["invalidations"]["v3"], 0)
+
+    def test_returning_to_older_vqc_input_must_execute_native_again(self):
+        q = self.make_quantum()
+        executed = []
+        def fake(self, bank, body, operation, **details):
+            executed.append(body)
+            return [{"name": "probability", "value": .7}]
+        a = f"store64 {A + 280} 0\\ncall select_agent\\ncall forward\\nstore64 12 1\\ncall u2_apply".replace("\\n", "\n")
+        b = f"store64 {A + 280} 0\\ncall select_agent\\ncall forward\\nstore64 12 2\\ncall u2_apply".replace("\\n", "\n")
+        with patch.object(BaseQuantum, "stage", new=fake):
+            q.stage("v3", a, "vqc_forward", input_sha256="A")
+            q.stage("v3", a, "vqc_forward", input_sha256="A")
+            q.stage("v3", b, "vqc_forward", input_sha256="B")
+            q.stage("v3", a, "vqc_forward", input_sha256="A")
+        self.assertEqual(executed, [a, b, a])
+        self.assertEqual(q._c03_stats["vqc_hits"], 1)
+        self.assertEqual(q._c03_stats["vqc_misses"], 3)
 
 
 if __name__ == "__main__":
