@@ -118,3 +118,25 @@ Solo se considerará C07 terminado cuando:
 **C08:** utilizar la incertidumbre para generar preguntas de aclaración
 específicas y aprender a partir de respuestas confirmadas, sin incorporar
 automáticamente datos no verificados.
+
+
+## Resultados obtenidos y problemas pendientes
+
+Consultar [RESULTS.md](RESULTS.md) para los detalles auditados de las dos
+campañas. La segunda reserva CHALLENGE fue abierta **después** de revisar
+los errores de calibración de la primera; contiene fuentes irrelevantes
+nuevas y otras entidades.
+
+Resumen: **168/180** decisiones XI correctas en CHALLENGE (93,3 %),
+frente a 108/180 sin procedencia y 132/180 sin contraste. La calibración
+sobre validación redujo ECE de 0,5035 a 0,0391 en ese nuevo test, y
+Brier de 0,4945 a 0,0453.
+
+Persisten **12 abstenciones injustificadas** de 60 preguntas respondibles
+con evidencia distractora. No hubo respuestas sin respaldo ni conflictos
+omitidos en esta reserva, pero esos resultados incluyen una regla
+de seguridad **explícita**, no solo el aprendizaje nativo.
+
+CI con entrenamiento y evaluación de integración:
+[GitHub Actions #42386450584](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42386450584).
+Los checkpoints originales permanecen idénticos, y no se compiló APK.
