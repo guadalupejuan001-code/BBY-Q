@@ -1,11 +1,11 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c09-unified-memory-20261107",
-  "base_commit": "747036aa33b3496e7db9b77af2c4121c0b3d55c3",
-  "current_cycle": "C09",
+  "branch": "codex/bbyq-u03-c10-reasoning-plan-20261107",
+  "base_commit": "f6ea64ed301db2ef37eafea71767ba0dbd0ee579",
+  "current_cycle": "C10",
   "latest_verified_cycle": "C09",
-  "last_stable_route": "U02 original; C01-C09 experimental opt-in",
+  "last_stable_route": "U02 original; C01-C10 are experimental opt-in, no new default",
   "history_constraints": {
     "frozen_sources_expected": 159,
     "preserve_original_checkpoints": true,
@@ -88,7 +88,7 @@
     {
       "id": "C10",
       "work": "Razonamiento y planificación",
-      "state": "pendiente",
+      "state": "en implementación; CI aún no verificada",
       "pr": null,
       "pr_url": null
     },
@@ -143,18 +143,13 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C09 concluido: vista única SQLite y XI de solo lectura verificada; C10 razonamiento y planificación pendiente.",
-  "current_ci": {
-    "run_id": 42391026706,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706/artifacts/13581347382"
-  },
+  "current_plan": "C10: native C1/Zero proofs and QMemory/VQC/QRL/Entity mission planning behind C09 provenance audit and an isolated SQLite clone",
+  "current_ci": null,
   "blockers": [
-    "La vista verificadora C09 añade costo: mediana 50,995 ms frente a 10,474 ms del snapshot U02 básico; no hay nuevos bancos, ni APK.",
-    "C08 permanece sin aprendizaje de pesos demostrado ni promoción a C1."
+    "C10 requires a native XI proof and full SHA parity before becoming a validated cycle",
+    "C09 integrity audit incurs additional latency; C08 learning still not shown to update weights"
   ],
-  "next_cycle": "C10",
+  "next_cycle": "C11",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -170,5 +165,6 @@
     },
     "no_new_primary_memory": true,
     "apk_built": false
-  }
+  },
+  "c10_results": null
 }
