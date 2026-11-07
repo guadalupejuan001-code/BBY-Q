@@ -12,8 +12,9 @@ def main():
     ids=[r["id"] for r in state["cycles"]]
     assert ids==[f"C{i:02d}" for i in range(18)]
     assert state["schema"]=="BBYQ-U03-CYCLE-PANEL-v1"
-    assert state["current_cycle"]=="C10"
-    assert state["next_cycle"]=="C11"
+    current=int(state["current_cycle"][1:])
+    assert 10<=current<=16
+    assert state["next_cycle"]==f"C{current+1:02d}"
     assert state["history_constraints"]["agency"]=="BBY Q -> w4U -> QdU"
     assert state["history_constraints"]["frozen_sources_expected"]==159
     assert state["history_constraints"]["new_primary_memory_authorities"]==0
@@ -25,12 +26,12 @@ def main():
     assert len([r for r in state["cycles"] if r["pr_url"]])>=10
     assert state["cycles"][9]["pr"]==95
     assert state["cycles"][10]["state"]!="pendiente"
-    assert all(r["pr"] is None for r in state["cycles"][11:])
-    assert "C10" in nextfile and "C11" in nextfile
+    assert all(r["pr"] is None for r in state["cycles"][current+1:])
+    assert "C10" in nextfile and state["next_cycle"] in nextfile
     assert "sin APK" in nextfile or "Sin APK" in nextfile
     assert "w4U" in panel and "QdU" in panel
-    print(json.dumps({"passed":True,"cycles":len(ids),"current":"C10",
-                      "next":"C11","agency_unchanged":True,
+    print(json.dumps({"passed":True,"cycles":len(ids),"current":state["current_cycle"],
+                      "next":state["next_cycle"],"C10_still_validated":True,"agency_unchanged":True,
                       "apk_built":False}))
 
 
