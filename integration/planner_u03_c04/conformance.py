@@ -65,7 +65,10 @@ def plan_exercises(klass):
         with Session(database) as reopened:
             if reopened.snapshot() != state["snapshot"] or reopened.history() != state["history"]:
                 raise AssertionError("C04 banks/receipts cannot be restored by original U02")
-        return {"receipts": receipts, **state}, plans
+        # U02 stores a wall-clock elapsed_ms in generated text receipts.
+        # It is inherently nondeterministic and is excluded only from
+        # cross-run semantic comparisons; SHA256 bank states stay exact.
+        return sanitize({"receipts": receipts, **state}), plans
 
 
 def _proof_of_selective_activation(plans):
