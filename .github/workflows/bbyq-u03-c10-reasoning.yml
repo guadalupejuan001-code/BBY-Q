@@ -1,0 +1,104 @@
+name: BBY Q U03 C10 verified native XI proof planning
+on:
+  pull_request:
+    paths:
+      - 'integration/reasoning_u03_c10/**'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c10-reasoning.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c10-xi-reasoning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Unit-test C10 dependency DAG, stale premises and conflicting evidence
+        run: |
+          python3 -m unittest integration.reasoning_u03_c10.test_planner -v
+          python3 -m unittest integration.memory_u03_c09.test_view -v
+          python3 -m integration.reasoning_u03_c10.verify_panel
+      - name: Compile pinned original REVERSE-PC XI/Ether simulator only
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Regression original native C1/U02, gradients, rollback and migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c09 build/c10
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Verify native C09 memory index and existing U02 checkpoint equality
+        run: python3 -m integration.memory_u03_c09.conformance
+      - name: Differential original U02 XI proofs vs C10 provenance-gated native planner
+        run: python3 -m integration.reasoning_u03_c10.conformance
+      - name: Measure direct original XI vs C10 sandbox/audit planning costs
+        run: python3 -m integration.reasoning_u03_c10.benchmark --samples 2 --out build/c10/benchmark.json
+      - name: Gate real XI proofs, rollback, frozen banks, panel, zero APK
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('build/c10/conformance.json').read_text())
+          b=json.loads(Path('build/c10/benchmark.json').read_text())
+          assert p["passed"] and b["passed"]
+          assert p["same_U02_C10_original_receipts_and_native_banks"]
+          assert p["native_C1_Zero_symbolic_proof_present"]
+          assert p["native_QMemory_VQC_Entity_QRL_QChat_plan_present"]
+          assert p["missing_native_proof_rejected"]
+          assert p["missing_user_rule_rejected"]
+          assert p["unverified_conflict_blocked"]
+          assert p["stale_VQC_projection_blocked_until_native_refresh"]
+          assert p["replay_rollback_and_original_restart_identical"]
+          assert p["native_inference_only_inside_disposable_SQLite_copy"]
+          assert p["native_proof_ids"]>=1
+          assert p["native_mission_operation_count"]>=7
+          assert p["original_checkpoint_writes"]==0
+          assert p["frozen_asset_count"]==b["frozen_asset_count"]==159
+          assert p["frozen_assets_unchanged"]
+          assert not p["apk_built"] and not b["apk_built"]
+          for name in ("prove_alert","plan_mission"):
+              assert b["cases"][name]["native_execution_skipped"] is False
+              print(name,b["cases"][name])
+          state=json.loads(Path("docs/BBY_Q_U03_ESTADO.json").read_text())
+          assert state["current_cycle"]=="C10" and state["next_cycle"]=="C11"
+          assert state["history_constraints"]["agency"]=="BBY Q -> w4U -> QdU"
+          assert state["history_constraints"]["new_primary_memory_authorities"]==0
+          assert state["history_constraints"]["frozen_sources_expected"]==159
+          assert state["history_constraints"]["apk_requested"] is False
+          print("C10 exact U02 native XI proof, provenance and planning safety PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C10-native-reasoning-evidence
+          path: |
+            build/c10/*.json
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30
