@@ -1,0 +1,87 @@
+name: BBY Q U03 C04 selective native planner
+on:
+  pull_request:
+    paths:
+      - 'integration/planner_u03_c04/**'
+      - '.github/workflows/bbyq-u03-c04-planner.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c04-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Unit-check deterministic dependency DAG, lazy XI and independent SHA
+        run: |
+          python3 -m unittest integration.planner_u03_c04.test_planner -v
+          python3 -m unittest integration.cache_u03_c03.test_cache -v
+          python3 -m unittest integration.persist_u03_c02.test_optimistic -v
+          python3 -m unittest integration.audit_u03_c00.test_profile -v
+      - name: Build original REVERSE-PC XI/Ether runtime, host only
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify original frozen C1/U02 release and actual native rollback
+        run: |
+          mkdir -p build/c04 build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Compare exact U02/C03/C04 receipts and native checkpoint identities
+        run: python3 -m integration.planner_u03_c04.conformance | tee build/c04/conformance.json
+      - name: Interleaved native A/B selective startup and parallel bank hashing
+        run: python3 -m integration.planner_u03_c04.benchmark --samples 2 --timeout 180 --out build/c04/benchmark.json
+      - name: Gate exact checkpoints, unnecessary engines, immutable assets, no APK
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c = json.loads(Path("build/c04/conformance.json").read_text())
+          b = json.loads(Path("build/c04/benchmark.json").read_text())
+          assert c["passed"] and b["passed"]
+          assert c["original_U02_and_C03_equal"] and c["native_receipts_and_bank_hashes_equal"]
+          assert c["native_rollback_and_restart_equal"] and c["all_stateful_XI_calls_preserved"]
+          assert c["protected_file_count"] == b["protected_file_count"] == 159
+          assert c["checkpoint_sources_unchanged"] and b["protected_files_unchanged"]
+          assert not c["apk_built"] and not b["apk_built"]
+          assert not c["selective_activation"]["math"]["opened"]
+          assert c["selective_activation"]["remember"]["opened"] == ["memory"]
+          assert set(c["selective_activation"]["mission"]["opened"]) == {"v3", "memory", "voice", "entity"}
+          assert b["results"]["mission"]["baseline_native_xi_exec"]["median"] == b["results"]["mission"]["planned_native_xi_exec"]["median"]
+          assert b["results"]["math"]["baseline_native_xi_exec"]["median"] > b["results"]["math"]["planned_native_xi_exec"]["median"]
+          print("C04 full native planner safety and checkpoint equality: PASS; no APK")
+          for name, item in b["results"].items():
+              print(name, "wall ratio", item["wall_ratio_baseline_over_plan"], "processes avoided", item["processes_avoided"])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C04-native-planner-evidence
+          path: |
+            build/c04/*.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
