@@ -14,7 +14,7 @@
 | **C07** | Metacognición | validado experimental | [PR #93](https://github.com/guadalupejuan001-code/BBY-Q/pull/93) |
 | **C08** | Aprendizaje activo | validado sin mejora de pesos | [PR #94](https://github.com/guadalupejuan001-code/BBY-Q/pull/94) |
 | **C09** | Memoria unificada | validado experimental; 7 bancos y 159 archivos intactos | [PR #95](https://github.com/guadalupejuan001-code/BBY-Q/pull/95) |
-| **C10** | Razonamiento y planificación | en implementación, pruebas XI pendientes | PR en preparación |
+| **C10** | Razonamiento y planificación | en implementación, CI nativa pendiente | [PR #96](https://github.com/guadalupejuan001-code/BBY-Q/pull/96) |
 | **C11** | Aprendizaje conjunto | pendiente | — |
 | **C12** | Experimentos cuánticos entre bloques | pendiente | — |
 | **C13** | Optimización global | pendiente | — |
