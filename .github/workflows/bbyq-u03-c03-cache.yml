@@ -41,6 +41,10 @@ jobs:
           python3 -m unittest integration.persist_u03_c02.test_optimistic -v
       - name: Compile pinned original native XI and Ether runtime
         run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Diagnose byte-level native cache state before conformance
+        run: |
+          mkdir -p build/c03
+          python3 -m integration.cache_u03_c03.diagnose | tee build/c03/diagnostic.json
       - name: Verify U02 frozen release, gradients, original rollback and upgrade
         run: |
           mkdir -p build/c03 build/sequence2 build/unified
