@@ -86,6 +86,12 @@ class SemanticContractTests(unittest.TestCase):
                           ("sample", "position_from", "value")],
                          ["value", "sample", "position_from"])
 
+    def test_muestra_as_verb_vs_sensor_noun(self):
+        sensor = analyze("observa Nara con muestra 88113")
+        command = analyze("muestra el estado")
+        self.assertEqual([e["verb"] for e in sensor["events"]], ["observe"])
+        self.assertEqual([e["verb"] for e in command["events"]], ["show"])
+
     def test_entity_ownership_and_exact_name(self):
         frame = analyze("Recuerda que mi nave se llama Niña Ámbar")
         self.assertEqual(recover_topic(frame, "name_value"), "Niña Ámbar")
