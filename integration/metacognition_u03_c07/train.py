@@ -229,7 +229,7 @@ def campaign(output, epochs=8):
     if not 1<=epochs<=20:
         raise ValueError("C07 epochs must be 1..20")
     before,apks=freeze_assets(),apk_files()
-    corpus=verify_disjoint()
+    # Instantiate only training and validation before selecting native weights.
     train, validation=split("train"),split("validation")
     C1Build.main()
     output=Path(output)
@@ -237,8 +237,10 @@ def campaign(output, epochs=8):
     started=time.perf_counter_ns()
     with tempfile.TemporaryDirectory(prefix="bbyq-c07-epistemic-trained-") as tmp:
         chosen=[learn_variant(mode,train,validation,tmp,epochs) for mode in MODES]
-        # Validation selected all epochs, calibration and thresholds.
-        # Only now is the heldout generator invoked ONCE.
+        # Validation selected ALL epochs, temperatures and thresholds.
+        # Only now inspect test membership, integrity and labels.
+        corpus=verify_disjoint()
+        # No test example has informed any model choice.
         test=split("test")
         for model in chosen:
             predictions=native_validation(model["path"],test,model["mode"])
