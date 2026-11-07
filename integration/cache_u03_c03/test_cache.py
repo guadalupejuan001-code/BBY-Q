@@ -1,140 +1,118 @@
-"""C03: fail-closed cache contracts, isolated from all trained checkpoint files."""
-from collections import OrderedDict
-from contextvars import ContextVar
-from unittest import TestCase
-from unittest.mock import patch
+"""C03 cache invariants: immutable archives, SHA invalidation, bounded capacity."""
+import hashlib
+import json
+import tempfile
+import unittest
+from pathlib import Path
 
-from integration.unified.quantum import Quantum as BaseQuantum
-from integration.unified.common import A
+from integration.unified import session as original
+from integration.sequence2 import workspace as c1_workspace
 from .session import (
-    C03Quantum, CachedSession, CACHE_CAPACITY,
-    _C03_TURN, _ORIGINAL_TURN, fresh_stats,
+    ArchiveMemo, CachedSession, _C03_INIT, _C1_INIT,
+    archive_cache_scope,
 )
 
 
-class CacheContractTests(TestCase):
-    def make_quantum(self, stats=None):
-        q = object.__new__(C03Quantum)
-        q.trace = []
-        q.meta = {"perception_revision": 3}
-        q.readout_magic = 240605
-        q._c03_epochs = {"v3": 0, "memory": 0}
-        q._c03_caches = {"v3": OrderedDict(), "memory": OrderedDict()}
-        q._c03_stats = stats if stats is not None else fresh_stats()
-        return q
+class ArchiveCacheTests(unittest.TestCase):
+    def fixture(self, root):
+        release = Path(root) / "release"
+        release.mkdir()
+        (release / "v3.rvp.gz").write_bytes(b"compressed-checkpoint-1")
+        (release / "manifest.json").write_text(
+            json.dumps({"perception": {"file": "v3.rvp.gz"}})
+        )
+        return release
 
-    def test_original_turn_bytecode_and_immutable_binding(self):
-        self.assertIs(_C03_TURN.__code__, _ORIGINAL_TURN.__code__)
-        self.assertIsNot(_C03_TURN.__globals__, _ORIGINAL_TURN.__globals__)
-        self.assertIs(_C03_TURN.__globals__["Quantum"], C03Quantum)
-        self.assertIs(_ORIGINAL_TURN.__globals__["Quantum"], BaseQuantum)
-        self.assertTrue(issubclass(CachedSession, type.__mro__[0]) if False else issubclass(CachedSession, __import__("integration.unified.session", fromlist=["Session"]).Session))
+    def test_same_bytes_reuse_only_authenticated_checkpoint(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self.fixture(tmp)
+            memo = ArchiveMemo(max_bytes=512, max_entries=3)
+            loads = []
+            def loader():
+                loads.append(1)
+                return b"original-uncompressed-model"
+            self.assertEqual(memo.get("perception", folder, loader), loader())
+            self.assertEqual(memo.get("perception", folder, loader), b"original-uncompressed-model")
+            self.assertEqual(len(loads), 2)  # manual loader() above + cache miss
+            self.assertEqual(memo.stats["hits"], 1)
+            self.assertEqual(memo.stats["misses"], 1)
+            self.assertEqual(memo.stats["bypassed_native_executions"], 0)
 
-    def test_classifier_hit_and_full_native_trace_shape(self):
-        stats = fresh_stats()
-        q = self.make_quantum(stats)
-        n = []
-        def simulated_native(self, bank, body, operation, **details):
-            n.append((bank, operation))
-            self.trace.append({"bank": bank, "operation": operation, "native": True, **details})
-            return [{"name": "probability", "value": 0.987}]
-        body = (f"store64 {A + 280} 0\ncall select_agent\n"
-                "call forward\ncall u2_apply\n")
-        kw = {"input_sha256": "a1b2", "readout": "U02", "qubits": 1000}
-        with patch.object(BaseQuantum, "stage", new=simulated_native):
-            one = q.stage("v3", body, "vqc_forward", **kw)
-            two = q.stage("v3", body, "vqc_forward", **kw)
-            self.assertEqual(one, two)
-            self.assertEqual(n, [("v3", "vqc_forward")])
-            self.assertEqual(stats["vqc_hits"], 1)
-            self.assertEqual(stats["vqc_misses"], 1)
-            self.assertEqual(stats["avoided_native_exec"], 1)
-            self.assertEqual(q.trace[0], q.trace[1])
-            # A QRL update in the same V3 bank invalidates any old inference.
-            q.stage("v3", "call qrl_step", "qrl_step", qubits=1000)
-            q.stage("v3", body, "vqc_forward", **kw)
-            self.assertEqual(n[-1], ("v3", "vqc_forward"))
-            self.assertEqual(stats["vqc_misses"], 2)
-            self.assertGreater(stats["invalidations"]["v3"], 0)
-            # Changing the requested experiment's readout version also misses.
-            q.readout_magic = 12345
-            q.stage("v3", body, "vqc_forward", **kw)
-            self.assertEqual(stats["vqc_misses"], 3)
+    def test_tampering_detected_even_if_file_size_does_not_change(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self.fixture(tmp)
+            memo = ArchiveMemo()
+            calls = []
+            def verified_loader():
+                calls.append("verified")
+                return hashlib.sha256((folder / "v3.rvp.gz").read_bytes()).digest()
+            first = memo.get("perception", folder, verified_loader)
+            data = (folder / "v3.rvp.gz")
+            data.write_bytes(b"tampered--checkpoint-1")
+            self.assertEqual(len(data.read_bytes()), len(b"compressed-checkpoint-1"))
+            self.assertNotEqual(memo.get("perception", folder, verified_loader), first)
+            self.assertEqual(calls, ["verified", "verified"])
+            self.assertEqual(memo.stats["hits"], 0)
+            self.assertEqual(memo.stats["misses"], 2)
 
-    def test_quantum_memory_cache_is_invalidated_by_write(self):
-        stats = fresh_stats()
-        q = self.make_quantum(stats)
-        called = []
-        def fake(self, bank, body, operation, **details):
-            called.append(operation)
-            self.trace.append({"bank": bank, "operation": operation, "native": True, **details})
-            return [{"name": "probability", "value": .75}]
-        body = "fexpect f0 Z:20000\nfemit probability f0"
-        with patch.object(BaseQuantum, "stage", new=fake):
-            q.stage("memory", body, "qm_read", slot=0, qubits=4)
-            q.stage("memory", body, "qm_read", slot=0, qubits=4)
-            self.assertEqual(stats["memory_hits"], 1)
-            self.assertEqual(called, ["qm_read"])
-            # Do not cache or reuse destructive erasure controls.
-            q.stage("memory", "qprepare 20000 4\n"+body, "qm_read", slot=0, qubits=4)
-            q.stage("memory", body, "qm_read", slot=0, qubits=4)
-            self.assertEqual(called[-2:], ["qm_read", "qm_read"])
-            # A user association write invalidates all earlier memory reads.
-            q.stage("memory", "call qm_exchange", "qm_exchange", slot=0)
-            q.stage("memory", body, "qm_read", slot=0, qubits=4)
-            self.assertEqual(called[-1], "qm_read")
-            self.assertEqual(stats["memory_misses"], 3)
+    def test_binding_and_manifest_edit_invalidate_cached_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self.fixture(tmp)
+            memo = ArchiveMemo()
+            memo.get("perception", folder, lambda: b"frozen")
+            manifest = folder / "manifest.json"
+            manifest.write_text(json.dumps({"perception": {"file": "v3.rvp.gz"},
+                                            "version": 2}))
+            again = []
+            memo.get("perception", folder, lambda: again.append(True) or b"replacement")
+            self.assertEqual(again, [True])
 
-    def test_input_changed_or_ablated_never_uses_old_prediction(self):
-        stats = fresh_stats()
-        q = self.make_quantum(stats)
-        called = []
-        def fake(self, bank, body, operation, **details):
-            called.append(body)
-            self.trace.append({"bank": bank, "operation": operation, "native": True, **details})
-            return [{"value": 1.}]
-        body = f"store64 {A + 280} 0\ncall select_agent\ncall forward\ncall u2_apply"
-        with patch.object(BaseQuantum, "stage", new=fake):
-            q.stage("v3", body, "vqc_forward", input_sha256="X")
-            q.stage("v3", body, "vqc_forward", input_sha256="Y")
-            self.assertEqual(len(called), 2)
-            q.stage("v3", body.replace(f"store64 {A+280} 0", f"store64 {A+280} 1"),
-                    "vqc_forward", input_sha256="X")
-            self.assertEqual(len(called), 3)
+    def test_lru_memory_cap_and_no_mutable_result_sharing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self.fixture(tmp)
+            memo = ArchiveMemo(max_bytes=8, max_entries=2)
+            first = memo.get("perception", folder, lambda: {"a": b"1234"})
+            first["a"] = b"invalid"
+            second = memo.get("perception", folder, lambda: self.fail("Cache hit missing"))
+            self.assertEqual(second, {"a": b"1234"})
+            self.assertEqual(memo.snapshot()["resident_bytes"], 4)
+            other = folder / "v3.rvp.gz"
+            other.write_bytes(b"different-image")
+            memo.get("perception", folder, lambda: b"12345678")
+            self.assertLessEqual(memo.snapshot()["resident_bytes"], 8)
+            self.assertLessEqual(memo.snapshot()["entries"], 2)
 
-    def test_bounded_lru_cap_no_unbounded_per_turn_growth(self):
-        q = self.make_quantum()
-        def fake(self, bank, body, operation, **details):
-            return []
-        with patch.object(BaseQuantum, "stage", new=fake):
-            for i in range(CACHE_CAPACITY + 3):
-                body = (f"store64 {A + 280} 0\ncall select_agent\n"
-                        f"call forward\nstore64 {A+256} {i}\ncall u2_apply")
-                q.stage("v3", body, "vqc_forward", input_sha256=str(i))
-            # Strict latest-readout validity is stronger than the LRU ceiling:
-            # different circuits overwrite native quantum scratch state.
-            self.assertLessEqual(len(q._c03_caches["v3"]), CACHE_CAPACITY)
-            self.assertEqual(len(q._c03_caches["v3"]), 1)
-            self.assertGreater(q._c03_stats["invalidations"]["v3"], 0)
+    def test_loader_failure_is_not_cached(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = self.fixture(tmp)
+            memo = ArchiveMemo()
+            with self.assertRaisesRegex(ValueError, "Corrupt"):
+                memo.get("perception", folder, lambda: (_ for _ in ()).throw(ValueError("Corrupt")))
+            self.assertEqual(memo.snapshot()["entries"], 0)
+            self.assertEqual(memo.stats["hits"], 0)
 
-    def test_returning_to_older_vqc_input_must_execute_native_again(self):
-        q = self.make_quantum()
-        executed = []
-        def fake(self, bank, body, operation, **details):
-            executed.append(body)
-            return [{"name": "probability", "value": .7}]
-        a = f"store64 {A + 280} 0\\ncall select_agent\\ncall forward\\nstore64 12 1\\ncall u2_apply".replace("\\n", "\n")
-        b = f"store64 {A + 280} 0\\ncall select_agent\\ncall forward\\nstore64 12 2\\ncall u2_apply".replace("\\n", "\n")
-        with patch.object(BaseQuantum, "stage", new=fake):
-            q.stage("v3", a, "vqc_forward", input_sha256="A")
-            q.stage("v3", a, "vqc_forward", input_sha256="A")
-            q.stage("v3", b, "vqc_forward", input_sha256="B")
-            q.stage("v3", a, "vqc_forward", input_sha256="A")
-        self.assertEqual(executed, [a, b, a])
-        self.assertEqual(q._c03_stats["vqc_hits"], 1)
-        self.assertEqual(q._c03_stats["vqc_misses"], 3)
+    def test_missing_release_manifest_bypasses_cache(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            memo = ArchiveMemo()
+            n = []
+            self.assertEqual(memo.get("perception", folder, lambda: n.append(1) or b"a"), b"a")
+            self.assertEqual(memo.get("perception", folder, lambda: n.append(1) or b"b"), b"b")
+            self.assertEqual(len(n), 2)
+            self.assertEqual(memo.stats["hits"], 0)
+
+    def test_scope_does_not_leak_or_patch_native_u02(self):
+        init = original.Session.__init__
+        turn = original.Session.turn
+        self.assertIs(_C03_INIT.__code__, init.__code__)
+        self.assertIs(_C1_INIT.__code__, c1_workspace.Workspace.__init__.__code__)
+        self.assertIs(CachedSession.turn, turn)
+        with archive_cache_scope(max_bytes=64) as memo:
+            self.assertEqual(memo.snapshot()["entries"], 0)
+        self.assertEqual(memo.snapshot()["entries"], 0)
+        self.assertIs(original.Session.__init__, init)
+        self.assertIs(original.Session.turn, turn)
 
 
 if __name__ == "__main__":
-    import unittest
     unittest.main()
