@@ -1,11 +1,11 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c10-reasoning-plan-20261107",
-  "base_commit": "f6ea64ed301db2ef37eafea71767ba0dbd0ee579",
-  "current_cycle": "C10",
+  "branch": "codex/bbyq-u03-c11-joint-learning-20261107",
+  "base_commit": "147cfe804d413110400a7da528d286529f749fa9",
+  "current_cycle": "C11",
   "latest_verified_cycle": "C10",
-  "last_stable_route": "U02 original; C01-C10 experimental opt-in, none automatically installed",
+  "last_stable_route": "U02 original; C01-C11 experimental opt-in, no PRs automatically merged",
   "history_constraints": {
     "frozen_sources_expected": 159,
     "preserve_original_checkpoints": true,
@@ -95,7 +95,7 @@
     {
       "id": "C11",
       "work": "Aprendizaje conjunto",
-      "state": "pendiente",
+      "state": "en implementación; campaña XI nativa pendiente",
       "pr": null,
       "pr_url": null
     },
@@ -143,19 +143,14 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C10 concluido: pruebas nativas C1/Zero y planes QMemory/VQC/Entity/QRL/QChat en copia SQLite descartable, con SHA y resguardo de revisión; C11 aprendizaje conjunto pendiente",
-  "current_ci": {
-    "run_id": 42396799193,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193/artifacts/13584020735"
-  },
+  "current_plan": "C11: original native XI verified multi-bank feedback with strict checkpoint and native parameter audits, scalar/no-training controls and original QMemory/VQC/QRL/voice ablations",
+  "current_ci": null,
   "blockers": [
-    "C10 añade costo de auditoría y sandbox; no demuestra nueva generalización de razonamiento ni ventaja cuántica.",
-    "C08 permanece sin ganancia de pesos demostrada; C11 no debe confundir ejecución de entrenamiento con aprendizaje efectivo.",
-    "Los 159 archivos originales se conservan; no iniciar APK hasta autorización explícita en ciclos finales."
+    "C11 native CI and heldout learning evidence pending; do not assume that a training call changes parameters",
+    "The only authoritative user memory remains U02 SQLite; candidate data is synthetic",
+    "C08 remains not promoted because its native weights did not change; no APK"
   ],
-  "next_cycle": "C11",
+  "next_cycle": "C12",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
