@@ -52,3 +52,28 @@ Estos tiempos **no representan funciones equivalentes**: el tiempo U02 solo incl
 **C11 — Aprendizaje conjunto:** ensayar coordinación de actualizaciones verificadas entre los motores existentes y probar ablaciones contra cada componente, sin aceptar etiquetas en inferencia ni modificar snapshots anteriores hasta demostrar una ganancia real.
 
 [Panel completo C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado JSON](../../docs/BBY_Q_U03_ESTADO.json) · [Siguiente operación](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+## Segunda CI: verificación de concurrencia y variación de tiempos
+
+La [CI #42396799193](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193)
+repite todas las pruebas anteriores y añade tres controles deterministas
+de cambio de revisión durante una copia o después de obtener una prueba
+XI. En ambos casos debe **retenerse la conclusión y no editar la memoria**.
+
+**Resultado: aprobado.** Conformance nativa: dos IDs de prueba,
+ocho operaciones de misión, mismo hash original de estados
+`5657856bda40534af4f87391886ac14216beb61269eebbc27e0d753d9f655ec4`,
+159 archivos originales intactos, ninguna APK.
+
+Medianas de dos muestras adicionales, runner GitHub/Linux:
+
+| Operación | U02 original directo | C10 verificado | Sobrecarga |
+|---|---:|---:|---:|
+| Prueba C1/Zero | **1.825,824 ms** | **2.187,475 ms** | **+361,651 ms** |
+| Misión XI/QRL | **2.087,678 ms** | **2.435,790 ms** | **+348,112 ms** |
+
+Estas cifras variaron respecto a la primera campaña; se documentan ambas.
+La auditoría agrega revisión/copia y no representa ganancia de latencia,
+rendimiento Android ni inteligencia nueva.
+
+[Evidencia JSON de la segunda campaña](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193/artifacts/13584020735).
