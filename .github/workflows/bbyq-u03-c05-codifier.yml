@@ -1,0 +1,92 @@
+name: BBY Q U03 C05 native semantic codifier
+on:
+  pull_request:
+    paths:
+      - 'integration/codifier_u03_c05/**'
+      - 'ai/xi/c05/**'
+      - '.github/workflows/bbyq-u03-c05-codifier.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c05-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test lossless C1 spans, negation scopes, roles, exact amounts and wire integrity
+        run: |
+          python3 -m unittest integration.codifier_u03_c05.test_semantic -v
+          python3 -m unittest integration.planner_u03_c04.test_planner -v
+          python3 -m unittest integration.cache_u03_c03.test_cache -v
+      - name: Build original REVERSE-PC and XI/Ether runtime (no Android)
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify frozen C1 and U02 releases, native gradients, rollback and migration
+        run: |
+          mkdir -p build/c05 build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Verify original XI C1 bytes and native semantic-frame boundaries
+        run: python3 -m integration.codifier_u03_c05.verify_native | tee build/c05/native-stdout.json
+      - name: Compare exact original U02/C04/C05 receipts and checkpoint identities
+        run: python3 -m integration.codifier_u03_c05.conformance | tee build/c05/conformance-stdout.json
+      - name: Measure semantics-frame overhead against original C04 runtime
+        run: python3 -m integration.codifier_u03_c05.benchmark --samples 2 --timeout 180 --out build/c05/benchmark.json
+      - name: Gate verified native evidence and zero APK
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a = json.loads(Path("build/c05/native-checks.json").read_text())
+          c = json.loads(Path("build/c05/conformance.json").read_text())
+          b = json.loads(Path("build/c05/benchmark.json").read_text())
+          assert a["passed"] and c["passed"] and b["passed"]
+          assert a["count"] >= 200 and a["native_C1_and_XI_c05_validation"]
+          assert a["original_UTF8_and_token_ids_identical"]
+          assert a["invalid_semantic_XI_frame_rejected"]
+          assert c["original_U02_C04_C05_exact_bank_sha_and_receipts_equal"]
+          assert c["native_feedback_memory_context_and_atomic_rollback_equal"]
+          assert c["original_U02_restart_passed"]
+          assert c["sidecar_frames_checked"] == 12
+          assert a["frozen_asset_count"] == c["frozen_asset_count"] == b["protected_asset_count"] == 159
+          assert a["frozen_sources_unchanged"] and c["frozen_sources_unchanged"] and b["frozen_assets_unchanged"]
+          assert a["model_parameters_updated"] is False
+          assert not a["apk_built"] and not c["apk_built"] and not b["apk_built"]
+          print("C05 lossless native codifier VERIFIED, all U02 checkpoints unchanged, no APK")
+          for name, row in b["comparison"].items():
+              print(name, "C04/C05 wall ratio", row["c04_over_c05_ratio"],
+                    "semantic packet bytes", row["semantic_wire_bytes"]["median"])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C05-native-semantic-evidence
+          path: |
+            build/c05/*.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
