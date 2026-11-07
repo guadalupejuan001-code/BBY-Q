@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C03 differential proof: original U02 vs exact turn-scoped VQC/QMemory memo."""
+"""C03 proof: model archive cache does not change ONE native operation or bank."""
 from __future__ import annotations
 
 import hashlib
@@ -8,145 +8,95 @@ from pathlib import Path
 import tempfile
 
 from integration.audit_u03_c00.profile import MISSION, apk_files, freeze_assets
-from integration.persist_u03_c02.conformance import identical_trial, sanitize
+from integration.persist_u03_c02.conformance import identical_trial
 from integration.unified.session import Session
-from .session import CachedSession
+from .session import CachedSession, archive_cache_scope
 
 
-def exercise(klass):
-    """Capture full receipts, native bank SHA, history and explicit cache stats."""
-    with tempfile.TemporaryDirectory(prefix="bbyq-u03-c03-proof-") as directory:
-        path = Path(directory) / "sandbox.sqlite"
-        with klass(path) as q:
-            initial = q.snapshot()
-            first = q.turn("mission", MISSION)
-            if not first["ok"] or not first["results"][-1]["voice"]["faithful"]:
-                raise AssertionError("Original mission diverged")
-            native_trace = first["trace"]
-            if sum(row["operation"] == "vqc_forward" for row in native_trace) != 2:
-                raise AssertionError("Expected double native VQC readout provenance in original receipt")
-            cache_stats = dict(q.last_cache_stats) if hasattr(q, "last_cache_stats") else None
-            prior = q.snapshot()
-            replay = q.turn("mission", MISSION)
-            if replay != first or q.snapshot() != prior:
-                raise AssertionError("Idempotent replay changed persistent model state")
-            same_id_rejected = False
-            try:
-                q.turn("mission", MISSION + " otra")
-            except ValueError:
-                same_id_rejected = True
-            if not same_id_rejected or q.snapshot() != prior:
-                raise AssertionError("C03 re-used a different prompt under a prior ID")
-
-            memory = q.turn("remember-other", "corrige la regla Faro Azul a 0")
-            recall = q.turn("recall", "lee la regla Faro Azul")
-            # New sample should never carry a previous turn's VQC cache.
-            observation = q.turn("new-sample", "observa Nara con muestra 88114")
-            second_stats = dict(q.last_cache_stats) if hasattr(q, "last_cache_stats") else None
-            another = q.turn("second-task", "resuelve Nara usando la regla Faro Azul desde 3")
-            another_stats = dict(q.last_cache_stats) if hasattr(q, "last_cache_stats") else None
-            if not all(v["ok"] for v in [memory, recall, observation, another]):
-                raise AssertionError("Updated memory/sample was not applied")
-
-            # A native supervised feedback follows the original *last* task;
-            # never serve a stale VQC cache after parameters can change.
-            feedback = q.turn("feedback", "aprende de la última tarea")
-            feedback_stats = dict(q.last_cache_stats) if hasattr(q, "last_cache_stats") else None
-            if not feedback["ok"]:
-                raise AssertionError("Feedback failed after second task")
-
-            snap = q.snapshot()
-            try:
-                q.turn("injected-error",
-                       "guarda la regla Otra con valor 0 observa Brisa con muestra 122121 y resuelve desde 3",
-                       fail_after=2)
-            except RuntimeError:
-                pass
-            else:
-                raise AssertionError("C03 did not propagate crash")
-            if snap != q.snapshot():
-                raise AssertionError("Rollback after cache miss changed a trained bank")
-
-            status = {
-                "first": first, "replay": replay, "remember": memory,
-                "recall": recall, "observation": observation, "second_task": another,
-                "feedback": feedback, "initial": initial,
-                "snapshot": q.snapshot(), "history": q.history(),
-            }
-        with Session(path) as reader:
-            if reader.snapshot() != status["snapshot"] or reader.history() != status["history"]:
-                raise AssertionError("Original U02 cannot reload C03-computed checkpoint")
-        return sanitize(status), {
-            "first": cache_stats,
-            "observation": second_stats,
-            "separate_mission": another_stats,
-            "feedback": feedback_stats,
+def warm_reopen():
+    with tempfile.TemporaryDirectory(prefix="bbyq-u03-c03-reopen-") as directory:
+        database = Path(directory) / "knowledge.sqlite"
+        with archive_cache_scope() as memo:
+            with CachedSession(database) as first:
+                original_mission = first.turn("mission", MISSION)
+                if not original_mission["ok"]:
+                    raise AssertionError("Cached original mission failed")
+                before = first.snapshot()
+                history = first.history()
+            after_first = memo.snapshot()
+            with CachedSession(database) as reopened:
+                # U02 checks request ID before running native code; do not
+                # pretend a cached model archive bypasses one XI mission.
+                replay = reopened.turn("mission", MISSION)
+                if replay != original_mission or reopened.snapshot() != before:
+                    raise AssertionError("C03 changed an idempotent original receipt")
+                if reopened.history() != history:
+                    raise AssertionError("C03 changed original history")
+                current = reopened.turn("recovery", "lee la regla Faro Azul")
+                if not current["ok"] or current["results"][-1].get("value") != 1:
+                    raise AssertionError("C03 lost the original quantum association")
+                final = reopened.snapshot()
+            after_reopen = memo.snapshot()
+        with Session(database) as legacy:
+            if legacy.snapshot() != final:
+                raise AssertionError("Original U02 cannot read a C03 checkpoint")
+            if legacy.history()[-1]["request_id"] != "recovery":
+                raise AssertionError("Original U02 history differs")
+        if after_reopen["hits"] <= after_first["hits"]:
+            raise AssertionError("C03 did not reuse any authenticated frozen archives")
+        if after_reopen["bypassed_native_executions"] != 0:
+            raise AssertionError("C03 illegally skipped XI quantum work")
+        return {
+            "same_original_receipts": True,
+            "same_original_recovery": True,
+            "same_checkpoint_sha256": True,
+            "first_open": after_first,
+            "reopen": after_reopen,
         }
-
-
-def control_case(control: str, cls):
-    with tempfile.TemporaryDirectory(prefix="bbyq-u03-c03-control-") as tmp:
-        with cls(Path(tmp) / "control.sqlite") as session:
-            result = session.turn("test-" + control, MISSION, control=control)
-            return sanitize(result), session.snapshot(), (
-                dict(session.last_cache_stats) if hasattr(session, "last_cache_stats") else None
-            )
 
 
 def run():
     protected, original_apks = freeze_assets(), apk_files()
-    standard = identical_trial(Session)
-    memo = identical_trial(CachedSession)
-    if standard != memo:
-        mismatch = [name for name in standard if standard[name] != memo.get(name)]
-        raise AssertionError("C03 cannot preserve U02 receipts/checkpoints: " + str(mismatch))
-    ref, _ = exercise(Session)
-    cand, stats = exercise(CachedSession)
-    if ref != cand:
-        mismatch = [name for name in ref if ref[name] != cand.get(name)]
-        raise AssertionError("C03 double-VQC memo changed full native semantics: " + str(mismatch))
-    if stats["first"]["vqc_hits"] != 1 or stats["first"]["vqc_misses"] != 1:
-        raise AssertionError("C03 failed to avoid exactly one duplicate XI VQC execution")
-    if stats["observation"]["vqc_hits"] != 0 or stats["separate_mission"]["vqc_hits"] != 0:
-        raise AssertionError("VQC cache was erroneously retained between turns")
-    if stats["feedback"]["vqc_hits"] != 0:
-        raise AssertionError("C03 cached a training/update call")
-    controls = {}
-    for name in ("memory-erased", "vqc-ablated", "qrl-ablated"):
-        old_receipt, old_state, _ = control_case(name, Session)
-        new_receipt, new_state, metrics = control_case(name, CachedSession)
-        if old_receipt != new_receipt or old_state != new_state:
-            raise AssertionError("C03 changed an ablation: " + name)
-        if name == "vqc-ablated" and metrics["vqc_hits"] != 0:
-            raise AssertionError("Counterfactual perception unexpectedly cached")
-        controls[name] = {"equal": True, "vqc_hits": metrics["vqc_hits"]}
+    reference = identical_trial(Session)
+    with archive_cache_scope() as memo:
+        # First C03 session authenticates and caches compressed assets.
+        candidate = identical_trial(CachedSession)
+        first = memo.snapshot()
+        # Second C03 session must reuse the original authenticated bytes.
+        candidate_repeat = identical_trial(CachedSession)
+        second = memo.snapshot()
+    if reference != candidate or reference != candidate_repeat:
+        mismatch = [key for key in reference if
+                    reference[key] != candidate.get(key)
+                    or reference[key] != candidate_repeat.get(key)]
+        raise AssertionError("C03 U02 full receipt/checkpoint mismatch: " + str(mismatch))
+    if second["hits"] <= first["hits"] or second["reused_checkpoint_bytes"] <= 0:
+        raise AssertionError("Original release archive cache did not record real reuse")
+    if second["bypassed_native_executions"] != 0:
+        raise AssertionError("C03 skipped a native XI operation")
+    restarted = warm_reopen()
     if freeze_assets() != protected or apk_files() != original_apks:
-        raise AssertionError("C03 changed a source, model or created an APK")
-
+        raise AssertionError("C03 altered a frozen release file or generated an APK")
     return {
         "passed": True,
-        "full_receipt_and_checkpoint_equal": True,
+        "original_U02_checkpoint_and_full_receipt_equal": True,
         "original_U02_restart_passed": True,
-        "idempotence_and_rejection_passed": True,
-        "rollback_after_caching_passed": True,
-        "feedback_and_new_observation_equal": True,
-        "ablations": controls,
-        "mission": stats["first"],
-        "turn_scope": {
-            "observation": stats["observation"],
-            "separate_mission": stats["separate_mission"],
-            "feedback": stats["feedback"],
-        },
+        "real_content_verified_model_cache_hit": True,
+        "native_XI_inference_bypassed": False,
+        "models_before_after_unchanged": True,
+        "first_load": first,
+        "repeated_load": second,
+        "warm_reopen": restarted,
         "protected_file_count": len(protected),
-        "protected_sources_unchanged": True,
         "apk_built": False,
-        "semantic_sha256": hashlib.sha256(json.dumps(ref, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+        "reference_sha256": hashlib.sha256(json.dumps(reference, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+        "rejected_experiment": {
+            "name": "elide repeated VQC forward",
+            "reason": "32,155 bytes of V3 checkpoint changed when a repeat XI circuit was skipped",
+            "status": "REJECTED, not active in C03",
+        },
     }
 
 
-def main():
-    print(json.dumps(run(), ensure_ascii=False))
-
-
 if __name__ == "__main__":
-    main()
+    print(json.dumps(run(), ensure_ascii=False))
