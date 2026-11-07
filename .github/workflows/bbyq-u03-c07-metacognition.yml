@@ -66,8 +66,9 @@ jobs:
           r06=json.loads(Path('build/c06/training-report.json').read_text())
           assert r['passed'] and c['passed'] and r06['passed']
           assert r['native_XI_trained_and_reopened']
-          assert r['dataset']['counts']=={'train':540,'validation':135,'test':180}
+          assert r['dataset']['counts']=={'train':540,'validation':135,'test':180,'challenge':180}
           assert r['dataset']['subject_source_scenario_disjoint']
+          assert r['heldout_split']=='challenge'
           assert r['calibration_and_threshold_selected_on_validation_only']
           assert r['no_test_labels_in_training'] and r['test_seen_only_after_selection']
           assert r['checkpoint_format']=='REVERSE-PC RVPC2'
