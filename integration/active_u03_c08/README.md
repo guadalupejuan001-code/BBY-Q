@@ -1,0 +1,175 @@
+# BBY Q U03 C08 — Aprendizaje activo XI con verificación previa (sin APK)
+
+**Base:** C07 / PR #93 (`fb1e29ede885aafc34f2a801752e19664770f96c`).
+Esta fase trabaja directamente en GitHub sobre una rama experimental y
+conserva todas las identidades y checkpoints RVPC2 anteriores.
+
+## Motivo concreto
+
+La reserva CHALLENGE de C07 mostró **12 abstenciones injustificadas**
+con evidencias sintéticas pertinentes acompañadas de distractores.
+C08 no accede a las etiquetas de esa reserva ni retoca el código de
+clasificación original para corregir esos casos a mano.
+
+En su lugar:
+1. El XI C07 original observa **360 candidatos sin etiquetas**.
+2. Un selector elige **96** según sus scores nativos, incertidumbre,
+   procedencia y discrepancias potenciales ante distractores.
+3. Se generan preguntas de aclaración explícitas para cada candidato,
+   incluyendo por qué se requiere evidencia o qué conflicto hay.
+4. Solo los casos seleccionados son sometidos a un **verificador
+   sintético independiente**; él confirma una etiqueta con un recibo
+   de hash ligado al caso. Ninguna etiqueta de candidato está disponible
+   antes de la selección.
+5. Se hacen actualizaciones de pesos **con `c07_train`
+   dentro de XI**, sobre un **nuevo checkpoint RVPC2**.
+6. Un modelo de control recibe igual cantidad de etiquetas verificadas
+   y operaciones nativas, pero los 96 casos se eligen aleatoriamente.
+7. Una **validación nueva de 135 casos** escoge número de actualizaciones,
+   temperatura, umbral y elegibilidad de promoción.
+8. Una **prueba nueva de 180 casos** se abre solo después de congelar
+   todas las decisiones, para comparar C07 original, C08 activo y control
+   aleatorio. No se copian ni se usan las respuestas CHALLENGE de C07.
+
+Los tres conjuntos tienen **sujetos, nombres, fuentes y UIDs disjuntos**.
+La prueba reservada contiene distractores frescos y fuentes sintéticas,
+no información personal ni noticias reales.
+
+## Seguridad de etiquetas y fuentes
+
+- La «verificación» de C08 consiste en un **oráculo sintético del entorno
+  declarado** (fuentes en lista de control, fecha, bandera de atestación y
+  SHA-256 de contenido). **No es una firma digital**, no contacta
+  instituciones reales y no acredita veracidad sobre el mundo.
+- Las preguntas generadas quedan en estado `pending-verification`;
+  no envían mensajes ni se incorporan a la memoria personal.
+- El modelo solo se actualiza después de una confirmación explícita de
+  ese verificador sintético; los casos verdaderamente desconocidos
+  continuarían pendientes en una implementación real.
+- No debe interpretarse el score de clase calibrado como probabilidad de
+  verdad de la afirmación; la calibración se evalúa dentro de esta tarea.
+- El componente de seguridad de C07 sigue impidiendo respuestas sin
+  evidencia admitida y señalando contradicciones. Estas restricciones
+  **son reglas independientes de la red XI**, no méritos atribuibles al
+  aprendizaje.
+- El test CHALLENGE de C07 queda completamente fuera del entrenamiento
+  C08. La nueva reserva C08 se genera después de elegir todos los modelos.
+
+## Experimentos y costes
+
+Las tres variantes:
+- **C07 congelado:** cero actualizaciones, como referencia.
+- **C08 activo:** 96 consultas adquiridas sin etiqueta, posteriormente
+  verificadas; hasta 192 actualizaciones nativas en dos rondas.
+- **C08 aleatorio:** misma reserva de adquisición y presupuesto;
+  hasta 192 actualizaciones, mismas fuentes y política de verificación.
+
+El presupuesto de adquisición prioriza escenarios con evidencia
+pertinente y distractores, pero preserva exploración de casos
+insuficientes y contradictorios. La validación compara la **cobertura
+justificada** y penaliza respuestas inseguras, conflictos omitidos y
+abstenciones injustificadas.
+
+Solo se elige C08 para una **candidatura experimental de promoción**
+si la validación mejora cobertura o disminuye rechazos excesivos,
+sin degradar la seguridad frente a C07 congelado. No se promociona
+automáticamente al clasificador de intención C1 ni a Android.
+
+Se publican por variante: exactitud/F1 nativos, Brier, ECE,
+cobertura selectiva, respuestas sin respaldo, abstenciones
+injustificadas, conflictos omitidos, selección de ronda y el
+checksum SHA-256. No se ocultan los fallos ni se promete mejora
+hasta medir la prueba final.
+
+## Integración con la entidad
+
+`ActiveMetaSession` hereda `MetaSession`
+y permite inspeccionar un clasificador XI actualizado junto a la
+salida de C07, **sin sustituir respuestas C1, feedback, memoria
+QMemory, registros SQLite ni snapshots de usuario**.
+Rechaza un modelo o manifiesto cuyo SHA no coincida, conservando
+el proceso anterior sin reentrenamiento silencioso.
+
+## Reproducción
+
+    bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+    python3 -m unittest integration.active_u03_c08.test_active -v
+    python3 -m integration.semantic_u03_c06.train --epochs 6 --out build/c06/training-report.json
+    python3 -m integration.metacognition_u03_c07.train --epochs 8 --out build/c07/training-report.json
+    python3 -m integration.active_u03_c08.learner --out build/c08/active-report.json
+    python3 -m integration.active_u03_c08.verify_integration
+
+La CI host Linux: `.github/workflows/bbyq-u03-c08-active.yml`.
+Verifica C1/U02, migración, readout original, calibración C07,
+frozen SHA-256 de **159 archivos**, replay, rollback, las tres
+variantes nativas y nueva reserva independiente.
+
+## Límites
+
+**C08 no construye una IA general ni un modelo que se autocorrija sin
+supervisión.** Aprende una decisión de tres clases a partir de
+características preparadas por el validador sintético C07.
+
+La aplicación real requerirá un verificador de procedencia externo,
+consentimiento y trazabilidad para admitir etiquetas humanas.
+La retención de fuentes, manipulación de respuestas y falsificación
+de pruebas son asuntos abiertos de arquitectura.
+
+**Sin APK, sin cambios al runtime XI/Ether original ni a los checkpoints
+anteriores. El modelo nuevo solo existe en la rama y artefactos CI.**
+
+
+## Auditoría del primer test y protocolo más exigente
+
+La [CI piloto #42388230030](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42388230030)
+aprobó seguridad, entrenamiento y estado congelado, pero los tres modelos
+—C07 original, C08 activo y control aleatorio— tuvieron **180/180 aciertos**
+en el primer test C08. Ninguna mejora de C08 pudo demostrarse: la
+validación también dio empate y el candidato **no fue promovido**.
+
+No se usa ninguna etiqueta de ese primer test para entrenar, seleccionar
+nuevas épocas o recalibrar. Se conserva como evidencia de que el
+conjunto inicial era demasiado fácil.
+
+Para evaluar el fallo específico ya documentado en C07, se registró
+una familia **nueva**: `C08-dual-irrelevant-signed-stress-v2`,
+con semillas distintas, nuevas entidades y fuentes. Cada escenario
+contiene **dos registros adicionales con procedencia aceptable pero
+no pertinentes**: uno habla de otra entidad y el otro de otra
+propiedad. Estos registros no deben modificar la conclusión sobre
+la consulta realmente solicitada.
+
+- Adquisición: nueva reserva no etiquetada de 360 candidatos.
+- Validación: 135 ejemplos distintos para ronda, temperatura y umbral.
+- Test reservado nuevo: 180 casos jamás vistos, abierto tras la
+  selección completa del modelo.
+- Se conservan exactamente los mismos 96 ejemplos adquiridos por
+  candidato, reglas de verificación sintética y comparación de
+  actualizaciones nativas contra la política aleatoria.
+
+La reserva v2 se ejecuta **una sola vez**; si también hay empate
+o regresión, se informará y el modelo original seguirá como
+referencia estable. El conjunto CHALLENGE anterior de C07 sigue
+excluido de entrenamiento y elección de pesos.
+
+
+## Resultado final C08 — criterio de no promoción
+
+Leer el [informe auditado RESULTS.md](RESULTS.md) y
+[GitHub Actions #42389307671](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42389307671).
+
+**Los dos tests C08 empataron:** C07 congelado, activo y control
+aleatorio alcanzaron **180/180** en cada reserva. La auditoría de
+los 30 coeficientes XI confirmó que, aunque hubo llamadas de
+entrenamiento, **ningún peso cambió** (cero correcciones nativas).
+El nuevo hash RVPC2 refleja contadores, no nuevo aprendizaje.
+
+Por tanto, la implementación de selección/verificación está probada,
+pero **la mejora de aprendizaje activo no está demostrada** y C08
+no se promociona. Los 12 rechazos injustificados del test C07
+anterior permanecen como un problema por resolver con evidencia
+independiente en una campaña posterior.
+
+La ingeniería de C08 cumple el aislamiento, las pruebas y la
+integridad, no el objetivo de mejorar cobertura; no se envía
+ninguna APK.
