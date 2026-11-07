@@ -10,7 +10,7 @@ C11 coordina una campaña de aprendizaje **sobre la ruta conjunta que U02 ya tie
 El nuevo componente aporta:
 
 - **Fuente común certificada:** crea una base U02 **sintética y temporal**, registra una misión original y la etiqueta de la regla aportada, y conserva un snapshot SHA-256 de los siete bancos.
-- **Tres condiciones con el mismo checkpoint inicial:** `joint-verified` (feedback XI con clase y regla verificadas), `outcome-only` (solo resultado escalar explícito, sin etiqueta de clase/regla, por lo que VQC/QRL/QMemory no reciben esa supervisión) y `frozen` (sin entrenamiento).
+- **Tres condiciones con el mismo checkpoint inicial:** `joint-verified` (feedback XI con clase y regla verificadas), `outcome-only` (solo resultado escalar explícito, **retirando el vínculo de etiqueta sintética en esta copia experimental** porque U02 normalmente recupera la etiqueta automáticamente; así VQC/QRL/QMemory no reciben esa supervisión) y `frozen` (sin entrenamiento).
 - **Deltas de parámetros nativos:** lectura real por XI de las regiones de pesos VQC/QRL, ángulos QMemory, parámetros Entity y QChat, más identidad del readout VQC. A diferencia de un hash del RVPC2 completo, se excluyen los contadores de optimización y la metadata. El lector C1 se comprueba por su banco original y su registro `updates.router`, sin afirmar un cambio de pesos no medido.
 - **Fallos atómicos y replay:** las transacciones de feedback inyectadas con fallo deben revertir todo banco y recibo. Un replay de la misma solicitud no debe reentrenar; una segunda solicitud de feedback debe rechazarse.
 - **Validación independiente:** tres muestras nuevas, sin repetir la semilla ni los nombres del entrenamiento; un test reservado de cuatro muestras se abre solamente después de la decisión de promoción. Las predicciones se producen en el U02 original antes de revelar las etiquetas del generador XI, que se obtienen en otra sesión nativa independiente.
@@ -46,3 +46,7 @@ CI: `.github/workflows/bbyq-u03-c11-joint.yml`, con compilación XI/Ether host, 
 - Ninguna APK, Gradle, implementación Android ni cambio automático a `main`.
 
 [Panel C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado JSON](../../docs/BBY_Q_U03_ESTADO.json) · [Siguiente C12](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+### Aclaración sobre la ablación de etiqueta
+
+El primer ensayo C11 reveló que la instrucción de feedback escalar por sí sola **no** elimina la etiqueta: U02 busca la supervisión guardada en la tabla de tareas. Por eso el comparador `outcome-only` suprime la asociación de supervisión **solo dentro de su copia SQLite de laboratorio**, antes de invocar el feedback nativo sin clase/regla. No se altera la base original, el código congelado ni el conjunto reservado. Se comprueba que los motores supervisados no reciban actualizaciones.
