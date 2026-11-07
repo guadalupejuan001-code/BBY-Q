@@ -37,7 +37,7 @@ def _stats() -> dict:
         "native_bank_processes_avoided": [],
         "immutable_bank_hashes_verified": 0,
         "hash_worker_count": 0,
-        "native_xi_executions_skipped": 0,
+        "stateful_xi_circuits_skipped": 0,
         "native_stateful_parallel_executions": 0,
         "dependency_plan": None,
     }
