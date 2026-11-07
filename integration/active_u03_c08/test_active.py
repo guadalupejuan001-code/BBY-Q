@@ -17,22 +17,25 @@ from .learner import (
 
 class ActiveLearningContracts(unittest.TestCase):
     def test_dataset_fresh_counts_and_disjoint_identities(self):
-        pool, val, heldout = acquire_pool(), validation(), test_reserved()
+        # DO NOT open the test-reserved data here. C08 campaign opens it
+        # only after native training + validation selection are frozen.
+        pool, val = acquire_pool(), validation()
         self.assertEqual(len(pool), SIZES["pool"])
         self.assertEqual(len(val), SIZES["validation"])
-        self.assertEqual(len(heldout), SIZES["test"])
-        proof=check_separation(pool,val,heldout)
-        self.assertTrue(proof["disjoint_queries_sources_uids"])
-        self.assertTrue(proof["classes_balanced"])
+        self.assertEqual(SIZES["test"],180)
         self.assertEqual(len({p.uid for p in pool}),len(pool))
+        self.assertEqual(len({p.uid for p in val}),len(val))
+        self.assertFalse({p.uid for p in pool} & {p.uid for p in val})
+        self.assertFalse({p.query["subject"] for p in pool} &
+                         {p.query["subject"] for p in val})
 
     def test_unlabeled_cases_cannot_expose_training_targets(self):
         pool=acquire_pool()
         self.assertFalse(any(hasattr(c, "label") for c in pool))
         self.assertFalse(any("label" in c.as_dict() for c in pool))
         self.assertTrue(all(c.partition=="pool" for c in pool))
-        self.assertTrue(all(independent_target(c.query,c.evidence) in range(3)
-                            for c in pool))
+        # Gold labels are requested only from synthetic_teacher_confirm
+        # AFTER acquire(); the selector receives no label field.
 
     def test_selector_does_not_require_teacher_answers(self):
         pool=acquire_pool()
