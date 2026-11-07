@@ -22,9 +22,9 @@ from .train import (
 class MetaEpistemicTests(unittest.TestCase):
     def test_split_reproducibility_and_no_cross_split_leak(self):
         info=verify_disjoint()
-        self.assertEqual(info["counts"], {"train":540,"validation":135,"test":180})
+        self.assertEqual(info["counts"], {"train":540,"validation":135,"test":180,"challenge":180})
         self.assertTrue(info["subject_source_scenario_disjoint"])
-        for name in ("train","validation","test"):
+        for name in ("train","validation","test","challenge"):
             a,b=split(name),split(name)
             self.assertEqual(a,b)
             self.assertEqual(len({x.uid for x in a}),len(a))
