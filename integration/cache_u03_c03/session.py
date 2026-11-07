@@ -98,6 +98,20 @@ class C03Quantum(BaseQuantum):
             tuple(sorted(details.items())),
         )
         cache = self._c03_caches[bank]
+        # A *different* readout overwrites scratch/quantum register contents.
+        # Returning later to an older body must re-execute its native circuit,
+        # even if model weights and Python input are unchanged. Therefore only
+        # the latest contiguous identical observation is reusable.
+        if cache and identity not in cache:
+            self._invalidate(bank)
+            identity = (
+                operation,
+                sha256(body.encode("utf-8")).digest(),
+                self._c03_epochs[bank],
+                self.meta.get("perception_revision", 0),
+                self.readout_magic if bank == "v3" else None,
+                tuple(sorted(details.items())),
+            )
         suffix = "vqc" if bank == "v3" else "memory"
         if identity in cache:
             events = cache[identity]
