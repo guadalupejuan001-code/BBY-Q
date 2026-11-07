@@ -1,0 +1,95 @@
+name: BBY Q U03 C03 exact native caching
+on:
+  pull_request:
+    paths:
+      - 'integration/cache_u03_c03/**'
+      - '.github/workflows/bbyq-u03-c03-cache.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c03-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check C03 cache identity, boundedness and invalidation
+        run: |
+          python3 -m unittest integration.cache_u03_c03.test_cache -v
+          python3 -m unittest integration.audit_u03_c00.test_profile -v
+          python3 -m unittest integration.persist_u03_c02.test_optimistic -v
+      - name: Compile pinned original native XI and Ether runtime
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify exact V3 bytes with safe checkpoint cache
+        run: |
+          mkdir -p build/c03
+          python3 -m integration.cache_u03_c03.diagnose | tee build/c03/diagnostic.json
+      - name: Verify U02 frozen release, gradients, original rollback and upgrade
+        run: |
+          mkdir -p build/c03 build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Differential full result, native bank and rollback parity
+        run: python3 -m integration.cache_u03_c03.conformance | tee build/c03/conformance.json
+      - name: Compare authenticated archive cache and unchanged XI calls against U02
+        run: python3 -m integration.cache_u03_c03.benchmark --samples 2 --timeout 180 --out build/c03/benchmark.json
+      - name: Validate real saved evidence and no APK
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c = json.loads(Path('build/c03/conformance.json').read_text())
+          b = json.loads(Path('build/c03/benchmark.json').read_text())
+          assert c['passed'] and b['passed']
+          assert c['original_U02_checkpoint_and_full_receipt_equal']
+          assert c['original_U02_restart_passed']
+          assert c['real_content_verified_model_cache_hit']
+          assert c['native_XI_inference_bypassed'] is False
+          assert c['repeated_load']['hits'] > c['first_load']['hits']
+          assert b['summary']['reopen']['skipped_XI_execution'] == 0
+          assert b['summary']['mission']['skipped_XI_execution'] == 0
+          assert b['summary']['mission']['native_exec_original']['median'] == b['summary']['mission']['native_exec_cached']['median']
+          diagnostic = json.loads(Path('build/c03/diagnostic.json').read_text())
+          assert diagnostic['snapshot_equal'] and not diagnostic['different_banks']
+          assert c['protected_file_count'] == b['frozen_assets_count'] == 159
+          assert c['models_before_after_unchanged'] and b['model_checksum_and_checkpoint_unchanged']
+          assert not c['apk_built'] and not b['apk_built']
+          print('C03 exact frozen archive cache conformance PASS; no native XI skipped; no APK')
+          for key, item in b['summary'].items():
+              print(key, 'wall ratio', item['wall_ratio_original_over_cached'],
+                    'native XI EXEC', item['native_exec_cached']['median'],
+                    'model cache hits', item['cache_model_hits']['median'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C03-native-cache-evidence
+          path: |
+            build/c03/*.json
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
