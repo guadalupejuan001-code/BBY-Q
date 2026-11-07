@@ -1,0 +1,120 @@
+name: BBY Q U03 C11 verified joint XI native learning
+on:
+  pull_request:
+    paths:
+      - 'integration/joint_u03_c11/**'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c11-joint.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c11-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test C11 split disjointness, native supervision, promotion and panel
+        run: |
+          python3 -m unittest integration.joint_u03_c11.test_campaign -v
+          python3 -m integration.joint_u03_c11.verify_panel
+          python3 -m unittest integration.reasoning_u03_c10.test_planner -v
+          python3 -m unittest integration.memory_u03_c09.test_view -v
+      - name: Compile pinned original REVERSE-PC XI/Ether without Android
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Protect native C1/U02 model, U01 migration, XI gradients and rollback
+        run: |
+          mkdir -p build/sequence2 build/unified build/c10 build/c11
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Verify prior C09/C10 native reasoning and immutable original snapshots
+        run: python3 -m integration.reasoning_u03_c10.conformance
+      - name: Execute original XI joint feedback and independent native parameter audits
+        run: python3 -m integration.joint_u03_c11.campaign --out build/c11/campaign.json
+      - name: Enforce source/teacher/holdout integrity and candid report
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, hashlib
+          x=json.loads(Path('build/c11/campaign.json').read_text())
+          assert x['passed'] and x['schema']=='BBYQ-U03-C11-coordinated-XI-joint-learning-v1'
+          assert x['architecture']=='BBY Q -> w4U -> QdU'
+          assert x['prior_checkpoints_preserved'] and x['protected_files']==159
+          assert x['feedback_rollback_passed']
+          assert x['verified_feedback_only_original_native_branch']
+          assert x['no_new_models_or_new_memory_authority']
+          assert x['test_first_opened_after_promotion'] and x['no_training_on_heldout_labels']
+          assert x['splits']['training_validation_test_names_disjoint']
+          assert x['splits']['training_validation_test_seeds_disjoint']
+          assert x['promotion_candidate'] in ('frozen','joint-verified')
+          assert set(x['models'])=={'joint-verified','outcome-only','frozen'}
+          heads={'vqc_weights','qrl_weights','qmemory_angles','entity_weights','qchat_weights','vqc_readout'}
+          assert set(x['native_weights_before'])==heads
+          assert x['models']['joint-verified']['feedback']['supervision']=='independent-labels'
+          assert x['models']['joint-verified']['feedback']['updates']['router']==1
+          assert x['models']['outcome-only']['feedback']['supervision']=='explicit-user-result'
+          assert not any(x['models']['outcome-only']['native_weights_changed'][k]
+                         for k in ('vqc_weights','qrl_weights','qmemory_angles','vqc_readout'))
+          assert not any(x['models']['frozen']['native_weights_changed'].values())
+          for group in ('validation','test'):
+              assert set(x[group])==set(x['models'])
+              for mode,data in x[group].items():
+                  assert data['all_inference_without_teacher']
+                  assert data['total']==(3 if group=='validation' else 4)
+                  assert 0<=data['class_correct']<=data['total']
+                  assert 0<=data['supported_faithful']<=data['total']
+                  print(group,mode,'correct-class',data['class_correct'],
+                        'supported/faithful',data['supported_faithful'],
+                        'total',data['total'])
+          assert x['inference_ablation_joint']['total']==10
+          candidate=Path('build/c11/joint-candidate.sqlite')
+          assert candidate.exists()
+          assert hashlib.sha256(candidate.read_bytes()).hexdigest()==x['synthetic_candidate_sha256']
+          assert not x['apk_built'] and x['candidate_not_installed_or_merged']
+          panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
+          assert panel['current_cycle']=='C11' and panel['next_cycle']=='C12'
+          assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
+          assert panel['history_constraints']['new_primary_memory_authorities']==0
+          assert panel['history_constraints']['frozen_sources_expected']==159
+          assert not panel['history_constraints']['apk_requested']
+          print('C11 original native XI coordinated feedback VERIFIED; checkpoints unchanged; 0 APK')
+          print('native weight changes',x['models']['joint-verified']['native_weights_changed'])
+          print('promotion',x['promotion_candidate'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C11-native-joint-learning-evidence
+          path: |
+            build/c11/*.json
+            build/c11/joint-candidate.sqlite
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30
