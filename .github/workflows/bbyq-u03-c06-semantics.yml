@@ -1,0 +1,94 @@
+name: BBY Q U03 C06 native learned semantics
+on:
+  pull_request:
+    paths:
+      - 'integration/semantic_u03_c06/**'
+      - 'ai/xi/c06/**'
+      - '.github/workflows/bbyq-u03-c06-semantics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c06-native-semantic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Audit C06 disjoint labels, frozen C05 semantics and native adapter
+        run: |
+          python3 -m unittest integration.semantic_u03_c06.test_semantics -v
+          python3 -m unittest integration.codifier_u03_c05.test_semantic -v
+          python3 -m unittest integration.planner_u03_c04.test_planner -v
+      - name: Compile original pinned REVERSE-PC XI/Ether runtime (host only)
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Recheck original C1/U02 model identity, native numerical learning, migration
+        run: |
+          mkdir -p build/c06 build/sequence2 build/unified
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Check C05 semantics and unchanged end-to-end U02/C04/C05 state
+        run: python3 -m integration.codifier_u03_c05.conformance
+      - name: Train actual native XI semantic head on independent split
+        run: python3 -m integration.semantic_u03_c06.train --epochs 6 --out build/c06/training-report.json
+      - name: Gate new XI weights, ablations, frozen checkpoints and no APK
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          x = json.loads(Path('build/c06/training-report.json').read_text())
+          trained = Path('build/c06/semantic-trained.rvp')
+          assert x['passed'] and x['native_XI_trainable'] and x['native_XI_predictions']
+          assert x['dataset']['counts'] == {'train':360,'validation':90,'test':120}
+          assert x['dataset']['disjoint_templates'] and x['dataset']['disjoint_entities']
+          assert x['tested_only_after_selection']
+          assert x['input_features_exclude_labels_and_C05_inferred_polarity']
+          assert x['checkpoint_format'] == 'original REVERSE-PC RVPC2'
+          assert trained.exists() and hashlib.sha256(trained.read_bytes()).hexdigest() == x['trained_checkpoint_sha256']
+          assert not x['apk_built'] and x['frozen_assets_sha256_unchanged']
+          assert x['frozen_asset_count'] == 159 and not x['frozen_C1_weights_modified']
+          models = {row['mode']:row for row in x['modes']}
+          assert len(models) == 3
+          for kind in ('semantic','no-order','bag'):
+              row = models[kind]
+              assert row['validation']['total'] == 90 and row['heldout_test']['total'] == 120
+              print(kind,'selected epoch',row['selected_epoch'],
+                    'validation',row['validation']['accuracy'],
+                    'heldout',row['heldout_test']['accuracy'],
+                    'F1',row['heldout_test']['macro_f1'])
+          print('C06 trained XI checkpoint verified; all prior banks frozen; no APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C06-native-semantic-evidence
+          path: |
+            build/c06/*.json
+            build/c06/semantic-trained.rvp
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
