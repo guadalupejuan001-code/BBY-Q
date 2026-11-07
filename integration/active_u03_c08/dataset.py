@@ -18,7 +18,12 @@ from integration.metacognition_u03_c07.dataset import (
 )
 
 SIZES = {"pool": 360, "validation": 135, "test": 180}
-SEEDS = {"pool": 202611080801, "validation": 202611080802, "test": 202611080803}
+# The first C08 PILOT test (old seed 202611080803) gave 180/180 for all
+# models; it is preserved in CI #42388230030 and NEVER reused for tuning.
+# The new test uses a fresh seed, entities and sources, plus a predeclared
+# stress pattern with several mutually irrelevant but signed observations.
+SEEDS = {"pool": 202611080821, "validation": 202611080822, "test": 202611080823}
+PROTOCOL = "C08-dual-irrelevant-signed-stress-v2"
 PREDICATES = ("activo", "completo", "operativo")
 
 
@@ -97,6 +102,14 @@ def _new_scenario(partition: str, index: int, category: int,
         rows.append(row)
     if mode in (3,5):
         rows.append(evidence(subject, predicate, 1-positive, sources[4], attested=False))
+
+    # Stress protocol v2 (pre-registered before its reserve is opened):
+    # TWO additional valid, signed but irrelevant records on every case.
+    # The pattern follows C07's documented failure; sources/entities differ.
+    rows.append(evidence(subject+"_external", predicate, 1-positive,
+                         f"registro:c08-{partition}-{index:04d}-external"))
+    rows.append(evidence(subject, "atributo_no_consultado", positive,
+                         f"auditor:c08-{partition}-{index:04d}-attribute"))
     rng.shuffle(rows)
     result = tuple(rows)
     if independent_target(query, result) != category:
@@ -183,7 +196,8 @@ def check_separation(pool: list[Unlabeled], val: list[Labeled],
             } for row in cases], ensure_ascii=False,
             sort_keys=True).encode()).hexdigest()
     return {
-        "counts": dict(SIZES), "disjoint_queries_sources_uids": True,
+        "counts": dict(SIZES), "protocol": PROTOCOL,
+        "disjoint_queries_sources_uids": True,
         "classes_balanced": all(
             sum(c.label == label for c in val) == len(val)//3 and
             sum(c.label == label for c in test) == len(test)//3
