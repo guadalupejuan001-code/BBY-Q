@@ -7,7 +7,7 @@ import unittest
 from integration.metacognition_u03_c07.dataset import independent_target, trusted, evidence
 from .dataset import (
     acquire_pool, validation, test_reserved, check_separation,
-    synthetic_teacher_confirm, Unlabeled, SIZES,
+    synthetic_teacher_confirm, verify_teacher_receipt, Unlabeled, SIZES,
 )
 from .learner import (
     _profile, ask_for_verification, acquire, _random_control,
@@ -64,6 +64,23 @@ class ActiveLearningContracts(unittest.TestCase):
                             for r in confirmed))
         with self.assertRaises(ValueError):
             synthetic_teacher_confirm(replace(selected[0],partition="test"))
+
+    def test_forged_label_content_or_teacher_is_rejected(self):
+        from copy import deepcopy
+        example=acquire_pool()[0]
+        verified=synthetic_teacher_confirm(example)
+        self.assertTrue(verify_teacher_receipt(example, verified))
+        for column, replacement in (
+            ("label",(verified["label"]+1)%3),
+            ("verified_scenario_sha256","0"*64),
+            ("uid","wrong-case"),
+            ("verifier","internet-lookalike"),
+            ("real_signature_checked",True),
+        ):
+            altered=dict(verified)
+            altered[column]=replacement
+            with self.subTest(column=column), self.assertRaises(ValueError):
+                verify_teacher_receipt(example,altered)
 
     def test_training_packet_contains_teacher_only_after_confirmation(self):
         example=_verify_selected(acquire_pool()[:1])[0][0]
