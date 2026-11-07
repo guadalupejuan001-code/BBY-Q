@@ -47,7 +47,7 @@ def fixture(db):
         "language_sync":[digest(lang),digest(language_meta)],
     }
     raw=encoded(meta)
-    db.execute("INSERT INTO unified_state VALUES(1,?,?,?,?,5)",(
+    db.execute("INSERT INTO unified_state VALUES(1,?,?,?,5)",(
         raw,digest(raw),encoded({"native":"U02 original"})))
     for bank in ("language","memory","v3","router","entity","voice","text"):
         blob=("state-"+bank).encode()
