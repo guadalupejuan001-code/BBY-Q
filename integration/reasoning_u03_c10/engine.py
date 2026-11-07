@@ -46,7 +46,7 @@ def _present(case:dict) -> str:
 
 def _report(goal, graph, *, status, memory=None, reason=None,
             native=None, source_unchanged=True, overlay_count=0,
-            blocked_at=None):
+            blocked_at=None, sandbox_executed=False):
     entry={
         "schema":SCHEMA,
         "goal":{"kind":goal.kind,"observation":goal.observation,
@@ -63,7 +63,7 @@ def _report(goal, graph, *, status, memory=None, reason=None,
         "source_unchanged_at_last_check":source_unchanged,
         "original_database_writes":0,
         "new_authoritative_memories":0,
-        "native_goal_executed_in_disposable_copy":native is not None,
+        "native_goal_executed_in_disposable_copy":bool(native is not None or sandbox_executed),
         "user_actions_executed":False,
         "conclusions_are_real_world_truth":False,
         "checkpoint_or_model_training_performed":False,
@@ -238,6 +238,7 @@ class Reasoner:
                     goal,graph,status="blocked_concurrent_change",
                     memory=original,blocked_at="reverify_source_unchanged",
                     source_unchanged=False,
+                    sandbox_executed=True,
                     overlay_count=pre["unverified_overlay_count"])
             return _report(
                 goal,graph,status=accepted,memory=original,native=native,
