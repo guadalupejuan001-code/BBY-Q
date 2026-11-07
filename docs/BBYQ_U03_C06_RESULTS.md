@@ -99,3 +99,23 @@ inferencia abierta, transferencia fuera de esta gramática ni AGI.
 **Decisión:** conservar este checkpoint como candidato nativo separado,
 con interfaces explícitas y posibilidad de reversión. No modificar los
 modelos congelados ni generar APK hasta las fases posteriores.
+
+
+## Integración de observación comprobada
+
+La [segunda CI completa #42383154492](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42383154492)
+volvió a entrenar el candidato seleccionado y comprobó la integración real
+con `ShadowSemanticSession`, sin modificar rutas ni pesos antiguos.
+
+- **7/7** predicciones de la cabeza XI en sesiones U03 reales, solo en
+  modo observación.
+- Los mismos resultados U02, recibos, checkpoint, historial, feedback,
+  replay y rollback que el original.
+- Se rechazó el intento de abrir un checkpoint nuevo con SHA-256 alterado.
+- El nuevo checkpoint RVPC2 conservó el mismo hash antes/después de ejecutar
+  las predicciones: la cabeza no se entrenó en producción.
+- **159** archivos protegidos intactos, **cero APK** y sin instalación Android.
+- La cabeza todavía **no decide** qué respuesta recibe el usuario ni reemplaza
+  al clasificador de intención C1.
+
+[Evidencia y checkpoint RVPC2 de la CI final](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42383154492/artifacts/13578676074).
