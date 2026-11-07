@@ -23,7 +23,7 @@ def native_check(model: C1.Model, prompt: str, previous: str = "") -> dict:
     original = model.prepare(prompt, previous)
     if original["raw"] != raw:
         raise AssertionError("C05 altered original C1 UTF-8 input")
-    if model.memory(C1.S["RAW"], len(raw)) != raw:
+    if raw and model.memory(C1.S["RAW"], len(raw)) != raw:
         raise AssertionError("Native C1 lost original current UTF-8")
     if history and model.memory(C1.S["HRAW"], len(history)) != history:
         raise AssertionError("Native C1 lost original context UTF-8")
