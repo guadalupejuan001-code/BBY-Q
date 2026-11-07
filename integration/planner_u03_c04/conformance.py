@@ -91,7 +91,7 @@ def _proof_of_selective_activation(plans):
     if results["query"]["native_bank_processes_started"] != ["v3"]:
         raise AssertionError("C04 failed to execute needed derived-VQC refresh")
     for name, stats in results.items():
-        if stats["native_xi_executions_skipped"] != 0 or stats["native_stateful_parallel_executions"] != 0:
+        if stats["stateful_xi_circuits_skipped"] != 0 or stats["native_stateful_parallel_executions"] != 0:
             raise AssertionError("C04 performed an uncertified native shortcut: " + name)
         if stats["hash_worker_count"] != 4 or stats["immutable_bank_hashes_verified"] != 7:
             raise AssertionError("C04 did not verify all frozen banks in independent hash workers")
