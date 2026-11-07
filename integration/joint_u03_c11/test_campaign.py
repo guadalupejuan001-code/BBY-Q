@@ -86,6 +86,8 @@ class JointContracts(unittest.TestCase):
         self.assertIn("model.turn(",source)
         self.assertIn("independent-labels",source)
         self.assertIn("explicit-user-result",source)
+        self.assertIn("DELETE FROM unified_task_supervision",source)
+        self.assertIn("synthetic_teacher_link_removed_in_experimental_arm_only",source)
         self.assertIn("bank_weight_hashes",inspect.getsource(__import__(
             "integration.joint_u03_c11.campaign",
             fromlist=["_read_weights"])._read_weights))
