@@ -1,0 +1,113 @@
+name: BBY Q U03 C07 native metacognitive learning
+on:
+  pull_request:
+    paths:
+      - 'integration/metacognition_u03_c07/**'
+      - 'ai/xi/c07/**'
+      - '.github/workflows/bbyq-u03-c07-metacognition.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  epistemic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate independent labels, provenance, uncertainty, safety and calibration
+        run: |
+          python3 -m unittest integration.metacognition_u03_c07.test_metacognition -v
+          python3 -m unittest integration.semantic_u03_c06.test_semantics -v
+          python3 -m unittest integration.codifier_u03_c05.test_semantic -v
+      - name: Build original XI/Ether interpreter without Android
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Regression native C1/U02 model identity, feedback, rollback, migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c06 build/c07
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Recreate frozen predecessor C06 native semantic head, new ephemeral checkpoint
+        run: python3 -m integration.semantic_u03_c06.train --epochs 6 --out build/c06/training-report.json
+      - name: Train and independently calibrate C07 epistemic XI and ablations
+        run: python3 -m integration.metacognition_u03_c07.train --epochs 8 --out build/c07/training-report.json
+      - name: Verify C06/C07 shadow integration, explicit evidence and unchanged original banks
+        run: python3 -m integration.metacognition_u03_c07.verify_integration
+      - name: Gate test isolation, uncertainty calibration, no unsafe claims or APK
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          r=json.loads(Path('build/c07/training-report.json').read_text())
+          c=json.loads(Path('build/c07/integration.json').read_text())
+          r06=json.loads(Path('build/c06/training-report.json').read_text())
+          assert r['passed'] and c['passed'] and r06['passed']
+          assert r['native_XI_trained_and_reopened']
+          assert r['dataset']['counts']=={'train':540,'validation':135,'test':180,'challenge':180}
+          assert r['dataset']['subject_source_scenario_disjoint']
+          assert r['heldout_split']=='challenge'
+          assert r['calibration_and_threshold_selected_on_validation_only']
+          assert r['no_test_labels_in_training'] and r['test_seen_only_after_selection']
+          assert r['checkpoint_format']=='REVERSE-PC RVPC2'
+          checkpoint=Path('build/c07/epistemic-trained.rvp')
+          assert checkpoint.exists() and hashlib.sha256(checkpoint.read_bytes()).hexdigest()==r['trained_checkpoint_sha256']
+          assert c['original_U02_receipts_history_and_checkpoints_identical']
+          assert c['native_C06_C07_checkpoint_hashes_preserved']
+          assert c['unfamiliar_cases_abstained']==4 and c['missing_evidence_abstained']
+          assert c['conflicting_evidence_reported'] and c['replay_rollback_and_original_restart_passed']
+          assert c['corrupt_C07_checkpoint_rejected']
+          assert r['frozen_asset_count']==c['frozen_asset_count']==159
+          assert r['frozen_asset_sha256_unchanged'] and c['frozen_assets_unchanged']
+          assert not r['apk_built'] and not c['apk_built'] and not c['models_routed_to_original_answer']
+          assert r['mode_selected']=='provenance'
+          models={x['mode']:x for x in r['modes']}
+          assert set(models)=={'provenance','no-provenance','no-contrast'}
+          for name, model in models.items():
+              assert model['validation_calibrated']['total']==135
+              assert model['heldout_calibrated']['total']==180
+              assert model['selected_epoch'] if 'selected_epoch' in model else model['epoch']
+              assert model['heldout_selective']['total']==180
+              assert model['heldout_calibrated']['brier_multiclass']>=0
+              assert 0<=model['heldout_calibrated']['ECE_10_bins']<=1
+              print(name,'validation',model['validation_calibrated']['accuracy'],
+                    'heldout',model['heldout_calibrated']['accuracy'],
+                    'Brier',model['heldout_calibrated']['brier_multiclass'],
+                    'ECE',model['heldout_calibrated']['ECE_10_bins'],
+                    'unsafe',model['heldout_selective']['unsafe_answers'],
+                    'unjustified abstentions',model['heldout_selective']['unjustified_abstentions'])
+          print('C07 native metacognitive training, calibration, shadow safety and frozen assets PASS; zero APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C07-native-metacognition-evidence
+          path: |
+            build/c06/training-report.json
+            build/c07/*.json
+            build/c07/epistemic-trained.rvp
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
