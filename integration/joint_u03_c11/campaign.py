@@ -194,7 +194,10 @@ def _episode(source:Path, example:Heldout, *, control=None):
             native=next((x for x in reversed(r.get("results",[]))
                          if x.get("kind")=="mission"),None)
             if native is None:
-                raise AssertionError("C11 heldout route skipped native mission unexpectedly")
+                # A novel test string can fail the *learned* U02 reader.
+                # It must count as an unsuccessful heldout inference, not
+                # disappear from a selectively reported success rate.
+                native={}
             if control is None and r.get("ok") is False:
                 # This is an *observed* failure and must count against
                 # accuracy, not silently disappear from evaluation.
