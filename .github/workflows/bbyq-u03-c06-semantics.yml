@@ -54,6 +54,8 @@ jobs:
         run: python3 -m integration.codifier_u03_c05.conformance
       - name: Train actual native XI semantic head on independent split
         run: python3 -m integration.semantic_u03_c06.train --epochs 6 --out build/c06/training-report.json
+      - name: Verify trained XI semantic shadow head with unified U03 transactions
+        run: python3 -m integration.semantic_u03_c06.verify_integration
       - name: Gate new XI weights, ablations, frozen checkpoints and no APK
         run: |
           python3 - <<'PY'
@@ -70,6 +72,16 @@ jobs:
           assert x['checkpoint_format'] == 'original REVERSE-PC RVPC2'
           assert trained.exists() and hashlib.sha256(trained.read_bytes()).hexdigest() == x['trained_checkpoint_sha256']
           assert not x['apk_built'] and x['frozen_assets_sha256_unchanged']
+          shadow = json.loads(Path('build/c06/shadow-conformance.json').read_text())
+          assert shadow['passed'] and shadow['U02_outcome_and_checkpoint_identical']
+          assert shadow['shadow_XI_classifications'] == 7
+          assert shadow['correct_expected_classes'] == 7
+          assert shadow['replay_and_rollback_preserved']
+          assert shadow['invalid_learned_checkpoint_rejected']
+          assert shadow['candidate_RVPC2_sha256_before_after_equal']
+          assert shadow['frozen_asset_count'] == x['frozen_asset_count'] == 159
+          assert shadow['model_routed_to_user_response'] is False
+          assert not shadow['apk_built']
           assert x['frozen_asset_count'] == 159 and not x['frozen_C1_weights_modified']
           models = {row['mode']:row for row in x['modes']}
           assert len(models) == 3
