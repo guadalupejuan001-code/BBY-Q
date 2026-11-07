@@ -1,0 +1,152 @@
+{
+  "schema": "BBYQ-U03-CYCLE-PANEL-v1",
+  "repository": "guadalupejuan001-code/BBY-Q",
+  "branch": "codex/bbyq-u03-c09-unified-memory-20261107",
+  "base_commit": "747036aa33b3496e7db9b77af2c4121c0b3d55c3",
+  "current_cycle": "C09",
+  "latest_verified_cycle": "C08",
+  "last_stable_route": "U02 original; C01-C09 experimental opt-in",
+  "history_constraints": {
+    "frozen_sources_expected": 159,
+    "preserve_original_checkpoints": true,
+    "apk_requested": false,
+    "protected_main_branch": true,
+    "agency": "BBY Q -> w4U -> QdU",
+    "new_primary_memory_authorities": 0
+  },
+  "cycles": [
+    {
+      "id": "C00",
+      "work": "Auditoría y línea base",
+      "state": "validado",
+      "pr": 86,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/86"
+    },
+    {
+      "id": "C01",
+      "work": "Runtime XI",
+      "state": "validado",
+      "pr": 87,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/87"
+    },
+    {
+      "id": "C02",
+      "work": "Persistencia transaccional",
+      "state": "validado experimental",
+      "pr": 88,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/88"
+    },
+    {
+      "id": "C03",
+      "work": "Cachés autenticadas",
+      "state": "validado experimental",
+      "pr": 89,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/89"
+    },
+    {
+      "id": "C04",
+      "work": "Planificador XI",
+      "state": "validado experimental",
+      "pr": 90,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/90"
+    },
+    {
+      "id": "C05",
+      "work": "Codificador C1",
+      "state": "validado experimental",
+      "pr": 91,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/91"
+    },
+    {
+      "id": "C06",
+      "work": "Semántica aprendida",
+      "state": "validado experimental",
+      "pr": 92,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/92"
+    },
+    {
+      "id": "C07",
+      "work": "Metacognición",
+      "state": "validado experimental",
+      "pr": 93,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/93"
+    },
+    {
+      "id": "C08",
+      "work": "Aprendizaje activo",
+      "state": "validado sin mejora de pesos",
+      "pr": 94,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/94"
+    },
+    {
+      "id": "C09",
+      "work": "Memoria unificada",
+      "state": "en implementación",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C10",
+      "work": "Razonamiento y planificación",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C11",
+      "work": "Aprendizaje conjunto",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C12",
+      "work": "Experimentos cuánticos entre bloques",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C13",
+      "work": "Optimización global",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C14",
+      "work": "Benchmarks y ablaciones",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C15",
+      "work": "Estrés y concurrencia",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C16",
+      "work": "Integración Android y REVERSE-PC",
+      "state": "pendiente sin APK",
+      "pr": null,
+      "pr_url": null
+    },
+    {
+      "id": "C17",
+      "work": "Integración final y decisión de APK",
+      "state": "pendiente",
+      "pr": null,
+      "pr_url": null
+    }
+  ],
+  "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
+  "current_plan": "C09 read-only unified U02 SQLite/XI memory index: SHA, causality, stale VQC, conflicting evidence and provenance",
+  "current_ci": null,
+  "blockers": [
+    "No known blocker yet; native CI and conformance pending"
+  ],
+  "next_cycle": "C10"
+}
