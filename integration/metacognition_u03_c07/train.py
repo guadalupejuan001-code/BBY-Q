@@ -29,7 +29,7 @@ from .features import FEATURE_COUNT, CLASSES, MODES, SCHEMA, evidence_features, 
 
 BASE = 8150000000013000000
 NATIVE = ROOT / "ai/xi/c07/epistemic-head.xi"
-TEMPERATURES = (0.25,0.35,0.5,0.7,1.0,1.5,2.0,3.0,4.0)
+TEMPERATURES = (0.01,0.02,0.04,0.06,0.09,0.12,0.18,0.25,0.35,0.5,0.7,1.0,1.5,2.0,3.0,4.0)
 THRESHOLDS = (0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99)
 
 
@@ -249,7 +249,9 @@ def campaign(output, epochs=8):
         # Only now inspect test membership, integrity and labels.
         corpus=verify_disjoint()
         # No test example has informed any model choice.
-        test=split("test")
+        # Initial test was used to audit calibration weakness. Challenge is a
+        # newly reserved split with additional irrelevant signed observations.
+        test=split("challenge")
         for model in chosen:
             predictions=native_validation(model["path"],test,model["mode"])
             model["heldout_raw"]=quality(test,predictions,1.)
@@ -274,6 +276,8 @@ def campaign(output, epochs=8):
             "native_XI_trained_and_reopened":True,
             "model_scope":"synthetic evidence/uncertainty task only; not a general truth oracle",
             "dataset":corpus,"epochs":epochs,
+            "heldout_split":"challenge",
+            "previous_test_audit":"initial C07 CI #42386081041; calibration grid refined using validation, not original test labels",
             "mode_selected":"provenance",
             "prior_C06_checkpoint_unmodified":True,
             "frozen_asset_count":len(before),
