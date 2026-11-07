@@ -1,108 +1,104 @@
-# BBY Q U03 / C03 — Caché nativa dentro del turno (experimental, sin APK)
+# BBY Q U03 / C03 — Caché de modelos autenticados (sin APK)
 
-## Base congelada
+**Rama base:** U03 C02 / PR #88, commit 4868ceb7ffc0a38959d61685ef9a569f07b61458.
+Todos los componentes originales de XI/Ether, REVERSE-PC, el banco C1,
+VQC3, QRL3, QMemory, QChat100 y los checkpoints continúan congelados.
 
-Continúa exactamente desde C02 / PR #88, commit
-`4868ceb7ffc0a38959d61685ef9a569f07b61458`.
-Los 159 archivos protegidos por C00, incluidos los modelos,
-checkpoint VQC/QRL, memoria, gradientes y código original XI, NO se modifican.
+## Hallazgo crítico: NO es seguro omitir la segunda ejecución VQC
 
-No se instala Android ni se genera APK. La sesión estable U02 permanece intacta.
+El primer prototipo intentó reutilizar directamente la probabilidad nativa
+cuando una misión compuesta volvía a observar la misma muestra. Se confirmó
+una reducción exploratoria de llamadas y latencia, pero el verificador
+diferencial **RECHAZÓ** el diseño: el banco V3 persistido cambió en
+**32.155 bytes**, a pesar de producir la misma respuesta inmediata.
 
-## Qué redundancia elimina
+Diagnóstico real del experimento rechazado:
+- CI inicial: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42332642104
+- CI adicional y byte-diff: https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42333102169
+- Banco divergente: v3, mismo tamaño 2.718.928 bytes, primera diferencia
+  en el offset 21 y 32.155 bytes distintos.
+- El resto de bancos y las respuestas permanecieron iguales en esa prueba,
+  **pero eso no demuestra que el estado cuántico siguiente sea equivalente**.
 
-En una misión compuesta, la gramática U02 ejecuta:
+Por tanto, C03 **NO salta clasificaciones, lecturas cuánticas, entrenamiento,
+percepción, ni efectos de runtime**. El riesgo se documenta en vez de ocultarlo.
 
-1. `observe(name, seed)` => `vqc_sample -> forward -> u2_apply`
-2. `mission(name, rule, position)` => recuerda QMemory y vuelve a clasificar
-   las **mismas** observaciones, sin una actualización V3 entre ambos pasos.
-3. El objetivo E02, política QRL3 y QChat100 dependen de esa clasificación.
+## Optimización segura: no descomprimir varias veces los checkpoints congelados
 
-El experimento C03 permite reutilizar el primer **resultado nativo real**,
-sin ejecutar una segunda vez el mismo programa de percepción. No calcula una
-clase o probabilidad en Python.
+En una misma ejecución de Python, sesiones U02 distintas pueden cargar,
+verificar y descomprimir repetidamente las mismas imágenes inmutables
+al inicializarse: lector C1, router, readout V3 y bancos de la entidad.
 
-La traza de la respuesta U02 conserva las dos referencias al dato nativo
-para mantener compatibles recibos/checkpoints históricos; el perfilador
-separado registra el número real de ejecuciones XI ahorradas. Un "hit" no
-representa una segunda ejecución.
+C03 ofrece un adaptador opt-in:
+- Usa la carga original U02 para autenticar cada archivo antes de incorporarlo
+  a la caché en el primer acceso. No altera los formatos, pesos ni nombres.
+- En cada consulta siguiente calcula nuevamente el hash SHA-256 del contenido
+  de todas las dependencias: manifiesto, fragmentos comprimidos, vocabulario,
+  fuentes nativas asociadas y archivos declarados en la identidad.
+- Solo si todos esos bytes son idénticos reutiliza la imagen RVPC2 ya
+  autenticada. Cualquier cambio, incluso con igual tamaño, invalida la entrada.
+- Admite máximo 12 entradas y 96 MiB en memoria por contexto; devuelve copias
+  de los diccionarios y nunca un objeto de modelo entrenable mutable.
+- Se elimina al terminar el contexto; no existe caché personal en disco,
+  no mezcla bases de datos ni acumula memoria indefinidamente.
+- Mantiene el mismo bytecode de los dos inicializadores U02 (Session y
+  Legacy.Workspace), con dependencias enlazadas a globals aislados.
+  No hay monkey-patching global ni cambio de ninguna transacción SQLite.
+- Session.turn se mantiene **exactamente igual**. El número de instrucciones
+  XI nativas ejecutadas debe ser idéntico en U02 y C03.
+- No confundir caché de imágenes inmutables con caché de resultados cuánticos.
 
-También existe una caché de las lecturas `qm_read` idénticas,
-en el **mismo turno**, solo cuando no se ha escrito un banco QMemory entre
-las dos. Su beneficio es condicional: las misiones U02 de referencia no
-repiten normalmente la misma lectura QMemory.
+## Uso experimental
 
-## Reglas de integridad
+    from integration.cache_u03_c03.session import CachedSession, archive_cache_scope
 
-- **Alcance:** solo dura un `Session.turn`; nada de entradas persistidas,
-  bases globales o reutilización entre turnos. Cada instancia Quantum tiene
-  su propia LRU independiente y descartable de **máximo 8 entradas por banco**.
-- **Clave VQC:** SHA-256 del *programa XI completo* y el input tipado que
-  transporta, revisión de percepción, identidad de readout y argumentos de
-  observación. Clave QMemory: programa XI exacto, revisión y slot.
-- **Invalidación:** cualquier otra operación nativa en V3 (por ejemplo
-  política QRL, feedback, SGD/Adam) invalida el VQC; cualquier operación
-  mutante de QMemory invalida lecturas anteriores.
-- **Nunca se cachean** ablations destructivas, `qprepare` de borrado,
-  entrenamiento, reintentos de conflictos C02, ni resultados de otros turnos.
-- **Error:** una ejecución XI fallida no se guarda; todos los datos privados
-  del turno se descartan en cualquier rollback, y el U02 original decide
-  cuándo publicar el estado.
-- **Inyección sin mutar archivos U02:** CachedSession ejecuta el mismo objeto
-  de código Python de Session.turn original con una tabla de globals aislada
-  que sustituye SOLO la clase Quantum. No hay monkey-patching global entre
-  hilos ni cambios en el runtime de REVERSE-PC.
-- **Admisión de despliegue:** si un checkpoint completo difiere siquiera en
-  un byte (SHA), o una ablation cambia, la prueba diferencial falla. El
-  modo no se activa en producción.
+    with archive_cache_scope(max_bytes=96*1024*1024) as models:
+        with CachedSession("build/c03/demo.sqlite") as bbyq:
+            print(bbyq.turn("1", "calcula 7 + 3"))
+        with CachedSession("build/c03/demo.sqlite") as bbyq:
+            print(bbyq.turn("2", "lee la regla Faro Azul"))
+        print(models.snapshot())
 
-## Cómo reproducir
+El beneficio aparece al abrir **varias sesiones en un proceso que mantiene
+el contexto**. Fuera de ese contexto, CachedSession ejecuta la carga original,
+sin conservar imágenes entre turnos.
 
-Con las revisiones fijadas de REVERSE-PC y mundo-X usadas en C02:
+## Pruebas en GitHub (nunca Android)
 
-    bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+Compilar el XI host original con las revisiones REVERSE-PC y mundo-X fijadas
+en C00 y ejecutar:
+
     python3 -m unittest integration.cache_u03_c03.test_cache -v
+    python3 -m integration.cache_u03_c03.diagnose
     python3 -m integration.cache_u03_c03.conformance
     python3 -m integration.cache_u03_c03.benchmark --samples 2 --out build/c03/benchmark.json
 
-Ruta opt-in:
+La CI comprueba:
+- fuente e identidades C1/U02 y 159 archivos originales SHA-256;
+- igualdad completa de respuestas, histórico y hashes de todos los bancos;
+- replay, rollback, feedback y migración U01 mediante verificación original;
+- detector de corrupción SHA incluso si el fichero tiene el mismo tamaño;
+- capacidad máxima de caché, alcance, eliminación en el cierre y fallos de
+  lectura; ningún estado de XI o predicción se obtiene de caché;
+- comparación A/B original frente a cache, tiempo, carga de modelos, bytes
+  recuperados y cantidad **idéntica** de paquetes XI nativos.
 
-    from integration.cache_u03_c03.session import CachedSession
-    with CachedSession("build/c03/sandbox.sqlite") as q:
-        response = q.turn("mision-1", "guarda la regla Faro Azul con valor 1 observa Nara con muestra 88113 y resuelve desde 3")
-        print(q.last_cache_stats)
+## Pros, contras y siguientes barreras
 
-Usar exclusivamente bases temporales hasta validar completamente compatibilidad.
-El workflow `.github/workflows/bbyq-u03-c03-cache.yml` repite además
-todas las pruebas nativas C1/U02, rollback, migración U01, feedback, nuevas
-observaciones, ablations y reinicios con Session original.
+**Ventajas:** descompresión y validación de estructura una vez por identidad
+inmutable, sin modificar los modelos ni la semántica; invalidación por SHA
+del contenido real; beneficio potencial al abrir muchas sesiones nativas.
 
-## Ventajas potenciales
+**Costos:** releer y calcular SHA-256 en cada lookup sigue consumiendo E/S y
+CPU; la caché consume hasta 96 MiB de RAM por ámbito experimental; el tiempo
+de la inferencia XI no se reduce. No hay ganancia garantizada de latencia,
+FPS, batería o inteligencia.
 
-- Evitar un ciclo de 1000 cúbits virtuales dividido en 250 grupos de cuatro
-  cuando el resultado nativo idéntico ya existe dentro del turno.
-- Reducir llamadas XI, tráfico de fuente e instrucciones repetidas.
-- Mantener independientes las memorias de sesiones y detener reutilización
-  después de cualquier actualización.
-- Conservar íntegra la arquitectura propia XI/Ether y su checkpoint.
+El ahorro de trabajo en el proceso anfitrión se compara en GitHub/Linux;
+no extrapolarlo a hardware Android ni a un runtime único permanente.
+Para eliminar duplicaciones de VQC de forma segura habría que rediseñar
+separadamente los estados **persistentes** y los temporales del simulador,
+con contrato de equivalencia nativa y migración validada.
 
-## Límites y contras
-
-- **No es una caché entre solicitudes**: la reejecución entre turnos sigue
-  existiendo por seguridad de estados, procedencia y aprendizaje.
-- El resultado nativo de una lectura puede influir en estado interno:
-  la igualdad estricta de snapshot completo es condición obligatoria antes
-  de considerar habilitar una omisión.
-- La estructura del recibo sigue siendo U02, pero para medir el trabajo real
-  se requiere el contador de cache separado; no inferir dos EXEC de dos
-  referencias en la traza.
-- Una LRU evita consumo ilimitado, pero ocupa un mínimo de RAM por turno.
-- Los benchmarks en GitHub/Linux no demuestran mejora en Android, FPS,
-  batería ni ventaja cuántica.
-- El diseño experimental opt-in no combina simultáneamente C01 pool ni
-  C02 SQLite optimista: esa combinación necesita pruebas específicas
-  de revisión, bloqueo y restauración antes de una integración.
-- La exactitud que se demuestre corresponde solo a las operaciones
-  y escenarios probados, no a estados cuánticos arbitrarios.
-
-**C03 no modifica los pesos ni autoriza una nueva APK.**
+**No hay APK, reentrenamiento global, checkpoints modificados ni actualización
+de la rama principal.**
