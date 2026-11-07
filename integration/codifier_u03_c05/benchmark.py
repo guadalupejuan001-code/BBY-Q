@@ -29,12 +29,6 @@ SCENARIOS = ("math", "negation", "memory", "mission", "text")
 
 
 def semantic_microbenchmark(count: int = 240) -> dict:
-    prompts = [
-        f"define {i} no interferencia",
-        f"no definas {i}",
-        f"Guarda la regla Faro {i} con valor {i%2} observa Nara {i} con muestra {88113+i}",
-        f"repítelo",
-    ]
     rows = [text for i in range(count // 4) for text in
             (f"define Prisma{i} no Brisa{i}",
              f"no definas Prisma{i}",
