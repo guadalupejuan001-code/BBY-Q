@@ -1,0 +1,93 @@
+name: BBY Q U03 C09 one authoritative verified memory
+on:
+  pull_request:
+    paths:
+      - 'integration/memory_u03_c09/**'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c09-unified-memory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c09-native-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check C09 SHA, typed provenance, WAL consistency and rejected conflicts
+        run: |
+          python3 -m unittest integration.memory_u03_c09.test_view -v
+          python3 -m integration.memory_u03_c09.verify_panel
+          python3 -m unittest integration.active_u03_c08.test_active -v
+      - name: Compile original REVERSE-PC XI/Ether interpreter, host only
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify immutable original C1/U02 source, perceptions, gradients and migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c09
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Compare original U02 vs C09 memory index, native feedback, rollback and restart
+        run: python3 -m integration.memory_u03_c09.conformance | tee build/c09/conformance-stdout.json
+      - name: Measure audit read overhead without new writes or APK
+        run: python3 -m integration.memory_u03_c09.benchmark --samples 3 --out build/c09/benchmark.json
+      - name: Gate original checkpoint identities and persistent sequence panel
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("build/c09/conformance.json").read_text())
+          b=json.loads(Path("build/c09/benchmark.json").read_text())
+          assert r["passed"] and b["passed"]
+          assert r["U02_C09_exact_response_bank_and_history_equal"]
+          assert r["read_only_index_and_contradiction_verified"]
+          assert r["stale_VQC_projection_detected"]
+          assert r["U02_replay_rollback_and_original_restart_equal"]
+          assert r["native_banks_verified"]==7
+          assert b["bank_sha256_count"]==7
+          assert r["frozen_asset_count"]==b["protected_asset_count"]==159
+          assert r["frozen_assets_unchanged"] and b["frozen_assets_unchanged"]
+          assert not r["apk_built"] and not b["apk_built"]
+          panel=json.loads(Path("docs/BBY_Q_U03_ESTADO.json").read_text())
+          assert panel["current_cycle"]=="C09" and panel["next_cycle"]=="C10"
+          assert not panel["history_constraints"]["apk_requested"]
+          assert panel["history_constraints"]["new_primary_memory_authorities"]==0
+          print("C09 exact U02 native memory parity and no new authority VERIFIED")
+          print("C09 read overhead medians (ms):",b["median_ms"])
+          print("C09 U03 persistent sequence panel C00-C17 verified; no APK")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C09-unified-memory-evidence
+          path: |
+            build/c09/*.json
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_SIGUIENTE.md
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
