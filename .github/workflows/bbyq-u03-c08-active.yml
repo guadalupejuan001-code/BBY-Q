@@ -1,0 +1,120 @@
+name: BBY Q U03 C08 verified active learning native XI
+on:
+  pull_request:
+    paths:
+      - 'integration/active_u03_c08/**'
+      - '.github/workflows/bbyq-u03-c08-active.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  active-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Audit C08 unlabeled selection, teacher gate and private checkpoint contracts
+        run: |
+          python3 -m unittest integration.active_u03_c08.test_active -v
+          python3 -m unittest integration.metacognition_u03_c07.test_metacognition -v
+          python3 -m unittest integration.semantic_u03_c06.test_semantics -v
+      - name: Build original XI/Ether runtime on host without Android APK
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Regression frozen U02 knowledge, learning, rollback and migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c06 build/c07 build/c08
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Recreate independent original C06 native trained semantic head
+        run: python3 -m integration.semantic_u03_c06.train --epochs 6 --out build/c06/training-report.json
+      - name: Recreate original C07 epistemic XI checkpoint from pinned training
+        run: python3 -m integration.metacognition_u03_c07.train --epochs 8 --out build/c07/training-report.json
+      - name: Acquire unlabeled evidence, verify teacher, train XI, compare random control and fresh test
+        run: python3 -m integration.active_u03_c08.learner --out build/c08/active-report.json
+      - name: Verify native active model in BBY Q read-only U03, exact original bank restoration
+        run: python3 -m integration.active_u03_c08.verify_integration
+      - name: Gate C08 teacher provenance, selected model, fair native updates and immutable checkpoints
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          r=json.loads(Path("build/c08/active-report.json").read_text())
+          c=json.loads(Path("build/c08/integration.json").read_text())
+          before=json.loads(Path("build/c07/training-report.json").read_text())
+          assert r["passed"] and c["passed"] and before["passed"]
+          assert r["native_XI_online_updates"]
+          assert r["pool_unlabeled_count"]==360
+          assert r["budget_candidates"]==96
+          assert r["verified_teacher_receipts"]==r["random_teacher_receipts"]==96
+          assert len(r["verification_questions"])==96
+          assert all(q["does_not_train_until_confirmed"] for q in r["verification_questions"])
+          assert r["C08_test_opened_only_after_selection"] and r["promotion_decided_on_validation_only"]
+          assert r["no_training_on_C07_CHALLENGE"]
+          assert r["partition"]["counts"]=={"pool":360,"validation":135,"test":180}
+          assert r["partition"]["disjoint_queries_sources_uids"]
+          assert r["partition"]["classes_balanced"]
+          assert r["teacher_provenance"].startswith("synthetic")
+          assert r["promotion_mode"] in ("active","frozen-C07")
+          models={v["mode"]:v for v in r["comparisons"]}
+          assert set(models)=={"frozen-C07","active","random"}
+          assert models["active"]["verified_labels"]==models["random"]["verified_labels"]==96
+          assert models["active"]["full_training_updates"]==models["random"]["full_training_updates"]
+          assert models["active"]["training_updates"] in (96,192)
+          assert models["random"]["training_updates"] in (96,192)
+          for mode,v in models.items():
+              assert v["heldout"]["native"]["total"]==180
+              assert v["heldout"]["selective"]["total"]==180
+              assert v["validation"]["total"]==135
+              print(mode,"validation",v["validation_selective"],
+                    "heldout",v["heldout"]["selective"],
+                    "Brier",v["heldout"]["native"]["brier_multiclass"],
+                    "ECE",v["heldout"]["native"]["ECE_10_bins"])
+          model=Path("build/c08/active-trained.rvp")
+          assert hashlib.sha256(model.read_bytes()).hexdigest()==r["active_model_sha256"]
+          assert r["source_model_sha256"]==before["trained_checkpoint_sha256"]
+          assert c["identical_U02_C07_C08_user_responses_and_sha256_banks"]
+          assert c["C06_C07_C08_model_files_immutable"]
+          assert c["replay_rollback_and_restart_U02_identical"]
+          assert c["verified_untrusted_model_rejected"]
+          assert not c["unvalidated_user_records_used_for_training"]
+          assert r["all_checkpoints_frozen_count"]==c["frozen_asset_count"]==159
+          assert r["all_prior_checkpoints_sha256_unchanged"] and c["frozen_asset_sha256_unchanged"]
+          assert not r["apk_built"] and not c["apk_built"]
+          print("C08 native XI verified acquisition, fair random baseline and no original-state changes: PASS; zero APK")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C08-native-active-learning-evidence
+          path: |
+            build/c06/training-report.json
+            build/c07/training-report.json
+            build/c08/*.json
+            build/c08/active-trained.rvp
+            build/unified/*checks.json
+          if-no-files-found: warn
+          retention-days: 30
