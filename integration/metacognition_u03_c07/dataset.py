@@ -13,8 +13,9 @@ import json
 import random
 
 LABELS = ("answer", "ask_for_evidence", "report_conflict")
-SPLIT_COUNTS = {"train": 540, "validation": 135, "test": 180}
-SEEDS = {"train": 202611070701, "validation": 202611070702, "test": 202611070703}
+SPLIT_COUNTS = {"train": 540, "validation": 135, "test": 180, "challenge": 180}
+SEEDS = {"train": 202611070701, "validation": 202611070702, "test": 202611070703,
+         "challenge": 202611070704}
 PREDICATES = ("activo", "completo", "operativo")
 TRUSTED_PREFIX = ("laboratorio", "registro", "auditor")
 DAY = 23000
@@ -140,6 +141,13 @@ def _make(split: str, i: int, label: int, rng: random.Random) -> Sample:
         rows.append(evidence(subject+"_otro",predicate,positive,sources[3]))
     if variation in (1,3):
         rows.append(evidence(subject,"otra_propiedad",negative,sources[4]))
+    if split == "challenge":
+        # Newly reserved *after* the initial calibration audit: extra,
+        # authorized BUT irrelevant evidence exercises source/query binding.
+        rows.append(evidence(subject+"_ajeno",predicate,negative,
+                             f"registro:challenge-extra-{i}"))
+        rows.append(evidence(subject,"otro_atributo",positive,
+                             f"auditor:challenge-attribute-{i}"))
     rng.shuffle(rows)
     sample = Sample(
         uid=sha256(f"{split}-{i}-{label}".encode()).hexdigest()[:16],
