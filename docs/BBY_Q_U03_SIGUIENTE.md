@@ -1,8 +1,8 @@
 # BBY Q U03 — Continuación de secuencias
 
-**Ciclo actual C09:** construir y verificar una vista coherente de la memoria principal SQLite U02: C1, QMemory, observaciones VQC, proyecciones, tareas, feedback, recibos y archivos autenticados.
+**C09 verificado:** construida y validada la vista de la memoria principal SQLite U02. [GitHub Actions #42391026706](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42391026706) aprobó integridad de C1/QMemory/VQC, 7 bancos, tareas, feedback, proyecciones obsoletas y conflictos, 159 archivos intactos y cero APK.
 
-**Criterio de aceptación C09:** CI nativa aprobada, comparación byte a byte de U02/C09, lectura SQLite WAL coherente, fallas de checksum detectadas, hechos derivados caducados señalados, contradicciones sin escrituras, 159 archivos intactos, ninguna APK.
+**Criterio de aceptación C09: CUMPLIDO.** CI nativa, equivalencia byte a byte de U02/C09, WAL coherente, checksum verificado y contradicciones sin escrituras. **Pendiente técnico:** vista completa ~50,995 ms vs U02 ~10,474 ms; no prometer aceleración.
 
 **Siguiente C10 — Razonamiento y planificación:** enlazar decisiones con evidencias trazables, distinguir inferencias de hechos, usar restricciones XI tipadas y no aumentar autoridad de agentes. Solo comenzar desde un checkpoint C09 verificado, sin eliminar rutas previas.
 
