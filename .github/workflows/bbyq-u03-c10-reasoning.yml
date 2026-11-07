@@ -84,7 +84,9 @@ jobs:
               assert b["cases"][name]["native_execution_skipped"] is False
               print(name,b["cases"][name])
           state=json.loads(Path("docs/BBY_Q_U03_ESTADO.json").read_text())
-          assert state["current_cycle"]=="C10" and state["next_cycle"]=="C11"
+          current=int(state["current_cycle"][1:])
+          assert 10<=current<=16 and state["next_cycle"]==f"C{current+1:02d}"
+          assert "validado" in state["cycles"][10]["state"]
           assert state["history_constraints"]["agency"]=="BBY Q -> w4U -> QdU"
           assert state["history_constraints"]["new_primary_memory_authorities"]==0
           assert state["history_constraints"]["frozen_sources_expected"]==159
