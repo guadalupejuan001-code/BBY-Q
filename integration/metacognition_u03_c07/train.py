@@ -24,7 +24,7 @@ import time
 
 from integration.audit_u03_c00.profile import ROOT, freeze_assets, apk_files
 from integration.semantic_u03_c06.train import C1, C1Build, VOCAB, OUTPUT
-from .dataset import split, verify_disjoint, LABELS
+from .dataset import split, verify_disjoint, LABELS, trusted
 from .features import FEATURE_COUNT, CLASSES, MODES, SCHEMA, evidence_features, is_unsupported
 
 BASE = 8150000000013000000
@@ -136,6 +136,14 @@ def quality(examples, predictions, temperature):
 def guarded_action(row, pred, temperature, threshold):
     if is_unsupported(row.query,row.evidence):
         return 1
+    # Hard safety envelope independent from the learned semantic head:
+    # evidence is necessary to assert a fact. A synthetic contradiction
+    # cannot be reported as a single answer even if the head is overconfident.
+    accepted={e["value"] for e in row.evidence if trusted(e,row.query)}
+    if not accepted:
+        return 1
+    if len(accepted)==2:
+        return 2
     probabilities_=probabilities(pred["scores"],temperature)
     outcome=pred["predicted"]
     # On supported in-domain evidence, a low-confidence answer must not be
