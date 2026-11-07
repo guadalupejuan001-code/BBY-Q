@@ -38,6 +38,7 @@ jobs:
       - name: Unit-test C10 dependency DAG, stale premises and conflicting evidence
         run: |
           python3 -m unittest integration.reasoning_u03_c10.test_planner -v
+          python3 -m unittest integration.reasoning_u03_c10.test_concurrency -v
           python3 -m unittest integration.memory_u03_c09.test_view -v
           python3 -m integration.reasoning_u03_c10.verify_panel
       - name: Compile pinned original REVERSE-PC XI/Ether simulator only
