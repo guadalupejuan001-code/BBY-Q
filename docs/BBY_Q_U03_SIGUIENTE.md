@@ -6,6 +6,8 @@
 
 **Criterios de C10: CUMPLIDOS.** Pruebas unitarias y nativas, comparación byte a byte de U02/C10, 159 fuentes intactas, cero nuevas autoridades y **sin APK**. Costo adicional de auditoría/copias medido, no hay ganancia de latencia.
 
-**C11 — Aprendizaje conjunto (solo después de C10):** plantear coordinación de actualizaciones verificadas C1/VQC/QMemory/QRL sin fuga de etiquetas ni modificación accidental de checkpoints; las mejoras deben demostrarse en comparación con bases originales.
+**C11 en ejecución — Aprendizaje conjunto:** orquestar un feedback XI con etiquetas verificadas sobre una copia U02 original, compararlo contra feedback escalar (sin clase/regla) y el caso congelado. Medir las regiones verdaderas de parámetros de Entity, VQC3, QRL3, QMemory, QChat100 y readout, sin contar metadatos como aprendizaje; revisar la identidad del banco C1. Evaluar validación/test separados y ablations originales sin fuga de etiquetas. Ningún cambio en la memoria personal.
 
-**Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel forma parte de cada nueva secuencia y se actualiza solo según resultados de CI.
+**C12 — Experimentos cuánticos entre bloques:** próximo ciclo únicamente después de validar C11; deberá comparar capacidad, interferencia y costo del conjunto de motores, sin borrar checkpoints ni suponer ventaja cuántica.
+
+**Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel se actualiza con las pruebas GitHub realmente concluidas, no con promesas. Sin APK.
