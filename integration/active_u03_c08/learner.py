@@ -31,7 +31,7 @@ from integration.metacognition_u03_c07.train import (
 )
 from .dataset import (
     Unlabeled, Labeled, acquire_pool, validation, test_reserved,
-    synthetic_teacher_confirm, check_separation, SIZES,
+    synthetic_teacher_confirm, check_separation, SIZES, PROTOCOL,
 )
 
 BUDGET = 96
@@ -328,6 +328,11 @@ def campaign(output: Path, c07_checkpoint: Path, c07_report: Path) -> dict:
 
         report = {
             "schema":"BBYQ-U03-C08-verified-active-learning-v1",
+            "stress_protocol":PROTOCOL,
+            "initial_pilot":"GitHub Actions #42388230030, original C08 test was 180/180 for frozen-C07, active and random",
+            "pilot_used_for_native_training":False,
+            "pilot_used_for_validation_selection":False,
+            "fresh_stress_test_first_opened_after_selection":True,
             "passed":True,
             "native_XI_online_updates":True,
             "native_model_abi":"existing C07 c07_train, c07_predict",
