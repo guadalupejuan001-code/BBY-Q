@@ -100,6 +100,17 @@ def _clause_end(keys: list[str], start: int) -> int:
     return len(keys)
 
 
+def _is_action_token(keys: list[str], i: int) -> bool:
+    if keys[i] not in ACTION:
+        return False
+    # 'muestra' is also a noun: 'observa Nara con muestra 88113'.
+    # Do not turn an explicit sensor argument into an invented command.
+    if keys[i] == "muestra" and i and keys[i - 1] in {
+            "con", "de", "la", "una", "esta", "su", "mi"}:
+        return False
+    return True
+
+
 def _negations(tokens: list[dict]) -> list[dict]:
     keys = [t["key"] for t in tokens]
     result = []
@@ -108,7 +119,7 @@ def _negations(tokens: list[dict]) -> list[dict]:
             continue
         end = _clause_end(keys, i + 1)
         next_actions = [j for j in range(i + 1, min(end, i + 6))
-                        if keys[j] in ACTION]
+                        if _is_action_token(keys, j)]
         if key == "sin":
             kind = "absence"
             scope = _span(tokens, i + 1, end)
@@ -139,7 +150,7 @@ def _role(tokens: list[dict], name: str, start: int, end: int) -> dict | None:
 
 def _events(tokens: list[dict], negations: list[dict]) -> list[dict]:
     keys = [t["key"] for t in tokens]
-    action_indices = [i for i, k in enumerate(keys) if k in ACTION]
+    action_indices = [i for i, k in enumerate(keys) if _is_action_token(keys, i)]
     events = []
     for number, i in enumerate(action_indices):
         end = action_indices[number + 1] if number + 1 < len(action_indices) else len(keys)
