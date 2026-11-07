@@ -40,6 +40,18 @@ NATIVE_STEPS_BUDGET = BUDGET * ROUNDS
 BUCKET_QUOTAS = {"supported": 52, "conflicting": 22, "insufficient": 22}
 
 
+def native_weight_digest(file: Path) -> str:
+    """Hash ONLY the 30 learned XI coefficients; exclude training counters.
+
+    A different RVPC2 SHA can merely mean that a counter advanced.
+    Real native parameter learning is proven only by this independent hash.
+    """
+    with C1.Model(file, ["<pad>"], ["<eos>"]) as model:
+        model.library += "\n" + NATIVE.read_text()
+        weights = model.memory(BASE + 1024, 3 * 10 * 8)
+        return sha256(weights).hexdigest()
+
+
 def _profile(case: Unlabeled) -> tuple[str, int, int]:
     qualified = [row for row in case.evidence if trusted(row, case.query)]
     values = {row["value"] for row in qualified}
@@ -160,6 +172,7 @@ def _train_rounds(start: Path, cases: list[Labeled],
     with C1.Model(start, ["<pad>"], ["<eos>"]) as model:
         model.library += "\n" + NATIVE.read_text()
         pre = struct.unpack("<q", model.memory(BASE,8))[0]
+        mistakes_before = struct.unpack("<q", model.memory(BASE+24,8))[0]
         for epoch in range(1,rounds+1):
             examples = list(cases)
             random.Random(2026110809+epoch).shuffle(examples)
@@ -173,10 +186,11 @@ def _train_rounds(start: Path, cases: list[Labeled],
                 raise AssertionError("C08 did not train each verified sample in native XI")
             candidate = folder / f"{name}-round-{epoch}.rvp"
             model.s.save(candidate)
-            outputs.append((candidate, now))
+            mistake_now = struct.unpack("<q",model.memory(BASE+24,8))[0]
+            outputs.append((candidate, now, mistake_now-mistakes_before))
     # Original XI weights are reopened in distinct native processes.
     scores = []
-    for epoch,(file, count) in enumerate(outputs,1):
+    for epoch,(file, count, corrected) in enumerate(outputs,1):
         observations = native_validation(file, validation_data, "provenance")
         temp = select_temperature(validation_data, observations)
         threshold = select_threshold(validation_data, observations, temp)
@@ -195,6 +209,7 @@ def _train_rounds(start: Path, cases: list[Labeled],
         )
         scores.append({
             "round": epoch, "path": file, "rank": rank, "seen":count,
+            "native_weight_corrections": corrected,
             "validation":raw, "selective":selective,
             "temperature":temp, "threshold":threshold,
         })
@@ -204,6 +219,7 @@ def _train_rounds(start: Path, cases: list[Labeled],
     return {
         "mode":name, "file":final,
         "selected_round":chosen["round"],
+        "native_weight_corrections":chosen["native_weight_corrections"],
         "training_updates":len(cases)*chosen["round"],
         "full_training_updates":len(cases)*rounds,
         "verified_labels":len(cases),
@@ -280,6 +296,7 @@ def campaign(output: Path, c07_checkpoint: Path, c07_report: Path) -> dict:
         base_threshold = select_threshold(val,original_predictions,base_temp)
         base_record = {
             "mode":"frozen-C07",
+            "native_weight_corrections":0,
             "file":Path(c07_checkpoint),
             "temperature":base_temp,
             "answer_threshold":base_threshold,
@@ -315,6 +332,12 @@ def campaign(output: Path, c07_checkpoint: Path, c07_report: Path) -> dict:
                 candidate["answer_threshold"],
             )
 
+        initial_weight_sha = native_weight_digest(c07_checkpoint)
+        model_weights = {
+            "frozen-C07":initial_weight_sha,
+            "active":native_weight_digest(trained[0]["file"]),
+            "random":native_weight_digest(trained[1]["file"]),
+        }
         active_output = output.parent / "active-trained.rvp"
         shutil.copyfile(trained[0]["file"],active_output)
         if sha256(active_output.read_bytes()).hexdigest()!=trained[0]["sha256"]:
@@ -338,6 +361,18 @@ def campaign(output: Path, c07_checkpoint: Path, c07_report: Path) -> dict:
             "native_model_abi":"existing C07 c07_train, c07_predict",
             "source_model_sha256":original_sha,
             "active_model_sha256":trained[0]["sha256"],
+            "native_weight_sha256_by_mode":model_weights,
+            "native_weights_changed_vs_C07":{
+                mode:(digest!=initial_weight_sha)
+                for mode,digest in model_weights.items()
+            },
+            "native_weight_corrections_by_mode":{
+                mode["mode"]:mode.get("native_weight_corrections",0)
+                for mode in comparators
+            },
+            "new_XI_weight_learning_demonstrated":(
+                model_weights["active"]!=initial_weight_sha
+            ),
             "trained_file":"active-trained.rvp",
             "selected_before_teacher_sha256":native_selected_sha,
             "pool_unlabeled_count":len(pool),
