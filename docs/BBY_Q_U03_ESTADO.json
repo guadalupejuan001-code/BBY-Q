@@ -4,8 +4,8 @@
   "branch": "codex/bbyq-u03-c10-reasoning-plan-20261107",
   "base_commit": "f6ea64ed301db2ef37eafea71767ba0dbd0ee579",
   "current_cycle": "C10",
-  "latest_verified_cycle": "C09",
-  "last_stable_route": "U02 original; C01-C10 are experimental opt-in, no new default",
+  "latest_verified_cycle": "C10",
+  "last_stable_route": "U02 original; C01-C10 experimental opt-in, none automatically installed",
   "history_constraints": {
     "frozen_sources_expected": 159,
     "preserve_original_checkpoints": true,
@@ -88,7 +88,7 @@
     {
       "id": "C10",
       "work": "Razonamiento y planificación",
-      "state": "en implementación; pendiente CI nativa",
+      "state": "validado experimental; pruebas XI nativas y sandbox, 159 archivos intactos",
       "pr": 96,
       "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/96"
     },
@@ -143,11 +143,17 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C10: native C1/Zero proofs and QMemory/VQC/QRL/Entity mission planning behind C09 provenance audit and an isolated SQLite clone",
-  "current_ci": null,
+  "current_plan": "C10 concluido: pruebas nativas C1/Zero y planes QMemory/VQC/Entity/QRL/QChat en copia SQLite descartable, con SHA y resguardo de revisión; C11 aprendizaje conjunto pendiente",
+  "current_ci": {
+    "run_id": 42396799193,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42396799193/artifacts/13584020735"
+  },
   "blockers": [
-    "C10 requires a native XI proof and full SHA parity before becoming a validated cycle",
-    "C09 integrity audit incurs additional latency; C08 learning still not shown to update weights"
+    "C10 añade costo de auditoría y sandbox; no demuestra nueva generalización de razonamiento ni ventaja cuántica.",
+    "C08 permanece sin ganancia de pesos demostrada; C11 no debe confundir ejecución de entrenamiento con aprendizaje efectivo.",
+    "Los 159 archivos originales se conservan; no iniciar APK hasta autorización explícita en ciclos finales."
   ],
   "next_cycle": "C11",
   "c09_results": {
@@ -166,5 +172,20 @@
     "no_new_primary_memory": true,
     "apk_built": false
   },
-  "c10_results": null
+  "c10_results": {
+    "passed": true,
+    "native_symbolic_proof_ids": 2,
+    "native_mission_operations": 8,
+    "native_sqlite_copy_only": true,
+    "concurrent_source_changed_blocks": true,
+    "original_U02_receipts_and_banks_equal": true,
+    "protected_assets": 159,
+    "median_ms_second_campaign": {
+      "proof_native_direct": 1825.824,
+      "proof_c10_full": 2187.475,
+      "mission_native_direct": 2087.678,
+      "mission_c10_full": 2435.79
+    },
+    "apk_built": false
+  }
 }
