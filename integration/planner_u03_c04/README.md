@@ -64,3 +64,15 @@ Ejemplo experimental:
 **En contra:** el despacho en Python, los hilos para hash y la validación del grafo añaden trabajo extra; no todas las tareas ganarán rendimiento. Para una misión completa se activan los cuatro bancos, por lo que su beneficio puede ser pequeño o negativo. La planificación no concede poderes de inteligencia nuevos ni ventaja cuántica.
 
 Las mediciones son de GitHub/Linux, no de Android físico. No se realiza APK, compilación Gradle ni activación en la aplicación instalada. Esta es una rama experimental con revisión antes de fusionar.
+
+## Resultados reproducibles de C04
+
+La campaña completa original/C03/C04 aprobó las pruebas de integridad y las
+mediciones A/B en [GitHub Actions #42345963529](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42345963529).
+Consulta [RESULTS.md](RESULTS.md) para cifras exactas, recursos, limitaciones,
+regresiones de latencia y el experimento de consulta VQC diferida.
+
+No se omite ninguna operación *con estado* de VQC/QRL/QMemory/voz. En tareas
+que no necesitan VQC se evita exclusivamente su consulta read-only de versión,
+lo que reduce un paquete nativo EXEC además de hasta cuatro procesos.
+El paralelismo implementado sigue limitado a hashes independientes.
