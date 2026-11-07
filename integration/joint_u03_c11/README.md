@@ -50,3 +50,13 @@ CI: `.github/workflows/bbyq-u03-c11-joint.yml`, con compilación XI/Ether host, 
 ### Aclaración sobre la ablación de etiqueta
 
 El primer ensayo C11 reveló que la instrucción de feedback escalar por sí sola **no** elimina la etiqueta: U02 busca la supervisión guardada en la tabla de tareas. Por eso el comparador `outcome-only` suprime la asociación de supervisión **solo dentro de su copia SQLite de laboratorio**, antes de invocar el feedback nativo sin clase/regla. No se altera la base original, el código congelado ni el conjunto reservado. Se comprueba que los motores supervisados no reciban actualizaciones.
+
+## C11: resultados medidos y decisión
+
+[RESULTS.md](RESULTS.md) contiene la auditoría completa; [CI nativa #42401341401](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401) aprobó las pruebas con checkpoint original U02.
+
+Se verificó **el cambio efectivo de seis regiones de parámetros XI** (VQC, QRL, QMemory, Entity, QChat y readout) con feedback verificado. La copia con solo resultado escalar modificó Entity y QChat, pero no los parámetros supervisados VQC/QRL/QMemory. El control congelado no cambió parámetros.
+
+La validación fue **3/3** y el test **4/4 en los tres brazos**; no se demostró mejora de exactitud frente al U02 original, por lo que **no se promociona** el candidato. Las ablaciones sobre dos misiones mostraron, descriptivamente, pérdida del valor QMemory al borrar memoria (0/2), fallo de clase en una misión VQC ablada (1/2 correctas) y pérdida de fidelidad de voz al anular QChat (0/2 fieles). No se atribuye significación estadística a dos casos.
+
+La ruta sigue siendo experimental, con 159 fuentes/checkpoints congelados intactos y **sin APK**.
