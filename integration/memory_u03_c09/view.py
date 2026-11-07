@@ -114,6 +114,22 @@ class UnifiedMemoryView:
             raise RuntimeError("Injected C09 audit fault")
 
         facts=[]
+        # The original XI C1 entities are dictionary identities. They are
+        # not, by themselves, true factual assertions; preserve this type.
+        names_registry=oldmeta.get("entities",{})
+        if not isinstance(names_registry,dict):
+            raise ValueError("C09 corrupt original C1 entity registry")
+        for canonical, entry in sorted(names_registry.items()):
+            if not isinstance(entry,dict) or type(entry.get("id")) is not int:
+                raise ValueError("C09 malformed original C1 entity symbol")
+            facts.append({
+                "kind":"c1_entity_dictionary","subject":canonical,
+                "predicate":"xi_symbol_id","value":entry["id"],
+                "display":entry.get("display",canonical),
+                "status":"registered","provenance":"native-C1-symbol-registry",
+                "authority":"vocabulary-identity-not-factual-knowledge",
+                "bank_sha256":banks["language"],"revision":int(legacy[5]),
+            })
         associated=metadata.get("associations",{})
         if not isinstance(associated,dict):
             raise ValueError("C09 malformed associations")
