@@ -118,6 +118,22 @@ def _learn_one(database:Path, mode:str, before_weights:dict):
             else:
                 raise AssertionError("C11 duplicated native teacher feedback")
         elif mode=="outcome-only":
+            # U02 automatically retrieves a verified class/rule from the
+            # synthetic task even if the command names only a scalar result.
+            # To make this a REAL teacher-availability ablation, remove the
+            # corresponding task-label link ONLY on this disposable arm.
+            # Original source and any user's database remain untouched.
+            links=list(model.db.execute(
+                "SELECT id,rule FROM unified_task_supervision ORDER BY id"
+            ))
+            if len(links)!=1 or links[0][1]!=1:
+                raise AssertionError("C11 outcome-only control lacks one frozen teacher link")
+            removed=model.db.execute(
+                "DELETE FROM unified_task_supervision WHERE id=?",
+                (links[0][0],)
+            ).rowcount
+            if removed!=1:
+                raise AssertionError("C11 unable to isolate scalar-only native supervision")
             result=model.turn("explicit-feedback",
                               "evalúa la última tarea con resultado 1")
             if not result["ok"]:
@@ -159,6 +175,7 @@ def _learn_one(database:Path, mode:str, before_weights:dict):
         "changed_bank_names":[name for name in final["banks"]
                               if final["banks"][name]!=before["banks"][name]],
         "training_feedback_verified":mode=="joint-verified",
+        "synthetic_teacher_link_removed_in_experimental_arm_only":mode=="outcome-only",
         "trained_on_test_labels":False,
         "extra_authoritative_memories":0,
     }
@@ -369,6 +386,8 @@ def campaign(output:Path):
                     "changed_bank_names":train_summary[mode]["changed_bank_names"],
                     "native_parameter_sha256":train_summary[mode]["native_param_hashes_after"],
                     "native_weights_changed":train_summary[mode]["native_weight_changed"],
+                    "synthetic_teacher_link_removed_in_experimental_arm_only":
+                        train_summary[mode]["synthetic_teacher_link_removed_in_experimental_arm_only"],
                 } for mode in MODES
             },
             "splits":proof,
