@@ -109,7 +109,8 @@ jobs:
           assert x['instrumented_profile']['cached']['native_profile']['native_api']
           assert x['instrumented_profile']['original']['outcome']==x['instrumented_profile']['cached']['outcome']
           state=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
-          assert state['current_cycle']=='C13' and state['next_cycle']=='C14'
+          current=int(state['current_cycle'][1:])
+          assert 13<=current<=16 and state['next_cycle']==f'C{current+1:02d}'
           assert state['history_constraints']['frozen_sources_expected']==159
           assert state['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
           print('C13 original native XI/U02 parity and guarded performance experiment verified; 0 APK')

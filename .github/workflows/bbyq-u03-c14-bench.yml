@@ -1,0 +1,145 @@
+name: BBY Q U03 C14 original XI disjoint packet benchmarks and ablations
+on:
+  pull_request:
+    paths:
+      - 'integration/bench_u03_c14/**'
+      - 'integration/optimize_u03_c13/verify_panel.py'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c14-bench.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c14-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test C14 disjoint packet attribution, novel splits and historic panel
+        run: |
+          python3 -m unittest integration.bench_u03_c14.test_campaign -v
+          python3 -m unittest integration.optimize_u03_c13.test_campaign -v
+          python3 -m unittest integration.blocks_u03_c12.test_campaign -v
+          python3 -m unittest integration.joint_u03_c11.test_campaign -v
+          python3 -m integration.bench_u03_c14.verify_panel
+          python3 -m integration.optimize_u03_c13.verify_panel
+          python3 -m integration.blocks_u03_c12.verify_panel
+          python3 -m integration.joint_u03_c11.verify_panel
+          python3 -m integration.reasoning_u03_c10.verify_panel
+          python3 -m integration.memory_u03_c09.verify_panel
+      - name: Compile original pinned REVERSE-PC XI/Ether host only
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify native C1/U02 gradients, rollback, source identity and historical migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c14
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Run C14 original XI six-engine packet profiling, 40 ablative trials and SQLite concurrency
+        run: python3 -m integration.bench_u03_c14.campaign --repeats 2 --out build/c14/benchmark.json
+      - name: Verify disjoint attribution, genuine heldout results, rollback and source invariants
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('build/c14/benchmark.json').read_text())
+          assert x['passed'] and x['schema']=='BBYQ-U03-C14-disjoint-XI-packets-v1'
+          assert x['base_C13_PR']==99 and x['architecture']=='BBY Q -> w4U -> QdU'
+          assert x['native_XI_original_unchanged'] and x['historical_sha256_unchanged']
+          assert x['protected_asset_count']==159 and x['checkpoints_unchanged']
+          assert x['new_primary_memory_authorities']==0
+          assert not x['apk_built'] and not x['model_promoted'] and not x['cache_promoted']
+          assert x['frozen_kept_as_reference']
+          assert x['protocol']['novel_vs_C11_C12_C13']
+          assert x['protocol']['case_count']==6
+          assert x['protocol']['ablations_cases']==4
+          assert x['protocol']['repeats']==2 and x['protocol']['samples_per_route']==12
+          assert x['protocol']['heldout_labels_generated_after_native_predictions']
+          assert set(x['benchmark']['routes'])=={
+              'u02-frozen','c12-joint-unpromoted','c13-cache-frozen-experimental'}
+          assert x['training']['frozen']['original_verified_feedback']==0
+          assert x['training']['joint']['original_verified_feedback']==2
+          assert not any(x['training']['frozen']['six_native_parameter_regions_changed'].values())
+          assert all(x['training']['joint']['six_native_parameter_regions_changed'].values())
+          for route,r in x['benchmark']['routes'].items():
+              assert r['n']==12 and r['all_seven_banks_authenticated']
+              assert r['all_c1_u02_synced'] and r['native_packet_spans_never_overlap']
+              assert r['exclusive_engine_wall_is_not_exclusive_gate_cpu']
+              owners=r['packet_wall_ms_disjoint_by_engine']
+              assert set(owners)=={'C1','VQC','QRL','QMemory','Entity','QChat','XI-transport','XI-mixed'}
+              for engine in ('C1','VQC','QRL','QMemory','Entity','QChat'):
+                  assert owners[engine]['median']>0, (route,engine,owners[engine])
+              assert r['end_to_end_ms']['median']>0
+              assert r['sqlite_write_statements_observed']>0
+              assert r['source_bytes_to_xi']['median']>0
+              observed=x['benchmark']['heldout_synthetic_XI'][route]
+              assert observed['total']==12 and observed['teacher_revealed_only_after_all_native_inference']
+              for metric in ('class_correct','rule_correct','voice_faithful_and_terminated','receipts_ok'):
+                  assert 0<=observed[metric]<=observed['total']
+              print(route,"native packet-wall median",{
+                  k:round(v['median'],2) for k,v in owners.items()
+              },"heldout class",observed['class_correct'],'of',observed['total'])
+          paired=x['benchmark']['cache_paired']
+          assert paired['pairs']==12 and paired['source_output_and_checkpoint_identity']
+          assert len(paired['raw_pairs'])==12
+          frozen=x['benchmark']['heldout_synthetic_XI']['u02-frozen']
+          cached=x['benchmark']['heldout_synthetic_XI']['c13-cache-frozen-experimental']
+          assert frozen['class_correct']==cached['class_correct']
+          assert frozen['rule_correct']==cached['rule_correct']
+          for arm in ('frozen','joint'):
+              ab=x['ablations'][arm]
+              assert ab['all_failed_cases_retained'] and len(ab['raw'])==20
+              assert ab['teacher_from_original_XI_after_prediction']
+              assert len(ab['counterfactual_differences'])==16
+              assert set(ab['by_control'])=={
+                  'normal','memory-erased','vqc-ablated','qrl-ablated','voice-ablated'}
+              assert all(value['total']==4 for value in ab['by_control'].values())
+              inf=x['interference'][arm]
+              assert len(inf['steps'])==3 and inf['all_c1_u02_synced']
+              assert inf['all_banks_authenticated'] and inf['all_receipts_ok']
+              concurrency=x['concurrency'][arm]
+              assert concurrency['parallel_writers']==2 and concurrency['committed_distinct_tasks']==2
+              assert concurrency['all_receipts_ok'] and concurrency['replays_exact_without_new_revision']
+              assert concurrency['C1_U02_synced'] and concurrency['seven_banks_authenticated']
+          panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
+          assert panel['current_cycle']=='C14' and panel['next_cycle']=='C15'
+          assert panel['history_constraints']['frozen_sources_expected']==159
+          assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
+          assert not panel['history_constraints']['apk_requested']
+          print('C14 native disjoint XI packets and 40 real ablation trials verified; no merge/APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C14-disjoint-native-XI-evidence
+          path: |
+            build/c14/*.json
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30
