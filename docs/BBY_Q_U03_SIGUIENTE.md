@@ -12,6 +12,8 @@
 
 **C13 COMPLETADO EXPERIMENTALMENTE — Optimización global:** [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99) basada en C12/PR #98, [CI nativa aprobada #42443472416](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416), [RESULTS.md](../integration/optimize_u03_c13/RESULTS.md). La caché autenticada reduce startup ~140→32 ms pero la mejora de latencia total en 12 pares U02 es 2,77 % y en 12 pares C12 2,95 %, bajo el umbral predefinido 3 %: **no se habilita ni se promociona**. Ejecutó originales XI con recibos/ablaciones/snapshots idénticos, 159 fuentes congeladas y 0 APK. El mayor costo es XI `Session.turn` (~2,47–2,50 s), objetivo de C14.
 
-**C14 — Benchmarks y ablaciones (siguiente):** ampliar los escenarios y verificar efectos de componentes con más muestras, controles igualados y costes de extremo a extremo. No promocionar sin evidencia, no fusionar automáticamente.
+**C14 INICIADO — Benchmarks y ablaciones:** [PR #100](https://github.com/guadalupejuan001-code/BBY-Q/pull/100), base exacta PR #99 commit 5e88433. 6 misiones originales XI distintas de C11–C13, 12 muestras por ruta en 3 rutas, 40 ablaciones reales, paquetes XI atribuidos sin doble contabilidad, CPU/RAM/I/O/SQL/SQLite, interferencia A→B→A y dos escritores concurrentes sobre WAL. **CI pendiente; sin atribuir resultados ni promocionar modelos.** 159 archivos protegidos, BBY Q → w4U → QdU, sin APK.
+
+**C15 — Estrés y concurrencia (siguiente):** ampliar volumen, recuento de procesos, tolerancia a fallos y pruebas prolongadas con checkpoints originales, manteniendo no-promoción y cero APK.
 
 **Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel se actualiza con las pruebas GitHub realmente concluidas, no con promesas. Sin APK.

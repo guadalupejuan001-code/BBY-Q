@@ -1,9 +1,9 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c13-global-optimization-20261108",
-  "base_commit": "d31d60bb0ee356b004e9e1e2d819aa361ef3a9db",
-  "current_cycle": "C13",
+  "branch": "codex/bbyq-u03-c14-native-ablations-20261108",
+  "base_commit": "5e88433895218ad90ee18f7380c49a69a51bc07e",
+  "current_cycle": "C14",
   "latest_verified_cycle": "C13",
   "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
   "history_constraints": {
@@ -116,9 +116,9 @@
     {
       "id": "C14",
       "work": "Benchmarks y ablaciones",
-      "state": "pendiente",
-      "pr": null,
-      "pr_url": null
+      "state": "implementado, benchmarks XI nativos y ablaciones en validación CI",
+      "pr": 100,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/100"
     },
     {
       "id": "C15",
@@ -143,21 +143,18 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C13 completado experimental: XI turn ~2.47–2.50 s domina costes; cache autenticada baja startup ~140 a ~32 ms, pero speedup end-to-end 2.77/2.95% <3%; C14 ampliará benchmarks/ablaciones y optimizará núcleo XI.",
+  "current_plan": "C14: 6 misiones inéditas, 3 rutas y 12 medidas por ruta, 40 ablaciones XI, A-B-A y 2 escritores SQLite; separar paquetes disjuntos por 6 motores, CPU/RAM/I/O y regresiones. Pendiente validar CI.",
   "current_ci": {
-    "run_id": 42443472416,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416/artifacts/13602796673",
-    "verified_code_sha": "e195955a3755a45c53ce567b6f54ee3623ebefcc",
-    "notes": "native CI validated candidate code; final report-only commit does not alter algorithms or benchmarks"
+    "run_id": null,
+    "conclusion": "pending",
+    "url": null
   },
   "blockers": [
-    "C13 hizo la inicialización más rápida pero sólo redujo la latencia total 2.77 % en U02 y 2.95 % en C12: ambos por debajo del umbral de 3 %, por lo que no se promocionó la caché.",
-    "El tiempo nativo XI Session.turn (~2.47–2.50 s) domina sobre los costes de arranque/SQLite; se necesita perfilado por operación más fino en C14.",
-    "C12 sigue sin mejorar exactitud: no se promociona ningún modelo ni se ha generado APK."
+    "C14 CI aún debe verificar 6 motoras XI y 40 ablaciones reales; sin números confirmados no atribuir mejora.",
+    "El C13 original redujo 2.08–2.95 % latencia en campañas distintas, bajo el 3 %: no se habilita caché.",
+    "C12 conjunto no superó frozen en exactitud; 159 fuentes protegidas y sin APK."
   ],
-  "next_cycle": "C14",
+  "next_cycle": "C15",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -343,5 +340,31 @@
     "protected_assets": 159,
     "original_sqlite_unchanged": true,
     "apk_built": false
+  },
+  "c13_final_ci": {
+    "run_id": 42443472416,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416/artifacts/13602796673",
+    "verified_code_sha": "e195955a3755a45c53ce567b6f54ee3623ebefcc",
+    "notes": "native CI validated candidate code; final report-only commit does not alter algorithms or benchmarks"
+  },
+  "c14_protocol": {
+    "base_PR": 99,
+    "base_commit": "5e88433895218ad90ee18f7380c49a69a51bc07e",
+    "benchmark_cases": 6,
+    "repeats": 2,
+    "routes": [
+      "u02-frozen",
+      "c12-joint-unpromoted",
+      "c13-cache-frozen-experimental"
+    ],
+    "ablations_per_arm": 20,
+    "expected_total_ablations": 40,
+    "real_SQLite_concurrent_writers": 2,
+    "measurement_status": "pending",
+    "not_promoting_C12": true,
+    "not_promoting_C13_cache": true,
+    "physical_quantum_hardware": false
   }
 }
