@@ -29,15 +29,26 @@ def _head(cycle):
     return info
 
 def _prepare_zero(root):
-    # Recreate only the generated build-cache marker for the device path.
-    # The generated Zero source/schema and original source hashes were
-    # already verified by the signed bundle manifest. No Node interpreter
-    # or substituted reasoning algorithm is needed on Android.
-    paths=[root/p for p in ('integration/zero/build.mjs',
+    # Android exposes /data/user/0 and /data/data aliases. Original schema.ROOT
+    # resolves __file__, so its build-cache identity keys use canonical paths.
+    # Match that exact original identity without bypassing source verification.
+    import tools as original_tools
+    root=Path(root).resolve()
+    if Path(original_tools.ROOT).resolve()!=root:
+        raise RuntimeError('Original Zero tools point outside authenticated runtime')
+    paths=[original_tools.ROOT/p for p in ('integration/zero/build.mjs',
         'ai/personal/zero/model.mjs','ai/personal/zero/schema.mjs',
         'ai/personal/zero/core.xi.in')]
-    marker=root/'build/zero/.source-identity.json'
-    marker.write_text(_dump({str(p):_sha(p.read_bytes()) for p in paths})+'\n')
+    for name in ('build/zero/zero.xi','build/zero/schema.json'):
+        expected=base._manifest['files_sha256'][name]
+        if _sha((root/name).read_bytes())!=expected:
+            raise RuntimeError('Generated original XI Zero artifact changed: '+name)
+    identity={str(p):_sha(p.read_bytes()) for p in paths}
+    marker=original_tools.ROOT/'build/zero/.source-identity.json'
+    marker.write_text(_dump(identity)+'\n')
+    # Run the original guard: it must now authenticate the CI-built files
+    # rather than try to invoke a Node executable on the Android device.
+    original_tools.build_zero()
 
 def initialize(files_dir,bundle_path,manifest_json):
     global _memo,_ready,_heads
