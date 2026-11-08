@@ -1,0 +1,120 @@
+name: BBY Q U03 C12 original XI cross-block experiments
+on:
+  pull_request:
+    paths:
+      - 'integration/blocks_u03_c12/**'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c12-blocks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c12-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Unit tests C12 disjoint labels, original XI path, promotion, and C00-C17
+        run: |
+          python3 -m unittest integration.blocks_u03_c12.test_campaign -v
+          python3 -m unittest integration.joint_u03_c11.test_campaign -v
+          python3 -m integration.blocks_u03_c12.verify_panel
+          python3 -m integration.joint_u03_c11.verify_panel
+          python3 -m integration.reasoning_u03_c10.verify_panel
+      - name: Compile pinned original XI/Ether only, no Android
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Check original U02/C1 checkpoints and native gradients
+        run: |
+          mkdir -p build/sequence2 build/unified build/c12
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Execute C12 native cross-engine feedback, independent test, ablations, memory interference and costs
+        run: python3 -m integration.blocks_u03_c12.campaign --out build/c12/campaign.json
+      - name: Gate real XI observations, authentic weights, protected 159 files, candid metrics, zero APK
+        run: |
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          x=json.loads(Path('build/c12/campaign.json').read_text())
+          assert x['passed'] and x['schema']=='BBYQ-U03-C12-native-cross-block-v1'
+          assert x['architecture']=='BBY Q -> w4U -> QdU'
+          assert x['protected_files']==159 and x['frozen_assets_unchanged']
+          assert x['previous_checkpoints_preserved']
+          assert x['splits']['c11_names_seeds_prompts_disjoint']
+          assert x['splits']['all_cross_split_seeds_and_identities_disjoint']
+          assert x['splits']['counts']=={'training':2,'validation':4,'test':6,'load':6}
+          assert x['new_primary_memory_authorities']==0
+          assert not x['apk_built'] and not x['new_apks']
+          assert not x['candidate_promoted_to_production']
+          assert not x['real_quantum_hardware_used']
+          assert x['training']['joint-verified']['native_feedback_count']>=1
+          assert x['training']['frozen']['native_feedback_count']==0
+          assert not any(x['training']['frozen']['native_parameter_changed'].values())
+          six={'vqc_weights','qrl_weights','qmemory_angles','entity_weights','qchat_weights','vqc_readout'}
+          assert set(x['training']['joint-verified']['native_parameter_changed'])==six
+          for stage,expected in [('validation',4),('heldout_test',6)]:
+              assert set(x[stage])=={'joint-verified','frozen'}
+              for mode,row in x[stage].items():
+                  assert row['total']==expected
+                  assert row['all_failures_retained'] and row['all_inference_without_teacher']
+                  assert 0<=row['class_correct']<=expected
+                  assert 0<=row['supported_faithful']<=expected
+                  print(stage,mode,'correct',row['class_correct'],'of',expected)
+          assert x['decision_pre_test']['selected_using_validation_only'] in ('frozen','joint-verified')
+          for mode in ('frozen','joint-verified'):
+              assert x['capacity'][mode]['total']==6
+              assert x['interference'][mode]['total']==3
+              for key in ('capacity','interference'):
+                  row=x[key][mode]
+                  assert row['bank_audits_ok']==row['total']
+                  assert row['synchronized']==row['total']
+                  assert len(row['steps'])==row['total']
+                  assert set(row['parameter_changed_during_inference_only'])==six
+              assert x['interference'][mode]['revisited'] is not None
+          assert x['ablations']['joint-verified']['total']==10
+          candidate=Path('build/c12')/x['candidate_file']
+          assert candidate.exists()
+          assert hashlib.sha256(candidate.read_bytes()).hexdigest()==x['candidate_sha256']
+          panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
+          assert panel['current_cycle']=='C12' and panel['next_cycle']=='C13'
+          assert panel['history_constraints']['frozen_sources_expected']==159
+          assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
+          print('C12 experiment evidence verified; no claim of quantum hardware advantage')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C12-original-XI-cross-block-evidence
+          path: |
+            build/c12/*.json
+            build/c12/c12-synthetic-joint-candidate.sqlite
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30
