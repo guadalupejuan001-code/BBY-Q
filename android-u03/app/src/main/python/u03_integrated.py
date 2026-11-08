@@ -217,6 +217,9 @@ def operation(name,args_json='{}'):
             with personal_unchanged():result=semantic(args['text'])
         elif name=='evidence':
             with personal_unchanged():result=_evidence(args)
+        elif name=='training':
+            import u03_training
+            result=u03_training.run(args,base._root,base._db)
         elif name in ('transport','persistence','c11','c12','cache','profile','stress','candidate'):
             import u03_experiments
             with personal_unchanged():result=u03_experiments.run(name,args,base._root,base._db)
@@ -227,7 +230,7 @@ def operation(name,args_json='{}'):
         return _dump(result)
 
 def capabilities():
-    return {'integration':'C16','production':{
+    return {'integration':'C17 personal training','production':{
         'C00':'measured host/native packet telemetry',
         'C01':'native JNI code-library references, not cached responses',
         'C03':'authenticated immutable archive memo',
@@ -236,7 +239,8 @@ def capabilities():
         'C06':'recovered native trained semantic head; observational',
         'C09':'verified unified memory on the same SQLite'},
         'interactive':{'C07':'typed evidence inference','C08':'original active candidate comparison and clarification',
-        'C10':'verified native plan/proof in sandbox'},
+        'C10':'verified native plan/proof in sandbox',
+        'C17':'persistent user lessons, native joint feedback, validation, explicit activation/restore and export'},
         'laboratory':{'C02':'optimistic persistence parity','C11':'joint native training and parameter audit',
         'C12':'cross-block native learning comparison','C13':'serialized cache experiment',
         'C14':'Android JNI packet profiling','C15':'Android rollback/replay/concurrency'},
@@ -248,11 +252,15 @@ def status():
     with base._lock:
         with _session() as s:
             state=s.snapshot();audit=s.inspect_memory()
+        import u03_training
+        training=u03_training.run({'action':'status'},base._root,base._db)
         return _dump({'entity':'U02','snapshot':state,'bank_count':len(state['banks']),
-            'memory':audit,'C11_C12_unpromoted':True,'C13_cache_disabled':True,
+            'memory':audit,'personal_training':training,
+            'C11_C12_automatic_promotion':False,'C13_cache_disabled':True,
             'GPU_virtual_compute_ported':False,'capabilities':capabilities()})
 
 def panel():
     return base.panel()+'\n\nC16 Android: rutas ejecutables M01–M06.\n'+_dump(capabilities())
 
 def history():return base.history()
+

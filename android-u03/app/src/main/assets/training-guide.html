@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Guía ilustrada · Entrenar BBY Q</title>
+<style>
+:root{color-scheme:light;--ink:#173137;--muted:#52696d;--line:#d3e1da;--mint:#d5eee3;--green:#216c59;--cream:#fff4db;--paper:#f3f7f3;--white:#fff;--blue:#e4eef8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:720px;margin:auto;padding:24px 20px 50px}h1,h2,h3{line-height:1.18;letter-spacing:-.035em}h1{font-size:36px;margin:8px 0 20px}h2{font-size:28px;margin:5px 0 15px}h3{font-size:20px;margin:22px 0 8px}p{margin:10px 0 16px}.kicker{font-size:11px;font-weight:800;letter-spacing:.17em;color:var(--green);text-transform:uppercase}.lead{font-size:19px;line-height:1.5}.muted,figcaption{color:var(--muted)}.badge{display:inline-block;border:1px solid #aacbbb;border-radius:30px;padding:4px 10px;font-size:12px;font-weight:700}.intro{border-bottom:1px solid var(--line);padding-bottom:26px}.steps{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:24px 0 4px}.steps a{text-decoration:none;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink);padding:11px;font-size:14px;font-weight:650}.steps span{display:inline-block;color:var(--green);margin-right:4px}.section{padding:30px 0 8px;border-bottom:1px solid var(--line)}.num{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:var(--green);color:white;border-radius:50%;font-size:15px;font-weight:800;margin-bottom:12px}figure{margin:22px 0;background:white;border:1px solid var(--line);border-radius:20px;padding:16px 10px 12px}svg{display:block;width:100%;height:auto;max-width:470px;margin:auto}svg text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink)}figcaption{font-size:13px;line-height:1.5;padding:8px 6px 0}.tip,.example,.checkpoint{padding:16px 18px;border-radius:14px;margin:18px 0}.tip{background:var(--cream);border-left:4px solid #c58c24}.example{background:var(--blue)}.checkpoint{background:var(--mint)}.tip p,.example p,.checkpoint p{margin:4px 0}.label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}.quote{font-weight:650;font-size:18px;line-height:1.5}.action{display:inline-block;background:var(--green);color:#fff;padding:3px 9px;border-radius:6px;font-size:14px;font-weight:700}.small{font-size:14px;line-height:1.55}ol,ul{padding-left:22px}li{margin:10px 0}strong{font-weight:750}.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{border:1px solid var(--line);border-radius:12px;padding:14px;background:white}.tile h3{margin:0 0 7px;font-size:18px}.tile p{margin:0;font-size:14px}footer{padding-top:30px;color:var(--muted);font-size:13px}a{color:var(--green)}.checklist p{border-bottom:1px solid var(--line);padding:10px 0;margin:0}.checklist p:last-child{border:0}
+@media(max-width:380px){main{padding:20px 15px 40px}h1{font-size:32px}h2{font-size:25px}.steps{gap:7px}.steps a{font-size:13px;padding:9px}.split{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header class="intro">
+<div class="kicker">BBY Q · Tu cuaderno de entrenamiento</div>
+<h1>Tú enseñas.<br>BBY Q aprende.<br>Las pruebas lo comprueban.</h1>
+<p class="lead">Esta guía está dentro de la app y funciona sin conexión. Te acompaña desde la primera lección hasta el archivo que podrás compartir para evaluar tus resultados.</p>
+<span class="badge">Sesiones guardadas</span> <span class="badge">Guía sin conexión</span>
+<nav class="steps" aria-label="Índice de la guía">
+<a href="#sesion"><span>01</span> Prepara tu sesión</a>
+<a href="#hechos"><span>02</span> Hechos y reglas</a>
+<a href="#pruebas"><span>03</span> Pregunta y compara</a>
+<a href="#motores"><span>04</span> Entrena los motores</a>
+<a href="#comprobar"><span>05</span> Comprueba cambios</a>
+<a href="#guardar"><span>06</span> Activa y exporta</a>
+</nav>
+</header>
+
+<section class="section" id="sesion">
+<span class="num">1</span><h2>Empieza con una sesión que puedas reconocer.</h2>
+<p>En <strong>Sesión</strong>, escribe un nombre claro y toca <span class="action">Crear sesión</span>. Por ejemplo: <strong>Nara y sus reglas</strong>.</p>
+<p>La app parte del estado actual de BBY Q y crea tu espacio de trabajo. Tus lecciones, predicciones y comprobaciones quedan asociadas a esa sesión.</p>
+<figure>
+<svg viewBox="0 0 340 340" role="img" aria-labelledby="session-title session-desc">
+<title id="session-title">Del estado actual a una sesión de entrenamiento</title>
+<desc id="session-desc">Se conserva el estado actual, se crea una copia para enseñar y se comprueba antes de usarla en la conversación.</desc>
+<rect x="38" y="16" width="264" height="70" rx="15" fill="#e4eef8"/>
+<circle cx="69" cy="51" r="17" fill="#fff"/><path d="M60 52h18M69 43v18" stroke="#477488" stroke-width="2"/>
+<text x="98" y="46" font-size="16" font-weight="700">BBY Q actual</text><text x="98" y="67" font-size="12">El punto de partida se conserva</text>
+<path d="M170 88v34" stroke="#72968a" stroke-width="2.5"/><path d="m164 115 6 8 6-8" fill="none" stroke="#72968a" stroke-width="2.5"/>
+<rect x="23" y="130" width="294" height="88" rx="15" fill="#d5eee3" stroke="#78b59c"/>
+<rect x="47" y="148" width="39" height="48" rx="5" fill="#fff" stroke="#216c59"/><path d="M55 160h23m-23 10h23m-23 10h16" stroke="#216c59" stroke-width="2"/>
+<text x="103" y="160" font-size="16" font-weight="700">Tu sesión</text><text x="103" y="181" font-size="12">Enseñas y pruebas aquí</text><text x="103" y="200" font-size="12">Los cambios quedan guardados</text>
+<path d="M170 221v30" stroke="#72968a" stroke-width="2.5"/><path d="m164 244 6 8 6-8" fill="none" stroke="#72968a" stroke-width="2.5"/>
+<rect x="38" y="258" width="264" height="64" rx="15" fill="#fff4db" stroke="#ddc48c"/>
+<text x="170" y="285" text-anchor="middle" font-size="16" font-weight="700">Comprobar → activar</text><text x="170" y="306" text-anchor="middle" font-size="12">Tú decides cuándo usar el resultado</text>
+</svg>
+<figcaption>Una sesión es tu cuaderno de trabajo y su estado entrenado. Puedes volver a ella desde el selector de sesiones.</figcaption>
+</figure>
+<div class="checkpoint"><div class="label">Antes de continuar</div><p>Debes ver el nombre de tu sesión en pantalla. Si vuelves a abrir la app, elige esa misma sesión para continuar.</p></div>
+</section>
+
+<section class="section" id="hechos">
+<span class="num">2</span><h2>Enseña una idea por vez.</h2>
+<p>Abre <strong>Enseñar</strong>. Hay dos maneras de aportar conocimiento: un <strong>hecho</strong> dice algo sobre un sujeto; una <strong>regla</strong> conecta dos propiedades.</p>
+<div class="split"><div class="tile"><h3>Hecho</h3><p>«Nara es robot».<br>Sujeto: <strong>Nara</strong><br>Es: <strong>robot</strong></p></div><div class="tile"><h3>Regla</h3><p>«Si es robot, es máquina».<br>Si es: <strong>robot</strong><br>Entonces es: <strong>máquina</strong></p></div></div>
+<ol><li>Completa <strong>Sujeto</strong> y <strong>Es…</strong>. Toca <span class="action">Guardar este hecho</span>.</li><li>Completa <strong>Si es…</strong> y <strong>Entonces es…</strong>. Toca <span class="action">Guardar esta regla</span>.</li><li>Espera el comprobante de cada paso antes de añadir el siguiente.</li></ol>
+<figure>
+<svg viewBox="0 0 340 332" role="img" aria-labelledby="facts-title facts-desc">
+<title id="facts-title">Nara, robot y máquina: una relación que permite razonar</title>
+<desc id="facts-desc">El hecho Nara es robot se combina con la regla todos los robots son máquinas para responder Nara es máquina.</desc>
+<rect x="28" y="17" width="284" height="74" rx="15" fill="#e4eef8"/>
+<rect x="47" y="35" width="37" height="32" rx="8" fill="#fff" stroke="#477488" stroke-width="2"/><path d="M65 34v-8m-12 47v8m24-8v8" stroke="#477488" stroke-width="2"/><circle cx="58" cy="49" r="3" fill="#477488"/><circle cx="73" cy="49" r="3" fill="#477488"/><path d="M58 59h15" stroke="#477488" stroke-width="2"/>
+<text x="102" y="46" font-size="12" fill="#52696d">HECHO QUE ENSEÑAS</text><text x="102" y="72" font-size="19" font-weight="750">Nara es robot</text>
+<path d="M170 94v30" stroke="#72968a" stroke-width="2.5"/><path d="m164 117 6 8 6-8" fill="none" stroke="#72968a" stroke-width="2.5"/>
+<rect x="28" y="132" width="284" height="74" rx="15" fill="#d5eee3"/>
+<circle cx="65" cy="169" r="20" fill="#fff"/><path d="M54 169h22m-7-6 7 6-7 6" stroke="#216c59" fill="none" stroke-width="2.3"/>
+<text x="102" y="161" font-size="12">REGLA QUE ENSEÑAS</text><text x="102" y="185" font-size="17" font-weight="750">robot → máquina</text>
+<path d="M170 209v30" stroke="#72968a" stroke-width="2.5"/><path d="m164 232 6 8 6-8" fill="none" stroke="#72968a" stroke-width="2.5"/>
+<rect x="28" y="247" width="284" height="68" rx="15" fill="#fff4db" stroke="#ddc48c"/>
+<text x="170" y="271" text-anchor="middle" font-size="12">PREGUNTA PARA COMPROBAR</text><text x="170" y="298" text-anchor="middle" font-size="19" font-weight="750">«es Nara máquina»</text>
+</svg>
+<figcaption>La pregunta final usa las dos lecciones juntas. No necesitas escribir una respuesta final para que la app la repita.</figcaption>
+</figure>
+<div class="tip"><div class="label">Una lección clara</div><p>Usa nombres consistentes y propiedades cortas. Para empezar, escribe <strong>Nara</strong> siempre igual y enseña relaciones que puedas comprobar. Guarda una idea por paso.</p></div>
+<p class="small"><strong>Qué cambia aquí:</strong> los hechos y las reglas actualizan la memoria de la sesión. El entrenamiento de parámetros está en los ejercicios de aprendizaje conjunto del paso 4.</p>
+</section>
+
+<section class="section" id="pruebas">
+<span class="num">3</span><h2>Haz una pregunta antes de corregir.</h2>
+<p>En <strong>Probar</strong>, escribe la pregunta. Deja marcada <strong>Guardar como prueba reservada</strong> y elige <strong>Debe poder demostrarlo</strong> si tus lecciones apoyan esa afirmación. Después toca <span class="action">Probar la respuesta</span>.</p><p>La app registra lo que contesta sin usar la respuesta esperada como pista. Si enseñas hechos o reglas, reserva al menos una pregunta para comprobar ese aprendizaje. El entrenamiento numérico de los motores tiene además sus propios ejercicios reservados automáticos.</p>
+<div class="example"><div class="label">Tu primera prueba</div><p class="quote">es Nara máquina</p><p class="small">Después de guardar el hecho y la regla del ejemplo, la respuesta debe estar apoyada por ambos. Esta ruta de memoria puede completarse por sí sola: reserva la pregunta, comprueba y activa.</p></div>
+<p>Si esperas que le falte evidencia, elige <strong>No tiene evidencia para demostrarlo</strong>. Esa opción significa que no puede probar la afirmación; no demuestra que sea falsa.</p><p>Para reservar pruebas, usa preguntas como «es Nara máquina» o «dime si Nara es máquina». Puedes desmarcar la casilla para hacer otras preguntas de práctica.</p><p>Prueba también otras preguntas cortas que usen tus lecciones. Por ejemplo, enseña «Duna es robot» y pregunta «es Duna máquina». Así compruebas si puede aplicar la regla a otro sujeto.</p>
+<figure>
+<svg viewBox="0 0 340 264" role="img" aria-labelledby="test-title test-desc">
+<title id="test-title">Diferencia entre enseñar y comprobar</title>
+<desc id="test-desc">Enseñar entrega una lección. Probar registra una respuesta antes de revelar o usar una corrección.</desc>
+<rect x="16" y="18" width="148" height="226" rx="16" fill="#d5eee3"/><rect x="176" y="18" width="148" height="226" rx="16" fill="#e4eef8"/>
+<text x="90" y="47" text-anchor="middle" font-size="17" font-weight="750">ENSEÑAR</text><text x="250" y="47" text-anchor="middle" font-size="17" font-weight="750">PROBAR</text>
+<rect x="36" y="67" width="108" height="61" rx="10" fill="#fff"/><text x="90" y="91" text-anchor="middle" font-size="13">Lección</text><text x="90" y="111" text-anchor="middle" font-size="13" font-weight="700">Nara es robot</text>
+<path d="M90 132v33m-6-7 6 8 6-8" stroke="#216c59" fill="none" stroke-width="2.3"/>
+<text x="90" y="190" text-anchor="middle" font-size="13">Se guarda</text><text x="90" y="210" text-anchor="middle" font-size="13">el conocimiento</text>
+<rect x="196" y="67" width="108" height="61" rx="10" fill="#fff"/><text x="250" y="91" text-anchor="middle" font-size="13">Pregunta</text><text x="250" y="111" text-anchor="middle" font-size="13" font-weight="700">¿Es máquina?</text>
+<path d="M250 132v33m-6-7 6 8 6-8" stroke="#477488" fill="none" stroke-width="2.3"/>
+<text x="250" y="190" text-anchor="middle" font-size="13">Se registra</text><text x="250" y="210" text-anchor="middle" font-size="13">la respuesta real</text>
+</svg>
+<figcaption>Guarda los errores también. Son parte de la evidencia que permite evaluar el aprendizaje después.</figcaption>
+</figure>
+<div class="checkpoint"><div class="label">Comprueba algo concreto</div><p>Antes de tocar el botón, piensa qué respuesta esperas y por qué. Si no sabes la respuesta correcta, conserva la pregunta para revisarla después.</p></div>
+</section>
+
+<section class="section" id="motores">
+<span class="num">4</span><h2>Entrena los motores con una corrección comprobada.</h2>
+<p>En <strong>Enseñar → Un ejercicio para los motores</strong>, BBY Q ejecuta una tarea con una muestra numérica, una regla y una posición. Después recibe la corrección y ajusta los parámetros de sus motores.</p>
+<p>La <strong>muestra</strong> identifica un ejercicio generado por el sistema. Su número no es la respuesta correcta. La <strong>regla</strong> tiene valor 0 o 1 y la <strong>posición</strong> va de 0 a 6.</p>
+<ol><li>Elige una muestra, por ejemplo <strong>2023144612</strong>, regla <strong>1</strong> y posición <strong>3</strong>.</li><li>Toca <span class="action">Primero, pedir una predicción</span>. Espera la clase y la acción que produjo BBY Q.</li><li>Toca <span class="action">Ver la clase correcta del ejercicio</span>. La respuesta se muestra después de la predicción.</li><li>Revisa la clase correcta y toca <span class="action">Enseñar esta corrección</span>.</li><li>Espera el comprobante. Para la siguiente vuelta, cambia la muestra.</li></ol>
+<figure>
+<svg viewBox="0 0 340 410" role="img" aria-labelledby="loop-title loop-desc">
+<title id="loop-title">Predicción, respuesta correcta y aprendizaje</title>
+<desc id="loop-desc">Una muestra entra al sistema, los motores producen una clase y una acción, luego se revela la clase correcta y se ejecuta el aprendizaje conservando un registro.</desc>
+<rect x="30" y="14" width="280" height="70" rx="14" fill="#e4eef8"/>
+<text x="50" y="38" font-size="11" font-weight="700">1 · MUESTRA NUEVA</text>
+<path d="M50 63l13-8 13 6 13-19 13 18 13-9 13 13 13-17 13 8 13-5" fill="none" stroke="#477488" stroke-width="2.5"/>
+<text x="200" y="64" font-size="12">Regla + posición</text>
+<path d="M170 87v25m-6-7 6 8 6-8" stroke="#72968a" fill="none" stroke-width="2.3"/>
+<rect x="30" y="120" width="280" height="70" rx="14" fill="#d5eee3"/>
+<text x="50" y="146" font-size="11" font-weight="700">2 · BBY Q RESPONDE</text><text x="50" y="172" font-size="17" font-weight="700">Clase + acción + comprobante</text>
+<path d="M170 193v25m-6-7 6 8 6-8" stroke="#72968a" fill="none" stroke-width="2.3"/>
+<rect x="30" y="226" width="280" height="70" rx="14" fill="#fff4db"/>
+<text x="50" y="251" font-size="11" font-weight="700">3 · REVELAS LA CORRECCIÓN</text><text x="50" y="277" font-size="17" font-weight="700">Comparas con la clase correcta</text>
+<path d="M170 299v25m-6-7 6 8 6-8" stroke="#72968a" fill="none" stroke-width="2.3"/>
+<rect x="30" y="332" width="280" height="62" rx="14" fill="#216c59"/>
+<text x="170" y="357" text-anchor="middle" font-size="12" font-weight="700" style="fill:#fff">4 · ENSEÑAS Y SE GUARDAN LOS CAMBIOS</text><text x="170" y="379" text-anchor="middle" font-size="12" style="fill:#e0f3e9">La siguiente vuelta usa otra muestra</text>
+</svg>
+<figcaption>El orden importa: primero queda registrada la predicción y después se aplica la corrección. El informe permite revisar ambas.</figcaption>
+</figure>
+<div class="tip"><div class="label">Qué estás entrenando</div><p>Estos ejercicios son tareas numéricas controladas de los motores de BBY Q. Sirven para comprobar cambios en clasificación, decisiones, memoria y descripción de la acción. Las lecciones de hechos y reglas se enseñan en sus formularios propios.</p></div>
+<p>Si cambias de idea mientras hay una predicción pendiente, toca <strong>Descartar este ejercicio</strong>. La sesión vuelve al estado anterior a esa predicción y puedes empezar con otra muestra.</p><p>Para entrenar sólo los motores, completa esta vuelta y pasa a <strong>Probar → Ejecutar comprobación</strong>. La app generará ejercicios reservados distintos a los usados para entrenar. No hace falta añadir una lección de hechos para esa ruta.</p><p class="small">Una corrección procesada demuestra que se ejecutó el aprendizaje. Para saber si mejoró, hacen falta las pruebas del siguiente paso. Repetir muchas veces una sola muestra no reemplaza probar con muestras diferentes.</p>
+</section>
+
+<section class="section" id="comprobar">
+<span class="num">5</span><h2>Mira el resultado, no sólo el número de lecciones.</h2>
+<p>Abre <strong>Probar</strong> y toca <span class="action">Ejecutar comprobación</span>. La app compara el estado inicial y el entrenado, revisa tus preguntas reservadas y comprueba capacidades anteriores. Cuando hay aprendizaje conjunto, añade ejercicios numéricos reservados que no se usaron para entrenar.</p>
+<figure>
+<svg viewBox="0 0 340 272" role="img" aria-labelledby="compare-title compare-desc">
+<title id="compare-title">Comparar el estado inicial con el entrenado</title>
+<desc id="compare-desc">Las mismas pruebas se usan en ambos estados y se cuentan los aciertos, los errores y las capacidades que deben conservarse. El dibujo no representa resultados medidos.</desc>
+<rect x="18" y="16" width="304" height="49" rx="12" fill="#fff4db"/><text x="170" y="46" text-anchor="middle" font-size="16" font-weight="750">Las mismas pruebas para ambos</text>
+<path d="M170 68v18M92 86h156M92 86v22m156-22v22" fill="none" stroke="#72968a" stroke-width="2.2"/>
+<rect x="18" y="115" width="143" height="88" rx="13" fill="#e4eef8"/><rect x="179" y="115" width="143" height="88" rx="13" fill="#d5eee3"/>
+<text x="89" y="141" text-anchor="middle" font-size="16" font-weight="700">Inicial</text><text x="250" y="141" text-anchor="middle" font-size="16" font-weight="700">Entrenado</text>
+<text x="89" y="169" text-anchor="middle" font-size="13">aciertos / total</text><text x="250" y="169" text-anchor="middle" font-size="13">aciertos / total</text>
+<text x="89" y="188" text-anchor="middle" font-size="11">Errores registrados</text><text x="250" y="188" text-anchor="middle" font-size="11">Errores registrados</text>
+<text x="170" y="236" text-anchor="middle" font-size="14" font-weight="700">Conservar lo aprendido también cuenta.</text><text x="170" y="257" text-anchor="middle" font-size="11">Esquema de comparación; los números los pone la app.</text>
+</svg>
+<figcaption>Los aciertos reales aparecen al terminar la comprobación. Un resultado aprobado se limita a esas pruebas; consérvalo junto con tus preguntas nuevas.</figcaption>
+</figure>
+<div class="split"><div class="tile"><h3>Si aprueba</h3><p>Puedes pasar a <strong>Guardar</strong> y usar ese estado en la conversación. Revisa los resultados antes de hacerlo.</p></div><div class="tile"><h3>Si falla</h3><p>Tu sesión se conserva. Revisa la lección o el ejercicio que falló, corrige lo necesario y reserva una pregunta nueva antes de volver a comprobar.</p></div></div>
+<p>Guarda una pequeña lista de preguntas que no uses como lecciones. Hazlas después de entrenar y conserva también las respuestas incorrectas. Ese registro ayuda a distinguir aprendizaje útil de repetición.</p>
+</section>
+
+<section class="section" id="guardar">
+<span class="num">6</span><h2>Úsalo y deja evidencia para evaluarlo después.</h2>
+<p>En <strong>Guardar</strong>, <span class="action">Usar este entrenamiento</span> estará disponible cuando la comprobación permita activar los cambios. Al hacerlo, la conversación usará el estado entrenado y se conservará una copia del anterior.</p>
+<p>Si la conversación cambió desde que creaste la sesión, la app puede pedirte una sesión nueva. Vuelve a <strong>Sesión</strong>, crea otra desde el estado actual y añade allí tus lecciones. La sesión anterior sigue guardada y puedes exportarla. Así conservas lo que hiciste en la conversación mientras entrenabas.</p>
+<figure>
+<svg viewBox="0 0 340 334" role="img" aria-labelledby="export-title export-desc">
+<title id="export-title">Qué viaja en tu archivo de entrenamiento</title>
+<desc id="export-desc">Lecciones, predicciones y correcciones, pruebas y estado entrenado se reúnen en un archivo exportado que el usuario puede adjuntar después para su evaluación.</desc>
+<rect x="22" y="17" width="296" height="44" rx="10" fill="#e4eef8"/><text x="170" y="45" text-anchor="middle" font-size="14">Tus lecciones y ejercicios</text>
+<rect x="22" y="71" width="296" height="44" rx="10" fill="#d5eee3"/><text x="170" y="99" text-anchor="middle" font-size="14">Predicciones + correcciones + pruebas</text>
+<rect x="22" y="125" width="296" height="44" rx="10" fill="#e4eef8"/><text x="170" y="153" text-anchor="middle" font-size="14">Estado entrenado y comprobantes</text>
+<path d="M170 172v27m-6-7 6 8 6-8" stroke="#72968a" fill="none" stroke-width="2.3"/>
+<rect x="42" y="207" width="256" height="61" rx="14" fill="#216c59"/><path d="M62 226h17l6 7v20H62z" fill="#e0f3e9"/><path d="M77 226v8h8" stroke="#216c59" fill="none"/>
+<text x="104" y="231" font-size="12" style="fill:#e0f3e9">EXPORTAR ENTRENAMIENTO</text><text x="104" y="253" font-size="16" font-weight="750" style="fill:#fff">Tu archivo .zip</text>
+<path d="M170 271v21m-6-7 6 8 6-8" stroke="#72968a" fill="none" stroke-width="2.3"/>
+<text x="170" y="319" text-anchor="middle" font-size="14">Lo adjuntas cuando quieras evaluarlo.</text>
+</svg>
+<figcaption>El archivo incluye también la memoria de partida de la sesión. Tú eliges dónde guardarlo y si lo adjuntas después para compartirlo.</figcaption>
+</figure>
+<ol><li>Toca <span class="action">Exportar entrenamiento</span>.</li><li>Elige una carpeta del teléfono y confirma el guardado.</li><li>Comprueba que aparece el archivo terminado en <strong>.zip</strong>.</li><li>Cuando vuelvas, adjunta ese archivo y cuenta qué intentaste enseñarle y qué te sorprendió.</li></ol>
+<div class="example"><div class="label">Mensaje para acompañar tu archivo</div><p>«Entrené esta sesión por mi cuenta. Quería enseñarle ____. Estas preguntas le salieron bien: ____. Aquí se equivocó: ____. Evalúa el aprendizaje y compara el antes con el después».</p></div>
+</section>
+
+<section class="section">
+<h2>Elige tu primera vuelta completa</h2>
+<h3>Ruta A · Hechos y reglas</h3>
+<div class="checklist"><p><strong>1.</strong> Crea «Nara y sus reglas».</p><p><strong>2.</strong> Enseña «Nara es robot».</p><p><strong>3.</strong> Enseña «robot implica máquina».</p><p><strong>4.</strong> Reserva «es Nara máquina» y elige «Debe poder demostrarlo».</p><p><strong>5.</strong> Ejecuta la comprobación.</p><p><strong>6.</strong> Activa si aprueba y exporta tu sesión.</p></div>
+<h3>Ruta B · Aprendizaje conjunto</h3>
+<div class="checklist"><p><strong>1.</strong> Crea «Ejercicios de mis motores».</p><p><strong>2.</strong> Pide una predicción con muestra 2023144612, regla 1 y posición 3.</p><p><strong>3.</strong> Revela la clase correcta y enseña la corrección.</p><p><strong>4.</strong> Ejecuta la comprobación: la app utiliza ejercicios reservados automáticamente.</p><p><strong>5.</strong> Revisa los aciertos; activa si aprueba y exporta.</p></div>
+<p>Después puedes combinar ambas rutas en la misma sesión. Cada nueva enseñanza necesita una comprobación actualizada.</p>
+<div class="checkpoint"><div class="label">Puedes parar y volver</div><p>Espera a que termine el paso en ejecución. Luego vuelve a la misma sesión cuando quieras. Guarda el archivo exportado al cerrar una tanda de entrenamiento.</p></div>
+<h3>Si algo no sale como esperabas</h3>
+<p>Si quieres deshacer una activación, en <strong>Guardar</strong> encontrarás <strong>Recuperar estado anterior</strong>. Lee la confirmación: la conversación volverá a ese punto y se descartará su actividad posterior; tu sesión de entrenamiento seguirá guardada.</p><p>Si una pregunta no se entiende, prueba una frase corta como las de esta guía. Si aparece un error, conserva su mensaje y vuelve a la sesión. Si un resultado parece incorrecto, regístralo: será parte de la evaluación.</p>
+<p class="small">La app registra aprendizajes y resultados dentro de las tareas que sus motores admiten. Escribe el objetivo de cada sesión para que después podamos comparar ese objetivo con lo que realmente cambió.</p>
+</section>
+<footer>BBY Q · Entrenamiento personal<br>Guía integrada y disponible sin conexión. Las figuras explican el procedimiento; los resultados medidos aparecen en tu sesión.</footer>
+</main></body></html>

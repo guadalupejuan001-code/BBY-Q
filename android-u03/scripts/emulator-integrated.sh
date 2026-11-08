@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
-OUT=build/android-c16
-APK="$OUT/BBY-Q-U03-Integrado-C16.apk"
+OUT=build/android-c17
+APK="$OUT/BBY-Q-U03-Entrenamiento-C17.apk"
 TEST=android-u03/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-PKG=com.bbyq.u03.integrated
+PKG=com.bbyq.u03.training
 mkdir -p "$OUT"
 test -s "$APK" && test -s "$TEST"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 if [[ -e /dev/kvm ]]; then sudo chmod a+rw /dev/kvm; fi
-export ANDROID_AVD_HOME="$(mktemp -d /tmp/bbyq-c16-avd.XXXXXX)"
-printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n bbyq-c16 \
-  -p "$ANDROID_AVD_HOME/bbyq-c16.avd" -k 'system-images;android-35;default;x86_64'
-"$ANDROID_HOME/emulator/emulator" -avd bbyq-c16 -no-window -no-audio -no-boot-anim \
+export ANDROID_AVD_HOME="$(mktemp -d /tmp/bbyq-c17-avd.XXXXXX)"
+printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n bbyq-c17 \
+  -p "$ANDROID_AVD_HOME/bbyq-c17.avd" -k 'system-images;android-35;default;x86_64'
+"$ANDROID_HOME/emulator/emulator" -avd bbyq-c17 -no-window -no-audio -no-boot-anim \
   -no-snapshot -gpu swiftshader_indirect -memory 4096 > "$OUT/emulator.log" 2>&1 &
 EMU=$!
 finish(){
@@ -41,11 +41,24 @@ cat "$OUT/android-tests.txt"
 python3 - <<'PY'
 from pathlib import Path
 import re
-text=Path('build/android-c16/android-tests.txt').read_text()
+text=Path('build/android-c17/android-tests.txt').read_text()
 m=re.search(r'OK \((\d+) tests?\)',text)
 assert m and int(m.group(1))>=16,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
 PY
+# User-facing learning is tested through original XI, not canned lab answers.
+adb shell am instrument -w -e class com.bbyq.u03.TrainingWorkspaceTest \
+  "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/training-tests.txt" 2>&1
+cat "$OUT/training-tests.txt"
+python3 - <<'PYTEST'
+from pathlib import Path
+import re
+text=Path('build/android-c17/training-tests.txt').read_text()
+m=re.search(r'OK \((\d+) tests?\)',text)
+assert m and int(m.group(1))>=5,text
+assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
+PYTEST
+
 # These are TWO different Android processes, not close/reopen on one Python object.
 for phase in seed verify; do
   adb shell am force-stop "$PKG"
@@ -60,6 +73,24 @@ assert re.search(r'OK \(1 test\)',text),text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
 PY
 done
+# Training checkpoints and the selected model must survive a process death.
+for phase in seed verify; do
+  adb shell am force-stop "$PKG"
+  adb shell am instrument -w -e class com.bbyq.u03.TrainingRestartTest -e training_phase "$phase" \
+    "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/training-restart-$phase.txt" 2>&1
+  cat "$OUT/training-restart-$phase.txt"
+  python3 - "$OUT/training-restart-$phase.txt" <<'PYTEST'
+from pathlib import Path
+import sys,re
+text=Path(sys.argv[1]).read_text()
+assert re.search(r'OK \(1 test\)',text),text
+assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
+PYTEST
+done
+for name in training-test-proof.json training-workspace-ui.png training-guide-ui.png; do
+  adb exec-out run-as "$PKG" cat "files/$name" > "$OUT/$name"
+done
+
 # Export measured Android laboratory outputs, not just copied Linux results.
 mkdir -p "$OUT/lab"
 for name in transport persistence c11 c12 cache profile stress candidate; do
@@ -68,16 +99,23 @@ done
 adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" >> "$OUT/launcher.txt"
 sleep 3
 adb exec-out screencap -p > "$OUT/integrated-ui.png"
-adb shell uiautomator dump /sdcard/c16-ui.xml >/dev/null
-adb exec-out cat /sdcard/c16-ui.xml > "$OUT/integrated-ui.xml"
+adb shell uiautomator dump /sdcard/c17-ui.xml >/dev/null
+adb exec-out cat /sdcard/c17-ui.xml > "$OUT/integrated-ui.xml"
 python3 - <<'PY'
 from pathlib import Path
 import json,re
-out=Path('build/android-c16')
+out=Path('build/android-c17')
 report=json.loads((out/'static-verification.json').read_text())
 text=(out/'android-tests.txt').read_text()
 report['android_instrumentation_passed']=True
 report['android_instrumentation_test_count']=int(re.search(r'OK \((\d+) tests?\)',text).group(1))
+report['training_instrumentation_passed']=True
+report['training_instrumentation_test_count']=int(re.search(r'OK \((\d+) tests?\)',(out/'training-tests.txt').read_text()).group(1))
+report['training_external_restart_verified']=True
+report['training_test_evidence']=json.loads((out/'training-test-proof.json').read_text())
+training_cases=report['training_test_evidence']['cases']
+assert set(training_cases)=={'native_lessons_activation_restore','joint_native_feedback','invalid_and_stale_actions','portable_export','training_ui_and_guide'}
+assert all(case.get('passed') is True for case in training_cases.values())
 report['android_api_tested']=35
 report['emulator_page_size']=int((out/'emulator-page-size.txt').read_text().strip())
 report['external_force_stop_restart_verified']=True
@@ -94,3 +132,4 @@ report['delivery_verified']=True
 (out/'validation.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
 print(json.dumps({k:v for k,v in report.items() if k not in ('ELF_alignment','original_heads')},ensure_ascii=False))
 PY
+

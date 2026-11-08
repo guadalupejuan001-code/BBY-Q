@@ -12,6 +12,7 @@ from pathlib import Path
 import json
 import zipfile
 import sys
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
@@ -115,6 +116,12 @@ def build():
             out.writestr(name, data)
     manifest = {
         "schema": "BBYQ-U03-Android-authenticated-runtime-v1",
+        "android_package": "com.bbyq.u03.training",
+        "android_version": "U03.17.0-training",
+        "apk_source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "mobile_sources_sha256": {p.name: sha256(p.read_bytes()).hexdigest()
+            for p in sorted((ROOT / "android-u03/app/src/main/python").glob("*.py"))},
+        "training_guide_sha256": sha256((ROOT / "android-u03/app/src/main/assets/training-guide.html").read_bytes()).hexdigest(),
         "base_c15_sha": "f644f6657d7e49e4d7f83ed7257a21ad823c871a",
         "architecture": "BBY Q -> w4U -> QdU",
         "production_core": "U02 original frozen XI C1 VQC3 QRL3 QMemory E02 QChat100",
@@ -142,3 +149,4 @@ def build():
 
 if __name__ == "__main__":
     build()
+

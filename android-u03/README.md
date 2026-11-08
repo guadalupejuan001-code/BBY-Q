@@ -1,13 +1,43 @@
-# BBY Q U03 Android — auténtico núcleo U02 y etapas C00–C15
+# BBY Q Android — C17 · Entrenamiento personal
 
-Esta aplicación **no usa el motor Android antiguo X10/E02 para sustituir U02**. Transporta los fuentes Python originales U02 (unified Session, C1, contratos, QMemory, VQC3, QRL3, E02, QChat100), modelos y estado RVPC2 al intérprete JNI original de REVERSE-PC, con Python 3.12 integrado localmente y una base SQLite-WAL privada.
+Esta entrega añade **Entrenar BBY Q** a la conversación original. Dentro de la aplicación hay cuatro etapas: Sesión, Enseñar, Probar y Guardar. La guía sin conexión contiene seis dibujos SVG y dos recorridos completos.
 
-El mismo bytecode/programa XI se pasa a `reverse_pc::rvpc2::Runtime` dentro de `libreverse_os.so` y se exportan los checkpoints exactos por JNI. En Android no se necesita red ni servidor Python remoto. La aplicación tiene paquete separado `com.bbyq.u03`, no sobrescribe datos de `com.bbyq.personalx`. La adaptación móvil, el empaquetado y el backend Java/Python son nuevos; los originales 159 archivos/checkpoints congelados **no se modifican**.
+## Recorrido de memoria y reglas
 
-C11/C12 han probado entrenamiento real sobre copias aisladas y siguen sin promoción; C13 cache no se habilita; C14 es una instrumentación de benchmarking, C15 una campaña Linux de concurrencia/recuperación; ninguno es un "motor nuevo" que deba sustituir checkpoints. Los informes y fuentes históricos se incluyen como referencia, sin presentar como validación Android las pruebas exclusivas de Linux.
+1. Crear una sesión desde el estado personal actual.
+2. Enseñar el hecho «Nara es robot» y la regla «si es robot, es máquina».
+3. Reservar la consulta «es Nara máquina» antes de ver su respuesta.
+4. Comprobar el candidato frente a su referencia y las regresiones originales.
+5. Activarlo para usarlo en la conversación o continuar enseñando.
+6. Exportar el ZIP para evaluar después el modelo y sus ejemplos.
 
-La APK sólo debe describirse como **U03 Android funcional** cuando compile, arranque, y verifique en el emulador: 7 bancos autenticados, un turno aritmético C1 nativo, una misión VI/QRL/QMemory/QChat/E02, feedback real, reintento idempotente y persistencia tras reinicio. Si cualquiera falla, no etiquetarla como validada.
+## Recorrido de aprendizaje conjunto
 
-La compilación usa Chaquopy 17.2 para Python 3.12, el intérprete XI JNI fijado de REVERSE-PC y SQLite de Python empaquetado. Dependencias Android se descargan durante CI. Estado de modelos U02 inicia frozen; nunca se ejecutan experimentos de entrenamiento C11/C12 sobre la memoria del usuario automáticamente.
+1. Elegir muestra, regla y posición; por ejemplo 2023144612 / 1 / 3.
+2. Registrar la predicción XI y después revelar la clase correcta.
+3. Aplicar el feedback original, que modifica parámetros de los motores.
+4. Comprobar con muestras sintéticas reservadas y comparar con el estado inicial.
+5. Activar la sesión aprobada y exportar el resultado.
 
-El usuario puede abrir un panel de estado para consultar los ciclos C00–C15 sin introducir otra autoridad de memoria o razonamiento.
+Los hechos/reglas modifican memoria nativa. Los ejercicios conjuntos ejecutan el aprendizaje XI original. La aplicación distingue ambos mecanismos; no presenta las tareas sintéticas como entrenamiento universal de lenguaje.
+
+## Durabilidad y evaluación
+
+Cada sesión conserva su referencia, versiones de candidato, comprobantes y datos de evaluación. Repetir exactamente una solicitud no vuelve a entrenar. El candidato se activa sólo después de una comprobación vigente y si la conversación no cambió desde el inicio de la sesión. La versión anterior se conserva para restaurar.
+
+El ZIP incluye `manifest.json`, `report.json`, `baseline.sqlite` y `candidate.sqlite`. El manifiesto enlaza los bytes con SHA-256; el informe identifica el código, el runtime, ejemplos, predicciones, correcciones y pruebas. Incluye la memoria de partida de la sesión. No se envía automáticamente a un servicio.
+
+## Compilación y pruebas
+
+- Paquete: `com.bbyq.u03.training`.
+- Versión: `U03.17.0-training`.
+- Android 10 o posterior; ARM64 y x86-64.
+- 20 bibliotecas ELF con segmentos de al menos 16 KB.
+- Runtime XI de REVERSE-PC y Ether fijados en el workflow.
+- Se preservan los 159 archivos/checkpoints históricos.
+
+El workflow `.github/workflows/bbyq-u03-android-native.yml` compila y ejecuta los 16 controles Android de C16, cinco pruebas de entrenamiento y verificaciones de cierre/reinicio en procesos distintos. También captura la interfaz y la guía dentro de Android. `validation.json` contiene el resultado real; este README no sustituye los resultados CI.
+
+El APK de CI se firma localmente con la clave persistente propia de BBY Q para la entrega. El nuevo identificador permite instalarlo junto a C16, cuya firma de desarrollo anterior puede ser distinta. La clave de firma no se guarda en el repositorio.
+
+GPU-VIRTUAL/QSSD computacional no se anuncian como integrados. Se conservan las rutas y laboratorios anteriores sin fusionar automáticamente las PR. Consulta [el panel completo C00–C17](../docs/BBY_Q_U03_PANEL_C17_TRAINING.md).

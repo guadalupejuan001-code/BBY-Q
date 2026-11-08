@@ -6,7 +6,7 @@ import io,json,struct,subprocess,sys,zipfile
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
 from integration.audit_u03_c00.profile import freeze_assets
-BASE='58ef4bff2e6d53dcbb55cc97d0d4249807ffb750'
+BASE='eefb0e26c3cbe2838f7701ce300389930d902a65'
 
 def alignments(raw):
     if raw[:4]!=b'\x7fELF' or raw[4]!=2 or raw[5]!=1:
@@ -38,6 +38,8 @@ def main():
             if min(values)<16384:raise AssertionError('Native ELF is not 16KB aligned: '+name+' '+str(values))
         for abi in ('arm64-v8a','x86_64'):
             if 'lib/'+abi+'/libreverse_os.so' not in libs:raise AssertionError('Missing original XI JNI '+abi)
+        guide=z.read('assets/training-guide.html').decode('utf-8')
+        if '<svg' not in guide or len(guide)<5000:raise AssertionError('Missing illustrated offline training guide')
         manifest=json.loads(z.read('assets/u03/mobile-manifest.json'))
         raw=z.read('assets/u03/bbyq-u03-runtime.zip')
         if sha256(raw).hexdigest()!=manifest['archive_sha256']:raise AssertionError('Runtime payload hash mismatch')
@@ -53,13 +55,15 @@ def main():
             raise AssertionError('Unapproved promotion in package')
     report={'static_checks_passed':True,'apk_bytes':apk.stat().st_size,
        'apk_sha256':sha256(apk.read_bytes()).hexdigest(),
-       'package':'com.bbyq.u03.integrated','original_protected_assets':159,
+       'package':'com.bbyq.u03.training','original_protected_assets':159,
        'all_ELF_load_segments_at_least_16KB':True,'native_library_count':len(libs),
        'ELF_alignment':dict(sorted(libs.items())),
        'original_heads':provenance['heads'],'base_sha':BASE,
        'current_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
        'physical_user_device_tested':False,'android_instrumentation_passed':False,
-       'GPU_compute_integrated':False,'auto_model_promotion':False}
+       'GPU_compute_integrated':False,'auto_model_promotion':False,
+       'training_workspace_packaged':True,'offline_illustrated_guide':True}
     out.write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
     print(json.dumps({k:v for k,v in report.items() if k not in ('ELF_alignment','original_heads')},ensure_ascii=False))
 if __name__=='__main__':main()
+
