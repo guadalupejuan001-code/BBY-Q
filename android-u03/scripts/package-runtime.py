@@ -48,6 +48,18 @@ def build():
                  "BBY_Q_U03_SIGUIENTE.md"):
         include.add("docs/" + name)
 
+    # Release manifests authenticate ORIGINAL sources outside runtime modules
+    # too (e.g. bbyq, bbyq.mjs, CI yaml and frozen seed banks). If omitted,
+    # original U02 MUST reject startup: never bypass or weaken that check.
+    for manifest_path in (
+        "integration/unified/release/manifest.json",
+        "integration/sequence2/release/manifest.json",
+        "integration/entity/release/manifest.json",
+    ):
+        pinned = json.loads((ROOT / manifest_path).read_text())
+        include.update(pinned.get("sources", {}))
+        include.update(pinned.get("native_source_sha256", {}))
+
     # Release identity includes these fixed sources.
     include.update((
         "ai/xi/qchat100/model.xi",
