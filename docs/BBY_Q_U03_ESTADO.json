@@ -4,8 +4,8 @@
   "branch": "codex/bbyq-u03-c14-native-ablations-20261108",
   "base_commit": "5e88433895218ad90ee18f7380c49a69a51bc07e",
   "current_cycle": "C14",
-  "latest_verified_cycle": "C13",
-  "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
+  "latest_verified_cycle": "C14",
+  "last_stable_route": "U02 frozen original; C01–C14 son prototipos experimentales en ramas, ninguno fusionado automáticamente o instalado",
   "history_constraints": {
     "frozen_sources_expected": 159,
     "preserve_original_checkpoints": true,
@@ -116,7 +116,7 @@
     {
       "id": "C14",
       "work": "Benchmarks y ablaciones",
-      "state": "implementado, benchmarks XI nativos y ablaciones en validación CI",
+      "state": "validado experimental CI #42446685508: 12 mediciones por ruta, 40 ablaciones XI, 2 escritores WAL por brazo, sin mejora del modelo ni APK",
       "pr": 100,
       "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/100"
     },
@@ -143,16 +143,19 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C14: 6 misiones inéditas, 3 rutas y 12 medidas por ruta, 40 ablaciones XI, A-B-A y 2 escritores SQLite; separar paquetes disjuntos por 6 motores, CPU/RAM/I/O y regresiones. Pendiente validar CI.",
+  "current_plan": "C14 validado: XI transporte sin clasificar ~807 ms, C1 ~465 ms, VQC ~236 ms, QChat ~115 ms, QRL ~48 ms, QMemory ~1.3 ms y Entity ~4 ms en U02 frozen; ~1123 ms residuales host; C15 estrés concurrencia/fallos",
   "current_ci": {
-    "run_id": null,
-    "conclusion": "pending",
-    "url": null
+    "run_id": 42446685508,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508/artifacts/13603503107",
+    "verified_code_sha": "9b2dae614aadeefe048b4d0b2856033ba7b5fb2c",
+    "notes": "Native execution and historical CI verified on implementation head; updated docs-only head reruns checks"
   },
   "blockers": [
-    "C14 CI aún debe verificar 6 motoras XI y 40 ablaciones reales; sin números confirmados no atribuir mejora.",
-    "El C13 original redujo 2.08–2.95 % latencia en campañas distintas, bajo el 3 %: no se habilita caché.",
-    "C12 conjunto no superó frozen en exactitud; 159 fuentes protegidas y sin APK."
+    "C14 evidencia por paquete es tiempo anfitrión no solapado, pero no permite inferir costo exclusivo interno de cada puerta cuántica o CPU de cada bloque.",
+    "C13 cache observó +3.30 % sólo en U02 frozen bajo esta instrumentación; las campañas C13 previas dieron <3 % y no hay verificación equivalente en un brazo C12 cache: sigue sin promoción.",
+    "C14 probó 2 escritores WAL por brazo y 4 semillas por ablación; C15 debe ampliar estrés, fallos concurrentes y escalabilidad sin modificar los 159 checkpoints."
   ],
   "next_cycle": "C15",
   "c09_results": {
@@ -362,9 +365,53 @@
     "ablations_per_arm": 20,
     "expected_total_ablations": 40,
     "real_SQLite_concurrent_writers": 2,
-    "measurement_status": "pending",
+    "measurement_status": "CI #42446685508 passed",
     "not_promoting_C12": true,
     "not_promoting_C13_cache": true,
     "physical_quantum_hardware": false
+  },
+  "c14_results": {
+    "passed": true,
+    "ci_run_id": 42446685508,
+    "artifact_id": 13603503107,
+    "original_U02_frozen_end_to_end_median_ms": 3060.631,
+    "C12_joint_not_promoted_median_ms": 3134.711,
+    "C13_cached_frozen_not_promoted_median_ms": 2959.761,
+    "C13_cache_frozen_observed_speedup_percent": 3.3,
+    "C13_cache_not_promoted": true,
+    "six_engine_packet_wall_median_ms": {
+      "C1": 465.123,
+      "VQC": 236.213,
+      "QRL": 48.004,
+      "QMemory": 1.321,
+      "Entity": 3.995,
+      "QChat": 114.76,
+      "XI-transport-unclassified": 807.37
+    },
+    "XI_mixed_packet_wall_ms": 0,
+    "unattributed_host_wall_median_ms": 1122.958,
+    "source_bytes_to_XI_median": 2625782,
+    "XI_packets_per_mission_median": 48,
+    "python_cpu_median_ms": 998.454,
+    "native_process_cpu_observed_median_ms_approx": 1645,
+    "python_process_peak_rss_kib_cumulative": 187548,
+    "process_write_bytes_12_trials_observed": 2107990016,
+    "sqlite_write_statements_12_trials": 144,
+    "heldout_class_correct_all_routes": 12,
+    "heldout_total_per_route": 12,
+    "ablations_per_arm": 20,
+    "ablations": {
+      "memory_erased_rule_correct": 2,
+      "vqc_ablated_class_correct": 1,
+      "qrl_ablated_actions_changed": 2,
+      "voice_ablated_voice_faithful": 0,
+      "tested_per_control": 4
+    },
+    "interference_A_B_A_changed": false,
+    "concurrent_writers_per_arm": 2,
+    "concurrency_committed_and_replay_verified": true,
+    "historical_files_untouched": 159,
+    "model_promoted": false,
+    "apk_built": false
   }
 }

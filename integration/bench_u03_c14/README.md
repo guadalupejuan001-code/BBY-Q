@@ -28,3 +28,7 @@ Dependencias fijadas: `REVERSE-PC@08c363e6c6855c14026c86046af7183a45f45a98`; `mu
 Evidencia en artefactos GitHub Actions: JSON completo con métricas, controles y huellas, regresiones C1/U02 y panel C00–C17. **159 archivos históricos protegidos con SHA-256**, ninguna autoridad nueva de memoria, ninguna fusión ni APK.
 
 [RESULTS.md](RESULTS.md) · [Panel C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado JSON](../../docs/BBY_Q_U03_ESTADO.json) · [Continuidad C15](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+## Resultados y decisión de C14
+
+La campaña real [GitHub Actions #42446685508](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508) aprobó 12 pruebas XI nativas por ruta, 40 ablaciones, interferencia y concurrencia. Los valores crudos, controles, límites, CPU, RSS e I/O están en [RESULTS.md](RESULTS.md). **No hubo mejora de exactitud del candidato C12, no se habilitó la caché C13 y no se modificaron los 159 activos protegidos.** Siguiente C15, sin APK ni fusión.
