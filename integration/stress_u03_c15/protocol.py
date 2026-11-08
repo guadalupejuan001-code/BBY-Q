@@ -40,7 +40,7 @@ C13_ROUTE = "c13-cache-frozen-experimental"
 
 
 def separation():
-    seen = (*c11_val(), *c11_test(), *c12_train, *c12_val(), *c12_test,
+    seen = (*c11_val(), *c11_test(), *c12_train, *c12_val, *c12_test,
             *c12_load, *c13_cases, *c14_cases)
     seeds = {row.seed for row in seen} | TRAINED_SEEDS | {88113}
     tokens = {value.lower() for row in seen for value in (row.name,row.rule)}
