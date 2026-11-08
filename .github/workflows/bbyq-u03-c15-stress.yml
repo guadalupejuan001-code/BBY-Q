@@ -1,0 +1,150 @@
+name: BBY Q U03 C15 original XI stress WAL crash recovery
+on:
+  pull_request:
+    paths:
+      - 'integration/stress_u03_c15/**'
+      - 'integration/bench_u03_c14/verify_panel.py'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c15-stress.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c15-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test C15 WAL concurrency, crash and protected sequence contracts
+        run: |
+          python3 -m unittest integration.stress_u03_c15.test_campaign -v
+          python3 -m unittest integration.bench_u03_c14.test_campaign -v
+          python3 -m unittest integration.optimize_u03_c13.test_campaign -v
+          python3 -m unittest integration.blocks_u03_c12.test_campaign -v
+          python3 -m unittest integration.joint_u03_c11.test_campaign -v
+          python3 -m integration.stress_u03_c15.verify_panel
+          python3 -m integration.bench_u03_c14.verify_panel
+          python3 -m integration.optimize_u03_c13.verify_panel
+          python3 -m integration.blocks_u03_c12.verify_panel
+          python3 -m integration.joint_u03_c11.verify_panel
+          python3 -m integration.reasoning_u03_c10.verify_panel
+          python3 -m integration.memory_u03_c09.verify_panel
+      - name: Compile exact pinned original REVERSE-PC XI/Ether software runtime
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Verify historical C1/U02 gradients, model identity, rollback and migration
+        run: |
+          mkdir -p build/sequence2 build/unified build/c15
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Execute genuine XI/SQLite WAL progressive stress, read consistency and abrupt restart tests
+        run: python3 -m integration.stress_u03_c15.campaign --out build/c15/stress.json
+      - name: Require measured throughput, original XI receipts and 159 immutable checkpoint assets
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('build/c15/stress.json').read_text())
+          assert x['passed'] and x['schema']=='BBYQ-U03-C15-native-WAL-stress-v1'
+          assert x['source_PR']==100
+          assert x['architecture']=='BBY Q -> w4U -> QdU'
+          assert x['original_XI_U02_unchanged']
+          assert x['protected_files']==159 and x['historical_hashes_unchanged']
+          assert x['original_SQLite_sources_unchanged']
+          assert x['new_primary_memory_authorities']==0
+          assert x['no_merge_in_campaign']
+          assert not x['model_promoted'] and not x['cache_promoted'] and not x['apk_built']
+          p=x['protocol']
+          assert p['independent_of_C11_through_C14']
+          assert p['case_count']==8 and p['levels']==[1,2,4,6]
+          assert p['readers_per_level']=={'1':1,'2':2,'4':2,'6':3}
+          assert p['reader_snapshots_per_worker']==8
+          assert set(x['stress_levels'])=={'u02-frozen','c12-joint-unpromoted'}
+          assert x['source_models']['u02-frozen']['verified_native_training_feedback']==0
+          assert x['source_models']['c12-joint-unpromoted']['verified_native_training_feedback']==2
+          assert not any(x['source_models']['u02-frozen']['native_weight_changes'].values())
+          assert all(x['source_models']['c12-joint-unpromoted']['native_weight_changes'].values())
+          for arm, levels in x['stress_levels'].items():
+              assert len(levels)==4
+              assert [r['writer_count'] for r in levels]==[1,2,4,6]
+              for r in levels:
+                  count=r['writer_count']
+                  assert r['tasks_committed']==count
+                  assert r['replays_exact'] and r['sqlite_integrity_check']=='ok'
+                  assert r['journal_mode']=='wal'
+                  assert r['all_XI_six_engines_executed']
+                  assert r['all_reader_snapshots_authenticated'] and r['C1_U02_synced']
+                  assert r['seven_banks_authenticated']
+                  assert r['wal_snapshots_total']==r['reader_count']*8
+                  assert r['throughput_native_tasks_per_second']>0
+                  assert len(r['writers'])==count and len(r['readers'])==r['reader_count']
+                  assert r['writer_native_turn_ms']['median']>0
+                  assert r['python_cpu_ms_total_level']>=0
+                  assert r['native_child_cpu_ms_approx_total_level']>=0
+                  assert r['python_process_io_bytes_level']['write_bytes']>=0
+                  print('native-stress',arm,'writers',count,'readers',r['reader_count'],
+                        'tasks/sec',r['throughput_native_tasks_per_second'],
+                        'median-write-ms',r['writer_total_wall_ms']['median'])
+              assert x['observed_limits'][arm]['largest_concurrent_writers_tested']==6
+              assert not x['observed_limits'][arm]['strict_capacity_maximum_claimed']
+              failures=x['fault_rollback'][arm]
+              assert failures['injected_failures']==3 and failures['all_atomic_rollback']
+              assert all(a['rollback_exact'] and a['restart_exact'] for a in failures['results'])
+              crash=x['abrupt_process_restarts'][arm]
+              assert set(crash)=={'before-commit','after-commit'}
+              assert crash['before-commit']['uncommitted_state_restored']
+              assert crash['after-commit']['committed_XI_receipt_survived_restart']
+              assert crash['after-commit']['replay_idempotent']
+              assert all(t['SQLite_WAL_recovered'] for t in crash.values())
+              collision=x['request_id_collisions'][arm]
+              assert collision['simultaneous_same_id_requests']==2
+              assert collision['unique_persisted_request']==1
+              assert collision['unique_persisted_native_task']==1
+              assert collision['both_receipts_identical']
+              assert collision['different_payload_same_id_rejected']
+          cache=x['C13_opt_in_cache_serial_comparator']
+          assert cache['single_threaded_only'] and cache['cache_not_promoted']
+          assert cache['identical_receipts_and_snapshots'] and len(cache['samples'])==3
+          assert all(a['native_outputs_identical'] for a in cache['samples'])
+          panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
+          assert panel['current_cycle']=='C15' and panel['next_cycle']=='C16'
+          assert panel['history_constraints']['frozen_sources_expected']==159
+          assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
+          assert not panel['history_constraints']['apk_requested']
+          print('C15 native XI/U02 WAL stress, crash recovery and checkpoints verified; no APK, no merges')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C15-native-WAL-stress-evidence
+          path: |
+            build/c15/*.json
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30
