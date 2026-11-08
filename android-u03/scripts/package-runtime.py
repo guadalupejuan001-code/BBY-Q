@@ -27,7 +27,7 @@ def build():
     include = set(frozen)
     directories = (
         "integration/sequence2", "integration/entity", "integration/qchat100",
-        "integration/unified", "integration/zero", "integration/balance/release",
+        "integration/unified", "integration/zero", "integration/balance",
         "ai/xi/sequence2", "ai/xi/entity", "ai/xi/balance",
         "ai/xi/unified", "ai/personal/zero",
     )
