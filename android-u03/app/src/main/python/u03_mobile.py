@@ -182,6 +182,9 @@ def turn(request_id:str, prompt:str, payload_json:str="") -> str:
                 "ok":bool(output.get("ok")),
                 "reply":_reply(output),
                 "receipt":output,
+                "receipt_sha256":_bytes_hash(json.dumps(
+                    output, sort_keys=True, separators=(",", ":"),
+                    ensure_ascii=False).encode("utf-8")),
                 "trace":trace,
                 "native_XI":real_native,
                 "original_U02":output.get("entity")=="U02",
