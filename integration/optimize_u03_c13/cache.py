@@ -33,6 +33,7 @@ def authenticated_release_cache() -> Iterator[dict[str, int]]:
     process-local test context.
     """
     original_assets = freeze_assets()
+    original_unified_source_identity = U.source_identity()
     if len(original_assets) != 159:
         raise AssertionError("C13 needs the exact 159 frozen files")
     sites = (
@@ -74,6 +75,8 @@ def authenticated_release_cache() -> Iterator[dict[str, int]]:
             cached.cache_clear()
         if freeze_assets() != original_assets:
             raise AssertionError("C13 cached protected model identity changed")
+        if U.source_identity() != original_unified_source_identity:
+            raise AssertionError("C13 cached U02 native source identity changed")
 
 
 def no_unsafe_memoization() -> bool:
