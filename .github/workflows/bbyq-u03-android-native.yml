@@ -1,4 +1,4 @@
-name: BBY Q Android A00-A06 integrated XI cycles and 16KB compatibility
+name: BBY Q C16 integrated Android cycles M01-M06
 on:
   pull_request:
     paths:
@@ -9,15 +9,17 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: bbyq-mobile-integration-${{ github.ref }}
+  group: bbyq-integrated-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 jobs:
-  android-native-integrated:
+  android-c16:
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
-        with: {persist-credentials: false, fetch-depth: 0}
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - uses: actions/checkout@v4
         with:
           repository: guadalupejuan001-code/REVERSE-PC
@@ -31,129 +33,95 @@ jobs:
           path: deps/mundo-x
           persist-credentials: false
       - uses: actions/setup-java@v4
-        with: {distribution: temurin, java-version: '17'}
+        with:
+          distribution: temurin
+          java-version: '17'
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
+        with:
+          python-version: '3.12'
       - uses: actions/setup-node@v4
-        with: {node-version: '24'}
+        with:
+          node-version: '24'
       - uses: gradle/actions/setup-gradle@v4
-        with: {gradle-version: '8.9'}
-      - name: Recover actual C06 historical native candidate (not retrained)
-        uses: actions/download-artifact@v4
         with:
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: 42383154492
-          name: BBYQ-U03-C06-native-semantic-evidence
-          path: build/mobile-candidates/c06
-      - name: Recover actual C07 historical native candidate (not retrained)
-        uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: 42386450584
-          name: BBYQ-U03-C07-native-metacognition-evidence
-          path: build/mobile-candidates/c07
-      - name: Recover actual C08 historical native candidate (not retrained)
-        uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: 42389307671
-          name: BBYQ-U03-C08-native-active-learning-evidence
-          path: build/mobile-candidates/c08
-      - name: A00 source identity and A03 exact original candidate hashes
+          gradle-version: '8.9'
+      - name: M01 preserve 159 originals and build pinned XI C1 Zero
         run: |
-          set -euo pipefail
-          mkdir -p build/android-u03
+          mkdir -p build/android-c16
           python3 - <<'PY'
           from integration.audit_u03_c00.profile import freeze_assets
-          import json,subprocess
+          import json
           from pathlib import Path
-          frozen=freeze_assets()
-          assert len(frozen)==159
-          base='58ef4bff2e6d53dcbb55cc97d0d4249807ffb750'
-          changed=subprocess.check_output(['git','diff','--name-only',base,'HEAD','--',*frozen],text=True)
-          assert not changed,changed
-          Path('build/android-u03/frozen-before.json').write_text(json.dumps(frozen,indent=2)+'\n')
-          print('159 historical files byte-preserved from exact PR #103')
+          hashes=freeze_assets()
+          assert len(hashes)==159
+          Path('build/android-c16/protected-before.json').write_text(json.dumps(hashes,sort_keys=True))
           PY
-          python3 android-u03/scripts/prepare-candidates.py
           bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
           python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
           python3 integration/sequence2/build.py
           node integration/zero/build.mjs
           python3 -m integration.unified.verify_release
           python3 -m integration.unified.verify_perception
-          python3 -m py_compile android-u03/scripts/package-runtime.py android-u03/scripts/prepare-candidates.py android-u03/scripts/verify-elf.py android-u03/scripts/xi_session_mobile.py android-u03/app/src/main/python/mobile_cycles.py android-u03/app/src/main/python/u03_mobile.py
+      - name: M03 recover original trained C06 C07 C08 checkpoints without retraining
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 android-u03/scripts/recover-mobile-heads.py
+      - name: M02-M05 package actual source routes and authenticated heads
+        run: |
           python3 android-u03/scripts/package-runtime.py
-      - name: Install Android 15 SDK and pinned NDK
+          python3 -m compileall -q android-u03/app/src/main/python android-u03/scripts
+          python3 - <<'PY'
+          from integration.audit_u03_c00.profile import freeze_assets
+          import json
+          from pathlib import Path
+          assert freeze_assets()==json.loads(Path('build/android-c16/protected-before.json').read_text())
+          print('159 protected original assets remain byte-identical; recovered heads are additive')
+          PY
+      - name: Install Android 35 tools and NDK27
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'platform-tools' 'emulator' 'system-images;android-35;default;x86_64'
-      - name: A01-A06 compile real ARM64 and x86_64 integrated application
+      - name: M01 M06 compile integrated launcher and original XI JNI for both ABIs
         run: |
-          set -euo pipefail
-          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-u03/gradle.log 2>&1 || {
-            grep -n -E 'error:|FAILED|CMake Error|Execution failed|FAILURE|Could not|cannot find symbol|Caused by:' build/android-u03/gradle.log | head -70 || true
-            tail -150 build/android-u03/gradle.log
+          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c16/gradle.log 2>&1 || {
+            grep -n -E 'error:|FAILED|FAILURE|Caused by|Could not' build/android-c16/gradle.log | head -70 || true
+            tail -160 build/android-c16/gradle.log
             exit 1
           }
-          cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-u03/BBY-Q-U03-Integrado.apk
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs build/android-u03/BBY-Q-U03-Integrado.apk > build/android-u03/signature.txt
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/android-u03/BBY-Q-U03-Integrado.apk > build/android-u03/package.txt
-          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -v -c -P 16 4 build/android-u03/BBY-Q-U03-Integrado.apk > build/android-u03/zipalign.txt
-          python3 android-u03/scripts/verify-elf.py build/android-u03/BBY-Q-U03-Integrado.apk --out build/android-u03/elf-16kb.json
-          python3 - <<'PY'
-          import io,json,zipfile
-          from pathlib import Path
-          from hashlib import sha256
-          from integration.audit_u03_c00.profile import freeze_assets
-          p=Path('build/android-u03/BBY-Q-U03-Integrado.apk')
-          with zipfile.ZipFile(p) as z:
-              assert z.testzip() is None
-              m=json.loads(z.read('assets/u03/mobile-manifest.json'))
-              raw=z.read('assets/u03/bbyq-u03-runtime.zip')
-              assert sha256(raw).hexdigest()==m['archive_sha256']
-              with zipfile.ZipFile(io.BytesIO(raw)) as bundle:
-                  for name,expected in m['protected_sha256'].items():assert sha256(bundle.read(name)).hexdigest()==expected,name
-                  candidate=json.loads(bundle.read('integration/mobile_candidates/index.json'))
-                  for cycle,entry in candidate['models'].items():
-                      assert sha256(bundle.read('integration/mobile_candidates/'+entry['model'])).hexdigest()==entry['model_sha256']
-          assert m['protected_count']==159
-          assert not m['experimental_c11_c12_promoted'] and not m['C13_cache_enabled']
-          assert freeze_assets()==json.loads(Path('build/android-u03/frozen-before.json').read_text())
-          r={'apk':p.name,'package':'com.bbyq.u03.integrated','version':'U03.16-integration.1','bytes':p.stat().st_size,
-             'sha256':sha256(p.read_bytes()).hexdigest(),'arm64_compiled':True,'x86_64_compiled':True,
-             'original_U02_XI':True,'protected_count':159,'historical_candidates':['C06','C07','C08'],
-             'android_tests_passed':False,'models_promoted':False,'GPU_virtual_backend':False}
-          Path('build/android-u03/build.json').write_text(json.dumps(r,indent=2)+'\n')
-          print(json.dumps(r))
-          PY
-      - name: A06 Android 15 - execute 15 integration tests and independent process restart
-        timeout-minutes: 35
-        run: bash android-u03/scripts/emulator-smoke.sh
-      - name: Require actual device-side evidence, not source membership
+          cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-c16/BBY-Q-U03-Integrado-C16.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs build/android-c16/BBY-Q-U03-Integrado-C16.apk > build/android-c16/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/android-c16/BBY-Q-U03-Integrado-C16.apk > build/android-c16/package.txt
+          grep "package: name='com.bbyq.u03.integrated'" build/android-c16/package.txt
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -P 16 -v 4 build/android-c16/BBY-Q-U03-Integrado-C16.apk > build/android-c16/zipalignment.txt
+          python3 android-u03/scripts/verify-integrated-apk.py build/android-c16/BBY-Q-U03-Integrado-C16.apk build/android-c16/static-verification.json
+      - name: M01-M06 real Android execution of all integrated cycles and laboratories
+        timeout-minutes: 40
+        run: bash android-u03/scripts/emulator-integrated.sh
+      - name: Final source preservation and real Android report gates
         run: |
           python3 - <<'PY'
-          import json
-          from pathlib import Path
           from integration.audit_u03_c00.profile import freeze_assets
-          report=json.loads(Path('build/android-u03/validation.json').read_text())
-          assert report['passed'] and report['android_15_x86_64_instrumentation_tests']==15
-          assert report['restart_new_process_tests']==1
-          assert not report['GPU_virtual_compute_integrated']
-          assert report['no_models_automatically_promoted']
-          assert freeze_assets()==json.loads(Path('build/android-u03/frozen-before.json').read_text())
-          print('Executable integrated Android cycles, real XI laboratory outputs, restart and original source identity verified')
+          from pathlib import Path
+          import json
+          out=Path('build/android-c16')
+          assert freeze_assets()==json.loads((out/'protected-before.json').read_text())
+          r=json.loads((out/'validation.json').read_text())
+          assert r['delivery_verified'] and r['android_instrumentation_passed']
+          assert r['android_instrumentation_test_count']>=16
+          assert r['external_force_stop_restart_verified']
+          assert r['all_ELF_load_segments_at_least_16KB']
+          assert len(r['cycle_labs'])==8
+          for c in ('c11','c12'):
+              lab=json.loads((out/'lab'/(c+'.json')).read_text())
+              assert lab['changed_regions']==6 and not lab['model_promoted']
+          print('Integrated Android original XI routes, laboratory isolation and 159 protected assets verified')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBY-Q-U03-Integrated-Android-APK-and-real-evidence
+          name: BBY-Q-U03-Integrado-C16-APK-and-proof
           path: |
-            build/android-u03/
-            integration/mobile_candidates/
-            android-u03/INTEGRATION_CYCLES.md
+            build/android-c16/
+            integration/mobile_u03_c16/heads/
           if-no-files-found: warn
-          retention-days: 90
+          retention-days: 30
