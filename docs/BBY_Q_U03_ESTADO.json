@@ -4,7 +4,7 @@
   "branch": "codex/bbyq-u03-c12-block-experiments-20261107",
   "base_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
   "current_cycle": "C12",
-  "latest_verified_cycle": "C11",
+  "latest_verified_cycle": "C12",
   "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
   "history_constraints": {
     "frozen_sources_expected": 159,
@@ -102,7 +102,7 @@
     {
       "id": "C12",
       "work": "Experimentos cuánticos entre bloques",
-      "state": "implementado en borrador; CI nativa pendiente",
+      "state": "validado experimental CI #42441627503; seis regiones XI modificadas, 4/4 y 6/6 sin ganancia vs control, 159 activos, sin APK",
       "pr": 98,
       "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/98"
     },
@@ -143,16 +143,18 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C12 con pruebas XI, capacidad, interferencia, auditoría 6 pesos y ablaciones; CI sin verificar; C11 sigue congelado como referencia",
+  "current_plan": "C12 validado: cambios nativos 6/6 y 2 feedback independientes; exactitud empatada vs frozen; C13 optimización global de costos y latencias sin promocionar modelo",
   "current_ci": {
-    "run_id": null,
-    "conclusion": "pending",
-    "url": null
+    "run_id": 42441627503,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503/artifacts/13601539793",
+    "verified_code_sha": "38b5196d399bc78b4124451b636cd8322e4cf1eb"
   },
   "blockers": [
-    "C12 tiene campaña implementada pero no ha concluido CI; no atribuir mejoras sin resultados.",
-    "C11 no mejoró frente al control congelado en 4 pruebas; C12 requiere muestras nuevas y métricas separadas.",
-    "No se permite fusionar PR #98, promocionar candidato ni generar APK antes de una decisión posterior."
+    "Seis regiones XI cambiaron pero el modelo entrenado empató 4/4 en validación y 6/6 en test reservado con frozen; no hubo mejora.",
+    "Solo dos entrenamientos, seis pruebas inéditas y 2 casos de ablación: no se infiere generalización amplia ni ventaja cuántica.",
+    "Los costes host de XI/copia SQLite deben optimizarse sin sacrificar checkpoints o trazabilidad; C13 pendiente."
   ],
   "next_cycle": "C13",
   "c09_results": {
@@ -236,8 +238,49 @@
     "test": 6,
     "load": 6,
     "interference": "A-B-A",
-    "actual_metrics": "pending",
+    "actual_metrics": "CI #42441627503 success; frozen selected",
     "source_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
     "c11_labels_reused": false
+  },
+  "c12_results": {
+    "passed": true,
+    "ci_run_id": 42441627503,
+    "native_verified_feedback": 2,
+    "native_parameter_regions_changed": 6,
+    "validation_class_correct": {
+      "frozen": 4,
+      "joint-verified": 4,
+      "total": 4
+    },
+    "test_class_correct": {
+      "frozen": 6,
+      "joint-verified": 6,
+      "total": 6
+    },
+    "capacity_success": {
+      "frozen": 6,
+      "joint-verified": 6,
+      "total": 6
+    },
+    "interference_revisit_changed": {
+      "frozen": false,
+      "joint-verified": false
+    },
+    "c1_u02_sync_each_load": true,
+    "inference_only_weight_changes": 0,
+    "test_median_ms_including_clone": {
+      "frozen": 2172.798,
+      "joint-verified": 2204.079
+    },
+    "training_wall_ms": {
+      "frozen": 4429.199,
+      "joint-verified": 10161.257
+    },
+    "ablation_memory_rule_correct": 1,
+    "ablation_voice_faithful": 0,
+    "ablation_total_per_control": 2,
+    "promotion": "frozen",
+    "protected_assets": 159,
+    "apk_built": false
   }
 }
