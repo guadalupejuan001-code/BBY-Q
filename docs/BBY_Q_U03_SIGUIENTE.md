@@ -10,6 +10,8 @@
 
 **C12 COMPLETADO EXPERIMENTALMENTE — Experimentos cuánticos entre bloques:** [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98) desde C11 PR #97 (commit exacto 4bf3a7a), [CI original XI aprobada #42441627503](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503), [resultados completos](../integration/blocks_u03_c12/RESULTS.md). Dos feedback verificados, cambios en 6/6 regiones XI de parámetros. Validación 4/4 y test reservado 6/6 tanto entrenado como congelado: **no mejora de exactitud**. En cada brazo 6/6 misiones de carga y sincronización, A→B→A estable, sin cambios en pesos durante inferencia. Ablaciones limitadas a 2 casos: QMemory sin 1/2 reglas, voz sin 2/2 fidelidades. 159 fuentes protegidas intactas; BBY Q → w4U → QdU, sin APK.
 
-**C13 — Optimización global (siguiente):** priorizar cuellos de botella medidos tras el cierre real de C12; comparar con U02/C11 congelados, no sacrificar trazabilidad ni checkpoints. Abrir nueva PR sin fusión automática.
+**C13 INICIADO — Optimización global:** [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99) basada exactamente en PR #98 commit d31d60b. Se implementó un benchmark pareado U02 original frente a caché autenticada de checkpoints inmutables; mide copia SQLite, arranque, XI, auditoría, CPU/RSS/I/O y ablaciones con 4 casos nuevos × 3 repeticiones en dos brazos, y exige identidad de recibos y seis grupos de pesos. **Ejecución CI pendiente; no se presume ganancia.** 159 archivos intactos, BBY Q → w4U → QdU, cero APK.
+
+**C14 — Benchmarks y ablaciones (siguiente):** ampliar los escenarios y verificar efectos de componentes con más muestras, controles igualados y costes de extremo a extremo. No promocionar sin evidencia, no fusionar automáticamente.
 
 **Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel se actualiza con las pruebas GitHub realmente concluidas, no con promesas. Sin APK.

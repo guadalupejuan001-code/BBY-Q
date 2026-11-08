@@ -1,9 +1,9 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c12-block-experiments-20261107",
-  "base_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
-  "current_cycle": "C12",
+  "branch": "codex/bbyq-u03-c13-global-optimization-20261108",
+  "base_commit": "d31d60bb0ee356b004e9e1e2d819aa361ef3a9db",
+  "current_cycle": "C13",
   "latest_verified_cycle": "C12",
   "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
   "history_constraints": {
@@ -109,9 +109,9 @@
     {
       "id": "C13",
       "work": "Optimización global",
-      "state": "pendiente",
-      "pr": null,
-      "pr_url": null
+      "state": "implementado experimentalmente; campaña nativa y benchmarks CI pendientes",
+      "pr": 99,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/99"
     },
     {
       "id": "C14",
@@ -143,20 +143,18 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C12 validado: cambios nativos 6/6 y 2 feedback independientes; exactitud empatada vs frozen; C13 optimización global de costos y latencias sin promocionar modelo",
+  "current_plan": "C13 optimización global: aislar costes reales de U02/C12, medir CPU/RSS/I-O/SQLite/XI, autenticar cache inmutable y rechazar si no mejora ≥3 % en ambos controles; CI pendiente",
   "current_ci": {
-    "run_id": 42441627503,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503/artifacts/13601539793",
-    "verified_code_sha": "38b5196d399bc78b4124451b636cd8322e4cf1eb"
+    "run_id": null,
+    "conclusion": "pending",
+    "url": null
   },
   "blockers": [
-    "Seis regiones XI cambiaron pero el modelo entrenado empató 4/4 en validación y 6/6 en test reservado con frozen; no hubo mejora.",
-    "Solo dos entrenamientos, seis pruebas inéditas y 2 casos de ablación: no se infiere generalización amplia ni ventaja cuántica.",
-    "Los costes host de XI/copia SQLite deben optimizarse sin sacrificar checkpoints o trazabilidad; C13 pendiente."
+    "C13 no dispone todavía de resultado medido en GitHub Actions; no atribuir aceleración sin comparación exacta.",
+    "C12 modelo entrenado sigue empatado en precisión con U02 congelado: no promocionar ni fusionar por cambio de pesos.",
+    "El coste de arranque, del motor XI y de la copia SQLite debe separarse sin alterar checkpoints históricos."
   ],
-  "next_cycle": "C13",
+  "next_cycle": "C14",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -282,5 +280,27 @@
     "promotion": "frozen",
     "protected_assets": 159,
     "apk_built": false
+  },
+  "c12_verified_ci": {
+    "run_id": 42441627503,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503/artifacts/13601539793",
+    "verified_code_sha": "38b5196d399bc78b4124451b636cd8322e4cf1eb"
+  },
+  "c13_protocol": {
+    "base_pr": 98,
+    "base_head_sha": "d31d60bb0ee356b004e9e1e2d819aa361ef3a9db",
+    "candidate": "authenticated immutable release cache",
+    "cases": 4,
+    "repeats": 3,
+    "comparators": [
+      "u02-frozen",
+      "c12-joint-experimental"
+    ],
+    "original_runtime_modified": false,
+    "measurement_status": "pending",
+    "promotion": "none",
+    "new_primary_memory_authorities": 0
   }
 }

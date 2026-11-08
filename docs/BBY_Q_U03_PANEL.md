@@ -1,6 +1,6 @@
 # BBY Q U03 — Panel permanente de secuencias
 
-**Uso:** este panel se actualiza con el estado real del ciclo y sus enlaces de GitHub. Los ciclos C00–C12 son prototipos de rama; aprobación de CI no significa fusión a `main`.
+**Uso:** este panel se actualiza con el estado real del ciclo y sus enlaces de GitHub. Los ciclos C00–C13 son prototipos de rama; aprobación de CI no significa fusión a `main`.
 
 | Ciclo | Implementación / trabajo | Estado / resultado | GitHub |
 |---|---|---|---|
@@ -17,7 +17,7 @@
 | **C10** | Razonamiento y planificación | validado experimental; pruebas XI, 159 archivos, sin APK | [PR #96](https://github.com/guadalupejuan001-code/BBY-Q/pull/96) |
 | **C11** | Aprendizaje conjunto | validado experimental; 6 regiones XI cambiaron; 4/4 test pero sin ganancia vs U02 | [PR #97](https://github.com/guadalupejuan001-code/BBY-Q/pull/97) |
 | **C12** | Experimentos cuánticos entre bloques | **Validado experimental**: 6 regiones XI cambiadas, 4/4 + 6/6 empate, sin mejora ni APK | [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98) |
-| **C13** | Optimización global | pendiente | — |
+| **C13** | Optimización global | Implementación experimental; CI y métricas pendientes | [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99) |
 | **C14** | Benchmarks y ablaciones | pendiente | — |
 | **C15** | Estrés y concurrencia | pendiente | — |
 | **C16** | Integración Android y REVERSE-PC | pendiente sin APK | — |
@@ -35,4 +35,6 @@
 
 **Archivos de continuidad:** [Estado estructurado](BBY_Q_U03_ESTADO.json) y [Siguiente paso](BBY_Q_U03_SIGUIENTE.md).
 
-**C12 — evidencia verificada:** [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98), [CI aprobada #42441627503](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503), [RESULTS.md](../integration/blocks_u03_c12/RESULTS.md). Dos entrenamientos XI nativos, seis regiones reales de parámetros modificadas, validación 4/4 y test 6/6 **en ambos brazos: ninguna mejora de exactitud**. Seis tareas de capacidad/sincronización completadas por brazo y ninguna interferencia A→B→A observada. Cuatro ablaciones nativas: QMemory borrada pierde 1/2 reglas y voz ablacionada pierde 2/2 salidas; otros controles no demostraron dependencia en dos casos. 159 fuentes intactas. Modelo `frozen` conservado. **Siguiente C13, sin APK ni fusión.**
+**C12 — evidencia verificada:** [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98), [CI aprobada #42441627503](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503), [RESULTS.md](../integration/blocks_u03_c12/RESULTS.md). Dos entrenamientos XI nativos, seis regiones reales de parámetros modificadas, validación 4/4 y test 6/6 **en ambos brazos: ninguna mejora de exactitud**. Seis tareas de capacidad/sincronización completadas por brazo y ninguna interferencia A→B→A observada. Cuatro ablaciones nativas: QMemory borrada pierde 1/2 reglas y voz ablacionada pierde 2/2 salidas; otros controles no demostraron dependencia en dos casos. 159 fuentes intactas. Modelo `frozen` conservado. **C13 en evaluación; siguiente C14, sin APK ni fusión.**
+
+**C13 — ensayo de rendimiento, no desplegado:** [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99) desde PR #98/C12. Compara U02 original vs caché autenticada de modelos inmutables usando 4 tareas nuevas × 3 repeticiones, control congelado y modelo C12; mide CPU, RAM, I/O, XI, SQLite, sincronización y controles ablacionados. **CI pendiente**, no se atribuye ninguna mejora sin resultados. Modelo `frozen` mantiene la decisión anterior. **C14 es la siguiente secuencia.**
