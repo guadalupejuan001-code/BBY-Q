@@ -1,9 +1,9 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c11-joint-learning-20261107",
-  "base_commit": "147cfe804d413110400a7da528d286529f749fa9",
-  "current_cycle": "C11",
+  "branch": "codex/bbyq-u03-c12-block-experiments-20261107",
+  "base_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
+  "current_cycle": "C12",
   "latest_verified_cycle": "C11",
   "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
   "history_constraints": {
@@ -102,9 +102,9 @@
     {
       "id": "C12",
       "work": "Experimentos cuánticos entre bloques",
-      "state": "pendiente",
-      "pr": null,
-      "pr_url": null
+      "state": "implementado en borrador; CI nativa pendiente",
+      "pr": 98,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/98"
     },
     {
       "id": "C13",
@@ -143,19 +143,18 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C11 verificado: los seis grupos de parámetros XI nativos cambian bajo feedback verificado, pero 3/3 validación y 4/4 test empatan frente a U02 sin entrenamiento; C12 queda como siguiente",
+  "current_plan": "C12 con pruebas XI, capacidad, interferencia, auditoría 6 pesos y ablaciones; CI sin verificar; C11 sigue congelado como referencia",
   "current_ci": {
-    "run_id": 42401341401,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401/artifacts/13585940761"
+    "run_id": null,
+    "conclusion": "pending",
+    "url": null
   },
   "blockers": [
-    "C11 seis regiones de pesos XI realmente cambiaron, pero la exactitud de validación/test ya estaba saturada: no se demostró mejora frente al U02 congelado y no se promociona.",
-    "El test C11 solo incluye cuatro misiones sintéticas; C12 necesita escenarios predefinidos independientes y comparación de ablaciones más amplia.",
-    "C08 mantiene ganancia de pesos no demostrada; C09/C10 ofrecen trazabilidad a costa de latencia. Ninguna APK autorizada."
+    "C12 tiene campaña implementada pero no ha concluido CI; no atribuir mejoras sin resultados.",
+    "C11 no mejoró frente al control congelado en 4 pruebas; C12 requiere muestras nuevas y métricas separadas.",
+    "No se permite fusionar PR #98, promocionar candidato ni generar APK antes de una decisión posterior."
   ],
-  "next_cycle": "C12",
+  "next_cycle": "C13",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -223,5 +222,22 @@
     "previous_U02_banks_untouched": true,
     "protected_assets": 159,
     "apk_built": false
+  },
+  "previous_verified_ci": {
+    "run_id": 42401341401,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401/artifacts/13585940761"
+  },
+  "c12_protocol": {
+    "source": "PR #97 C11 exact head; original U02 XI",
+    "training": 2,
+    "validation": 4,
+    "test": 6,
+    "load": 6,
+    "interference": "A-B-A",
+    "actual_metrics": "pending",
+    "source_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
+    "c11_labels_reused": false
   }
 }
