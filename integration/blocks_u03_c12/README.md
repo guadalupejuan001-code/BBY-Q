@@ -28,3 +28,7 @@ python3 -m integration.blocks_u03_c12.verify_panel
 La compilación depende de las revisiones fijas de REVERSE-PC y mundo-X usadas en C11. El informe JSON contiene observaciones individuales (incluidos rechazos), medidas, ablaciones, hashes y copia SQLite **sintética y desechable**. No fusionar ni instalar; no generar APK. La cadena de agencia es **BBY Q → w4U → QdU**.
 
 [Panel completo C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado](../../docs/BBY_Q_U03_ESTADO.json) · [Continuidad](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+## Cierre de campaña nativa
+
+[RESULTS.md](RESULTS.md) registra los resultados de [CI aprobada #42441627503](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503): 6/6 regiones de pesos nativos cambiaron en el brazo conjunto; validación 4/4 y test 6/6 empataron con el congelado, sin beneficio de exactitud ni promoción. Carga 6/6 y A→B→A sin diferencias en las condiciones medidas. **Siguiente C13**, sin fusión ni APK.
