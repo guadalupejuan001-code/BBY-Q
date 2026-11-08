@@ -193,7 +193,8 @@ def _condensed(rows: list[dict]) -> dict:
     phases = (
         "sqlite_backup", "session_startup_authentication",
         "original_u02_xi_turn", "c09_post_inference_audit", "session_close",
-        "total_including_new_db",
+        "total_including_new_db", "scope_guard_overhead_amortized",
+        "total_including_guard",
     )
     return {
         "n": len(rows),
@@ -218,8 +219,8 @@ def _paired_report(original: list, cached: list) -> dict:
     assert len(original) == len(cached) and len(original) >= 8
     assert all(a["source_seed"]==b["source_seed"] for a,b in zip(original,cached))
     assert all(_identical(a,b) for a,b in zip(original,cached))
-    base = [row["phase_ms"]["total_including_new_db"] for row in original]
-    newer = [row["phase_ms"]["total_including_new_db"] for row in cached]
+    base = [row["phase_ms"]["total_including_guard"] for row in original]
+    newer = [row["phase_ms"]["total_including_guard"] for row in cached]
     paired_pct = [(a-b)/a*100 for a,b in zip(base,newer)]
     baseline=statistics.median(base)
     candidate=statistics.median(newer)
@@ -303,14 +304,27 @@ def campaign(output: Path, *, repeats=DEFAULT_REPEATS) -> dict:
                 order=VARIANTS if repetition % 2 == 0 else tuple(reversed(VARIANTS))
                 for variant in order:
                     scope=authenticated_release_cache() if variant=="cached-release-c13" else nullcontext(None)
+                    batch_t0=time.perf_counter_ns()
+                    batch_rows=[]
                     with scope as counter:
                         for case in CASES:
                             row=_measure_one(source,case)
                             key=(repetition,case.seed)
                             store[variant][key]=row
+                            batch_rows.append(row)
                         if counter is not None:
                             for key in cache_counter:
                                 cache_counter[key]+=counter[key]
+                    # Include the amortized immutable-manifest gate at BOTH
+                    # boundaries: hiding this cost would bias the speed claim.
+                    batch_total_ms=(time.perf_counter_ns()-batch_t0)/1e6
+                    raw_ms=sum(r["phase_ms"]["total_including_new_db"] for r in batch_rows)
+                    scope_overhead_ms=max(0.0,(batch_total_ms-raw_ms)/len(batch_rows))
+                    for row in batch_rows:
+                        phases=row["phase_ms"]
+                        phases["scope_guard_overhead_amortized"]=round(scope_overhead_ms,3)
+                        phases["total_including_guard"]=round(
+                            phases["total_including_new_db"]+scope_overhead_ms,3)
 
             # Paired per-case comparison with identical native receipts.
             for variant in VARIANTS:
@@ -423,6 +437,7 @@ def campaign(output: Path, *, repeats=DEFAULT_REPEATS) -> dict:
                 "Timing is end-to-end isolated request; includes new SQLite copy, source authentication and C09 audit.",
                 "Native trace enclosing execution packets may contain multiple XI calls; no false exclusive timings.",
                 "Native peak RSS and /proc I/O are host observations; page cache may make read_bytes zero.",
+                "Measured paired end-to-end timing includes amortized SHA-256 manifest checks for cached scope; those checks cannot be hidden.",
                 "Median speedup from small runner samples is descriptive, not a guaranteed production acceleration.",
                 "No model improvement: C12 joint candidate was never promoted, even if host initialization is faster.",
             ],
