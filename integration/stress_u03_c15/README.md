@@ -34,3 +34,7 @@ python3 -m integration.stress_u03_c15.campaign --out build/c15/stress.json
 Dependencias fijas: `REVERSE-PC@08c363e6c6855c14026c86046af7183a45f45a98` y `mundo-X@e2778d962af22f6f1a0794058dd4685fc2573966`. La CI verifica C1/U02, gradientes, rollback, fuentes históricas y el panel C00–C17 antes de los ensayos. El resultado JSON completo se publica como artefacto de GitHub Actions. **La campaña usa exclusivamente archivos SQLite temporales**; no ejecuta dispositivos Android ni instala nada.
 
 [Informe medido](RESULTS.md) · [Panel C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado](../../docs/BBY_Q_U03_ESTADO.json) · [Siguiente C16](../../docs/BBY_Q_U03_SIGUIENTE.md).
+
+## Resultado observado
+
+[RESULTS.md](RESULTS.md) contiene el perfil real de las dos campañas, incluida [CI #42456400116 aprobada](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42456400116). Los lectores verificaron 128 snapshots autenticados en total, 16 después de un commit real. El throughput se mantuvo alrededor de 0,4 tareas XI/segundo con 1–6 escritores y latencias crecientes. Recuperación y colisiones pasaron; no se promovió modelo ni caché, ni se generó APK. Siguiente C16.

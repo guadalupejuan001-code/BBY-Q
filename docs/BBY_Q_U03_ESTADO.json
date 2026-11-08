@@ -4,7 +4,7 @@
   "branch": "codex/bbyq-u03-c15-stress-concurrency-20261108",
   "base_commit": "e774b1b3694a1a2dfaa505b054888b80db495db1",
   "current_cycle": "C15",
-  "latest_verified_cycle": "C14",
+  "latest_verified_cycle": "C15",
   "last_stable_route": "U02 frozen original; C01–C14 son prototipos experimentales en ramas, ninguno fusionado automáticamente o instalado",
   "history_constraints": {
     "frozen_sources_expected": 159,
@@ -123,7 +123,7 @@
     {
       "id": "C15",
       "work": "Estrés y concurrencia",
-      "state": "implementado experimental; CI estrés, WAL y recuperación pendiente",
+      "state": "validado experimental XI/WAL CI #42456400116: 1/2/4/6 escritores, 128 snapshots, 3 rollbacks y 2 crashes por brazo, sin promoción ni APK",
       "pr": 101,
       "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/101"
     },
@@ -143,16 +143,20 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C15 estrés nativo XI/SQLite WAL: 1,2,4,6 escritores; hasta 3 lectores con 8 snapshots c/u; inyección fallos 1/2/3; proceso abrupto sin commit y tras commit XI, colisiones de ID, restart/replay y comparación C13 secuencial. CI pendiente.",
+  "current_plan": "C15 completado experimental: max ensayado 6 escritores+3 lectores/SQLite, throughput 0.40–0.42 tasks/s y latencias crecientes por serialización, 128 instantáneas WAL verificadas (16 postcommit), replays, fallos/collisions. C16 Android/REVERSE-PC pendiente sin APK.",
   "current_ci": {
-    "run_id": null,
-    "conclusion": "pending",
-    "url": null
+    "run_id": 42456400116,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42456400116",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42456400116/artifacts/13608230586",
+    "verified_code_sha": "3e5a71a53e4cebf6ada02b5767c4024fb6fd6c06",
+    "notes": "C15 campaign with verified post-commit read snapshots. Final docs-only commit will rerun tests."
   },
   "blockers": [
-    "C15 aún no tiene evidencia CI de estrés real; ninguna mejora de throughput atribuida hasta medir.",
-    "C13 caché no está habilitada y no es segura para stress multihilo; se prueba únicamente por equivalencia serial.",
-    "Modelo conjunto C12 no superó frozen; no promocionar ni generar APK."
+    "El throughput de un solo SQLite-WAL compartido se mantuvo cerca de 0,4 tareas XI/segundo al aumentar 1→6 escritores; la mediana de latencia de cada escritor sube ~2,45→8,6 segundos. Esto NO determina capacidad máxima.",
+    "C13 caché autenticada es experimental y no segura para concurrencia por su monkeypatch global; sólo se comprobó equivalencia secuencial, no ganancia de rendimiento.",
+    "C12 conjunto entrenado sigue sin mejora general demostrada; no se promociona ningún modelo.",
+    "C15 probó crashes SQLite antes del commit y host después de commit XI. No probó un apagón durante ejecución XI ni pruebas Android; C16 pendiente."
   ],
   "next_cycle": "C16",
   "c09_results": {
@@ -444,6 +448,66 @@
       "after-commit"
     ],
     "ID_collision": "same-ID different-payload rejects",
-    "CI_status": "pending"
+    "CI_status": "validated CI #42456400116"
+  },
+  "c15_results": {
+    "passed": true,
+    "initial_ci_run": 42455939599,
+    "postcommit_ci_run": 42456400116,
+    "artifact_id": 13608230586,
+    "writer_levels": [
+      1,
+      2,
+      4,
+      6
+    ],
+    "max_tested_writers": 6,
+    "max_tested_readers": 3,
+    "total_native_writer_requests_per_arm": 13,
+    "total_read_snapshots_all_arms": 128,
+    "confirmed_postcommit_reader_count_all_arms": 16,
+    "first_campaign_tps_frozen": [
+      0.3774,
+      0.3713,
+      0.3941,
+      0.3952
+    ],
+    "second_campaign_tps_frozen": [
+      0.3993,
+      0.4211,
+      0.4203,
+      0.4168
+    ],
+    "second_campaign_tps_joint": [
+      0.3975,
+      0.4079,
+      0.4138,
+      0.4102
+    ],
+    "second_campaign_writer_median_ms_frozen": [
+      2447.637,
+      3615.444,
+      6140.165,
+      8626.676
+    ],
+    "second_campaign_writer_median_ms_joint": [
+      2459.957,
+      3734.619,
+      6203.864,
+      8713.702
+    ],
+    "second_campaign_six_writer_p95_ms_frozen": 14391.362,
+    "second_campaign_six_writer_p95_ms_joint": 14611.739,
+    "injected_rollbacks_per_arm": 3,
+    "abrupt_recovery_modes_per_arm": 2,
+    "same_id_collisions_one_logical_request": true,
+    "conflicting_payload_rejected": true,
+    "all_seven_original_banks_authenticated": true,
+    "checkpoint_sha_unchanged": true,
+    "C13_cached_serial_test_count": 3,
+    "cache_promoted": false,
+    "model_promoted": false,
+    "protected_assets": 159,
+    "apk_built": false
   }
 }
