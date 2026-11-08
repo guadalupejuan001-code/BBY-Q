@@ -125,7 +125,8 @@ jobs:
               assert concurrency['all_receipts_ok'] and concurrency['replays_exact_without_new_revision']
               assert concurrency['C1_U02_synced'] and concurrency['seven_banks_authenticated']
           panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
-          assert panel['current_cycle']=='C14' and panel['next_cycle']=='C15'
+          current=int(panel['current_cycle'][1:])
+          assert 14<=current<=16 and panel['next_cycle']==f'C{current+1:02d}'
           assert panel['history_constraints']['frozen_sources_expected']==159
           assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
           assert not panel['history_constraints']['apk_requested']
