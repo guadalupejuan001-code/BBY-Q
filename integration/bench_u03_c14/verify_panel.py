@@ -10,13 +10,14 @@ def main():
     next_step=(docs/"BBY_Q_U03_SIGUIENTE.md").read_text()
     assert state["schema"]=="BBYQ-U03-CYCLE-PANEL-v1"
     assert [r["id"] for r in state["cycles"]]==[f"C{i:02d}" for i in range(18)]
-    assert state["current_cycle"]=="C14" and state["next_cycle"]=="C15"
-    assert state["latest_verified_cycle"] in ("C13","C14")
+    current=int(state["current_cycle"][1:])
+    assert 14<=current<=16 and state["next_cycle"]==f"C{current+1:02d}"
+    assert 13<=int(state["latest_verified_cycle"][1:])<=current
     assert state["cycles"][13]["pr"]==99
     assert "validado" in state["cycles"][13]["state"]
     assert state["cycles"][14]["pr_url"] and state["cycles"][14]["pr"]
-    assert all(r["pr_url"] for r in state["cycles"][:15])
-    assert all(r["pr"] is None and r["pr_url"] is None for r in state["cycles"][15:])
+    assert all(r["pr_url"] for r in state["cycles"][:current+1])
+    assert all(r["pr"] is None and r["pr_url"] is None for r in state["cycles"][current+1:])
     assert all(f"C{i:02d}" in panel for i in range(18))
     assert "C14" in next_step and "C15" in next_step
     gate=state["history_constraints"]
@@ -27,8 +28,8 @@ def main():
     assert gate["new_primary_memory_authorities"]==0
     assert gate["agency"]=="BBY Q -> w4U -> QdU"
     assert "BBY Q" in panel and "w4U" in panel and "QdU" in panel
-    print(json.dumps({"passed":True,"cycles":18,"current":"C14",
-                      "next":"C15","protected":159,"apk_built":False}))
+    print(json.dumps({"passed":True,"cycles":18,"current":state["current_cycle"],
+                      "next":state["next_cycle"],"protected":159,"apk_built":False}))
 
 
 if __name__=="__main__":

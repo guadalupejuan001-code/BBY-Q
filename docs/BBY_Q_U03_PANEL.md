@@ -1,6 +1,6 @@
 # BBY Q U03 — Panel permanente de secuencias
 
-**Uso:** este panel se actualiza con el estado real del ciclo y sus enlaces de GitHub. Los ciclos C00–C14 son prototipos de rama; aprobación de CI no significa fusión a `main`.
+**Uso:** este panel se actualiza con el estado real del ciclo y sus enlaces de GitHub. Los ciclos C00–C15 son prototipos de rama; aprobación de CI no significa fusión a `main`.
 
 | Ciclo | Implementación / trabajo | Estado / resultado | GitHub |
 |---|---|---|---|
@@ -19,7 +19,7 @@
 | **C12** | Experimentos cuánticos entre bloques | **Validado experimental**: 6 regiones XI cambiadas, 4/4 + 6/6 empate, sin mejora ni APK | [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98) |
 | **C13** | Optimización global | **Validado experimental**: 2,77 % U02 y 2,95 % C12, no superó 3 %, caché no promocionada | [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99) |
 | **C14** | Benchmarks y ablaciones | **Validado experimental:** perfil 6 motores, 40 ablaciones, WAL 2 escritores; no promocionado | [PR #100](https://github.com/guadalupejuan001-code/BBY-Q/pull/100) |
-| **C15** | Estrés y concurrencia | pendiente | — |
+| **C15** | Estrés y concurrencia | **Validado experimental**: 6 escritores, 3 lectores, 128 snapshots WAL, rollback/crash/replay, no APK | [PR #101](https://github.com/guadalupejuan001-code/BBY-Q/pull/101) |
 | **C16** | Integración Android y REVERSE-PC | pendiente sin APK | — |
 | **C17** | Integración final y decisión de APK | pendiente | — |
 
@@ -40,3 +40,5 @@
 **C13 — datos CI validados, sin despliegue:** [PR #99](https://github.com/guadalupejuan001-code/BBY-Q/pull/99), [CI aprobada #42443472416](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416), [RESULTS.md](../integration/optimize_u03_c13/RESULTS.md). 4 casos × 3 repeticiones por ruta y brazo (12 pares): 2.934,053 → 2.852,722 ms U02 (2,77 %) y 2.923,514 → 2.837,243 ms C12 (2,95 %) incluyendo verificación SHA de la caché. Los arranques U02 bajaron ~140 → 32 ms; la ejecución XI ~2,47–2,50 s aún domina. Recibos, 6 grupos XI, SQLite fuente y ablaciones idénticos. **Umbral 3 % no alcanzado: caché experimental no promocionada, modelo frozen mantenido.** 159 activos intactos y sin APK; siguiente C14.
 
 **C14 — validado experimentalmente:** [PR #100](https://github.com/guadalupejuan001-code/BBY-Q/pull/100), [CI original XI aprobada #42446685508](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508), [RESULTS.md](../integration/bench_u03_c14/RESULTS.md). 6 casos nuevos, 12 muestras por ruta, 40 ablaciones nativas, A→B→A y 2 escritores SQLite con replay. Medianas de paquetes U02 frozen: C1 **465 ms**, VQC **236 ms**, QRL **48 ms**, QMemory **1,3 ms**, Entity **4 ms**, QChat **115 ms**, XI transporte/no clasificado **807 ms**, más **~1.123 ms** de turno host no atribuidos a paquetes. Todos 12/12 clases/reglas correctas en tres rutas; C12 entrenado sin mejora. La caché C13 sólo registró 3,30 % en frozen bajo esta campaña, insuficiente para promoción al faltar contraste equivalente de C12 y estabilidad entre runs. **159 fuentes intactas, cero APK, siguiente C15.**
+
+**C15 — validado experimentalmente:** [PR #101](https://github.com/guadalupejuan001-code/BBY-Q/pull/101), [CI final original XI aprobada #42456400116](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42456400116), [RESULTS.md](../integration/stress_u03_c15/RESULTS.md). Carga progresiva 1/2/4/6 escritores en dos bancos, hasta 3 lectores concurrentes; **128 instantáneas WAL con SHA coherente, 16 posteriores a commit real**, throughput de ~0,4 tareas/segundo (sin escalamiento proporcional). Rollback 3/3 por brazo, crash WAL antes/después del commit, colisión de ID y replay todos recuperados. Caché C13 sólo paridad secuencial; ningún modelo/caché promovido. **159 archivos protegidos intactos, cero APK, siguiente C16.**
