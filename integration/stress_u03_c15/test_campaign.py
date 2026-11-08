@@ -89,7 +89,7 @@ class StressContracts(unittest.TestCase):
         self.assertNotIn("torch",src)
         self.assertNotIn("fake",src)
         self.assertIn("model.turn(",src)
-        self.assertIn("SQLite-WAL",inspect.getsource(C.campaign))
+        self.assertIn("throughput_native_tasks_per_second",inspect.getsource(C._load_level))
 
 
 if __name__=="__main__":
