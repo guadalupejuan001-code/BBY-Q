@@ -1,0 +1,128 @@
+name: BBY Q U03 C13 verified global XI native optimization
+on:
+  pull_request:
+    paths:
+      - 'integration/optimize_u03_c13/**'
+      - 'docs/BBY_Q_U03_*'
+      - '.github/workflows/bbyq-u03-c13-optimize.yml'
+      - 'integration/blocks_u03_c12/verify_panel.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c13-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test C13 scope cache and verify append-only C00-C17 dashboard
+        run: |
+          python3 -m unittest integration.optimize_u03_c13.test_campaign -v
+          python3 -m unittest integration.blocks_u03_c12.test_campaign -v
+          python3 -m unittest integration.joint_u03_c11.test_campaign -v
+          python3 -m integration.optimize_u03_c13.verify_panel
+          python3 -m integration.blocks_u03_c12.verify_panel
+          python3 -m integration.joint_u03_c11.verify_panel
+          python3 -m integration.reasoning_u03_c10.verify_panel
+          python3 -m integration.memory_u03_c09.verify_panel
+      - name: Compile exact original XI/Ether REVERSE-PC host runtime only
+        run: bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+      - name: Reverify U02 C1 native training, regression, rollback and migrations
+        run: |
+          mkdir -p build/sequence2 build/unified build/c13
+          python3 integration/sequence2/verify_release.py
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+          python3 -m integration.unified.verify
+          python3 -m integration.unified.verify_upgrade
+      - name: Reproduce C13 independent paired native XI measurements and ablations
+        run: python3 -m integration.optimize_u03_c13.campaign --repeats 3 --out build/c13/benchmark.json
+      - name: Require output parity, no claimed speedup without measurements, 159 immutable assets
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('build/c13/benchmark.json').read_text())
+          assert x['passed'] and x['schema']=='BBYQ-U03-C13-authenticated-release-cache-v1'
+          assert x['architecture']=='BBY Q -> w4U -> QdU'
+          assert x['source_protected_count']==159
+          assert x['frozen_assets_unchanged'] and x['all_checkpoint_sources_unmodified']
+          assert x['original_u02_sqlite_unchanged'] and x['new_primary_memory_authorities']==0
+          assert not x['apk_built'] and not x['new_apks'] and not x['model_promoted']
+          assert x['trained_c12_candidate_still_not_promoted']
+          assert not x['optimizations']['native_xi_algorithm_modified']
+          assert not x['optimizations']['inference_results_cached']
+          assert not x['optimizations']['sqlite_transactions_modified']
+          assert x['benchmark_protocol']['independent_of_C11_C12']
+          assert x['benchmark_protocol']['samples_per_arm_variant']==12
+          assert set(x['arms'])=={'u02-frozen','c12-joint-experimental'}
+          assert x['training_reference']['u02-frozen']['original_native_feedback']==0
+          assert x['training_reference']['c12-joint-experimental']['original_native_feedback']==2
+          assert all(x['training_reference']['c12-joint-experimental']
+                     ['six_weight_changes_before_inference'].values())
+          for arm,data in x['arms'].items():
+              pair=data['paired']
+              assert pair['pairs']==12
+              assert pair['all_native_outputs_and_receipts_byte_equivalent']
+              assert pair['all_post_inference_native_snapshots_equal']
+              assert data['reference']['n']==data['cached']['n']==12
+              assert len(data['native_ablations'])==10
+              assert all(e['identical_original_vs_cached'] for e in data['native_ablations'])
+              assert data['source_checkpoint_unchanged']
+              assert data['all_six_native_parameter_regions_unchanged_during_inference']
+              assert data['cached']['authentic_seven_banks']
+              assert data['cached']['c1_u02_synchronized']
+              assert data['cached']['no_teacher_in_inference']
+              assert data['cache_stats']['cold_authentications']>=1
+              assert data['cache_stats']['cache_hits']>=1
+              assert pair['baseline_median_ms']>0 and pair['cached_median_ms']>0
+              print(arm, 'median reference',pair['baseline_median_ms'],
+                    'cached',pair['cached_median_ms'],
+                    'observed pct',pair['observed_median_speedup_percent'],
+                    'faster-pairs',pair['cached_faster_pairs'])
+          decision=all(d['paired']['candidate_is_faster_at_median']
+                       and d['paired']['observed_median_speedup_percent']>=3.0
+                       for d in x['arms'].values())
+          assert x['optimizations']['recommend_enable_opt_in_if_verified_gain']==decision
+          assert x['instrumented_profile']['original']['native_profile']['native_api']
+          assert x['instrumented_profile']['cached']['native_profile']['native_api']
+          assert x['instrumented_profile']['original']['outcome']==x['instrumented_profile']['cached']['outcome']
+          state=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
+          assert state['current_cycle']=='C13' and state['next_cycle']=='C14'
+          assert state['history_constraints']['frozen_sources_expected']==159
+          assert state['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
+          print('C13 original native XI/U02 parity and guarded performance experiment verified; 0 APK')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBYQ-U03-C13-native-optimization-audit
+          path: |
+            build/c13/*.json
+            build/unified/*checks.json
+            docs/BBY_Q_U03_PANEL.md
+            docs/BBY_Q_U03_ESTADO.json
+            docs/BBY_Q_U03_SIGUIENTE.md
+          if-no-files-found: warn
+          retention-days: 30

@@ -100,7 +100,8 @@ jobs:
           assert candidate.exists()
           assert hashlib.sha256(candidate.read_bytes()).hexdigest()==x['candidate_sha256']
           panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
-          assert panel['current_cycle']=='C12' and panel['next_cycle']=='C13'
+          current=int(panel['current_cycle'][1:])
+          assert 12<=current<=16 and panel['next_cycle']==f'C{current+1:02d}'
           assert panel['history_constraints']['frozen_sources_expected']==159
           assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
           print('C12 experiment evidence verified; no claim of quantum hardware advantage')

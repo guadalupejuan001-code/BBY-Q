@@ -1,10 +1,10 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c12-block-experiments-20261107",
-  "base_commit": "4bf3a7aebe3f18bb8b7616264362e2f612faba30",
-  "current_cycle": "C12",
-  "latest_verified_cycle": "C12",
+  "branch": "codex/bbyq-u03-c13-global-optimization-20261108",
+  "base_commit": "d31d60bb0ee356b004e9e1e2d819aa361ef3a9db",
+  "current_cycle": "C13",
+  "latest_verified_cycle": "C13",
   "last_stable_route": "U02 original; C01-C11 experimental opt-in, none automatically installed or merged",
   "history_constraints": {
     "frozen_sources_expected": 159,
@@ -109,9 +109,9 @@
     {
       "id": "C13",
       "work": "Optimización global",
-      "state": "pendiente",
-      "pr": null,
-      "pr_url": null
+      "state": "validado experimental CI #42443472416; velocidad +2.77 % U02, +2.95 % C12, por debajo umbral 3 %, caché no promocionada, 159 activos, sin APK",
+      "pr": 99,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/99"
     },
     {
       "id": "C14",
@@ -143,20 +143,21 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C12 validado: cambios nativos 6/6 y 2 feedback independientes; exactitud empatada vs frozen; C13 optimización global de costos y latencias sin promocionar modelo",
+  "current_plan": "C13 completado experimental: XI turn ~2.47–2.50 s domina costes; cache autenticada baja startup ~140 a ~32 ms, pero speedup end-to-end 2.77/2.95% <3%; C14 ampliará benchmarks/ablaciones y optimizará núcleo XI.",
   "current_ci": {
-    "run_id": 42441627503,
+    "run_id": 42443472416,
     "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503/artifacts/13601539793",
-    "verified_code_sha": "38b5196d399bc78b4124451b636cd8322e4cf1eb"
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416/artifacts/13602796673",
+    "verified_code_sha": "e195955a3755a45c53ce567b6f54ee3623ebefcc",
+    "notes": "native CI validated candidate code; final report-only commit does not alter algorithms or benchmarks"
   },
   "blockers": [
-    "Seis regiones XI cambiaron pero el modelo entrenado empató 4/4 en validación y 6/6 en test reservado con frozen; no hubo mejora.",
-    "Solo dos entrenamientos, seis pruebas inéditas y 2 casos de ablación: no se infiere generalización amplia ni ventaja cuántica.",
-    "Los costes host de XI/copia SQLite deben optimizarse sin sacrificar checkpoints o trazabilidad; C13 pendiente."
+    "C13 hizo la inicialización más rápida pero sólo redujo la latencia total 2.77 % en U02 y 2.95 % en C12: ambos por debajo del umbral de 3 %, por lo que no se promocionó la caché.",
+    "El tiempo nativo XI Session.turn (~2.47–2.50 s) domina sobre los costes de arranque/SQLite; se necesita perfilado por operación más fino en C14.",
+    "C12 sigue sin mejorar exactitud: no se promociona ningún modelo ni se ha generado APK."
   ],
-  "next_cycle": "C13",
+  "next_cycle": "C14",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -281,6 +282,66 @@
     "ablation_total_per_control": 2,
     "promotion": "frozen",
     "protected_assets": 159,
+    "apk_built": false
+  },
+  "c12_verified_ci": {
+    "run_id": 42441627503,
+    "conclusion": "success",
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503/artifacts/13601539793",
+    "verified_code_sha": "38b5196d399bc78b4124451b636cd8322e4cf1eb"
+  },
+  "c13_protocol": {
+    "base_pr": 98,
+    "base_head_sha": "d31d60bb0ee356b004e9e1e2d819aa361ef3a9db",
+    "candidate": "authenticated immutable release cache",
+    "cases": 4,
+    "repeats": 3,
+    "comparators": [
+      "u02-frozen",
+      "c12-joint-experimental"
+    ],
+    "original_runtime_modified": false,
+    "measurement_status": "verified CI #42443472416",
+    "promotion": "none: observed medians failed >=3% threshold",
+    "new_primary_memory_authorities": 0
+  },
+  "c13_results": {
+    "passed": true,
+    "run_id": 42443472416,
+    "artifact_id": 13602796673,
+    "paired_samples_per_arm_variant": 12,
+    "exact_native_receipts_and_checkpoints": true,
+    "cache_auth_protected": true,
+    "original_native_xi_unchanged": true,
+    "frozen": {
+      "original_median_ms": 2934.053,
+      "cached_median_ms": 2852.722,
+      "observed_speedup_percent": 2.77,
+      "faster_pairs": 10,
+      "startup_original_median_ms": 141.141,
+      "startup_cached_median_ms": 31.602,
+      "native_turn_original_median_ms": 2496.838
+    },
+    "c12_joint": {
+      "original_median_ms": 2923.514,
+      "cached_median_ms": 2837.243,
+      "observed_speedup_percent": 2.95,
+      "faster_pairs": 9,
+      "startup_original_median_ms": 139.98,
+      "startup_cached_median_ms": 31.595,
+      "native_turn_original_median_ms": 2469.59
+    },
+    "ablation_controls_per_arm": 10,
+    "all_ablations_exactly_equal": true,
+    "native_execute_packet_count_profiled": 46,
+    "native_cpu_ms_single_sample": 1530,
+    "xi_source_bytes_single_sample": 2552717,
+    "python_process_max_rss_kib": 177400,
+    "cache_recommended": false,
+    "model_promoted": false,
+    "protected_assets": 159,
+    "original_sqlite_unchanged": true,
     "apk_built": false
   }
 }
