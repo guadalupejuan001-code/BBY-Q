@@ -1,9 +1,9 @@
 {
   "schema": "BBYQ-U03-CYCLE-PANEL-v1",
   "repository": "guadalupejuan001-code/BBY-Q",
-  "branch": "codex/bbyq-u03-c14-native-ablations-20261108",
-  "base_commit": "5e88433895218ad90ee18f7380c49a69a51bc07e",
-  "current_cycle": "C14",
+  "branch": "codex/bbyq-u03-c15-stress-concurrency-20261108",
+  "base_commit": "e774b1b3694a1a2dfaa505b054888b80db495db1",
+  "current_cycle": "C15",
   "latest_verified_cycle": "C14",
   "last_stable_route": "U02 frozen original; C01–C14 son prototipos experimentales en ramas, ninguno fusionado automáticamente o instalado",
   "history_constraints": {
@@ -123,9 +123,9 @@
     {
       "id": "C15",
       "work": "Estrés y concurrencia",
-      "state": "pendiente",
-      "pr": null,
-      "pr_url": null
+      "state": "implementado experimental; CI estrés, WAL y recuperación pendiente",
+      "pr": 101,
+      "pr_url": "https://github.com/guadalupejuan001-code/BBY-Q/pull/101"
     },
     {
       "id": "C16",
@@ -143,21 +143,18 @@
     }
   ],
   "c08_learning_observation": "selector/teacher verified but native weights unchanged; C07 remains reference",
-  "current_plan": "C14 validado: XI transporte sin clasificar ~807 ms, C1 ~465 ms, VQC ~236 ms, QChat ~115 ms, QRL ~48 ms, QMemory ~1.3 ms y Entity ~4 ms en U02 frozen; ~1123 ms residuales host; C15 estrés concurrencia/fallos",
+  "current_plan": "C15 estrés nativo XI/SQLite WAL: 1,2,4,6 escritores; hasta 3 lectores con 8 snapshots c/u; inyección fallos 1/2/3; proceso abrupto sin commit y tras commit XI, colisiones de ID, restart/replay y comparación C13 secuencial. CI pendiente.",
   "current_ci": {
-    "run_id": 42446685508,
-    "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508/artifacts/13603503107",
-    "verified_code_sha": "9b2dae614aadeefe048b4d0b2856033ba7b5fb2c",
-    "notes": "Native execution and historical CI verified on implementation head; updated docs-only head reruns checks"
+    "run_id": null,
+    "conclusion": "pending",
+    "url": null
   },
   "blockers": [
-    "C14 evidencia por paquete es tiempo anfitrión no solapado, pero no permite inferir costo exclusivo interno de cada puerta cuántica o CPU de cada bloque.",
-    "C13 cache observó +3.30 % sólo en U02 frozen bajo esta instrumentación; las campañas C13 previas dieron <3 % y no hay verificación equivalente en un brazo C12 cache: sigue sin promoción.",
-    "C14 probó 2 escritores WAL por brazo y 4 semillas por ablación; C15 debe ampliar estrés, fallos concurrentes y escalabilidad sin modificar los 159 checkpoints."
+    "C15 aún no tiene evidencia CI de estrés real; ninguna mejora de throughput atribuida hasta medir.",
+    "C13 caché no está habilitada y no es segura para stress multihilo; se prueba únicamente por equivalencia serial.",
+    "Modelo conjunto C12 no superó frozen; no promocionar ni generar APK."
   ],
-  "next_cycle": "C15",
+  "next_cycle": "C16",
   "c09_results": {
     "original_U02_equal": true,
     "native_banks_verified": 7,
@@ -227,10 +224,12 @@
     "apk_built": false
   },
   "previous_verified_ci": {
-    "run_id": 42401341401,
+    "run_id": 42446685508,
     "conclusion": "success",
-    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401",
-    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401/artifacts/13585940761"
+    "url": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508",
+    "artifact": "https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508/artifacts/13603503107",
+    "verified_code_sha": "9b2dae614aadeefe048b4d0b2856033ba7b5fb2c",
+    "notes": "Native execution and historical CI verified on implementation head; updated docs-only head reruns checks"
   },
   "c12_protocol": {
     "source": "PR #97 C11 exact head; original U02 XI",
@@ -413,5 +412,38 @@
     "historical_files_untouched": 159,
     "model_promoted": false,
     "apk_built": false
+  },
+  "c15_protocol": {
+    "base_pr": 100,
+    "base_head_sha": "e774b1b3694a1a2dfaa505b054888b80db495db1",
+    "levels": [
+      1,
+      2,
+      4,
+      6
+    ],
+    "readers_per_level": {
+      "1": 1,
+      "2": 2,
+      "4": 2,
+      "6": 3
+    },
+    "snapshots_per_reader": 8,
+    "arms": [
+      "u02-frozen",
+      "c12-joint-unpromoted"
+    ],
+    "C13_cache": "serial-only-not-promoted",
+    "abort_cutpoints": [
+      1,
+      2,
+      3
+    ],
+    "crash_modes": [
+      "before-commit",
+      "after-commit"
+    ],
+    "ID_collision": "same-ID different-payload rejects",
+    "CI_status": "pending"
   }
 }

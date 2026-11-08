@@ -14,6 +14,8 @@
 
 **C14 COMPLETADO EXPERIMENTALMENTE — Benchmarks y ablaciones:** [PR #100](https://github.com/guadalupejuan001-code/BBY-Q/pull/100) base exacta PR #99 commit 5e88433; [CI XI #42446685508 aprobada](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42446685508), [RESULTS.md](../integration/bench_u03_c14/RESULTS.md). 12 solicitudes por ruta ×3, 40 ablaciones nativas, clasificación/regla 12/12 por ruta. Medianas de paquetes XI U02: C1 465 ms, VQC 236, QRL 48, QMemory 1.3, Entity 4, QChat 115, transporte/no-clasificado 807, no atribuidos host ~1123. Sin fallos en A→B→A, dos escritores WAL por brazo con replay exacto. Caché C13 no promocionada; modelo frozen conservado; 159 archivos intactos, 0 APK.
 
-**C15 — Estrés y concurrencia (siguiente):** ampliar volumen, recuento de procesos, tolerancia a fallos y pruebas prolongadas con checkpoints originales, manteniendo no-promoción y cero APK.
+**C15 INICIADO — Estrés y concurrencia:** [PR #101](https://github.com/guadalupejuan001-code/BBY-Q/pull/101) desde C14 PR #100, commit exacto e774b1b. Campaña XI nativa 1/2/4/6 escritores y hasta 3 lectores WAL, 8 instantáneas verificadas por lector, 3 cortes de ejecución U02, subprocess muerto antes o después de commit, reinicios, idempotencia y colisiones de request ID. CPU/RSS/I/O/latencia/throughput por carga. CI pendiente; no promocionar C12/C13, conservar 159 archivos, **sin APK**.
+
+**C16 — Integración Android y REVERSE-PC (siguiente):** preparar integración segura de los componentes validados desde los checkpoints intactos, evaluando compatibilidad en entorno Android antes de decidir sobre una APK. No generar APK hasta autorización de la etapa correspondiente y pruebas comprobadas.
 
 **Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel se actualiza con las pruebas GitHub realmente concluidas, no con promesas. Sin APK.
