@@ -97,6 +97,9 @@ jobs:
                   assert r['journal_mode']=='wal'
                   assert r['all_XI_six_engines_executed']
                   assert r['all_reader_snapshots_authenticated'] and r['C1_U02_synced']
+                  assert r['readers_observed_post_commit_revision']
+                  assert all(reader['after_commit_revision_seen'] for reader in r['readers'])
+                  assert all(reader['revisions'][-1]>reader['initial_revision'] for reader in r['readers'])
                   assert r['seven_banks_authenticated']
                   assert r['wal_snapshots_total']==r['reader_count']*8
                   assert r['throughput_native_tasks_per_second']>0
