@@ -25,12 +25,10 @@ def build():
         raise AssertionError(f"U03 original 159 protected assets mismatch: {len(frozen)}")
 
     include = set(frozen)
-    directories = (
-        "integration/sequence2", "integration/entity", "integration/qchat100",
-        "integration/unified", "integration/zero", "integration/balance",
-        "ai/xi/sequence2", "ai/xi/entity", "ai/xi/balance",
-        "ai/xi/unified", "ai/personal/zero",
-    )
+    # Preserve all BBY Q AI source, historical results and experimental
+    # C00-C15 source in the APK rather than silently dropping completed work.
+    # Native runtime executes only the verified original U02 entrypoint.
+    directories = ("integration", "ai", "docs")
     # All source needed by original Session imports is byte-for-byte unchanged.
     for dirname in directories:
         for path in (ROOT / dirname).rglob("*"):
