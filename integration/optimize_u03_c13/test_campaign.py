@@ -62,8 +62,8 @@ class C13Contracts(unittest.TestCase):
         r={"source_seed":42,
            "observed":{"native_class":1,"native_rule":0},
            "receipt_sha256":"abc","after_snapshot_sha256":"xyz",
-           "phase_ms":{"total_including_new_db":200.0}}
-        faster={**r,"phase_ms":{"total_including_new_db":150.0}}
+           "phase_ms":{"total_including_new_db":200.0,"total_including_guard":200.0}}
+        faster={**r,"phase_ms":{"total_including_new_db":150.0,"total_including_guard":150.0}}
         left=[r]*8;right=[faster]*8
         result=C._paired_report(left,right)
         self.assertEqual(result["pairs"],8)
