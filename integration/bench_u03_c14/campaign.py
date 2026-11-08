@@ -196,7 +196,7 @@ def _report_route(rows):
     }
 
 
-def _benchmark(sources, *, repeats):
+def _benchmark(sources, *, repeats, original_v3):
     traces={route:{} for route in ROUTES}
     originals={"u02-frozen", "c12-joint-unpromoted"}
     # Two repetitions with rotated route order, plus candidate scoped cache.
@@ -245,8 +245,26 @@ def _benchmark(sources, *, repeats):
                        "percent_change":round((a-b)/a*100,3)})
     a=statistics.median([r["reference_ms"] for r in paired])
     b=statistics.median([r["cached_ms"] for r in paired])
+    # Only now, after ALL three routes produced predictions, reveal the
+    # original synthetic XI labels in a separate native interpreter session.
+    labels={case.seed:native_sample_teacher(original_v3,case.seed) for case in BENCH}
+    rules={case.seed:case.bit for case in BENCH}
+    heldout={route:{
+        "total":len(rows),
+        "class_correct":sum(record["observed"]["native_class"]==labels[key[1]]
+                            for key,record in rows.items()),
+        "rule_correct":sum(record["observed"]["native_rule"]==rules[key[1]]
+                           for key,record in rows.items()),
+        "voice_faithful_and_terminated":sum(
+            record["observed"]["native_voice_faithful"] and
+            record["observed"]["native_voice_terminated"] for record in rows.values()
+        ),
+        "receipts_ok":sum(record["observed"]["receipt_ok"] for record in rows.values()),
+        "teacher_revealed_only_after_all_native_inference":True,
+    } for route,rows in traces.items()}
     return {
         "routes":result,
+        "heldout_synthetic_XI":heldout,
         "cache_paired":{
             "pairs":len(paired),
             "median_reference_ms":round(a,3),
@@ -459,7 +477,7 @@ def campaign(out:Path, *, repeats=DEFAULT_REPEATS):
         if any(training["frozen"]["native_parameter_changed"].values()):
             raise AssertionError("C14 original U02 frozen control changed weights")
 
-        benchmark=_benchmark(sources,repeats=repeats)
+        benchmark=_benchmark(sources,repeats=repeats,original_v3=init["original_v3"])
         ablations=_ablations(sources,init["original_v3"])
         interference=_interference(sources)
         concurrent=_concurrency(sources)
