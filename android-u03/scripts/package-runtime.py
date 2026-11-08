@@ -11,8 +11,10 @@ from hashlib import sha256
 from pathlib import Path
 import json
 import zipfile
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
 OUT = ROOT / "android-u03/app/src/main/assets/u03"
 
 
