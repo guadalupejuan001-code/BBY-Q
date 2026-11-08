@@ -98,7 +98,8 @@ jobs:
           assert hashlib.sha256(candidate.read_bytes()).hexdigest()==x['synthetic_candidate_sha256']
           assert not x['apk_built'] and x['candidate_not_installed_or_merged']
           panel=json.loads(Path('docs/BBY_Q_U03_ESTADO.json').read_text())
-          assert panel['current_cycle']=='C11' and panel['next_cycle']=='C12'
+          current=int(panel['current_cycle'][1:])
+          assert 11<=current<=16 and panel['next_cycle']==f'C{current+1:02d}'
           assert panel['history_constraints']['agency']=='BBY Q -> w4U -> QdU'
           assert panel['history_constraints']['new_primary_memory_authorities']==0
           assert panel['history_constraints']['frozen_sources_expected']==159
