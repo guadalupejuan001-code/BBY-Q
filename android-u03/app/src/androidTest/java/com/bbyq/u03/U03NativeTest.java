@@ -34,8 +34,12 @@ public class U03NativeTest {
         assertTrue(first.toString(),first.getBoolean("original_U02"));
         assertTrue(first.toString(),first.getString("reply").contains("10"));
         JSONObject second=U03Runtime.turn(app(),request,"calcula 7 + 3","");
-        assertEquals(first.getJSONObject("receipt").toString(),
-                     second.getJSONObject("receipt").toString());
+        // A replay may reorder JSON object keys because SQLite stores
+        // canonical JSON. Compare SHA-256 over the entire original receipt
+        // including trace and outputs, not JSONObject.toString() ordering.
+        assertEquals(64,first.getString("receipt_sha256").length());
+        assertEquals(first.getString("receipt_sha256"),
+                     second.getString("receipt_sha256"));
         assertEquals(first.getLong("after_revision"),second.getLong("after_revision"));
     }
     @Test public void sixEnginesOriginalU02NativeMission() throws Exception {
