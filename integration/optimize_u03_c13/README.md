@@ -32,6 +32,6 @@ python3 -m integration.optimize_u03_c13.campaign --repeats 3 --out build/c13/ben
 
 CI: `.github/workflows/bbyq-u03-c13-optimize.yml`, dependencias nativas REVERSE-PC/mundo-X **fijadas a los mismos SHA que C12**. Se guardarán JSON con resultados sin censurar, informes, hashes y panel C00–C17.
 
-**Estado:** primero se requiere CI real. Los resultados finales están en [RESULTS.md](RESULTS.md); no inferir una ganancia hasta comprobar la ejecución. El simulador XI es software, no hardware cuántico físico ni Android.
+**Resultado medido:** [CI #42443472416 aprobada](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42443472416), [RESULTS.md](RESULTS.md). Observado 2,77 % U02 y 2,95 % C12 de reducción de latencia end-to-end incluyendo autenticación; ambos bajo umbral 3 %, por tanto la caché no se habilita como solución general. Todos los recibos, snapshots y ablaciones fueron idénticos. El simulador XI es software, no hardware cuántico físico ni Android.
 
 [Panel permanente C00–C17](../../docs/BBY_Q_U03_PANEL.md) · [Estado JSON](../../docs/BBY_Q_U03_ESTADO.json) · [Siguiente secuencia](../../docs/BBY_Q_U03_SIGUIENTE.md).
