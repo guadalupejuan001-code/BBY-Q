@@ -172,12 +172,18 @@ def turn(request_id:str, prompt:str, payload_json:str="") -> str:
             output=model.turn(request_id,prompt,payload)
             after=model.snapshot()
             trace=output.get("trace",[])
+            # Trace includes native XI calls PLUS host-side receipt metadata
+            # (such as native_rule/action index) which has no "native" key.
+            # Metadata must never be misclassified as a non-native calculation.
+            native_events=[row for row in trace if "native" in row]
+            real_native=bool(native_events) and all(
+                row["native"] is True for row in native_events)
             return json.dumps({
                 "ok":bool(output.get("ok")),
                 "reply":_reply(output),
                 "receipt":output,
                 "trace":trace,
-                "native_XI":all(x.get("native") is True for x in trace),
+                "native_XI":real_native,
                 "original_U02":output.get("entity")=="U02",
                 "before_revision":before["revision"],
                 "after_revision":after["revision"],
