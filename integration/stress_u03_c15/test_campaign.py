@@ -42,6 +42,12 @@ class StressContracts(unittest.TestCase):
         self.assertIn("PRAGMA integrity_check",src)
         self.assertIn("journal_mode",src)
         self.assertIn("throughput_native_tasks_per_second",src)
+        self.assertIn("first_commit = threading.Event()",src)
+        self.assertIn("readers_observed_post_commit_revision",src)
+        reader=inspect.getsource(C._reader)
+        self.assertIn("first_commit.wait(timeout=95)",reader)
+        self.assertIn("revisions[-1] <= initial_revision",reader)
+        self.assertIn("after_commit_revision_seen",reader)
         self.assertIn("RUSAGE_CHILDREN",inspect.getsource(C._child_cpu_ms))
 
     def test_failures_and_crashes_must_recover_original_SQLite(self):
