@@ -95,23 +95,33 @@ def _original_bank_view(db: Path):
             con.execute("ROLLBACK")
 
 
-def _reader(db, start, index, snapshots):
+def _reader(db, start, first_commit, initial_revision, index, snapshots):
     start.wait(timeout=30)
     values = []
     began = time.perf_counter_ns()
-    for _ in range(snapshots):
+    # Read WAL snapshots while first native writer is calculating, then
+    # REQUIRE one last snapshot after a real U02/SQLite commit. This avoids
+    # a false claim that early readers witnessed any state transition.
+    for _ in range(snapshots-1):
         values.append(_original_bank_view(db))
         time.sleep(.05)
+    if not first_commit.wait(timeout=95):
+        raise AssertionError("C15 WAL reader never observed a committed XI request")
+    values.append(_original_bank_view(db))
     revisions = [x["revision"] for x in values]
     if revisions != sorted(revisions):
         raise AssertionError("C15 WAL reader revision went backward")
+    if revisions[-1] <= initial_revision:
+        raise AssertionError("C15 WAL reader did not observe a post-commit revision")
     return {"reader":index,"snapshots":len(values),"revisions":revisions,
+            "initial_revision":initial_revision,
+            "after_commit_revision_seen":True,
             "saw_coherent_banks":all(x["seven_banks_authenticated"] for x in values),
             "C1_U02_synchronized":all(x["C1_U02_synchronized"] for x in values),
             "wall_ms":round((time.perf_counter_ns()-began)/1e6,3)}
 
 
-def _writer(db, start, index, case, level):
+def _writer(db, start, first_commit, index, case, level):
     start.wait(timeout=30)
     began = time.perf_counter_ns()
     t0 = time.perf_counter_ns()
@@ -127,6 +137,8 @@ def _writer(db, start, index, case, level):
             raise AssertionError("C15 native mission skipped one of six XI engines")
         if not receipt.get("ok") or mission.get("status") != 1:
             raise AssertionError("C15 native mission failed in load campaign")
+        # model.turn has committed to WAL before this event is signaled.
+        first_commit.set()
         return {
             "worker":index, "seed":case.seed, "request_id":receipt["request_id"],
             "native_receipt_sha256":_receipt_identity(receipt),
@@ -144,16 +156,19 @@ def _writer(db, start, index, case, level):
 def _load_level(source: Path, arm: str, level: int, scratch:Path):
     db = scratch / f"{arm}-level-{level}.sqlite"
     _clone(source, db)
+    initial_revision = _original_bank_view(db)["revision"]
     readers = READERS[level]
     start = threading.Barrier(level+readers)
+    first_commit = threading.Event()
     before_io = io_counters(os.getpid())
     before_python_cpu = usage_cpu_ms()
     before_child_cpu = _child_cpu_ms()
     began = time.perf_counter_ns()
     with ThreadPoolExecutor(max_workers=level+readers) as pool:
-        futures = [pool.submit(_writer, db, start, i, CASES[i], level)
+        futures = [pool.submit(_writer, db, start, first_commit, i, CASES[i], level)
                    for i in range(level)]
-        watching = [pool.submit(_reader, db, start, i, READER_SNAPSHOTS)
+        watching = [pool.submit(_reader, db, start, first_commit, initial_revision,
+                                i, READER_SNAPSHOTS)
                     for i in range(readers)]
         writers = [f.result(timeout=180) for f in futures]
         observers = [f.result(timeout=180) for f in watching]
@@ -193,8 +208,9 @@ def _load_level(source: Path, arm: str, level: int, scratch:Path):
         journal=model.db.execute("PRAGMA journal_mode").fetchone()[0]
     if integrity!="ok" or journal.lower()!="wal":
         raise AssertionError("C15 concurrent SQLite-WAL integrity check failed")
-    if not all(v["C1_U02_synchronized"] and v["saw_coherent_banks"] for v in observers):
-        raise AssertionError("C15 readers saw a torn checkpoint")
+    if not all(v["C1_U02_synchronized"] and v["saw_coherent_banks"]
+               and v["after_commit_revision_seen"] for v in observers):
+        raise AssertionError("C15 readers missed a post-commit WAL snapshot or saw torn state")
     return {
         "arm":arm, "writer_count":level, "reader_count":readers,
         "wal_snapshots_total":sum(v["snapshots"] for v in observers),
@@ -203,6 +219,7 @@ def _load_level(source: Path, arm: str, level: int, scratch:Path):
         "source_checkpoint_read_only":True,
         "all_XI_six_engines_executed":all(r["all_six_XI_engines_executed"] for r in writers),
         "all_reader_snapshots_authenticated":True,
+        "readers_observed_post_commit_revision":True,
         "C1_U02_synced":True, "seven_banks_authenticated":True,
         "wall_ms":round(wall,3),
         "throughput_native_tasks_per_second":round(level*1000/wall,4),
