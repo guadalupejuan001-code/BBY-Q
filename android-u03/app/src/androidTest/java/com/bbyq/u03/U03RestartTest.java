@@ -16,7 +16,7 @@ public class U03RestartTest {
   Context app=InstrumentationRegistry.getInstrumentation().getTargetContext();
   File file=new File(app.getFilesDir(),"restart-test.json");assertTrue("Previous test must have committed its fixture",file.isFile());
   JSONObject previous=new JSONObject(new String(Files.readAllBytes(file.toPath()),StandardCharsets.UTF_8));
-  JSONObject state=U03Runtime.status(app());assertEquals(7,state.getInt("bank_count"));
+  JSONObject state=U03Runtime.status(app);assertEquals(7,state.getInt("bank_count"));
   assertEquals(previous.getString("snapshot_canonical"),U03NativeTest.canonical(state.getJSONObject("snapshot")));
   JSONObject replay=U03Runtime.turn(app,previous.getString("request_id"),previous.getString("prompt"),"");
   assertEquals(previous.getString("receipt_sha256"),replay.getString("receipt_sha256"));
