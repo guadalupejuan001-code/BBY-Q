@@ -1,0 +1,135 @@
+name: BBY Q 0 Android 3.0 installable APK - verified native XI
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bbyq-android-3apk.yml'
+      - 'android-personal/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Authenticate original U02 historical 159 files and prepare XI/Ether
+        run: |
+          python3 - <<'PY'
+          from integration.audit_u03_c00.profile import freeze_assets
+          assert len(freeze_assets()) == 159
+          print('159 original source and checkpoint paths retained')
+          PY
+          bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+          python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+      - name: Verify preserved mobile X10 E02 original models and native hosts
+        run: |
+          python3 android-personal/scripts/prepare-assets.py
+          python3 android-personal/scripts/test-engine.py
+          node android-personal/scripts/test-unified-native.mjs
+          python3 integration/balance/verify.py
+          python3 integration/entity/verify.py
+          python3 integration/zero/verify.py
+          python3 integration/sequence1/verify_curriculum.py
+          python3 integration/sequence1/verify_codec.py
+          python3 integration/sequence1/verify_experiment.py
+      - name: Install Android SDK35, ARM64 NDK and x86-64 emulator
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"             'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018'             'cmake;3.22.1' 'platform-tools' 'emulator' 'system-images;android-35;default;x86_64'
+      - name: Build signed debug APK and Android instrumentation APK
+        run: |
+          mkdir -p build/bbyq-apk
+          gradle -p android-personal --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/bbyq-apk/gradle.log 2>&1 || {
+            grep -n -E 'error:|FAILED|CMake Error|What went wrong|Execution failed|FAILURE|Could not|cannot find symbol|No such file|Caused by:' build/bbyq-apk/gradle.log | head -60 || true
+            tail -150 build/bbyq-apk/gradle.log
+            exit 1
+          }
+          cp android-personal/app/build/outputs/apk/debug/app-debug.apk build/bbyq-apk/BBY-Q-Android-3.0.apk
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile
+          apk=Path('build/bbyq-apk/BBY-Q-Android-3.0.apk')
+          assert apk.is_file() and apk.stat().st_size>100_000
+          with zipfile.ZipFile(apk) as z:
+              assert z.testzip() is None
+              names=set(z.namelist())
+              required=('lib/arm64-v8a/libreverse_os.so',
+                        'lib/x86_64/libreverse_os.so',
+                        'assets/engine/manifest.json',
+                        'assets/engine/chat-model.rvpbin',
+                        'assets/engine/quantum-model.rvpbin')
+              assert all(x in names for x in required), sorted(set(required)-names)
+              models=json.loads(z.read('assets/engine/manifest.json'))
+              for name,sha in models['files'].items():
+                  assert hashlib.sha256(z.read('assets/engine/'+name)).hexdigest()==sha,name
+          report={'apk':'BBY-Q-Android-3.0.apk','bytes':apk.stat().st_size,
+                  'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),
+                  'package':'com.bbyq.personalx','android_min_sdk':29,
+                  'arm64':True,'x86_64':True,
+                  'engine':'X10 + E02 historical Android BBY Q 0',
+                  'full_U03_C11_C15_ported':False,
+                  'source_checkpoints_protected':159,
+                  'model_weights_promoted':False}
+          Path('build/bbyq-apk/build-evidence.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report))
+          PY
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs --verbose build/bbyq-apk/BBY-Q-Android-3.0.apk > build/bbyq-apk/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/bbyq-apk/BBY-Q-Android-3.0.apk > build/bbyq-apk/package.txt
+          grep "package: name='com.bbyq.personalx'" build/bbyq-apk/package.txt
+          python3 - <<'PY'
+          from integration.audit_u03_c00.profile import freeze_assets,apk_files
+          assert len(freeze_assets())==159
+          assert not any('release' in path for path in apk_files())
+          print('U03 checkpoints/source unaffected, APK is mobile historical X10/E02')
+          PY
+      - name: Android 15 emulator - run real native XI chat/rollback/instrumentation tests
+        timeout-minutes: 20
+        run: |
+          bash android-personal/scripts/emulator-test.sh
+          cp build/personal-artifacts/validation.json build/bbyq-apk/emulator-validation.json
+          cp build/personal-artifacts/android-tests.txt build/bbyq-apk/android-tests.txt
+          cp build/personal-artifacts/capability-audit.json build/bbyq-apk/capability-audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBY-Q-Android-3.0-APK-verified-XI
+          path: |
+            build/bbyq-apk/BBY-Q-Android-3.0.apk
+            build/bbyq-apk/build-evidence.json
+            build/bbyq-apk/emulator-validation.json
+            build/bbyq-apk/android-tests.txt
+            build/bbyq-apk/capability-audit.json
+            build/bbyq-apk/signature.txt
+            build/bbyq-apk/package.txt
+            build/bbyq-apk/gradle.log
+          if-no-files-found: warn
+          retention-days: 30
