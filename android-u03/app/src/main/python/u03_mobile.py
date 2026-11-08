@@ -1,226 +1,177 @@
-"""Android entrypoint: original BBY Q U02 Session on the authentic JNI XI runtime.
+"""Single Android gateway to executable U03 cycles and original XI memory.
 
-Chaquopy only provides the Python orchestration which already existed in U02.
-All inference, readout and feedback are executed by original XI/Ether in JNI.
-No fake responses, no external AI backend, no silent C11/C12 promotion.
+A packaged file is not counted as an active feature. Each public action below
+calls a real module or an isolated native experiment and returns its evidence.
 """
 from __future__ import annotations
-
-from hashlib import sha256
 from pathlib import Path
-import json
-import os
-import shutil
-import sys
-import tempfile
-import threading
-import zipfile
+from hashlib import sha256
+import json,os,sys,shutil,tempfile,threading,time,uuid,zipfile
+_lock=threading.RLock()
+_root=None
+_db=None
+_manifest=None
+_last_report=None
 
-_lock = threading.RLock()
-_root = None
-_db = None
-_manifest = None
+def hashed(raw):return sha256(raw).hexdigest()
 
+def _verify(root,items):
+    for name,want in items.items():
+        file=root/name
+        if not file.is_file() or hashed(file.read_bytes())!=want:raise RuntimeError('Original U03 source/checkpoint altered: '+name)
 
-def _bytes_hash(data):
-    return sha256(data).hexdigest()
+def _activate(root):
+    for p in (root,root/'deps/reverse-pc/scripts',root/'integration/sequence2'):
+        value=str(p)
+        if value in sys.path:sys.path.remove(value)
+        sys.path.insert(0,value)
+    # Original build_zero() checks these exact absolute paths. Its generated
+    # XI/schema were already authenticated as bundle members. Record the same
+    # source identity so no Node subprocess is needed on Android. No monkeypatch.
+    paths=[root/p for p in ('integration/zero/build.mjs','ai/personal/zero/model.mjs',
+                           'ai/personal/zero/schema.mjs','ai/personal/zero/core.xi.in')]
+    marker=root/'build/zero/.source-identity.json'
+    marker.write_text(json.dumps({str(p):hashed(p.read_bytes()) for p in paths})+'\n')
 
-
-def _verify_sources(root, expected):
-    for filename, want in expected.items():
-        path = root / filename
-        if not path.is_file() or _bytes_hash(path.read_bytes()) != want:
-            raise RuntimeError("Authenticated U02 source/checkpoint mismatch: " + filename)
-
-
-def _activate_root(root):
-    path = str(root)
-    xi = str(root / "deps/reverse-pc/scripts")
-    c1 = str(root / "integration/sequence2")
-    for name in (path, xi, c1):
-        if name in sys.path:
-            sys.path.remove(name)
-        sys.path.insert(0, name)
-    # Node is unavailable on device; CI embeds the exact generated XI Zero
-    # source and schema and authenticates them before U02 is initialized.
-    import workspace
-    def bundled_zero():
-        for name in ("zero.xi", "schema.json"):
-            if not (root / "build/zero" / name).is_file():
-                raise RuntimeError("Missing verified XI Zero program: " + name)
-    workspace.build_zero = bundled_zero
-
-
-def initialize(files_dir: str, bundle_path: str, manifest_json: str) -> str:
-    global _root, _db, _manifest
+def initialize(files_dir,bundle_path,manifest_json):
+    global _root,_db,_manifest
     with _lock:
-        manifest = json.loads(manifest_json)
-        if manifest["schema"] != "BBYQ-U03-Android-authenticated-runtime-v1":
-            raise RuntimeError("Unexpected U03 mobile ABI/manifest")
-        if manifest["protected_count"] != 159 or manifest["new_memory_authorities"] != 0:
-            raise RuntimeError("U03 must preserve original 159 protected assets")
-        if manifest["experimental_c11_c12_promoted"] or manifest["C13_cache_enabled"]:
-            raise RuntimeError("Experimental model or cache silently activated")
-
-        bundle = Path(bundle_path)
-        if _bytes_hash(bundle.read_bytes()) != manifest["archive_sha256"]:
-            raise RuntimeError("U03 bundle SHA-256 mismatch")
-        base = Path(files_dir)
-        root = base / ("runtime-" + manifest["archive_sha256"][:16])
-        stamp = root / ".verified"
-        if not stamp.is_file() or stamp.read_text() != manifest["archive_sha256"]:
-            staging = Path(tempfile.mkdtemp(prefix="u03-model-", dir=base))
+        m=json.loads(manifest_json)
+        if m.get('schema')!='BBYQ-U03-Android-authenticated-runtime-v1':raise ValueError('Unrecognized original runtime manifest')
+        if m.get('protected_count')!=159 or m.get('new_memory_authorities')!=0:raise ValueError('Protected model inventory changed')
+        if m.get('experimental_c11_c12_promoted') or m.get('C13_cache_enabled'):raise ValueError('Unapproved model/cache promotion')
+        archive=Path(bundle_path)
+        if hashed(archive.read_bytes())!=m['archive_sha256']:raise ValueError('APK runtime archive hash mismatch')
+        base=Path(files_dir);base.mkdir(parents=True,exist_ok=True)
+        root=base/('runtime-'+m['archive_sha256'][:16]);stamp=root/'.verified'
+        if not stamp.is_file() or stamp.read_text()!=m['archive_sha256']:
+            temp=Path(tempfile.mkdtemp(prefix='u03-unpack-',dir=base))
             try:
-                expected = manifest["files_sha256"]
-                with zipfile.ZipFile(bundle) as zip:
-                    names = zip.namelist()
-                    if set(names) != set(expected):
-                        raise RuntimeError("Unexpected source/checkpoint membership in U03")
+                with zipfile.ZipFile(archive) as z:
+                    names=z.namelist()
+                    if len(names)!=len(set(names)) or set(names)!=set(m['files_sha256']):raise ValueError('Runtime archive members mismatch')
                     for name in names:
-                        item = Path(name)
-                        if item.is_absolute() or ".." in item.parts or name.endswith("/"):
-                            raise RuntimeError("Invalid U03 bundle path")
-                        data = zip.read(name)
-                        if _bytes_hash(data) != expected[name]:
-                            raise RuntimeError("Modified original XI source: " + name)
-                        dest = staging / name
-                        dest.parent.mkdir(parents=True,exist_ok=True)
-                        dest.write_bytes(data)
-                _verify_sources(staging,manifest["protected_sha256"])
-                (staging / ".verified").write_text(manifest["archive_sha256"])
-                if root.exists():
-                    shutil.rmtree(root)
-                staging.rename(root)
+                        part=Path(name)
+                        if part.is_absolute() or '..' in part.parts or name.endswith('/'):raise ValueError('Unsafe runtime path')
+                        raw=z.read(name)
+                        if hashed(raw)!=m['files_sha256'][name]:raise ValueError('Runtime source SHA mismatch: '+name)
+                        target=temp/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+                _verify(temp,m['protected_sha256']);(temp/'.verified').write_text(m['archive_sha256'])
+                if root.exists():shutil.rmtree(root)
+                temp.rename(root)
             finally:
-                if staging.exists():
-                    shutil.rmtree(staging)
+                if temp.exists():shutil.rmtree(temp)
+        # Validate code as well as all historical banks on every process start.
+        _verify(root,m['files_sha256']);_activate(root)
+        sessions=base/'sessions';sessions.mkdir(parents=True,exist_ok=True)
+        db=sessions/'u03-original.sqlite'
+        import mobile_cycles as cycles
+        cycles.configure(root,db,m)
+        with cycles.MobileSession(db) as model:
+            snapshot=model.snapshot();audit=model.memory.snapshot()
+            if len(snapshot['banks'])!=7 or not audit['C1_synchronized_with_U02']:raise ValueError('Android original U02 banks not synchronized')
+            if audit['new_memory_authorities']!=0:raise ValueError('A second memory authority was created')
+            if model.db.execute('PRAGMA integrity_check').fetchone()[0]!='ok':raise ValueError('SQLite integrity failed')
+        _root,_db,_manifest=root,db,m
+        return json.dumps({'ready':True,'entity':'U02','cycles':'C00-C15 executable integration',
+            'components':['C1','VQC3','QRL3','QMemory','Entity','QChat100'],'banks':7,
+            'historical_assets':159,'checkpoint_identity_verified':True,'C1_U02_synchronized':True,
+            'model_promoted':False,'cache_promoted':False,'gpu_C12_ported':False,
+            'original_C06_C07_C08_checkpoints_loaded':True,
+            'active_main':['C01','C03','C04','C05','C06','C09'],
+            'available_actions':['C02','C07','C08','C10','C11','C12','C13','C14','C15'],
+            'note':'Availability is not a claim of measured performance or promotion.'},ensure_ascii=False)
 
-        _verify_sources(root, manifest["protected_sha256"])
-        _activate_root(root)
-        private = base / "sessions"
-        private.mkdir(parents=True, exist_ok=True)
-        db = private / "u03-original.sqlite"
-        from integration.unified.session import Session
-        from integration.memory_u03_c09.view import UnifiedMemoryView
-        with Session(db) as model:
-            state = model.snapshot()
-            audited = UnifiedMemoryView(model).snapshot()
-            if len(state["banks"]) != 7 or not audited["C1_synchronized_with_U02"]:
-                raise RuntimeError("U03 Android original banks failed SHA/sync audit")
-            if audited["new_memory_authorities"] != 0:
-                raise RuntimeError("U03 Android attempted to create new memory authority")
-            if model.db.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
-                raise RuntimeError("U03 Android SQLite integrity check failed")
-        _root, _db, _manifest = root, db, manifest
-        return json.dumps({
-            "ready": True, "entity":"U02", "cycles":"C00-C15",
-            "components":["C1","VQC3","QRL3","QMemory","QChat100","E02"],
-            "banks":len(state["banks"]),
-            "checkpoint_identity_verified":True,
-            "C1_U02_synchronized":True,
-            "model_promoted":False,"cache_promoted":False,
-            "gpu_C12_ported":False,"historical_assets":159,
-            "private_sqlite":True,"apk_mode":"Android XI JNI + Python orchestration",
-        },ensure_ascii=False)
+def _ready():
+    if _root is None or _db is None:raise RuntimeError('Original U03 runtime is not ready')
 
+def _reply(receipt):
+    if not receipt.get('ok'):return receipt.get('reason') or receipt.get('error') or 'El motor XI se abstuvo o rechazó esta operación; no se inventó una respuesta.'
+    pieces=[]
+    for row in receipt.get('results',[]):
+        kind=row.get('kind')
+        if kind in ('text','greet','cancel'):pieces.append(row.get('text',''))
+        elif kind=='math':pieces.append('Resultado XI: '+str(row.get('value')))
+        elif kind in ('mission','plan'):
+            voice=row.get('voice',{});text=voice.get('text')
+            if text:pieces.append(text)
+            pieces.append('Decisión: '+str(row.get('action'))+' · objetivo: '+str(row.get('goal')))
+        elif kind=='feedback':pieces.append('Aprendizaje XI aplicado: '+json.dumps(row.get('updates',{}),ensure_ascii=False))
+        elif kind=='query':pieces.append('Consulta XI: '+str(row.get('status'))+' · evidencia: '+str(row.get('proof',[])))
+        elif kind=='lookup':pieces.append(str(row.get('value',row.get('status'))))
+        elif kind=='status':pieces.append('Motores: '+', '.join(row.get('components',[])))
+        elif kind:pieces.append(kind+': '+json.dumps(row,ensure_ascii=False)[:500])
+    return '\n'.join(p for p in pieces if p) or 'Operación original XI completada.'
 
-def _require_ready():
-    if _root is None or _db is None:
-        raise RuntimeError("U03 XI runtime not yet initialized")
+def _record(name,result):
+    global _last_report
+    folder=_db.parent.parent/'reports';folder.mkdir(parents=True,exist_ok=True)
+    identifier=name+'-'+uuid.uuid4().hex[:12]
+    report={'id':identifier,'action':name,'result':result,'report_is_not_model_memory':True}
+    temporary=folder/(identifier+'.tmp');target=folder/(identifier+'.json')
+    temporary.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');os.replace(temporary,target)
+    _last_report=report
+    return report
 
-
-def _reply(result):
-    if not result.get("ok"):
-        return result.get("reason") or result.get("error") or (
-            "El lector original XI no reconoció un contrato comprobado. "
-            "No invento una respuesta.")
-    parts = []
-    for item in result.get("results",[]):
-        kind = item.get("kind")
-        if kind=="text":
-            parts.append(item.get("text",""))
-        elif kind in ("greet","cancel"):
-            parts.append(item.get("text",""))
-        elif kind=="math":
-            parts.append("Resultado XI: "+str(item.get("value",item.get("status"))))
-        elif kind=="mission":
-            parts.append("Misión XI: clase "+str(item.get("class"))+
-                         ", regla "+str(item.get("rule_value"))+
-                         ", acción "+str(item.get("action"))+
-                         ". Estado "+str(item.get("status")))
-        elif kind=="feedback":
-            parts.append("Feedback XI: "+json.dumps(item.get("updates",{}),
-                                                     ensure_ascii=False))
-        elif kind=="status":
-            parts.append("Motores nativos: "+", ".join(item.get("components",[])))
-        elif kind=="recall":
-            parts.append("Memoria XI: "+str(item.get("value",item.get("status"))))
-        elif kind=="explain":
-            parts.append("Explicación: "+str(item.get("action",item.get("status"))))
-        elif kind:
-            parts.append(kind+": "+json.dumps(item,ensure_ascii=False)[:350])
-    return "\n".join(parts) or "La operación original XI terminó sin texto público."
-
-
-def turn(request_id:str, prompt:str, payload_json:str="") -> str:
+def turn(request_id,prompt,payload_json=''):
     with _lock:
-        _require_ready()
-        from integration.unified.session import Session
-        payload=json.loads(payload_json) if payload_json else None
-        with Session(_db) as model:
-            before=model.snapshot()
-            output=model.turn(request_id,prompt,payload)
-            after=model.snapshot()
-            trace=output.get("trace",[])
-            # Trace includes native XI calls PLUS host-side receipt metadata
-            # (such as native_rule/action index) which has no "native" key.
-            # Metadata must never be misclassified as a non-native calculation.
-            native_events=[row for row in trace if "native" in row]
-            real_native=bool(native_events) and all(
-                row["native"] is True for row in native_events)
-            return json.dumps({
-                "ok":bool(output.get("ok")),
-                "reply":_reply(output),
-                "receipt":output,
-                "receipt_sha256":_bytes_hash(json.dumps(
-                    output, sort_keys=True, separators=(",", ":"),
-                    ensure_ascii=False).encode("utf-8")),
-                "trace":trace,
-                "native_XI":real_native,
-                "original_U02":output.get("entity")=="U02",
-                "before_revision":before["revision"],
-                "after_revision":after["revision"],
-                "C1_U02_synchronized":True,
-            },ensure_ascii=False)
+        _ready()
+        if not isinstance(request_id,str) or not request_id or not isinstance(prompt,str):raise ValueError('Request ID and text required')
+        import mobile_cycles as cycles
+        result=cycles.main_turn(request_id,prompt,json.loads(payload_json) if payload_json else None)
+        receipt=result['receipt'];trace=receipt.get('trace',[])
+        native=[row for row in trace if 'native' in row]
+        result.update({'ok':bool(receipt.get('ok')),'reply':_reply(receipt),'trace':trace,
+            'native_XI':bool(native) and all(r['native'] is True for r in native),
+            'original_U02':receipt.get('entity')=='U02',
+            'C1_U02_synchronized':result['C09']['C1_U02_synchronized']})
+        _record('turn',result)
+        return json.dumps(result,ensure_ascii=False)
 
-
-def status() -> str:
+def action(name,payload_json='{}'):
     with _lock:
-        _require_ready()
-        from integration.unified.session import Session
-        from integration.memory_u03_c09.view import UnifiedMemoryView
-        with Session(_db) as model:
-            state=model.snapshot()
-            audit=UnifiedMemoryView(model).snapshot()
-            return json.dumps({
-                "entity":"U02","snapshot":state,
-                "bank_count":len(state["banks"]),
-                "memory":audit,
-                "U03_verified_C15":True,
-                "C11_C12_unpromoted":True,
-                "C13_cache_disabled":True,
-                "GPU_virtual_compute_ported":False
-            },ensure_ascii=False)
+        _ready()
+        import mobile_cycles as cycles
+        args=json.loads(payload_json or '{}')
+        if not isinstance(args,dict):raise ValueError('Typed action input must be a JSON object')
+        start=time.perf_counter_ns()
+        result=cycles.run_action(name,args)
+        report=_record(name,{'data':result,'wall_ms':(time.perf_counter_ns()-start)/1e6})
+        return json.dumps(report,ensure_ascii=False)
 
-
-def panel() -> str:
-    _require_ready()
-    return (_root/"docs/BBY_Q_U03_PANEL.md").read_text()
-
-
-def history() -> str:
+def status():
     with _lock:
-        _require_ready()
+        _ready()
+        import mobile_cycles as cycles
+        with cycles.MobileSession(_db) as s:
+            state=s.snapshot();memory=s.memory.snapshot()
+        return json.dumps({'entity':'U02','snapshot':state,'bank_count':len(state['banks']),
+            'memory':memory,'C11_C12_unpromoted':True,'C13_cache_disabled':True,
+            'GPU_virtual_compute_ported':False,'C03':cycles._MEMO.snapshot(),
+            'capability_modes':{
+                'C00':'real JNI packet telemetry', 'C01':'native source-library transport',
+                'C02':'runnable isolated optimistic-persistence comparator',
+                'C03':'content-authenticated archive cache in main session',
+                'C04':'lazy native-bank planner in main session',
+                'C05':'semantic frame on each turn', 'C06':'original native observational semantic head',
+                'C07':'typed evidence evaluation on request','C08':'original active-candidate comparison and clarification',
+                'C09':'same-database memory inspection','C10':'original native plan/proof in safe copy',
+                'C11':'runnable native learning and weight audit in laboratory copy',
+                'C12':'runnable cross-block learning, heldout comparison and A-B-A',
+                'C13':'runnable serial experimental comparator, not main cache',
+                'C14':'runnable original ablations with real JNI measurements',
+                'C15':'mobile writers/readers, rollback, replay and reopen tests; no power-loss claim'},
+            'last_report_id':_last_report['id'] if _last_report else None},ensure_ascii=False)
+
+def panel():
+    _ready()
+    return (_root/'docs/BBY_Q_U03_PANEL.md').read_text()
+
+def history():
+    with _lock:
+        _ready()
         from integration.unified.session import Session
-        with Session(_db) as model:
-            return json.dumps(model.history()[-25:],ensure_ascii=False)
+        with Session(_db) as s:return json.dumps(s.history()[-25:],ensure_ascii=False)
+
+def last_report():
+    with _lock:return json.dumps(_last_report,ensure_ascii=False,indent=2)
