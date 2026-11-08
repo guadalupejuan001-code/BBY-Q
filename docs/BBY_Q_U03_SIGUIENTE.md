@@ -8,6 +8,8 @@
 
 **C11 COMPLETADO — Aprendizaje conjunto:** [CI #42401341401](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42401341401) verificó seis regiones reales de parámetros XI modificadas tras feedback con etiqueta y regla nativas. La ablación escalar se corrigió retirando la etiqueta solo en su copia descartable. Validación 3/3 y test 4/4 empataron en las tres modalidades, por lo que no se promocionó el candidato. La memoria personal sigue intacta.
 
-**C12 — Experimentos cuánticos entre bloques (siguiente):** comparar capacidad, interferencia, sincronización y costo del conjunto de motores XI con escenarios más exigentes predefinidos e identidades de pesos verificables. No reutilizar etiquetas de C11 ni inventar mejoras; conservar 159 archivos, cadena BBY Q → w4U → QdU y sin APK.
+**C12 COMPLETADO EXPERIMENTALMENTE — Experimentos cuánticos entre bloques:** [PR #98](https://github.com/guadalupejuan001-code/BBY-Q/pull/98) desde C11 PR #97 (commit exacto 4bf3a7a), [CI original XI aprobada #42441627503](https://github.com/guadalupejuan001-code/BBY-Q/actions/runs/42441627503), [resultados completos](../integration/blocks_u03_c12/RESULTS.md). Dos feedback verificados, cambios en 6/6 regiones XI de parámetros. Validación 4/4 y test reservado 6/6 tanto entrenado como congelado: **no mejora de exactitud**. En cada brazo 6/6 misiones de carga y sincronización, A→B→A estable, sin cambios en pesos durante inferencia. Ablaciones limitadas a 2 casos: QMemory sin 1/2 reglas, voz sin 2/2 fidelidades. 159 fuentes protegidas intactas; BBY Q → w4U → QdU, sin APK.
+
+**C13 — Optimización global (siguiente):** priorizar cuellos de botella medidos tras el cierre real de C12; comparar con U02/C11 congelados, no sacrificar trazabilidad ni checkpoints. Abrir nueva PR sin fusión automática.
 
 **Panel:** [C00–C17](BBY_Q_U03_PANEL.md), [estado JSON](BBY_Q_U03_ESTADO.json). Este panel se actualiza con las pruebas GitHub realmente concluidas, no con promesas. Sin APK.
