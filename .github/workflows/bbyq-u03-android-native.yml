@@ -1,0 +1,152 @@
+name: BBY Q U03 original 7-bank XI Android APK - C00-C15
+on:
+  pull_request:
+    paths:
+      - 'android-u03/**'
+      - '.github/workflows/bbyq-u03-android-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android-native-u03:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/REVERSE-PC
+          ref: 08c363e6c6855c14026c86046af7183a45f45a98
+          path: deps/reverse-pc
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: guadalupejuan001-code/mundo-X
+          ref: e2778d962af22f6f1a0794058dd4685fc2573966
+          path: deps/mundo-x
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Authenticate all 159 original protected assets and build exact C1/Zero XI sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from integration.audit_u03_c00.profile import freeze_assets
+          assert len(freeze_assets())==159
+          print('159/159 source SHA-256 inventory fixed')
+          PY
+          bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
+          python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
+          python3 integration/sequence2/build.py
+          node integration/zero/build.mjs
+          python3 -m integration.unified.verify_release
+          python3 -m integration.unified.verify_perception
+      - name: Assemble authenticated full original U02 source and 159 checkpoint assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 android-u03/scripts/package-runtime.py
+          python3 -m py_compile android-u03/scripts/package-runtime.py             android-u03/scripts/xi_session_mobile.py             android-u03/app/src/main/python/u03_mobile.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import json, zipfile
+          source=Path('android-u03/app/src/main/assets/u03')
+          m=json.loads((source/'mobile-manifest.json').read_text())
+          z=source/'bbyq-u03-runtime.zip'
+          assert sha256(z.read_bytes()).hexdigest()==m['archive_sha256']
+          assert m['protected_count']==159 and not m['experimental_c11_c12_promoted']
+          assert not m['C13_cache_enabled']
+          assert m['historical_android_E02_replaced']
+          with zipfile.ZipFile(z) as root:
+              names=set(root.namelist())
+              assert len(names)==m['file_count']
+              for required in (
+                  'integration/unified/session.py',
+                  'integration/unified/quantum.py',
+                  'integration/sequence2/engine.py',
+                  'integration/entity/engine.py',
+                  'build/sequence2/model.xi',
+                  'build/zero/zero.xi',
+                  'deps/reverse-pc/scripts/xi_session_client.py',
+                  'docs/BBY_Q_U03_PANEL.md'):
+                  assert required in names,required
+              for name,sha in m['protected_sha256'].items():
+                  assert sha256(root.read(name)).hexdigest()==sha,name
+          print('Source+native XI+159 U02 checkpoint identities fully verified')
+          PY
+      - name: Install Android SDK/NDK and x86_64 Android 15 emulator
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"             'platforms;android-35' 'build-tools;35.0.0'             'ndk;27.2.12479018' 'cmake;3.22.1'             'platform-tools' 'emulator' 'system-images;android-35;default;x86_64'
+      - name: Build BBY Q U03 ARM64/x86_64 Android APK with embedded Python+JNI
+        shell: bash
+        run: |
+          mkdir -p build/android-u03
+          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-u03/gradle.log 2>&1 || {
+            echo '=== First Android build failure ==='
+            grep -n -E 'error:|FAILED|CMake Error|What went wrong|Execution failed|FAILURE|Could not|cannot find symbol|No such file|Caused by:' build/android-u03/gradle.log | head -75 || true
+            echo '=== End of Gradle build log ==='
+            tail -150 build/android-u03/gradle.log
+            exit 1
+          }
+          cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-u03/BBY-Q-U03-C15-Android.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs             build/android-u03/BBY-Q-U03-C15-Android.apk > build/android-u03/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging             build/android-u03/BBY-Q-U03-C15-Android.apk > build/android-u03/package.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import json, zipfile
+          p=Path('build/android-u03/BBY-Q-U03-C15-Android.apk')
+          assert p.is_file() and p.stat().st_size>3000000
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              members=set(z.namelist())
+              required={'lib/arm64-v8a/libreverse_os.so','lib/x86_64/libreverse_os.so',
+                        'assets/u03/bbyq-u03-runtime.zip','assets/u03/mobile-manifest.json'}
+              assert required<=members,required-members
+              m=json.loads(z.read('assets/u03/mobile-manifest.json'))
+              assert m['protected_count']==159 and not m['experimental_c11_c12_promoted']
+              assert not m['C13_cache_enabled']
+              assert sha256(z.read('assets/u03/bbyq-u03-runtime.zip')).hexdigest()==m['archive_sha256']
+              assert any('python' in name.lower() for name in members)
+          report={'ok':True,'package':'com.bbyq.u03',
+                  'apk_sha256':sha256(p.read_bytes()).hexdigest(),
+                  'apk_bytes':p.stat().st_size,'original_U02_python':True,
+                  'original_XI_JNI':True,'included_protected_assets':159,
+                  'experimental_weights_promoted':False,'C13_cache_enabled':False,
+                  'arm64':True,'x86_64':True,'android_15_emulator_tested':False}
+          Path('build/android-u03/build.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report))
+          PY
+      - name: Boot Android 15 and run original U02 native XI seven-bank mission
+        timeout-minutes: 22
+        shell: bash
+        run: |
+          bash android-u03/scripts/emulator-smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: BBY-Q-U03-C15-Android-original-XI-APK
+          path: |
+            build/android-u03/BBY-Q-U03-C15-Android.apk
+            build/android-u03/*.json
+            build/android-u03/*.txt
+            build/android-u03/*.log
+          if-no-files-found: warn
+          retention-days: 30
