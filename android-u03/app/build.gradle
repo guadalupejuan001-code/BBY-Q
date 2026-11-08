@@ -1,37 +1,23 @@
-plugins {
-    id 'com.android.application'
-    id 'com.chaquo.python'
-}
+plugins { id 'com.android.application'; id 'com.chaquo.python' }
 android {
-    namespace 'com.bbyq.u03'
-    compileSdk 35
-    ndkVersion '27.2.12479018'
-    defaultConfig {
-        applicationId 'com.bbyq.u03'
-        minSdk 29
-        targetSdk 35
-        versionCode 1
-        versionName 'U03.15.0'
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        ndk { abiFilters 'arm64-v8a', 'x86_64' }
-        externalNativeBuild { cmake { cppFlags '-std=c++17 -fexceptions -frtti' } }
-    }
-    androidResources { noCompress += ['zip'] }
-    externalNativeBuild { cmake { path 'src/main/cpp/CMakeLists.txt'; version '3.22.1' } }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    buildTypes { debug { debuggable true }; release { minifyEnabled false } }
-    packaging { resources { excludes += ['META-INF/*.kotlin_module'] } }
+ namespace 'com.bbyq.u03'
+ compileSdk 35
+ ndkVersion '27.2.12479018'
+ defaultConfig {
+  applicationId 'com.bbyq.u03.integrated'
+  minSdk 29
+  targetSdk 35
+  versionCode 2
+  versionName 'U03.16-integration.1'
+  testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+  ndk { abiFilters 'arm64-v8a', 'x86_64' }
+  externalNativeBuild { cmake { cppFlags '-std=c++17 -fexceptions -frtti'; arguments '-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON' } }
+ }
+ androidResources { noCompress += ['zip'] }
+ externalNativeBuild { cmake { path 'src/main/cpp/CMakeLists.txt'; version '3.22.1' } }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+ buildTypes { debug { debuggable true }; release { minifyEnabled false } }
+ packaging { resources { excludes += ['META-INF/*.kotlin_module'] } }
 }
-chaquopy {
-    defaultConfig {
-        version = '3.12'
-        buildPython('python3.12')
-    }
-}
-dependencies {
-    androidTestImplementation 'androidx.test:runner:1.6.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-}
+chaquopy { defaultConfig { version = '3.12'; buildPython('python3.12') } }
+dependencies { androidTestImplementation 'androidx.test:runner:1.6.2'; androidTestImplementation 'androidx.test.ext:junit:1.2.1' }
