@@ -3,9 +3,12 @@ package com.bbyq.u03;
 import android.app.*;
 import android.content.*;
 import android.os.Bundle;
+import android.os.Build;
+import android.graphics.Insets;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.*;
 import org.json.*;
@@ -31,13 +34,24 @@ public final class IntegratedActivity extends Activity {
     private final String[] actions={"chat","memory","plan","prove","semantic","evidence","transport","persistence","c11","c12","candidate","cache","profile","stress","capabilities","reports","diagnostics"};
     private int dp(int x){return Math.round(x*getResources().getDisplayMetrics().density);}
     private TextView text(String s,int size,int color){TextView t=new TextView(this);t.setText(s);t.setTextSize(size);t.setTextColor(color);return t;}
-    private Button button(String s){Button b=new Button(this);b.setText(s);b.setAllCaps(false);b.setTextColor(FG);b.setBackgroundTintList(android.content.res.ColorStateList.valueOf(PANEL));return b;}
+    private Button button(String s){Button b=new Button(this);b.setText(s);b.setAllCaps(false);b.setTextSize(12);b.setSingleLine(true);b.setMinWidth(0);b.setMinimumWidth(0);b.setPadding(dp(4),dp(4),dp(4),dp(4));b.setTextColor(FG);b.setBackgroundTintList(android.content.res.ColorStateList.valueOf(PANEL));return b;}
     private LinearLayout vertical(){LinearLayout x=new LinearLayout(this);x.setOrientation(LinearLayout.VERTICAL);return x;}
     @Override public void onCreate(Bundle saved){
         super.onCreate(saved);
         getWindow().setStatusBarColor(BG);getWindow().setNavigationBarColor(BG);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         LinearLayout root=vertical();root.setBackgroundColor(BG);root.setPadding(dp(14),dp(14),dp(14),dp(12));
+        // Android 15 enforces edge-to-edge at target 35: keep real controls
+        // above navigation/keyboard and below status bar, not underneath them.
+        if(Build.VERSION.SDK_INT>=30){
+            getWindow().setDecorFitsSystemWindows(false);
+            root.setOnApplyWindowInsetsListener((view,insets)->{
+                Insets bars=insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout());
+                Insets ime=insets.getInsets(WindowInsets.Type.ime());
+                view.setPadding(dp(14)+bars.left,dp(14)+bars.top,dp(14)+bars.right,dp(12)+Math.max(bars.bottom,ime.bottom));
+                return insets;
+            });
+        }else root.setFitsSystemWindows(true);
         TextView title=text("BBY Q · U03 Integrado",23,FG);title.setTypeface(Typeface.DEFAULT,Typeface.BOLD);root.addView(title);
         state=text("Verificando núcleo, checkpoints y bibliotecas…",12,MUTED);state.setId(0x5802001);root.addView(state);
         mode=new Spinner(this);mode.setId(0x5802002);
@@ -46,7 +60,7 @@ public final class IntegratedActivity extends Activity {
         scroll=new ScrollView(this);transcript=vertical();scroll.addView(transcript);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout shortcuts=new LinearLayout(this);
         for(String name:new String[]{"Misión","Aprender","Ciclos","Exportar"}){
-            Button b=button(name);shortcuts.addView(b,new LinearLayout.LayoutParams(0,dp(44),1));
+            Button b=button(name);shortcuts.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
             b.setOnClickListener(v->{
                 if(name.equals("Misión")){mode.setSelection(0);input.setText("guarda la regla Faro Azul con valor 1 observa Nara con muestra 88113 y resuelve desde 3");}
                 else if(name.equals("Aprender")){mode.setSelection(0);input.setText("aprende de la última tarea");}
@@ -58,7 +72,7 @@ public final class IntegratedActivity extends Activity {
         input.setMinLines(2);input.setMaxLines(5);input.setHint("Escribe una petición XI");root.addView(input,new LinearLayout.LayoutParams(-1,-2));
         execute=button("Ejecutar");execute.setId(0x5802004);execute.setTextColor(BG);execute.setBackgroundTintList(android.content.res.ColorStateList.valueOf(ACCENT));
         root.addView(execute,new LinearLayout.LayoutParams(-1,dp(48)));execute.setOnClickListener(v->submit());
-        setContentView(root);
+        setContentView(root);root.requestApplyInsets();
         mode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onNothingSelected(AdapterView<?> p){}
             public void onItemSelected(AdapterView<?> p,View v,int index,long id){preset(index);}

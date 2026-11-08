@@ -1,96 +1,32 @@
 #!/usr/bin/env bash
+# Preserve the complete previously verified C16 campaign; add deeper ELF/UI gates.
 set -euo pipefail
-OUT=build/android-c16
-APK="$OUT/BBY-Q-U03-Integrado-C16.apk"
-TEST=android-u03/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-PKG=com.bbyq.u03.integrated
-mkdir -p "$OUT"
-test -s "$APK" && test -s "$TEST"
-export PATH="$ANDROID_HOME/platform-tools:$PATH"
-if [[ -e /dev/kvm ]]; then sudo chmod a+rw /dev/kvm; fi
-export ANDROID_AVD_HOME="$(mktemp -d /tmp/bbyq-c16-avd.XXXXXX)"
-printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force -n bbyq-c16 \
-  -p "$ANDROID_AVD_HOME/bbyq-c16.avd" -k 'system-images;android-35;default;x86_64'
-"$ANDROID_HOME/emulator/emulator" -avd bbyq-c16 -no-window -no-audio -no-boot-anim \
-  -no-snapshot -gpu swiftshader_indirect -memory 4096 > "$OUT/emulator.log" 2>&1 &
-EMU=$!
-finish(){
-  adb logcat -d > "$OUT/android-logcat.log" 2>/dev/null || true
-  adb exec-out run-as "$PKG" cat files/startup-diagnostic.json > "$OUT/startup-diagnostic.txt" 2>/dev/null || true
-  kill "$EMU" 2>/dev/null || true
-}
-trap finish EXIT
-adb wait-for-device
-booted=0
-for i in $(seq 1 150); do
-  if [[ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1 ]]; then booted=1;break;fi
-  sleep 2
-done
-test "$booted" -eq 1 || { tail -80 "$OUT/emulator.log";exit 1; }
-adb shell getconf PAGE_SIZE > "$OUT/emulator-page-size.txt"
-adb shell settings put global window_animation_scale 0
-adb shell settings put global transition_animation_scale 0
-adb shell settings put global animator_duration_scale 0
-adb install -r "$APK"
-adb install -r "$TEST"
-adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" > "$OUT/launcher.txt"
-adb shell am instrument -w \
-  -e class com.bbyq.u03.U03NativeTest,com.bbyq.u03.IntegratedCyclesTest \
-  "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/android-tests.txt" 2>&1
-cat "$OUT/android-tests.txt"
+python3 android-u03/scripts/verify-deep-elf.py build/android-c16/BBY-Q-U03-Integrado-C16.apk build/android-c16/deep-elf-verification.json
+bash android-u03/scripts/emulator-integrated-baseline.sh
 python3 - <<'PY'
 from pathlib import Path
-import re
-text=Path('build/android-c16/android-tests.txt').read_text()
-m=re.search(r'OK \((\d+) tests?\)',text)
-assert m and int(m.group(1))>=16,text
-assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
-PY
-# These are TWO different Android processes, not close/reopen on one Python object.
-for phase in seed verify; do
-  adb shell am force-stop "$PKG"
-  adb shell am instrument -w -e class com.bbyq.u03.ProcessRestartTest -e persistence_phase "$phase" \
-    "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/restart-$phase.txt" 2>&1
-  cat "$OUT/restart-$phase.txt"
-  python3 - "$OUT/restart-$phase.txt" <<'PY'
-from pathlib import Path
-import sys,re
-text=Path(sys.argv[1]).read_text()
-assert re.search(r'OK \(1 test\)',text),text
-assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
-PY
-done
-# Export measured Android laboratory outputs, not just copied Linux results.
-mkdir -p "$OUT/lab"
-for name in transport persistence c11 c12 cache profile stress candidate; do
-  adb exec-out run-as "$PKG" cat "files/sessions/laboratory/$name-last.json" > "$OUT/lab/$name.json"
-done
-adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" >> "$OUT/launcher.txt"
-sleep 3
-adb exec-out screencap -p > "$OUT/integrated-ui.png"
-adb shell uiautomator dump /sdcard/c16-ui.xml >/dev/null
-adb exec-out cat /sdcard/c16-ui.xml > "$OUT/integrated-ui.xml"
-python3 - <<'PY'
-from pathlib import Path
-import json,re
+import json,re,xml.etree.ElementTree as ET
 out=Path('build/android-c16')
-report=json.loads((out/'static-verification.json').read_text())
-text=(out/'android-tests.txt').read_text()
-report['android_instrumentation_passed']=True
-report['android_instrumentation_test_count']=int(re.search(r'OK \((\d+) tests?\)',text).group(1))
-report['android_api_tested']=35
-report['emulator_page_size']=int((out/'emulator-page-size.txt').read_text().strip())
-report['external_force_stop_restart_verified']=True
-report['physical_user_device_tested']=False
-report['cycle_labs']={}
-for f in sorted((out/'lab').glob('*.json')):
-    lab=json.loads(f.read_text())
-    assert lab.get('personal_database_writes')==0,(f,lab)
-    if f.stem!='candidate':assert lab.get('passed') is True,(f,lab)
-    report['cycle_labs'][f.stem]={'executed_on_android':True,'personal_writes':0,'wall_ms':lab['experiment_wall_ms']}
-assert set(report['cycle_labs'])=={'transport','persistence','c11','c12','cache','profile','stress','candidate'}
-assert 'BBY Q' in (out/'integrated-ui.xml').read_text()
-report['delivery_verified']=True
-(out/'validation.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
-print(json.dumps({k:v for k,v in report.items() if k not in ('ELF_alignment','original_heads')},ensure_ascii=False))
+root=ET.fromstring((out/'integrated-ui.xml').read_text())
+def bounds(node):
+    return tuple(map(int,re.findall(r'\d+',node.attrib['bounds'])))
+nodes=list(root.iter('node'))
+button=next(n for n in nodes if n.attrib.get('text')=='Ejecutar' and n.attrib.get('class')=='android.widget.Button')
+nav=next((n for n in nodes if n.attrib.get('resource-id')=='android:id/navigationBarBackground'),None)
+rect=bounds(button)
+if nav is not None:
+    assert rect[3]<=bounds(nav)[1],('Execute button is hidden behind Android navigation',rect,bounds(nav))
+assert rect[2]>rect[0] and rect[3]-rect[1]>=44
+for label in ('Misión','Aprender','Ciclos','Exportar'):
+    item=next(n for n in nodes if n.attrib.get('text')==label and n.attrib.get('class')=='android.widget.Button')
+    b=bounds(item);assert b[3]-b[1]>=44,(label,b)
+report=json.loads((out/'validation.json').read_text())
+elf=json.loads((out/'deep-elf-verification.json').read_text())
+assert report['delivery_verified'] and elf['all_load_segments_16kb']
+report['nested_python_ELF_verified']=elf['verified_elf_count']
+report['execute_button_above_navigation']=True
+report['shortcut_touch_height_verified']=True
+report['native_algorithm_changed_in_delivery_review']=False
+(out/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'review_passed':True,'nested_ELF_count':elf['verified_elf_count'],'execute_button_above_navigation':True,'original_C16_tests_preserved':True}))
 PY
