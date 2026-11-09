@@ -9,11 +9,13 @@ Presentation, routing and abstentions are labelled separately from inference.
 from __future__ import annotations
 
 from contextlib import closing
+from decimal import Decimal
 from hashlib import sha256
 from pathlib import Path
 import base64
 import gzip
 import json
+import math
 import os
 import re
 import sqlite3
@@ -24,7 +26,7 @@ import unicodedata
 import uuid
 
 UNKNOWN = "No tengo suficiente información para responder."
-SCHEMA = "BBYQ-0-personal-conversation-v1"
+SCHEMA = "BBYQ-0-personal-conversations-v2"
 K = 8040000000000000000
 Z = 9185000000000000000
 REFERENCE_K = 7400000000000000000
@@ -65,11 +67,95 @@ def _connect(folder):
       CREATE TABLE IF NOT EXISTS messages(id TEXT PRIMARY KEY,view INTEGER NOT NULL,role TEXT NOT NULL,
          text TEXT NOT NULL,request_id TEXT NOT NULL,created_ms INTEGER NOT NULL,provenance TEXT);
     """)
+    _migrate_conversations(db)
     return db
+
+
+def _migrate_conversations(db):
+    """Keep C18 message/receipt bytes and view IDs; only add a reversible index."""
+    db.execute("BEGIN IMMEDIATE")
+    try:
+        db.execute("""CREATE TABLE IF NOT EXISTS conversations(
+          id TEXT PRIMARY KEY,view INTEGER NOT NULL UNIQUE,title TEXT NOT NULL,
+          title_custom INTEGER NOT NULL,archived INTEGER NOT NULL,
+          created_ms INTEGER NOT NULL,updated_ms INTEGER NOT NULL)""")
+        version = db.execute("SELECT value FROM preferences WHERE key='conversation_schema'").fetchone()
+        if not version or int(version[0]) < 2:
+            active = _view(db)
+            views = {active}
+            views.update(row[0] for row in db.execute("SELECT DISTINCT view FROM messages"))
+            views.update(row[0] for row in db.execute("SELECT DISTINCT view FROM requests"))
+            now = time.time_ns() // 1000000
+            for view in sorted(views):
+                bounds = db.execute("SELECT MIN(created_ms),MAX(created_ms) FROM messages WHERE view=?", (view,)).fetchone()
+                first = db.execute("SELECT text FROM messages WHERE view=? AND role='user' ORDER BY rowid LIMIT 1", (view,)).fetchone()
+                title = _title(first[0]) if first else "Nueva conversación"
+                db.execute("INSERT OR IGNORE INTO conversations VALUES(?,?,?,?,?,?,?)",
+                           ("legacy-view-" + str(view), view, title, 0, 0, bounds[0] or now, bounds[1] or now))
+            db.execute("INSERT OR REPLACE INTO preferences VALUES('conversation_schema','2')")
+        db.execute("CREATE INDEX IF NOT EXISTS conversation_messages_view ON messages(view)")
+        db.execute("CREATE INDEX IF NOT EXISTS conversation_requests_view ON requests(view,state)")
+        db.execute("COMMIT")
+    except BaseException:
+        db.execute("ROLLBACK")
+        raise
 
 
 def _view(db):
     return int(db.execute("SELECT value FROM preferences WHERE key='view'").fetchone()[0])
+
+
+def _title(text):
+    value = " ".join(str(text).split())
+    return value[:60] + ("…" if len(value) > 60 else "")
+
+
+def _conversation(db, identifier=None, view=None):
+    if identifier is not None:
+        identifier = _input(identifier, "conversation_id", 200)
+        row = db.execute("SELECT id,view,title,title_custom,archived,created_ms,updated_ms FROM conversations WHERE id=?", (identifier,)).fetchone()
+    else:
+        row = db.execute("SELECT id,view,title,title_custom,archived,created_ms,updated_ms FROM conversations WHERE view=?", (_view(db) if view is None else view,)).fetchone()
+    if not row:
+        raise ValueError("No se encuentra esta conversación")
+    identifier, view, title, custom, archived, created, updated = row
+    count = db.execute("SELECT COUNT(*) FROM messages WHERE view=?", (view,)).fetchone()[0]
+    last = db.execute("SELECT text FROM messages WHERE view=? ORDER BY rowid DESC LIMIT 1", (view,)).fetchone()
+    return {"id": identifier, "conversation_id": identifier, "view_id": view, "title": title,
+            "archived": bool(archived), "created_at_ms": created, "updated_at_ms": updated,
+            "message_count": count, "preview": _title(last[0]) if last else ""}
+
+
+def _active_id(db):
+    return _conversation(db)["id"]
+
+
+def _conversations(db, include_archived=False, query=""):
+    rows = db.execute("SELECT id FROM conversations" + ("" if include_archived else " WHERE archived=0") +
+                      " ORDER BY updated_ms DESC,view DESC").fetchall()
+    values = [_conversation(db, row[0]) for row in rows]
+    if query:
+        term = _fold(_input(query, "búsqueda", 200))
+        values = [value for value in values if term in _fold(value["title"] + " " + value["preview"])]
+    return values
+
+
+def _new_conversation(db, title=None):
+    view = db.execute("SELECT COALESCE(MAX(view),-1)+1 FROM conversations").fetchone()[0]
+    identifier = "chat-" + uuid.uuid4().hex
+    now = time.time_ns() // 1000000
+    explicit = title is not None
+    title = _input(title, "título", 120) if explicit else "Nueva conversación"
+    db.execute("INSERT INTO conversations VALUES(?,?,?,?,?,?,?)", (identifier, view, title, int(explicit), 0, now, now))
+    db.execute("UPDATE preferences SET value=? WHERE key='view'", (str(view),))
+    return _conversation(db, identifier)
+
+
+def _pending(db, view):
+    identifier = _conversation(db, view=view)["id"]
+    return [{"request_id": row[0], "text": json.loads(row[1]).get("text", ""), "conversation_id": identifier,
+             "request": json.loads(row[1])}
+            for row in db.execute("SELECT id,input FROM requests WHERE state='pending' AND view=? ORDER BY rowid", (view,))]
 
 
 def _message(row):
@@ -81,25 +167,62 @@ def _message(row):
     return result
 
 
-def _history(db, archived=False):
+def _history(db, view=None, archived=False):
     sql = "SELECT id,role,text,request_id,created_ms,provenance FROM messages"
-    params = () if archived else (_view(db),)
+    params = () if archived else (_view(db) if view is None else view,)
     if not archived:
         sql += " WHERE view=?"
     return [_message(row) for row in db.execute(sql + " ORDER BY rowid", params)]
 
 
-def _last_answer(db):
-    row = db.execute("SELECT provenance FROM messages WHERE view=? AND role='assistant' ORDER BY rowid DESC LIMIT 1", (_view(db),)).fetchone()
-    if not row or not row[0]:
+def _last_answer(db, view):
+    # Courtesy alone does not introduce a new subject or numeric result.
+    # Stop at the first other turn: do not search past a topic change,
+    # ambiguity or clarification to manufacture a convenient antecedent.
+    courtesy = {"gracias", "muchas gracias", "gracias bby q", "de nada"}
+    row = None
+    answer = None
+    for candidate in db.execute("SELECT request_id,provenance FROM messages WHERE view=? AND role='assistant' ORDER BY rowid DESC LIMIT 64", (view,)):
+        if not candidate[1]:
+            break
+        value = json.loads(candidate[1])
+        if _fold(value.get("request_text", "")) in courtesy:
+            continue
+        row, answer = candidate, value
+        break
+    if row is None:
         return None
-    answer = json.loads(row[0])
     route = answer.get("route", {})
     if route.get("kind") in ("why", "repeat") and route.get("previous") and answer.get("response_origin") != "abstention":
-        return route["previous"]
+        context = dict(route["previous"])
+        context["conversation_id"] = _conversation(db, view=view)["id"]
+        return context
     return {"route": {key: value for key, value in route.items() if key != "previous"},
             "normalized_prompt": answer.get("normalized_prompt"),
-            "response_origin": answer.get("response_origin")}
+            "response_origin": answer.get("response_origin"), "request_id": row[0],
+            "conversation_id": _conversation(db, view=view)["id"],
+            "context": _referents(answer)}
+
+
+def _referents(answer):
+    """Explicit local referents from a real prior turn, not semantic memory."""
+    route = answer.get("route", {})
+    receipt = answer.get("receipt") or {}
+    rows = receipt.get("results", [])
+    text = answer.get("request_text", "")
+    # A conjunction of subjects/clauses is not one unambiguous antecedent.
+    if len(re.findall(r"\bes\b", _fold(text))) > 1 or re.search(r"\b(?:y|o)\b", _fold(route.get("subject", ""))):
+        return {"ambiguous": True}
+    numbers = [row["value"] for row in rows if row.get("kind") == "math" and row.get("status") == 1]
+    if len(numbers) == 1:
+        return {"numeric_result": numbers[0]}
+    subjects = {row["subject"] for row in rows if row.get("kind") == "put" and row.get("status") == 1 and row.get("subject")}
+    if len(subjects) > 1:
+        return {"ambiguous": True}
+    subject = next(iter(subjects)) if subjects else route.get("subject")
+    if subject and route.get("kind") in ("personal", "definition"):
+        return {"subject": subject}
+    return {}
 
 
 def _material(native, address, size):
@@ -293,11 +416,44 @@ def _strip(text):
     return text.strip().strip("¿?¡! .\n\t")
 
 
-def _route(text, db):
+def _resolution(last, kind, prompt, **values):
+    return {"kind": kind, "source_request_id": last.get("request_id"),
+            "source_conversation_id": last.get("conversation_id"), "expanded_prompt": prompt,
+            "deterministic_reference_resolution": True, **values}
+
+
+def _route(text, db, view):
     clean = _strip(text); folded = _fold(clean)
-    last = _last_answer(db)
-    if folded in {"por que", "porque", "explicame por que", "explica por que", "como lo sabes"}:
-        return {"kind": "why", "previous": last}
+    last = _last_answer(db, view)
+    if folded in {"por que", "porque", "explicame por que", "explica por que", "como lo sabes",
+                  "y por que", "y porque", "y como lo sabes", "y explicame por que"}:
+        return {"kind": "why", "previous": last,
+                "context_resolution": _resolution(last, "previous_turn", last.get("normalized_prompt")) if last else None}
+    context = last.get("context", {}) if last else {}
+    match = re.fullmatch(r"(?:y\s+)?(?:(?:cu[aá]nto (?:da|es)|calcula|multiplica)\s+)?(?:eso|el resultado)\s*(por|entre|m[aá]s|menos|[×÷*/+\-])\s*(-?(?:\d+(?:[.,]\d*)?|[.,]\d+))", clean, re.I)
+    if match:
+        number = context.get("numeric_result")
+        if type(number) not in (int, float) or (type(number) is float and not math.isfinite(number)) or context.get("ambiguous"):
+            return {"kind": "clarify", "reply": "¿Qué resultado quieres usar? Escribe el número o la cuenta completa."}
+        operator = {"por": "*", "entre": "/", "mas": "+", "menos": "-", "×": "*", "÷": "/"}.get(_fold(match.group(1)), match.group(1))
+        # Preserve exact integers, and serialize the shortest round-tripping
+        # float as a plain decimal accepted by the original native reader.
+        literal = str(number) if type(number) is int else format(Decimal(repr(number)), "f")
+        prompt = "calcula " + literal + " " + operator + " " + match.group(2)
+        return {"kind": "personal", "prompt": prompt, "write": False,
+                "context_resolution": _resolution(last, "numeric_result", prompt, resolved_value=number)}
+    match = re.fullmatch(r"(?:y\s+es|(?:y\s+)?(?:[ée]l|ella|eso|ese|esa)\s+es)\s+(.+)", clean, re.I)
+    if not match:
+        match = re.fullmatch(r"es\s+(\S+)", clean, re.I)
+    if match:
+        subject = context.get("subject")
+        if not subject or context.get("ambiguous"):
+            return {"kind": "clarify", "reply": "¿De quién hablamos? Escribe el nombre para que pueda comprobarlo."}
+        property_text = re.sub(r"^(?:un|una|el|la)\s+", "", match.group(1), flags=re.I)
+        prompt = "dime si " + subject + " es " + property_text
+        return {"kind": "personal", "prompt": prompt, "write": False, "subject": subject,
+                "reference_prompt": prompt,
+                "context_resolution": _resolution(last, "subject", prompt, resolved_subject=subject)}
     if folded in {"que recuerdas", "que recuerdas de mi", "que sabes de mi", "muestra tu memoria"}:
         return {"kind": "memory"}
     if folded in {"ayuda", "que puedes hacer", "como te enseno", "como puedo entrenarte"}:
@@ -341,7 +497,8 @@ def _route(text, db):
     if folded in social or re.match(r"^(que|quien|cuando|donde|como|hablame|explica|define|dime si)\b", folded):
         return {"kind": "reference", "prompt": clean}
     if folded in {"repitelo", "explicalo otra vez", "dime mas"} and last:
-        return {"kind": "repeat", "previous": last}
+        return {"kind": "repeat", "previous": last,
+                "context_resolution": _resolution(last, "previous_turn", last.get("normalized_prompt"))}
     return {"kind": "unknown"}
 
 
@@ -378,7 +535,7 @@ def _render(receipt, root, personal_db, explain=False, proof=None):
                 return UNKNOWN, False, "abstention"
             parts.append(value); origin = "native_reference" if row.get("native_source") == "E025" else "native_text"
         elif kind == "math" and row.get("status") == 1:
-            parts.append(format(row["value"], ".15g"))
+            parts.append(str(row["value"]) if type(row["value"]) is int else format(row["value"], ".15g"))
         elif kind == "put":
             memory = personal_memory(root, personal_db)
             fact = next((f for f in memory["facts"] if _fold(f["subject"]) == _fold(row["subject"]) and _fold(f["value"]) == _fold(str(row["value"])) and f["polarity"] == row.get("polarity", 1)), None)
@@ -420,6 +577,11 @@ def _answer(route, request_id, text, root, personal_db):
     provenance = {"route": route, "request_text": text, "response_origin": "abstention",
                   "native_XI": False, "receipt": None, "personal_memory_written": False,
                   "deterministic_presentation_is_model_generation": False}
+    if route.get("context_resolution"):
+        provenance["context_resolution"] = route["context_resolution"]
+    if kind == "clarify":
+        provenance["response_origin"] = "interface"
+        return route["reply"], False, provenance
     if kind in ("why", "repeat"):
         previous = route.get("previous")
         if not previous:
@@ -508,15 +670,20 @@ def _run(args, root, personal_db):
     action = args.get("action")
     if action == "personal_memory":
         return personal_memory(root, personal_db, args.get("query", ""))
-    if action not in ("send", "history", "clear_view", "export"):
+    if action not in ("send", "history", "clear_view", "export", "list", "create", "select", "open", "rename", "archive", "restore"):
         raise ValueError("Acción de conversación desconocida")
     folder = personal_db.parent.parent / "conversation-v1"
     with closing(_connect(folder)) as db:
+        if action == "list":
+            return {"ok": True, "action": action, "active_conversation_id": _active_id(db),
+                    "conversations": _conversations(db, args.get("include_archived") is True, args.get("query", ""))}
         if action == "history":
-            pending = [{"request_id": row[0], "text": json.loads(row[1]).get("text", "")}
-                       for row in db.execute("SELECT id,input FROM requests WHERE state='pending' ORDER BY rowid")]
-            return {"ok": True, "action": action, "view_id": _view(db),
-                    "messages": _history(db, args.get("include_archived") is True), "pending_requests": pending}
+            conversation = _conversation(db, args.get("conversation_id"))
+            view = conversation["view_id"]
+            return {"ok": True, "action": action, "view_id": view, "conversation_id": conversation["id"],
+                    "conversation": conversation, "active_conversation_id": _active_id(db),
+                    "messages": _history(db, view, args.get("include_archived") is True and not args.get("conversation_id")),
+                    "pending_requests": _pending(db, view)}
         request_id = _input(args.get("request_id"), "request_id", 200)
         clean_args = dict(args); clean_args["request_id"] = request_id
         if action == "send":
@@ -526,24 +693,37 @@ def _run(args, root, personal_db):
         if prior and prior[0] != fingerprint:
             raise ValueError("Este identificador ya corresponde a otro mensaje")
         if prior and prior[1] == "complete":
+            # A historical receipt is immutable. In particular, replay must
+            # neither select its old conversation nor recompute its context.
             return json.loads(prior[2])
         if action == "send":
             if prior:
                 route, view, created = json.loads(prior[3]), prior[4], prior[5]
+                conversation = _conversation(db, view=view)
             else:
-                route, view, created = _route(clean_args["text"], db), _view(db), time.time_ns() // 1000000
+                conversation = _conversation(db, args.get("conversation_id"))
+                if conversation["archived"]:
+                    raise ValueError("Restaura esta conversación para volver a escribir en ella")
+                view = conversation["view_id"]
+                route, created = _route(clean_args["text"], db, view), time.time_ns() // 1000000
                 db.execute("BEGIN IMMEDIATE")
                 try:
                     db.execute("INSERT INTO requests VALUES(?,?,'pending',?,?,?,?,?,NULL)",
                                (request_id, fingerprint, action, _json(clean_args), _json(route), view, created))
                     db.execute("INSERT INTO messages VALUES(?,?,?,?,?,?,NULL)",
                                (request_id + ":user", view, "user", clean_args["text"], request_id, created))
+                    if conversation["message_count"] == 0:
+                        db.execute("UPDATE conversations SET title=CASE WHEN title_custom=0 THEN ? ELSE title END,updated_ms=? WHERE view=?",
+                                   (_title(clean_args["text"]), created, view))
+                    else:
+                        db.execute("UPDATE conversations SET updated_ms=? WHERE view=?", (created, view))
                     db.execute("COMMIT")
                 except BaseException:
                     db.execute("ROLLBACK"); raise
             reply, understood, provenance = _answer(route, request_id, clean_args["text"], root, personal_db)
             provenance.update(source_commit=base._manifest.get("apk_source_commit"),
-                              module_sha256=base._manifest.get("mobile_sources_sha256", {}).get("u03_conversation.py"))
+                              module_sha256=base._manifest.get("mobile_sources_sha256", {}).get("u03_conversation.py"),
+                              conversation_id=conversation["id"])
             finished = time.time_ns() // 1000000
             user = {"id": request_id + ":user", "role": "user", "text": clean_args["text"], "request_id": request_id, "created_at_ms": created}
             assistant = {"id": request_id + ":assistant", "role": "assistant", "text": reply,
@@ -552,22 +732,26 @@ def _run(args, root, personal_db):
             result = {"ok": True, "action": action, "request_id": request_id, "reply": reply,
                       "understood": understood, "response_origin": provenance["response_origin"],
                       "native_XI": provenance["native_XI"], "receipt": provenance["receipt"],
-                      "messages": [user, assistant], "view_id": view}
+                      "messages": [user, assistant], "message_scope": "new_turn", "view_id": view,
+                      "conversation_id": conversation["id"]}
             db.execute("BEGIN IMMEDIATE")
             try:
                 db.execute("INSERT INTO messages VALUES(?,?,?,?,?,?,?)",
                            (assistant["id"], view, "assistant", reply, request_id, finished, _json(provenance)))
+                db.execute("UPDATE conversations SET updated_ms=? WHERE view=?", (finished, view))
                 db.execute("UPDATE requests SET state='complete',result=? WHERE id=?", (_json(result), request_id))
                 db.execute("COMMIT")
             except BaseException:
                 db.execute("ROLLBACK"); raise
             return result
-        if action == "clear_view":
-            view = _view(db) + 1
-            result = {"ok": True, "action": action, "view_id": view, "messages": [], "personal_memory_erased": False}
-        else:
-            view = _view(db)
-            document = {"schema": SCHEMA, "view_id": view, "messages": _history(db, args.get("include_archived") is True),
+        if action == "export":
+            conversation = _conversation(db, args.get("conversation_id")); view = conversation["view_id"]
+            all_views = args.get("include_archived") is True
+            exported = _conversations(db, True) if all_views else [conversation]
+            document = {"schema": SCHEMA, "view_id": view, "conversation_id": conversation["id"],
+                        "messages": _history(db, view, all_views),
+                        "scope": "all_conversations" if all_views else "conversation",
+                        "conversations": [dict(item, messages=_history(db, item["view_id"])) for item in exported],
                         "source_commit": base._manifest.get("apk_source_commit"),
                         "source_sha256": base._manifest.get("mobile_sources_sha256", {}),
                         "exported_ms": time.time_ns() // 1000000, "model_checkpoint_included": False}
@@ -577,12 +761,39 @@ def _run(args, root, personal_db):
                 stream.write(_json(document) + "\n")
                 stream.flush()
                 os.fsync(stream.fileno())
-            result = {"ok": True, "action": action, "path": str(destination),
+            result = {"ok": True, "action": action, "path": str(destination), "conversation_id": conversation["id"],
                       "filename": "BBY-Q-0-conversacion.json", "mime": "application/json", "sha256": _sha(destination.read_bytes())}
+        elif action not in ("create", "clear_view"):
+            conversation = _conversation(db, _input(args.get("conversation_id"), "conversation_id", 200))
+            view = conversation["view_id"]
         db.execute("BEGIN IMMEDIATE")
         try:
-            if action == "clear_view":
+            if action in ("create", "clear_view"):
+                conversation = _new_conversation(db, args.get("title")); view = conversation["view_id"]
+            elif action in ("select", "open"):
+                if conversation["archived"]:
+                    raise ValueError("Restaura esta conversación para volver a usarla")
                 db.execute("UPDATE preferences SET value=? WHERE key='view'", (str(view),))
+            elif action == "rename":
+                title = " ".join(_input(args.get("title"), "título", 120).split())
+                db.execute("UPDATE conversations SET title=?,title_custom=1,updated_ms=? WHERE view=?",
+                           (title, time.time_ns() // 1000000, view))
+            elif action == "archive":
+                db.execute("UPDATE conversations SET archived=1,updated_ms=? WHERE view=?", (time.time_ns() // 1000000, view))
+                if _view(db) == view:
+                    other = db.execute("SELECT view FROM conversations WHERE archived=0 ORDER BY updated_ms DESC,view DESC LIMIT 1").fetchone()
+                    if other:
+                        db.execute("UPDATE preferences SET value=? WHERE key='view'", (str(other[0]),))
+                    else:
+                        _new_conversation(db)
+            elif action == "restore":
+                db.execute("UPDATE conversations SET archived=0,updated_ms=? WHERE view=?", (time.time_ns() // 1000000, view))
+            if action != "export":
+                conversation = _conversation(db, view=view)
+                result = {"ok": True, "action": action, "view_id": view, "conversation_id": conversation["id"],
+                          "conversation": conversation, "active_conversation_id": _active_id(db), "personal_memory_erased": False}
+                if action in ("create", "clear_view"):
+                    result["messages"] = []
             db.execute("INSERT INTO requests VALUES(?,?,'complete',?,?,NULL,?,?,?)",
                        (request_id, fingerprint, action, _json(clean_args), view, time.time_ns() // 1000000, _json(result)))
             db.execute("COMMIT")

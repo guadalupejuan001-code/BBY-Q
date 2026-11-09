@@ -56,6 +56,12 @@ public final class TrainingRestartTest {
     private JSONObject conversation(JSONObject request)throws Exception {
         return U03Runtime.operation(app(),"conversation",request.toString());
     }
+    private JSONObject conversationRequest(String action)throws Exception {
+        return new JSONObject().put("action",action).put("request_id","restart-chat-"+UUID.randomUUID());
+    }
+    private JSONObject conversationHistory(String id)throws Exception {
+        return conversation(new JSONObject().put("action","history").put("conversation_id",id));
+    }
     /** JSON object order is not part of the durable conversation contract. */
     private String canonical(Object value)throws Exception {
         if(value==null||value==JSONObject.NULL)return "null";
@@ -93,8 +99,10 @@ public final class TrainingRestartTest {
             String request="c17-live-restart-"+UUID.randomUUID();
             JSONObject live=U03Runtime.turn(app(),request,query,"");positive(live);
             JSONObject activeSnapshot=snapshot();
-            assertTrue(conversation(new JSONObject().put("action","clear_view").put("request_id","restart-view-"+UUID.randomUUID())).getBoolean("ok"));
-            JSONObject conversationRequest=new JSONObject().put("action","send").put("request_id","restart-conversation-"+UUID.randomUUID()).put("text",query);
+            JSONObject createdConversation=conversation(new JSONObject().put("action","clear_view").put("request_id","restart-view-"+UUID.randomUUID()));
+            assertTrue(createdConversation.getBoolean("ok"));String firstConversation=createdConversation.getJSONObject("conversation").getString("id");
+            JSONObject conversationRequest=new JSONObject().put("action","send").put("request_id","restart-conversation-"+UUID.randomUUID())
+                .put("conversation_id",firstConversation).put("text",query);
             JSONObject conversational=conversation(conversationRequest);positive(conversational);assertTrue(conversational.getBoolean("native_XI"));
             JSONArray messages=conversation(new JSONObject().put("action","history")).getJSONArray("messages");
             assertEquals(2,messages.length());assertEquals("user",messages.getJSONObject(0).getString("role"));
@@ -103,17 +111,36 @@ public final class TrainingRestartTest {
             String conversationReceiptSha=canonicalSha(conversational.getJSONObject("receipt")),historySha=canonicalSha(messages);
             assertEquals(conversationReceiptSha,canonicalSha(messages.getJSONObject(1).getJSONObject("provenance").getJSONObject("receipt")));
             same(activeSnapshot,snapshot());
+            String firstDraft="Quiero continuar esta explicación",secondDraft="Otro cálculo pendiente";
+            IntegratedActivity firstScreen=ChatContinuityTest.home(firstConversation,true);
+            ChatContinuityTest.assertRendered(firstScreen,firstConversation,messages);ChatContinuityTest.draft(firstScreen,firstDraft,6);UiEvidence.finishActivities();
+            JSONObject otherCreated=conversation(conversationRequest("create").put("title","Segundo hilo del reinicio"));
+            String secondConversation=otherCreated.getJSONObject("conversation").getString("id");assertNotEquals(firstConversation,secondConversation);
+            JSONObject otherRequest=conversationRequest("send").put("conversation_id",secondConversation).put("text","calcula 7 + 3");
+            JSONObject otherAnswer=conversation(otherRequest);assertEquals(10,ConversationProof.result(otherAnswer,"math").getInt("value"));
+            JSONArray otherMessages=conversationHistory(secondConversation).getJSONArray("messages");assertEquals(2,otherMessages.length());
+            IntegratedActivity otherScreen=ChatContinuityTest.home(secondConversation,true);
+            ChatContinuityTest.assertRendered(otherScreen,secondConversation,otherMessages);ChatContinuityTest.draft(otherScreen,secondDraft,4);
+            UiEvidence.screenshot("chat-restart-seed.png");UiEvidence.finishActivities();
+            assertEquals(secondConversation,conversation(new JSONObject().put("action","history")).getString("active_conversation_id"));
+            same(activeSnapshot,snapshot());
             assertTrue(saved.edit().putString("session_id",session).putString("backup_id",activation.getString("backup_id"))
                 .putString("live_request",request).putString("live_receipt_sha256",live.getString("receipt_sha256"))
                 .putString("active_snapshot",activeSnapshot.toString()).putString("original_snapshot",original.toString())
                 .putString("conversation_request",conversationRequest.toString()).putString("conversation_history",messages.toString())
                 .putString("conversation_history_sha256",historySha).putString("conversation_receipt_sha256",conversationReceiptSha)
                 .putString("conversation_result_sha256",canonicalSha(conversational))
+                .putString("conversation_id",firstConversation).putString("other_conversation_id",secondConversation)
+                .putString("first_draft",firstDraft).putInt("first_caret",6).putString("second_draft",secondDraft).putInt("second_caret",4)
+                .putString("other_history",otherMessages.toString()).putString("other_history_sha256",canonicalSha(otherMessages))
+                .putString("other_request",otherRequest.toString())
                 .putInt("pid",android.os.Process.myPid()).commit());
             write("training-restart-seed.json",new JSONObject().put("passed",true).put("phase","seed")
                 .put("session_id",session).put("pid",android.os.Process.myPid()).put("validation",validation)
                 .put("activation",activation).put("ordinary_chat",live).put("active_snapshot",activeSnapshot)
                 .put("conversation_query_was_read_only",true).put("conversation_history",messages)
+                .put("conversation_id",firstConversation).put("other_conversation_id",secondConversation).put("active_conversation_id",secondConversation)
+                .put("other_conversation_history",otherMessages).put("drafts_entered_through_real_ui",true)
                 .put("conversation_history_sha256",historySha).put("conversation_receipt_sha256",conversationReceiptSha));
         }else if("verify".equals(phase)){
             assertTrue("The seed phase must have completed",saved.contains("session_id"));
@@ -127,17 +154,49 @@ public final class TrainingRestartTest {
             assertEquals(saved.getString("live_receipt_sha256",null),live.getString("receipt_sha256"));same(active,snapshot());
             assertTrue(U03Runtime.status(app()).getJSONObject("memory").getBoolean("C1_synchronized_with_U02"));
             assertTrue("Seed saved the personal conversation",saved.contains("conversation_request"));
+            String firstConversation=saved.getString("conversation_id",null),secondConversation=saved.getString("other_conversation_id",null);
+            assertEquals("The last selected conversation survives process death",secondConversation,
+                conversation(new JSONObject().put("action","history")).getString("active_conversation_id"));
             JSONArray expectedHistory=new JSONArray(saved.getString("conversation_history","[]"));
-            JSONArray reopenedHistory=conversation(new JSONObject().put("action","history")).getJSONArray("messages");
+            JSONArray reopenedHistory=conversationHistory(firstConversation).getJSONArray("messages");
             String historySha=canonicalSha(reopenedHistory);
             assertEquals(saved.getString("conversation_history_sha256",null),historySha);
             assertEquals(canonical(expectedHistory),canonical(reopenedHistory));
             JSONObject retried=conversation(new JSONObject(saved.getString("conversation_request","{}")));positive(retried);assertTrue(retried.getBoolean("native_XI"));
             assertEquals(saved.getString("conversation_result_sha256",null),canonicalSha(retried));
             assertEquals(saved.getString("conversation_receipt_sha256",null),canonicalSha(retried.getJSONObject("receipt")));
-            JSONArray afterRetry=conversation(new JSONObject().put("action","history")).getJSONArray("messages");
+            JSONArray afterRetry=conversationHistory(firstConversation).getJSONArray("messages");
             assertEquals("Exact retry must not duplicate user/assistant messages",2,afterRetry.length());
             assertEquals(canonical(reopenedHistory),canonical(afterRetry));same(active,snapshot());
+            assertEquals("Retrying the other thread must not switch the active chat",secondConversation,
+                conversation(new JSONObject().put("action","history")).getString("active_conversation_id"));
+            JSONArray otherMessages=conversationHistory(secondConversation).getJSONArray("messages");
+            assertEquals(saved.getString("other_history_sha256",null),canonicalSha(otherMessages));
+            ConversationProof.sameMessages(new JSONArray(saved.getString("other_history","[]")),otherMessages);
+            IntegratedActivity secondScreen=ChatContinuityTest.home(secondConversation,true);
+            ChatContinuityTest.assertDraft(secondScreen,saved.getString("second_draft",null),saved.getInt("second_caret",-1));
+            ChatContinuityTest.assertRendered(secondScreen,secondConversation,otherMessages);
+            UiEvidence.screenshot("chat-restart-verified.png");
+            ChatsActivity list=ChatContinuityTest.chats(secondScreen);ChatContinuityTest.tapTagged(list,"conversation:"+firstConversation);
+            IntegratedActivity firstScreen=ChatContinuityTest.home(firstConversation,false);
+            ChatContinuityTest.assertDraft(firstScreen,saved.getString("first_draft",null),saved.getInt("first_caret",-1));
+            ChatContinuityTest.assertRendered(firstScreen,firstConversation,afterRetry);
+            JSONObject why=ChatContinuityTest.sendUi(firstScreen,firstConversation,"¿y por qué?");
+            assertEquals(1,UiEvidence.nativeResult(why,"query").getInt("status"));
+            JSONObject context=why.getJSONObject("provenance").getJSONObject("context_resolution");
+            assertEquals(firstConversation,context.getString("source_conversation_id"));
+            assertEquals(new JSONObject(saved.getString("conversation_request","{}")).getString("request_id"),context.getString("source_request_id"));
+            assertTrue(why.getJSONObject("provenance").getString("normalized_prompt").contains("Nube Persistente"));
+            JSONArray contextualHistory=conversationHistory(firstConversation).getJSONArray("messages");assertEquals(4,contextualHistory.length());
+            ConversationProof.sameMessages(afterRetry,ConversationProof.prefix(contextualHistory,2));
+            JSONObject numericFollowup=conversation(conversationRequest("send").put("conversation_id",secondConversation).put("text","¿y cuánto da eso por 2?"));
+            assertEquals(20,ConversationProof.result(numericFollowup,"math").getInt("value"));
+            JSONObject numericContext=numericFollowup.getJSONArray("messages").getJSONObject(1).getJSONObject("provenance").getJSONObject("context_resolution");
+            assertEquals(secondConversation,numericContext.getString("source_conversation_id"));
+            assertEquals(new JSONObject(saved.getString("other_request","{}")).getString("request_id"),numericContext.getString("source_request_id"));
+            assertEquals(firstConversation,conversation(new JSONObject().put("action","history")).getString("active_conversation_id"));
+            ConversationProof.sameMessages(otherMessages,ConversationProof.prefix(conversationHistory(secondConversation).getJSONArray("messages"),2));
+            same(active,snapshot());UiEvidence.screenshot("chat-restart-context.png");UiEvidence.finishActivities();
             JSONObject restored=call("restore",session,new JSONObject().put("backup_id",saved.getString("backup_id",null))
                 .put("confirm_discard_new_activity",true));assertTrue(restored.getBoolean("restored"));
             same(new JSONObject(saved.getString("original_snapshot","{}")),snapshot());
@@ -148,6 +207,11 @@ public final class TrainingRestartTest {
                 .put("ordinary_chat",live).put("restored_personal_snapshot",snapshot())
                 .put("conversation_survived_process_restart",true).put("conversation_exact_request_replayed",true)
                 .put("conversation_retry_no_duplicate_messages",true).put("conversation_query_was_read_only",true)
+                .put("multiple_conversations_survived_process_restart",true).put("active_conversation_survived_process_restart",true)
+                .put("thread_drafts_survived_process_restart",true).put("conversation_ui_history_survived_process_restart",true)
+                .put("thread_context_survived_process_restart",true).put("thread_context_isolated_after_restart",true)
+                .put("replay_kept_active_conversation",true).put("conversation_id",firstConversation).put("other_conversation_id",secondConversation)
+                .put("thread_context_followup",why).put("other_thread_context_followup",numericFollowup)
                 .put("conversation_history_sha256",historySha).put("conversation_receipt_sha256",canonicalSha(retried.getJSONObject("receipt")))
                 .put("conversation_history",afterRetry));
         }else fail("Pass training_phase=seed or training_phase=verify; an in-process reset is insufficient");

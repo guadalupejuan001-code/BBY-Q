@@ -6,7 +6,7 @@ import io,json,struct,subprocess,sys,zipfile
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
 from integration.audit_u03_c00.profile import freeze_assets
-BASE='4f1bb3b0b954278f4535af3e3aaeb3d6c6e9660e'
+BASE='6ee0f7b3a5aaf09d02339f789ea5f897a5510d95'
 
 def alignments(raw):
     if raw[:4]!=b'\x7fELF' or raw[4]!=2 or raw[5]!=1:
@@ -43,10 +43,10 @@ def main():
         with zipfile.ZipFile(io.BytesIO(z.read('assets/chaquopy/app.imy'))) as modules:
             if 'u03_conversation.pyc' not in modules.namelist():raise AssertionError('Personal conversation adapter missing')
         dex=b''.join(z.read(n) for n in files if n.startswith('classes') and n.endswith('.dex'))
-        for name in (b'ModelActivity',b'TrainingActivity',b'UiKit',b'IntegratedActivity'):
+        for name in (b'ChatsActivity',b'ModelActivity',b'TrainingActivity',b'UiKit',b'IntegratedActivity'):
             if name not in dex:raise AssertionError('Personal screen missing: '+name.decode())
         manifest=json.loads(z.read('assets/u03/mobile-manifest.json'))
-        assert manifest['android_version']=='U03.18.0-personal' and manifest['android_label']=='BBY Q 0'
+        assert manifest['android_version']=='U03.19.0-chats' and manifest['android_label']=='BBY Q 0'
         raw=z.read('assets/u03/bbyq-u03-runtime.zip')
         if sha256(raw).hexdigest()!=manifest['archive_sha256']:raise AssertionError('Runtime payload hash mismatch')
         with zipfile.ZipFile(io.BytesIO(raw)) as payload:
@@ -69,7 +69,7 @@ def main():
        'physical_user_device_tested':False,'android_instrumentation_passed':False,
        'GPU_compute_integrated':False,'auto_model_promotion':False,
        'training_workspace_packaged':True,'offline_illustrated_guide':True,
-       'personal_conversation_packaged':True,'personal_model_workspace_packaged':True}
+       'personal_conversation_packaged':True,'chat_workspace_packaged':True,'personal_model_workspace_packaged':True}
     out.write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
     print(json.dumps({k:v for k,v in report.items() if k not in ('ELF_alignment','original_heads')},ensure_ascii=False))
 if __name__=='__main__':main()

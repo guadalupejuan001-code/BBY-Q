@@ -117,9 +117,11 @@ def build():
     manifest = {
         "schema": "BBYQ-U03-Android-authenticated-runtime-v1",
         "android_package": "com.bbyq.u03.training",
-        "android_version": "U03.18.0-personal",
+        "android_version": "U03.19.0-chats",
         "android_label": "BBY Q 0",
-        "personal_interface": "conversation_and_model",
+        "personal_interface": "conversation_threads_and_model",
+        "conversation_threads": True,
+        "conversation_context": "thread_scoped_grounded_references",
         "apk_source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "mobile_sources_sha256": {p.name: sha256(p.read_bytes()).hexdigest()
             for p in sorted((ROOT / "android-u03/app/src/main/python").glob("*.py"))},
