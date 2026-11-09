@@ -305,10 +305,10 @@ public final class TrainingActivity extends Activity {
         JSONObject session=currentSession();String savedBackup=session==null?"":session.optString("backup_id","");
         final String backup=session!=null&&session.optBoolean("active")&&session.optString("state").equals("activated")?((savedBackup.isEmpty()||savedBackup.equals("null"))?preferences.getString("backup_"+sessionId,""):savedBackup):"";
         if(!backup.isEmpty()){
-            LinearLayout recovery=card("ESTADO ANTERIOR","Recuperar el punto de partida","La copia anterior a la activación sigue guardada. Si la recuperas, la conversación volverá a ese momento.");
+            LinearLayout recovery=card("ESTADO ANTERIOR","Recuperar el punto de partida","Devuelve la memoria y el modelo al punto anterior a esta activación. El aprendizaje de esta sesión y el posterior dejarán de estar activos. Tus mensajes y esta sesión seguirán guardados.");
             addButton(recovery,"Recuperar estado anterior",0x5803063,false,()->new android.app.AlertDialog.Builder(this)
                 .setTitle("Recuperar el estado anterior")
-                .setMessage("La conversación volverá al punto anterior a la activación. Los cambios nuevos de la conversación posteriores a esa activación se descartarán. La sesión de entrenamiento seguirá guardada.")
+                .setMessage("Recuperar el estado anterior devuelve la memoria y el modelo al punto justo anterior a esta activación. El aprendizaje de esta sesión y lo aprendido después dejarán de estar activos. Tus mensajes del chat y la sesión de entrenamiento seguirán guardados.")
                 .setNegativeButton("Cancelar",null).setPositiveButton("Recuperar",(dialog,which)->call("restore",args("backup_id",backup,"confirm_discard_new_activity",true),"Recuperando el estado anterior")).show());
         }
         addButton(content,"Volver a conversar",0x5803062,false,this::openConversation);
@@ -337,7 +337,7 @@ public final class TrainingActivity extends Activity {
         }
         if("activate".equals(lastAction)){title="Entrenamiento activado";if(body.isEmpty())body="La conversación ya usa el estado entrenado y comprobado.";}
         if("joint_discard".equals(lastAction)){title="Ejercicio descartado";if(body.isEmpty())body="La sesión recuperó el estado previo a la predicción. Puedes elegir otra muestra.";}
-        if("restore".equals(lastAction)){title="Estado anterior recuperado";if(body.isEmpty())body="La conversación volvió al estado anterior. Tu sesión de entrenamiento sigue guardada.";}
+        if("restore".equals(lastAction)){title="Estado anterior recuperado";if(body.isEmpty())body="La memoria y el modelo volvieron al punto anterior a esta activación. El aprendizaje de esta sesión y el posterior ya no están activos. Tus mensajes del chat y esta sesión siguen guardados.";}
         if("export_saved".equals(lastAction))title="Entrenamiento guardado";
         if("export".equals(lastAction)){title="Archivo preparado";if(body.isEmpty())body="Elige un destino para guardar tu entrenamiento.";}
         if(body.isEmpty())body="El paso terminó. Los detalles quedan guardados para la exportación.";
