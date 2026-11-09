@@ -5,6 +5,7 @@ APK="$OUT/BBY-Q-U03-Entrenamiento-C17.apk"
 TEST=android-u03/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 PKG=com.bbyq.u03.training
 TRAINING_EVIDENCE=(training-test-proof.json training-workspace-ui.png training-guide-ui.png
+  training-guide-diagram-ui.png training-guide-diagram-2-ui.png training-guide-diagram-3-ui.png
   training-restart-seed.json training-restart-verify.json)
 mkdir -p "$OUT"
 test -s "$APK" && test -s "$TEST"

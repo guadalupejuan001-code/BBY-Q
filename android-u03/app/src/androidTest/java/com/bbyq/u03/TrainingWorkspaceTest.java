@@ -149,6 +149,16 @@ public final class TrainingWorkspaceTest {
         }
         return false;
     }
+    private boolean scrollGuide(AccessibilityNodeInfo node){
+        if(node==null)return false;
+        if(node.getClassName()!=null&&"android.webkit.WebView".contentEquals(node.getClassName()))
+            return node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
+        for(int i=0;i<node.getChildCount();i++){
+            AccessibilityNodeInfo child=node.getChild(i);
+            if(child!=null){boolean moved=scrollGuide(child);child.recycle();if(moved)return true;}
+        }
+        return false;
+    }
     @Test public void C17_userLessonsAreNativeIsolatedAndReachNormalChat()throws Exception {
         JSONObject original=personal();String session=create("Conocimiento y activación C17");
         String subject="Niebla Taller";
@@ -264,15 +274,33 @@ public final class TrainingWorkspaceTest {
             .put("stale_activation_rejected",stale).put("current_personal_snapshot",current)
             .put("candidate_and_new_personal_activity_preserved",true));
     }
+    private String checkpointHash(SQLiteDatabase db,String name,long length)throws Exception {
+        // A native bank exceeds Android's CursorWindow. Hash every byte in bounded
+        // BLOB slices instead of asking one cursor row to hold the whole checkpoint.
+        MessageDigest digest=MessageDigest.getInstance("SHA-256");
+        for(long offset=0;offset<length;){
+            int count=(int)Math.min(256*1024L,length-offset);
+            try(Cursor c=db.rawQuery("SELECT substr(snapshot,?,?) FROM unified_banks WHERE name=?",
+                new String[]{Long.toString(offset+1),Integer.toString(count),name})){
+                assertTrue("Checkpoint slice exists: "+name,c.moveToFirst());
+                byte[] chunk=c.getBlob(0);
+                assertEquals("Checkpoint slice is complete: "+name,count,chunk.length);
+                digest.update(chunk);
+            }
+            offset+=count;
+        }
+        StringBuilder out=new StringBuilder();for(byte b:digest.digest())out.append(String.format("%02x",b&255));
+        return out.toString();
+    }
     private JSONObject inspectModel(byte[] raw,JSONObject expected)throws Exception {
         File file=new File(app().getCacheDir(),id()+".sqlite");
         try(FileOutputStream out=new FileOutputStream(file)){out.write(raw);}
         JSONObject checked=new JSONObject();
         try(SQLiteDatabase db=SQLiteDatabase.openDatabase(file.getAbsolutePath(),null,SQLiteDatabase.OPEN_READONLY|SQLiteDatabase.NO_LOCALIZED_COLLATORS)){
             try(Cursor c=db.rawQuery("PRAGMA integrity_check",null)){assertTrue(c.moveToFirst());assertEquals("ok",c.getString(0));}
-            try(Cursor c=db.rawQuery("SELECT name,snapshot,sha FROM unified_banks",null)){
+            try(Cursor c=db.rawQuery("SELECT name,length(snapshot),sha FROM unified_banks",null)){
                 while(c.moveToNext()){
-                    String name=c.getString(0),stored=c.getString(2),actual=hex(c.getBlob(1));
+                    String name=c.getString(0),stored=c.getString(2),actual=checkpointHash(db,name,c.getLong(1));
                     assertEquals("Stored checkpoint bytes "+name,stored,actual);
                     assertEquals("Export matches saved candidate "+name,expected.getJSONObject("banks").getString(name),actual);
                     checked.put(name,actual);
@@ -344,9 +372,18 @@ public final class TrainingWorkspaceTest {
             }
             assertTrue("The illustrated guide must actually open inside Android",guide);
             instrument().waitForIdleSync();screenshot("training-guide-ui.png");
+            JSONArray screenshots=new JSONArray().put("training-workspace-ui.png").put("training-guide-ui.png");
+            // The guide lives in a Dialog window. Scroll its real WebView through
+            // accessibility so the evidence includes diagrams below the introduction.
+            for(String name:new String[]{"training-guide-diagram-ui.png","training-guide-diagram-2-ui.png","training-guide-diagram-3-ui.png"}){
+                AccessibilityNodeInfo root=instrument().getUiAutomation().getRootInActiveWindow();
+                if(root!=null){scrollGuide(root);root.recycle();}
+                instrument().waitForIdleSync();Thread.sleep(400);
+                screenshot(name);screenshots.put(name);
+            }
             evidence("training_ui_and_guide",new JSONObject().put("native_activity_opened",true)
                 .put("guide_opened_in_webview",true).put("offline_guide_sha256",hex(html.getBytes(StandardCharsets.UTF_8)))
-                .put("screenshots",new JSONArray().put("training-workspace-ui.png").put("training-guide-ui.png")));
+                .put("screenshots",screenshots));
         }finally{instrument().runOnMainSync(activity::finish);}
     }
 }
