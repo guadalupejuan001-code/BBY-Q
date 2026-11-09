@@ -220,6 +220,10 @@ assert set(chat_cases)=={'C01_threeTurnsKeepSixRealBubbles','C02_threadNavigatio
 assert all(case.get('passed') is True for case in chat_cases.values())
 report['chat_continuity_verified']=True
 report['chat_upgrade_evidence']={phase:json.loads((out/f'chat-upgrade-{phase}.json').read_text()) for phase in ('seed','verify')}
+report['chat_upgrade_authentication']=json.loads((out/'chat-upgrade-authentication.json').read_text())
+assert report['chat_upgrade_authentication']['authenticated'] is True
+assert report['chat_upgrade_authentication']['only_ci_signature_changed'] is True
+assert report['chat_upgrade_authentication']['all_three_ci_certificates_identical'] is True
 assert all(evidence.get('passed') is True for evidence in report['chat_upgrade_evidence'].values())
 upgrade=report['chat_upgrade_evidence']['verify']
 assert all(upgrade.get(name) is True for name in (

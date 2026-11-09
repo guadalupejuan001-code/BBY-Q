@@ -83,7 +83,9 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'platform-tools' 'emulator' 'system-images;android-36;default;x86_64'
       - name: C19 compile persistent chats, model workspace and original XI JNI
         run: |
-          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c19/gradle.log 2>&1 || {
+          mkdir -p build/chat-upgrade-fixture
+          keytool -genkeypair -noprompt -storetype PKCS12 -keystore build/chat-upgrade-fixture/ci-debug.p12 -storepass android -keypass android -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=BBY Q CI,OU=Android tests,O=BBY Q,C=US'
+          gradle -p android-u03 --no-daemon -PbbyqCiKeystorePath="$PWD/build/chat-upgrade-fixture/ci-debug.p12" :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c19/gradle.log 2>&1 || {
             grep -n -E 'error:|FAILED|FAILURE|Caused by|Could not' build/android-c19/gradle.log | head -70 || true
             tail -160 build/android-c19/gradle.log
             exit 1
@@ -99,7 +101,7 @@ jobs:
       - name: Authenticate C18 APK for an actual data-preserving update
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 android-u03/scripts/prepare-chat-upgrade.py "$ANDROID_HOME/build-tools/35.0.0"
+        run: python3 android-u03/scripts/prepare-chat-upgrade.py "$ANDROID_HOME/build-tools/35.0.0" "$PWD/build/chat-upgrade-fixture/ci-debug.p12"
       - name: C19 Android 16 upgrade, chat continuity, context, training and restart
         timeout-minutes: 40
         run: bash android-u03/scripts/emulator-integrated.sh

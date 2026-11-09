@@ -40,6 +40,7 @@ def payload(raw):
 
 def main():
     build_tools = Path(sys.argv[1])
+    keystore = Path(sys.argv[2]).resolve()
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         raise RuntimeError("Read-only Actions access is required for the authenticated C18 upgrade fixture")
@@ -68,11 +69,10 @@ def main():
     original = folder / "C18-original.apk"
     baseline = folder / "C18-upgrade-baseline.apk"
     original.write_bytes(raw)
-    keystore = Path.home() / ".android/debug.keystore"
     if not keystore.is_file():
-        raise RuntimeError("Build the current Android debug APK before preparing the upgrade fixture")
+        raise RuntimeError("The explicit CI signing key used by Gradle is missing")
     signer = build_tools / "apksigner"
-    subprocess.run([str(signer), "sign", "--ks", str(keystore), "--ks-key-alias", "androiddebugkey",
+    subprocess.run([str(signer), "sign", "--ks", str(keystore), "--ks-type", "PKCS12", "--ks-key-alias", "androiddebugkey",
                     "--ks-pass", "pass:android", "--key-pass", "pass:android",
                     "--v4-signing-enabled", "false", "--out", str(baseline), str(original)], check=True)
     subprocess.run([str(signer), "verify", str(baseline)], check=True)
@@ -81,6 +81,16 @@ def main():
     badging = subprocess.check_output([str(build_tools / "aapt"), "dump", "badging", str(baseline)], text=True)
     package = re.search(r"package: name='([^']+)' versionCode='(\d+)' versionName='([^']+)'", badging)
     assert package and package.groups() == ("com.bbyq.u03.training", "4", "U03.18.0-personal")
+    certificates = []
+    for application in (baseline, ROOT / "build/android-c19/BBY-Q-0-Chats.apk",
+                        ROOT / "android-u03/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"):
+        verification = subprocess.check_output([str(signer), "verify", "--print-certs", str(application)], text=True)
+        certificate = re.search(r"Signer #1 certificate SHA-256 digest: ([0-9a-f]+)", verification)
+        if not certificate:
+            raise RuntimeError("Cannot verify the CI certificate for " + application.name)
+        certificates.append(certificate.group(1))
+    if len(set(certificates)) != 1:
+        raise RuntimeError("Old APK, updated APK and instrumentation APK must share the explicit CI certificate")
     report = {
         "authenticated": True, "original_artifact_id": ARTIFACT,
         "original_artifact_sha256": ARCHIVE_SHA, "original_tested_apk_sha256": APK_SHA,
@@ -88,6 +98,7 @@ def main():
         "baseline_version_name": "U03.18.0-personal", "application_id": package.group(1),
         "baseline_apk_sha256": sha256(baseline.read_bytes()).hexdigest(),
         "only_ci_signature_changed": True, "user_signing_key_used_in_ci": False,
+        "all_three_ci_certificates_identical": True, "ci_certificate_sha256": certificates[0],
     }
     out = ROOT / "build/android-c19"
     out.mkdir(parents=True, exist_ok=True)
