@@ -449,11 +449,17 @@ final class UiEvidence {
         if(node==null)return null;
         String label=String.valueOf(node.getContentDescription())+" "+String.valueOf(node.getText());
         String type=String.valueOf(node.getClassName());Rect bounds=new Rect();node.getBoundsInScreen(bounds);
-        boolean titled=label.contains("Del estado actual a una sesión")||label.contains("Nara, robot y máquina")
-            ||label.contains("Diferencia entre enseñar")||label.contains("Predicción, respuesta correcta")
-            ||label.contains("Comparar el estado inicial")||label.contains("Qué viaja en tu archivo");
-        if(titled&&type.contains("Image")&&node.isVisibleToUser()&&bounds.width()>viewport.width()/2&&bounds.height()>80&&viewport.contains(bounds))
-            return new JSONObject().put("label",label).put("class",type).put("bounds",rect(bounds));
+        int viewBoxHeight=label.contains("Del estado actual a una sesión")?340:
+            label.contains("Nara, robot y máquina")?332:label.contains("Diferencia entre enseñar")?264:
+            label.contains("Predicción, respuesta correcta")?410:label.contains("Comparar el estado inicial")?272:
+            label.contains("Qué viaja en tu archivo")?334:0;
+        double fullHeight=bounds.width()*viewBoxHeight/340.0;
+        // WebView clips accessibility bounds to its viewport. The SVG's real
+        // viewBox ratio also has to match; a visible fragment is insufficient.
+        if(viewBoxHeight>0&&type.contains("Image")&&node.isVisibleToUser()&&bounds.width()>viewport.width()/2
+            &&bounds.height()>80&&viewport.contains(bounds)&&Math.abs(bounds.height()-fullHeight)<=2.0)
+            return new JSONObject().put("label",label).put("class",type).put("bounds",rect(bounds))
+                .put("view_box_width",340).put("view_box_height",viewBoxHeight).put("expected_full_height",fullHeight);
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo child=node.getChild(i);
             if(child!=null){JSONObject found=visibleDiagram(child,viewport);child.recycle();if(found!=null)return found;}}
         return null;
@@ -482,9 +488,34 @@ final class UiEvidence {
         return report;
     }
     static void screenshot(String filename)throws Exception {
+        committedFrame();
         Bitmap image=instrument().getUiAutomation().takeScreenshot();assertNotNull("Screen capture",image);
         try(FileOutputStream out=new FileOutputStream(new File(app().getFilesDir(),filename))){assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,out));}
         finally{image.recycle();}
+    }
+    private static void committedFrame()throws Exception {
+        View target=ui(()->{
+            for(Activity activity:ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)){
+                if(!activity.getPackageName().equals(app().getPackageName()))continue;
+                if(activity instanceof TrainingActivity){View guide=((TrainingActivity)activity).guideRootForTests();if(guide!=null)return guide.getRootView();}
+                return activity.getWindow().getDecorView();
+            }
+            return null;
+        });
+        if(target==null)return; // A startup failure may leave only the system screen to capture.
+        // Idle layout is earlier than rendering. In particular a rotated Activity
+        // can have landscape bounds while SurfaceFlinger still shows its old frame.
+        for(int frame=0;frame<2;frame++){
+            CountDownLatch committed=new CountDownLatch(1);
+            ui(()->{assertTrue("A rendered hardware window is required",target.isHardwareAccelerated());
+                target.getViewTreeObserver().registerFrameCommitCallback(committed::countDown);
+                target.postInvalidateOnAnimation();return null;});
+            assertTrue("A fresh window frame reaches the swap chain",committed.await(10,TimeUnit.SECONDS));
+        }
+        instrument().getUiAutomation().waitForIdle(500,5000);
+        CountDownLatch composed=new CountDownLatch(1);
+        ui(()->{target.postOnAnimation(()->target.postOnAnimation(composed::countDown));return null;});
+        assertTrue("Display advances after the committed frame",composed.await(5,TimeUnit.SECONDS));
     }
     static void write(String filename,JSONObject value)throws Exception {
         try(FileOutputStream out=new FileOutputStream(new File(app().getFilesDir(),filename))){out.write(value.toString(2).getBytes(StandardCharsets.UTF_8));}

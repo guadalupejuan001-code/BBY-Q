@@ -119,7 +119,7 @@ public final class IntegratedActivity extends Activity {
         transcript=UiKit.column(this);transcript.setId(0x5802005);transcript.setPadding(0,dp(12),0,dp(12));
         scroll.addView(transcript,new ScrollView.LayoutParams(-1,-2));root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
 
-        composer=new LinearLayout(this);composer.setId(0x5802007);composer.setGravity(Gravity.BOTTOM);
+        composer=new LinearLayout(this);composer.setId(0x5802007);composer.setGravity(Gravity.BOTTOM);composer.setBaselineAligned(false);
         android.graphics.drawable.GradientDrawable box=UiKit.shape(this,UiKit.SURFACE,20);box.setStroke(dp(1),UiKit.BORDER);
         composer.setBackground(box);composer.setPadding(dp(12),dp(5),dp(5),dp(5));
         input=new EditText(this);input.setId(0x5802003);input.setTextColor(UiKit.TEXT);input.setHintTextColor(UiKit.MUTED);
@@ -190,7 +190,9 @@ public final class IntegratedActivity extends Activity {
             TextView wait=label(working?"BBY Q está trabajando…":"Mensaje pendiente · puedes reintentarlo",12,UiKit.MUTED);
             transcript.addView(wait,margin(-1,-2,12));
         }
-        scroll.post(()->{if(restoredScroll>=0){scroll.scrollTo(0,restoredScroll);restoredScroll=-1;}else scroll.fullScroll(View.FOCUS_DOWN);});
+        scroll.post(()->{if(restoredScroll>=0){scroll.scrollTo(0,restoredScroll);restoredScroll=-1;}
+            else if(messages.length()==0&&pendingText.isEmpty())scroll.scrollTo(0,0);
+            else scroll.fullScroll(View.FOCUS_DOWN);});
     }
     private void emptyState(){
         LinearLayout welcome=UiKit.column(this);welcome.setGravity(Gravity.CENTER);welcome.setPadding(dp(16),dp(24),dp(16),dp(20));
