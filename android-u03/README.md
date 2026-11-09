@@ -1,43 +1,47 @@
-# BBY Q Android — C17 · Entrenamiento personal
+# BBY Q 0 — edición personal C18
 
-Esta entrega añade **Entrenar BBY Q** a la conversación original. Dentro de la aplicación hay cuatro etapas: Sesión, Enseñar, Probar y Guardar. La guía sin conexión contiene seis dibujos SVG y dos recorridos completos.
+Una aplicación personal con dos destinos: **Conversar** y **Mi BBY Q**. El chat es la pantalla de inicio; el entrenamiento, la memoria, las copias y las herramientas de desarrollo están en el espacio del modelo.
 
-## Recorrido de memoria y reglas
+## Usarla
 
-1. Crear una sesión desde el estado personal actual.
-2. Enseñar el hecho «Nara es robot» y la regla «si es robot, es máquina».
-3. Reservar la consulta «es Nara máquina» antes de ver su respuesta.
-4. Comprobar el candidato frente a su referencia y las regresiones originales.
-5. Activarlo para usarlo en la conversación o continuar enseñando.
-6. Exportar el ZIP para evaluar después el modelo y sus ejemplos.
+1. Escribe en **Conversar** y pulsa **Enviar**. Puedes saludar, calcular, hacer consultas admitidas por el modelo y enseñar mediante peticiones explícitas como «recuerda que Lira es robot».
+2. En **Mi BBY Q**, consulta la memoria o entra en **Entrenar BBY Q**.
+3. La guía incluida contiene seis dibujos y dos rutas completas: hechos/reglas y ejercicios conjuntos de parámetros.
+4. Comprueba un candidato antes de activarlo. La conversación usa la misma memoria personal que recibe esa activación.
+5. Exporta el ZIP de la sesión para evaluar el entrenamiento, o el JSON de la conversación para revisar sus respuestas y procedencia.
 
-## Recorrido de aprendizaje conjunto
+La enseñanza se inicia con una petición explícita. Las preguntas no escriben conocimiento. Una conversación nueva conserva el aprendizaje y archiva la vista anterior.
 
-1. Elegir muestra, regla y posición; por ejemplo 2023144612 / 1 / 3.
-2. Registrar la predicción XI y después revelar la clase correcta.
-3. Aplicar el feedback original, que modifica parámetros de los motores.
-4. Comprobar con muestras sintéticas reservadas y comparar con el estado inicial.
-5. Activar la sesión aprobada y exportar el resultado.
+## Android y actualización
 
-Los hechos/reglas modifican memoria nativa. Los ejercicios conjuntos ejecutan el aprendizaje XI original. La aplicación distingue ambos mecanismos; no presenta las tareas sintéticas como entrenamiento universal de lenguaje.
+- Etiqueta: **BBY Q 0**.
+- Versión: U03.18.0-personal, código **4**.
+- Paquete conservado: com.bbyq.u03.training.
+- Android 10 o posterior, ARM64 y x86_64.
+- Firma de entrega: la clave personal persistente utilizada para C17. La clave no está en el repositorio.
 
-## Durabilidad y evaluación
+Esta versión actualiza C17 con el mismo paquete y firma. Conserva la autoridad SQLite y el formato de las sesiones de entrenamiento; añade el diario de conversación.
 
-Cada sesión conserva su referencia, versiones de candidato, comprobantes y datos de evaluación. Repetir exactamente una solicitud no vuelve a entrenar. El candidato se activa sólo después de una comprobación vigente y si la conversación no cambió desde el inicio de la sesión. La versión anterior se conserva para restaurar.
+UiKit aplica los márgenes medidos de las barras del sistema, recortes y teclado, por ventana, tanto en actividades como en los diálogos de pantalla completa. Se prueban gestos, tres botones, teclado visible, horizontal y texto grande.
 
-El ZIP incluye `manifest.json`, `report.json`, `baseline.sqlite` y `candidate.sqlite`. El manifiesto enlaza los bytes con SHA-256; el informe identifica el código, el runtime, ejemplos, predicciones, correcciones y pruebas. Incluye la memoria de partida de la sesión. No se envía automáticamente a un servicio.
+## Conversación y aprendizaje
 
-## Compilación y pruebas
+La memoria, las reglas y el aprendizaje personal conservan el núcleo U02/XI original. Para saludos y conocimiento previo acotado se reutiliza el programa y checkpoint E025 original, autenticado y ejecutado en una copia de sólo lectura. La memoria personal tiene prioridad. La procedencia de cada respuesta distingue el texto nativo, la presentación de resultados, la interfaz y la abstención.
 
-- Paquete: `com.bbyq.u03.training`.
-- Versión: `U03.17.0-training`.
-- Android 10 o posterior; ARM64 y x86-64.
-- 20 bibliotecas ELF con segmentos de al menos 16 KB.
-- Runtime XI de REVERSE-PC y Ether fijados en el workflow.
-- Se preservan los 159 archivos/checkpoints históricos.
+Las preguntas personales y cálculos se ejecutan en copias para preservar los bancos personales. Las peticiones explícitas de enseñanza utilizan la misma autoridad que el entrenamiento C17. No se incorpora ningún modelo externo.
 
-El workflow `.github/workflows/bbyq-u03-android-native.yml` compila y ejecuta los 16 controles Android de C16, cinco pruebas de entrenamiento y verificaciones de cierre/reinicio en procesos distintos. También captura la interfaz y la guía dentro de Android. `validation.json` contiene el resultado real; este README no sustituye los resultados CI.
+C17 no reentrena E025. Los ejercicios conjuntos modifican los bancos personales U02, y la referencia E025 conserva su checkpoint. La aplicación no promete conversación ilimitada ni integración de cómputo GPU/QSSD.
 
-El APK de CI se firma localmente con la clave persistente propia de BBY Q para la entrega. El nuevo identificador permite instalarlo junto a C16, cuya firma de desarrollo anterior puede ser distinta. La clave de firma no se guarda en el repositorio.
+## Verificación y desarrollo
 
-GPU-VIRTUAL/QSSD computacional no se anuncian como integrados. Se conservan las rutas y laboratorios anteriores sin fusionar automáticamente las PR. Consulta [el panel completo C00–C17](../docs/BBY_Q_U03_PANEL_C17_TRAINING.md).
+El workflow Android ejecuta:
+
+- 5 pruebas de interfaz y conversación con límites geométricos, teclado real, toques, historial y desplazamiento real de la guía.
+- Las 5 pruebas C17 de enseñanza, validación, activación, restauración y exportación.
+- Las 16 pruebas de funciones originales.
+- Reinicios externos originales y de entrenamiento, incluyendo la conversación persistente y la repetición exacta de mensajes.
+- Autenticación de los 159 archivos protegidos, checkpoints y bibliotecas nativas.
+
+La evidencia efectiva está en build/android-c18/validation.json, los informes de pruebas y las capturas. La versión Android probada se obtiene del dispositivo, no se supone.
+
+Se conserva **BBY Q → w4U → QdU**. No se fusionan PR automáticamente. Consulta [el panel C00–C17 y los cambios C18](../docs/BBY_Q_0_PERSONAL_C18.md).

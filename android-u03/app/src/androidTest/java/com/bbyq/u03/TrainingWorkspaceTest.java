@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.webkit.WebView;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import org.json.JSONArray;
@@ -139,25 +137,6 @@ public final class TrainingWorkspaceTest {
         try(FileOutputStream out=new FileOutputStream(new File(app().getFilesDir(),name))){
             assertTrue(shot.compress(Bitmap.CompressFormat.PNG,100,out));
         }finally{shot.recycle();}
-    }
-    private boolean hasWebView(AccessibilityNodeInfo node){
-        if(node==null)return false;
-        if(node.getClassName()!=null&&"android.webkit.WebView".contentEquals(node.getClassName()))return true;
-        for(int i=0;i<node.getChildCount();i++){
-            AccessibilityNodeInfo child=node.getChild(i);
-            if(child!=null){boolean found=hasWebView(child);child.recycle();if(found)return true;}
-        }
-        return false;
-    }
-    private boolean scrollGuide(AccessibilityNodeInfo node){
-        if(node==null)return false;
-        if(node.getClassName()!=null&&"android.webkit.WebView".contentEquals(node.getClassName()))
-            return node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
-        for(int i=0;i<node.getChildCount();i++){
-            AccessibilityNodeInfo child=node.getChild(i);
-            if(child!=null){boolean moved=scrollGuide(child);child.recycle();if(moved)return true;}
-        }
-        return false;
     }
     @Test public void C17_userLessonsAreNativeIsolatedAndReachNormalChat()throws Exception {
         JSONObject original=personal();String session=create("Conocimiento y activación C17");
@@ -352,7 +331,7 @@ public final class TrainingWorkspaceTest {
         assertTrue("Guide must contain authored diagrams",html.contains("<svg"));
         assertFalse("Offline instructions must not load remote scripts",html.toLowerCase().contains("<script"));
         Intent intent=new Intent(app(),TrainingActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Activity activity=instrument().startActivitySync(intent);
+        TrainingActivity activity=(TrainingActivity)instrument().startActivitySync(intent);
         try {
             instrument().waitForIdleSync();
             instrument().runOnMainSync(()->{
@@ -363,27 +342,21 @@ public final class TrainingWorkspaceTest {
             });
             screenshot("training-workspace-ui.png");
             instrument().runOnMainSync(()->assertTrue(activity.findViewById(0x5803002).performClick()));
-            long deadline=SystemClock.elapsedRealtime()+10000;boolean guide=false;
-            while(SystemClock.elapsedRealtime()<deadline){
-                AccessibilityNodeInfo root=instrument().getUiAutomation().getRootInActiveWindow();
-                if(root!=null){guide=hasWebView(root);root.recycle();}
-                if(guide)break;
-                Thread.sleep(100);
-            }
-            assertTrue("The illustrated guide must actually open inside Android",guide);
-            instrument().waitForIdleSync();screenshot("training-guide-ui.png");
+            UiEvidence.until("The illustrated guide opens in its actual WebView",10000,()->UiEvidence.ui(()->activity.guideWebViewForTests()!=null));
+            WebView web=UiEvidence.ui(activity::guideWebViewForTests);UiEvidence.visualReady(web);screenshot("training-guide-ui.png");
             JSONArray screenshots=new JSONArray().put("training-workspace-ui.png").put("training-guide-ui.png");
-            // The guide lives in a Dialog window. Scroll its real WebView through
-            // accessibility so the evidence includes diagrams below the introduction.
-            for(String name:new String[]{"training-guide-diagram-ui.png","training-guide-diagram-2-ui.png","training-guide-diagram-3-ui.png"}){
-                AccessibilityNodeInfo root=instrument().getUiAutomation().getRootInActiveWindow();
-                if(root!=null){scrollGuide(root);root.recycle();}
-                instrument().waitForIdleSync();Thread.sleep(400);
+            JSONObject guide=UiEvidence.scrollGuideToIllustration(activity,"training-guide-diagram-ui.png");
+            screenshots.put("training-guide-diagram-ui.png");
+            for(String name:new String[]{"training-guide-diagram-2-ui.png","training-guide-diagram-3-ui.png"}){
+                UiEvidence.swipe(web,0.24f);UiEvidence.visualReady(web);
                 screenshot(name);screenshots.put(name);
             }
             evidence("training_ui_and_guide",new JSONObject().put("native_activity_opened",true)
                 .put("guide_opened_in_webview",true).put("offline_guide_sha256",hex(html.getBytes(StandardCharsets.UTF_8)))
-                .put("screenshots",screenshots));
-        }finally{instrument().runOnMainSync(activity::finish);}
+                .put("touch_scroll_and_visible_svg",guide).put("screenshots",screenshots));
+        }finally{instrument().runOnMainSync(()->{
+            if(activity.guideRootForTests()!=null)activity.guideRootForTests().findViewById(0x5803090).performClick();
+            activity.finish();
+        });}
     }
 }

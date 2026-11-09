@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,8 +29,8 @@ import java.util.concurrent.Executors;
 
 /** A guided, offline training workspace over the same native BBY Q runtime. */
 public final class TrainingActivity extends Activity {
-    private static final int BG=0xff101820, PANEL=0xff1b2a34, FG=0xffeef6f4,
-        MUTED=0xffb2c4ca, ACCENT=0xff82e0c2, AMBER=0xffffce86, RED=0xffffaaa5;
+    private static final int BG=UiKit.BG, PANEL=UiKit.SURFACE, FG=UiKit.TEXT,
+        MUTED=UiKit.MUTED, ACCENT=UiKit.ACCENT, AMBER=UiKit.AMBER, RED=UiKit.ERROR;
     private static final int EXPORT_REQUEST=617;
     private static final ExecutorService WORKER=Executors.newSingleThreadExecutor();
     private static volatile boolean working=false;
@@ -47,34 +46,38 @@ public final class TrainingActivity extends Activity {
     private int page=0;
     private String sessionId="", exportPath="", episodeId="";
     private JSONObject episode;
+    private WebView currentGuideWebView;
+    private View currentGuideRoot;
+    private Dialog currentGuideDialog;
+    private float fontScale=1f;
+    private int guideScrollY=0;
     private final Map<String,EditText> fields=new LinkedHashMap<>();
     private final String[] pages={"Sesión","Enseñar","Probar","Guardar"};
 
-    private int dp(int value){return Math.round(value*getResources().getDisplayMetrics().density);}
-    private LinearLayout column(){LinearLayout v=new LinearLayout(this);v.setOrientation(LinearLayout.VERTICAL);return v;}
-    private TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setLineSpacing(dp(3),1);return t;}
-    private GradientDrawable background(int color,int radius){GradientDrawable d=new GradientDrawable();d.setColor(color);d.setCornerRadius(dp(radius));return d;}
+    private int dp(int value){return UiKit.dp(this,value);}
+    private LinearLayout column(){return UiKit.column(this);}
+    private TextView text(String value,int size,int color){return UiKit.text(this,value,size,color);}
+    private GradientDrawable background(int color,int radius){return UiKit.shape(this,color,radius);}
     private LinearLayout.LayoutParams margin(int w,int h,int top){LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(w,h);p.topMargin=dp(top);return p;}
     private Button button(String title,int id,boolean primary,Runnable action){
-        Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setTextSize(15);b.setMinHeight(dp(50));
-        b.setTextColor(primary?BG:FG);b.setBackgroundTintList(ColorStateList.valueOf(primary?ACCENT:PANEL));
+        Button b=UiKit.button(this,title,primary);
         if(id!=0)b.setId(id);b.setContentDescription(title);b.setOnClickListener(v->action.run());return b;
     }
     private void addButton(LinearLayout area,String label,int id,boolean primary,Runnable action){
         area.addView(button(label,id,primary,action),margin(-1,-2,8));
     }
     private LinearLayout card(String eyebrow,String title,String body){
-        LinearLayout card=column();card.setBackground(background(PANEL,16));card.setPadding(dp(16),dp(15),dp(16),dp(15));
-        if(!eyebrow.isEmpty()){TextView small=text(eyebrow,11,ACCENT);small.setLetterSpacing(.12f);card.addView(small);}
-        TextView heading=text(title,21,FG);heading.setTypeface(Typeface.DEFAULT,Typeface.BOLD);card.addView(heading,margin(-1,-2,5));
-        if(!body.isEmpty())card.addView(text(body,15,MUTED),margin(-1,-2,8));
+        LinearLayout card=UiKit.card(this);
+        if(!eyebrow.isEmpty()){TextView small=text(eyebrow,10,ACCENT);small.setLetterSpacing(.06f);card.addView(small);}
+        TextView heading=text(title,19,FG);heading.setTypeface(Typeface.DEFAULT,Typeface.BOLD);card.addView(heading,margin(-1,-2,5));
+        if(!body.isEmpty())card.addView(text(body,14,MUTED),margin(-1,-2,8));
         content.addView(card,margin(-1,-2,12));return card;
     }
     private EditText input(LinearLayout area,String key,String label,String hint,String initial,int id,boolean numeric){
         area.addView(text(label,13,MUTED),margin(-1,-2,12));
         EditText value=new EditText(this);value.setSingleLine(true);value.setTextColor(FG);value.setHintTextColor(MUTED);
-        value.setTextSize(16);value.setMinHeight(dp(50));value.setPadding(dp(10),dp(8),dp(10),dp(8));
-        value.setBackground(background(BG,8));value.setHint(hint);value.setContentDescription(label);
+        value.setTextSize(UiKit.font(this,16));value.setMinHeight(dp(50));value.setPadding(dp(12),dp(10),dp(12),dp(10));
+        value.setBackground(background(UiKit.RAISED,10));value.setHint(hint);value.setContentDescription(label);
         value.setInputType(numeric?InputType.TYPE_CLASS_NUMBER:InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         value.setText(preferences.getString("draft_"+key,initial));if(id!=0)value.setId(id);
         area.addView(value,margin(-1,-2,5));fields.put(key,value);return value;
@@ -97,33 +100,45 @@ public final class TrainingActivity extends Activity {
         sessionId=resolvedSessionId.isEmpty()?preferences.getString("session_id",""):resolvedSessionId;page=preferences.getInt("page",0);
         exportPath=preferences.getString("export_path","");episodeId=preferences.getString("episode_id","");
         try{String raw=preferences.getString("episode","");if(!raw.isEmpty())episode=new JSONObject(raw);}catch(Exception ignored){}
-        if(saved!=null)page=saved.getInt("page",page);
+        if(saved!=null){page=saved.getInt("page",page);guideScrollY=saved.getInt("guide_scroll",0);}
+        else{
+            page=Math.max(0,Math.min(3,getIntent().getIntExtra("training_page",page)));
+            String requested=getIntent().getStringExtra("training_session_id");
+            if(!working&&requested!=null&&!requested.isEmpty()&&!requested.equals(sessionId)){
+                sessionId=requested;resolvedSessionId=requested;episodeId="";episode=null;
+                preferences.edit().putBoolean("teacher_revealed",false).apply();
+            }
+        }
         visible=new WeakReference<>(this);
-        getWindow().setStatusBarColor(BG);getWindow().setNavigationBarColor(BG);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        root=column();root.setBackgroundColor(BG);root.setPadding(dp(16),dp(10),dp(16),dp(8));
-        root.setOnApplyWindowInsetsListener((view,insets)->{
-            if(android.os.Build.VERSION.SDK_INT>=30){android.graphics.Insets bars=insets.getInsets(android.view.WindowInsets.Type.systemBars());view.setPadding(dp(16)+bars.left,dp(10)+bars.top,dp(16)+bars.right,dp(8)+bars.bottom);}
-            else view.setPadding(dp(16)+insets.getSystemWindowInsetLeft(),dp(10)+insets.getSystemWindowInsetTop(),dp(16)+insets.getSystemWindowInsetRight(),dp(8)+insets.getSystemWindowInsetBottom());
-            return insets;
-        });
+        build();
+        boolean guide=saved!=null?saved.getBoolean("guide_open",false):getIntent().getBooleanExtra("open_training_guide",false);
+        if(guide)root.post(this::showGuide);
+        if(!working){
+            String pending=preferences.getString("pending_request","");
+            if(!pending.isEmpty())try{call("resume",new JSONObject(pending),preferences.getString("pending_label","Reanudando el paso guardado"));}catch(Exception e){preferences.edit().remove("pending_request").apply();call("status",args(),"Revisando las sesiones guardadas");}
+            else call("status",args(),"Revisando las sesiones guardadas");
+        }else updateWorking();
+    }
+    private void build(){
+        fontScale=getSharedPreferences(UiKit.PREFS,MODE_PRIVATE).getFloat("font_scale",1f);
+        root=column();root.setId(0x5803000);root.setBackgroundColor(BG);
         LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);
-        TextView heading=text("Entrenar BBY Q",23,FG);heading.setTypeface(Typeface.DEFAULT,Typeface.BOLD);
+        Button back=button("Mi BBY Q",0x5803004,false,this::openModel);back.setPadding(dp(8),dp(8),dp(8),dp(8));
+        header.addView(back,new LinearLayout.LayoutParams(dp(112),-2));
+        TextView heading=text("Entrenar",18,FG);heading.setTypeface(Typeface.DEFAULT,Typeface.BOLD);heading.setGravity(Gravity.CENTER);heading.setPadding(dp(4),0,dp(4),0);
         header.addView(heading,new LinearLayout.LayoutParams(0,-2,1));
-        header.addView(button("Guía",0x5803002,false,this::showGuide),new LinearLayout.LayoutParams(dp(82),dp(50)));
+        Button guide=button("Guía",0x5803002,false,this::showGuide);guide.setPadding(dp(8),dp(8),dp(8),dp(8));header.addView(guide,new LinearLayout.LayoutParams(dp(74),-2));
         root.addView(header);
         status=text("Preparando tu espacio…",13,MUTED);status.setId(0x5803001);status.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
         root.addView(status,margin(-1,-2,5));
         progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);progress.setIndeterminate(true);progress.setProgressTintList(ColorStateList.valueOf(ACCENT));root.addView(progress,margin(-1,dp(3),8));
         scroll=new ScrollView(this);scroll.setFillViewport(true);content=column();scroll.addView(content);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         navigation=new LinearLayout(this);navigation.setPadding(0,dp(8),0,0);root.addView(navigation);
-        for(int i=0;i<pages.length;i++){final int destination=i;Button b=button(pages[i],0x5803020+i,false,()->switchPage(destination));b.setTextSize(12);b.setPadding(dp(2),0,dp(2),0);navigation.addView(b,new LinearLayout.LayoutParams(0,dp(52),1));}
-        setContentView(root);render();
-        if(!working){
-            String pending=preferences.getString("pending_request","");
-            if(!pending.isEmpty())try{call("resume",new JSONObject(pending),preferences.getString("pending_label","Reanudando el paso guardado"));}catch(Exception e){preferences.edit().remove("pending_request").apply();call("status",args(),"Revisando las sesiones guardadas");}
-            else call("status",args(),"Revisando las sesiones guardadas");
-        }else updateWorking();
+        for(int i=0;i<pages.length;i++){
+            final int destination=i;Button b=button(pages[i],0x5803020+i,false,()->switchPage(destination));b.setTextSize(UiKit.font(this,12));b.setPadding(dp(2),0,dp(2),0);
+            b.setMinHeight(dp(52));b.setContentDescription(pages[i]+", paso "+(i+1)+" de 4");LinearLayout.LayoutParams item=new LinearLayout.LayoutParams(0,-2,1);if(i<pages.length-1)item.rightMargin=dp(4);navigation.addView(b,item);
+        }
+        setContentView(root);UiKit.applyInsets(getWindow(),root,16,10,16,8,true,navigation);render();
     }
     private void persist(){
         SharedPreferences.Editor edit=preferences.edit().putString("session_id",sessionId).putInt("page",page).putString("export_path",exportPath).putString("episode_id",episodeId);
@@ -131,12 +146,13 @@ public final class TrainingActivity extends Activity {
         for(Map.Entry<String,EditText> item:fields.entrySet())edit.putString("draft_"+item.getKey(),item.getValue().getText().toString());edit.apply();
     }
     @Override protected void onPause(){persist();super.onPause();}
-    @Override protected void onSaveInstanceState(Bundle out){persist();out.putInt("page",page);super.onSaveInstanceState(out);}
-    @Override protected void onDestroy(){if(visible.get()==this)visible=new WeakReference<>(null);super.onDestroy();}
+    @Override protected void onResume(){super.onResume();float value=getSharedPreferences(UiKit.PREFS,MODE_PRIVATE).getFloat("font_scale",1f);if(root!=null&&value!=fontScale){persist();build();}}
+    @Override protected void onSaveInstanceState(Bundle out){persist();out.putInt("page",page);out.putBoolean("guide_open",currentGuideDialog!=null&&currentGuideDialog.isShowing());out.putInt("guide_scroll",currentGuideWebView==null?guideScrollY:currentGuideWebView.getScrollY());super.onSaveInstanceState(out);}
+    @Override protected void onDestroy(){if(visible.get()==this)visible=new WeakReference<>(null);if(currentGuideDialog!=null)currentGuideDialog.dismiss();super.onDestroy();}
     private void switchPage(int destination){persist();page=destination;render();scroll.scrollTo(0,0);}
     private void render(){
         content.removeAllViews();fields.clear();
-        for(int i=0;i<navigation.getChildCount();i++){Button b=(Button)navigation.getChildAt(i);b.setTextColor(page==i?BG:FG);b.setBackgroundTintList(ColorStateList.valueOf(page==i?ACCENT:PANEL));}
+        for(int i=0;i<navigation.getChildCount();i++){Button b=(Button)navigation.getChildAt(i);b.setSelected(page==i);b.setTextColor(page==i?BG:FG);b.setBackgroundTintList(ColorStateList.valueOf(page==i?ACCENT:UiKit.RAISED));}
         if(page==0)sessionPage();else if(page==1)teachPage();else if(page==2)practicePage();else savePage();
         outcomeCard();updateWorking();
     }
@@ -158,10 +174,10 @@ public final class TrainingActivity extends Activity {
             for(int i=0;i<sessions.length();i++){JSONObject s=sessions.optJSONObject(i);if(s==null)continue;ids[i]=s.optString("id",s.optString("session_id"));titles[i]=s.optString("title","Sesión "+(i+1));if(ids[i].equals(sessionId))selected=i;}
             Spinner selector=new Spinner(this);selector.setId(0x5803012);selector.setContentDescription("Sesión de entrenamiento");
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,titles){
-                @Override public View getView(int p,View v,android.view.ViewGroup parent){TextView t=(TextView)super.getView(p,v,parent);t.setTextColor(FG);t.setTextSize(16);return t;}
-                @Override public View getDropDownView(int p,View v,android.view.ViewGroup parent){TextView t=(TextView)super.getDropDownView(p,v,parent);t.setTextColor(BG);t.setBackgroundColor(0xffedf6f2);t.setMinHeight(dp(50));return t;}
+                @Override public View getView(int p,View v,android.view.ViewGroup parent){TextView t=(TextView)super.getView(p,v,parent);t.setTextColor(FG);t.setTextSize(UiKit.font(TrainingActivity.this,16));t.setSingleLine(false);t.setMinHeight(dp(54));return t;}
+                @Override public View getDropDownView(int p,View v,android.view.ViewGroup parent){TextView t=(TextView)super.getDropDownView(p,v,parent);t.setTextColor(FG);t.setBackgroundColor(UiKit.RAISED);t.setTextSize(UiKit.font(TrainingActivity.this,16));t.setSingleLine(false);t.setMinHeight(dp(50));return t;}
             };
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);selector.setAdapter(adapter);selector.setSelection(selected,false);existing.addView(selector,margin(-1,dp(54),3));
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);selector.setAdapter(adapter);selector.setSelection(selected,false);existing.addView(selector,margin(-1,-2,3));
             selector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int position,long id){if(!working&&!ids[position].equals(sessionId)){sessionId=ids[position];episodeId="";episode=null;preferences.edit().putBoolean("teacher_revealed",false).apply();persist();call("status",args(),"Abriendo la sesión");}}});
             addButton(existing,"Continuar enseñando",0,true,()->switchPage(1));
         }
@@ -169,7 +185,7 @@ public final class TrainingActivity extends Activity {
         input(fresh,"name","Nombre de la sesión","Nara y sus reglas","Mi primer entrenamiento",0x5803010,false);
         addButton(fresh,"Crear sesión",0x5803011,true,()->{if(required("name"))call("create",args("title",value("name")),"Creando una copia para entrenar");});
         addButton(content,"Actualizar sesiones",0,false,()->call("status",args(),"Revisando las sesiones guardadas"));
-        addButton(content,"Volver a la conversación",0,false,this::finish);
+        addButton(content,"Volver a Mi BBY Q",0,false,this::openModel);
     }
     private boolean requireSession(){if(sessionId.isEmpty()){Toast.makeText(this,"Primero crea o elige una sesión.",Toast.LENGTH_LONG).show();switchPage(0);return false;}return true;}
     private String sessionSummary(){
@@ -180,6 +196,11 @@ public final class TrainingActivity extends Activity {
     private void teachPage(){
         if(sessionId.isEmpty()){card("ANTES DE EMPEZAR","Elige una sesión","La sesión conserva tus lecciones, pruebas y cambios de aprendizaje.");addButton(content,"Crear o elegir sesión",0,true,()->switchPage(0));return;}
         sessionCaption();
+        JSONObject selected=currentSession();
+        if(selected!=null&&(selected.optString("state").equals("activated")||selected.optString("state").equals("restored"))){
+            card("VERSIÓN CONSERVADA","Empieza una nueva etapa","Esta sesión ya se activó y conserva sus resultados. Para seguir enseñando, crea otra sesión desde el estado que estás usando ahora.");
+            addButton(content,"Crear otra sesión",0,true,()->switchPage(0));addButton(content,"Ver resultados guardados",0,false,()->switchPage(3));return;
+        }
         if(!episodeId.isEmpty())card("EJERCICIO PENDIENTE","Termina esta vuelta","Ya hay una predicción registrada. Revela su clase y enseña la corrección, o descarta ese ejercicio antes de añadir otras lecciones.");
         LinearLayout fact=card("PASO 2 · MEMORIA","Enseña un hecho","Ejemplo: Nara es robot. BBY Q guardará la relación en su memoria para usarla al responder.");
         input(fact,"subject","Sujeto","Nara","Nara",0x5803030,false);
@@ -189,7 +210,7 @@ public final class TrainingActivity extends Activity {
         input(rule,"kind","Si es…","robot","robot",0x5803033,false);
         input(rule,"goal","Entonces es…","máquina","máquina",0x5803034,false);
         addButton(rule,"Guardar esta regla",0x5803035,true,()->{if(required("kind","goal"))call("rule",args("antecedent",value("kind"),"consequence",value("goal")),"Enseñando la regla a BBY Q");});
-        LinearLayout joint=card("PASO 3 · APRENDIZAJE CONJUNTO","Un ejercicio para los motores","Aquí BBY Q predice una muestra numérica y recibe una corrección. Este paso ajusta sus parámetros. Al comprobar, la app utilizará ejercicios reservados diferentes a los que entrenaste.");
+        LinearLayout joint=card("ENSEÑAR · EJERCICIO GUIADO","Practica con una muestra","Aquí BBY Q predice una muestra numérica y recibe una corrección. Este paso ajusta sus parámetros. Al comprobar, la app utilizará ejercicios reservados diferentes a los que entrenaste.");
         input(joint,"sample_id","Número de muestra","2023144612","2023144612",0x5803050,true);
         input(joint,"rule_value","Regla del ejercicio: 0 o 1","1","1",0x5803051,true);
         input(joint,"position","Posición de partida: de 0 a 6","3","3",0x5803052,true);
@@ -225,19 +246,21 @@ public final class TrainingActivity extends Activity {
         return "Predicción registrada: clase "+label+(action.isEmpty()?"":". Acción: "+action)+".\nComprueba la respuesta antes de enseñar la corrección.";
     }
     private void practicePage(){
-        if(sessionId.isEmpty()){card("PASO 4","Hace falta una sesión","Crea una sesión para probar lo que aprenda BBY Q.");addButton(content,"Ir a Sesión",0,true,()->switchPage(0));return;}
+        if(sessionId.isEmpty()){card("PASO 3","Hace falta una sesión","Crea una sesión para probar lo que aprenda BBY Q.");addButton(content,"Ir a Sesión",0,true,()->switchPage(0));return;}
         sessionCaption();
         LinearLayout query=card("PRUEBA SIN ENSEÑAR","Haz una pregunta nueva","Si enseñaste «Nara es robot» y «robot implica máquina», pregunta «es Nara máquina». La pregunta prueba la sesión; no la corrige.");
         input(query,"question","Pregunta de prueba","es Nara máquina","es Nara máquina",0x5803040,false);
-        CheckBox heldout=new CheckBox(this);heldout.setId(0x5803043);heldout.setText("Guardar como prueba reservada");heldout.setTextSize(14);heldout.setTextColor(FG);heldout.setButtonTintList(ColorStateList.valueOf(ACCENT));heldout.setChecked(preferences.getBoolean("holdout",true));heldout.setMinHeight(dp(48));query.addView(heldout,margin(-1,-2,10));
+        CheckBox heldout=new CheckBox(this);heldout.setId(0x5803043);heldout.setText("Guardar como prueba reservada");heldout.setTextSize(UiKit.font(this,14));heldout.setTextColor(FG);heldout.setButtonTintList(ColorStateList.valueOf(ACCENT));heldout.setChecked(preferences.getBoolean("holdout",true));heldout.setMinHeight(dp(48));query.addView(heldout,margin(-1,-2,10));
+        heldout.setOnCheckedChangeListener((view,checked)->preferences.edit().putBoolean("holdout",checked).apply());
         query.addView(text("Una prueba reservada se compara con el estado inicial y no se usa para enseñar. Para reservarla, escribe «es Nara máquina» o «dime si Nara es máquina».",13,MUTED),margin(-1,-2,5));
         Spinner expected=new Spinner(this);expected.setId(0x5803044);expected.setContentDescription("Resultado esperado de la prueba");
         String[] outcomes={"Debe poder demostrarlo","No tiene evidencia para demostrarlo"};
         ArrayAdapter<String> choices=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,outcomes){
-            @Override public View getView(int p,View v,android.view.ViewGroup group){TextView t=(TextView)super.getView(p,v,group);t.setTextColor(FG);t.setTextSize(13);return t;}
-            @Override public View getDropDownView(int p,View v,android.view.ViewGroup group){TextView t=(TextView)super.getDropDownView(p,v,group);t.setTextColor(BG);t.setBackgroundColor(0xffedf6f2);t.setTextSize(14);t.setMinHeight(dp(50));return t;}
+            @Override public View getView(int p,View v,android.view.ViewGroup group){TextView t=(TextView)super.getView(p,v,group);t.setTextColor(FG);t.setTextSize(UiKit.font(TrainingActivity.this,13));t.setSingleLine(false);t.setMinHeight(dp(54));return t;}
+            @Override public View getDropDownView(int p,View v,android.view.ViewGroup group){TextView t=(TextView)super.getDropDownView(p,v,group);t.setTextColor(FG);t.setBackgroundColor(UiKit.RAISED);t.setTextSize(UiKit.font(TrainingActivity.this,14));t.setSingleLine(false);t.setMinHeight(dp(50));return t;}
         };
-        choices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);expected.setAdapter(choices);expected.setSelection(preferences.getInt("expected_status_choice",0));query.addView(expected,margin(-1,dp(54),5));
+        choices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);expected.setAdapter(choices);expected.setSelection(preferences.getInt("expected_status_choice",0));query.addView(expected,margin(-1,-2,5));
+        expected.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> parent){}public void onItemSelected(AdapterView<?> parent,View view,int position,long id){preferences.edit().putInt("expected_status_choice",position).apply();}});
         addButton(query,"Probar la respuesta",0x5803041,true,()->{
             if(!required("question"))return;
             preferences.edit().putBoolean("holdout",heldout.isChecked()).putInt("expected_status_choice",expected.getSelectedItemPosition()).apply();
@@ -249,24 +272,38 @@ public final class TrainingActivity extends Activity {
         addButton(validation,"Ejecutar comprobación",0x5803042,true,()->call("validate",args(),"Comparando el estado inicial y el entrenado"));
         addButton(content,"Ver resultados y guardar",0,false,()->switchPage(3));
     }
-    private boolean validated(){
+    private JSONObject validationResult(){
         JSONObject selected=currentSession();
-        if(selected==null||lastStatus==null)return false;
-        JSONObject validation=lastStatus.optJSONObject("validation");
-        if(validation==null)validation=selected.optJSONObject("validation");
-        return !selected.optBoolean("active",false)&&validation!=null&&validation.optBoolean("passed",false)&&validation.optBoolean("activation_allowed",false);
+        if(selected==null||lastStatus==null)return null;
+        JSONObject detail=lastStatus.optJSONObject("session");
+        JSONObject validation=detail!=null&&sessionId.equals(detail.optString("session_id",detail.optString("id")))?lastStatus.optJSONObject("validation"):null;
+        return validation==null?selected.optJSONObject("validation"):validation;
+    }
+    private boolean validated(){
+        JSONObject selected=currentSession(),validation=validationResult();
+        if(selected==null)return false;
+        String state=selected.optString("state");
+        return !selected.optBoolean("active",false)&&!state.equals("activated")&&!state.equals("restored")&&validation!=null&&validation.optBoolean("passed",false)&&validation.optBoolean("activation_allowed",false);
     }
     private void savePage(){
-        if(sessionId.isEmpty()){card("PASO 5","Guarda el trabajo comprobado","Primero crea una sesión y enséñale algo.");addButton(content,"Ir a Sesión",0,true,()->switchPage(0));return;}
+        if(sessionId.isEmpty()){card("PASO 4","Guarda el trabajo comprobado","Primero crea una sesión y enséñale algo.");addButton(content,"Ir a Sesión",0,true,()->switchPage(0));return;}
         sessionCaption();
+        JSONObject recorded=validationResult();
+        if(recorded!=null){
+            String score="";for(String key:new String[]{"baseline","candidate"}){JSONObject row=recorded.optJSONObject(key);if(row!=null&&row.has("correct")&&row.has("total"))score+=(score.isEmpty()?"":"\n")+scoreLabel(key)+": "+row.optInt("correct")+" / "+row.optInt("total")+" aciertos.";}
+            JSONArray reasons=recorded.optJSONArray("reasons");if(reasons!=null&&reasons.length()>0)score+=(score.isEmpty()?"":"\n")+reasons.optString(0);
+            card("RESULTADO GUARDADO",recorded.optBoolean("passed")?"Comprobación aprobada":"Hay resultados por revisar",score);
+        }
         boolean alreadyActive=currentSession()!=null&&currentSession().optBoolean("active",false);
-        LinearLayout activation=card("LLEVARLO A LA CONVERSACIÓN","Usar lo que aprendió",alreadyActive?"Este entrenamiento ya está activo. Puedes volver a la conversación para usar lo que aprendió.":validated()?"La comprobación está aprobada. Al activar, BBY Q usará el estado entrenado en la conversación. Se conserva una copia del estado anterior.":"Ejecuta la comprobación en Probar. La activación estará disponible cuando sus resultados permitan aplicar los cambios.");
-        Button activate=button(alreadyActive?"Este entrenamiento está en uso":"Usar este entrenamiento",0x5803060,true,()->call("activate",args(),"Activando el estado comprobado"));activate.setEnabled(validated()&&!working);activation.addView(activate,margin(-1,-2,10));
+        String state=currentSession()==null?"":currentSession().optString("state");boolean published=state.equals("activated")||state.equals("restored");
+        LinearLayout activation=card("LLEVARLO A LA CONVERSACIÓN","Usar lo que aprendió",alreadyActive?"Este entrenamiento ya está activo. Puedes volver a la conversación para usar lo que aprendió.":published?"Esta versión se conserva para revisar y exportar. Para seguir aprendiendo, crea otra sesión desde el modelo que estás usando ahora.":validated()?"La comprobación está aprobada. Al activar, BBY Q usará el estado entrenado en la conversación. Se conserva una copia del estado anterior.":"Ejecuta la comprobación en Probar. La activación estará disponible cuando sus resultados permitan aplicar los cambios.");
+        Button activate=button(alreadyActive?"Este entrenamiento está en uso":published?"Versión conservada":"Usar este entrenamiento",0x5803060,true,()->call("activate",args(),"Activando el estado comprobado"));activate.setEnabled(validated()&&!working);activation.addView(activate,margin(-1,-2,10));
         addButton(activation,"Ir a comprobar",0,false,()->switchPage(2));
         LinearLayout export=card("PARA EVALUARLO DESPUÉS","Exporta tu sesión","Guarda un archivo con tus lecciones, predicciones, correcciones, pruebas y estado entrenado. Incluye también la memoria de partida de esta sesión. Después puedes adjuntarlo en el chat para evaluar tus resultados.");
         addButton(export,"Exportar entrenamiento",0x5803061,true,()->call("export",args(),"Preparando el archivo de entrenamiento"));
         export.addView(text("Tú eliges dónde guardarlo. Se comparte cuando tú adjuntas el archivo.",13,MUTED),margin(-1,-2,8));
-        String backup=preferences.getString("backup_"+sessionId,"");
+        JSONObject session=currentSession();String savedBackup=session==null?"":session.optString("backup_id","");
+        final String backup=session!=null&&session.optBoolean("active")&&session.optString("state").equals("activated")?((savedBackup.isEmpty()||savedBackup.equals("null"))?preferences.getString("backup_"+sessionId,""):savedBackup):"";
         if(!backup.isEmpty()){
             LinearLayout recovery=card("ESTADO ANTERIOR","Recuperar el punto de partida","La copia anterior a la activación sigue guardada. Si la recuperas, la conversación volverá a ese momento.");
             addButton(recovery,"Recuperar estado anterior",0x5803063,false,()->new android.app.AlertDialog.Builder(this)
@@ -274,7 +311,7 @@ public final class TrainingActivity extends Activity {
                 .setMessage("La conversación volverá al punto anterior a la activación. Los cambios nuevos de la conversación posteriores a esa activación se descartarán. La sesión de entrenamiento seguirá guardada.")
                 .setNegativeButton("Cancelar",null).setPositiveButton("Recuperar",(dialog,which)->call("restore",args("backup_id",backup,"confirm_discard_new_activity",true),"Recuperando el estado anterior")).show());
         }
-        addButton(content,"Volver a conversar",0x5803062,false,this::finish);
+        addButton(content,"Volver a conversar",0x5803062,false,this::openConversation);
     }
     private void outcomeCard(){
         if(!lastError.isEmpty()){
@@ -333,6 +370,11 @@ public final class TrainingActivity extends Activity {
             else if(v instanceof android.view.ViewGroup)disableDuringWork((android.view.ViewGroup)v);
         }
     }
+    private static String trainingError(Throwable error){
+        String message=error.getMessage()==null?"No se pudo completar el paso.":error.getMessage().split("\\n",2)[0];
+        if(message.contains("La pregunta no produjo una consulta nativa admitida"))return "No pude comprobar esa pregunta. Usa «es Nara máquina» o «dime si Nara es máquina», con los nombres y propiedades de tus lecciones.";
+        return message.replaceFirst("^[\\w.]+(?:Error|Exception):\\s*","");
+    }
     private void call(String action,JSONObject arguments,String label){
         if(working)return;
         final boolean resuming=action.equals("resume");final String operation=resuming?arguments.optString("action","status"):action;
@@ -355,7 +397,7 @@ public final class TrainingActivity extends Activity {
                     lastStatus=listing;
                 }catch(Exception ignored){}
                 app.getSharedPreferences("bbyq-training-ui",MODE_PRIVATE).edit().remove("pending_request").remove("pending_label").commit();lastError="";
-            }catch(Exception|LinkageError e){lastError=e.getMessage()==null?"No se pudo completar el paso.":e.getMessage().split("\\n",2)[0];app.getSharedPreferences("bbyq-training-ui",MODE_PRIVATE).edit().remove("pending_request").remove("pending_label").commit();}
+            }catch(Exception|LinkageError e){lastError=trainingError(e);app.getSharedPreferences("bbyq-training-ui",MODE_PRIVATE).edit().remove("pending_request").remove("pending_label").commit();}
             finally{
                 working=false;TrainingActivity a=visible.get();if(a!=null)a.runOnUiThread(a::receive);
             }
@@ -404,21 +446,41 @@ public final class TrainingActivity extends Activity {
             finally{working=false;TrainingActivity a=visible.get();if(a!=null)a.runOnUiThread(a::receive);}
         });
     }
+    private boolean canLeave(){
+        if(working){Toast.makeText(this,"Espera a que termine este paso. Tu progreso se está guardando.",Toast.LENGTH_LONG).show();return false;}
+        return true;
+    }
+    private void openModel(){
+        if(!canLeave())return;persist();Intent intent=new Intent(this,ModelActivity.class);intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);startActivity(intent);finish();
+    }
+    private void openConversation(){
+        if(!canLeave())return;persist();Intent intent=new Intent(this,IntegratedActivity.class);intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);startActivity(intent);finish();
+    }
     @Override public void onBackPressed(){
-        if(working){Toast.makeText(this,"Espera a que termine este paso. Tu progreso se está guardando.",Toast.LENGTH_LONG).show();return;}
+        if(!canLeave())return;
         super.onBackPressed();
     }
+    WebView guideWebViewForTests(){return currentGuideWebView;}
+    View guideRootForTests(){return currentGuideRoot;}
     private void showGuide(){
+        if(currentGuideDialog!=null&&currentGuideDialog.isShowing())return;
         try{
             String html;try(InputStream in=getAssets().open("training-guide.html");ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] data=new byte[8192];int n;while((n=in.read(data))!=-1)out.write(data,0,n);html=out.toString(StandardCharsets.UTF_8.name());}
-            Dialog dialog=new Dialog(this);dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);LinearLayout container=column();container.setBackgroundColor(BG);container.setPadding(dp(8),dp(8),dp(8),dp(8));
-            Button close=button("Volver al entrenamiento",0x5803090,true,dialog::dismiss);container.addView(close,new LinearLayout.LayoutParams(-1,dp(52)));
+            android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);if(keyboard!=null)keyboard.hideSoftInputFromWindow(root.getWindowToken(),0);
+            Dialog dialog=new Dialog(this,android.R.style.Theme_Material_NoActionBar);dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);LinearLayout container=column();container.setId(0x5803092);container.setBackgroundColor(BG);
+            Button close=button("Volver al entrenamiento",0x5803090,false,dialog::dismiss);container.addView(close,margin(-1,-2,0));
             WebView guide=new WebView(this);guide.setId(0x5803091);guide.setContentDescription("Guía ilustrada para entrenar BBY Q");guide.setBackgroundColor(0xfff3f7f3);
             guide.getSettings().setJavaScriptEnabled(false);guide.getSettings().setAllowFileAccess(false);guide.getSettings().setAllowContentAccess(false);
             guide.getSettings().setBlockNetworkLoads(true);guide.getSettings().setDomStorageEnabled(false);guide.getSettings().setDefaultTextEncodingName("UTF-8");
-            guide.setWebViewClient(new WebViewClient(){@Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){return !"bbyq.invalid".equals(request.getUrl().getHost());}});
-            container.addView(guide,new LinearLayout.LayoutParams(-1,0,1));dialog.setContentView(container);dialog.setOnDismissListener(d->guide.destroy());dialog.show();
-            if(dialog.getWindow()!=null)dialog.getWindow().setLayout(-1,-1);
+            guide.getSettings().setTextZoom(Math.round(100*fontScale));
+            guide.setWebViewClient(new WebViewClient(){
+                @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){return !"bbyq.invalid".equals(request.getUrl().getHost());}
+                @Override public void onPageFinished(WebView view,String url){if(guideScrollY>0)view.post(()->view.scrollTo(0,guideScrollY));}
+            });
+            LinearLayout.LayoutParams webLayout=new LinearLayout.LayoutParams(-1,0,1);webLayout.topMargin=dp(8);container.addView(guide,webLayout);dialog.setContentView(container);
+            currentGuideWebView=guide;currentGuideRoot=container;currentGuideDialog=dialog;
+            dialog.setOnDismissListener(d->{guideScrollY=guide.getScrollY();if(currentGuideWebView==guide){currentGuideWebView=null;currentGuideRoot=null;currentGuideDialog=null;}guide.destroy();});dialog.show();
+            if(dialog.getWindow()!=null){dialog.getWindow().setLayout(-1,-1);UiKit.applyInsets(dialog.getWindow(),container,8,8,8,8,true);}
             guide.loadDataWithBaseURL("https://bbyq.invalid/",html,"text/html","UTF-8",null);
         }catch(Exception e){Toast.makeText(this,"No se pudo abrir la guía: "+e.getMessage(),Toast.LENGTH_LONG).show();}
     }
