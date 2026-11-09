@@ -38,18 +38,22 @@ public final class IntegratedActivity extends Activity {
         getWindow().setStatusBarColor(BG);getWindow().setNavigationBarColor(BG);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         LinearLayout root=vertical();root.setBackgroundColor(BG);root.setPadding(dp(14),dp(14),dp(14),dp(12));
-        TextView title=text("BBY Q · U03 Integrado",23,FG);title.setTypeface(Typeface.DEFAULT,Typeface.BOLD);root.addView(title);
+        TextView title=text("BBY Q · Conversación",23,FG);title.setTypeface(Typeface.DEFAULT,Typeface.BOLD);root.addView(title);
         state=text("Verificando núcleo, checkpoints y bibliotecas…",12,MUTED);state.setId(0x5802001);root.addView(state);
+        Button training=button("Entrenar BBY Q · guía y sesiones");training.setId(0x5802010);
+        training.setTextColor(BG);training.setBackgroundTintList(android.content.res.ColorStateList.valueOf(ACCENT));
+        training.setOnClickListener(v->startActivity(new Intent(this,TrainingActivity.class)));
+        root.addView(training,new LinearLayout.LayoutParams(-1,dp(54)));
         mode=new Spinner(this);mode.setId(0x5802002);
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,labels);
         mode.setAdapter(adapter);root.addView(mode,new LinearLayout.LayoutParams(-1,dp(48)));
         scroll=new ScrollView(this);transcript=vertical();scroll.addView(transcript);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout shortcuts=new LinearLayout(this);
-        for(String name:new String[]{"Misión","Aprender","Ciclos","Exportar"}){
+        for(String name:new String[]{"Misión","Entrenar","Ciclos","Exportar"}){
             Button b=button(name);shortcuts.addView(b,new LinearLayout.LayoutParams(0,dp(44),1));
             b.setOnClickListener(v->{
                 if(name.equals("Misión")){mode.setSelection(0);input.setText("guarda la regla Faro Azul con valor 1 observa Nara con muestra 88113 y resuelve desde 3");}
-                else if(name.equals("Aprender")){mode.setSelection(0);input.setText("aprende de la última tarea");}
+                else if(name.equals("Entrenar")){startActivity(new Intent(this,TrainingActivity.class));}
                 else if(name.equals("Ciclos")){mode.setSelection(14);input.setText("{}");}
                 else export();
             });
@@ -63,10 +67,10 @@ public final class IntegratedActivity extends Activity {
             public void onNothingSelected(AdapterView<?> p){}
             public void onItemSelected(AdapterView<?> p,View v,int index,long id){preset(index);}
         });
-        add("Integración","Memoria, planificación y análisis tienen rutas reales. Los laboratorios C11–C15 trabajan en bases separadas; no sustituyen tu modelo personal.");
+        add("Tu BBY Q","Entra en Entrenar BBY Q para enseñar con ejemplos, seguir la guía ilustrada y comprobar lo aprendido. Activa una sesión validada para utilizarla en esta conversación.");
         queue.execute(()->{
             try{JSONObject s=U03Runtime.start(getApplicationContext());ready=true;
-                runOnUiThread(()->{state.setText("U02 + C03–C10 listos · 7 bancos autenticados");state.setTextColor(ACCENT);});
+                runOnUiThread(()->{state.setText("Núcleo listo · 7 bancos autenticados · entrenamiento disponible");state.setTextColor(ACCENT);});
             }catch(Exception|LinkageError e){
                 exportText=U03Runtime.diagnostics(getApplicationContext()).toString();
                 runOnUiThread(()->{state.setText("Arranque fallido: abre Diagnóstico de bibliotecas");state.setTextColor(0xffffa0a0);add("Error real",e.toString());mode.setSelection(16);});
@@ -123,3 +127,4 @@ public final class IntegratedActivity extends Activity {
     }
     @Override protected void onDestroy(){super.onDestroy();queue.shutdown();}
 }
+
