@@ -195,6 +195,25 @@ public final class ChatContinuityTest {
             boolean changed=edit.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args);edit.recycle();return changed;
         });
     }
+    private static Rect nativeDialogButton(AccessibilityNodeInfo node,String label){
+        if(node==null)return null;
+        // Android's native AlertDialog exposes its themed, uppercase button text.
+        // Locate that visible button; application labels retain their exact checks.
+        if(node.isVisibleToUser()&&node.isEnabled()&&String.valueOf(node.getClassName()).contains("Button")
+            &&label.equalsIgnoreCase(String.valueOf(node.getText()))){
+            Rect bounds=new Rect();node.getBoundsInScreen(bounds);if(bounds.width()>0&&bounds.height()>0)return bounds;
+        }
+        for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo child=node.getChild(i);if(child!=null){
+            Rect found=nativeDialogButton(child,label);child.recycle();if(found!=null)return found;}}
+        return null;
+    }
+    private static void tapDialogButton(String label)throws Exception {
+        AtomicReference<Rect> target=new AtomicReference<>();
+        UiEvidence.until("The native dialog exposes its reachable "+label+" button",10000,()->{
+            AccessibilityNodeInfo root=UiEvidence.instrument().getUiAutomation().getRootInActiveWindow();if(root==null)return false;
+            Rect found=nativeDialogButton(root,label);root.recycle();target.set(found);return found!=null;
+        });UiEvidence.tap(target.get());
+    }
     @Test public void C02_threadNavigationDraftsRenameArchiveAndRecreation()throws Exception {
         String first=create("Primer chat de continuidad");IntegratedActivity a=home(first,true);
         sendUi(a,first,"hola");JSONArray firstMessages=history(first).getJSONArray("messages");
@@ -207,14 +226,14 @@ public final class ChatContinuityTest {
         assertDraft(b,"",0);sendUi(b,second,"calcula 9 - 4");JSONArray secondMessages=history(second).getJSONArray("messages");draft(b,secondDraft,7);
         list=chats(b);tapTagged(list,"conversation:"+first);a=home(first,false);assertDraft(a,firstDraft,5);assertRendered(a,first,firstMessages);
         list=chats(a);tapTagged(list,"conversation_options:"+first);UiEvidence.tapText("Renombrar");
-        String title="Mi conversación conservada";dialogText(title);UiEvidence.tapText("Guardar");
+        String title="Mi conversación conservada";dialogText(title);tapDialogButton("Guardar");
         UiEvidence.until("Rename is durable and visible in its real row",15000,()->title.equals(listed(first).getString("title")));
         ChatsActivity renamedList=list;UiEvidence.until("The list actually renders the new title",10000,()->UiEvidence.ui(()->
             containsExactText(renamedList.getWindow().getDecorView().findViewWithTag("conversation:"+first),title)));
         UiEvidence.hideKeyboard(list);JSONObject listBounds=UiEvidence.bounds(list,new int[]{0x5807001,0x5807002,0x5807003,0x5807004,0x5807005,0x5807007},false);
         UiEvidence.assertSafe(listBounds);UiEvidence.write("chat-list-bounds.json",listBounds);
         UiEvidence.screenshot("chat-list-renamed.png");
-        tapTagged(list,"conversation_options:"+first);UiEvidence.tapText("Archivar chat");UiEvidence.tapText("Archivar");
+        tapTagged(list,"conversation_options:"+first);UiEvidence.tapText("Archivar chat");tapDialogButton("Archivar");
         UiEvidence.until("Archive is persisted and no longer active",15000,()->listed(first).getBoolean("archived")&&!first.equals(history(null).getString("active_conversation_id")));
         ChatsActivity archivedList=list;UiEvidence.until("Archived chat leaves the ordinary list",10000,()->UiEvidence.ui(()->
             archivedList.getWindow().getDecorView().findViewWithTag("conversation:"+first)==null));
