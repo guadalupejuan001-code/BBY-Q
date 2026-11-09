@@ -4,6 +4,8 @@ OUT=build/android-c17
 APK="$OUT/BBY-Q-U03-Entrenamiento-C17.apk"
 TEST=android-u03/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 PKG=com.bbyq.u03.training
+TRAINING_EVIDENCE=(training-test-proof.json training-workspace-ui.png training-guide-ui.png
+  training-restart-seed.json training-restart-verify.json)
 mkdir -p "$OUT"
 test -s "$APK" && test -s "$TEST"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
@@ -15,9 +17,22 @@ printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd -
   -no-snapshot -gpu swiftshader_indirect -memory 4096 > "$OUT/emulator.log" 2>&1 &
 EMU=$!
 finish(){
-  adb logcat -d > "$OUT/android-logcat.log" 2>/dev/null || true
-  adb exec-out run-as "$PKG" cat files/startup-diagnostic.json > "$OUT/startup-diagnostic.txt" 2>/dev/null || true
+  local result=$? name partial
+  # Preserve completed test receipts/screenshots even when a later assertion fails.
+  # A missing file must not replace valid evidence with run-as error output.
+  for name in "${TRAINING_EVIDENCE[@]}"; do
+    partial="$OUT/$name.partial"
+    if timeout 8s adb shell run-as "$PKG" test -s "files/$name" >/dev/null 2>&1 &&
+       timeout 8s adb exec-out run-as "$PKG" cat "files/$name" > "$partial" 2>/dev/null && test -s "$partial"; then
+      mv "$partial" "$OUT/$name"
+    else
+      rm -f "$partial"
+    fi
+  done
+  timeout 10s adb logcat -d > "$OUT/android-logcat.log" 2>/dev/null || true
+  timeout 8s adb exec-out run-as "$PKG" cat files/startup-diagnostic.json > "$OUT/startup-diagnostic.txt" 2>/dev/null || true
   kill "$EMU" 2>/dev/null || true
+  exit "$result"
 }
 trap finish EXIT
 adb wait-for-device
@@ -34,18 +49,6 @@ adb shell settings put global animator_duration_scale 0
 adb install -r "$APK"
 adb install -r "$TEST"
 adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" > "$OUT/launcher.txt"
-adb shell am instrument -w \
-  -e class com.bbyq.u03.U03NativeTest,com.bbyq.u03.IntegratedCyclesTest \
-  "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/android-tests.txt" 2>&1
-cat "$OUT/android-tests.txt"
-python3 - <<'PY'
-from pathlib import Path
-import re
-text=Path('build/android-c17/android-tests.txt').read_text()
-m=re.search(r'OK \((\d+) tests?\)',text)
-assert m and int(m.group(1))>=16,text
-assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
-PY
 # User-facing learning is tested through original XI, not canned lab answers.
 adb shell am instrument -w -e class com.bbyq.u03.TrainingWorkspaceTest \
   "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/training-tests.txt" 2>&1
@@ -59,6 +62,18 @@ assert m and int(m.group(1))>=5,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
 PYTEST
 
+adb shell am instrument -w \
+  -e class com.bbyq.u03.U03NativeTest,com.bbyq.u03.IntegratedCyclesTest \
+  "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/android-tests.txt" 2>&1
+cat "$OUT/android-tests.txt"
+python3 - <<'PY'
+from pathlib import Path
+import re
+text=Path('build/android-c17/android-tests.txt').read_text()
+m=re.search(r'OK \((\d+) tests?\)',text)
+assert m and int(m.group(1))>=16,text
+assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
+PY
 # These are TWO different Android processes, not close/reopen on one Python object.
 for phase in seed verify; do
   adb shell am force-stop "$PKG"
@@ -87,7 +102,7 @@ assert re.search(r'OK \(1 test\)',text),text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
 PYTEST
 done
-for name in training-test-proof.json training-workspace-ui.png training-guide-ui.png; do
+for name in "${TRAINING_EVIDENCE[@]}"; do
   adb exec-out run-as "$PKG" cat "files/$name" > "$OUT/$name"
 done
 
@@ -112,6 +127,10 @@ report['android_instrumentation_test_count']=int(re.search(r'OK \((\d+) tests?\)
 report['training_instrumentation_passed']=True
 report['training_instrumentation_test_count']=int(re.search(r'OK \((\d+) tests?\)',(out/'training-tests.txt').read_text()).group(1))
 report['training_external_restart_verified']=True
+report['training_restart_evidence']={phase:json.loads((out/f'training-restart-{phase}.json').read_text()) for phase in ('seed','verify')}
+assert all(evidence.get('passed') is True for evidence in report['training_restart_evidence'].values())
+restart=report['training_restart_evidence']['verify']
+assert restart['real_process_restart'] is True and restart['seed_pid']!=restart['verify_pid']
 report['training_test_evidence']=json.loads((out/'training-test-proof.json').read_text())
 training_cases=report['training_test_evidence']['cases']
 assert set(training_cases)=={'native_lessons_activation_restore','joint_native_feedback','invalid_and_stale_actions','portable_export','training_ui_and_guide'}

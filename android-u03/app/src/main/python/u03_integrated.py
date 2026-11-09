@@ -250,12 +250,21 @@ def capabilities():
 
 def status():
     with base._lock:
+        import u03_training
+        # Reconcile a durable activation/restore before taking either public
+        # snapshot. Both views therefore describe the same live authority.
+        training=u03_training.run({'action':'status'},base._root,base._db)
         with _session() as s:
             state=s.snapshot();audit=s.inspect_memory()
-        import u03_training
-        training=u03_training.run({'action':'status'},base._root,base._db)
+        personal_training_active=bool(training.get('active'))
         return _dump({'entity':'U02','snapshot':state,'bank_count':len(state['banks']),
             'memory':audit,'personal_training':training,
+            # Legacy clients expect this field. It becomes false only after
+            # an explicit user activation; restoring the original returns it
+            # to true. A candidate can include memory lessons as well as
+            # native joint feedback. Automatic promotion remains disabled.
+            'C11_C12_unpromoted':not personal_training_active,
+            'personal_training_active':personal_training_active,
             'C11_C12_automatic_promotion':False,'C13_cache_disabled':True,
             'GPU_virtual_compute_ported':False,'capabilities':capabilities()})
 
