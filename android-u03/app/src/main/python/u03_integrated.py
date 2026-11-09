@@ -217,6 +217,9 @@ def operation(name,args_json='{}'):
             with personal_unchanged():result=semantic(args['text'])
         elif name=='evidence':
             with personal_unchanged():result=_evidence(args)
+        elif name=='conversation':
+            import u03_conversation
+            result=u03_conversation.run(args,base._root,base._db)
         elif name=='training':
             import u03_training
             result=u03_training.run(args,base._root,base._db)

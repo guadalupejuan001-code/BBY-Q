@@ -130,12 +130,31 @@ public final class IntegratedCyclesTest {
         }
         unchanged(before);
     }
+    /** BBY Q 0 moves the original operation picker into Mi BBY Q / Avanzado. */
     @Test public void M06IntegratedLauncherExposesActualCycleActions()throws Exception{
-        Context c=app();Intent intent=new Intent(c,IntegratedActivity.class);intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Activity a=InstrumentationRegistry.getInstrumentation().startActivitySync(intent);
-        assertNotNull(a.findViewById(0x5802002));assertNotNull(a.findViewById(0x5802004));
-        JSONObject cap=op("capabilities");assertTrue(cap.getJSONObject("interactive").has("C10"));
-        assertTrue(cap.getJSONObject("laboratory").has("C15"));
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(a::finish);
+        IntegratedActivity a=UiEvidence.start(IntegratedActivity.class);
+        try{
+            assertNotNull(a.findViewById(0x5802003));assertNotNull(a.findViewById(0x5802004));
+            UiEvidence.tap(UiEvidence.ui(()->a.findViewById(0x5802010)));
+            ModelActivity model=UiEvidence.awaitActivity(ModelActivity.class);
+            UiEvidence.until("Personal model has loaded",15000,()->UiEvidence.ui(()->{
+                String status=((android.widget.TextView)model.findViewById(0x5804006)).getText().toString();
+                return status.startsWith("Modelo inicial")||status.startsWith("En uso:");
+            }));
+            UiEvidence.ui(()->{
+                android.view.View advanced=model.findViewById(0x5804005);assertNotNull(advanced);
+                advanced.requestRectangleOnScreen(new android.graphics.Rect(0,0,advanced.getWidth(),advanced.getHeight()),true);return null;
+            });
+            UiEvidence.tap(UiEvidence.ui(()->model.findViewById(0x5804005)));
+            UiEvidence.tapText("Laboratorios y operaciones");
+            UiEvidence.assertAccessibleClass("Spinner");
+            UiEvidence.tapText("Ejecutar operación");
+            JSONObject displayed=UiEvidence.displayedReport("bank_sha256");
+            assertEquals(7,displayed.getJSONObject("bank_sha256").length());
+            assertTrue(displayed.getBoolean("C1_synchronized_with_U02"));
+            JSONObject cap=op("capabilities");assertTrue(cap.getJSONObject("interactive").has("C10"));
+            assertTrue(cap.getJSONObject("laboratory").has("C15"));
+        }finally{UiEvidence.finishActivities();}
     }
 }
+
