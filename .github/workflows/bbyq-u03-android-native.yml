@@ -1,4 +1,4 @@
-name: BBY Q 0 personal conversation and model workspace
+name: BBY Q 0 persistent chats and context
 on:
   pull_request:
     paths:
@@ -12,7 +12,7 @@ concurrency:
   group: bbyq-integrated-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 jobs:
-  android-c18:
+  android-c19:
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
@@ -47,14 +47,14 @@ jobs:
           gradle-version: '8.9'
       - name: M01 preserve 159 originals and build pinned XI C1 Zero
         run: |
-          mkdir -p build/android-c18
+          mkdir -p build/android-c19
           python3 - <<'PY'
           from integration.audit_u03_c00.profile import freeze_assets
           import json
           from pathlib import Path
           hashes=freeze_assets()
           assert len(hashes)==159
-          Path('build/android-c18/protected-before.json').write_text(json.dumps(hashes,sort_keys=True))
+          Path('build/android-c19/protected-before.json').write_text(json.dumps(hashes,sort_keys=True))
           PY
           bash deps/reverse-pc/scripts/build-xi-session.sh deps/mundo-x deps/reverse-pc/build
           python3 deps/reverse-pc/scripts/prepare-ether-compat.py deps/mundo-x build/ether-compat
@@ -74,29 +74,33 @@ jobs:
           from integration.audit_u03_c00.profile import freeze_assets
           import json
           from pathlib import Path
-          assert freeze_assets()==json.loads(Path('build/android-c18/protected-before.json').read_text())
+          assert freeze_assets()==json.loads(Path('build/android-c19/protected-before.json').read_text())
           print('159 protected original assets remain byte-identical; recovered heads are additive')
           PY
       - name: Install Android 35 build tools, Android 16 emulator and NDK27
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'platform-tools' 'emulator' 'system-images;android-36;default;x86_64'
-      - name: C18 compile personal conversation, model workspace and original XI JNI
+      - name: C19 compile persistent chats, model workspace and original XI JNI
         run: |
-          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c18/gradle.log 2>&1 || {
-            grep -n -E 'error:|FAILED|FAILURE|Caused by|Could not' build/android-c18/gradle.log | head -70 || true
-            tail -160 build/android-c18/gradle.log
+          gradle -p android-u03 --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c19/gradle.log 2>&1 || {
+            grep -n -E 'error:|FAILED|FAILURE|Caused by|Could not' build/android-c19/gradle.log | head -70 || true
+            tail -160 build/android-c19/gradle.log
             exit 1
           }
-          cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-c18/BBY-Q-0-Personal.apk
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs build/android-c18/BBY-Q-0-Personal.apk > build/android-c18/signature.txt
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/android-c18/BBY-Q-0-Personal.apk > build/android-c18/package.txt
-          grep "package: name='com.bbyq.u03.training'" build/android-c18/package.txt
-          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -P 16 -v 4 build/android-c18/BBY-Q-0-Personal.apk > build/android-c18/zipalignment.txt
-          python3 android-u03/scripts/verify-integrated-apk.py build/android-c18/BBY-Q-0-Personal.apk build/android-c18/static-verification.json
-          mkdir -p build/android-c18/signing-tool
-          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" build/android-c18/signing-tool/apksigner.jar
-      - name: C18 Android 16 system bars, keyboard, conversation, training and restart
+          cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-c19/BBY-Q-0-Chats.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs build/android-c19/BBY-Q-0-Chats.apk > build/android-c19/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/android-c19/BBY-Q-0-Chats.apk > build/android-c19/package.txt
+          grep "package: name='com.bbyq.u03.training'" build/android-c19/package.txt
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -P 16 -v 4 build/android-c19/BBY-Q-0-Chats.apk > build/android-c19/zipalignment.txt
+          python3 android-u03/scripts/verify-integrated-apk.py build/android-c19/BBY-Q-0-Chats.apk build/android-c19/static-verification.json
+          mkdir -p build/android-c19/signing-tool
+          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" build/android-c19/signing-tool/apksigner.jar
+      - name: Authenticate C18 APK for an actual data-preserving update
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 android-u03/scripts/prepare-chat-upgrade.py "$ANDROID_HOME/build-tools/35.0.0"
+      - name: C19 Android 16 upgrade, chat continuity, context, training and restart
         timeout-minutes: 40
         run: bash android-u03/scripts/emulator-integrated.sh
       - name: Final source preservation and real Android report gates
@@ -105,7 +109,7 @@ jobs:
           from integration.audit_u03_c00.profile import freeze_assets
           from pathlib import Path
           import json
-          out=Path('build/android-c18')
+          out=Path('build/android-c19')
           assert freeze_assets()==json.loads((out/'protected-before.json').read_text())
           r=json.loads((out/'validation.json').read_text())
           assert r['delivery_verified'] and r['android_instrumentation_passed']
@@ -115,6 +119,10 @@ jobs:
           assert r['training_instrumentation_test_count']>=5
           assert r['personal_interface_verified']
           assert r['personal_interface_test_count']>=5
+          assert r['chat_continuity_verified']
+          assert r['chat_continuity_test_count']>=4
+          assert r['actual_C18_to_C19_upgrade_verified']
+          assert r['chat_workspace_packaged']
           assert r['android_api_tested']==36
           assert r['training_restart_evidence']['verify']['conversation_survived_process_restart']
           assert r['training_external_restart_verified']
@@ -124,14 +132,14 @@ jobs:
           for c in ('c11','c12'):
               lab=json.loads((out/'lab'/(c+'.json')).read_text())
               assert lab['changed_regions']==6 and not lab['model_promoted']
-          print('BBY Q 0 personal conversation, system insets, training and native routes verified')
+          print('BBY Q 0 persistent chats, local context, actual C18 upgrade and original training verified')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: BBY-Q-0-Personal-APK-and-proof
+          name: BBY-Q-0-Chats-APK-and-proof
           path: |
-            build/android-c18/
+            build/android-c19/
             integration/mobile_u03_c16/heads/
           if-no-files-found: warn
           retention-days: 30
