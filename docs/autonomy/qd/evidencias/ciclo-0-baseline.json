@@ -1,0 +1,84 @@
+{
+  "observed_utc": "2026-10-28T18:56:51Z",
+  "source": "Lectura de GitHub mediante conector, no ejecución de test local",
+  "repo_bby": {
+    "main_sha": "783d7aff4385687d416e2f3a67ed81dca89d9fb9",
+    "branch_autonomy_general": "autonomy/bbyq-w4u-daily-20261028",
+    "general_pr_26_merged": true,
+    "main_release": "E025-Chain-1 + W4u 0.1"
+  },
+  "repo_reverse": {
+    "main_sha": "01829217cfb0a3a704d37f0c0f66527a23ec149d",
+    "qd_pr": 34,
+    "qd_branch": "feature/qd-cody-studio-xi",
+    "qd_sha": "fe2ca5a27c810a18bc1082b47f767b6141f688b3",
+    "qd_pr_state": "open",
+    "pinned_bbyq": "ed32ab6b73a31e96080b62269ad1eb9f3e15709d",
+    "pinned_mundo_x": "e2778d962af22f6f1a0794058dd4685fc2573966"
+  },
+  "workflow_qd_ui": {
+    "id": 40746891210,
+    "status": "completed",
+    "conclusion": "success",
+    "commit": "fe2ca5a27c810a18bc1082b47f767b6141f688b3"
+  },
+  "workflow_integrated": {
+    "id": 40746891634,
+    "status_observed": "in_progress",
+    "build_step_observed": "success",
+    "final_conclusion": null
+  },
+  "source_code_diagnosis": {
+    "train": [
+      [
+        6,
+        7
+      ],
+      [
+        12,
+        4
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        15,
+        8
+      ]
+    ],
+    "holdout": [
+      [
+        23,
+        11
+      ],
+      [
+        7,
+        19
+      ],
+      [
+        38,
+        5
+      ],
+      [
+        61,
+        9
+      ]
+    ],
+    "fixed_total": 8,
+    "skills": [
+      "suma",
+      "resta",
+      "producto",
+      "resto"
+    ],
+    "memory_region_Qd": "8400000000000000000",
+    "w4u_sentinel_test": "8300000000000000818"
+  },
+  "testing_qualifiers": [
+    "UI CI solo valida transporte/JS, no ejecución XI real por sí sola.",
+    "La ejecución XI del script qd-native.cjs ocurre en el paso nativo de CI; al observarse todavía no había finalizado el workflow Android.",
+    "Los cuatro holdouts son públicos y no acreditan generalización robusta."
+  ],
+  "code_executed_in_this_cycle": false
+}
