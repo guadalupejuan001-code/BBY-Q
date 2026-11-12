@@ -85,11 +85,16 @@ jobs:
         run: |
           mkdir -p build/chat-upgrade-fixture
           keytool -genkeypair -noprompt -storetype PKCS12 -keystore build/chat-upgrade-fixture/ci-debug.p12 -storepass android -keypass android -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=BBY Q CI,OU=Android tests,O=BBY Q,C=US'
-          gradle -p android-u03 --no-daemon -PbbyqCiKeystorePath="$PWD/build/chat-upgrade-fixture/ci-debug.p12" :app:assembleDebug :app:assembleDebugAndroidTest > build/android-c19/gradle.log 2>&1 || {
+          gradle -p android-u03 --no-daemon -PbbyqCiKeystorePath="$PWD/build/chat-upgrade-fixture/ci-debug.p12" :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease > build/android-c19/gradle.log 2>&1 || {
             grep -n -E 'error:|FAILED|FAILURE|Caused by|Could not' build/android-c19/gradle.log | head -70 || true
             tail -160 build/android-c19/gradle.log
             exit 1
           }
+          # R8 and resource shrinking must complete without removing Chaquopy.
+          # Release remains unsigned in CI; the old personal signing key is not used.
+          test -s android-u03/app/build/outputs/mapping/release/mapping.txt
+          test -s android-u03/app/build/outputs/apk/release/app-release-unsigned.apk
+          cp android-u03/app/build/outputs/apk/release/app-release-unsigned.apk build/android-c19/BBY-Q-0-Audit-Release-Unsigned.apk
           cp android-u03/app/build/outputs/apk/debug/app-debug.apk build/android-c19/BBY-Q-0-Chats.apk
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs build/android-c19/BBY-Q-0-Chats.apk > build/android-c19/signature.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging build/android-c19/BBY-Q-0-Chats.apk > build/android-c19/package.txt
