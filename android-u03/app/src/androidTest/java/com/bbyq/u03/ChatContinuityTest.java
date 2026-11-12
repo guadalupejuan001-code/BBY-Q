@@ -1,6 +1,8 @@
 package com.bbyq.u03;
 
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
+import android.app.UiAutomation;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
@@ -13,11 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.uiautomator.By;
-import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject2;
-import androidx.test.uiautomator.Until;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import org.json.JSONArray;
@@ -239,13 +236,39 @@ public final class ChatContinuityTest {
             boolean changed=edit.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args);edit.recycle();return changed;
         });
     }
+    private static Rect nativeDialogPositiveButton(AccessibilityNodeInfo node){
+        if(node==null)return null;
+        String resourceId=node.getViewIdResourceName();
+        if(node.isVisibleToUser()&&node.isEnabled()
+            &&resourceId!=null&&resourceId.endsWith(":id/button1")){
+            Rect bounds=new Rect();node.getBoundsInScreen(bounds);
+            if(bounds.width()>0&&bounds.height()>0)return bounds;
+        }
+        for(int i=0;i<node.getChildCount();i++){
+            AccessibilityNodeInfo child=node.getChild(i);if(child!=null){
+                Rect found=nativeDialogPositiveButton(child);child.recycle();
+                if(found!=null)return found;
+            }
+        }
+        return null;
+    }
     private static void tapDialogButton(String label)throws Exception {
-        // The framework positive AlertDialog button has a stable resource ID,
-        // independent of uppercase transformations and Android locale.
-        UiDevice device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        UiObject2 positive=device.wait(Until.findObject(By.res("android","button1")),10000);
-        assertNotNull("Native positive button for "+label+" is visible",positive);
-        positive.click();
+        // The framework positive AlertDialog button is android:id/button1.
+        // Report view IDs and never depend on its localized or uppercased text.
+        UiAutomation automation=UiEvidence.instrument().getUiAutomation();
+        AccessibilityServiceInfo info=automation.getServiceInfo();
+        if(info!=null&&(info.flags&AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS)==0){
+            info.flags|=AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
+            automation.setServiceInfo(info);
+        }
+        AtomicReference<Rect> target=new AtomicReference<>();
+        UiEvidence.until("The native positive button is reachable: "+label,10000,()->{
+            AccessibilityNodeInfo root=automation.getRootInActiveWindow();
+            if(root==null)return false;
+            Rect found=nativeDialogPositiveButton(root);root.recycle();
+            target.set(found);return found!=null;
+        });
+        UiEvidence.tap(target.get());
     }
     @Test public void C02_threadNavigationDraftsRenameArchiveAndRecreation()throws Exception {
         String first=create("Primer chat de continuidad");IntegratedActivity a=home(first,true);
