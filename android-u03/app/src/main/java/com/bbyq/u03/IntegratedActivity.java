@@ -36,6 +36,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
     private SharedPreferences preferences;
     private LinearLayout root,header,composer,navigation,emptyHost;
     private RecyclerView transcript;
+    private ScrollView emptyScroll;
     private LinearLayoutManager transcriptLayout;
     private ChatTranscriptAdapter transcriptAdapter;
     private EditText input;
@@ -145,8 +146,13 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         transcript.setLayoutManager(transcriptLayout);
         transcriptAdapter=new ChatTranscriptAdapter();transcript.setAdapter(transcriptAdapter);
         chatPane.addView(transcript,new FrameLayout.LayoutParams(-1,-1));
-        emptyHost=UiKit.column(this);emptyHost.setVisibility(View.GONE);
-        chatPane.addView(emptyHost,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
+        // The welcome/suggestion screen still needs scroll for large fonts and
+        // landscape. Only the message transcript is virtualized in RecyclerView.
+        emptyScroll=new ScrollView(this);emptyScroll.setFillViewport(true);
+        emptyScroll.setVerticalScrollBarEnabled(false);emptyScroll.setVisibility(View.GONE);
+        emptyHost=UiKit.column(this);
+        emptyScroll.addView(emptyHost,new ScrollView.LayoutParams(-1,-2));
+        chatPane.addView(emptyScroll,new FrameLayout.LayoutParams(-1,-1));
         root.addView(chatPane,new LinearLayout.LayoutParams(-1,0,1));
 
         composer=new LinearLayout(this);composer.setId(0x5802007);composer.setGravity(Gravity.BOTTOM);composer.setBaselineAligned(false);
@@ -193,7 +199,11 @@ public final class IntegratedActivity extends Activity implements ConversationUi
     private void bindConversation(String id){
         if(id==null||id.isEmpty())return;
         if(id.equals(conversationId)){if(input!=null&&input.length()==0&&!preferences.getString(draftKey(),"").isEmpty()){creating=true;loadDraft();creating=false;}draftReady=true;return;}
-        persistDraft();conversationId=id;creating=true;loadDraft();creating=false;
+        persistDraft();
+        // Do not briefly expose the previous conversation while its async
+        // message diff is still being applied.
+        if(transcript!=null)transcript.setVisibility(View.INVISIBLE);
+        conversationId=id;creating=true;loadDraft();creating=false;
         draftReady=true;
         restoredPosition=preferences.getInt("chat_scroll_position:"+id,-1);
         restoredOffset=preferences.getInt("chat_scroll_offset:"+id,0);
@@ -274,9 +284,9 @@ public final class IntegratedActivity extends Activity implements ConversationUi
             emptyHost.removeAllViews();
             TextView loading=label("Cargando los mensajes guardados…",14,UiKit.MUTED);
             loading.setPadding(dp(10),dp(20),dp(10),dp(20));emptyHost.addView(loading);
-            emptyHost.setVisibility(View.VISIBLE);
+            emptyScroll.setVisibility(View.VISIBLE);
         } else if(messages.length()==0&&pending.length()==0)emptyState();
-        else{emptyHost.removeAllViews();emptyHost.setVisibility(View.GONE);}
+        else{emptyHost.removeAllViews();emptyScroll.setVisibility(View.GONE);}
 
         ArrayList<ChatTranscriptAdapter.Row> rows=new ArrayList<>(messages.length()+pending.length()+1);
         HashSet<String> savedUserRequests=new HashSet<>(),pendingRequests=new HashSet<>();
@@ -303,6 +313,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
             // chat/render generation is permitted to change the reading position.
             if(token!=renderGeneration||!thread.equals(conversationId)||transcript==null)return;
             if(!loaded)return;
+            transcript.setVisibility(View.VISIBLE);
             if(restoredPosition>=0){
                 transcriptLayout.scrollToPositionWithOffset(
                     Math.min(restoredPosition,Math.max(0,rows.size()-1)),restoredOffset);
@@ -320,7 +331,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         });
     }
     private void emptyState(){
-        emptyHost.removeAllViews();emptyHost.setVisibility(View.VISIBLE);
+        emptyHost.removeAllViews();emptyScroll.setVisibility(View.VISIBLE);
         LinearLayout welcome=UiKit.column(this);welcome.setGravity(Gravity.CENTER);welcome.setPadding(dp(16),dp(24),dp(16),dp(20));welcome.addView(UiKit.brand(this,58));
         TextView heading=label("Hablemos, "+owner()+".",26,UiKit.TEXT);heading.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));heading.setGravity(Gravity.CENTER);welcome.addView(heading,margin(-1,-2,20));
         TextView description=label("Este chat guarda sus mensajes.\nEncuentra los anteriores en Chats.",15,UiKit.MUTED);description.setGravity(Gravity.CENTER);welcome.addView(description,margin(-1,-2,8));
