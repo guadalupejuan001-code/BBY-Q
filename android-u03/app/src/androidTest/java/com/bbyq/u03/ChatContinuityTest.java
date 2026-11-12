@@ -1,6 +1,8 @@
 package com.bbyq.u03;
 
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
+import android.app.UiAutomation;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
@@ -12,6 +14,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.recyclerview.widget.RecyclerView;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import org.json.JSONArray;
@@ -85,33 +88,54 @@ public final class ChatContinuityTest {
         if(view instanceof ViewGroup){ViewGroup group=(ViewGroup)view;for(int i=0;i<group.getChildCount();i++)if(containsExactText(group.getChildAt(i),text))return true;}
         return false;
     }
+    private static ChatTranscriptAdapter transcriptAdapter(IntegratedActivity activity){
+        RecyclerView rv=activity.findViewById(0x5802005);
+        return rv==null||!(rv.getAdapter() instanceof ChatTranscriptAdapter)?
+            null:(ChatTranscriptAdapter)rv.getAdapter();
+    }
     private static boolean renderedMatches(IntegratedActivity activity,String id,JSONArray expected)throws Exception {
-        ViewGroup transcript=activity.findViewById(0x5802005);
-        if(transcript==null||!("conversation:"+id).equals(transcript.getTag()))return false;
-        int count=0;
-        for(int i=0;i<transcript.getChildCount();i++){
-            View child=transcript.getChildAt(i);Object tag=child.getTag();
-            if(tag==null||!tag.toString().startsWith("message:"))continue;
-            if(count>=expected.length())return false;JSONObject message=expected.getJSONObject(count++);
-            if(!("message:"+message.getString("id")).equals(tag)||!containsExactText(child,message.getString("text"))
-                ||child.getWidth()<=0||child.getHeight()<=0||!child.isShown())return false;
+        RecyclerView rv=activity.findViewById(0x5802005);
+        ChatTranscriptAdapter adapter=transcriptAdapter(activity);
+        if(rv==null||adapter==null||!("conversation:"+id).equals(rv.getTag()))return false;
+        java.util.List<ChatTranscriptAdapter.Row> rows=adapter.getCurrentList();
+        if(rows.size()!=expected.length())return false;
+        for(int i=0;i<rows.size();i++){
+            ChatTranscriptAdapter.Row row=rows.get(i);JSONObject message=expected.getJSONObject(i);
+            if(row.notice||!row.confirmed||!message.getString("id").equals(row.id)||
+                !message.getString("text").equals(row.text)||!message.getString("role").equals(row.role))return false;
         }
-        return count==expected.length();
+        return true;
     }
     static JSONArray assertRendered(IntegratedActivity activity,String id,JSONArray expected)throws Exception {
-        UiEvidence.until("Every saved message remains a distinct real bubble before navigation or recreation",15000,
+        UiEvidence.until("Full durable history is the RecyclerView adapter source, not attached children",15000,
             ()->UiEvidence.ui(()->renderedMatches(activity,id,expected)));
-        return UiEvidence.ui(()->{
-            ViewGroup transcript=activity.findViewById(0x5802005);JSONArray actual=new JSONArray();Set<String> unique=new HashSet<>();
-            for(int i=0;i<transcript.getChildCount();i++){
-                View bubble=transcript.getChildAt(i);Object tag=bubble.getTag();if(tag==null||!tag.toString().startsWith("message:"))continue;
-                String messageId=tag.toString().substring("message:".length());assertTrue("No duplicate UI bubble",unique.add(messageId));
-                assertSame("Message is attached directly to the visible transcript",transcript,bubble.getParent());
-                actual.put(new JSONObject().put("id",messageId).put("rendered_text",UiEvidence.textTree(bubble))
-                    .put("rect",UiEvidence.rect(UiEvidence.screenRect(bubble))).put("shown",bubble.isShown()));
-            }
-            assertEquals(expected.length(),actual.length());return actual;
-        });
+        RecyclerView rv=UiEvidence.ui(()->activity.findViewById(0x5802005));
+        JSONArray actual=new JSONArray();Set<String> unique=new HashSet<>();
+        for(int i=0;i<expected.length();i++){
+            final int position=i;
+            final JSONObject message=expected.getJSONObject(i);
+            final String messageId=message.getString("id"),text=message.getString("text");
+            UiEvidence.ui(()->{rv.scrollToPosition(position);return null;});
+            UiEvidence.until("Each saved bubble can be bound by scrolling its RecyclerView position",15000,()->UiEvidence.ui(()->{
+                RecyclerView.ViewHolder holder=rv.findViewHolderForAdapterPosition(position);
+                if(holder==null)return false;
+                View bubble=holder.itemView;
+                Rect visible=new Rect();
+                return ("message:"+messageId).equals(bubble.getTag())&&
+                       bubble.getWidth()>0&&bubble.getHeight()>0&&bubble.isShown()&&
+                       bubble.getGlobalVisibleRect(visible)&&!visible.isEmpty()&&containsExactText(bubble,text);
+            }));
+            JSONObject one=UiEvidence.ui(()->{
+                RecyclerView.ViewHolder holder=rv.findViewHolderForAdapterPosition(position);
+                assertNotNull(holder);View bubble=holder.itemView;
+                assertSame("Each virtualized bubble is attached to RecyclerView",rv,bubble.getParent());
+                assertTrue("No duplicate saved message ID",unique.add(messageId));
+                return new JSONObject().put("id",messageId).put("rendered_text",UiEvidence.textTree(bubble))
+                    .put("rect",UiEvidence.rect(UiEvidence.screenRect(bubble))).put("shown",bubble.isShown());
+            });
+            actual.put(one);
+        }
+        assertEquals(expected.length(),actual.length());return actual;
     }
     static JSONObject sendUi(IntegratedActivity activity,String id,String text)throws Exception {
         JSONArray before=history(id).getJSONArray("messages");
@@ -130,11 +154,28 @@ public final class ChatContinuityTest {
         assertRendered(activity,id,after);return after.getJSONObject(after.length()-1);
     }
     private static JSONObject makeBubbleVisible(IntegratedActivity activity,String messageId)throws Exception {
-        View bubble=UiEvidence.ui(()->activity.findViewById(0x5802005).findViewWithTag("message:"+messageId));assertNotNull(bubble);
-        UiEvidence.ui(()->{bubble.requestRectangleOnScreen(new Rect(0,0,bubble.getWidth(),bubble.getHeight()),true);return null;});
-        UiEvidence.until("The saved message is reachable by scrolling the real transcript",10000,()->UiEvidence.ui(()->{
-            Rect visible=new Rect();return bubble.getGlobalVisibleRect(visible)&&visible.equals(UiEvidence.screenRect(bubble));
-        }));return UiEvidence.ui(()->new JSONObject().put("id",messageId).put("rect",UiEvidence.rect(UiEvidence.screenRect(bubble))));
+        RecyclerView rv=UiEvidence.ui(()->activity.findViewById(0x5802005));
+        int position=UiEvidence.ui(()->{
+            ChatTranscriptAdapter adapter=transcriptAdapter(activity);assertNotNull(adapter);
+            for(int i=0;i<adapter.getItemCount();i++){
+                ChatTranscriptAdapter.Row row=adapter.getCurrentList().get(i);
+                if(!row.notice&&messageId.equals(row.id))return i;
+            }
+            return -1;
+        });
+        assertTrue("Saved message is retained in the virtualized adapter",position>=0);
+        UiEvidence.ui(()->{rv.scrollToPosition(position);return null;});
+        UiEvidence.until("The saved message is reachable by scrolling the RecyclerView",10000,()->UiEvidence.ui(()->{
+            RecyclerView.ViewHolder holder=rv.findViewHolderForAdapterPosition(position);
+            if(holder==null)return false;
+            View bubble=holder.itemView;Rect visible=new Rect();
+            return ("message:"+messageId).equals(bubble.getTag())&&bubble.getGlobalVisibleRect(visible)&&!visible.isEmpty();
+        }));
+        return UiEvidence.ui(()->{
+            RecyclerView.ViewHolder holder=rv.findViewHolderForAdapterPosition(position);assertNotNull(holder);
+            return new JSONObject().put("id",messageId)
+                .put("rect",UiEvidence.rect(UiEvidence.screenRect(holder.itemView)));
+        });
     }
     @Test public void C01_threeTurnsKeepSixRealBubbles()throws Exception {
         String id=create("Tres turnos completos");IntegratedActivity activity=home(id,true);
@@ -195,24 +236,39 @@ public final class ChatContinuityTest {
             boolean changed=edit.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args);edit.recycle();return changed;
         });
     }
-    private static Rect nativeDialogButton(AccessibilityNodeInfo node,String label){
+    private static Rect nativeDialogPositiveButton(AccessibilityNodeInfo node){
         if(node==null)return null;
-        // Android's native AlertDialog exposes its themed, uppercase button text.
-        // Locate that visible button; application labels retain their exact checks.
-        if(node.isVisibleToUser()&&node.isEnabled()&&String.valueOf(node.getClassName()).contains("Button")
-            &&label.equalsIgnoreCase(String.valueOf(node.getText()))){
-            Rect bounds=new Rect();node.getBoundsInScreen(bounds);if(bounds.width()>0&&bounds.height()>0)return bounds;
+        String resourceId=node.getViewIdResourceName();
+        if(node.isVisibleToUser()&&node.isEnabled()
+            &&resourceId!=null&&resourceId.endsWith(":id/button1")){
+            Rect bounds=new Rect();node.getBoundsInScreen(bounds);
+            if(bounds.width()>0&&bounds.height()>0)return bounds;
         }
-        for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo child=node.getChild(i);if(child!=null){
-            Rect found=nativeDialogButton(child,label);child.recycle();if(found!=null)return found;}}
+        for(int i=0;i<node.getChildCount();i++){
+            AccessibilityNodeInfo child=node.getChild(i);if(child!=null){
+                Rect found=nativeDialogPositiveButton(child);child.recycle();
+                if(found!=null)return found;
+            }
+        }
         return null;
     }
     private static void tapDialogButton(String label)throws Exception {
+        // The framework positive AlertDialog button is android:id/button1.
+        // Report view IDs and never depend on its localized or uppercased text.
+        UiAutomation automation=UiEvidence.instrument().getUiAutomation();
+        AccessibilityServiceInfo info=automation.getServiceInfo();
+        if(info!=null&&(info.flags&AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS)==0){
+            info.flags|=AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
+            automation.setServiceInfo(info);
+        }
         AtomicReference<Rect> target=new AtomicReference<>();
-        UiEvidence.until("The native dialog exposes its reachable "+label+" button",10000,()->{
-            AccessibilityNodeInfo root=UiEvidence.instrument().getUiAutomation().getRootInActiveWindow();if(root==null)return false;
-            Rect found=nativeDialogButton(root,label);root.recycle();target.set(found);return found!=null;
-        });UiEvidence.tap(target.get());
+        UiEvidence.until("The native positive button is reachable: "+label,10000,()->{
+            AccessibilityNodeInfo root=automation.getRootInActiveWindow();
+            if(root==null)return false;
+            Rect found=nativeDialogPositiveButton(root);root.recycle();
+            target.set(found);return found!=null;
+        });
+        UiEvidence.tap(target.get());
     }
     @Test public void C02_threadNavigationDraftsRenameArchiveAndRecreation()throws Exception {
         String first=create("Primer chat de continuidad");IntegratedActivity a=home(first,true);
