@@ -17,6 +17,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import org.json.*;
@@ -31,14 +34,16 @@ import java.util.concurrent.Executors;
 public final class IntegratedActivity extends Activity implements ConversationUiStore.Observer {
     private static final int EXPORT_REQUEST=618;
     private SharedPreferences preferences;
-    private LinearLayout root,header,transcript,composer,navigation;
-    private ScrollView scroll;
+    private LinearLayout root,header,composer,navigation,emptyHost;
+    private RecyclerView transcript;
+    private LinearLayoutManager transcriptLayout;
+    private ChatTranscriptAdapter transcriptAdapter;
     private EditText input;
     private TextView state,title;
     private Button send,retry;
     private String conversationId="",styleStamp="",renderStamp="",exportPath="",loadError="";
-    private int restoredScroll=-1;
-    private long openGeneration=0;
+    private int restoredPosition=-1,restoredOffset=0,restoredLegacyScroll=-1;
+    private long openGeneration=0,renderGeneration=0;
     private boolean creating=false,opening=false,selectOnResume=false,scrollToLatest=false,draftReady=false;
     private final ArrayList<Dialog> dialogs=new ArrayList<>();
     private int dp(float n){return UiKit.dp(this,n);}
@@ -47,10 +52,35 @@ public final class IntegratedActivity extends Activity implements ConversationUi
     private String owner(){String value=preferences.getString("owner_name","X").trim();return value.isEmpty()?"X":value;}
     private String style(){return owner()+"|"+preferences.getFloat("font_scale",1f)+"|"+preferences.getBoolean("show_suggestions",true);}
     private String draftKey(){return "chat_draft:"+conversationId;}
+    // The launcher Activity is exported, so never trust an arbitrary extra.
+    // C19 uses chat-<32 lowercase hex digits> and migrated legacy-view-<integer>,
+    // not UUID strings with hyphens. Reject malformed values before selection.
+    static boolean validConversationId(String id){
+        return id!=null&&id.length()<=64&&
+            (id.matches("chat-[0-9a-f]{32}")||id.matches("legacy-view-(0|[1-9][0-9]{0,17})"));
+    }
+    private static String checkedConversationExtra(Intent intent){
+        if(intent==null)return null;
+        try {
+            if(!intent.hasExtra("conversation_id"))return null;
+            Bundle extras=intent.getExtras();Object value=extras==null?null:extras.get("conversation_id");
+            return value instanceof String&&validConversationId((String)value)?(String)value:null;
+        } catch(RuntimeException ignored){return null;} // malformed parcelable / wrong extra type
+    }
     @Override public void onCreate(Bundle saved){
         super.onCreate(saved);preferences=getSharedPreferences(UiKit.PREFS,MODE_PRIVATE);
-        if(saved!=null){conversationId=saved.getString("conversation_id","");restoredScroll=saved.getInt("scroll",-1);exportPath=saved.getString("export_path","");}
-        else{String id=getIntent().getStringExtra("conversation_id");if(id!=null&&!id.isEmpty()){conversationId=id;selectOnResume=true;}}
+        if(saved!=null){
+            String stored=saved.getString("conversation_id","");
+            if(validConversationId(stored))conversationId=stored;
+            if(saved.containsKey("scroll_position")) {
+                restoredPosition=saved.getInt("scroll_position",-1);
+                restoredOffset=saved.getInt("scroll_offset",0);
+            }else restoredLegacyScroll=saved.getInt("scroll",-1);
+            exportPath=saved.getString("export_path","");
+        } else {
+            String id=checkedConversationExtra(getIntent());
+            if(id!=null){conversationId=id;selectOnResume=true;}
+        }
         buildScreen();ConversationUiStore.ensure(getApplicationContext());
     }
     @Override protected void onResume(){
@@ -59,19 +89,30 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(!opening){boolean select=selectOnResume;selectOnResume=false;openConversation(conversationId,select);}else render();
     }
     @Override protected void onNewIntent(Intent intent){
-        super.onNewIntent(intent);setIntent(intent);String id=intent.getStringExtra("conversation_id");
-        if(id!=null&&!id.isEmpty()){persistDraft();bindConversation(id);openConversation(id,true);}
+        super.onNewIntent(intent);
+        String id=checkedConversationExtra(intent);
+        if(id==null)return; // no untrusted navigation or change of openGeneration
+        setIntent(intent);
+        persistDraft();bindConversation(id);openConversation(id,true);
     }
     @Override protected void onPause(){persistDraft();super.onPause();}
     @Override protected void onStop(){ConversationUiStore.unobserve(this);super.onStop();}
     @Override protected void onDestroy(){ConversationUiStore.unobserve(this);for(Dialog d:new ArrayList<>(dialogs))d.dismiss();super.onDestroy();}
     @Override protected void onSaveInstanceState(Bundle out){
         persistDraft();out.putString("conversation_id",conversationId);out.putString("export_path",exportPath);
-        if(scroll!=null)out.putInt("scroll",scroll.getScrollY());super.onSaveInstanceState(out);
+        if(transcriptLayout!=null){
+            int first=transcriptLayout.findFirstVisibleItemPosition();
+            if(first>=0){
+                View anchor=transcriptLayout.findViewByPosition(first);
+                out.putInt("scroll_position",first);
+                out.putInt("scroll_offset",anchor==null?0:anchor.getTop());
+            }
+        }
+        super.onSaveInstanceState(out);
     }
     @Override public void conversationChanged(){if(!isFinishing()&&!isDestroyed())render();}
     private void buildScreen(){
-        creating=true;styleStamp=style();renderStamp="";
+        creating=true;styleStamp=style();renderStamp="";++renderGeneration;
         root=UiKit.column(this);root.setId(0x5802000);root.setBackgroundColor(UiKit.BG);
         header=UiKit.column(this);
         LinearLayout top=new LinearLayout(this);top.setGravity(Gravity.CENTER_VERTICAL);
@@ -95,10 +136,18 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         statusRow.addView(retry,new LinearLayout.LayoutParams(-2,-2));header.addView(statusRow);
         root.addView(header);
 
-        scroll=new ScrollView(this);scroll.setId(0x5802006);scroll.setFillViewport(true);
-        scroll.setClipToPadding(false);scroll.setVerticalScrollBarEnabled(false);
-        transcript=UiKit.column(this);transcript.setId(0x5802005);transcript.setPadding(0,dp(12),0,dp(12));
-        scroll.addView(transcript,new ScrollView.LayoutParams(-1,-2));root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+        FrameLayout chatPane=new FrameLayout(this);chatPane.setId(0x5802006);
+        transcript=new RecyclerView(this);transcript.setId(0x5802005);
+        transcript.setPadding(0,dp(12),0,dp(12));transcript.setClipToPadding(false);
+        transcript.setVerticalScrollBarEnabled(false);transcript.setItemAnimator(null);
+        transcript.setItemViewCacheSize(8);
+        transcriptLayout=new LinearLayoutManager(this);
+        transcript.setLayoutManager(transcriptLayout);
+        transcriptAdapter=new ChatTranscriptAdapter();transcript.setAdapter(transcriptAdapter);
+        chatPane.addView(transcript,new FrameLayout.LayoutParams(-1,-1));
+        emptyHost=UiKit.column(this);emptyHost.setVisibility(View.GONE);
+        chatPane.addView(emptyHost,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
+        root.addView(chatPane,new LinearLayout.LayoutParams(-1,0,1));
 
         composer=new LinearLayout(this);composer.setId(0x5802007);composer.setGravity(Gravity.BOTTOM);composer.setBaselineAligned(false);
         android.graphics.drawable.GradientDrawable box=UiKit.shape(this,UiKit.SURFACE,20);box.setStroke(dp(1),UiKit.BORDER);
@@ -145,7 +194,11 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(id==null||id.isEmpty())return;
         if(id.equals(conversationId)){if(input!=null&&input.length()==0&&!preferences.getString(draftKey(),"").isEmpty()){creating=true;loadDraft();creating=false;}draftReady=true;return;}
         persistDraft();conversationId=id;creating=true;loadDraft();creating=false;
-        draftReady=true;restoredScroll=preferences.getInt("chat_scroll:"+id,-1);renderStamp="";loadError="";
+        draftReady=true;
+        restoredPosition=preferences.getInt("chat_scroll_position:"+id,-1);
+        restoredOffset=preferences.getInt("chat_scroll_offset:"+id,0);
+        restoredLegacyScroll=restoredPosition>=0?-1:preferences.getInt("chat_scroll:"+id,-1);
+        renderStamp="";loadError="";
     }
     private void loadDraft(){
         if(input==null)return;draftReady=!conversationId.isEmpty()&&(preferences.contains(draftKey())||ConversationUiStore.ready());input.setText(conversationId.isEmpty()?"":preferences.getString(draftKey(),""));
@@ -155,7 +208,15 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(preferences!=null&&input!=null&&!conversationId.isEmpty()&&!creating&&draftReady){
             SharedPreferences.Editor edit=preferences.edit().putString(draftKey(),input.getText().toString())
                 .putInt("chat_selection:"+conversationId,Math.max(0,input.getSelectionStart()));
-            if(scroll!=null)edit.putInt("chat_scroll:"+conversationId,scroll.getScrollY());edit.apply();
+            if(transcriptLayout!=null){
+                int first=transcriptLayout.findFirstVisibleItemPosition();
+                if(first>=0){
+                    View anchor=transcriptLayout.findViewByPosition(first);
+                    edit.putInt("chat_scroll_position:"+conversationId,first)
+                        .putInt("chat_scroll_offset:"+conversationId,anchor==null?0:anchor.getTop());
+                }
+            }
+            edit.apply();
         }
     }
     private void openConversation(String id,boolean select){
@@ -173,6 +234,13 @@ public final class IntegratedActivity extends Activity implements ConversationUi
             &&!ConversationUiStore.hasPending(getApplicationContext(),conversationId)&&loadError.isEmpty()&&!input.getText().toString().trim().isEmpty();
         send.setEnabled(enabled);send.setAlpha(enabled?1f:.42f);input.setEnabled(!opening&&ConversationUiStore.history(conversationId)!=null&&!archived());
     }
+    private boolean nearTranscriptBottom(){
+        if(transcript==null||transcriptLayout==null||transcriptAdapter.getItemCount()==0)return true;
+        int last=transcriptLayout.findLastVisibleItemPosition();
+        if(last<transcriptAdapter.getItemCount()-1)return false;
+        View child=transcriptLayout.findViewByPosition(last);
+        return child!=null&&child.getBottom()<=transcript.getHeight()+dp(80);
+    }
     private void render(){
         if(root==null)return;
         JSONObject snapshot=ConversationUiStore.history(conversationId),meta=ConversationUiStore.metadata(conversationId);
@@ -186,28 +254,73 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(archived())status="Chat archivado · recupéralo desde Chats";
         state.setText(status);state.setTextColor(!error.isEmpty()?UiKit.AMBER:snapshot!=null&&!opening&&!busy?UiKit.ACCENT:UiKit.MUTED);
         retry.setVisibility((!error.isEmpty()||pending.length()>0)&&!busy&&!opening?View.VISIBLE:View.GONE);updateSend();
+
         String stamp=conversationId+"|"+messages+"|"+pending+"|"+(snapshot!=null)+"|"+busy+"|"+styleStamp;
-        if(stamp.equals(renderStamp))return;
-        boolean atBottom=scroll.getScrollY()+scroll.getHeight()>=transcript.getHeight()-dp(80);int before=scroll.getScrollY();
-        renderStamp=stamp;transcript.removeAllViews();
-        if(snapshot==null){
-            TextView loading=label("Cargando los mensajes guardados…",14,UiKit.MUTED);loading.setPadding(dp(10),dp(20),dp(10),dp(20));transcript.addView(loading);
-        }else if(messages.length()==0&&pending.length()==0)emptyState();
-        HashSet<String> ids=new HashSet<>();
-        for(int i=0;i<messages.length();i++){JSONObject message=messages.optJSONObject(i);if(message!=null){ids.add(message.optString("id"));bubble(message,false);}}
-        for(int i=0;i<pending.length();i++){
-            JSONObject item=pending.optJSONObject(i);if(item==null)continue;String id=item.optString("request_id")+":user",text=item.optString("text");
-            if(!text.isEmpty()&&ids.add(id))bubble(ConversationUiStore.args("id",id,"role","user","text",text),true);
+        if(stamp.equals(renderStamp)){
+            if(scrollToLatest&&transcriptAdapter.getItemCount()>0){
+                transcript.scrollToPosition(transcriptAdapter.getItemCount()-1);scrollToLatest=false;
+            }
+            return;
         }
-        if(pending.length()>0){TextView wait=label(busy?"BBY Q está respondiendo…":"Envío guardado · reintenta para completarlo",12,UiKit.MUTED);wait.setTag("pending:"+conversationId);transcript.addView(wait,margin(-1,-2,10));}
-        final boolean loaded=snapshot!=null,empty=messages.length()==0&&pending.length()==0,latest=scrollToLatest;scrollToLatest=false;
-        scroll.post(()->{
+        final boolean atBottom=nearTranscriptBottom();
+        final int before=transcriptLayout.findFirstVisibleItemPosition();
+        final View oldAnchor=before<0?null:transcriptLayout.findViewByPosition(before);
+        final int oldOffset=oldAnchor==null?0:oldAnchor.getTop();
+        final String thread=conversationId;
+        final long token=++renderGeneration;
+        renderStamp=stamp;
+
+        if(snapshot==null){
+            emptyHost.removeAllViews();
+            TextView loading=label("Cargando los mensajes guardados…",14,UiKit.MUTED);
+            loading.setPadding(dp(10),dp(20),dp(10),dp(20));emptyHost.addView(loading);
+            emptyHost.setVisibility(View.VISIBLE);
+        } else if(messages.length()==0&&pending.length()==0)emptyState();
+        else{emptyHost.removeAllViews();emptyHost.setVisibility(View.GONE);}
+
+        ArrayList<ChatTranscriptAdapter.Row> rows=new ArrayList<>(messages.length()+pending.length()+1);
+        HashSet<String> savedUserRequests=new HashSet<>(),pendingRequests=new HashSet<>();
+        for(int i=0;i<messages.length();i++){
+            JSONObject m=messages.optJSONObject(i);if(m==null)continue;
+            String id=m.optString("id"),role=m.optString("role"),requestId=m.optString("request_id");
+            if(id.isEmpty())continue;
+            if("user".equals(role)&&!requestId.isEmpty())savedUserRequests.add(requestId);
+            rows.add(ChatTranscriptAdapter.Row.message(thread,id,requestId,role,m.optString("text"),true));
+        }
+        for(int i=0;i<pending.length();i++){
+            JSONObject m=pending.optJSONObject(i);if(m==null)continue;
+            String requestId=m.optString("request_id"),text=m.optString("text");
+            if(requestId.isEmpty()||text.isEmpty()||!pendingRequests.add(requestId)
+                    ||savedUserRequests.contains(requestId))continue;
+            rows.add(ChatTranscriptAdapter.Row.message(thread,requestId+":user",requestId,"user",text,false));
+        }
+        if(pending.length()>0)rows.add(ChatTranscriptAdapter.Row.notice(thread,
+            busy?"BBY Q está respondiendo…":"Envío guardado · reintenta para completarlo"));
+
+        final boolean loaded=snapshot!=null,empty=messages.length()==0&&pending.length()==0;
+        transcriptAdapter.submitList(rows,()->{
+            // AsyncListDiffer may supersede earlier callbacks. Only the current
+            // chat/render generation is permitted to change the reading position.
+            if(token!=renderGeneration||!thread.equals(conversationId)||transcript==null)return;
             if(!loaded)return;
-            if(restoredScroll>=0){scroll.scrollTo(0,restoredScroll);restoredScroll=-1;}
-            else if(empty)scroll.scrollTo(0,0);else if(latest||atBottom)scroll.fullScroll(View.FOCUS_DOWN);else scroll.scrollTo(0,before);
+            if(restoredPosition>=0){
+                transcriptLayout.scrollToPositionWithOffset(
+                    Math.min(restoredPosition,Math.max(0,rows.size()-1)),restoredOffset);
+                restoredPosition=-1;restoredLegacyScroll=-1;
+            } else if(restoredLegacyScroll>=0){
+                int pixels=restoredLegacyScroll;restoredLegacyScroll=-1;
+                transcript.post(()->{
+                    if(token==renderGeneration&&thread.equals(conversationId))
+                        transcript.scrollBy(0,pixels);
+                });
+            } else if(empty)transcript.scrollToPosition(0);
+            else if(scrollToLatest||atBottom){
+                transcript.scrollToPosition(Math.max(0,rows.size()-1));scrollToLatest=false;
+            } else if(before>=0)transcriptLayout.scrollToPositionWithOffset(before,oldOffset);
         });
     }
     private void emptyState(){
+        emptyHost.removeAllViews();emptyHost.setVisibility(View.VISIBLE);
         LinearLayout welcome=UiKit.column(this);welcome.setGravity(Gravity.CENTER);welcome.setPadding(dp(16),dp(24),dp(16),dp(20));welcome.addView(UiKit.brand(this,58));
         TextView heading=label("Hablemos, "+owner()+".",26,UiKit.TEXT);heading.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));heading.setGravity(Gravity.CENTER);welcome.addView(heading,margin(-1,-2,20));
         TextView description=label("Este chat guarda sus mensajes.\nEncuentra los anteriores en Chats.",15,UiKit.MUTED);description.setGravity(Gravity.CENTER);welcome.addView(description,margin(-1,-2,8));
@@ -217,17 +330,9 @@ public final class IntegratedActivity extends Activity implements ConversationUi
             Button teach=UiKit.button(this,"Enseñarle algo nuevo",false);teach.setOnClickListener(v->startActivity(new Intent(this,TrainingActivity.class)));
             suggestions.addView(teach,margin(-1,-2,8));welcome.addView(suggestions,new LinearLayout.LayoutParams(-1,-2));
         }
-        transcript.addView(welcome,new LinearLayout.LayoutParams(-1,-2));
+        emptyHost.addView(welcome,new LinearLayout.LayoutParams(-1,-2));
     }
     private Button suggestion(String title,String prompt){Button b=UiKit.button(this,title,false);b.setOnClickListener(v->{input.setText(prompt);input.setSelection(input.length());input.requestFocus();});return b;}
-    private void bubble(JSONObject data,boolean pending){
-        boolean user="user".equals(data.optString("role"));LinearLayout block=UiKit.column(this);block.setTag("message:"+data.optString("id"));
-        if(user){block.setBackground(UiKit.shape(this,0xff1e3933,17));block.setPadding(dp(14),dp(11),dp(14),dp(11));}
-        else{block.setPadding(dp(3),dp(8),dp(8),dp(10));TextView who=label("BBY Q",11,UiKit.ACCENT);who.setLetterSpacing(.1f);block.addView(who);}
-        TextView message=label(data.optString("text"),16,UiKit.TEXT);message.setTextIsSelectable(true);block.addView(message,margin(-1,-2,user?0:5));
-        if(pending)block.setContentDescription("Mensaje pendiente: "+data.optString("text"));
-        LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.topMargin=dp(user?12:8);p.bottomMargin=dp(6);if(user)p.leftMargin=dp(32);else p.rightMargin=dp(8);transcript.addView(block,p);
-    }
     private void submit(){
         updateSend();if(!send.isEnabled())return;String text=input.getText().toString().trim();
         if(text.codePointCount(0,text.length())>4096){input.setError("Envía hasta 4096 caracteres por mensaje. El borrador sigue guardado.");return;}
