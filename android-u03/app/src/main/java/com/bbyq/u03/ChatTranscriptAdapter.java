@@ -10,13 +10,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.Objects;
 
 /** Virtualized chat rows; the native history remains the source of truth. */
-final class ChatTranscriptAdapter extends ListAdapter<ChatTranscriptAdapter.Row, ChatTranscriptAdapter.Holder> {
-    static final class Row {
-        final String key, conversationId, id, requestId, role, text;
-        final boolean confirmed, notice;
+public final class ChatTranscriptAdapter extends ListAdapter<ChatTranscriptAdapter.Row, ChatTranscriptAdapter.Holder> {
+    public static final class Row {
+        public final String key, conversationId, id, requestId, role, text;
+        public final boolean confirmed, notice;
         private Row(String key, String conversationId, String id, String requestId,
                     String role, String text, boolean confirmed, boolean notice) {
             this.key=key;this.conversationId=conversationId;this.id=id;
