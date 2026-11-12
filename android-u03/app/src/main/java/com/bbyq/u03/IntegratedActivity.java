@@ -98,7 +98,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
     }
     @Override protected void onPause(){persistDraft();super.onPause();}
     @Override protected void onStop(){ConversationUiStore.unobserve(this);super.onStop();}
-    @Override protected void onDestroy(){ConversationUiStore.unobserve(this);for(Dialog d:new ArrayList<>(dialogs))d.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){++renderGeneration;ConversationUiStore.unobserve(this);for(Dialog d:new ArrayList<>(dialogs))d.dismiss();super.onDestroy();}
     @Override protected void onSaveInstanceState(Bundle out){
         persistDraft();out.putString("conversation_id",conversationId);out.putString("export_path",exportPath);
         if(transcriptLayout!=null){
@@ -311,7 +311,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         transcriptAdapter.submitList(rows,()->{
             // AsyncListDiffer may supersede earlier callbacks. Only the current
             // chat/render generation is permitted to change the reading position.
-            if(token!=renderGeneration||!thread.equals(conversationId)||transcript==null)return;
+            if(token!=renderGeneration||!thread.equals(conversationId)||transcript==null||isFinishing()||isDestroyed())return;
             if(!loaded)return;
             transcript.setVisibility(View.VISIBLE);
             if(restoredPosition>=0){
