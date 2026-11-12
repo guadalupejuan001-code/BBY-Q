@@ -81,7 +81,7 @@ assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|
 PYUPGRADE
 done
 capture_personal
-adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" > "$OUT/launcher.txt"
+adb shell am start -W -n "$PKG/com.bbyq.u03.LauncherActivity" > "$OUT/launcher.txt"
 # Real touch targets are checked against Android system bars and the visible IME.
 adb shell am instrument -w -e class com.bbyq.u03.PersonalInterfaceTest \
   "$PKG.test/androidx.test.runner.AndroidJUnitRunner" > "$OUT/personal-interface-tests.txt" 2>&1
@@ -173,7 +173,7 @@ mkdir -p "$OUT/lab"
 for name in transport persistence c11 c12 cache profile stress candidate; do
   adb exec-out run-as "$PKG" cat "files/sessions/laboratory/$name-last.json" > "$OUT/lab/$name.json"
 done
-adb shell am start -W -n "$PKG/com.bbyq.u03.IntegratedActivity" >> "$OUT/launcher.txt"
+adb shell am start -W -n "$PKG/com.bbyq.u03.LauncherActivity" >> "$OUT/launcher.txt"
 sleep 3
 adb exec-out screencap -p > "$OUT/integrated-ui.png"
 adb shell uiautomator dump /sdcard/c19-ui.xml >/dev/null
