@@ -44,7 +44,10 @@ android {
 chaquopy { defaultConfig { version = '3.12'; buildPython('python3.12') } }
 dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    // AndroidX test/runtime classes require Kotlin Intrinsics on the class path.
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.25'
     androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.25'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 }
 
