@@ -4,14 +4,14 @@ Una aplicación personal con dos destinos: **Conversar** y **Mi BBY Q**. El chat
 
 ## Usarla
 
-1. Escribe en **Conversar** y pulsa **Enviar**. Los intercambios anteriores permanecen en el mismo chat. Puedes saludar, calcular, hacer consultas admitidas por el modelo y enseñar mediante peticiones explícitas como «recuerda que Lira es robot».
+1. Escribe en **Conversar** y pulsa **Enviar**. Puedes decir «yo soy Liora» o «vivo en Puerto Claro» y luego preguntar «¿cómo me llamo?» o «¿dónde vivo?» en cualquier chat. Para corregir el nombre, di «me llamo Ágata». Puedes enseñar otros hechos con «recuerda que Lira es robot».
 2. Abre **Chats** desde la cabecera para crear otra conversación, volver a una anterior, buscarla o cambiar su título. Archivar es reversible; cada chat conserva su propio borrador.
 3. En **Mi BBY Q**, consulta la memoria o entra en **Entrenar BBY Q**.
 4. La guía incluida contiene seis dibujos y dos rutas completas: hechos/reglas y ejercicios conjuntos de parámetros.
 5. Comprueba un candidato antes de activarlo. La conversación usa la misma memoria personal que recibe esa activación.
 6. Exporta el ZIP de la sesión para evaluar el entrenamiento, o el JSON de la conversación para revisar sus respuestas y procedencia.
 
-La enseñanza se inicia con una petición explícita. Las preguntas no escriben conocimiento. Una conversación nueva conserva los otros chats y el aprendizaje. Las vistas anteriores de C18 se convierten en conversaciones visibles, sin borrar mensajes ni recibos.
+Las presentaciones, los datos de residencia y las peticiones explícitas de enseñanza se guardan localmente. Las preguntas consultan la memoria. Una conversación nueva conserva los otros chats y el aprendizaje. Las vistas anteriores de C18 se convierten en conversaciones visibles, sin borrar mensajes ni recibos.
 
 ## Android y actualización
 
@@ -29,7 +29,7 @@ UiKit aplica los márgenes medidos de las barras del sistema, recortes y teclado
 
 La memoria, las reglas y el aprendizaje personal conservan el núcleo U02/XI original. Para saludos y conocimiento previo acotado se reutiliza el programa y checkpoint E025 original, autenticado y ejecutado en una copia de sólo lectura. La memoria personal tiene prioridad. La procedencia de cada respuesta distingue el texto nativo, la presentación de resultados, la interfaz y la abstención.
 
-Las preguntas personales y cálculos se ejecutan en copias para preservar los bancos personales. Las peticiones explícitas de enseñanza utilizan la misma autoridad que el entrenamiento C17. No se incorpora ningún modelo externo.
+Las preguntas personales y cálculos se ejecutan sobre copias. El nombre y la residencia usan el mismo banco de lenguaje C1/U02 que las lecciones C17. Las afirmaciones admitidas actualizan una relación de la memoria con XI y las consultas recuperan su valor vigente. Los pesos de conversación E025 permanecen intactos.
 
 Cada hilo conserva sus propios referentes para los seguimientos admitidos, como «¿y es máquina?», «¿y por qué?» o «¿cuánto da eso por 2?». El adaptador registra el turno de origen y la pregunta resuelta; el resultado se obtiene con XI. Ante un referente ambiguo pide aclaración. Los referentes de un chat no se toman de otro; el conocimiento enseñado explícitamente al modelo sigue siendo compartido.
 

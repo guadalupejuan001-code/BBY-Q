@@ -106,7 +106,7 @@ from pathlib import Path
 import re
 text=Path('build/android-c19/chat-continuity-tests.txt').read_text()
 m=re.search(r'OK \((\d+) tests?\)',text)
-assert m and int(m.group(1))>=4,text
+assert m and int(m.group(1))>=5,text
 assert not re.search(r'FAILURES|INSTRUMENTATION_FAILED|Process crashed|shortMsg|Error in ',text),text
 PYCHAT
 
@@ -216,7 +216,7 @@ report['chat_continuity_test_count']=int(re.search(r'OK \((\d+) tests?\)',(out/'
 report['chat_continuity_evidence']=json.loads((out/'chat-continuity-proof.json').read_text())
 chat_cases=report['chat_continuity_evidence']['cases']
 assert set(chat_cases)=={'C01_threeTurnsKeepSixRealBubbles','C02_threadNavigationDraftsRenameArchiveAndRecreation',
-    'C03_contextUsesOnlyItsConversation','C04_c18SparseViewsAndPendingRequestMigrate'}
+    'C03_contextUsesOnlyItsConversation','C04_c18SparseViewsAndPendingRequestMigrate','C05_profileFactsLearnedInChat'}
 assert all(case.get('passed') is True for case in chat_cases.values())
 report['chat_continuity_verified']=True
 report['chat_upgrade_evidence']={phase:json.loads((out/f'chat-upgrade-{phase}.json').read_text()) for phase in ('seed','verify')}

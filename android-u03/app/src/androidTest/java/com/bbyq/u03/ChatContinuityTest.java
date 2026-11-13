@@ -362,6 +362,41 @@ public final class ChatContinuityTest {
         PyObject answer=python.getModule("u03_conversation").callAttr("run",decoded,base.get("_root"),personal.getAbsolutePath());
         return new JSONObject(python.getModule("json").callAttr("dumps",answer).toString());
     }
+    @Test public void C05_profileFactsLearnedInChat()throws Exception {
+        String first=create("Presentación");
+        call(request("select").put("conversation_id",first));
+        JSONObject initial=U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot");
+        JSONObject taught=sendUi(home(first,true),first,"yo soy liora");
+        assertEquals("Listo, Liora. Guardé tu nombre.",taught.getString("text"));
+        JSONObject provenance=taught.getJSONObject("provenance");
+        assertTrue(provenance.getBoolean("personal_memory_written"));
+        assertEquals("c2_put",provenance.getJSONObject("receipt").getJSONArray("trace").getJSONObject(0).getString("operation"));
+        JSONObject learned=U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot");
+        assertNotEquals(initial.getJSONObject("banks").getString("language"),learned.getJSONObject("banks").getString("language"));
+
+        String second=create("Otro chat");
+        JSONObject recalled=send(second,"¿Cómo me llamo?");
+        assertEquals("Te llamas Liora.",recalled.getString("reply"));
+        assertEquals("Liora",ConversationProof.result(recalled,"lookup").getString("value"));
+        assertFalse(send(second,"¿Yo soy Ágata?").getJSONArray("messages").getJSONObject(1)
+            .getJSONObject("provenance").getBoolean("personal_memory_written"));
+        ConversationProof.sameSnapshot(learned,U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot"));
+
+        JSONObject correction=request("send").put("conversation_id",second).put("text","No, me llamo Ágata Luna");
+        JSONObject corrected=call(correction);
+        assertEquals("Listo, Ágata Luna. Guardé tu nombre.",corrected.getString("reply"));
+        assertEquals(1,ConversationProof.result(corrected,"put").getInt("status"));
+        JSONObject correctedState=U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot");
+        assertEquals(ConversationProof.canonical(corrected),ConversationProof.canonical(call(correction)));
+        assertEquals("Te llamas Ágata Luna.",send(first,"¿Cuál es mi nombre?").getString("reply"));
+        ConversationProof.sameSnapshot(correctedState,U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot"));
+
+        assertEquals("Guardé que vives en Puerto Claro.",send(second,"Vivo en Puerto Claro").getString("reply"));
+        assertEquals("Vives en Puerto Claro.",send(first,"¿Dónde vivo?").getString("reply"));
+        record("C05_profileFactsLearnedInChat",new JSONObject().put("passed",true)
+            .put("native_teaching",taught).put("recall_in_another_chat",recalled).put("correction",corrected));
+    }
+
     private static void copyPersonal(File destination)throws Exception {
         assertTrue(destination.getParentFile().mkdirs()||destination.getParentFile().isDirectory());
         Python python=Python.getInstance();PyObject sqlite=python.getModule("sqlite3");
