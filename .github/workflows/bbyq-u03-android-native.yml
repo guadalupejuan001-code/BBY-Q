@@ -127,7 +127,7 @@ jobs:
           assert r['personal_interface_verified']
           assert r['personal_interface_test_count']>=5
           assert r['chat_continuity_verified']
-          assert r['chat_continuity_test_count']>=4
+          assert r['chat_continuity_test_count']>=5
           assert r['actual_C18_to_C19_upgrade_verified']
           assert r['chat_workspace_packaged']
           assert r['android_api_tested']==36

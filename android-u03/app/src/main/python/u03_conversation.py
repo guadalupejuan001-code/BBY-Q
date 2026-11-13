@@ -376,6 +376,80 @@ def _personal_inference(prompt, identifier, root, personal_db):
         return receipt, _read_proof(copy, receipt, root)
 
 
+def _profile_turn(database, identifier, predicate, value=None):
+    """Apply a typed chat fact to the existing C1/U02 language bank."""
+    from integration.unified.common import C1, C1Tools, digest, encoded
+    from integration.unified.session import Session
+
+    writing = value is not None
+    fingerprint = digest(encoded({"predicate": predicate, "value": value}))
+    with Session(database) as model, model.db as db:
+        db.execute("BEGIN IMMEDIATE" if writing else "BEGIN")
+        if writing:
+            prior = db.execute("SELECT fingerprint,result FROM unified_requests WHERE id=?", (identifier,)).fetchone()
+            if prior:
+                if prior[0] != fingerprint:
+                    raise ValueError("Este identificador ya corresponde a otra afirmación")
+                return json.loads(prior[1])
+
+        raw, bank_sha, metadata_raw, metadata_sha = db.execute(
+            "SELECT snapshot,sha,metadata,metadata_sha FROM state WHERE id=1").fetchone()
+        if digest(raw) != bank_sha or digest(metadata_raw) != metadata_sha:
+            raise ValueError("El banco de lenguaje o su diccionario están dañados")
+        metadata = json.loads(metadata_raw)
+        if writing:
+            model._banks()
+            unified_raw, unified_sha = db.execute("SELECT metadata,sha FROM unified_state WHERE id=1").fetchone()
+            if digest(unified_raw) != unified_sha:
+                raise ValueError("Los metadatos de U02 están dañados")
+            unified = json.loads(unified_raw)
+            if unified["language_sync"] != [bank_sha, metadata_sha]:
+                unified["previous"] = metadata.get("previous", "")
+
+        operation = "c2_put" if writing else "c2_lookup"
+        with tempfile.TemporaryDirectory(prefix="bbyq0-profile-") as temp:
+            path = Path(temp) / "language.rvp"
+            path.write_bytes(raw)
+            path.with_name("model.xi").write_text(model.legacy.native)
+            with C1.Model(path, metadata["vocabulary"], model.output) as native:
+                tools = C1Tools.Tools(native, metadata)
+                args = [tools.entity("Usuario"), tools.entity(predicate)]
+                if writing:
+                    # Mode 1 replaces the prior value of a single-valued relation.
+                    args.extend([tools.entity(value), 1, 1])
+                native.run(C1.stage64(C1Tools.A["ARG"], args) + "call " + operation)
+                status = tools.integer(56)
+                result = {"kind": "put" if writing else "lookup", "status": status,
+                          "subject": "Usuario", "predicate": predicate}
+                if status == 1:
+                    result["value"] = tools.display(args[2] if writing else tools.integer(104))
+                if writing and status == 1:
+                    destination = path.with_name("next.rvp")
+                    native.s.save(destination)
+                    raw = destination.read_bytes()
+        committed = writing and status == 1
+        receipt = {"ok": status == 1, "entity": "U02", "committed": committed, "request_id": identifier,
+                   "results": [result], "trace": [{"native": True, "bank": "language", "operation": operation}]}
+        if committed:
+            # Publish the native bank, symbol dictionary and replay receipt in the
+            # same transaction used for the compatible C1 and U02 views.
+            next_bank_sha = digest(raw)
+            next_metadata = encoded(metadata)
+            next_metadata_sha = digest(next_metadata)
+            unified["language_sync"] = [next_bank_sha, next_metadata_sha]
+            next_unified = encoded(unified)
+            db.execute("UPDATE unified_banks SET snapshot=?,sha=? WHERE name='language'", (raw, next_bank_sha))
+            db.execute("UPDATE state SET snapshot=?,sha=?,metadata=?,metadata_sha=?,revision=revision+1 WHERE id=1",
+                       (raw, next_bank_sha, next_metadata, next_metadata_sha))
+            db.execute("UPDATE unified_state SET metadata=?,sha=?,revision=revision+1 WHERE id=1",
+                       (next_unified, digest(next_unified)))
+        if writing:
+            record = (identifier, fingerprint, encoded(receipt))
+            db.execute("INSERT INTO unified_requests VALUES(?,?,?)", record)
+            db.execute("INSERT INTO requests VALUES(?,?,?)", record)
+        return receipt
+
+
 def _reference(root, text, previous=None):
     global _reference_cache
     from integration.unified.common import C1
@@ -422,8 +496,50 @@ def _resolution(last, kind, prompt, **values):
             "deterministic_reference_resolution": True, **values}
 
 
+def _profile_route(text, clean, folded):
+    if folded in {"como me llamo", "cual es mi nombre", "dime mi nombre", "dime como me llamo", "recuerdas mi nombre",
+                  "recuerdas como me llamo", "te acuerdas de mi nombre", "sabes mi nombre", "quien soy"}:
+        return {"kind": "profile", "predicate": "nombre"}
+    if folded in {"donde vivo", "dime donde vivo", "recuerdas donde vivo", "sabes donde vivo"}:
+        return {"kind": "profile", "predicate": "vive en"}
+    if any(mark in text for mark in "?¿\r\n"):
+        return None
+
+    statement = " ".join(unicodedata.normalize("NFC", clean).split())
+    statement = re.sub(r"^(?:(?:hola|no|en realidad) *, *|en realidad |recuerda que )", "", statement, flags=re.I)
+    for predicate, pattern in (("nombre", r"(?:mi nombre es|(?:yo )?me llamo|corrige mi nombre a) (?P<value>.+)"),
+                               ("vive en", r"(?:yo )?vivo en (?P<value>.+)"),
+                               ("nombre", r"(?P<intro>(?:yo )?soy) (?P<value>.+)")):
+        match = re.fullmatch(pattern, statement, re.I)
+        if not match:
+            continue
+        value = match["value"]
+        if len(value) > 80 or not re.fullmatch(r"[^\W\d_]+(?:[ '\u2019-][^\W\d_]+){0,7}", value):
+            return None
+        words = value.split()
+        if set(_fold(value).split()) & {"y", "o", "soy", "vivo", "llamo", "pero", "antes", "quiza", "quizas"}:
+            return None
+        if match.groupdict().get("intro"):
+            # Bare introductions are narrower than explicit "me llamo".
+            if _fold(words[0]) in {"un", "una", "el", "la", "de", "yo", "no", "feliz", "triste", "guitarrista", "programador", "humano"}:
+                return None
+            particles = {"de", "del", "la", "las", "los"}
+            if len(words) > 1 and (not words[0][0].isupper() or not words[-1][0].isupper() or
+                                   any(not word[0].isupper() and word not in particles for word in words[1:-1])):
+                return None
+            if not value[0].isupper():
+                if not _fold(match["intro"]).startswith("yo "):
+                    return None
+                value = value[0].upper() + value[1:]
+        return {"kind": "profile", "predicate": predicate, "value": value}
+    return None
+
+
 def _route(text, db, view):
     clean = _strip(text); folded = _fold(clean)
+    profile = _profile_route(text, clean, folded)
+    if profile:
+        return profile
     last = _last_answer(db, view)
     if folded in {"por que", "porque", "explicame por que", "explica por que", "como lo sabes",
                   "y por que", "y porque", "y como lo sabes", "y explicame por que"}:
@@ -611,12 +727,30 @@ def _answer(route, request_id, text, root, personal_db):
         return UNKNOWN, False, provenance
     if kind == "help":
         provenance["response_origin"] = "interface"
-        return "Puedes preguntarme sobre lo que sé, hacer cálculos o decirme «recuerda que…». En Modelo puedes revisar mi memoria y entrenarme con ejemplos.", True, provenance
+        return "Puedes contarme cómo te llamas o dónde vives, hacer cálculos y enseñarme otros datos con «recuerda que…». En Mi BBY Q puedes revisar mi memoria y entrenarme con ejemplos.", True, provenance
     if kind == "memory":
         memory = personal_memory(root, personal_db)
         provenance.update(response_origin="native_result_rendering", native_XI=True, memory=memory)
         lines = [row["text"] for row in memory["facts"]]
         return ("Tengo guardado: " + " ".join(lines) if lines else "Todavía no tengo hechos personales guardados."), True, provenance
+    if kind == "profile":
+        predicate = route["predicate"]
+        receipt = _profile_turn(personal_db, "profile-conversation-" + request_id, predicate, route.get("value"))
+        result = receipt["results"][0]
+        provenance.update(native_XI=True, receipt=receipt, personal_memory_written=receipt["committed"])
+        if result["status"] != 1:
+            if "value" in route:
+                return "No pude guardar ese dato.", False, provenance
+            if result["status"] == 2:
+                return "Tengo versiones distintas de ese dato. ¿Me lo puedes aclarar?", False, provenance
+            return ("Todavía no sé cómo te llamas." if predicate == "nombre" else "Todavía no sé dónde vives."), False, provenance
+        provenance["response_origin"] = "native_result_rendering"
+        value = result["value"]
+        if predicate == "nombre":
+            reply = f"Listo, {value}. Guardé tu nombre." if receipt["committed"] else f"Te llamas {value}."
+        else:
+            reply = f"Guardé que vives en {value}." if receipt["committed"] else f"Vives en {value}."
+        return reply, True, provenance
     if kind == "definition":
         receipt = _personal_definition(route["subject"], root, personal_db)
         if receipt:
