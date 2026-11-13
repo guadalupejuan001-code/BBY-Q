@@ -42,10 +42,10 @@ public final class IntegratedActivity extends Activity implements ConversationUi
     private EditText input;
     private TextView state,title;
     private Button send,retry;
-    private String conversationId="",styleStamp="",renderStamp="",exportPath="",loadError="";
+    private String conversationId="",styleStamp="",renderStamp="",exportPath="",loadError="",followRequestId="";
     private int restoredPosition=-1,restoredOffset=0,restoredLegacyScroll=-1;
     private long openGeneration=0,renderGeneration=0;
-    private boolean creating=false,opening=false,selectOnResume=false,scrollToLatest=false,draftReady=false;
+    private boolean creating=false,opening=false,selectOnResume=false,draftReady=false;
     private final ArrayList<Dialog> dialogs=new ArrayList<>();
     private int dp(float n){return UiKit.dp(this,n);}
     private TextView label(String value,int size,int color){return UiKit.text(this,value,size,color);}
@@ -203,7 +203,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         // Do not briefly expose the previous conversation while its async
         // message diff is still being applied.
         if(transcript!=null)transcript.setVisibility(View.INVISIBLE);
-        conversationId=id;creating=true;loadDraft();creating=false;
+        conversationId=id;followRequestId="";creating=true;loadDraft();creating=false;
         draftReady=true;
         restoredPosition=preferences.getInt("chat_scroll_position:"+id,-1);
         restoredOffset=preferences.getInt("chat_scroll_offset:"+id,0);
@@ -266,12 +266,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         retry.setVisibility((!error.isEmpty()||pending.length()>0)&&!busy&&!opening?View.VISIBLE:View.GONE);updateSend();
 
         String stamp=conversationId+"|"+messages+"|"+pending+"|"+(snapshot!=null)+"|"+busy+"|"+styleStamp;
-        if(stamp.equals(renderStamp)){
-            if(scrollToLatest&&transcriptAdapter.getItemCount()>0){
-                transcript.scrollToPosition(transcriptAdapter.getItemCount()-1);scrollToLatest=false;
-            }
-            return;
-        }
+        if(stamp.equals(renderStamp))return;
         final boolean atBottom=nearTranscriptBottom();
         final int before=transcriptLayout.findFirstVisibleItemPosition();
         final View oldAnchor=before<0?null:transcriptLayout.findViewByPosition(before);
@@ -307,7 +302,7 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(pending.length()>0)rows.add(ChatTranscriptAdapter.Row.notice(thread,
             busy?"BBY Q está respondiendo…":"Envío guardado · reintenta para completarlo"));
 
-        final boolean loaded=snapshot!=null,empty=messages.length()==0&&pending.length()==0;
+        final boolean loaded=snapshot!=null,hasPending=pending.length()>0,empty=messages.length()==0&&!hasPending;
         transcriptAdapter.submitList(rows,()->{
             // AsyncListDiffer may supersede earlier callbacks. Only the current
             // chat/render generation is permitted to change the reading position.
@@ -325,8 +320,14 @@ public final class IntegratedActivity extends Activity implements ConversationUi
                         transcript.scrollBy(0,pixels);
                 });
             } else if(empty)transcript.scrollToPosition(0);
-            else if(scrollToLatest||atBottom){
-                transcript.scrollToPosition(Math.max(0,rows.size()-1));scrollToLatest=false;
+            else if(!followRequestId.isEmpty()||atBottom){
+                transcript.scrollToPosition(rows.size()-1);
+                // ConversationUiStore clears its pending notice after refreshing history.
+                if(!followRequestId.isEmpty()&&!hasPending){
+                    ChatTranscriptAdapter.Row latest=rows.get(rows.size()-1);
+                    if(latest.confirmed&&"assistant".equals(latest.role)&&followRequestId.equals(latest.requestId))
+                        followRequestId="";
+                }
             } else if(before>=0)transcriptLayout.scrollToPositionWithOffset(before,oldOffset);
         });
     }
@@ -348,7 +349,9 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         updateSend();if(!send.isEnabled())return;String text=input.getText().toString().trim();
         if(text.codePointCount(0,text.length())>4096){input.setError("Envía hasta 4096 caracteres por mensaje. El borrador sigue guardado.");return;}
         JSONObject request=ConversationUiStore.args("action","send","request_id","personal-chat-"+UUID.randomUUID(),"conversation_id",conversationId,"text",text);
-        if(ConversationUiStore.mutate(getApplicationContext(),request,null)){input.setText("");persistDraft();scrollToLatest=true;loadError="";render();}
+        if(ConversationUiStore.mutate(getApplicationContext(),request,null)){
+            followRequestId=request.optString("request_id");input.setText("");persistDraft();loadError="";render();
+        }
         else Toast.makeText(this,"No se pudo guardar el envío. El borrador sigue aquí.",Toast.LENGTH_LONG).show();
     }
     private void openChats(){persistDraft();startActivity(new Intent(this,ChatsActivity.class));}

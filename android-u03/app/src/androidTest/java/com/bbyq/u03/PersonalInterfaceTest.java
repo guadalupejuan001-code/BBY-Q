@@ -210,18 +210,16 @@ public final class PersonalInterfaceTest {
         assertEquals("abstention",unknown.getJSONObject("provenance").getString("response_origin"));
         assertFalse(unknown.getJSONObject("provenance").getBoolean("personal_memory_written"));
         UiEvidence.sameSnapshot(taught,U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot"));
-        JSONArray original=conversation("history").getJSONArray("messages");assertEquals(12,original.length());
+        JSONObject history=conversation("history");
+        String conversationId=history.getString("conversation_id");
+        JSONArray original=history.getJSONArray("messages");assertEquals(12,original.length());
         JSONObject before=UiEvidence.homeBounds(activity,false);UiEvidence.assertHomeSafe(before);
         IntegratedActivity old=activity;UiEvidence.ui(()->{old.recreate();return null;});
         UiEvidence.until("A new Activity instance restores the conversation",15000,()->{
             Activity current=UiEvidence.resumed(IntegratedActivity.class);return current!=null&&current!=old;
         });
         IntegratedActivity recreated=UiEvidence.resumed(IntegratedActivity.class);
-        UiEvidence.until("All persisted messages are rendered after recreation",15000,()->UiEvidence.ui(()->{
-            String shown=UiEvidence.textTree(recreated.findViewById(0x5802005));
-            for(int i=0;i<original.length();i++)if(!shown.contains(original.getJSONObject(i).getString("text")))return false;
-            return true;
-        }));
+        ChatContinuityTest.assertRendered(recreated,conversationId,original);
         assertEquals("Recreation neither duplicates nor deletes conversation",original.toString(),conversation("history").getJSONArray("messages").toString());
         JSONObject after=UiEvidence.homeBounds(recreated,false);UiEvidence.assertHomeSafe(after);
         UiEvidence.write("personal-bounds-conversation.json",after);
