@@ -199,7 +199,7 @@ assert all(restart.get(name) is True for name in (
     'multiple_conversations_survived_process_restart','active_conversation_survived_process_restart',
     'thread_drafts_survived_process_restart','conversation_ui_history_survived_process_restart',
     'thread_context_survived_process_restart','thread_context_isolated_after_restart',
-    'replay_kept_active_conversation'))
+    'dialogue_lesson_survived_process_restart','replay_kept_active_conversation'))
 report['training_test_evidence']=json.loads((out/'training-test-proof.json').read_text())
 training_cases=report['training_test_evidence']['cases']
 assert set(training_cases)=={'native_lessons_activation_restore','joint_native_feedback','invalid_and_stale_actions','portable_export','training_ui_and_guide'}
@@ -216,7 +216,8 @@ report['chat_continuity_test_count']=int(re.search(r'OK \((\d+) tests?\)',(out/'
 report['chat_continuity_evidence']=json.loads((out/'chat-continuity-proof.json').read_text())
 chat_cases=report['chat_continuity_evidence']['cases']
 assert set(chat_cases)=={'C01_threeTurnsKeepSixRealBubbles','C02_threadNavigationDraftsRenameArchiveAndRecreation',
-    'C03_contextUsesOnlyItsConversation','C04_c18SparseViewsAndPendingRequestMigrate','C05_profileFactsLearnedInChat'}
+    'C03_contextUsesOnlyItsConversation','C04_c18SparseViewsAndPendingRequestMigrate','C05_profileFactsLearnedInChat',
+    'C06_conversationLearnsFromCorrections'}
 assert all(case.get('passed') is True for case in chat_cases.values())
 report['chat_continuity_verified']=True
 report['chat_upgrade_evidence']={phase:json.loads((out/f'chat-upgrade-{phase}.json').read_text()) for phase in ('seed','verify')}

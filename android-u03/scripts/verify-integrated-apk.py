@@ -42,14 +42,17 @@ def main():
         if '<svg' not in guide or len(guide)<5000:raise AssertionError('Missing illustrated offline training guide')
         with zipfile.ZipFile(io.BytesIO(z.read('assets/chaquopy/app.imy'))) as modules:
             if 'u03_conversation.pyc' not in modules.namelist():raise AssertionError('Personal conversation adapter missing')
+            if 'u03_dialogue.pyc' not in modules.namelist():raise AssertionError('Dialogue training module missing')
         dex=b''.join(z.read(n) for n in files if n.startswith('classes') and n.endswith('.dex'))
         for name in (b'ChatsActivity',b'ModelActivity',b'TrainingActivity',b'UiKit',b'IntegratedActivity'):
             if name not in dex:raise AssertionError('Personal screen missing: '+name.decode())
         manifest=json.loads(z.read('assets/u03/mobile-manifest.json'))
-        assert manifest['android_version']=='U03.19.0-chats' and manifest['android_label']=='BBY Q 0'
+        assert manifest['android_version']=='U03.19.1-conversacion' and manifest['android_label']=='BBY Q 0'
         raw=z.read('assets/u03/bbyq-u03-runtime.zip')
         if sha256(raw).hexdigest()!=manifest['archive_sha256']:raise AssertionError('Runtime payload hash mismatch')
         with zipfile.ZipFile(io.BytesIO(raw)) as payload:
+            seed='build/dialogue/seed.rvp'
+            if sha256(payload.read(seed)).hexdigest()!=manifest['files_sha256'][seed]:raise AssertionError('Dialogue seed hash mismatch')
             for filename,want in protected.items():
                 if sha256(payload.read(filename)).hexdigest()!=want:raise AssertionError('Packaged historical source changed: '+filename)
             provenance=json.loads(payload.read('integration/mobile_u03_c16/heads/provenance.json'))

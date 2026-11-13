@@ -13,6 +13,7 @@ import json
 import zipfile
 import sys
 import subprocess
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
@@ -95,6 +96,10 @@ def build():
     if not shim.is_file():
         raise FileNotFoundError(str(shim))
     virtual = {"deps/reverse-pc/scripts/xi_session_client.py": shim.read_bytes()}
+    with tempfile.TemporaryDirectory(prefix="bbyq-dialogue-seed-") as temp:
+        seed = Path(temp) / "seed.rvp"
+        subprocess.run([ROOT / "deps/reverse-pc/build/reverse_pc", "init", seed], check=True)
+        virtual["build/dialogue/seed.rvp"] = seed.read_bytes()
     # The mobile adapter lives only in a NEW APK bundle, not within the original
     # REVERSE-PC repo, and delegates 100% of operations to original XI JNI.
     files = {name: (ROOT / name).read_bytes() for name in sorted(include)}
@@ -117,7 +122,7 @@ def build():
     manifest = {
         "schema": "BBYQ-U03-Android-authenticated-runtime-v1",
         "android_package": "com.bbyq.u03.training",
-        "android_version": "U03.19.0-chats",
+        "android_version": "U03.19.1-conversacion",
         "android_label": "BBY Q 0",
         "personal_interface": "conversation_threads_and_model",
         "conversation_threads": True,

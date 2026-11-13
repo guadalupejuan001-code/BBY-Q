@@ -397,6 +397,40 @@ public final class ChatContinuityTest {
             .put("native_teaching",taught).put("recall_in_another_chat",recalled).put("correction",corrected));
     }
 
+    @Test public void C06_conversationLearnsFromCorrections()throws Exception {
+        String first=create("Enseñarle a conversar");
+        IntegratedActivity activity=home(first,true);
+        JSONObject original=sendUi(activity,first,"Hola");
+        assertEquals("native_reference",original.getString("response_origin"));
+        JSONObject before=U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot");
+        String taughtText="¡Qué gusto verte, Liora! 😊";
+        JSONObject lesson=sendUi(activity,first,"Dilo así: "+taughtText);
+        JSONObject taught=lesson.getJSONObject("provenance").getJSONObject("receipt");
+        assertTrue(taught.getBoolean("committed"));
+        assertTrue(taught.getJSONArray("results").getJSONObject(0).getInt("native_updates")>0);
+        assertEquals("c1_train/c1_next",taught.getJSONArray("trace").getJSONObject(0).getString("operation"));
+
+        String second=create("Probar otra forma de saludar");
+        JSONObject generated=send(second,"Oye, hola de nuevo, BBY Q.");
+        assertEquals(taughtText,generated.getString("reply"));
+        assertEquals("native_dialogue",generated.getString("response_origin"));
+        assertEquals("c1_encode_input/c1_next",generated.getJSONObject("receipt").getJSONArray("trace").getJSONObject(0).getString("operation"));
+        assertEquals(taughtText,send(second,"Repítelo").getString("reply"));
+        assertNotEquals(taughtText,send(second,"¿Qué tal el juego?").getString("reply"));
+
+        JSONObject correction=request("send").put("conversation_id",second).put("text",
+            "Cuando te diga «hola», responde: ¿Qué onda, X? ¿Qué hacemos hoy?");
+        JSONObject corrected=call(correction);
+        assertTrue(corrected.getJSONObject("receipt").getBoolean("committed"));
+        assertEquals(ConversationProof.canonical(corrected),ConversationProof.canonical(call(correction)));
+        assertEquals("¿Qué onda, X? ¿Qué hacemos hoy?",send(first,"Hey").getString("reply"));
+        assertFalse(send(second,"Cuando te diga «calcula 7 + 3», responde: 3").getBoolean("understood"));
+        assertEquals(10,ConversationProof.result(send(second,"calcula 7 + 3"),"math").getInt("value"));
+        ConversationProof.sameSnapshot(before,U03Runtime.status(UiEvidence.app()).getJSONObject("snapshot"));
+        record("C06_conversationLearnsFromCorrections",new JSONObject().put("passed",true)
+            .put("lesson_from_chat",lesson).put("generated_in_another_chat",generated).put("replacement",corrected));
+    }
+
     private static void copyPersonal(File destination)throws Exception {
         assertTrue(destination.getParentFile().mkdirs()||destination.getParentFile().isDirectory());
         Python python=Python.getInstance();PyObject sqlite=python.getModule("sqlite3");

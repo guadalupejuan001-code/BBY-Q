@@ -10,8 +10,8 @@ android {
         applicationId 'com.bbyq.u03.training'
         minSdk 29
         targetSdk 35
-        versionCode 5
-        versionName 'U03.19.0-chats'
+        versionCode 6
+        versionName 'U03.19.1-conversacion'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         ndk { abiFilters 'arm64-v8a', 'x86_64' }
         externalNativeBuild { cmake { cppFlags '-std=c++17 -fexceptions -frtti' } }
