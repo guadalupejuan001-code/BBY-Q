@@ -4,7 +4,7 @@ Una aplicación personal con dos destinos: **Conversar** y **Mi BBY Q**. El chat
 
 ## Usarla
 
-1. Escribe en **Conversar** y pulsa **Enviar**. Puedes decir «yo soy Liora» o «vivo en Puerto Claro» y luego preguntar «¿cómo me llamo?» o «¿dónde vivo?» en cualquier chat. Para corregir el nombre, di «me llamo Ágata». Puedes enseñar otros hechos con «recuerda que Lira es robot».
+1. Escribe en **Conversar** y pulsa **Enviar**. Puedes decir «yo soy Liora» o «vivo en Puerto Claro» y luego preguntar «¿cómo me llamo?» o «¿dónde vivo?» en cualquier chat. Para corregir cómo responde BBY Q, escribe «Dilo así: ¡Qué gusto verte, Liora!». También puedes dar el ejemplo completo con `Cuando te diga «hola», responde: ¡Qué gusto verte!`.
 2. Abre **Chats** desde la cabecera para crear otra conversación, volver a una anterior, buscarla o cambiar su título. Archivar es reversible; cada chat conserva su propio borrador.
 3. En **Mi BBY Q**, consulta la memoria o entra en **Entrenar BBY Q**.
 4. La guía incluida contiene seis dibujos y dos rutas completas: hechos/reglas y ejercicios conjuntos de parámetros.
@@ -16,7 +16,7 @@ Las presentaciones, los datos de residencia y las peticiones explícitas de ense
 ## Android y actualización
 
 - Etiqueta: **BBY Q 0**.
-- Versión: U03.19.0-chats, código **5**.
+- Versión: U03.19.1-conversacion, código **6**.
 - Paquete conservado: com.bbyq.u03.training.
 - Android 10 o posterior, ARM64 y x86_64.
 - Firma de entrega: la clave personal persistente utilizada para C17. La clave no está en el repositorio.
@@ -31,6 +31,8 @@ La memoria, las reglas y el aprendizaje personal conservan el núcleo U02/XI ori
 
 Las preguntas personales y cálculos se ejecutan sobre copias. El nombre y la residencia usan el mismo banco de lenguaje C1/U02 que las lecciones C17. Las afirmaciones admitidas actualizan una relación de la memoria con XI y las consultas recuperan su valor vigente. Los pesos de conversación E025 permanecen intactos.
 
+Una corrección de conversación entrena un lector de texto con `c1_train`. El chat guarda el checkpoint en la base personal después de que `c1_next` produce la respuesta completa. Las lecciones se comparten entre chats y se pueden reemplazar enseñando otra respuesta para la misma frase. Las variaciones cubren signos, mayúsculas, fórmulas de cortesía y expresiones cotidianas reconocidas. Los hechos personales y los cálculos conservan sus rutas de consulta.
+
 Cada hilo conserva sus propios referentes para los seguimientos admitidos, como «¿y es máquina?», «¿y por qué?» o «¿cuánto da eso por 2?». El adaptador registra el turno de origen y la pregunta resuelta; el resultado se obtiene con XI. Ante un referente ambiguo pide aclaración. Los referentes de un chat no se toman de otro; el conocimiento enseñado explícitamente al modelo sigue siendo compartido.
 
 C17 no reentrena E025. Los ejercicios conjuntos modifican los bancos personales U02, y la referencia E025 conserva su checkpoint. La aplicación no promete conversación ilimitada ni integración de cómputo GPU/QSSD.
@@ -40,7 +42,7 @@ C17 no reentrena E025. Los ejercicios conjuntos modifican los bancos personales 
 El workflow Android ejecuta:
 
 - 5 pruebas de interfaz y conversación con límites geométricos, teclado real, toques, historial y desplazamiento real de la guía.
-- 4 pruebas de continuidad: seis burbujas reales después de tres turnos, navegación entre chats y borradores, contexto por hilo y migración de solicitudes pendientes.
+- 6 pruebas de chat: historial, navegación y borradores, contexto por hilo, migración, enseñanza de datos y correcciones de conversación.
 - Una actualización real del APK C18 al APK C19, con datos sembrados en la aplicación antigua y comprobados después de `adb install -r`.
 - Las 5 pruebas C17 de enseñanza, validación, activación, restauración y exportación.
 - Las 16 pruebas de funciones originales.

@@ -86,6 +86,7 @@ public final class TrainingRestartTest {
         String phase=InstrumentationRegistry.getArguments().getString("training_phase","");
         SharedPreferences saved=app().getSharedPreferences("c17-ci-training-restart",Context.MODE_PRIVATE);
         String query="dime si Nube Persistente es mortal";
+        String farewell="Nos vemos mañana, X. Cuídate.";
         U03Runtime.start(app());
         if("seed".equals(phase)){
             JSONObject original=snapshot();
@@ -114,6 +115,11 @@ public final class TrainingRestartTest {
             String firstDraft="Quiero continuar esta explicación",secondDraft="Otro cálculo pendiente";
             IntegratedActivity firstScreen=ChatContinuityTest.home(firstConversation,true);
             ChatContinuityTest.assertRendered(firstScreen,firstConversation,messages);ChatContinuityTest.draft(firstScreen,firstDraft,6);UiEvidence.finishActivities();
+            String lessonChat=conversation(conversationRequest("create").put("title","Lección del reinicio")).getString("conversation_id");
+            JSONObject lessonRequest=conversationRequest("send").put("conversation_id",lessonChat)
+                .put("text","Cuando te diga «hasta luego», responde: "+farewell);
+            JSONObject lesson=conversation(lessonRequest);
+            assertTrue(lesson.getJSONObject("receipt").getBoolean("committed"));
             JSONObject otherCreated=conversation(conversationRequest("create").put("title","Segundo hilo del reinicio"));
             String secondConversation=otherCreated.getJSONObject("conversation").getString("id");assertNotEquals(firstConversation,secondConversation);
             JSONObject otherRequest=conversationRequest("send").put("conversation_id",secondConversation).put("text","calcula 7 + 3");
@@ -133,7 +139,8 @@ public final class TrainingRestartTest {
                 .putString("conversation_id",firstConversation).putString("other_conversation_id",secondConversation)
                 .putString("first_draft",firstDraft).putInt("first_caret",6).putString("second_draft",secondDraft).putInt("second_caret",4)
                 .putString("other_history",otherMessages.toString()).putString("other_history_sha256",canonicalSha(otherMessages))
-                .putString("other_request",otherRequest.toString())
+                .putString("other_request",otherRequest.toString()).putString("dialogue_request",lessonRequest.toString())
+                .putString("dialogue_receipt_sha256",canonicalSha(lesson))
                 .putInt("pid",android.os.Process.myPid()).commit());
             write("training-restart-seed.json",new JSONObject().put("passed",true).put("phase","seed")
                 .put("session_id",session).put("pid",android.os.Process.myPid()).put("validation",validation)
@@ -141,6 +148,7 @@ public final class TrainingRestartTest {
                 .put("conversation_query_was_read_only",true).put("conversation_history",messages)
                 .put("conversation_id",firstConversation).put("other_conversation_id",secondConversation).put("active_conversation_id",secondConversation)
                 .put("other_conversation_history",otherMessages).put("drafts_entered_through_real_ui",true)
+                .put("dialogue_lesson_committed",true)
                 .put("conversation_history_sha256",historySha).put("conversation_receipt_sha256",conversationReceiptSha));
         }else if("verify".equals(phase)){
             assertTrue("The seed phase must have completed",saved.contains("session_id"));
@@ -196,6 +204,11 @@ public final class TrainingRestartTest {
             assertEquals(new JSONObject(saved.getString("other_request","{}")).getString("request_id"),numericContext.getString("source_request_id"));
             assertEquals(firstConversation,conversation(new JSONObject().put("action","history")).getString("active_conversation_id"));
             ConversationProof.sameMessages(otherMessages,ConversationProof.prefix(conversationHistory(secondConversation).getJSONArray("messages"),2));
+            JSONObject lessonReplay=conversation(new JSONObject(saved.getString("dialogue_request","{}")));
+            assertEquals(saved.getString("dialogue_receipt_sha256",null),canonicalSha(lessonReplay));
+            JSONObject learned=conversation(conversationRequest("send").put("conversation_id",firstConversation).put("text","Nos vemos"));
+            assertEquals("native_dialogue",learned.getString("response_origin"));
+            assertEquals(farewell,learned.getString("reply"));
             same(active,snapshot());UiEvidence.screenshot("chat-restart-context.png");UiEvidence.finishActivities();
             JSONObject restored=call("restore",session,new JSONObject().put("backup_id",saved.getString("backup_id",null))
                 .put("confirm_discard_new_activity",true));assertTrue(restored.getBoolean("restored"));
@@ -210,6 +223,7 @@ public final class TrainingRestartTest {
                 .put("multiple_conversations_survived_process_restart",true).put("active_conversation_survived_process_restart",true)
                 .put("thread_drafts_survived_process_restart",true).put("conversation_ui_history_survived_process_restart",true)
                 .put("thread_context_survived_process_restart",true).put("thread_context_isolated_after_restart",true)
+                .put("dialogue_lesson_survived_process_restart",true)
                 .put("replay_kept_active_conversation",true).put("conversation_id",firstConversation).put("other_conversation_id",secondConversation)
                 .put("thread_context_followup",why).put("other_thread_context_followup",numericFollowup)
                 .put("conversation_history_sha256",historySha).put("conversation_receipt_sha256",canonicalSha(retried.getJSONObject("receipt")))

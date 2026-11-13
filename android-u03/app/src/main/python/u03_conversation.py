@@ -25,6 +25,8 @@ import time
 import unicodedata
 import uuid
 
+import u03_dialogue as dialogue
+
 UNKNOWN = "No tengo suficiente información para responder."
 SCHEMA = "BBYQ-0-personal-conversations-v2"
 K = 8040000000000000000
@@ -175,7 +177,7 @@ def _history(db, view=None, archived=False):
     return [_message(row) for row in db.execute(sql + " ORDER BY rowid", params)]
 
 
-def _last_answer(db, view):
+def _last_answer(db, view, *, for_lesson=False):
     # Courtesy alone does not introduce a new subject or numeric result.
     # Stop at the first other turn: do not search past a topic change,
     # ambiguity or clarification to manufacture a convenient antecedent.
@@ -186,7 +188,7 @@ def _last_answer(db, view):
         if not candidate[1]:
             break
         value = json.loads(candidate[1])
-        if _fold(value.get("request_text", "")) in courtesy:
+        if not for_lesson and _fold(value.get("request_text", "")) in courtesy:
             continue
         row, answer = candidate, value
         break
@@ -198,7 +200,7 @@ def _last_answer(db, view):
         context["conversation_id"] = _conversation(db, view=view)["id"]
         return context
     return {"route": {key: value for key, value in route.items() if key != "previous"},
-            "normalized_prompt": answer.get("normalized_prompt"),
+            "normalized_prompt": answer.get("normalized_prompt"), "request_text": answer.get("request_text", ""),
             "response_origin": answer.get("response_origin"), "request_id": row[0],
             "conversation_id": _conversation(db, view=view)["id"],
             "context": _referents(answer)}
@@ -535,7 +537,34 @@ def _profile_route(text, clean, folded):
     return None
 
 
-def _route(text, db, view):
+def _lesson_route(lesson, db, view):
+    prompt, answer = lesson
+    if prompt == "":
+        return {"kind": "clarify", "reply": "Escribe un ejemplo como «Cuando te diga “hola”, responde: ¡Qué gusto verte!»."}
+    if not answer:
+        return {"kind": "clarify", "reply": "Escribe lo que quieres que diga. Por ejemplo, «Dilo así: ¡Qué gusto verte!»"}
+    if prompt is None:
+        last = _last_answer(db, view, for_lesson=True)
+        if not last:
+            return {"kind": "clarify", "reply": "Primero mándame un mensaje o escribe «Cuando te diga “hola”, responde: ¡Qué gusto verte!»."}
+        previous = last["route"]
+        if previous.get("kind") == "dialogue_lesson":
+            return dict(previous, answer=answer)
+        prompt = last.get("request_text", "")
+    else:
+        previous = _route(prompt, db, view, teaching=False)
+    phrase = dialogue.cue(previous, prompt)
+    if not phrase:
+        return {"kind": "clarify", "reply": "Puedes enseñarme una respuesta a un saludo, una presentación o una pregunta de conversación."}
+    return {"kind": "dialogue_lesson", "cue": phrase, "prompt": prompt, "answer": answer}
+
+
+def _route(text, db, view, *, teaching=True):
+    lesson = dialogue.instruction(text)
+    if lesson:
+        if not teaching:
+            return {"kind": "clarify"}
+        return _lesson_route(lesson, db, view)
     clean = _strip(text); folded = _fold(clean)
     profile = _profile_route(text, clean, folded)
     if profile:
@@ -698,11 +727,27 @@ def _answer(route, request_id, text, root, personal_db):
     if kind == "clarify":
         provenance["response_origin"] = "interface"
         return route["reply"], False, provenance
+    if kind == "dialogue_lesson":
+        receipt = dialogue.teach(personal_db, root, "dialogue-conversation-" + request_id,
+                                 route["cue"], route["prompt"], route["answer"])
+        provenance.update(response_origin="interface", native_XI=bool(receipt["trace"]), receipt=receipt,
+                          dialogue_trained=receipt["committed"])
+        if receipt["committed"]:
+            return "Aprendí esa respuesta. Puedes volver a preguntarme.", True, provenance
+        return receipt["results"][0]["reason"], False, provenance
     if kind in ("why", "repeat"):
         previous = route.get("previous")
         if not previous:
             return UNKNOWN, False, provenance
         earlier = previous.get("route", {})
+        if previous.get("response_origin") == "native_dialogue":
+            if kind == "repeat":
+                repeated = _learned_reply(earlier, previous.get("request_text", ""), personal_db, provenance)
+                if repeated:
+                    return repeated
+            else:
+                provenance["response_origin"] = "interface"
+                return "Usé una respuesta que me enseñaste en el chat.", True, provenance
         if earlier.get("kind") == "reference" or previous.get("response_origin") == "native_reference":
             prompt = earlier.get("prompt") or previous.get("normalized_prompt")
             if prompt:
@@ -727,7 +772,8 @@ def _answer(route, request_id, text, root, personal_db):
         return UNKNOWN, False, provenance
     if kind == "help":
         provenance["response_origin"] = "interface"
-        return "Puedes contarme cómo te llamas o dónde vives, hacer cálculos y enseñarme otros datos con «recuerda que…». En Mi BBY Q puedes revisar mi memoria y entrenarme con ejemplos.", True, provenance
+        return ("Si quieres corregir una respuesta, escribe «Dilo así:» y la frase que quieres que diga. "
+                "Puedes enseñarme un dato con «recuerda que…» y revisar mi memoria en Mi BBY Q."), True, provenance
     if kind == "memory":
         memory = personal_memory(root, personal_db)
         provenance.update(response_origin="native_result_rendering", native_XI=True, memory=memory)
@@ -745,6 +791,10 @@ def _answer(route, request_id, text, root, personal_db):
                 return "Tengo versiones distintas de ese dato. ¿Me lo puedes aclarar?", False, provenance
             return ("Todavía no sé cómo te llamas." if predicate == "nombre" else "Todavía no sé dónde vives."), False, provenance
         provenance["response_origin"] = "native_result_rendering"
+        if receipt["committed"]:
+            learned = _learned_reply(route, text, personal_db, provenance)
+            if learned:
+                return learned
         value = result["value"]
         if predicate == "nombre":
             reply = f"Listo, {value}. Guardé tu nombre." if receipt["committed"] else f"Te llamas {value}."
@@ -758,6 +808,10 @@ def _answer(route, request_id, text, root, personal_db):
             provenance.update(response_origin=origin, native_XI=True, receipt=receipt, normalized_prompt=route["prompt"])
             return reply, understood, provenance
         kind = "reference"
+    if kind in ("reference", "unknown"):
+        learned = _learned_reply(route, text, personal_db, provenance)
+        if learned:
+            return learned
     if kind == "personal":
         prompt = route["prompt"]
         if route.get("write"):
@@ -789,6 +843,18 @@ def _answer(route, request_id, text, root, personal_db):
             provenance.update(response_origin=origin, native_XI=True, receipt=receipt, normalized_prompt=prompt)
             return reply, understood, provenance
     return UNKNOWN, False, provenance
+
+
+def _learned_reply(route, text, personal_db, provenance):
+    receipt = dialogue.generate(personal_db, dialogue.cue(route, text))
+    if not receipt:
+        return None
+    if provenance["receipt"] is None:
+        provenance["receipt"] = receipt
+    else:
+        provenance["dialogue_receipt"] = receipt
+    provenance.update(response_origin="native_dialogue", native_XI=True)
+    return receipt["results"][0]["text"], True, provenance
 
 
 def run(args, root, personal_db):

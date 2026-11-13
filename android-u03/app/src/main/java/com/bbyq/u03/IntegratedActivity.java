@@ -339,8 +339,8 @@ public final class IntegratedActivity extends Activity implements ConversationUi
         if(preferences.getBoolean("show_suggestions",true)){
             LinearLayout suggestions=UiKit.column(this);suggestions.setId(0x5802013);
             suggestions.addView(suggestion("Saludar","hola"),margin(-1,-2,18));suggestions.addView(suggestion("Resolver una cuenta","¿Cuánto es 7 + 3?"),margin(-1,-2,8));
-            Button teach=UiKit.button(this,"Enseñarle algo nuevo",false);teach.setOnClickListener(v->startActivity(new Intent(this,TrainingActivity.class)));
-            suggestions.addView(teach,margin(-1,-2,8));welcome.addView(suggestions,new LinearLayout.LayoutParams(-1,-2));
+            suggestions.addView(suggestion("Enseñarle a conversar","Cuando te diga «hola», responde: "),margin(-1,-2,8));
+            welcome.addView(suggestions,new LinearLayout.LayoutParams(-1,-2));
         }
         emptyHost.addView(welcome,new LinearLayout.LayoutParams(-1,-2));
     }

@@ -67,7 +67,7 @@ public final class ChatUpgradeTest {
                 .put("personal_snapshot",personal).put("replay_result_sha256",ConversationProof.sha(answer)));
         }else if("verify".equals(phase)){
             assertTrue("The seed phase ran in the C18 APK",saved.contains("replay_result"));
-            assertEquals(4,saved.getLong("version_code",-1));assertEquals("Verify must execute the updated C19 APK",5,version());
+            assertEquals(4,saved.getLong("version_code",-1));assertEquals("Verify must execute the updated APK",6,version());
             assertNotEquals("Upgrade must cross a real process boundary",saved.getInt("seed_pid",-1),android.os.Process.myPid());
             JSONObject personal=new JSONObject(saved.getString("personal_snapshot","{}"));ConversationProof.sameSnapshot(personal,snapshot());
             String first="legacy-view-"+saved.getInt("first_view",-1),second="legacy-view-"+saved.getInt("second_view",-1);
